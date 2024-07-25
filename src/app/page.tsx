@@ -1,95 +1,132 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import { Header } from "../components";
+import Filter from "../components/home/filter";
+import { Box, Container, Grid } from "@mui/material";
+import Info from "../components/home/info";
+import lineSmall from "../../public/assets/images/static/linesmall.png";
+import faqLine from "../../public/assets/images/static/faq-line.png";
+import Trusted from "../components/home/trusted";
+import GetStarted from "../components/home/get-started";
+import OurClient from "../components/home/our-client";
+import Faqs from "../components/home/faqs";
+import Footer from "../components/footer";
+import ContactUs from "../components/home/contact-us";
+import homeImage from "../../public/assets/images/static/girl-with-book.png";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Header />
+      <Container
+        sx={{
+          maxWidth: { lg: "1650px" },
+          paddingTop: {
+            xs: "120px",
+            sm: "150px",
+            md: "200px",
+            lg: 0,
+            xl: 0,
+          },
+          height: { xs: "100%", lg: "100vh" },
+          display: "flex",
+          alignItems: "end",
+        }}
+      >
+        <Grid container>
+          <Grid
+            item
+            lg={6}
+            md={12}
+            sm={12}
+            xs={12}
+            sx={{
+              paddingRight: {
+                lg: 10,
+              },
+            }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+            <Filter />
+          </Grid>
+          <Grid
+            item
+            lg={6}
+            md={12}
+            sm={12}
+            xs={12}
+            sx={{
+              position: "relative",
+              "::before": {
+                content: "''",
+                backgroundImage: `url(${homeImage.src})`,
+                backgroundPosition: "bottom",
+                backgroundSize: "contain",
+                height: { xs: "400px", sm: "400px", md: "784px", lg: "784px" },
+                width: "100%",
+                backgroundRepeat: "no-repeat",
+                position: "absolute",
+                bottom: 0,
+              },
+            }}
+          >
+            <Info />
+          </Grid>
+        </Grid>
+      </Container>
+      <Trusted />
+      <Container sx={{ maxWidth: { lg: "1450px" } }}>
+        <GetStarted />
+      </Container>
+      <OurClient />
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+          "::before": {
+            content: "''",
+            backgroundImage: {
+              xs: `url(${lineSmall})`,
+              lg: `url(${faqLine})`,
+            },
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+            position: "absolute",
+            bottom: {
+              xs: 750,
+              lg: -90,
+            },
+            display: {
+              xs: "block",
+              sm: "none",
+              md: "none",
+              lg: "block",
+            },
+            backgroundRepeat: "no-repeat",
+            width: "100vw",
+            height: {
+              xs: "108px",
+              lg: "281px",
+            },
+          },
+        }}
+      >
+        <Container
+          sx={{
+            maxWidth: { lg: "1450px" },
+          }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <Faqs />
+        </Container>
+      </Box>
+      <ContactUs />
+      <Footer />
+    </>
   );
-}
+};
+
+export default Home;
+
+const styles = {
+  contanier: {},
+};
