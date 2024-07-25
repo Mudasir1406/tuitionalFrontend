@@ -496,8 +496,8 @@ const Review = () => {
         </Box>
         <Typography sx={styles.reviewText} className={leagueSpartan.className}>
           The teacher is really good at explaining, they repeat as many times as
-          i want. The teacher is really patient and really kind. I don't have
-          any complains. You guys are doing a really good job.
+          i want. The teacher is really patient and really kind. I don&apos;t
+          have any complains. You guys are doing a really good job.
         </Typography>
         <Box sx={styles.userContanier}>
           <Box>
@@ -533,8 +533,8 @@ const ReviewMobile = () => {
       </Box>
       <Typography sx={styles.reviewText} className={leagueSpartan.className}>
         The teacher is really good at explaining, they repeat as many times as i
-        want. The teacher is really patient and really kind. I don't have any
-        complains. You guys are doing a really good job.
+        want. The teacher is really patient and really kind. I don&apos;t have
+        any complains. You guys are doing a really good job.
       </Typography>
       <Box sx={styles.userContanier}>
         <Image

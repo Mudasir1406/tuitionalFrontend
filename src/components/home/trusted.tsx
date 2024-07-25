@@ -10,6 +10,7 @@ import {
   getTrustedSchools,
 } from "../../services/trusted-schools/trusted-schools";
 import { leagueSpartan } from "@/app/fonts";
+import Image, { StaticImageData } from "next/image";
 
 const Trusted: React.FC = () => {
   const [trustedSchools, setTrustedSchools] = useState<Trusted_Schools_Type>();
@@ -24,7 +25,10 @@ const Trusted: React.FC = () => {
       <Box sx={styles.slideContainer}>
         <Box sx={styles.slideContent}>
           {trustedSchools?.images.map((item, index) => (
-            <Box sx={{ background: "transparent", marginLeft: "11px" }}>
+            <Box
+              sx={{ background: "transparent", marginLeft: "11px" }}
+              key={index}
+            >
               <Box key={index} sx={styles.imageBox}>
                 <ImageBox imageSource={item} />
               </Box>
@@ -39,14 +43,16 @@ const Trusted: React.FC = () => {
 export default Trusted;
 
 type Props = {
-  imageSource: string;
+  imageSource: StaticImageData;
 };
 
 const ImageBox: React.FC<Props> = ({ imageSource }) => {
   return (
     <Box sx={styles.imageBox} className="schoolsBox">
-      <img
-        src={imageSource}
+      <Image
+        src={imageSource.src}
+        width={imageSource.width}
+        height={imageSource.height}
         alt=""
         style={{ objectFit: "cover", width: 100, height: "auto" }}
       />

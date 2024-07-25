@@ -11,6 +11,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import { leagueSpartan } from "@/app/fonts";
+import Image from "next/image";
+import {
+  StaticImageData,
+  StaticImport,
+} from "next/dist/shared/lib/get-img-props";
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>();
   useEffect(() => {
@@ -241,7 +246,7 @@ const styles = {
 type Props = {
   heading: string;
   description: string;
-  image: string;
+  image: StaticImageData;
 };
 
 const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
@@ -256,7 +261,13 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
           justifyContent: "center",
         }}
       >
-        <img src={image} alt="" style={{ width: 330, height: "auto" }}></img>
+        <Image
+          src={image.src}
+          alt=""
+          width={image.width}
+          height={image.height}
+          style={{ width: 330, height: "auto" }}
+        ></Image>
       </Box>
       <Typography sx={styles.boxHeading} className={leagueSpartan.className}>
         {heading}

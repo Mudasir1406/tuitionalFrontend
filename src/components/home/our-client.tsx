@@ -50,7 +50,7 @@ const OurClient = () => {
           }}
         >
           <Typography sx={styles.heading} className={leagueSpartan.className}>
-            What are Students Says!{" "}
+            What are Students Says!
           </Typography>
           <Typography sx={styles.desc} className={leagueSpartan.className}>
             Listen to the incredible experiences shared by our students!
@@ -147,7 +147,7 @@ const OurClient = () => {
       >
         <Box sx={{ width: "20%", marginLeft: 20 }}>
           <Typography sx={styles.heading} className={leagueSpartan.className}>
-            What our Students Says!{" "}
+            What our Students Says!
           </Typography>
           <Typography sx={styles.desc} className={leagueSpartan.className}>
             Listen to the incredible experiences shared by our students!
@@ -595,8 +595,8 @@ const Review = () => {
         </Box>
         <Typography sx={styles.reviewText}>
           The teacher is really good at explaining, they repeat as many times as
-          i want. The teacher is really patient and really kind. I don't have
-          any complains. You guys are doing a really good job.
+          i want. The teacher is really patient and really kind. I don&apos;t
+          have any complains. You guys are doing a really good job.
         </Typography>
         <Box sx={styles.userContanier}>
           <Box>
@@ -622,8 +622,8 @@ const ReviewMobile = () => {
       </Box>
       <Typography sx={styles.reviewText}>
         The teacher is really good at explaining, they repeat as many times as i
-        want. The teacher is really patient and really kind. I don't have any
-        complains. You guys are doing a really good job.
+        want. The teacher is really patient and really kind. I don&apos;t have
+        any complains. You guys are doing a really good job.
       </Typography>
       <Box sx={styles.userContanier}>
         <Image

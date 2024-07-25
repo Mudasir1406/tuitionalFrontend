@@ -1,5 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig/config";
+import { StaticImageData } from "next/image";
 
 export const getStartedData = async (): Promise<GetStartedData[]> => {
   const temp: GetStartedData[] = [];
@@ -13,6 +14,6 @@ export const getStartedData = async (): Promise<GetStartedData[]> => {
 export type GetStartedData = {
   id: string;
   heading: string;
-  image: string;
+  image: StaticImageData;
   description: string;
 };

@@ -85,7 +85,7 @@ const ReviewsOnSp: React.FC = () => {
               sx={{ color: "black", marginX: 2 }}
             ></Divider>
             <Typography sx={styles.desc} className={leagueSpartan.className}>
-              Student's complete
+              Student&apos;s complete
               <br /> classes successfully.
             </Typography>
           </Box>
