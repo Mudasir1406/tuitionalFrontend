@@ -1,10 +1,19 @@
 import { leagueSpartan } from "@/app/fonts";
 import { Box, Typography } from "@mui/material";
+import Image from "next/image";
 import React from "react";
-
+import globe from "../../../public/assets/images/svg/globe.svg";
+import hat from "../../../public/assets/images/svg/hat.svg";
 const LearnTogeather: React.FC = () => {
   return (
     <Box sx={styles.contanier}>
+      <Image
+        src={hat}
+        alt="hat"
+        priority
+        style={{ position: "absolute", left: "11%", top: "-10%" }}
+      />
+
       <Typography sx={styles.learn} className={leagueSpartan.className}>
         Let’s Learn Together
       </Typography>
@@ -14,6 +23,12 @@ const LearnTogeather: React.FC = () => {
       >
         Anywhere & Everywhere
       </Typography>
+      <Image
+        src={globe}
+        alt="globe"
+        priority
+        style={{ position: "absolute", right: "27%", top: "25%" }}
+      />
     </Box>
   );
 };
@@ -45,5 +60,9 @@ const styles = {
   },
   contanier: {
     background: "#D7F0FF",
+    position: "relative",
+  },
+  hat: {
+    position: "absolute",
   },
 };

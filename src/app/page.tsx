@@ -27,7 +27,7 @@ const Home: React.FC = () => {
             lg: 0,
             xl: 0,
           },
-          height: { xs: "100%", lg: "100vh" },
+          minHeight: { xs: "100%", lg: "100vh" },
           display: "flex",
           alignItems: "end",
         }}
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
                 backgroundImage: `url(${homeImage.src})`,
                 backgroundPosition: "bottom",
                 backgroundSize: "contain",
-                height: { xs: "400px", sm: "400px", md: "784px", lg: "784px" },
+                height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
                 width: "100%",
                 backgroundRepeat: "no-repeat",
                 position: "absolute",

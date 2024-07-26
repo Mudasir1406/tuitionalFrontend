@@ -9,12 +9,13 @@ import {
   getFilterData,
 } from "../../services/filter-data/filter-data";
 import { leagueSpartan } from "@/app/fonts";
+
 const Filter: React.FC = async () => {
   const filterData: Filter_Data | null = await getFilterData();
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
       <Typography
-        sx={styles.heading}
+        sx={[styles.heading]}
         component={"h2"}
         className={leagueSpartan.className}
       >
@@ -82,17 +83,17 @@ const styles = {
   heading: {
     fontFamily: "League Spartan",
     fontSize: {
-      xs: "40px",
-      sm: "42px",
-      md: "45px",
-      lg: "55px",
+      xs: "4vh",
+      sm: "5.2vh",
+      md: "5.3vh",
+      lg: "5.4vh",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "40px",
-      sm: "35px",
-      md: "45px",
-      lg: "65px",
+      xs: "5vh",
+      sm: "4.5vh",
+      md: "5.5vh",
+      lg: "6vh",
     },
     width: {
       lg: "90%",
@@ -102,7 +103,7 @@ const styles = {
       lg: "start",
     },
     marginTop: {
-      xs: "30px",
+      xs: "4vh",
     },
     color: "#000000",
   },
@@ -111,36 +112,34 @@ const styles = {
     color: "#51B893",
     display: "inline",
     fontSize: {
-      xs: "30px",
-      sm: "40px",
-      md: "40px",
-      lg: "55px",
+      xs: "4vh",
+      sm: "5.2vh",
+      md: "5.3vh",
+      lg: "5.4vh",
     },
+
     fontWeight: 600,
     lineHeight: {
-      xs: "25px",
-      sm: "35px",
-      md: "45px",
-      lg: "65px",
+      xs: "3.5vh",
+      sm: "4.5vh",
+      md: "5.5vh",
+      lg: "8vh",
     },
     position: "relative",
     "::before": {
-      //   display: "flex",
       content: "''",
       position: "absolute",
       zIndex: 10,
-
       right: {
         md: 0,
         lg: 0,
       },
       top: {
-        xs: -25,
-        sm: -25,
-        md: -35,
-        lg: -35,
+        xs: -20.5,
+        sm: -20.5,
+        md: -30.5,
+        lg: -30.5,
       },
-
       backgroundImage: {
         xs: `url(${linesMobile.src})`,
         sm: `url(${linesMobile.src})`,
@@ -148,46 +147,46 @@ const styles = {
         lg: `url(${lines.src})`,
       },
       height: {
-        xs: "19px",
-        sm: "19px",
-        md: "43px",
-        lg: "43px",
+        xs: "1.9vh",
+        sm: "1.9vh",
+        md: "4.3vh",
+        lg: "4.3vh",
       },
       width: {
-        xs: "20px",
-        sm: "20px",
-        md: "43px",
-        lg: "43px",
+        xs: "2vh",
+        sm: "2vh",
+        md: "4.3vh",
+        lg: "4.3vh",
       },
       backgroundPosition: "end",
       backgroundRepeat: "no-repeat",
-      // animation: "swing 1s linear infinite alternate",
     },
   },
   desc: {
     fontFamily: "League Spartan",
     fontSize: {
-      xs: "18px",
-      sm: "14px",
-      md: "18px",
-      lg: "24px",
+      xs: "2.5vh",
+      sm: "2vh",
+      md: "2.5vh",
+      lg: "2.6vh",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "25px",
-      sm: "24px",
-      md: "28px",
-      lg: "34px",
+      xs: "2.5vh",
+      sm: "2.4vh",
+      md: "2.8vh",
+      lg: "3.4vh",
     },
     textAlign: {
       xs: "center",
       lg: "start",
     },
     paddingX: {
-      xs: "20px",
+      xs: "2vh",
+      lg: "0vh",
     },
     marginTop: {
-      xs: "30px",
+      xs: "4vh",
     },
     color: "#000000",
   },
@@ -220,27 +219,26 @@ const styles = {
   filterBox: {
     backgroundColor: "#D7F0FF",
     paddingY: {
-      xs: "40px",
-      sm: "40px",
-      md: "50px",
-      lg: "50px",
+      xs: "4vh",
+      sm: "4vh",
+      md: "5vh",
+      lg: "5vh",
     },
     paddingX: {
-      xs: "20px",
-      sm: "20px",
-      md: "30px",
-      lg: "30px",
+      xs: "2vh",
+      sm: "2vh",
+      md: "3vh",
+      lg: "3vh",
     },
     borderRadius: {
-      xs: "20px",
-      sm: "20px",
-      md: "10px",
-      lg: "10px",
+      xs: "2vh",
+      sm: "2vh",
+      md: "1vh",
+      lg: "1vh",
     },
-    marginTop: "30px",
+    marginTop: "4vh",
+    maxHeight: "70vh",
     animation: "rotateAnimation 1s ease-in-out infinite",
     transformOrigin: "center",
-    // maxWidth: "600px",
-    // minWidth: "320px",
   },
 };

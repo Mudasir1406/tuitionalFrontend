@@ -11,14 +11,14 @@ import {
   styled,
 } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import linesInvertWhite from "../../../public/assets/images/static/lines-invert-white.png";
+import linesInvertPrimary from "../../../public/assets/images/static/lines-invert-primary.png";
 import { SwiperSlide, Swiper, SwiperRef } from "swiper/react";
 import { Autoplay, Pagination, EffectCards } from "swiper/modules";
 import WestIcon from "@mui/icons-material/West";
 import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import EastIcon from "@mui/icons-material/East";
 import user from "../../../public/assets/images/static/clientReview.png";
-import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
+import linesInvertPrimarySmall from "../../../public/assets/images/static/lines-invert-primary-small.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -140,6 +140,7 @@ const OurClient = () => {
             ))}
           </Swiper>
         </Box>
+
         <Box sx={{ display: "flex", marginTop: 5 }}>
           <Box
             sx={styles.nextButton}
@@ -168,7 +169,7 @@ const OurClient = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ width: "50%", marginLeft: 20 }}>
+        <Box sx={{ width: "35%", marginLeft: 20 }}>
           <Typography sx={styles.heading} className={leagueSpartan.className}>
             What are
             <br /> Students Says!{" "}
@@ -180,45 +181,78 @@ const OurClient = () => {
             Listen to the incredible experiences shared by our students!
             Register now to unlock an enriching world of enjoyable learning
           </Typography>
-          <Button variant="contained" sx={styles.button}>
+          <Button
+            variant="contained"
+            sx={styles.button}
+            className={leagueSpartan.className}
+          >
             Write A Review
           </Button>
         </Box>
 
-        <Swiper
-          ref={swiper}
-          centeredSlides={true}
-          grabCursor
-          onSlideChange={() => handleProgress()}
-          //   onSwiper={(swiper: any) => console.log(swiper)}
-          style={{
-            height: "100%",
-            marginTop: 10,
+        <Box
+          sx={{
             display: "flex",
-            width: "70%",
-          }}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay, Pagination, EffectCards]}
-          effect="cards"
-          cardsEffect={{
-            perSlideOffset: 4,
-            slideShadows: false,
-            perSlideRotate: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: "45%",
           }}
         >
-          {[0, 0, 0, 0, 0].map((item, index) => (
-            <SwiperSlide
-              key={index}
-              style={{ display: "flex", borderRadius: 10, paddingLeft: 110 }}
+          <Box sx={{ display: "flex" }}>
+            <Box
+              sx={styles.nextButton}
+              onClick={() => swiper.current?.swiper.slidePrev()}
             >
-              <Review />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              <WestIcon />
+            </Box>
+          </Box>
+          <Swiper
+            ref={swiper}
+            centeredSlides={true}
+            grabCursor
+            onSlideChange={() => handleProgress()}
+            style={{
+              height: "100%",
+              marginTop: 10,
+              display: "flex",
+              width: "100%",
+              marginLeft: "2%",
+            }}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Pagination, EffectCards]}
+            effect="cards"
+            cardsEffect={{
+              perSlideOffset: 4,
+              slideShadows: false,
+              perSlideRotate: 1,
+            }}
+          >
+            {[0, 0, 0, 0, 0].map((item, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  display: "flex",
+                  borderRadius: 10,
+                  padding: 20,
+                }}
+              >
+                <Review />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Box sx={{ display: "flex" }}>
+            <Box
+              sx={styles.nextButton}
+              onClick={() => swiper.current?.swiper.slideNext()}
+            >
+              <EastIcon />
+            </Box>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
@@ -259,17 +293,18 @@ const styles = {
       xs: "38px",
       sm: "38px",
       md: "50px",
-      lg: "50px",
+      lg: "60px",
     },
-    paddingY: "60px",
+    paddingY: "70px",
     width: {
       xs: "70%",
-      sm: "400px",
-      md: "400px",
-      lg: "400px",
+      sm: "100%",
+      md: "100%",
+      lg: "100%",
     },
     backgroundColor: "white",
     borderRadius: 10,
+    maxWidth: "400px",
   },
   heading: {
     fontFamily: "League Spartan",
@@ -317,13 +352,13 @@ const styles = {
         lg: -50,
       },
       backgroundImage: {
-        xs: `url(${linesMobileWhite.src})`,
-        sm: `url(${linesInvertWhite.src})`,
-        md: `url(${linesInvertWhite.src})`,
-        lg: `url(${linesInvertWhite.src})`,
+        xs: `url(${linesInvertPrimarySmall.src})`,
+        sm: `url(${linesInvertPrimary.src})`,
+        md: `url(${linesInvertPrimary.src})`,
+        lg: `url(${linesInvertPrimary.src})`,
       },
-      height: "12px",
-      width: "14px",
+      height: "35px",
+      width: "43px",
       backgroundRepeat: "no-repeat",
     },
   },
@@ -337,16 +372,16 @@ const styles = {
       xs: "20px",
       sm: "22px",
       md: "24px",
-      lg: "25px",
+      lg: "30px",
     },
     fontWeight: 400,
     lineHeight: {
       xs: "40px",
       sm: "38px",
       md: "36px",
-      lg: "35px",
+      lg: "50px",
     },
-    height: "350px",
+    height: "450px",
     color: "rgba(0,0,0,0.77)",
   },
   coma: {
@@ -499,7 +534,15 @@ const Review = () => {
           i want. The teacher is really patient and really kind. I don&apos;t
           have any complains. You guys are doing a really good job.
         </Typography>
+        <Divider sx={{ marginBottom: "36px" }} />
         <Box sx={styles.userContanier}>
+          <Image
+            src={user.src}
+            width={50}
+            height={50}
+            alt="user"
+            style={{ borderRadius: 25, marginRight: 10 }}
+          ></Image>
           <Box>
             <Typography
               sx={styles.username}

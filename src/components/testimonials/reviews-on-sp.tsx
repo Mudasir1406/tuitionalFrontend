@@ -84,7 +84,10 @@ const ReviewsOnSp: React.FC = () => {
               flexItem
               sx={{ color: "black", marginX: 2 }}
             ></Divider>
-            <Typography sx={styles.desc} className={leagueSpartan.className}>
+            <Typography
+              sx={[styles.complete]}
+              className={leagueSpartan.className}
+            >
               Student&apos;s complete
               <br /> classes successfully.
             </Typography>
@@ -171,12 +174,30 @@ const styles = {
     },
     width: "60%",
     color: "black",
-    paddingX: {
+    paddingLeft: {
       xs: "50px",
       sm: "50px",
       md: "50px",
       lg: 0,
     },
+  },
+  complete: {
+    fontFamily: "League Spartan",
+    fontSize: {
+      xs: "18px",
+      sm: "20px",
+      md: "25px",
+      lg: "25px",
+    },
+    fontWeight: 400,
+    lineHeight: {
+      xs: "25px",
+      sm: "30px",
+      md: "40px",
+      lg: "40px",
+    },
+    width: "60%",
+    color: "black",
   },
   percent: {
     fontFamily: "League Spartan",

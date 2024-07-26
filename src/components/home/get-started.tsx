@@ -262,10 +262,10 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
         }}
       >
         <Image
-          src={image.src}
+          src={image}
           alt=""
-          width={image.width}
-          height={image.height}
+          width={330}
+          height={360}
           style={{ width: 330, height: "auto" }}
         ></Image>
       </Box>

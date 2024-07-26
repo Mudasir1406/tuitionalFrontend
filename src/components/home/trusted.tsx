@@ -50,9 +50,9 @@ const ImageBox: React.FC<Props> = ({ imageSource }) => {
   return (
     <Box sx={styles.imageBox} className="schoolsBox">
       <Image
-        src={imageSource.src}
-        width={imageSource.width}
-        height={imageSource.height}
+        src={imageSource}
+        width={100}
+        height={100}
         alt=""
         style={{ objectFit: "cover", width: 100, height: "auto" }}
       />

@@ -20,7 +20,6 @@ import user from "../../../public/assets/images/static/clientReview.png";
 import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-
 const OurClient = () => {
   const swiper = useRef<SwiperRef | null>(null);
 

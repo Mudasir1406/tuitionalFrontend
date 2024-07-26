@@ -223,41 +223,41 @@ const styles = {
       lineHeight: "18.4px",
       textAlign: "center",
     },
-    "::before": {
-      //   display: "flex",
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      right: {
-        xs: -100,
-        lg: -100,
-      },
-      top: {
-        xs: -25,
-        lg: -30,
-      },
-      backgroundImage: {
-        xs: `url(${arrow})`,
-        sm: `url(${arrow})`,
-        md: `url(${arrow})`,
-        lg: `url(${arrow})`,
-      },
-      height: {
-        xs: "132px",
-        sm: "132px",
-        md: "132px",
-        lg: "132px",
-      },
-      width: {
-        xs: "139px",
-        sm: "139px",
-        md: "139px",
-        lg: "139px",
-      },
-      backgroundPosition: "end",
-      backgroundRepeat: "no-repeat",
+    // "::before": {
+    //   //   display: "flex",
+    //   content: "''",
+    //   position: "absolute",
+    //   zIndex: 10,
+    //   right: {
+    //     xs: -100,
+    //     lg: -100,
+    //   },
+    //   top: {
+    //     xs: -25,
+    //     lg: -30,
+    //   },
+    //   backgroundImage: {
+    //     xs: `url(${arrow})`,
+    //     sm: `url(${arrow})`,
+    //     md: `url(${arrow})`,
+    //     lg: `url(${arrow})`,
+    //   },
+    //   height: {
+    //     xs: "132px",
+    //     sm: "132px",
+    //     md: "132px",
+    //     lg: "132px",
+    //   },
+    //   width: {
+    //     xs: "139px",
+    //     sm: "139px",
+    //     md: "139px",
+    //     lg: "139px",
+    //   },
+    //   backgroundPosition: "end",
+    //   backgroundRepeat: "no-repeat",
 
-      // animation: "swing 1s linear infinite alternate",
-    },
+    //   // animation: "swing 1s linear infinite alternate",
+    // },
   },
 };

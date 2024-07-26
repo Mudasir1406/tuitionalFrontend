@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-
+import linesMobile from "../../../public/assets/images/static/linesMobile.png";
+import lines from "../../../public/assets/images/static/lines.png";
 import girlLaptop from "../../../public/assets/images/static/girl-using-laptop.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
@@ -111,17 +112,26 @@ const GetInTouch: React.FunctionComponent = () => {
               flexDirection: "column",
             }}
           >
-            <Typography sx={styles.heading} className={leagueSpartan.className}>
-              Get in{"  "}
+            <Typography
+              sx={styles.heading}
+              className={leagueSpartan.className}
+              component={"h2"}
+            >
+              Get In {"  "}
               <Typography
                 className={leagueSpartan.className}
                 sx={[
                   styles.heading,
-                  { color: "rgba(81, 184, 147, 1)", fontWeight: 700 },
+                  {
+                    color: "rgba(81, 184, 147, 1)",
+                    fontWeight: 700,
+                    marginLeft: 1,
+                  },
+                  styles.touch,
                 ]}
+                component={"span"}
               >
-                {" "}
-                Touch
+                {`    Touch`}
               </Typography>
             </Typography>
             <Typography sx={styles.looking} className={leagueSpartan.className}>
@@ -377,7 +387,6 @@ const styles = {
     paddingTop: "80px",
   },
   background: {
-    // background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#D7F0FF)",
     position: "absolute",
     zIndex: -2,
     height: "100%",
@@ -387,11 +396,6 @@ const styles = {
   input: {
     backgroundColor: "white",
     marginY: "12px",
-    // outline: "none",
-    // ":focus-visible": {
-    //   outline: "none",
-    // },
-    // width: "95%"
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
@@ -498,6 +502,43 @@ const styles = {
     display: {
       xs: "block",
       md: "block",
+    },
+  },
+  touch: {
+    "::before": {
+      //   display: "flex",
+      content: "''",
+      position: "absolute",
+      zIndex: 10,
+      right: {
+        xs: 0,
+        lg: -20,
+      },
+      top: {
+        xs: -25,
+        lg: -30,
+      },
+      backgroundImage: {
+        xs: `url(${linesMobile.src})`,
+        sm: `url(${linesMobile.src})`,
+        md: `url(${lines.src})`,
+        lg: `url(${lines.src})`,
+      },
+      height: {
+        xs: "19px",
+        sm: "19px",
+        md: "43px",
+        lg: "43px",
+      },
+      width: {
+        xs: "20px",
+        sm: "20px",
+        md: "43px",
+        lg: "43px",
+      },
+      backgroundPosition: "end",
+      backgroundRepeat: "no-repeat",
+      // animation: "swing 1s linear infinite alternate",
     },
   },
 };

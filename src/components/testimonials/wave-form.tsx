@@ -68,13 +68,13 @@ const Waveform: React.FC<WaveformProps> = ({ audio }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        width: { lg: "580px", md: "500px", sm: "450px", xs: "340px" },
+        width: { lg: "580px", md: "500px", sm: "450px", xs: "300px" },
         backgroundColor: "white",
         boxShadow:
           "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset, 0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
         borderRadius: "100px",
         height: { xs: "65px", lg: "100px" },
-        paddingX: "10px",
+        paddingX: { lg: "20px", md: "20px", sm: "10px", xs: "10px" },
       }}
     >
       <IconButton
