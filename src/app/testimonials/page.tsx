@@ -83,7 +83,7 @@ const styles = {
       },
       backgroundPosition: "bottom",
       backgroundSize: "contain",
-      height: { xs: "400px", sm: "500px", md: "784px", lg: "784px" },
+      height: { xs: "400px", sm: "500px", md: "80vh", lg: "80vh" },
       width: "100%",
       backgroundRepeat: "no-repeat",
       position: "absolute",

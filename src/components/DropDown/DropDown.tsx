@@ -8,13 +8,14 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./DropDown.css";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 190,
+      width: "10vh",
     },
   },
 };
@@ -58,6 +59,8 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           displayEmpty
           sx={{
             borderRadius: "10px",
+            height: "5.5vh",
+            // Adjusted border radius with vh unit
           }}
           value={personName}
           onChange={handleChange}
@@ -107,8 +110,8 @@ export default MultipleSelectPlaceholder;
 const styles = {
   placeholderText: {
     fontFamily: "League Spartan",
-    fontSize: "16px",
+    fontSize: "1.5vh", // Adjusted font size with vh unit
     fontWeight: 400,
-    // lineHeight: "14px",
+    // lineHeight: "14px", // Adjusted line height if necessary
   },
 };

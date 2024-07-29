@@ -33,31 +33,7 @@ const Careers: React.FC = () => {
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Hero />
           </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            sm={12}
-            xs={12}
-            sx={{
-              position: "relative",
-              background: {
-                xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",
-                lg: "none",
-              },
-              "::before": {
-                content: "''",
-                backgroundImage: `url(${carrerHero.src})`,
-                backgroundPosition: "bottom",
-                backgroundSize: "contain",
-                height: { xs: "400px", sm: "400px", md: "784px", lg: "784px" },
-                width: "100%",
-                backgroundRepeat: "no-repeat",
-                position: "absolute",
-                bottom: 0,
-              },
-            }}
-          >
+          <Grid item lg={8} md={12} sm={12} xs={12} sx={styles.hero}>
             <HeroInfo />
           </Grid>
         </Grid>
@@ -81,5 +57,23 @@ export default Careers;
 const styles = {
   contanier: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+  },
+  hero: {
+    position: "relative",
+    background: {
+      xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",
+      lg: "none",
+    },
+    "::before": {
+      content: "''",
+      backgroundImage: `url(${carrerHero.src})`,
+      backgroundPosition: "bottom",
+      backgroundSize: "contain",
+      height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
+      width: "100%",
+      backgroundRepeat: "no-repeat",
+      position: "absolute",
+      bottom: 0,
+    },
   },
 };

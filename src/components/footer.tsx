@@ -299,7 +299,7 @@ const Footer: React.FC = async () => {
           </Grid>
         </Grid>
         <Divider sx={{ color: "black", width: "78%" }}></Divider>
-        <Typography sx={styles.rights}>
+        <Typography sx={styles.rights} className={leagueSpartan.className}>
           All Rights Reserved ©2024 Tuitional
         </Typography>
       </Box>

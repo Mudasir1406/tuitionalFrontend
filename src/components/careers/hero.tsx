@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
       <Typography sx={styles.desc} className={leagueSpartan.className}>
         Passionate Educators And Change Lives
       </Typography>
-      <Box sx={{ width: "70%", marginTop: "90px", marginBottom: "190px" }}>
+      <Box sx={{ width: "70%", marginTop: "5vh", marginBottom: "10vh" }}>
         <Button
           variant="contained"
           sx={styles.containedBtn}
@@ -47,17 +47,17 @@ const styles = {
   heading: {
     fontFamily: "League Spartan",
     fontSize: {
-      xs: "40px",
-      sm: "42px",
-      md: "45px",
-      lg: "55px",
+      xs: "4vh",
+      sm: "5.2vh",
+      md: "5.3vh",
+      lg: "5.4vh",
     },
     fontWeight: 500,
     lineHeight: {
-      xs: "40px",
-      sm: "35px",
-      md: "45px",
-      lg: "65px",
+      xs: "5vh",
+      sm: "4.5vh",
+      md: "5.5vh",
+      lg: "6vh",
     },
     width: {
       //   lg: "90%",
@@ -111,18 +111,19 @@ const styles = {
     color: "#51B893",
     display: "inline",
     fontSize: {
-      xs: "30px",
-      sm: "30px",
-      md: "40px",
-      lg: "55px",
+      xs: "4vh",
+      sm: "5.2vh",
+      md: "5.3vh",
+      lg: "5.4vh",
     },
     fontWeight: 600,
     lineHeight: {
-      xs: "25px",
-      sm: "35px",
-      md: "45px",
-      lg: "65px",
+      xs: "5vh",
+      sm: "4.5vh",
+      md: "5.5vh",
+      lg: "6vh",
     },
+
     position: "relative",
   },
   desc: {
