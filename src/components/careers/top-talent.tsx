@@ -106,7 +106,7 @@ const styles = {
   },
   heading: {
     color: "#000000",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "35px",
       sm: "40px",
@@ -168,7 +168,7 @@ const styles = {
       md: "20px",
       lg: "20px",
     },
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "15px",
       sm: "20px",
@@ -187,7 +187,6 @@ const styles = {
     marginTop: "20px",
   },
   percent: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "15px",
       sm: "20px",
@@ -205,7 +204,7 @@ const styles = {
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
+
     fontSize: "20px",
     fontWeight: 700,
     lineHeight: "18.4px",
@@ -219,7 +218,7 @@ const styles = {
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-      fontFamily: "League Spartan",
+
       fontSize: "20px",
       padding: "18px",
       letterSpacing: "-2%",

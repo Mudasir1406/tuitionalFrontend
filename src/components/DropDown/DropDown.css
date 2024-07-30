@@ -61,3 +61,8 @@
   color: black;
   font-family: "League Spartan";
 }
+
+.MuiSelect-select.MuiOutlinedInput-input {
+  /* height: 5.5vh !important; */
+  min-height: 1vh !important;
+}

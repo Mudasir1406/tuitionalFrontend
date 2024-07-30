@@ -76,7 +76,6 @@ const VideoBasedReview = () => {
                     <Typography
                       className={leagueSpartan.className}
                       sx={{
-                        fontFamily: "League Spartan",
                         fontSize: {
                           xs: "20px",
                           sm: "30px",
@@ -99,7 +98,6 @@ const VideoBasedReview = () => {
                     <Typography
                       className={leagueSpartan.className}
                       sx={{
-                        fontFamily: "League Spartan",
                         fontSize: {
                           xs: "18px",
                           sm: "18px",
@@ -122,7 +120,6 @@ const VideoBasedReview = () => {
                     <Typography
                       className={leagueSpartan.className}
                       sx={{
-                        fontFamily: "League Spartan",
                         fontSize: {
                           xs: "18px",
                           sm: "18px",
@@ -165,7 +162,6 @@ const styles = {
     flexDirection: "column",
   },
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "35px",
       sm: "40px",

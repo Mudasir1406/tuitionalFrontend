@@ -104,9 +104,8 @@ export default GetStarted;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
-      xs: "35px",
+      xs: "30px",
       sm: "40px",
       md: "45px",
       lg: "55px",
@@ -127,7 +126,7 @@ const styles = {
     marginBottom: "20px",
     position: "relative",
     paddingLeft: {
-      xs: 7,
+      xs: 1,
       sm: 5,
       md: 5,
       lg: 0,
@@ -137,13 +136,13 @@ const styles = {
       position: "absolute",
       zIndex: 10,
       left: {
-        xs: 30,
+        xs: -5,
         sm: 10,
         md: 10,
         lg: -30,
       },
       top: {
-        xs: -10,
+        xs: -20,
         sm: -40,
         md: -40,
         lg: -40,
@@ -177,7 +176,7 @@ const styles = {
     boxShadow: "1px 15px 34px 0px #38B6FF66",
 
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "25px",
       sm: "25px",
@@ -196,7 +195,7 @@ const styles = {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "#38B6FF",
       padding: "18px",
-      fontFamily: "League Spartan",
+
       letterSpacing: "-2%",
 
       borderRadius: "10px",
@@ -226,7 +225,6 @@ const styles = {
     flexDirection: "column",
   },
   boxHeading: {
-    fontFamily: "League Spartan",
     fontSize: "28px",
     fontWeight: 600,
     lineHeight: "34px",
@@ -234,7 +232,6 @@ const styles = {
     height: "100px",
   },
   boxDesc: {
-    fontFamily: "League Spartan",
     fontSize: "22px",
     fontWeight: 400,
     lineHeight: "32px",
@@ -255,7 +252,7 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
       <Box
         sx={{
           height: 320,
-          width: 330,
+          width: 300,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -264,9 +261,9 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
         <Image
           src={image}
           alt=""
-          width={330}
+          width={300}
           height={360}
-          style={{ width: 330, height: "auto" }}
+          style={{ width: 300, height: "auto" }}
         ></Image>
       </Box>
       <Typography sx={styles.boxHeading} className={leagueSpartan.className}>

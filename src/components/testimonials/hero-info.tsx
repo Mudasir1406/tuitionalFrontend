@@ -20,7 +20,11 @@ const HeroInfo: React.FC = () => {
             {[0, 0, 0, 0, 0].map((item, index) => (
               <StarPurple500OutlinedIcon
                 key={index}
-                sx={{ height: 25, width: 25, color: "rgba(255, 205, 108, 1)" }}
+                sx={{
+                  height: "2vh",
+                  width: "2vh",
+                  color: "rgba(255, 205, 108, 1)",
+                }}
               />
             ))}
           </Box>
@@ -60,48 +64,48 @@ export default HeroInfo;
 const styles = {
   text: {
     color: "black",
-    fontFamily: "League Spartan",
+
     fontSize: {
-      xs: "14px",
-      sm: "14px",
-      md: "16px",
-      lg: "18px",
+      xs: "1.3vh",
+      sm: "1.3vh",
+      md: "1.4vh",
+      lg: "1.6vh",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "20px",
-      sm: "20px",
-      md: "23px",
-      lg: "25px",
+      xs: "1.4vh",
+      sm: "1.4vh",
+      md: "1.5vh",
+      lg: "2vh",
     },
   },
   totalReviewText: {
     color: "white",
-    fontFamily: "League Spartan",
+
     fontSize: {
-      xs: "14px",
-      sm: "14px",
-      md: "16px",
-      lg: "28px",
+      xs: "1.5vh",
+      sm: "1.5vh",
+      md: "1.7vh",
+      lg: "2.5vh",
     },
     fontWeight: 600,
     lineHeight: {
-      xs: "20px",
-      sm: "20px",
-      md: "23px",
-      lg: "25px",
+      xs: "1.4vh",
+      sm: "1.4vh",
+      md: "1.7vh",
+      lg: "2vh",
     },
     width: {
-      xs: "54px",
-      sm: "64px",
-      md: "64px",
-      lg: "74px",
+      xs: "4.5vh",
+      sm: "4.7vh",
+      md: "4.7vh",
+      lg: "9vh",
     },
     height: {
-      xs: "40px",
-      sm: "50px",
-      md: "50px",
-      lg: "59px",
+      xs: "4.5vh",
+      sm: "5.2vh",
+      md: "5.2vh",
+      lg: "5.5vh",
     },
     backgroundColor: "rgba(56, 182, 255, 1)",
     textAlign: "center",
@@ -109,7 +113,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: { xs: "5px", sm: "7.5px", md: "10px", lg: "15px" },
-    marginRight: "10px",
+    marginRight: "0.2vw",
   },
   contanier: {
     display: "flex",
@@ -132,7 +136,7 @@ const styles = {
   },
   registerStudentBox: {
     boxShadow: "0px 0px 30px 0px rgba(56, 182, 255, 0.2)",
-    padding: { xs: "10px", sm: "15px", md: "20px", lg: "30px" },
+    padding: { xs: "1.2vh", sm: "2.5vh", md: "2.9vh", lg: "3.3vh" },
     width: {
       xs: "150px",
       sm: "170px",
@@ -155,57 +159,18 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     borderRadius: "10px",
-    gap: "10px",
+    gap: "2vh",
     marginTop: "-100px",
-
     animation: "bounce 6s ease-in-out infinite",
   },
-  singleBox: {
-    background: "rgba(255, 255, 255, 0.6)",
-    backdropFilter: "blur(7.5px)",
-    WebkitBackdropFilter: "blur(7.5px)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    borderRadius: "10px",
-    padding: "30px",
-    position: "relative",
-    boxShadow: "0px 0px 30px 0px #38B6FF33",
-    display: "flex",
-    marginTop: "-100px",
-    flexDirection: "column",
-  },
-  absoluteBoxOrange: {
-    position: "absolute",
-    right: 0,
-    top: -40,
-    zIndex: 99,
-    background: "#F86A6A",
-    borderRadius: "100%",
-    boxShadow: 3,
-    width: "50px",
-    height: "50px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  schoolbox: {
-    position: "absolute",
-    zIndex: 10,
-    width: 70,
-    height: 70,
-    backgroundColor: "#51B893",
-    borderRadius: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    top: -50,
-  },
+
   usersBox: {
     background: "rgba(255, 255, 255, 0.6)",
     backdropFilter: "blur(7.5px)",
     WebkitBackdropFilter: "blur(7.5px)",
     border: "1px solid rgba(255, 255, 255, 0.18)",
     borderRadius: "10px",
-    padding: "10px",
+    padding: "2vh",
     position: "relative",
     boxShadow: "0px 0px 30px 0px #38B6FF33",
     display: "flex",
@@ -234,19 +199,19 @@ const styles = {
   },
   clientText: {
     color: "black",
-    fontFamily: "League Spartan",
+
     fontSize: {
-      xs: "12px",
-      sm: "18px",
-      md: "18px",
-      lg: "18px",
+      xs: "1.3vh",
+      sm: "1.6vh",
+      md: "1.6vh",
+      lg: "1.6vh",
     },
     fontWeight: 600,
     lineHeight: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
+      xs: "1.3vh",
+      sm: "1.6vh",
+      md: "1.6vh",
+      lg: "1.6vh",
     },
   },
 };

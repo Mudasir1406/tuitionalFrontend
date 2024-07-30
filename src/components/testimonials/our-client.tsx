@@ -307,7 +307,6 @@ const styles = {
     maxWidth: "400px",
   },
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "35px",
       sm: "40px",
@@ -367,7 +366,6 @@ const styles = {
     alignItems: "center",
   },
   reviewText: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "20px",
       sm: "22px",
@@ -385,7 +383,6 @@ const styles = {
     color: "rgba(0,0,0,0.77)",
   },
   coma: {
-    fontFamily: "League Spartan",
     fontSize: "20px",
     fontWeight: 600,
     lineHeight: "35px",
@@ -421,20 +418,17 @@ const styles = {
   },
 
   username: {
-    fontFamily: "League Spartan",
     fontSize: { xs: "26px", sm: "26px" },
     fontWeight: 500,
     lineHeight: "35px",
   },
   userLocation: {
-    fontFamily: "League Spartan",
     fontSize: { xs: "18px", sm: "19px" },
     fontWeight: 400,
     lineHeight: "35px",
     color: "rgba(0,0,0,0.77)",
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "20px",
       sm: "22px",
@@ -461,7 +455,7 @@ const styles = {
     boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
     color: "white",
     backgroundColor: "rgba(56, 182, 255, 1)",
-    fontFamily: "League Spartan",
+
     fontSize: "20px",
     fontWeight: 700,
     lineHeight: "18.4px",
@@ -476,7 +470,7 @@ const styles = {
       color: "white",
       backgroundColor: "rgba(56, 182, 255, 1)",
       padding: "15px",
-      fontFamily: "League Spartan",
+
       fontSize: "20px",
       fontWeight: 700,
       lineHeight: "18.4px",
@@ -487,7 +481,7 @@ const styles = {
     boxShadow: "1px 15px 34px 0px #38B6FF66",
     color: "#009BF5",
     backgroundColor: "white",
-    fontFamily: "League Spartan",
+
     fontSize: "25px",
     fontWeight: 700,
     lineHeight: "18.4px",
@@ -500,7 +494,7 @@ const styles = {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "white",
       padding: "18px",
-      fontFamily: "League Spartan",
+
       fontSize: "25px",
       fontWeight: 700,
       lineHeight: "18.4px",

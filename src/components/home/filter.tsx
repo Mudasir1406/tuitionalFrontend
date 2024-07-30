@@ -81,7 +81,6 @@ export default Filter;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "4vh",
       sm: "5.2vh",
@@ -108,7 +107,6 @@ const styles = {
     color: "#000000",
   },
   expertText: {
-    fontFamily: "League Spartan",
     color: "#51B893",
     display: "inline",
     fontSize: {
@@ -163,7 +161,6 @@ const styles = {
     },
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "2.5vh",
       sm: "2vh",
@@ -193,20 +190,18 @@ const styles = {
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
-    fontSize: "20px",
+    fontSize: "2vh",
     fontWeight: 700,
-    lineHeight: "18.4px",
+    lineHeight: "1.6vh",
     textAlign: "center",
     width: "100%",
-    padding: "18px",
+    padding: "2vh",
     textTransform: "none",
     letterSpacing: "-2%",
     borderRadius: "10px",
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-      fontFamily: "League Spartan",
       fontSize: "20px",
       padding: "18px",
       letterSpacing: "-2%",

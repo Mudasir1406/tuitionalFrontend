@@ -250,7 +250,6 @@ export default ContactUs;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     display: "flex",
     fontSize: {
       xs: "35px",
@@ -388,7 +387,7 @@ const styles = {
     alignSelf: "center",
     boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
+
     textTransform: "none",
     fontSize: {
       xs: "25px",
@@ -406,7 +405,7 @@ const styles = {
     ":hover": {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
       backgroundColor: "#38B6FF",
-      fontFamily: "League Spartan",
+
       fontSize: {
         xs: "25px",
         sm: "25px",

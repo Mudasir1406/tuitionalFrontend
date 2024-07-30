@@ -193,7 +193,6 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
 const styles = {
   infoBoxContanier: {},
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "18px",
       sm: "23px",
@@ -211,7 +210,6 @@ const styles = {
     textAlign: "center",
   },
   dec: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "12px",
       sm: "16px",
@@ -243,7 +241,6 @@ const styles = {
     marginBottom: { xs: "10px", sm: "20px", md: "30px", lg: "40px" },
   },
   mainHeading: {
-    fontFamily: "League Spartan",
     display: "flex",
     fontSize: {
       xs: "35px",

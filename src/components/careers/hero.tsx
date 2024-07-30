@@ -28,7 +28,16 @@ const Hero: React.FC = () => {
       <Typography sx={styles.desc} className={leagueSpartan.className}>
         Passionate Educators And Change Lives
       </Typography>
-      <Box sx={{ width: "70%", marginTop: "5vh", marginBottom: "10vh" }}>
+      <Box
+        sx={{
+          width: { lg: "70%", xs: "100%" },
+          marginTop: "5vh",
+          marginBottom: "10vh",
+          display: { xs: "flex", lg: "block" },
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Button
           variant="contained"
           sx={styles.containedBtn}
@@ -45,7 +54,6 @@ export default Hero;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "4vh",
       sm: "5.2vh",
@@ -127,7 +135,6 @@ const styles = {
     position: "relative",
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "18px",
       sm: "14px",
@@ -158,7 +165,7 @@ const styles = {
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
+
     fontSize: "20px",
     fontWeight: 700,
     lineHeight: "18.4px",
@@ -172,7 +179,7 @@ const styles = {
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-      fontFamily: "League Spartan",
+
       fontSize: "20px",
       padding: "18px",
       letterSpacing: "-2%",
@@ -183,7 +190,6 @@ const styles = {
     },
   },
   textBtn: {
-    fontFamily: "League Spartan",
     fontSize: "20px",
     fontWeight: 700,
     lineHeight: "18.4px",
@@ -193,7 +199,6 @@ const styles = {
     textTransform: "none",
     color: "rgba(56, 182, 255, 1)",
     ":hover": {
-      fontFamily: "League Spartan",
       fontSize: "20px",
       padding: "18px",
 

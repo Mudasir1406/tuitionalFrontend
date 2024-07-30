@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { DrawerProvider } from "@/context/drawer-context";
+import ResponsiveDrawer from "@/components/drawer";
 
 export const metadata: Metadata = {
   title: "Tuitional",
@@ -15,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <DrawerProvider>
-        <body style={{ margin: 0 }}>{children}</body>
+        <body style={{ margin: 0 }}>
+          <ResponsiveDrawer />
+
+          {children}
+        </body>
       </DrawerProvider>
     </html>
   );

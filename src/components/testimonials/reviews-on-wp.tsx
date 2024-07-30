@@ -41,7 +41,7 @@ const styles = {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.15)",
 
     backgroundColor: "white",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "25px",
       sm: "25px",
@@ -65,7 +65,7 @@ const styles = {
 
       backgroundColor: "white",
       padding: "18px",
-      fontFamily: "League Spartan",
+
       fontSize: {
         xs: "25px",
         sm: "25px",
@@ -97,7 +97,7 @@ const styles = {
   },
   heading: {
     color: "#000000",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "35px",
       sm: "40px",

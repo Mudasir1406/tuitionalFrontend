@@ -128,7 +128,7 @@
 }
 @media screen and (max-width: 400px) {
   .girlContact {
-    width: 340px; /* Set a width of 700px */
+    width: 320px; /* Set a width of 700px */
     height: 383px;
     /* Set a height of 700px */
   }

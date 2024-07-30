@@ -64,7 +64,6 @@ export default Hero;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "5vh",
       sm: "4.2vh",
@@ -142,7 +141,6 @@ const styles = {
     },
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "2.5vh",
       sm: "2vh",
@@ -173,10 +171,9 @@ const styles = {
   containedBtn: {
     boxShadow: "0.5vh 0.5vh 2.5vh 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
-    fontFamily: "League Spartan",
-    fontSize: "20px",
+    fontSize: "2.5vh",
     fontWeight: 700,
-    lineHeight: "24px",
+    lineHeight: "2vh",
     textAlign: "center",
     width: "50%",
     padding: "2vh",
@@ -186,7 +183,6 @@ const styles = {
     ":hover": {
       boxShadow: "0.5vh 0.5vh 2.5vh 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-      fontFamily: "League Spartan",
       fontSize: "2.5vh",
       padding: "2vh",
       letterSpacing: "-2%",
@@ -197,17 +193,15 @@ const styles = {
     },
   },
   textBtn: {
-    fontFamily: "League Spartan",
-    fontSize: "20px",
+    fontSize: "2.5vh",
     fontWeight: 700,
-    lineHeight: "24px",
+    lineHeight: "2vh",
     textAlign: "center",
     width: "50%",
     padding: "2vh",
     textTransform: "none",
     color: "rgba(56, 182, 255, 1)",
     ":hover": {
-      fontFamily: "League Spartan",
       fontSize: "2.5vh",
       padding: "2vh",
       fontWeight: 700,

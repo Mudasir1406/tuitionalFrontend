@@ -103,7 +103,7 @@ export default ReviewsOnSp;
 const styles = {
   heading: {
     color: "#000000",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "35px",
       sm: "40px",
@@ -158,7 +158,6 @@ const styles = {
     },
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "18px",
       sm: "20px",
@@ -182,7 +181,6 @@ const styles = {
     },
   },
   complete: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "18px",
       sm: "20px",
@@ -200,7 +198,6 @@ const styles = {
     color: "black",
   },
   percent: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "60px",
       sm: "60px",

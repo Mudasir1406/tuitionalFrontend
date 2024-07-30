@@ -1,6 +1,8 @@
+"use client";
+
 import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import logo from "../assets/images/static/logo.png";
+import logo from "../../public/assets/images/static/logo.png";
 import { useDrawer } from "../context/drawer-context";
 import Link from "next/link";
 import Image from "next/image";
@@ -126,7 +128,6 @@ const styles = {
     cursor: "pointer",
   },
   typography: {
-    fontFamily: "League Spartan",
     fontSize: "30px",
     fontWeight: 500,
     lineHeight: "60px",

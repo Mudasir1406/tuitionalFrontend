@@ -346,7 +346,6 @@ const styles = {
     justifyContent: "center",
   },
   admissionText: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "25px",
       sm: "32px",
@@ -378,7 +377,6 @@ const styles = {
     width: { xs: "80%", sm: "80%", md: "85%" },
   },
   phoneText: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "16px",
       sm: "20px",
@@ -393,7 +391,7 @@ const styles = {
   contactButton: {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
     backgroundColor: "white",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "25px",
       sm: "21px",
@@ -415,7 +413,6 @@ const styles = {
     },
   },
   desc: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "17px",
       sm: "21px",
@@ -438,7 +435,6 @@ const styles = {
     flexDirection: "column",
   },
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "22px",
       sm: "26px",
@@ -456,7 +452,6 @@ const styles = {
     marginTop: "12px",
   },
   text: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "19px",
       sm: "20px",
@@ -473,7 +468,6 @@ const styles = {
     color: "black",
   },
   rights: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "18px",
       sm: "20px",

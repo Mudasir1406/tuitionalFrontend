@@ -10,13 +10,57 @@ const HeroInfo: React.FC = () => {
     <>
       <Box sx={styles.contanier}>
         <Box sx={styles.registerStudentBox}>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography
+            sx={[
+              styles.text,
+              {
+                fontWeight: "700",
+                fontSize: { lg: "2.5vh", md: "2.3vh", sm: "2.1vh", xs: "1vh" },
+                lineHeight: {
+                  lg: "3vh",
+                  md: "2.3vh",
+                  sm: "2.1vh",
+                  xs: "1vh",
+                },
+              },
+            ]}
+            className={leagueSpartan.className}
+          >
             800+
           </Typography>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography
+            sx={[
+              styles.text,
+              {
+                fontSize: {
+                  lg: "1.5vh",
+                  md: "1vh",
+                  sm: "0.8vh",
+                  xs: "0.6vh",
+                },
+              },
+            ]}
+            className={leagueSpartan.className}
+          >
             Vacancy Available
           </Typography>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography
+            sx={[
+              styles.text,
+              {
+                fontWeight: "700",
+
+                fontSize: {
+                  lg: "1.5vh",
+                  md: "1.2vh",
+                  sm: "1vh",
+                  xs: "0.8vh",
+                },
+                color: "#38B6FF",
+              },
+            ]}
+            className={leagueSpartan.className}
+          >
             Apply Now{" "}
           </Typography>
         </Box>
@@ -24,15 +68,45 @@ const HeroInfo: React.FC = () => {
           <Box sx={styles.usersBox}>
             <Image
               src={tutors.src}
-              style={{ width: "150px" }}
+              style={{ width: "100%", height: "auto" }}
               width={tutors.width}
               height={tutors.height}
               alt="tutor"
             ></Image>
-            <Typography sx={styles.text} className={leagueSpartan.className}>
+            <Typography
+              sx={[
+                styles.text,
+                {
+                  fontWeight: "600",
+
+                  fontSize: {
+                    lg: "1.5vh",
+                    md: "1.2vh",
+                    sm: "1vh",
+                    xs: "0.8vh",
+                  },
+                },
+              ]}
+              className={leagueSpartan.className}
+            >
               50k
             </Typography>
-            <Typography sx={styles.text} className={leagueSpartan.className}>
+            <Typography
+              sx={[
+                styles.text,
+                {
+                  fontWeight: "600",
+
+                  fontSize: {
+                    lg: "1.5vh",
+                    md: "1.2vh",
+                    sm: "1vh",
+                    xs: "0.8vh",
+                  },
+                },
+              ]}
+              className={leagueSpartan.className}
+            >
               Active Employee
             </Typography>
           </Box>
@@ -66,7 +140,7 @@ const styles = {
   },
   text: {
     color: "black",
-    fontFamily: "League Spartan",
+
     fontSize: {
       xs: "14px",
       sm: "14px",
@@ -75,7 +149,7 @@ const styles = {
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "20px",
+      xs: "10px",
       sm: "20px",
       md: "23px",
       lg: "25px",
@@ -84,7 +158,7 @@ const styles = {
 
   registerStudentBox: {
     boxShadow: "0px 0px 30px 0px rgba(56, 182, 255, 0.2)",
-    padding: "30px",
+    padding: "2vw",
     display: "flex",
     flexDirection: "column",
     borderRadius: "10px",
@@ -98,13 +172,15 @@ const styles = {
   },
   liveSessions: {
     width: {
-      xs: "150px",
+      xs: "72px",
       sm: "170px",
       md: "190px",
       lg: "235px",
     },
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: "10px",
     gap: "10px",
     marginTop: "-100px",
@@ -120,5 +196,7 @@ const styles = {
     boxShadow: "0px 0px 30px 0px #38B6FF33",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 };

@@ -33,16 +33,16 @@ const Header: React.FC<IProps> = ({ background }) => {
           zIndex: -2,
           width: "100%",
           height: {
-            xs: "100px",
-            sm: "100px",
-            md: "200px",
-            lg: "300px",
+            xs: "10vh",
+            sm: "10vh",
+            md: "20vh",
+            lg: "30vh",
           },
         }}
       />
       <Box sx={styles.leftCircle} />
       <Box sx={styles.rightCircle} />
-      <AppBar position="sticky" sx={styles.contanier}>
+      <AppBar position="sticky" sx={styles.container}>
         <div style={styles.shadow} />
         <Toolbar
           sx={{
@@ -133,15 +133,15 @@ const Header: React.FC<IProps> = ({ background }) => {
             onClick={toggleDrawer}
             sx={{
               color: "#38B6FF",
-              height: 40,
-              width: 40,
+              height: "4vh",
+              width: "4vh",
               display: {
                 xs: "flex",
                 sm: "flex",
                 md: "flex",
                 lg: "none",
               },
-              marginRight: "10px",
+              marginRight: "1vw",
             }}
           />
         </Toolbar>
@@ -153,30 +153,21 @@ const Header: React.FC<IProps> = ({ background }) => {
 export default Header;
 
 const styles = {
-  contanier: {
+  container: {
     width: "90%",
-    borderRadius: 3,
-    boxShadow: "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
+    borderRadius: "10px",
+    boxShadow:
+      "0px -0.3vh 0.8vh 0px #00000026 inset, 0px 0.2vh 0.1vh 0px #0000000D",
     backgroundColor: "rgba(255,255,255,0.7)",
     justifyContent: {
       md: "space-between",
       lg: "space-evenly",
     },
-
-    marginTop: "20px",
-    height: {
-      // lg: "85px",
-    },
-    paddingY: 1,
+    marginTop: "2vh",
+    paddingY: "1vh",
     zIndex: 1000,
     alignItems: "center",
-    marginLeft: "5%",
-    // display: {
-    //   xs: "none",
-    //   sm: "none",
-    //   md: "none",
-    //   lg: "flex",
-    // },
+    marginLeft: "5vw",
   },
   logo: {
     display: {
@@ -194,7 +185,7 @@ const styles = {
       lg: "none",
     },
     alignItems: "flex-start",
-    marginLeft: "10px",
+    marginLeft: "1vw",
     cursor: "pointer",
   },
   image: {
@@ -202,12 +193,10 @@ const styles = {
     height: 49,
     cursor: "pointer",
   },
-
   typography: {
-    fontFamily: "League Spartan",
-    fontSize: "20px",
+    fontSize: "2vh",
     fontWeight: 400,
-    lineHeight: "18.4px",
+    lineHeight: "1.84vh",
     textAlign: "center",
     color: "black",
     cursor: "pointer",
@@ -219,26 +208,25 @@ const styles = {
     },
   },
   containedBtn: {
-    boxShadow: "1px 15px 34px 0px #38B6FF66",
+    boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
     backgroundColor: "#38B6FF",
-    paddingY: "15px",
-    fontFamily: "League Spartan",
-    fontSize: "15px",
+    paddingY: "1.5vh",
+    fontSize: "1.5vh",
     fontWeight: 700,
-    lineHeight: "18.4px",
+    lineHeight: "1.84vh",
     textAlign: "center",
     letterSpacing: "-2%",
-    borderRadius: "10px",
+    borderRadius: "1vh",
     ":hover": {
-      boxShadow: "1px 15px 34px 0px #38B6FF66",
+      boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
       backgroundColor: "#38B6FF",
-      paddingY: "15px",
-      fontSize: "15px",
+      paddingY: "1.5vh",
+      fontSize: "1.5vh",
       fontWeight: 700,
-      lineHeight: "18.4px",
+      lineHeight: "1.84vh",
       textAlign: "center",
       letterSpacing: "-2%",
-      borderRadius: "10px",
+      borderRadius: "1vh",
     },
     display: {
       xs: "none",
@@ -250,21 +238,20 @@ const styles = {
   outlinedBtn: {
     color: "#51B893",
     borderColor: "#51B893",
-    paddingY: "12px",
-    marginLeft: "60px",
-    fontFamily: "League Spartan",
-    fontSize: "15px",
+    paddingY: "1.2vh",
+    marginLeft: "6vw",
+    fontSize: "1.5vh",
     fontWeight: 700,
-    lineHeight: "18.4px",
+    lineHeight: "1.84vh",
     textAlign: "center",
     ":hover": {
       color: "#51B893",
       borderColor: "#51B893",
-      paddingY: "12px",
-      marginLeft: "60px",
-      fontSize: "15px",
+      paddingY: "1.2vh",
+      marginLeft: "6vw",
+      fontSize: "1.5vh",
       fontWeight: 700,
-      lineHeight: "18.4px",
+      lineHeight: "1.84vh",
       textAlign: "center",
     },
     display: {
@@ -276,48 +263,48 @@ const styles = {
   },
   leftCircle: {
     width: {
-      xs: "30px",
-      sm: "45px",
-      md: "50px",
-      lg: "75px",
+      xs: "3vh",
+      sm: "4.5vh",
+      md: "5vh",
+      lg: "7.5vh",
     },
     height: {
-      xs: "30px",
-      sm: "45px",
-      md: "50px",
-      lg: "75px",
+      xs: "3vh",
+      sm: "4.5vh",
+      md: "5vh",
+      lg: "7.5vh",
     },
-    top: "17px",
+    top: "1.7vh",
     left: {
-      xs: "12px",
-      sm: "25px",
-      md: "50px",
-      lg: "45px",
+      xs: "1.2vw",
+      sm: "2.5vw",
+      md: "5vw",
+      lg: "4.5vw",
     },
-    borderRadius: 50,
+    borderRadius: "50%",
     backgroundColor: "#38B6FF",
     position: "absolute",
     animation: {
-      lg: `bounceAndForword 4s linear infinite alternate `,
+      lg: `bounceAndForward 4s linear infinite alternate `,
     },
   },
   rightCircle: {
     width: {
-      xs: "60px",
-      sm: "70px",
-      md: "80px",
-      lg: "109px",
+      xs: "6vh",
+      sm: "7vh",
+      md: "8vh",
+      lg: "10.9vh",
     },
     height: {
-      xs: "60px",
-      sm: "70px",
-      md: "80px",
-      lg: "109px",
+      xs: "6vh",
+      sm: "7vh",
+      md: "8vh",
+      lg: "10.9vh",
     },
-    top: "32px",
-    right: "3.5%",
+    top: "3.2vh",
+    right: "3.5vw",
     backgroundColor: "#38B6FF",
-    borderRadius: 50,
+    borderRadius: "50%",
     position: "absolute",
     animation: `rightCircleAnimation 6s ease-in-out infinite alternate`,
   },
@@ -325,23 +312,23 @@ const styles = {
     position: "absolute",
     width: "100%",
     height: {
-      xs: "100px",
-      sm: "100px",
-      md: "200px",
-      lg: "300px",
+      xs: "10vh",
+      sm: "10vh",
+      md: "20vh",
+      lg: "30vh",
     },
   },
   shadow: {
     content: '""',
-    // position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    boxShadow: "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
-    filter: "blur(8px)", // Apply blur effect to the box shadow
-    zIndex: -1, // Ensure the shadow is behind other content
-    borderRadius: "inherit", // Inherit the container's border radius
+    boxShadow:
+      "0px -0.3vh 0.8vh 0px #00000026 inset, 0px 0.2vh 0.1vh 0px #0000000D",
+    filter: "blur(0.8vh)",
+    zIndex: -1,
+    borderRadius: "inherit",
   },
   link: { textDecoration: "none" },
 };

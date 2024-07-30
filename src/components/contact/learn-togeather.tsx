@@ -37,7 +37,6 @@ export default LearnTogeather;
 
 const styles = {
   learn: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "40px",
       sm: "50px",

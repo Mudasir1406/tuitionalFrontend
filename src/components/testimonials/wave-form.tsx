@@ -135,7 +135,6 @@ const styles = {
     color: "white",
   },
   time: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "12px",
       sm: "14px",

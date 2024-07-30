@@ -60,7 +60,11 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           sx={{
             borderRadius: "10px",
             height: "5.5vh",
-            // Adjusted border radius with vh unit
+            // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
+            "& .MuiOutlinedInput-root": {
+              height: "5.5vh", // Set the height of the OutlinedInput
+              // minHeight: "5.5vh", // Ensure minHeight of the OutlinedInput
+            },
           }}
           value={personName}
           onChange={handleChange}
@@ -92,7 +96,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
               style={getStyles(item, personName, theme)}
             >
               <Typography
-                sx={styles.placeholderText}
+                sx={[styles.placeholderText, { textAlign: "justify" }]}
                 className={leagueSpartan.className}
               >
                 {item}
@@ -109,9 +113,9 @@ export default MultipleSelectPlaceholder;
 
 const styles = {
   placeholderText: {
-    fontFamily: "League Spartan",
     fontSize: "1.5vh", // Adjusted font size with vh unit
     fontWeight: 400,
-    // lineHeight: "14px", // Adjusted line height if necessary
+    lineHeight: "1.6vh",
+    // Adjusted line height if necessary
   },
 };

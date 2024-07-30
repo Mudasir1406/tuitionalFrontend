@@ -28,14 +28,13 @@ export default PopularSearches;
 
 const styles = {
   heading: {
-    fontFamily: "League Spartan",
     fontSize: {
       xs: "20px",
       lg: "18px",
     },
     fontWeight: 700,
     lineHeight: "34px",
-    marginTop: "40px",
+    marginTop: "5vh",
     marginBottom: {
       xs: "10px",
       sm: "10px",
@@ -51,7 +50,6 @@ const styles = {
     color: "#000000",
   },
   search: {
-    fontFamily: "League Spartan",
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "14px",
@@ -59,13 +57,11 @@ const styles = {
     marginLeft: "7px",
   },
   type: {
-    fontFamily: "League Spartan",
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "13px",
   },
   premium: {
-    fontFamily: "League Spartan",
     fontSize: "16px",
     fontWeight: 600,
     lineHeight: "14px",
