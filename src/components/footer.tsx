@@ -85,8 +85,9 @@ const Footer: React.FC = async () => {
               lg: "100px",
             },
             display: "flex",
-            width: { xs: "100%", sm: "77%" },
-            paddingX: "10px",
+            width: { xs: "100%", sm: "90%" },
+            paddingLeft: "5vw",
+            paddingRight: "2vw",
           }}
         >
           <Grid item lg={3} sm={12}>
@@ -337,9 +338,13 @@ const styles = {
     alignItems: "center",
   },
   imageContanier: {
-    width: "90px",
-    height: "90px",
-    borderRadius: "45px",
+    maxWidth: "90px",
+    maxHeight: "90px",
+    minWidth: "75px",
+    minHeight: "75px",
+    width: "9vh",
+    height: "9vh",
+    borderRadius: "50%",
     backgroundColor: "white",
     display: "flex",
     alignItems: "center",
@@ -347,10 +352,10 @@ const styles = {
   },
   admissionText: {
     fontSize: {
-      xs: "25px",
-      sm: "32px",
-      md: "33px",
-      lg: "35px",
+      xs: "6.5vw",
+      sm: "4.5vw",
+      md: "3.5vw",
+      lg: "2vw",
     },
     fontWeight: 700,
     lineHeight: "32px",
@@ -378,10 +383,10 @@ const styles = {
   },
   phoneText: {
     fontSize: {
-      xs: "16px",
-      sm: "20px",
-      md: "25px",
-      lg: "25px",
+      xs: "6vw",
+      sm: "3vw",
+      md: "1.5vw",
+      lg: "1.5vw",
     },
     fontWeight: 700,
     lineHeight: "23px",
@@ -393,10 +398,10 @@ const styles = {
     backgroundColor: "white",
 
     fontSize: {
-      xs: "25px",
-      sm: "21px",
-      md: "23px",
-      lg: "25px",
+      xs: "4vw",
+      sm: "2.1vw",
+      md: "2.5vw",
+      lg: "1.5vw",
     },
     borderRadius: "10px",
     letterSpacing: "-2%",
