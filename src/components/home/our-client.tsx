@@ -189,7 +189,7 @@ const OurClient = () => {
           {[0, 0, 0, 0, 0].map((item, index) => (
             <SwiperSlide
               key={index}
-              style={{ display: "flex", borderRadius: 10, paddingLeft: 110 }}
+              style={{ display: "flex", borderRadius: 10, paddingLeft: "12vw" }}
             >
               <Review />
             </SwiperSlide>

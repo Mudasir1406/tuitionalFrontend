@@ -1,10 +1,7 @@
-"use client";
 import * as React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import faqLine from "../../../public/assets/images/static/faq-line.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 
 import {
   Accordion,
@@ -18,12 +15,10 @@ import {
 import { Faqs_Type, getFaqs } from "../../services/faqs/faqs";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import Questions from "./questions";
 
-const Faqs: React.FC = () => {
-  const [faqs, setFaqs] = React.useState<Faqs_Type[]>();
-  React.useEffect(() => {
-    getFaqs().then((data) => setFaqs(data));
-  }, []);
+const Faqs: React.FC = async () => {
+  const faqs: Faqs_Type[] = await getFaqs();
   return (
     <Box sx={styles.contanier}>
       <Box sx={styles.headingContanier}>
@@ -237,60 +232,4 @@ const styles = {
       paddingX: "50px",
     },
   },
-};
-
-type IProps = {
-  question: string;
-  answer: string;
-};
-
-const Questions: React.FunctionComponent<IProps> = ({ question, answer }) => {
-  const [expanded, setExpanded] = React.useState(false);
-  return (
-    <Box>
-      <Accordion
-        onChange={(e, expanded) => setExpanded(expanded)}
-        sx={{
-          backgroundColor: "white",
-          boxShadow: "1px 5px 20px 0px rgba(56, 182, 255, 0.2)",
-          borderRadius: "15px",
-          marginTop: "2vh",
-          paddingY: "2vh",
-        }}
-        defaultExpanded={false}
-      >
-        <AccordionSummary
-          expandIcon={
-            expanded ? (
-              <RemoveOutlinedIcon sx={{ color: "black" }} />
-            ) : (
-              <AddOutlinedIcon sx={{ color: "black" }} />
-            )
-          }
-          aria-controls="panel1-content"
-          id="panel1-header"
-          sx={styles.questionText}
-          className={leagueSpartan.className}
-        >
-          {question}
-        </AccordionSummary>
-        <Divider
-          sx={{
-            width: "95%",
-            alignSelf: "center",
-            display: "flex",
-            marginLeft: "2.5%",
-          }}
-        />
-        <AccordionDetails sx={{ marginLeft: "1.5%", marginY: "20px" }}>
-          <Typography
-            sx={styles.answerText}
-            className={leagueSpartan.className}
-          >
-            {answer}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </Box>
-  );
 };
