@@ -7,7 +7,7 @@ import { leagueSpartan } from "@/app/fonts";
 
 const Hero: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", paddingBottom: "15vh" }}>
       <Typography
         sx={styles.heading}
         component={"h2"}
@@ -136,17 +136,17 @@ const styles = {
   },
   desc: {
     fontSize: {
-      xs: "18px",
-      sm: "14px",
-      md: "18px",
-      lg: "24px",
+      xs: "2.5vh",
+      sm: "2vh",
+      md: "2.5vh",
+      lg: "2.6vh",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "25px",
-      sm: "24px",
-      md: "28px",
-      lg: "34px",
+      xs: "2.5vh",
+      sm: "2.4vh",
+      md: "2.8vh",
+      lg: "3.4vh",
     },
     textAlign: {
       xs: "center",
@@ -166,12 +166,12 @@ const styles = {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
 
-    fontSize: "20px",
+    fontSize: "2vh",
     fontWeight: 700,
-    lineHeight: "18.4px",
+    lineHeight: "2vh",
     textAlign: "center",
     width: "50%",
-    padding: "18px",
+    padding: "2vh",
     textTransform: "none",
     borderRadius: "10px",
     letterSpacing: "-2%",
@@ -179,14 +179,6 @@ const styles = {
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-
-      fontSize: "20px",
-      padding: "18px",
-      letterSpacing: "-2%",
-      fontWeight: 700,
-      lineHeight: "18.4px",
-      textAlign: "center",
-      borderRadius: "10px",
     },
   },
   textBtn: {

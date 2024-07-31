@@ -155,7 +155,12 @@ const GetInTouch: React.FunctionComponent = () => {
                 width={girlLaptop.width}
                 height={girlLaptop.height}
                 alt="girlLaptop"
-                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "20px",
+                  objectFit: "cover",
+                }}
               ></Image>
             </Box>
           </Box>

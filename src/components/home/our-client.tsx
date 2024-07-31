@@ -567,12 +567,12 @@ const Review = () => {
         borderRadius: 10,
         boxShadow: "0px -3px 8px 0px #00000026 inset",
         backgroundColor: "rgba(255,255,255,1)",
-        width: "80%",
+        width: "70%",
       }}
     >
       <Image
         src={user.src}
-        style={{ width: "50%", maxHeight: "650px" }}
+        style={{ width: "40%", maxHeight: "650px" }}
         width={user.width}
         height={user.height}
         alt="user"
