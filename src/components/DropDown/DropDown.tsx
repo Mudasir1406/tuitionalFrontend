@@ -60,6 +60,9 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           sx={{
             borderRadius: "10px",
             height: "5.5vh",
+            fontSize: "1.5vh", // Adjusted font size with vh unit
+            fontWeight: 400,
+            lineHeight: "1.6vh",
             // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
             "& .MuiOutlinedInput-root": {
               height: "5.5vh", // Set the height of the OutlinedInput

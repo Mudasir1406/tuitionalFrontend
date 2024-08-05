@@ -86,28 +86,31 @@ const Home: React.FC = () => {
           "::before": {
             content: "''",
             backgroundImage: {
-              xs: `url(${lineSmall})`,
-              lg: `url(${faqLine})`,
+              xs: `url(${lineSmall.src})`,
+              lg: `url(${faqLine.src})`,
             },
             backgroundSize: "cover",
             backgroundPosition: "top",
             position: "absolute",
             bottom: {
-              xs: 750,
+              xs: "90%",
+              sm: "83%",
+              md: "80%",
               lg: -90,
             },
-            display: {
-              xs: "block",
-              sm: "none",
-              md: "none",
-              lg: "block",
-            },
+            // display: {
+            //   xs: "flex",
+            //   sm: "none",
+            //   md: "none",
+            //   lg: "flex",
+            // },
             backgroundRepeat: "no-repeat",
             width: "100vw",
             height: {
-              xs: "108px",
+              xs: "25vw",
               lg: "281px",
             },
+            objectFit: "contain",
           },
         }}
       >

@@ -474,7 +474,7 @@ const styles = {
   },
   rights: {
     fontSize: {
-      xs: "18px",
+      xs: "12px",
       sm: "20px",
       md: "22px",
       lg: "25px",

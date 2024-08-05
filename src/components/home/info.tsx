@@ -94,10 +94,10 @@ const styles = {
   registerStudentBox: {
     boxShadow: "0px 0px 30px 0px #38B6FF33",
     width: {
-      xs: "30vw",
-      sm: "25vw",
-      md: "20vw",
-      lg: "15vw",
+      xs: "35vw",
+      sm: "23vw",
+      md: "25vw",
+      lg: "16vw",
     },
     height: {
       xs: "12vh",

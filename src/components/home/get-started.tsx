@@ -263,7 +263,7 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
           alt=""
           width={300}
           height={360}
-          style={{ width: 300, height: "auto" }}
+          style={{ width: "100%", height: "auto", objectFit: "cover" }}
         ></Image>
       </Box>
       <Typography sx={styles.boxHeading} className={leagueSpartan.className}>

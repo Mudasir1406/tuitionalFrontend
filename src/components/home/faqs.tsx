@@ -1,6 +1,6 @@
 import * as React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import faqLine from "../../../public/assets/images/static/faq-line.png";
+// import faqLine from "../../../public/assets/images/static/faq-line.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 
 import {
@@ -38,7 +38,7 @@ const Faqs: React.FC = async () => {
           View More
         </Button>
       </Box>
-      <Image
+      {/* <Image
         src={faqLine.src}
         width={faqLine.width}
         height={faqLine.height}
@@ -50,7 +50,7 @@ const Faqs: React.FC = async () => {
           zIndex: -1,
           width: "100vw",
         }}
-      ></Image>
+      ></Image> */}
     </Box>
   );
 };
@@ -87,7 +87,7 @@ const styles = {
   heading: {
     display: "flex",
     fontSize: {
-      xs: "3.5vh",
+      xs: "4vh",
       sm: "4vh",
       md: "4.5vh",
       lg: "5.5vh",
