@@ -400,8 +400,8 @@ const styles = {
     fontSize: {
       xs: "4vw",
       sm: "2.1vw",
-      md: "2.5vw",
-      lg: "1.5vw",
+      md: "2vw",
+      lg: "1.4vw",
     },
     borderRadius: "10px",
     letterSpacing: "-2%",
@@ -409,7 +409,18 @@ const styles = {
     lineHeight: "23px",
     color: "#009BF5",
     textTransform: "none",
-    paddingY: "13px",
+    paddingY: {
+      xs: "15px",
+      sm: "21px",
+      md: "22px",
+      lg: "22px",
+    },
+    paddingX: {
+      xs: "25px",
+      sm: "25px",
+      md: "22px",
+      lg: "25px",
+    },
     ":hover": {
       backgroundColor: "white",
       borderRadius: "10px",
