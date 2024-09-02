@@ -1,14 +1,15 @@
 "use client"; // Add this line at the top of your file
 
-import { Box, Grid, Typography } from '@mui/material';
-import CircleIcon from '@mui/icons-material/Circle';
-import React, { useState } from 'react';
+import { Box, Grid, Typography } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
+import React, { useState } from "react";
 
 const CurriculumOverview = () => {
   const [curriculums, setCurriculums] = useState([
     {
-      title: 'British Curriculum',
-      description: 'Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.',
+      title: "British Curriculum",
+      description:
+        "Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.",
       color: "#F1FAFF",
       boards: [
         { title: "CIE", isSelected: false },
@@ -18,8 +19,9 @@ const CurriculumOverview = () => {
       ],
     },
     {
-      title: 'American Curriculum',
-      description: 'Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.',
+      title: "American Curriculum",
+      description:
+        "Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.",
       color: "#DBF2FF",
       boards: [
         { title: "AP", isSelected: false },
@@ -27,8 +29,9 @@ const CurriculumOverview = () => {
       ],
     },
     {
-      title: 'Australian Curriculum',
-      description: 'Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.',
+      title: "Australian Curriculum",
+      description:
+        "Lorem ipsum dolor sit amet consectetur. Et nulla sodales scelerisque aliquet semper massa gravida ullamcorper.",
       color: "#ADE2FF",
       boards: [
         { title: "IB", isSelected: false },
@@ -38,7 +41,10 @@ const CurriculumOverview = () => {
   ]);
 
   // Function to toggle the selection of a board
-  const toggleBoardSelection = (curriculumIndex, boardIndex) => {
+  const toggleBoardSelection = (
+    curriculumIndex: number,
+    boardIndex: number
+  ) => {
     setCurriculums((prevCurriculums) =>
       prevCurriculums.map((curriculum, ci) => {
         if (ci === curriculumIndex) {
@@ -70,17 +76,15 @@ const CurriculumOverview = () => {
               <Box
                 sx={{
                   backgroundColor: curriculum.color,
-                  padding: '16px',
-                  borderRadius: '2vh',
+                  padding: "16px",
+                  borderRadius: "2vh",
                   boxShadow:
                     "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px - 3px 8px 0px rgba(56, 182, 255, 0.20)",
-                  height: '40vh', // Set a fixed height for the boxes
+                  height: "40vh", // Set a fixed height for the boxes
                 }}
               >
                 <Box>
-                  <Typography sx={style.title}>
-                    {curriculum.title}
-                  </Typography>
+                  <Typography sx={style.title}>{curriculum.title}</Typography>
                   <Typography sx={style.desc}>
                     {curriculum.description}
                   </Typography>
@@ -89,27 +93,29 @@ const CurriculumOverview = () => {
                   {curriculum.boards.map((board, boardIndex) => (
                     <Grid item xs={6} key={boardIndex}>
                       <Box
-                        onClick={() => toggleBoardSelection(curriculumIndex, boardIndex)} // Pass indices here
+                        onClick={() =>
+                          toggleBoardSelection(curriculumIndex, boardIndex)
+                        } // Pass indices here
                         sx={{
-                          display: 'flex',
-                          alignItems: 'center',
+                          display: "flex",
+                          alignItems: "center",
                           border: "1px solid #CDCDCD",
-                          padding: '2vh',
-                          borderRadius: '6vh',
+                          padding: "2vh",
+                          borderRadius: "6vh",
                           backgroundColor: board.isSelected
-                            ? '#38B6FF'
-                            : 'transparent',
-                          color: board.isSelected ? '#fff' : '#2D2D2D',
-                          textAlign: 'center',
+                            ? "#38B6FF"
+                            : "transparent",
+                          color: board.isSelected ? "#fff" : "#2D2D2D",
+                          textAlign: "center",
                           margin: "3vh 0 0 0",
-                          cursor: 'pointer',
+                          cursor: "pointer",
                         }}
                       >
                         <CircleIcon
                           sx={{
-                            color: board.isSelected ? '#fff' : '#38B6FF',
-                            fontSize: '1rem',
-                            marginRight: '8px',
+                            color: board.isSelected ? "#fff" : "#38B6FF",
+                            fontSize: "1rem",
+                            marginRight: "8px",
                           }}
                         />
                         <Typography sx={style.boardTitle}>
@@ -162,5 +168,5 @@ const style = {
     fontSize: {
       lg: "2vh",
     },
-  }
+  },
 };
