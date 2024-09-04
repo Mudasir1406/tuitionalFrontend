@@ -3,19 +3,16 @@ import Image from 'next/image'
 import React from 'react'
 import tutors from '../../../public/assets/images/static/tutoring.png'
 import icon from '../../../public/assets/images/svg/blueminusicon.svg'
-
-interface ArrayOflist {
-  ArrayOflist: string;
-}
+import { AnyMxRecord } from 'dns'
 
 // Define an interface for the props
-interface ArrayOflistProps {
-  Header: any;
+interface Tutoring {
+  Header: string;
   Button: string;
   ArrayOflist: any;
 }
 
-const ChemistryTutoring: React.FC<ArrayOflistProps> = ({ ArrayOflist = [], Button, Header }) => {
+const ChemistryTutoring = ({data}: any) => {
 
   return (
     <>
@@ -24,7 +21,7 @@ const ChemistryTutoring: React.FC<ArrayOflistProps> = ({ ArrayOflist = [], Butto
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Box>
               <Typography sx={style.tutorheading}>
-                {Header}
+                {data?.Header}
               </Typography>
               <Box sx={{ my: 2 }}>
                 <Image src={tutors} alt='image' style={{ height: "70vh", width: "70vh" }} />
@@ -52,7 +49,7 @@ const ChemistryTutoring: React.FC<ArrayOflistProps> = ({ ArrayOflist = [], Butto
 
                   }}
                 >
-                  {Button}
+                  {data?.Button}
                 </Typography>
               </Box>
             </Box>
@@ -60,7 +57,7 @@ const ChemistryTutoring: React.FC<ArrayOflistProps> = ({ ArrayOflist = [], Butto
 
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Grid container spacing={2}>
-              {ArrayOflist.map((box: { head: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; body: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined }, index: React.Key | null | undefined) => (
+              {data?.ArrayOflist.map((box: { head: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; body: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined }, index: React.Key | null | undefined) => (
                 <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
                   <Box sx={style.boxes}>
                     <Box>

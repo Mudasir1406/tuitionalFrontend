@@ -4,27 +4,20 @@ import { ResponsiveStyleValue } from '@mui/system/styleFunctionSx';
 import { Property } from 'csstype';
 import React from 'react';
 
-interface SubjectArray {
-  SubjectsArray: string;
-}
-
-// Define an interface for the props
-interface SubjectsArrayProps {
+interface Options {
   Header: any;
   Paragraph: string;
-  SubjectsArray: any
+  SubjectsArray: any;
 }
-
-const TutoringOptions: React.FC<SubjectsArrayProps> = ({ SubjectsArray = [], Paragraph, Header }) => {
-
+const TutoringOptions = ({ data }: any) => {
   return (
     <>
       <Box sx={{ margin: "7vh" }}>
         <Typography sx={style.title}>
-          {Header}
+          {data?.Header}
         </Typography>
         <Typography sx={style.description}>
-          {Paragraph}
+          {data?.Paragraph}
         </Typography>
 
         <Box
@@ -36,7 +29,7 @@ const TutoringOptions: React.FC<SubjectsArrayProps> = ({ SubjectsArray = [], Par
           }}
         >
           <Grid container spacing={2} sx={{ maxWidth: '170vh', margin: "4vh auto" }}>
-            {SubjectsArray.map((button: { backgroundColor: (string & {}) | SystemStyleObject<Theme> | (string | number) | ((theme: Theme) => string | number | SystemStyleObject<Theme>) | readonly string[] | readonly (readonly string[] | Property.BackgroundColor | null | undefined)[] | { [key: string]: readonly string[] | Property.BackgroundColor | null | undefined; } | ((theme: Theme) => ResponsiveStyleValue<readonly string[] | Property.BackgroundColor | undefined>) | undefined; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
+            {data?.SubjectsArray.map((button: { backgroundColor: (string & {}) | SystemStyleObject<Theme> | (string | number) | ((theme: Theme) => string | number | SystemStyleObject<Theme>) | readonly string[] | readonly (readonly string[] | Property.BackgroundColor | null | undefined)[] | { [key: string]: readonly string[] | Property.BackgroundColor | null | undefined; } | ((theme: Theme) => ResponsiveStyleValue<readonly string[] | Property.BackgroundColor | undefined>) | undefined; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
               <Grid item xs={12} sm={6} key={index}>
                 <Button
                   sx={{

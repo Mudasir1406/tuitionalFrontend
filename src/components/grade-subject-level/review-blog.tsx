@@ -12,7 +12,7 @@ const ReviewBlog = ({data}: any) => {
         position: "relative"
       }}>
         <Typography sx={style.reviewheading}>
-          {data.header}
+          {data?.header}
         </Typography>
         <Box sx={{
           display: "flex",
@@ -20,7 +20,7 @@ const ReviewBlog = ({data}: any) => {
           alignItems: "center",
         }}>
           <Typography sx={style.reviewdeesc}>
-           {data.paragraph}
+           {data?.paragraph}
           </Typography>
           <Box>
             <Button variant="contained" sx={style.containedBtn}>

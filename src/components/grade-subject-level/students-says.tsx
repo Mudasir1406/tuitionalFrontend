@@ -13,10 +13,10 @@ const StudentSays = ({ data }: any) => {
   return (
     <Box sx={styles.container}>
       <Typography sx={styles.heading} className={leagueSpartan.className}>
-        {data.Header}
+        {data?.Header}
       </Typography>
       <Typography sx={styles.desc}>
-        {data.Paragraph}
+        {data?.Paragraph}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={12}>

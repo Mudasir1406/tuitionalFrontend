@@ -12,52 +12,12 @@ interface Question {
   icon: StaticImageData;
 }
 
-const FrequentlyQuestions: React.FC = ({ data }: any) => {
-  console.log(data?.faqs)
+const FrequentlyQuestions = ({ data }: any) => {
+
   const [expanded, setExpanded] = useState<number>(0);
-
-  const Questions: Question[] = [
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Lorem leo felis.",
-      answer: "Lorem ipsum dolor sit amet consectetur. Nunc malesuada massa enim nec sapien vel sagittis dignissim libero. Felis phasellus cursus dolor suspendisse. Quam enim urna dictumst aenean morbi nisi. Molestie tincidunt id neque mauris. Egestas nisi tellus eget id aenean dignissim turpis risus. Nisi felis.",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Faucibus.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Ultricies nibh.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Quis in rhoncus id libero molestie sed.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Pulvinar accumsan dui malesuada commodo euismod.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. Purus quis venenatis eget.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur. A tincidunt at morbi.",
-      answer: "Excellent Answer",
-      icon: downicon,
-    },
-  ];
-
   const handleToggle = (index: number) => {
     setExpanded(expanded === index ? 0 : index);
   };
-
   return (
     <Box sx={{ marginY: { lg: "13vh" }, marginX: { lg: "4vh" } }}>
       <Box>
@@ -69,7 +29,7 @@ const FrequentlyQuestions: React.FC = ({ data }: any) => {
 
       <Box sx={{ marginX: "auto", maxWidth: "140vh", paddingX: { lg: "2vh" } }}>
         <Grid container spacing={1}>
-          {data?.faqs.map((item: { question: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; answer: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
+          {data?.faqs.map((item: { question: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; answer: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: number) => (
             <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
               <Box
                 sx={{
@@ -103,9 +63,7 @@ const FrequentlyQuestions: React.FC = ({ data }: any) => {
     </Box>
   );
 };
-
 export default FrequentlyQuestions;
-
 const style = {
   frequently: {
     fontWeight: "600",

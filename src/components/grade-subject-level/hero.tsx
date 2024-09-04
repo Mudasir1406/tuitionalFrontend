@@ -5,7 +5,7 @@ import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
 import CircleIcon from '@mui/icons-material/Circle';
-const Hero: React.FC = ({ data }: any) => {
+const Hero = ({ data }: any) => {
 
   return (
     <>

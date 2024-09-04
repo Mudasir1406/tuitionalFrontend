@@ -18,10 +18,19 @@ import ReviewBlog from '@/components/grade-subject-level/review-blog';
 import Footer from '@/components/footer';
 import Questions from '@/components/grade-subject-level/Questions';
 import FindingCambridge from '@/components/grade-subject-level/finding-cambridge ';
-const Grade: React.FC = ({ data }: any) => {
+import FoundPage from '@/components/grade-subject-level/found-page';
+const Grade = ({ data }: any) => {
 
-  console.log("data:", data?.faq);
+  console.log("data:", data);
 
+
+  if (!data) {
+    return (
+      <>
+        <FoundPage />
+      </>
+    )
+  }
 
   return (
     <>
@@ -107,14 +116,13 @@ const Grade: React.FC = ({ data }: any) => {
         </Grid>
       </Grid>
       <Grid>
-        <ChemistryTutoring Button={data.Section2.Button} Header={data.Section2.Header} ArrayOflist={data?.Section2.ArrayOflist} />
+        <ChemistryTutoring data={data?.Section2} />
       </Grid>
       <Grid>
-        <TutoringOptions Paragraph={data.Section3.Paragraph} Header={data.Section3.Header}
-          SubjectsArray={data?.Section3.SubjectsArray} />
+        <TutoringOptions data={data?.Section3} />
       </Grid>
       <Grid>
-        <PopularIgcseSubjects header={data?.Section4.header} subjects={data.Section4.subjects} />
+        <PopularIgcseSubjects header={data?.Section4?.header} subjects={data?.Section4?.subjects} />
       </Grid>
       <Grid>
         <Offer />
@@ -130,6 +138,7 @@ const Grade: React.FC = ({ data }: any) => {
       </Grid>
       <Grid>
         <Questions data={data?.faq} />
+
       </Grid>
       <Footer />
     </>

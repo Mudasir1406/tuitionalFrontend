@@ -12,10 +12,10 @@ const FindingCambridge = ({ data }: any) => {
     >
       <Box sx={{ width: '100%', maxWidth: '145vh', textAlign: 'center' }}>
         <Typography sx={style.finding}>
-          {data.Header}
+          {data?.Header}
         </Typography>
         <Typography sx={style.description}>
-          {data.Paragraph}
+          {data?.Paragraph}
         </Typography>
         <Box
           sx={{
@@ -54,7 +54,7 @@ const FindingCambridge = ({ data }: any) => {
               },
             }}
           >
-            {data.ButtonText}
+            {data?.ButtonText}
           </Button>
         </Box>
       </Box>

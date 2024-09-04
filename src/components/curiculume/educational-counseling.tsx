@@ -27,8 +27,8 @@ const EducationalCounseling = ({ data }: any) => {
               <Typography sx={style.counseling}>
                 Educational Counseling
               </Typography>
-              <Typography sx={style.guidence}>{data.header}</Typography>
-              <Typography sx={style.desc}>{data.paragraph}</Typography>
+              <Typography sx={style.guidence}>{data?.header}</Typography>
+              <Typography sx={style.desc}>{data?.paragraph}</Typography>
               <Box>
                 <Button variant="contained" sx={style.containedBtn}>
                   Enroll Now
