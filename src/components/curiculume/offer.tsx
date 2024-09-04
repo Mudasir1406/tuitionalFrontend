@@ -46,7 +46,6 @@ const Offer = () => {
             }}>
               <Box sx={{
                 display: "flex",
-
               }}>
                 <Box>
                   <Typography sx={style.coveragetext}>Comprehensive coverage of IGCSE Maths syllabus</Typography>
@@ -57,21 +56,22 @@ const Offer = () => {
                   </Box>
                 </Box>
                 <Typography sx={style.coverageImg}>
-                  <Image src={offer1} alt='pic' style={{ width: "auto", height: "30vh" }} />
+                  <Image src={offer1} alt='pic'
+                    style={{
+                      width: "22vh",
+                      height: "25vh",
+
+
+                    }} />
                 </Typography>
               </Box>
             </Box>
-
             <Grid container spacing={2}>
               {/* Column 1 */}
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box sx={{
                   background: "#9EDCFF",
                   borderRadius: "2vh",
-                  paddingBottom: {
-                    sm: "3.5vh",
-                    lg: "3vh",
-                  },
                 }}>
                   <Typography sx={style.regulartxt}>Regular assessments and feedback</Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
@@ -79,8 +79,11 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Image src={offer2} alt='pic' style={{ width: "auto", height: "47vh" }} />
+                  <Box sx={{ textAlign: "right" }}>
+                    <Image src={offer2} alt='pic'
+                      style={{
+                        width: "25vh", height: "28vh",
+                      }} />
                   </Box>
                 </Box>
               </Grid>
@@ -96,8 +99,8 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Image src={offer3} alt='pic' style={{ width: "auto", height: "50vh" }} />
+                  <Box sx={{ textAlign: "right" }}>
+                    <Image src={offer3} alt='pic' style={{ width: "22vh", height: "28vh" }} />
                   </Box>
                 </Box>
               </Grid>
@@ -111,10 +114,6 @@ const Offer = () => {
                 <Box sx={{
                   background: "#9EDCFF",
                   borderRadius: "2vh",
-                  paddingBottom: {
-                    sm: "3.5vh",
-                    lg: "2.7vh"
-                  },
                   marginY: "2vh",
                 }}>
                   <Typography sx={style.regulartxt}>Regular assessments and feedback</Typography>
@@ -123,12 +122,11 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Image src={offer2} alt='pic' style={{ width: "auto", height: "47vh" }} />
+                  <Box sx={{ textAlign: "right" }}>
+                    <Image src={offer2} alt='pic' style={{ width: "25vh", height: "27vh" }} />
                   </Box>
                 </Box>
               </Grid>
-
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box sx={{
                   background: "#9EDCFF",
@@ -141,8 +139,8 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Image src={offer3} alt='pic' style={{ width: "auto", height: "49.5vh" }} />
+                  <Box sx={{ textAlign: "right" }}>
+                    <Image src={offer3} alt='pic' style={{ width: "22vh", height: "28vh" }} />
                   </Box>
                 </Box>
               </Grid>
@@ -168,7 +166,7 @@ const Offer = () => {
                   </Box>
                 </Box>
                 <Typography sx={style.coverageImg}>
-                  <Image src={offer1} alt='pic' style={{ width: "auto", height: "30vh" }} />
+                  <Image src={offer1} alt='pic' style={{ width: "22vh", height: "25vh" }} />
                 </Typography>
               </Box>
             </Box>
@@ -183,11 +181,12 @@ export default Offer
 
 const style = {
   coveragetext: {
-    fontWeight: "600",
+    color: "#2D2D2D",
+    fontWeight: 600,
     fontSize: {
       xs: "1.9vh",
       sm: "2.5vh",
-      lg: "3vh",
+      lg: "2.5vh",
     },
     width: {
       xs: "100%",
@@ -213,6 +212,7 @@ const style = {
     }
   },
   regulartxt: {
+    color: "#2D2D2D",
     width: {
       xs: "50%",
       sm: "45%",
@@ -228,17 +228,17 @@ const style = {
       sm: "4vh",
       lg: "4vh",
     },
-    fontWeight: "600",
+    fontWeight: 600,
     fontSize: {
-      lg: "3vh"
+      lg: "2.5vh"
     }
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
-    fontSize: "2vh",
+    fontSize: "1.5vh",
     fontWeight: 700,
-    padding: "2vh 4vh",
+    padding: "1vh 0",
     margin: "2vh 4vh",
     textTransform: "none",
     borderRadius: "10px",
@@ -246,7 +246,7 @@ const style = {
       xs: "30%", // Full width on mobile
       sm: "30%",
       md: "30%",
-      lg: "20vh", // Auto width on larger screens
+      lg: "14vh", // Auto width on larger screens
     },
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
