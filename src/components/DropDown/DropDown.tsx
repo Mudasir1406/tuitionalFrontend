@@ -89,9 +89,6 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem disabled value="">
-            {/* <em>Placeholder</em> */}
-          </MenuItem>
           {data.map((item, index) => (
             <MenuItem
               key={index}
