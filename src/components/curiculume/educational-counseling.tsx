@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import counsling from '../../../public/assets/images/static/Guidence.png'
 
-const EducationalCounseling = () => {
+const EducationalCounseling = ({ data }: any) => {
   return (
     <div>
       <Box sx={{
@@ -27,8 +27,8 @@ const EducationalCounseling = () => {
               <Typography sx={style.counseling}>
                 Educational Counseling
               </Typography>
-              <Typography sx={style.guidence}>Personalized Guidance for Academic Excellence</Typography>
-              <Typography sx={style.desc}>Navigate your educational journey with confidence. Our free counseling sessions provide personalized advice to help you achieve your academic and career goals.</Typography>
+              <Typography sx={style.guidence}>{data.header}</Typography>
+              <Typography sx={style.desc}>{data.paragraph}</Typography>
               <Box>
                 <Button variant="contained" sx={style.containedBtn}>
                   Enroll Now
@@ -38,10 +38,7 @@ const EducationalCounseling = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} alignItems="end">
-            <Box sx={{
-
-
-            }}>
+            <Box>
               <Image src={counsling} alt='Counseling Image' style={{
                 width: "auto", height: "50vh"
               }} />
@@ -111,18 +108,19 @@ const style = {
   },
 
   desc: {
+    color: "#2D2D2D",
     width: {
       xs: "90%",
       sm: "75vh",
       md: "70vh",
       lg: "68vh"
     },
-    fontWeight: "400",
+    fontWeight: 400,
     fontSize: {
       xs: "2vh",
       sm: "2.2vh",
       md: "2.4vh",
-      lg: "2.5vh"
+      lg: "2vh"
     }
   },
 

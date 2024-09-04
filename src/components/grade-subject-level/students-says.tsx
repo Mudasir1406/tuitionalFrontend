@@ -7,16 +7,16 @@ import poster2 from "../../../public/assets/images/static/thumbile2.png";
 import poster3 from "../../../public/assets/images/static/thumbile3.png";
 import poster4 from "../../../public/assets/images/static/thumbile4.png";
 
-const StudentSays = () => {
+const StudentSays = ({ data }: any) => {
   const posters = [poster1, poster2, poster3, poster4]; // Array of poster images
 
   return (
     <Box sx={styles.container}>
       <Typography sx={styles.heading} className={leagueSpartan.className}>
-        What Our Students Says
+        {data.Header}
       </Typography>
       <Typography sx={styles.desc}>
-        Lorem ipsum dolor sit amet consectetur. Amet morbi sit suspendisse dui ut donec vel id. Viverra urna cras nulla elementum. Risus orci dolor euismod in fringilla adipiscing eu condimentum.
+        {data.Paragraph}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={12}>
@@ -56,6 +56,7 @@ const styles = {
     padding: "7vh",
   },
   desc: {
+    color: "#2D2D2D",
     width: "139vh",
     fontSize: {
       xs: "35px",
@@ -63,14 +64,14 @@ const styles = {
       md: "55px",
       lg: "2vh",
     },
-    fontWeight: 600,
+    fontWeight: 400,
     textAlign: {
       xs: "center",
       sm: "center",
       md: "start",
       lg: "center",
     },
-    padding: "3vh 0",
+    padding: "1vh 0 3vh 0",
   },
   heading: {
     fontSize: {

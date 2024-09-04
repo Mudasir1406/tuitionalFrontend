@@ -3,40 +3,20 @@ import Image from 'next/image'
 import React from 'react'
 import tutors from '../../../public/assets/images/static/tutoring.png'
 import icon from '../../../public/assets/images/svg/blueminusicon.svg'
-const ChemistryTutoring = () => {
 
-  let Boxes = [
-    {
-      title: "Highly Qualified Chemistry Tutors",
-      description: "Our tutors are experts in Cambridge IGCSE Chemistry 0971, providing specialized and focused support",
-      minus: icon,
-    },
-    {
-      title: "Strong Foundation in Chemistry Fundamentals",
-      description: " Our tutors Focus on core concepts to build a solid understanding and strong foundation in Chemistry.",
-      minus: icon,
-    },
-    {
-      title: "IGCSE Personalized Classes",
-      description: "Tailored to meet individual Student Needs and Learning Styles",
-      minus: icon,
-    },
-    {
-      title: "Use of 3D simulations",
-      description: "Our tutors are experts in Cambridge IGCSE Chemistry 0971, providing specialized and focused support",
-      minus: icon,
-    },
-    {
-      title: "Average 11,500+ Tutoring Hours Provided",
-      description: " Our tutors are experts in Cambridge IGCSE Chemistry 0971, providing specialized and focused support",
-      minus: icon,
-    },
-    {
-      title: "Highly Qualified Chemistry Tutors",
-      description: " Our tutors are experts in Cambridge IGCSE Chemistry 0971, providing specialized and focused support",
-      minus: icon,
-    },
-  ]
+interface ArrayOflist {
+  ArrayOflist: string;
+}
+
+// Define an interface for the props
+interface ArrayOflistProps {
+  Header: any;
+  Button: string;
+  ArrayOflist: any;
+}
+
+const ChemistryTutoring: React.FC<ArrayOflistProps> = ({ ArrayOflist = [], Button, Header }) => {
+
   return (
     <>
       <Box sx={{ margin: "7vh" }}>
@@ -44,10 +24,10 @@ const ChemistryTutoring = () => {
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Box>
               <Typography sx={style.tutorheading}>
-                Why Our Cambridge <span style={{ color: '#38B6FF' }}>IGCSE Chemistry Tutoring</span> is Different?
+                {Header}
               </Typography>
               <Box sx={{ my: 2 }}>
-                <Image src={tutors} alt='image' style={{ height: "70vh", width: "72vh" }} />
+                <Image src={tutors} alt='image' style={{ height: "70vh", width: "70vh" }} />
               </Box>
               <Box
                 sx={{
@@ -57,35 +37,38 @@ const ChemistryTutoring = () => {
                   mt: 2  // Margin top to separate button from other content
                 }}
               >
-                <Button
+                <Typography
                   sx={{
                     backgroundColor: "#38B6FF",
-                    color: "#FFFFFF",
-                    width: '50%',  // Button width
-                    height: '8.5vh', // Button height
+                    filter: "drop-shadow(1px 15px 34px rgba(56, 182, 255, 0.40))",
+                    color: "#FFF",
+                    width: '50vh',  // Button width
+                    height: '8vh', // Button height
                     borderRadius: "2vh",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    fontSize: "2vh",
+
                   }}
                 >
-                  Schedule Your Chemistry Demo!
-                </Button>
+                  {Button}
+                </Typography>
               </Box>
             </Box>
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Grid container spacing={2}>
-              {Boxes.map((box, index) => (
+              {ArrayOflist.map((box: { head: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; body: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined }, index: React.Key | null | undefined) => (
                 <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
                   <Box sx={style.boxes}>
                     <Box>
-                      <Typography sx={style.titlebox}>{box.title}</Typography>
-                      <Typography sx={style.desc}>{box.description}</Typography>
+                      <Typography sx={style.titlebox}>{box.head}</Typography>
+                      <Typography sx={style.desc}>{box.body}</Typography>
                     </Box>
                     <Box>
-                      <Image src={box.minus} alt={box.title} style={{ height: "12vh", width: "6vh" }} />
+                      <Image src={icon} alt="icon" style={{ height: "12vh", width: "6vh" }} />
                     </Box>
                   </Box>
                 </Grid>
@@ -103,10 +86,10 @@ export default ChemistryTutoring
 const style = {
   tutorheading: {
     fontSize: {
-      lg: "5.5vh"
+      lg: "5vh"
     },
     width: {
-      lg: "72vh"
+      lg: "66vh"
     },
     fontWeight: 600,
   },
@@ -123,13 +106,15 @@ const style = {
   titlebox: {
     marginBottom: 1,
     fontSize: {
-      lg: "2.4vh",
+      lg: "2.1vh",
     },
+    color: "#2D2D2D",
     fontWeight: 600,
   },
   desc: {
+    color: "#505050",
     fontSize: {
-      lg: "2vh",
+      lg: "1.8vh",
     },
     fontWeight: 400,
     width: {
