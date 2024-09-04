@@ -58,7 +58,6 @@ const GetInTouch: React.FunctionComponent = () => {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.error("Error saving data:", error);
       // alert("Error saving data");

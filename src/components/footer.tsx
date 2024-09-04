@@ -279,7 +279,6 @@ const Footer: React.FC = async () => {
                 </Typography>
                 {footerData?.aboutUs.map((item, index) => {
                   const url = item.toLowerCase();
-                  console.log(url);
                   return (
                     <Link
                       href={`/${url}`}
