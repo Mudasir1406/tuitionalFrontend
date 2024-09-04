@@ -1,63 +1,64 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
-
-const FindingCambridge = () => {
+const FindingCambridge = ({ data }: any) => {
   return (
-    <>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Box sx={{ width: '100%', maxWidth: '145vh', margin: "0 0 0 30vh" }}>
-          <Typography sx={style.finding}>
-            Finding Cambridge IGCSE Chemistry Challenging?
-          </Typography>
-          <Typography sx={style.description}>
-            Learning this subject can be both exciting and tough. Many students look for extra help to do well in their studies.
-          </Typography>
-          <Typography sx={style.description}>
-            Our Cambridge IGCSE Chemistry 0971 tutors are here to support you. With their knowledge and teaching skills, they'll help you understand the subject better and succeed in your exams.
-          </Typography>
-
-          <Box
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%"
+      }}
+    >
+      <Box sx={{ width: '100%', maxWidth: '145vh', textAlign: 'center' }}>
+        <Typography sx={style.finding}>
+          {data.Header}
+        </Typography>
+        <Typography sx={style.description}>
+          {data.Paragraph}
+        </Typography>
+        <Box
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '15vh',
+            width: '100%',
+            maxWidth: '100%',
+            marginTop: '4vh',
+          }}
+        >
+          <TextField
+            placeholder="Mobile Number with Country Code"
             sx={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '15vh',
+              backgroundColor: "#FFFFFF",
+              boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20), 0px 4px 10px 0px rgba(0, 0, 0, 0.25)",
               width: '100%',
-              maxWidth: '100%', // Ensure it adjusts correctly
+              borderRadius: "2vh",
+              paddingRight: '7vw',
+            }}
+          />
+          <Button
+            sx={{
+              position: 'absolute',
+              right: '0',
+              backgroundColor: "#38B6FF",
+              color: "#FFFFFF",
+              width: '40%',
+              height: '8.9vh',
+              borderRadius: "2vh",
+              border: 'none',
+              ':hover': {
+                backgroundColor: '#2694D6',
+              },
             }}
           >
-            <TextField
-              placeholder="Mobile Number with Country Code"
-              sx={{
-                backgroundColor: "#FFFFFF",
-                boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20), 0px 4px 10px 0px rgba(0, 0, 0, 0.25)",
-                width: '100%',
-                borderRadius: "2vh",
-                paddingRight: '7vw',
-              }}
-            />
-            <Button
-              sx={{
-                position: 'absolute',
-                right: '0',
-                backgroundColor: "#38B6FF",
-                color: "#FFFFFF",
-                width: '40%',
-                height: '8.5vh',
-                borderRadius: "2vh",
-                border: 'none',
-                ':hover': {
-                  backgroundColor: '#2694D6',
-                }
-              }}
-            >
-              Schedule Your Chemistry Demo!
-            </Button>
-          </Box>
+            {data.ButtonText}
+          </Button>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
@@ -70,7 +71,7 @@ const style = {
     },
     fontWeight: 600,
     textAlign: 'center',
-    padding: "2vh 0 0 0"
+    padding: "2vh 0 0 0",
   },
   description: {
     fontSize: {
@@ -79,7 +80,8 @@ const style = {
     fontWeight: 400,
     textAlign: 'center',
     padding: {
-      lg: "2vh 0"
-    }
-  }
+      lg: "2vh 0",
+    },
+    color: "#2D2D2D",
+  },
 };

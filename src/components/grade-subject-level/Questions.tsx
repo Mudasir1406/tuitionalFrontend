@@ -12,7 +12,8 @@ interface Question {
   icon: StaticImageData;
 }
 
-const FrequentlyQuestions: React.FC = () => {
+const FrequentlyQuestions: React.FC = ({ data }: any) => {
+  console.log(data?.faqs)
   const [expanded, setExpanded] = useState<number>(0);
 
   const Questions: Question[] = [
@@ -62,13 +63,13 @@ const FrequentlyQuestions: React.FC = () => {
       <Box>
         <Typography sx={style.frequently}>Frequently Asked Questions</Typography>
         <Typography sx={style.frequentlyDesc}>
-          Lorem ipsum dolor sit amet consectetur. Amet morbi sit suspendisse dui ut donec vel id. Viverra urna cras nulla elementum. Risus orci dolor euismod in fringilla adipiscing eu condimentum.
+          {data?.paragraph}
         </Typography>
       </Box>
 
       <Box sx={{ marginX: "auto", maxWidth: "140vh", paddingX: { lg: "2vh" } }}>
         <Grid container spacing={1}>
-          {Questions.map((item, index) => (
+          {data?.faqs.map((item: { question: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; answer: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
             <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
               <Box
                 sx={{
@@ -112,9 +113,10 @@ const style = {
     textAlign: "center",
   },
   frequentlyDesc: {
+    color: "#2D2D2D",
     textAlign: "center",
-    fontWeight: 600,
-    fontSize: { lg: "2.2vh" },
+    fontWeight: 400,
+    fontSize: { lg: "2vh" },
     width: { lg: "55%" },
     margin: "0 auto",
     lineHeight: "5vh",

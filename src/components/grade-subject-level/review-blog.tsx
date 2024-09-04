@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import elpse1 from '../../../public/assets/images/svg/elpse-white1.svg'
 import elpse2 from '../../../public/assets/images/svg/elpse-white2.svg'
-const ReviewBlog = () => {
+const ReviewBlog = ({data}: any) => {
   return (
     <>
       <Box sx={{
@@ -12,7 +12,7 @@ const ReviewBlog = () => {
         position: "relative"
       }}>
         <Typography sx={style.reviewheading}>
-          You can review our Blog for <span style={{ color: "#38B6FF" }}>IGCSE Chemistry</span> to get an In depth idea of the subject
+          {data.header}
         </Typography>
         <Box sx={{
           display: "flex",
@@ -20,7 +20,7 @@ const ReviewBlog = () => {
           alignItems: "center",
         }}>
           <Typography sx={style.reviewdeesc}>
-            IGCSE Chemistry focuses on fundamental concepts including atomic structure, bonding, and the periodic table, with an emphasis on practical laboratory skills and real-life applications...
+           {data.paragraph}
           </Typography>
           <Box>
             <Button variant="contained" sx={style.containedBtn}>
@@ -70,13 +70,13 @@ const style = {
   reviewdeesc: {
     padding: "8vh 0 5vh 0",
     fontSize: {
-      lg: "3vh",
+      lg: "2.5vh",
     },
     lineHeight: {
       lg: "5vh",
     },
     width: {
-      lg: "135vh",
+      lg: "130vh",
     },
     height: {
       lg: "7vh",
