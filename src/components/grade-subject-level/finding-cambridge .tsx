@@ -56,6 +56,7 @@ const FindingCambridge = ({ data }: any) => {
           >
             {data.ButtonText}
           </Button>
+
         </Box>
       </Box>
     </Box>
@@ -70,7 +71,8 @@ const style = {
       lg: "4vh",
     },
     fontWeight: 600,
-    textAlign: 'center',
+    textAlign: "center",
+
     padding: "2vh 0 0 0",
   },
   description: {
@@ -78,10 +80,11 @@ const style = {
       lg: "2.2vh",
     },
     fontWeight: 400,
-    textAlign: 'center',
+    textAlign: "center",
     padding: {
       lg: "2vh 0",
     },
     color: "#2D2D2D",
+
   },
 };
