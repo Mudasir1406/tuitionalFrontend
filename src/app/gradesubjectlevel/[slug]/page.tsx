@@ -1,14 +1,14 @@
-import { getPageData } from '@/services/grade-subject-level/grade-subject-level'
-import React from 'react'
-import Grade from '../page'
+import Grade from "@/components/grade/grade";
+import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
+import React from "react";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const data = await getPageData(params.slug)
+  const data = await getPageData(params.slug);
   return (
     <div>
       <Grade data={data} />
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
