@@ -4,6 +4,7 @@ import { leagueSpartan } from "@/app/fonts";
 import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
+
 import CircleIcon from "@mui/icons-material/Circle";
 
 type IProps = {
@@ -13,7 +14,7 @@ type IProps = {
 const Hero: React.FC<IProps> = ({ data }: any) => {
   return (
     <>
-      <Box sx={{ padding: { lg: "0 0 0 11vh" }, height: "65vh" }}>
+      <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: "65vh" }}>
         <Typography sx={styles.heading} className={leagueSpartan.className}>
           {data?.Header}
         </Typography>
@@ -21,23 +22,33 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
           {data?.Paragraph}
         </Typography>
 
-        <Box
-          sx={{
-            width: "53vh",
-          }}
-        >
+        <Box sx={{
+          width: {
+            xs: "100%",
+            lg: "53vh",
+          },
+        }}>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "3vh",
+              display: 'flex',
+              justifyContent: {
+                xs: "center",
+                lg: "space-between",
+              },
+              marginTop: '3vh',
+
             }}
           >
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: {
+                  xs: "center",
+                  lg: "start",
+                },
+                cursor: 'pointer',
+
               }}
             >
               <CircleIcon
@@ -73,9 +84,13 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
           </Box>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "3vh",
+              display: 'flex',
+              justifyContent: {
+                xs: "center",
+                lg: "space-between",
+              },
+              marginTop: '3vh',
+
             }}
           >
             <Box
@@ -87,9 +102,10 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
             >
               <CircleIcon
                 sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
+                  color: '#38B6FF',
+                  fontSize: '1rem',
+                  margin: '0 8px 0 0',
+
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -106,9 +122,10 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
             >
               <CircleIcon
                 sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
+                  color: '#38B6FF',
+                  fontSize: '1rem',
+                  margin: '0 8px 0 0 ',
+
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -118,15 +135,29 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
           </Box>
         </Box>
 
-        <Box
-          sx={{
-            width: "75vh",
-          }}
-        >
+        <Box sx={{
+          width: {
+            xs: "100%",
+            lg: "75vh",
+          },
+        }}>
           <Box
             sx={{
-              display: "flex",
-              marginTop: "3vh",
+              display: 'flex',
+              flexDirection: {
+                xs: "row",
+                lg: "row",
+              },
+              alignItems: {
+                xs: "center",
+                lg: "flex-start",
+              },
+              justifyContent: {
+                xs: "center",
+                lg: "start",
+              },
+              marginTop: '3vh',
+
               gap: "1rem",
             }}
           >
@@ -184,11 +215,19 @@ export default Hero;
 const styles = {
   heading: {
     width: {
+      xs: "100%",
       lg: "80vh",
+      sm: "100%",
+    },
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "start",
+      lg: "start",
     },
     fontSize: {
       xs: "5.7vh",
-      sm: "6.5vh",
+      sm: "6vh",
       md: "5.3vh",
       lg: "7vh",
     },
@@ -209,6 +248,7 @@ const styles = {
   },
   desc: {
     width: {
+      sm: "100%",
       lg: "75vh",
     },
     fontSize: {

@@ -4,19 +4,20 @@ import React from 'react'
 import counsling from '../../../public/assets/images/static/Guidence.png'
 
 const EducationalCounseling = ({ data }: any) => {
+
   return (
     <div>
       <Box sx={{
         minHeight: "auto",
         marginX: {
           xs: "2vh",
-          sm: "4vh",
+          sm: "2vh",
           md: "8vh",
           lg: "13vh",
         },
         padding: {
           xs: "3vh",
-          sm: "6vh",
+          sm: "3vh",
           md: "10vh",
           // lg: "12vh 0 15vh 0",
         }
@@ -27,8 +28,8 @@ const EducationalCounseling = ({ data }: any) => {
               <Typography sx={style.counseling}>
                 Educational Counseling
               </Typography>
-              <Typography sx={style.guidence}>{data.header}</Typography>
-              <Typography sx={style.desc}>{data.paragraph}</Typography>
+              <Typography sx={style.guidence}>{data?.header}</Typography>
+              <Typography sx={style.desc}>{data?.paragraph}</Typography>
               <Box>
                 <Button variant="contained" sx={style.containedBtn}>
                   Enroll Now
@@ -37,10 +38,11 @@ const EducationalCounseling = ({ data }: any) => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={6} lg={6} alignItems="end">
-            <Box>
+          <Grid item xs={12} sm={12} md={12} lg={6} alignItems="end">
+            <Box >
               <Image src={counsling} alt='Counseling Image' style={{
-                width: "auto", height: "50vh"
+                width: "100%",
+                height: "auto",
               }} />
             </Box>
           </Grid>
@@ -57,13 +59,13 @@ const style = {
     background: "#B8E1F9",
     borderRadius: "5vh",
     width: {
-      xs: "50%",
-      sm: "40vh",
+      xs: "53%",
+      sm: "28vh",
       md: "30vh",
       lg: "22vh"
     },
     fontSize: {
-      xs: "3vh",
+      xs: "2vh",
       sm: "2.5vh",
       md: "2.2vh",
       lg: "2vh"
@@ -82,14 +84,14 @@ const style = {
   guidence: {
     width: {
       xs: "90%",
-      sm: "80vh",
+      sm: "60vh",
       md: "70vh",
       lg: "76vh",
     },
     fontWeight: "700",
     fontSize: {
-      xs: "5vh",
-      sm: "5.5vh",
+      xs: "3.1vh",
+      sm: "3.5vh",
       md: "6vh",
       lg: "6vh",
     },
@@ -123,7 +125,6 @@ const style = {
       lg: "2vh"
     }
   },
-
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
@@ -138,7 +139,7 @@ const style = {
       xs: "1.5vh",
       sm: "2vh",
     },
-    marginY: "2vh",
+    marginY: "4vh",
     paddingX: {
       xs: "3vh",
       sm: "4vh",
@@ -146,9 +147,9 @@ const style = {
     textTransform: "none",
     borderRadius: "10px",
     width: {
-      xs: "60%", // Wider on mobile
-      sm: "40%",
-      md: "30%",
+      xs: "40%", // Wider on mobile
+      sm: "60%",
+      md: "60%",
       lg: "30%",
     },
     ":hover": {

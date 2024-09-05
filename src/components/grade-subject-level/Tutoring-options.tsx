@@ -1,19 +1,16 @@
+
 import { Box, Button, Grid, Theme, Typography } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
 import { Property } from "csstype";
 import React from "react";
 
-interface SubjectArray {
-  SubjectsArray: string;
-}
-
-// Define an interface for the props
-interface SubjectsArrayProps {
+interface Options {
   Header: any;
   Paragraph: string;
   SubjectsArray: any;
 }
+
 
 const TutoringOptions: React.FC<SubjectsArrayProps> = ({
   SubjectsArray = [],
@@ -119,21 +116,37 @@ export default TutoringOptions;
 const style = {
   title: {
     width: {
-      lg: "92vh",
+      xs: "100%", // Mobile view
+      sm: "100%", // Tablet view
+      md: "100%", // Laptop view
+      lg: "92vh", // Desktop view
     },
     fontSize: {
+      xs: "3vh",
+      sm: "5vh",
+      md: "5.5vh",
       lg: "6vh",
     },
     fontWeight: 600,
+    textAlign: { xs: "center", md: "left" },
+    marginBottom: { xs: "2vh", md: "3vh" },
   },
   description: {
     color: "#2D2D2D",
     width: {
+      xs: "100%",
+      sm: "100%",
+      md: "100%",
       lg: "190vh",
     },
     fontSize: {
-      lg: "2vh",
+      xs: "1.8vh",
+      sm: "2vh",
+      md: "2vh",
     },
     fontWeight: 400,
-  },
+    textAlign: { xs: "justify", md: "left", lg: "left" },
+    marginBottom: { xs: "2vh", md: "4vh" },
+  }
+
 };
