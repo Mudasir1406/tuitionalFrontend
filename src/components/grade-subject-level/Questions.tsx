@@ -5,21 +5,18 @@ import upicon from '../../../public/assets/images/svg/Upicon.svg';
 import downicon from '../../../public/assets/images/static/Downicon.png';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
-
 interface Question {
   question: string;
   answer: string;
   icon: StaticImageData;
 }
-
 const FrequentlyQuestions = ({ data }: any) => {
-
   const [expanded, setExpanded] = useState<number>(0);
   const handleToggle = (index: number) => {
     setExpanded(expanded === index ? 0 : index);
   };
   return (
-    <Box sx={{ marginY: { lg: "13vh" }, marginX: { lg: "4vh" } }}>
+    <Box sx={{ marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } }}>
       <Box>
         <Typography sx={style.frequently}>Frequently Asked Questions</Typography>
         <Typography sx={style.frequentlyDesc}>
@@ -35,13 +32,13 @@ const FrequentlyQuestions = ({ data }: any) => {
                 sx={{
                   borderRadius: "2vh",
                   border: "0.784px #EBEBEB",
-                  background: expanded === index ? "#9EDCFF" : "#F3FBFF", // Change background for active item
+                  background: expanded === index ? "#9EDCFF" : "#F3FBFF",
                   backdropFilter: "blur(5px)",
                   padding: "3vh",
                   marginTop: "3vh",
-                  width: "100%", // Ensure consistent width
-                  boxSizing: "border-box", // Include padding and border in width
-                  minWidth: "300px", // Set a minimum width for consistency
+                  width: "100%",
+                  boxSizing: "border-box",
+                  minWidth: "300px",
                 }}
               >
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -67,23 +64,24 @@ export default FrequentlyQuestions;
 const style = {
   frequently: {
     fontWeight: "600",
-    fontSize: { lg: "6vh" },
+    fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
     textAlign: "center",
   },
   frequentlyDesc: {
     color: "#2D2D2D",
     textAlign: "center",
     fontWeight: 400,
-    fontSize: { lg: "2vh" },
+    fontSize: { lg: "2vh", sm: "2.5vh", md: "2.5vh" },
     width: { lg: "55%" },
     margin: "0 auto",
     lineHeight: "5vh",
+    padding: { sm: "2vh" }
   },
   boxhed: {
-    fontSize: { lg: "2.5vh" },
+    fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh", },
   },
   boxdesc: {
-    fontSize: { lg: "1.9vh" },
+    fontSize: { lg: "1.9vh", sm: "2vh" },
     width: { lg: "135vh" },
     marginTop: "2vh",
   },

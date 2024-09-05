@@ -9,7 +9,7 @@ const Hero = ({ data }: any) => {
 
   return (
     <>
-      <Box sx={{ padding: { lg: "0 0 0 11vh" }, height: "65vh" }}>
+      <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: "65vh" }}>
         <Typography sx={styles.heading} className={leagueSpartan.className}>
           {data?.Header}
         </Typography>
@@ -18,12 +18,18 @@ const Hero = ({ data }: any) => {
         </Typography>
 
         <Box sx={{
-          width: "53vh",
+          width: {
+            xs: "100%",
+            lg: "53vh",
+          },
         }}>
           <Box
             sx={{
               display: 'flex',
-              justifyContent: "space-between",
+              justifyContent: {
+                xs: "center",
+                lg: "space-between",
+              },
               marginTop: '3vh',
             }}
           >
@@ -31,6 +37,10 @@ const Hero = ({ data }: any) => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: {
+                  xs: "center",
+                  lg: "start",
+                },
                 cursor: 'pointer',
               }}
             >
@@ -68,7 +78,10 @@ const Hero = ({ data }: any) => {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: "space-between",
+              justifyContent: {
+                xs: "center",
+                lg: "space-between",
+              },
               marginTop: '3vh',
             }}
           >
@@ -83,7 +96,7 @@ const Hero = ({ data }: any) => {
                 sx={{
                   color: '#38B6FF',
                   fontSize: '1rem',
-                  marginRight: '8px',
+                  margin: '0 8px 0 0',
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -102,7 +115,7 @@ const Hero = ({ data }: any) => {
                 sx={{
                   color: '#38B6FF',
                   fontSize: '1rem',
-                  marginRight: '8px',
+                  margin: '0 8px 0 0 ',
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -113,11 +126,26 @@ const Hero = ({ data }: any) => {
         </Box>
 
         <Box sx={{
-          width: "75vh",
+          width: {
+            xs: "100%",
+            lg: "75vh",
+          },
         }}>
           <Box
             sx={{
               display: 'flex',
+              flexDirection: {
+                xs: "row",
+                lg: "row",
+              },
+              alignItems: {
+                xs: "center",
+                lg: "flex-start",
+              },
+              justifyContent: {
+                xs: "center",
+                lg: "start",
+              },
               marginTop: '3vh',
               gap: "1rem",
             }}
@@ -163,11 +191,19 @@ export default Hero;
 const styles = {
   heading: {
     width: {
+      xs: "100%",
       lg: "80vh",
+      sm: "100%",
+    },
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "start",
+      lg: "start",
     },
     fontSize: {
       xs: "5.7vh",
-      sm: "6.5vh",
+      sm: "6vh",
       md: "5.3vh",
       lg: "7vh",
     },
@@ -188,6 +224,7 @@ const styles = {
   },
   desc: {
     width: {
+      sm: "100%",
       lg: "75vh",
     },
     fontSize: {
