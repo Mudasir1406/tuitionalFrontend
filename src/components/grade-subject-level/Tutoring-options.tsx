@@ -1,4 +1,3 @@
-
 import { Box, Button, Grid, Theme, Typography } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
@@ -11,8 +10,7 @@ interface Options {
   SubjectsArray: any;
 }
 
-
-const TutoringOptions: React.FC<SubjectsArrayProps> = ({
+const TutoringOptions: React.FC<Options> = ({
   SubjectsArray = [],
   Paragraph,
   Header,
@@ -147,6 +145,5 @@ const style = {
     fontWeight: 400,
     textAlign: { xs: "justify", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
-  }
-
+  },
 };
