@@ -10,6 +10,8 @@ const ReviewBlog = ({ data }: any) => {
       <Box sx={{
         margin: {
           xs: "0 3vh",
+          sm: "3vh",
+          md: "0",
           lg: "0 7vh",
         },
         height: {
@@ -123,7 +125,7 @@ const style = {
     },
     fontWeight: 400,
     textAlign: {
-      xs: "justify", // Justify text on mobile for better readability
+      xs: "justify",
       lg: "left",
     }
   },
@@ -133,16 +135,17 @@ const style = {
     backgroundColor: "#38B6FF",
     fontSize: "2vh",
     fontWeight: 700,
-    paddingY: "1.5vh", // Adjusted padding for mobile
+    paddingY: "1.5vh",
     margin: {
-      xs: "3vh 0", // Margin adjustment for mobile to prevent overflow
+      xs: "3vh 0",
+      sm: "2vh 0",
       lg: "5vh 20vh 0 0",
     },
     paddingX: "4vh",
     textTransform: "none",
     borderRadius: "10px",
     width: {
-      xs: "100%", // Full width button for mobile
+      xs: "100%",
       sm: "100%",
       md: "100%",
       lg: "auto",

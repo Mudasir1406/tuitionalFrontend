@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
 import { Header } from "@/components";
@@ -59,12 +59,13 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
                 backgroundImage: `url(${subjectLevelImage.src})`,
                 backgroundPosition: "bottom",
                 backgroundSize: "contain",
-                height: { xs: "50vh", sm: "100vh", md: "80vh", lg: "70vh" },
+                height: { xs: "100vh", sm: "100vh", md: "80vh", lg: "70vh" },
                 width: "100%",
                 backgroundRepeat: "no-repeat",
                 position: "absolute",
-                bottom: 60,
-                zIndex: "1",
+                bottom: 0,
+                zIndex: "0",
+
               },
             }}
           >
@@ -83,7 +84,7 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
         sx={{
           backgroundImage: `url(${subjectIGC.src})`,
           backgroundPosition: "center",
-          height: { xs: "120vh", sm: "50vh", md: "100vh", lg: "45vh" },
+          height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
           width: "100%",
           backgroundRepeat: "no-repeat",
           position: "relative",
@@ -95,7 +96,7 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
             backgroundImage: `url(${circleIGC.src})`,
             backgroundPosition: "right",
             backgroundSize: "contain",
-            height: { xs: "120vh", sm: "50vh", md: "100vh", lg: "50vh" },
+            height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "50vh" },
             width: "100%",
             backgroundRepeat: "no-repeat",
             position: "absolute",
@@ -111,9 +112,7 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
       </Grid>
       <Grid>
         <ChemistryTutoring
-          Button={data.Section2.Button}
-          Header={data.Section2.Header}
-          ArrayOflist={data?.Section2.ArrayOflist}
+          data={data?.Section2}
         />
       </Grid>
       <Grid>

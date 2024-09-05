@@ -14,7 +14,7 @@ const ChemistryTutoring = ({ data }: any) => {
 
   return (
     <>
-      <Box sx={{ margin: { xs: "3vh", sm: "0 5vh" } }}>
+      <Box sx={{ margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
@@ -31,7 +31,7 @@ const ChemistryTutoring = ({ data }: any) => {
                   alignItems: 'center',
                   width: '100%',
                   mt: 2,
-                  mb: 6,
+                  mb: 3,
                   textAlign: { xs: 'center', sm: 'left' },
                 }}
               >
@@ -64,8 +64,8 @@ const ChemistryTutoring = ({ data }: any) => {
                       <Typography sx={style.titlebox}>{box.head}</Typography>
                       <Typography sx={style.desc}>{box.body}</Typography>
                     </Box>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                      <Image src={icon} alt="icon" style={{ height: "12vh", width: "6vh" }} />
+                    <Box sx={{ display: { xs: 'block', sm: 'block' } }}>
+                      <Image src={icon} alt="icon" style={{ height: "6vh", width: "6vh" }} />
                     </Box>
                   </Box>
                 </Grid>
@@ -104,7 +104,7 @@ const style = {
     height: "auto",
     padding: 3,
     display: "flex",
-    flexDirection: { xs: "column", sm: "row" },
+    flexDirection: { xs: "row", sm: "row" },
     justifyContent: "space-between",
     background: "#D3EFFF",
     boxShadow: "0px -5px 15px 0px rgba(56, 182, 255, 0.20)",
@@ -130,7 +130,7 @@ const style = {
     fontWeight: 400,
     width: {
       xs: "100%",
-      sm: "65.5vh",
+      sm: "55.5vh",
       md: "72.5vh",
       lg: "72.5vh",
     },
