@@ -4,9 +4,14 @@ import { leagueSpartan } from "@/app/fonts";
 import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
-import CircleIcon from '@mui/icons-material/Circle';
-const Hero = ({ data }: any) => {
 
+import CircleIcon from "@mui/icons-material/Circle";
+
+type IProps = {
+  data: any;
+};
+
+const Hero: React.FC<IProps> = ({ data }: any) => {
   return (
     <>
       <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: "65vh" }}>
@@ -31,6 +36,7 @@ const Hero = ({ data }: any) => {
                 lg: "space-between",
               },
               marginTop: '3vh',
+
             }}
           >
             <Box
@@ -42,13 +48,14 @@ const Hero = ({ data }: any) => {
                   lg: "start",
                 },
                 cursor: 'pointer',
+
               }}
             >
               <CircleIcon
                 sx={{
-                  color: '#38B6FF',
-                  fontSize: '1rem',
-                  marginRight: '8px',
+                  color: "#38B6FF",
+                  fontSize: "1rem",
+                  marginRight: "8px",
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -58,16 +65,16 @@ const Hero = ({ data }: any) => {
 
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
               }}
             >
               <CircleIcon
                 sx={{
-                  color: '#38B6FF',
-                  fontSize: '1rem',
-                  marginRight: '8px',
+                  color: "#38B6FF",
+                  fontSize: "1rem",
+                  marginRight: "8px",
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -83,13 +90,14 @@ const Hero = ({ data }: any) => {
                 lg: "space-between",
               },
               marginTop: '3vh',
+
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
               }}
             >
               <CircleIcon
@@ -97,6 +105,7 @@ const Hero = ({ data }: any) => {
                   color: '#38B6FF',
                   fontSize: '1rem',
                   margin: '0 8px 0 0',
+
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -106,9 +115,9 @@ const Hero = ({ data }: any) => {
 
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
               }}
             >
               <CircleIcon
@@ -116,6 +125,7 @@ const Hero = ({ data }: any) => {
                   color: '#38B6FF',
                   fontSize: '1rem',
                   margin: '0 8px 0 0 ',
+
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -147,38 +157,52 @@ const Hero = ({ data }: any) => {
                 lg: "start",
               },
               marginTop: '3vh',
+
               gap: "1rem",
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              <Image src={greenstar} alt="img" style={{ height: "3vh", width: "3vh" }} />
-              <Typography sx={{
-                fontSize: "2.3vh",
-                padding: ".7vh 0 0 1vh",
-                fontWeight: 600,
-              }}>
+              <Image
+                src={greenstar}
+                alt="img"
+                style={{ height: "3vh", width: "3vh" }}
+              />
+              <Typography
+                sx={{
+                  fontSize: "2.3vh",
+                  padding: ".7vh 0 0 1vh",
+                  fontWeight: 600,
+                }}
+              >
                 Trustpilot
               </Typography>
             </Box>
 
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              <Typography sx={{ fontSize: "2vh", fontWeight: 400, padding: ".7vh 0 0 0" }}>
+              <Typography
+                sx={{ fontSize: "2vh", fontWeight: 400, padding: ".7vh 0 0 0" }}
+              >
                 Excellent (4.7/5)
               </Typography>
-              <Image src={greenstars} alt="img" style={{
-                height: "4vh", width: "14vh",
-                padding: "1vh 0 0 2vh"
-              }} />
+              <Image
+                src={greenstars}
+                alt="img"
+                style={{
+                  height: "4vh",
+                  width: "14vh",
+                  padding: "1vh 0 0 2vh",
+                }}
+              />
             </Box>
           </Box>
         </Box>
