@@ -69,7 +69,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.error("Error saving data:", error);
       // alert("Error saving data");

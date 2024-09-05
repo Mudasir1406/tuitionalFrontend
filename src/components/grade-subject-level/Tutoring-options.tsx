@@ -1,5 +1,9 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
-import React from 'react';
+
+import { Box, Button, Grid, Theme, Typography } from "@mui/material";
+import { SystemStyleObject } from "@mui/system";
+import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
+import { Property } from "csstype";
+import React from "react";
 
 interface Options {
   Header: any;
@@ -7,44 +11,99 @@ interface Options {
   SubjectsArray: any;
 }
 
-const TutoringOptions = ({ data }: any) => {
+
+const TutoringOptions: React.FC<SubjectsArrayProps> = ({
+  SubjectsArray = [],
+  Paragraph,
+  Header,
+}) => {
   return (
     <>
-      <Box sx={{ margin: { xs: "4vh", md: "7vh" } }}>
-        <Typography sx={style.title}>
-          {data?.Header}
-        </Typography>
-        <Typography sx={style.description}>
-          {data?.Paragraph}
-        </Typography>
+      <Box sx={{ margin: "7vh" }}>
+        <Typography sx={style.title}>{Header}</Typography>
+        <Typography sx={style.description}>{Paragraph}</Typography>
 
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column", // Stack the rows vertically
           }}
         >
-          <Grid container spacing={2} sx={{ maxWidth: { xs: '100%', sm: '100%', lg: '170vh' }, margin: { xs: "2vh auto", md: "4vh auto" } }}>
-            {data?.SubjectsArray.map((button: { backgroundColor: string; name: string; }, index: React.Key | null | undefined) => (
-              <Grid item xs={6} sm={6} key={index}>
-                <Button
-                  sx={{
-                    backgroundColor: index === 0 ? button.backgroundColor : '#FFFFFF',
-                    color: '#2D2D2D',
-                    width: '100%',
-                    borderRadius: { xs: '3vh', md: index === 0 ? '5vh' : '50px' },
-                    padding: { xs: '10px', sm: '14px', lg: '16px' },
-                    textAlign: 'center',
-                    fontSize: { xs: "1.2vh", md: "2vh" },
-                    fontWeight: 500,
-                  }}
-                >
-                  {button.name}
-                </Button>
-              </Grid>
-            ))}
+          <Grid
+            container
+            spacing={2}
+            sx={{ maxWidth: "170vh", margin: "4vh auto" }}
+          >
+            {SubjectsArray.map(
+              (
+                button: {
+                  backgroundColor:
+                    | (string & {})
+                    | SystemStyleObject<Theme>
+                    | (string | number)
+                    | ((
+                        theme: Theme
+                      ) => string | number | SystemStyleObject<Theme>)
+                    | readonly string[]
+                    | readonly (
+                        | readonly string[]
+                        | Property.BackgroundColor
+                        | null
+                        | undefined
+                      )[]
+                    | {
+                        [key: string]:
+                          | readonly string[]
+                          | Property.BackgroundColor
+                          | null
+                          | undefined;
+                      }
+                    | ((
+                        theme: Theme
+                      ) => ResponsiveStyleValue<
+                        readonly string[] | Property.BackgroundColor | undefined
+                      >)
+                    | undefined;
+                  name:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | Promise<React.AwaitedReactNode>
+                    | null
+                    | undefined;
+                },
+                index: React.Key | null | undefined
+              ) => (
+                <Grid item xs={12} sm={6} key={index}>
+                  <Button
+                    sx={{
+                      backgroundColor:
+                        index === 0
+                          ? String(button.backgroundColor)
+                          : "#FFFFFF",
+                      color: "#2D2D2D", // Text color
+                      width: "100%",
+                      borderRadius: index === 0 ? "5vh" : "50px", // Apply border-radius conditionally
+                      padding: "16px",
+                      textAlign: "center",
+                      fontSize: "2vh",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {button.name}
+                  </Button>
+                </Grid>
+              )
+            )}
           </Grid>
         </Box>
       </Box>
@@ -89,4 +148,5 @@ const style = {
     textAlign: { xs: "justify", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
   }
+
 };

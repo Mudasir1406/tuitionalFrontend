@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid } from "@mui/material";
 import curiculumeImage from "../../../public/assets/images/static/curiclume.png";
 import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.png";
-import circleIGC from '../../../public/assets/images/svg/circle-subjects.svg'
+import circleIGC from "../../../public/assets/images/svg/circle-subjects.svg";
 import { Header } from "@/components";
 import Hero from "@/components/curiculume/hero";
 import HeroInfo from "@/components/curiculume/hero-info";
@@ -28,7 +28,7 @@ import Footer from "@/components/footer";
 const Home: React.FC = () => {
   return (
     <>
-      <Header />
+      {/* <Header />
       <Container
         sx={{
           width: { lg: "100%", sm: "100%" },
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           sx={{
             backgroundImage: `url(${circleIGC.src})`,
             backgroundPosition: "right", // This will align the circle image to the right
-            backgroundSize: "contain",   // Ensure the image scales properly
+            backgroundSize: "contain", // Ensure the image scales properly
             height: { xs: "120vh", sm: "50vh", md: "100vh", lg: "70vh" },
             width: "100%",
             backgroundRepeat: "no-repeat",
@@ -138,7 +138,7 @@ const Home: React.FC = () => {
         <StudentSays />
       </Grid>
       <Grid>
-        <PopularIgcseSubjects />
+        <PopularIgcseSubjects header={undefined} subjects={undefined} />
       </Grid>
       <Grid>
         <TuitionalCompetitors />
@@ -154,7 +154,7 @@ const Home: React.FC = () => {
       </Grid>
       <Grid>
         <Footer />
-      </Grid>
+      </Grid> */}
     </>
   );
 };
