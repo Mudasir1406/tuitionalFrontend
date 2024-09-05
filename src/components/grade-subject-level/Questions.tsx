@@ -1,3 +1,4 @@
+
 "use client";
 import { Box, Grid, Typography, Collapse } from "@mui/material";
 import React, { useState } from "react";
@@ -12,6 +13,7 @@ interface Question {
   icon: StaticImageData;
 }
 
+
 type IProps = {
   data: any;
 };
@@ -20,9 +22,8 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }: any) => {
   const handleToggle = (index: number) => {
     setExpanded(expanded === index ? 0 : index);
   };
-
   return (
-    <Box sx={{ marginY: { lg: "13vh" }, marginX: { lg: "4vh" } }}>
+    <Box sx={{ marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } }}>
       <Box>
         <Typography sx={style.frequently}>
           Frequently Asked Questions
@@ -32,6 +33,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }: any) => {
 
       <Box sx={{ marginX: "auto", maxWidth: "140vh", paddingX: { lg: "2vh" } }}>
         <Grid container spacing={1}>
+
           {data?.faqs.map(
             (
               item: {
@@ -115,29 +117,28 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }: any) => {
     </Box>
   );
 };
-
 export default FrequentlyQuestions;
-
 const style = {
   frequently: {
     fontWeight: "600",
-    fontSize: { lg: "6vh" },
+    fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
     textAlign: "center",
   },
   frequentlyDesc: {
     color: "#2D2D2D",
     textAlign: "center",
     fontWeight: 400,
-    fontSize: { lg: "2vh" },
+    fontSize: { lg: "2vh", sm: "2.5vh", md: "2.5vh" },
     width: { lg: "55%" },
     margin: "0 auto",
     lineHeight: "5vh",
+    padding: { sm: "2vh" }
   },
   boxhed: {
-    fontSize: { lg: "2.5vh" },
+    fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh", },
   },
   boxdesc: {
-    fontSize: { lg: "1.9vh" },
+    fontSize: { lg: "1.9vh", sm: "2vh" },
     width: { lg: "135vh" },
     marginTop: "2vh",
   },

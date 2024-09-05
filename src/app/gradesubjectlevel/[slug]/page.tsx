@@ -1,3 +1,4 @@
+
 import Grade from "@/components/grade/grade";
 import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
 import React from "react";
@@ -8,6 +9,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     <div>
       <Grade data={data} />
     </div>
+
   );
 };
 

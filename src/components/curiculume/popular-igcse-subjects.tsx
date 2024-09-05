@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
-// Define an interface for the subject item
 interface Subject {
   icon: string;
   subject: string;
@@ -18,8 +17,8 @@ interface PopularIgcseSubjectsProps {
 const PopularIgcseSubjects: React.FC<PopularIgcseSubjectsProps> = ({ subjects = [], header }) => {
   return (
     <Box sx={{
-      marginX: { xs: "2.5vh", sm: "2.5vh", lg: "4vh" },
-      marginY: { xs: "2.5vh", sm: "2.5vh", lg: "12vh" }
+      marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
+      marginY: { xs: "1.5vh", sm: "2.5vh", lg: "12vh" }
     }}>
       <Box>
         <Typography sx={style.popularText}>
@@ -30,7 +29,7 @@ const PopularIgcseSubjects: React.FC<PopularIgcseSubjectsProps> = ({ subjects = 
       <Box sx={{ marginY: { lg: "6vh", sm: "5vh", xs: "4vh", } }}>
         <Grid container spacing={2} justifyContent="center">
           {subjects.map((item: { icon: string | StaticImport; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
-            <Grid item xs={6} sm={3} md={3} lg={1.5} key={index}>
+            <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
               <Box sx={style.cardsBoxes}>
                 <Image
                   src={item.icon}
@@ -53,14 +52,14 @@ const style = {
   popularText: {
     fontWeight: "600",
     textAlign: "center",
-    fontSize: { lg: "5vh", sm: "2.5vh" },
+    fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh", },
     width: { lg: "35%", sm: "52%" },
     margin: "0 auto"
   },
   subjects: {
     color: "#2D2D2D",
     fontWeight: "600",
-    fontSize: { lg: "2vh" },
+    fontSize: { lg: "2vh", xs: "1.5vh" },
   },
   cardsBoxes: {
     background: "#FFF",
@@ -68,12 +67,18 @@ const style = {
     borderRadius: "2vh",
     boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20)",
     textAlign: "center",
-    padding: "4vh",
+    padding: {
+      xs: "2.5vh",
+      lg: "4vh",
+    },
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: '12vh',
+    height: {
+      xs: '10vh',
+      lg: "12vh",
+    },
   }
 };
 
