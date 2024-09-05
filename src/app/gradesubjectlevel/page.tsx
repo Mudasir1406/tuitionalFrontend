@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import subjectLevelImage from '../../../public/assets/images/static/subject-level.png';
 import { Header } from '@/components';
@@ -68,11 +68,11 @@ const Grade = ({ data }: any) => {
                 backgroundImage: `url(${subjectLevelImage.src})`,
                 backgroundPosition: 'bottom',
                 backgroundSize: 'contain',
-                height: { xs: '50vh', sm: '100vh', md: '80vh', lg: '70vh' },
+                height: { xs: '50vh', sm: '55vh', md: '80vh', lg: '70vh' },
                 width: '100%',
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',
-                bottom: 60,
+                bottom: 0,
                 zIndex: '1',
               },
             }}
@@ -81,8 +81,10 @@ const Grade = ({ data }: any) => {
           </Grid>
         </Grid>
       </Box>
-      <Grid>
-        <SectionsBox />
+      <Grid container>
+        <Grid item xs={12}>
+          <SectionsBox />
+        </Grid>
       </Grid>
       <Grid>
         <StudentSays data={data?.WhatOurStudentsSays} />
@@ -92,7 +94,7 @@ const Grade = ({ data }: any) => {
         sx={{
           backgroundImage: `url(${subjectIGC.src})`,
           backgroundPosition: 'center',
-          height: { xs: '120vh', sm: '50vh', md: '100vh', lg: '45vh' },
+          height: { xs: '50vh', sm: '50vh', md: '100vh', lg: '45vh' },
           width: '100%',
           backgroundRepeat: 'no-repeat',
           position: 'relative',
@@ -104,7 +106,7 @@ const Grade = ({ data }: any) => {
             backgroundImage: `url(${circleIGC.src})`,
             backgroundPosition: 'right',
             backgroundSize: 'contain',
-            height: { xs: '120vh', sm: '50vh', md: '100vh', lg: '50vh' },
+            height: { xs: '50vh', sm: '50vh', md: '100vh', lg: '50vh' },
             width: '100%',
             backgroundRepeat: 'no-repeat',
             position: 'absolute',
@@ -133,12 +135,13 @@ const Grade = ({ data }: any) => {
       <Grid>
         <EducationalCounseling data={data?.Section5} />
       </Grid>
-      <Grid>
-        <ReviewBlog data={data?.Section6} />
+      <Grid container>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <ReviewBlog data={data?.Section6} />
+        </Grid>
       </Grid>
       <Grid>
         <Questions data={data?.faq} />
-
       </Grid>
       <Footer />
     </>

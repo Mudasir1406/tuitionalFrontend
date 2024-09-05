@@ -8,7 +8,7 @@ import poster3 from "../../../public/assets/images/static/thumbile3.png";
 import poster4 from "../../../public/assets/images/static/thumbile4.png";
 
 const StudentSays = ({ data }: any) => {
-  const posters = [poster1, poster2, poster3, poster4]; // Array of poster images
+  const posters = [poster1, poster2, poster3, poster4];
 
   return (
     <Box sx={styles.container}>
@@ -19,27 +19,23 @@ const StudentSays = ({ data }: any) => {
         {data?.Paragraph}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} lg={12}>
-          <Grid container spacing={2}>
-            {posters.map((poster, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                <Card>
-                  <CardMedia
-                    component="video"
-                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    controls
-                    poster={poster.src} // Use each poster image
-                    sx={{
-                      width: { xs: "100px", lg: "100%" },
-                      height: { xs: "75px", lg: "50vh" },
-                      borderRadius: "10px",
-                    }}
-                  />
-                </Card>
-              </Grid>
-            ))}
+        {posters.map((poster, index) => (
+          <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
+            <Card>
+              <CardMedia
+                component="video"
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                controls
+                poster={poster.src}
+                sx={{
+                  width: { xs: "100%", lg: "100%" },
+                  height: { xs: "30vh", lg: "50vh" },
+                  borderRadius: "10px",
+                }}
+              />
+            </Card>
           </Grid>
-        </Grid>
+        ))}
       </Grid>
     </Box>
   );
@@ -53,30 +49,48 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "7vh",
+    padding: {
+      xs: "0",
+      lg: "7vh",
+    },
+    width: {
+      xs: "90%",
+      lg: "auto",
+    },
+    margin: {
+      xs: "4vh 2vh",
+      lg: "0",
+    },
   },
   desc: {
     color: "#2D2D2D",
-    width: "139vh",
+    width: {
+      lg: "139vh",
+      xs: "90%",
+    },
     fontSize: {
-      xs: "35px",
-      sm: "40px",
+      xs: "2vh",
+      sm: "2vh",
       md: "55px",
       lg: "2vh",
     },
     fontWeight: 400,
     textAlign: {
-      xs: "center",
+      xs: "justify",
       sm: "center",
       md: "start",
       lg: "center",
     },
-    padding: "1vh 0 3vh 0",
+    padding: {
+      xs: "2vh 0 4vh 0",
+      lg: "1vh 0 3vh 0",
+    },
+
   },
   heading: {
     fontSize: {
-      xs: "35px",
-      sm: "40px",
+      xs: "3.5vh",
+      sm: "5vh",
       md: "55px",
       lg: "5.5vh",
     },
