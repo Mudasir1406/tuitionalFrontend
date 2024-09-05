@@ -14,7 +14,7 @@ type IProps = {
 const Hero: React.FC<IProps> = ({ data }: any) => {
   return (
     <>
-      <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: "65vh" }}>
+      <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: { lg: "65vh" } }}>
         <Typography sx={styles.heading} className={leagueSpartan.className}>
           {data?.Header}
         </Typography>
@@ -74,10 +74,17 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
                 sx={{
                   color: "#38B6FF",
                   fontSize: "1rem",
-                  marginRight: "8px",
+                  margin: {
+                    xs: "0 0 0 8px",
+                    lg: "0 8px 0 0",
+                  },
                 }}
               />
-              <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
+              <Typography sx={{
+                fontSize: "2vh", color: "#797979", margin: {
+                  xs: "0 0 0 8px",
+                },
+              }}>
                 9756 Active Students
               </Typography>
             </Box>
@@ -124,11 +131,17 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
                 sx={{
                   color: '#38B6FF',
                   fontSize: '1rem',
-                  margin: '0 8px 0 0 ',
-
+                  margin: {
+                    xs: "0 0 0 8px",
+                    lg: '0 8px 0 0 ',
+                  },
                 }}
               />
-              <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
+              <Typography sx={{
+                fontSize: "2vh", color: "#797979", margin: {
+                  xs: "0 0 0 8px",
+                },
+              }}>
                 9756 Active Students
               </Typography>
             </Box>
@@ -190,7 +203,7 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
               }}
             >
               <Typography
-                sx={{ fontSize: "2vh", fontWeight: 400, padding: ".7vh 0 0 0" }}
+                sx={{ fontSize: { lg: "2vh", xs: "1.7vh" }, fontWeight: 400, padding: "1vh 0 0 0" }}
               >
                 Excellent (4.7/5)
               </Typography>
@@ -198,9 +211,9 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
                 src={greenstars}
                 alt="img"
                 style={{
-                  height: "4vh",
+                  height: "3vh",
                   width: "14vh",
-                  padding: "1vh 0 0 2vh",
+                  padding: ".7vh 0 0 2vh",
                 }}
               />
             </Box>

@@ -18,7 +18,7 @@ const PopularIgcseSubjects: React.FC<PopularIgcseSubjectsProps> = ({ subjects = 
   return (
     <Box sx={{
       marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
-      marginY: { xs: "1.5vh", sm: "2.5vh", lg: "12vh" }
+      marginY: { xs: "1.5vh", sm: "2.5vh", lg: "3vh" }
     }}>
       <Box>
         <Typography sx={style.popularText}>
@@ -65,7 +65,7 @@ const style = {
     background: "#FFF",
     backdropFilter: "blur(5px)",
     borderRadius: "2vh",
-    boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20)",
+    boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
     textAlign: "center",
     padding: {
       xs: "2.5vh",
@@ -76,7 +76,7 @@ const style = {
     alignItems: 'center',
     justifyContent: 'space-between',
     height: {
-      xs: '10vh',
+      xs: '9vh',
       lg: "12vh",
     },
   }

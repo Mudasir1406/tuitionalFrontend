@@ -17,83 +17,75 @@ const TutoringOptions: React.FC<Options> = ({
 }) => {
   return (
     <>
-      <Box sx={{ margin: "7vh" }}>
+      <Box sx={{ margin: { lg: "0 7vh", xs: "3vh", } }}>
         <Typography sx={style.title}>{Header}</Typography>
         <Typography sx={style.description}>{Paragraph}</Typography>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column", // Stack the rows vertically
-          }}
-        >
+        <Box>
           <Grid
             container
             spacing={2}
-            sx={{ maxWidth: "170vh", margin: "4vh auto" }}
+            sx={{ maxWidth: { xs: "320vh", lg: "170vh" }, margin: { lg: "4vh auto" } }}
           >
             {SubjectsArray.map(
               (
                 button: {
                   backgroundColor:
-                    | (string & {})
-                    | SystemStyleObject<Theme>
-                    | (string | number)
-                    | ((
-                        theme: Theme
-                      ) => string | number | SystemStyleObject<Theme>)
+                  | (string & {})
+                  | SystemStyleObject<Theme>
+                  | (string | number)
+                  | ((
+                    theme: Theme
+                  ) => string | number | SystemStyleObject<Theme>)
+                  | readonly string[]
+                  | readonly (
                     | readonly string[]
-                    | readonly (
-                        | readonly string[]
-                        | Property.BackgroundColor
-                        | null
-                        | undefined
-                      )[]
-                    | {
-                        [key: string]:
-                          | readonly string[]
-                          | Property.BackgroundColor
-                          | null
-                          | undefined;
-                      }
-                    | ((
-                        theme: Theme
-                      ) => ResponsiveStyleValue<
-                        readonly string[] | Property.BackgroundColor | undefined
-                      >)
-                    | undefined;
-                  name:
-                    | string
-                    | number
-                    | bigint
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | Iterable<React.ReactNode>
-                    | React.ReactPortal
-                    | Promise<React.AwaitedReactNode>
+                    | Property.BackgroundColor
+                    | null
+                    | undefined
+                  )[]
+                  | {
+                    [key: string]:
+                    | readonly string[]
+                    | Property.BackgroundColor
                     | null
                     | undefined;
+                  }
+                  | ((
+                    theme: Theme
+                  ) => ResponsiveStyleValue<
+                    readonly string[] | Property.BackgroundColor | undefined
+                  >)
+                  | undefined;
+                  name:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | React.ReactElement<
+                    any,
+                    string | React.JSXElementConstructor<any>
+                  >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | Promise<React.AwaitedReactNode>
+                  | null
+                  | undefined;
                 },
                 index: React.Key | null | undefined
               ) => (
-                <Grid item xs={12} sm={6} key={index}>
+                <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
                   <Button
                     sx={{
-                      backgroundColor:
-                        index === 0
-                          ? String(button.backgroundColor)
-                          : "#FFFFFF",
-                      color: "#2D2D2D", // Text color
+                      backgroundColor: index === 0 ? "#38B6FF59" : "#FFFFFF",
+                      color: "#2D2D2D",
                       width: "100%",
-                      borderRadius: index === 0 ? "5vh" : "50px", // Apply border-radius conditionally
+                      borderRadius: "5vh",
                       padding: "16px",
-                      textAlign: "center",
-                      fontSize: "2vh",
+                      fontSize: {
+                        xs: "1.5vh",
+                        lg: "2vh",
+                      },
                       fontWeight: 500,
                     }}
                   >
@@ -104,6 +96,7 @@ const TutoringOptions: React.FC<Options> = ({
             )}
           </Grid>
         </Box>
+
       </Box>
     </>
   );

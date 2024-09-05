@@ -14,8 +14,8 @@ const styles = {
   container: {
     width: "100%",
     height: {
-      xs: "30vh",
-      sm: "30vh",
+      xs: "55vh",
+      sm: "80vh",
       md: "60vh",
       lg: "80vh",
     },
