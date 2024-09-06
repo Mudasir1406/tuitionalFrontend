@@ -19,16 +19,16 @@ const Waveform: React.FC<WaveformProps> = ({ audio }) => {
   const [currentTime, setCurrentTime] = useState<string>("0");
 
   useEffect(() => {
+    if (!audio) return;
     if (!containerRef.current) return;
-    const url =
-      "https://www.mfiles.co.uk/mp3-downloads/brahms-st-anthony-chorale-theme-two-pianos.mp3";
+
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,
       barWidth: 2,
       barHeight: 1,
       cursorWidth: 0,
     });
-    waveSurfer.load(url);
+    waveSurfer.load(audio);
     waveSurfer.on("ready", () => {
       waveSurferRef.current = waveSurfer;
     });

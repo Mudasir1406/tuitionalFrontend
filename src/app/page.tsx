@@ -12,8 +12,10 @@ import Faqs from "../components/home/faqs";
 import Footer from "../components/footer";
 import ContactUs from "../components/home/contact-us";
 import homeImage from "../../public/assets/images/static/girl-with-book.png";
+import { getTestimonials } from "@/services/testimonials/testimonials";
 
-const Home: React.FC = () => {
+const Home: React.FC = async () => {
+  const data = await getTestimonials();
   return (
     <>
       <Header />
@@ -76,7 +78,7 @@ const Home: React.FC = () => {
       <Container sx={{ maxWidth: { lg: "1450px" } }}>
         <GetStarted />
       </Container>
-      <OurClient />
+      <OurClient data={data} />
       <Box
         sx={{
           position: "relative",

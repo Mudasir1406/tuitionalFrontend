@@ -20,7 +20,12 @@ import user from "../../../public/assets/images/static/clientReview.png";
 import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-const OurClient = () => {
+import { Testimonials_Type } from "@/services/testimonials/testimonials";
+type IProps = {
+  data: Testimonials_Type[];
+};
+
+const OurClient: React.FC<IProps> = ({ data }) => {
   const swiper = useRef<SwiperRef | null>(null);
 
   return (
@@ -101,7 +106,7 @@ const OurClient = () => {
               perSlideRotate: 1,
             }}
           >
-            {[0, 0, 0, 0, 0].map((item, index) => (
+            {data.map((item, index) => (
               <SwiperSlide
                 key={index}
                 style={{
@@ -111,7 +116,7 @@ const OurClient = () => {
                   justifyContent: "center",
                 }}
               >
-                <ReviewMobile />
+                <ReviewMobile item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -186,12 +191,12 @@ const OurClient = () => {
             perSlideRotate: 1,
           }}
         >
-          {[0, 0, 0, 0, 0].map((item, index) => (
+          {data.map((item, index) => (
             <SwiperSlide
               key={index}
               style={{ display: "flex", borderRadius: 10, paddingLeft: "12vw" }}
             >
-              <Review />
+              <Review item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -559,7 +564,7 @@ const styles = {
   },
 };
 
-const Review = () => {
+const Review: React.FC<RProps> = ({ item }) => {
   return (
     <Box
       sx={{
@@ -571,7 +576,7 @@ const Review = () => {
       }}
     >
       <Image
-        src={user.src}
+        src={item.imageUrl}
         style={{ width: "40%", maxHeight: "650px" }}
         width={user.width}
         height={user.height}
@@ -582,19 +587,13 @@ const Review = () => {
           <StarPurple500OutlinedIcon
             sx={{ height: 25, width: 25, color: "white" }}
           />
-          <Typography sx={styles.coma}>5.0</Typography>
+          <Typography sx={styles.coma}> {item.rating.toFixed(1)}</Typography>
         </Box>
-        <Typography sx={styles.reviewText}>
-          The teacher is really good at explaining, they repeat as many times as
-          i want. The teacher is really patient and really kind. I don&apos;t
-          have any complains. You guys are doing a really good job.
-        </Typography>
+        <Typography sx={styles.reviewText}>{item.message}</Typography>
         <Box sx={styles.userContanier}>
           <Box>
-            <Typography sx={styles.username}>Fransis Van</Typography>
-            <Typography sx={styles.userLocation}>
-              United Arab Emirates
-            </Typography>
+            <Typography sx={styles.username}> {item.userName}</Typography>
+            <Typography sx={styles.userLocation}>{item.country}</Typography>
           </Box>
         </Box>
       </Box>
@@ -602,31 +601,31 @@ const Review = () => {
   );
 };
 
-const ReviewMobile = () => {
+type RProps = {
+  item: Testimonials_Type;
+};
+
+const ReviewMobile: React.FC<RProps> = ({ item }) => {
   return (
     <Box sx={styles.reviewContanier}>
       <Box sx={styles.ratingContanier}>
         <StarPurple500OutlinedIcon
           sx={{ height: 25, width: 25, color: "white" }}
         />
-        <Typography sx={styles.coma}>5.0</Typography>
+        <Typography sx={styles.coma}>{item.rating.toFixed(1)}</Typography>
       </Box>
-      <Typography sx={styles.reviewText}>
-        The teacher is really good at explaining, they repeat as many times as i
-        want. The teacher is really patient and really kind. I don&apos;t have
-        any complains. You guys are doing a really good job.
-      </Typography>
+      <Typography sx={styles.reviewText}>{item.message}</Typography>
       <Box sx={styles.userContanier}>
         <Image
-          src={user.src}
+          src={item.imageUrl}
           width={50}
           height={50}
           alt="user"
           style={{ borderRadius: 25, marginRight: 10 }}
         ></Image>
         <Box>
-          <Typography sx={styles.username}>Fransis Van</Typography>
-          <Typography sx={styles.userLocation}>United Arab Emirates</Typography>
+          <Typography sx={styles.username}>{item.userName}</Typography>
+          <Typography sx={styles.userLocation}> {item.country}</Typography>
         </Box>
       </Box>
     </Box>
