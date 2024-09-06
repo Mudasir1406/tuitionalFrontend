@@ -20,17 +20,22 @@ const SectionsBox = () => {
           <Box sx={style.boxsection}>
             <Typography sx={{
               fontSize: {
-                xs: "1.7vh",
+                xs: "2vh",
                 lg: "3vh",
               },
-              fontWeight: "700",
+              fontWeight: {
+                xs: "auto",
+                lg: "700",
+              },
               textAlign: "start",
               paddingX: {
                 xs: "2vh",
                 lg: "0",
               },
               width: {
-                xs: "60%",
+                sm: "60%",
+                lg: "45%",
+                xs: "63%",
               }
             }}>
               Join Live Interactive Online Classes with Our Certified Tutors!
@@ -52,7 +57,7 @@ export default SectionsBox
 const style = {
   boxsection: {
     height: {
-      xs: "12vh",
+      xs: "8vh",
       lg: "12vh",
     },
     display: "flex",

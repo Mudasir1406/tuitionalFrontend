@@ -33,43 +33,40 @@ const FindingCambridge = ({ data }: any) => {
             justifyContent: 'center',
             alignItems: 'center',
             height: 'auto',
-            width: '95%',
+            width: { lg: '95%' },
             maxWidth: '100%',
-            margin: '4vh 1.5vh 0 1.5vh',
-            flexDirection: 'row',
+            background: "#FFF",
+            boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
+            borderRadius: "2vh",
           }}
         >
           <TextField
             placeholder="Mobile Number with Country Code"
             sx={{
-              backgroundColor: "#FFFFFF",
-              boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20), 0px 4px 10px 0px rgba(0, 0, 0, 0.25)",
               width: {
                 xs: '60%',
-                lg: '60%',
+                lg: '70%',
               },
-              borderRadius: "2vh 0 0 2vh",
-              paddingRight: '1vh',
+              border: "none",
+
             }}
           />
           <Button
             sx={{
               backgroundColor: "#38B6FF",
+              boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
+              backgroundFilter: " blur(5px)",
               color: "#FFFFFF",
               width: {
                 xs: '40%',
                 lg: '40%',
               },
               height: {
-                xs: "auto",
+                xs: "8vh",
                 sm: "6vh",
-                lg: "8vh",
+                lg: "8.5vh",
               },
-              borderRadius: "0 2vh 2vh 0",
               border: 'none',
-              ':hover': {
-                backgroundColor: '#2694D6',
-              },
               fontSize: {
                 xs: "1.5vh",
                 lg: "auto",
