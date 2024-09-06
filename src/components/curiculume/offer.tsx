@@ -14,7 +14,7 @@ const Offer = () => {
       margin: {
         xs: "5vh 0",
         sm: "7vh 0",
-        lg: "10vh 5vh",
+        lg: "10vh 5vh 0vh 5vh",
       },
     }}>
       <Typography sx={{
@@ -64,8 +64,10 @@ const Offer = () => {
                   <Image src={offer1} alt='pic'
                     style={{
                       width: 'auto',
-                      height: '25vh',
-                    }} />
+                      height: '20vh',
+                    }}
+
+                  />
                 </Typography>
               </Box>
             </Box>
@@ -87,7 +89,7 @@ const Offer = () => {
                     <Image src={offer2} alt='pic'
                       style={{
                         width: 'auto',
-                        height: '28vh',
+                        height: '25vh',
                       }} />
                   </Box>
                 </Box>
@@ -107,7 +109,7 @@ const Offer = () => {
                   <Box sx={{ textAlign: "right" }}>
                     <Image src={offer3} alt='pic' style={{
                       width: 'auto',
-                      height: '28vh',
+                      height: '25vh',
                     }} />
                   </Box>
                 </Box>
@@ -132,7 +134,7 @@ const Offer = () => {
                   <Box sx={{ textAlign: "right" }}>
                     <Image src={offer2} alt='pic' style={{
                       width: 'auto',
-                      height: '28vh',
+                      height: '25vh',
                     }} />
                   </Box>
                 </Box>
@@ -152,7 +154,7 @@ const Offer = () => {
                   <Box sx={{ textAlign: "right" }}>
                     <Image src={offer3} alt='pic' style={{
                       width: 'auto',
-                      height: '28vh',
+                      height: '25vh',
                     }} />
                   </Box>
                 </Box>
@@ -164,7 +166,6 @@ const Offer = () => {
             }}>
               <Box sx={{
                 display: "flex",
-
               }}>
                 <Box>
                   <Typography sx={style.coveragetext}>Comprehensive coverage of IGCSE Maths syllabus</Typography>
@@ -177,7 +178,7 @@ const Offer = () => {
                 <Typography sx={style.coverageImg}>
                   <Image src={offer1} alt='pic' style={{
                     width: 'auto',
-                    height: '25vh',
+                    height: '20vh',
                   }} />
                 </Typography>
               </Box>
@@ -252,7 +253,7 @@ const style = {
     fontSize: "1.5vh",
     fontWeight: 700,
     padding: "1vh 0",
-    margin: "2vh 4vh",
+    margin: "2vh 3vh",
     textTransform: "none",
     borderRadius: "10px",
     width: {

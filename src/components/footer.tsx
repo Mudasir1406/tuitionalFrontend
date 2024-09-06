@@ -59,7 +59,7 @@ const Footer: React.FC = async () => {
                   sx={styles.phoneText}
                   className={leagueSpartan.className}
                 >
-                   +971 56 490 0376
+                  +971 56 490 0376
                 </Typography>
               </Box>
             </Grid>
@@ -351,7 +351,7 @@ const styles = {
   },
   admissionText: {
     fontSize: {
-      xs: "6.5vw",
+      xs: "4.5vw",
       sm: "4.5vw",
       md: "3.5vw",
       lg: "2vw",
@@ -382,7 +382,7 @@ const styles = {
   },
   phoneText: {
     fontSize: {
-      xs: "6vw",
+      xs: "5vw",
       sm: "3vw",
       md: "1.5vw",
       lg: "1.5vw",

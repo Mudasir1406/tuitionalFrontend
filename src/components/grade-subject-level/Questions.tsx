@@ -132,7 +132,7 @@ const style = {
     width: { lg: "55%" },
     margin: "0 auto",
     lineHeight: "5vh",
-    padding: { sm: "2vh" }
+    padding: { xs: "2vh 0", sm: "2vh" }
   },
   boxhed: {
     fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh", },
