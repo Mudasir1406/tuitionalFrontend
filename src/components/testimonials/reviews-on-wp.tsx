@@ -5,17 +5,19 @@ import linesmobile from "../../../public/assets/images/static/linesMobile.png";
 import "swiper/css";
 import Waveform from "./wave-form";
 import { leagueSpartan } from "@/app/fonts";
+import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
 
-const ReviewsOnWp: React.FC = () => {
+const ReviewsOnWp: React.FC = async () => {
+  const data = await getWPReviews();
   return (
     <Box sx={styles.background}>
       <Typography sx={styles.heading} className={leagueSpartan.className}>
         Reviews on WhatsApp
       </Typography>
       <Grid container sx={styles.gridContanier} rowSpacing={2}>
-        {[0, 0, 0, 0, 0, 0, 0, 0].map((item, index) => (
+        {data.map((item, index) => (
           <Grid item lg={6} key={index}>
-            <Waveform audio={""} />
+            <Waveform audio={item.audio} />
           </Grid>
         ))}
       </Grid>

@@ -11,8 +11,10 @@ import OurClient from "../../components/testimonials/our-client";
 import VideoBasedReview from "../../components/testimonials/video-based-reviews";
 import testimonialsImage from "../../../public/assets/images/static/hero-testimonial.png";
 import testimonialHeroMobile from "../../../public/assets/images/static/testimonialHeroMobile.png";
+import { getTestimonials } from "@/services/testimonials/testimonials";
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC = async () => {
+  const data = await getTestimonials();
   return (
     <>
       <Header />
@@ -50,7 +52,7 @@ const Testimonials: React.FC = () => {
             "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#DAF2FF)",
         }}
       >
-        <OurClient />
+        <OurClient data={data} />
 
         <Container sx={{ maxWidth: { lg: "1650px" } }}>
           <VideoBasedReview />

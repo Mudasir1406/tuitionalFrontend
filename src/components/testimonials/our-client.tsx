@@ -21,6 +21,7 @@ import user from "../../../public/assets/images/static/clientReview.png";
 import linesInvertPrimarySmall from "../../../public/assets/images/static/lines-invert-primary-small.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import { Testimonials_Type } from "@/services/testimonials/testimonials";
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 7,
   borderRadius: 5,
@@ -32,8 +33,11 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "light" ? "white" : "black",
   },
 }));
+type IProps = {
+  data: Testimonials_Type[];
+};
 
-const OurClient = () => {
+const OurClient: React.FC<IProps> = ({ data }) => {
   const [progress, setProgress] = React.useState(0);
   const swiper = useRef<SwiperRef | null>(null);
 
@@ -125,7 +129,7 @@ const OurClient = () => {
               perSlideRotate: 1,
             }}
           >
-            {[0, 0, 0, 0, 0].map((item, index) => (
+            {data.map((item, index) => (
               <SwiperSlide
                 key={index}
                 style={{
@@ -135,7 +139,7 @@ const OurClient = () => {
                   justifyContent: "center",
                 }}
               >
-                <ReviewMobile />
+                <ReviewMobile item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -231,7 +235,7 @@ const OurClient = () => {
               perSlideRotate: 1,
             }}
           >
-            {[0, 0, 0, 0, 0].map((item, index) => (
+            {data.map((item, index) => (
               <SwiperSlide
                 key={index}
                 style={{
@@ -240,7 +244,7 @@ const OurClient = () => {
                   padding: 20,
                 }}
               >
-                <Review />
+                <Review item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -503,7 +507,7 @@ const styles = {
   },
 };
 
-const Review = () => {
+const Review: React.FC<RProps> = ({ item }) => {
   return (
     <Box
       sx={{
@@ -520,18 +524,16 @@ const Review = () => {
             sx={{ height: 25, width: 25, color: "white" }}
           />
           <Typography sx={styles.coma} className={leagueSpartan.className}>
-            5.0
+            {item.rating.toFixed(1)}
           </Typography>
         </Box>
         <Typography sx={styles.reviewText} className={leagueSpartan.className}>
-          The teacher is really good at explaining, they repeat as many times as
-          i want. The teacher is really patient and really kind. I don&apos;t
-          have any complains. You guys are doing a really good job.
+          {item.message}
         </Typography>
         <Divider sx={{ marginBottom: "36px" }} />
         <Box sx={styles.userContanier}>
           <Image
-            src={user.src}
+            src={item.imageUrl}
             width={50}
             height={50}
             alt="user"
@@ -542,13 +544,13 @@ const Review = () => {
               sx={styles.username}
               className={leagueSpartan.className}
             >
-              Fransis Van
+              {item.userName}
             </Typography>
             <Typography
               sx={styles.userLocation}
               className={leagueSpartan.className}
             >
-              United Arab Emirates
+              {item.country}
             </Typography>
           </Box>
         </Box>
@@ -557,7 +559,11 @@ const Review = () => {
   );
 };
 
-const ReviewMobile = () => {
+type RProps = {
+  item: Testimonials_Type;
+};
+
+const ReviewMobile: React.FC<RProps> = ({ item }) => {
   return (
     <Box sx={styles.reviewContanier}>
       <Box sx={styles.ratingContanier}>
@@ -565,17 +571,15 @@ const ReviewMobile = () => {
           sx={{ height: 25, width: 25, color: "white" }}
         />
         <Typography sx={styles.coma} className={leagueSpartan.className}>
-          5.0
+          {item.rating.toFixed(1)}
         </Typography>
       </Box>
       <Typography sx={styles.reviewText} className={leagueSpartan.className}>
-        The teacher is really good at explaining, they repeat as many times as i
-        want. The teacher is really patient and really kind. I don&apos;t have
-        any complains. You guys are doing a really good job.
+        {item.message}
       </Typography>
       <Box sx={styles.userContanier}>
         <Image
-          src={user.src}
+          src={item.imageUrl}
           width={50}
           height={50}
           alt="user"
@@ -583,13 +587,13 @@ const ReviewMobile = () => {
         ></Image>
         <Box>
           <Typography sx={styles.username} className={leagueSpartan.className}>
-            Fransis Van
+            {item.userName}
           </Typography>
           <Typography
             sx={styles.userLocation}
             className={leagueSpartan.className}
           >
-            United Arab Emirates
+            {item.country}
           </Typography>
         </Box>
       </Box>
