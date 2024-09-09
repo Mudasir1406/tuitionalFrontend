@@ -19,21 +19,7 @@ const Home: React.FC = async () => {
   return (
     <>
       <Header />
-      <Container
-        sx={{
-          maxWidth: { lg: "1650px" },
-          paddingTop: {
-            xs: "120px",
-            sm: "150px",
-            md: "200px",
-            lg: 0,
-            xl: 0,
-          },
-          minHeight: { xs: "100%", lg: "100vh" },
-          display: "flex",
-          alignItems: "end",
-        }}
-      >
+      <Container sx={styles.contanier}>
         <Grid container>
           <Grid
             item
@@ -41,35 +27,13 @@ const Home: React.FC = async () => {
             md={12}
             sm={12}
             xs={12}
-            sx={{
-              paddingRight: {
-                lg: 10,
-              },
+            paddingRight={{
+              lg: 10,
             }}
           >
             <Filter />
           </Grid>
-          <Grid
-            item
-            lg={6}
-            md={12}
-            sm={12}
-            xs={12}
-            sx={{
-              position: "relative",
-              "::before": {
-                content: "''",
-                backgroundImage: `url(${homeImage.src})`,
-                backgroundPosition: "bottom",
-                backgroundSize: "contain",
-                height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
-                width: "100%",
-                backgroundRepeat: "no-repeat",
-                position: "absolute",
-                bottom: 0,
-              },
-            }}
-          >
+          <Grid item lg={6} md={12} sm={12} xs={12} sx={styles.infoGrid}>
             <Info />
           </Grid>
         </Grid>
@@ -79,43 +43,7 @@ const Home: React.FC = async () => {
         <GetStarted />
       </Container>
       <OurClient data={data} />
-      <Box
-        sx={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
-
-          "::before": {
-            content: "''",
-            backgroundImage: {
-              xs: `url(${lineSmall.src})`,
-              lg: `url(${faqLine.src})`,
-            },
-            backgroundSize: "cover",
-            backgroundPosition: "top",
-            position: "absolute",
-            bottom: {
-              xs: "90%",
-              sm: "83%",
-              md: "80%",
-              lg: -90,
-            },
-            // display: {
-            //   xs: "flex",
-            //   sm: "none",
-            //   md: "none",
-            //   lg: "flex",
-            // },
-            backgroundRepeat: "no-repeat",
-            width: "100vw",
-            height: {
-              xs: "25vw",
-              lg: "281px",
-            },
-            objectFit: "contain",
-          },
-        }}
-      >
+      <Box sx={styles.backgroundImage}>
         <Container
           sx={{
             maxWidth: { lg: "1450px" },
@@ -133,5 +61,60 @@ const Home: React.FC = async () => {
 export default Home;
 
 const styles = {
-  contanier: {},
+  contanier: {
+    maxWidth: { lg: "1650px" },
+    paddingTop: {
+      xs: "120px",
+      sm: "150px",
+      md: "200px",
+      lg: 0,
+      xl: 0,
+    },
+    minHeight: { xs: "100%", lg: "100vh" },
+    display: "flex",
+    alignItems: "end",
+  },
+  infoGrid: {
+    position: "relative",
+    "::before": {
+      content: "''",
+      backgroundImage: `url(${homeImage.src})`,
+      backgroundPosition: "bottom",
+      backgroundSize: "contain",
+      height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
+      width: "100%",
+      backgroundRepeat: "no-repeat",
+      position: "absolute",
+      bottom: 0,
+    },
+  },
+  backgroundImage: {
+    position: "relative",
+    width: "100%",
+    height: "100%",
+
+    "::before": {
+      content: "''",
+      backgroundImage: {
+        xs: `url(${lineSmall.src})`,
+        lg: `url(${faqLine.src})`,
+      },
+      backgroundSize: "cover",
+      backgroundPosition: "top",
+      position: "absolute",
+      bottom: {
+        xs: "90%",
+        sm: "83%",
+        md: "80%",
+        lg: -90,
+      },
+      backgroundRepeat: "no-repeat",
+      width: "100vw",
+      height: {
+        xs: "25vw",
+        lg: "281px",
+      },
+      objectFit: "contain",
+    },
+  },
 };

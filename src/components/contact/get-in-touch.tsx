@@ -400,6 +400,11 @@ const styles = {
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    },
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    borderRadius: "5px",
   },
   containedButton: {
     display: "flex",
