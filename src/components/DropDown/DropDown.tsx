@@ -68,6 +68,9 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
               height: "5.5vh", // Set the height of the OutlinedInput
               // minHeight: "5.5vh", // Ensure minHeight of the OutlinedInput
             },
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
           }}
           value={personName}
           onChange={handleChange}

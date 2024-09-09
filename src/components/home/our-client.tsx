@@ -577,7 +577,7 @@ const Review: React.FC<RProps> = ({ item }) => {
     >
       <Image
         src={item.imageUrl}
-        style={{ width: "40%", maxHeight: "650px" }}
+        style={{ width: "40%", maxHeight: "650px", objectFit: "contain" }}
         width={user.width}
         height={user.height}
         alt="user"

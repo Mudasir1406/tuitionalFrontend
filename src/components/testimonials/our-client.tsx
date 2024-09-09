@@ -537,7 +537,7 @@ const Review: React.FC<RProps> = ({ item }) => {
             width={50}
             height={50}
             alt="user"
-            style={{ borderRadius: 25, marginRight: 10 }}
+            style={{ borderRadius: 25, marginRight: 10, objectFit: "contain" }}
           ></Image>
           <Box>
             <Typography
