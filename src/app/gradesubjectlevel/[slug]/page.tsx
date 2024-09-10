@@ -9,8 +9,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     <div>
       <Grade data={data} />
     </div>
-
   );
 };
-
 export default Page;
