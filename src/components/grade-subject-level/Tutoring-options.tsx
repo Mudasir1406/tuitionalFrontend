@@ -5,21 +5,17 @@ import { Property } from "csstype";
 import React from "react";
 
 interface Options {
-  Header: any;
+  Header: string;
   Paragraph: string;
   SubjectsArray: any;
 }
 
-const TutoringOptions: React.FC<Options> = ({
-  SubjectsArray = [],
-  Paragraph,
-  Header,
-}) => {
+const TutoringOptions = ({data}: any) => {
   return (
     <>
       <Box sx={{ margin: { lg: "0 7vh", xs: "3vh", } }}>
-        <Typography sx={style.title}>{Header}</Typography>
-        <Typography sx={style.description}>{Paragraph}</Typography>
+        <Typography sx={style.title}>{data?.Header}</Typography>
+        <Typography sx={style.description}>{data?.Paragraph}</Typography>
 
         <Box>
           <Grid
@@ -27,7 +23,7 @@ const TutoringOptions: React.FC<Options> = ({
             spacing={2}
             sx={{ maxWidth: { xs: "320vh", lg: "170vh" }, margin: { lg: "4vh auto" } }}
           >
-            {SubjectsArray.map(
+            {data?.SubjectsArray.map(
               (
                 button: {
                   backgroundColor:

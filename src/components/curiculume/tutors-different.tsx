@@ -29,7 +29,6 @@ const TutorsDifferent = () => {
       heading: "We Conduct Mock Exams and Provide Detailed Progress Reports",
     },
   ]
-
   return (
     <>
       <Box
@@ -52,7 +51,6 @@ const TutorsDifferent = () => {
           </Grid>
         </Grid>
       </Box>
-
       <Box sx={{
         margin: {
           sm: "2vh",
@@ -130,7 +128,7 @@ const style = {
       sm: "2vh",
       lg: "1.8vh",
     },
-    
+
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",

@@ -37,7 +37,6 @@ const EducationalCounseling = ({ data }: any) => {
               </Box>
             </Box>
           </Grid>
-
           <Grid item xs={12} sm={12} md={12} lg={6} alignItems="end">
             <Box >
               <Image src={counsling} alt='Counseling Image' style={{
@@ -51,7 +50,6 @@ const EducationalCounseling = ({ data }: any) => {
     </div>
   )
 }
-
 export default EducationalCounseling
 
 const style = {
@@ -113,7 +111,7 @@ const style = {
     color: "#2D2D2D",
     width: {
       xs: "90%",
-      sm: "75vh",
+      sm: "70vh",
       md: "70vh",
       lg: "68vh"
     },

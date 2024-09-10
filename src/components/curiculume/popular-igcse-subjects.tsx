@@ -6,15 +6,11 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 interface Subject {
   icon: string;
+  header: string;
   subject: string;
 }
 
-// Define an interface for the props
-interface PopularIgcseSubjectsProps {
-  header: any;
-  subjects: any
-}
-const PopularIgcseSubjects: React.FC<PopularIgcseSubjectsProps> = ({ subjects = [], header }) => {
+const PopularIgcseSubjects = ({ data }: any) => {
   return (
     <Box sx={{
       marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
@@ -22,13 +18,13 @@ const PopularIgcseSubjects: React.FC<PopularIgcseSubjectsProps> = ({ subjects = 
     }}>
       <Box>
         <Typography sx={style.popularText}>
-          {header}
+          {data?.header}
         </Typography>
       </Box>
 
       <Box sx={{ marginY: { lg: "6vh", sm: "5vh", xs: "4vh", } }}>
         <Grid container spacing={2} justifyContent="center">
-          {subjects.map((item: { icon: string | StaticImport; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
+          {data?.subjects.map((item: { icon: string | StaticImport; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
             <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
               <Box sx={style.cardsBoxes}>
                 <Image
