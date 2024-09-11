@@ -1,11 +1,24 @@
 "use client";
 import { Box, Button, Grid, Typography } from '@mui/material'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import offer1 from '../../../public/assets/images/static/offer-img-1.png'
 import offer2 from '../../../public/assets/images/static/offer-img-2.png'
 import offer3 from '../../../public/assets/images/static/offer-img-3.png'
 const Offer = () => {
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    // Ensures that the component is only rendered on the client
+    setIsMounted(true);
+  }, []);
+
+  // Prevent server-client mismatches by only rendering after mounting
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <Box sx={{
       width: {

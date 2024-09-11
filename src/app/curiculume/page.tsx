@@ -28,7 +28,7 @@ import Footer from "@/components/footer";
 const Home: React.FC = () => {
   return (
     <>
-      {/* <Header />
+      <Header />
       <Container
         sx={{
           width: { lg: "100%", sm: "100%" },
@@ -154,7 +154,7 @@ const Home: React.FC = () => {
       </Grid>
       <Grid>
         <Footer />
-      </Grid> */}
+      </Grid>
     </>
   );
 };

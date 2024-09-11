@@ -105,7 +105,6 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
           }}
         >
           <FindingCambridge
-            header={data?.Section1CTA?.header}
             data={data?.Section1CTA}
           />
         </Grid>
@@ -117,15 +116,12 @@ const Grade: React.FC<IProps> = ({ data }: any) => {
       </Grid>
       <Grid>
         <TutoringOptions
-          Paragraph={data.Section3.Paragraph}
-          Header={data.Section3.Header}
-          SubjectsArray={data?.Section3.SubjectsArray}
+          data={data?.Section3}
         />
       </Grid>
       <Grid>
         <PopularIgcseSubjects
-          header={data?.Section4.header}
-          subjects={data.Section4.subjects}
+          data={data?.Section4}
         />
       </Grid>
       <Grid>
