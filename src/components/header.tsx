@@ -89,7 +89,7 @@ const Header: React.FC<IProps> = ({ background }) => {
             className={leagueSpartan.className}
           >
             About
-          </Typography>
+          </Typography> 
           {/* </Link> */}
           {/* <Link href={"/Community & Events"} style={styles.link}> */}
           <Typography
