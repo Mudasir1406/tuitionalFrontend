@@ -48,7 +48,7 @@ const GetInTouch: React.FunctionComponent = () => {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
+        "https://script.google.com/macros/s/AKfycbxC8t_5083m612FzAesqksc8RSinMiq7o32coNB5Rd2fPV9uZOjPxNJGMoekFV9ezVVKg/exec",
         {
           redirect: "follow",
           method: "POST",

@@ -1,8 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material'
-import Image from 'next/image'
-import React from 'react'
-import tutors from '../../../public/assets/images/static/tutoring.png'
-import icon from '../../../public/assets/images/svg/blueminusicon.svg'
+import { Box, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import tutors from "../../../public/assets/images/static/tutoring.png";
+import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 
 interface Tutoring {
   Header: string;
@@ -11,37 +11,35 @@ interface Tutoring {
 }
 
 const ChemistryTutoring = ({ data }: any) => {
-
   return (
     <>
       <Box sx={{ margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
-              <Typography sx={style.tutorheading}>
-                {data?.Header}
-              </Typography>
-              <Box sx={{ my: 2, textAlign: { xs: 'center', sm: 'left' } }}>
-                <Image src={tutors} alt='image' style={style.image} />
+              <Typography sx={style.tutorheading}>{data?.Header}</Typography>
+              <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
+                <Image src={tutors} alt="image" style={style.image} />
               </Box>
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: '100%',
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
                   mt: 2,
                   mb: 3,
-                  textAlign: { xs: 'center', sm: 'left' },
+                  textAlign: { xs: "center", sm: "left" },
                 }}
               >
                 <Typography
                   sx={{
                     backgroundColor: "#38B6FF",
-                    filter: "drop-shadow(1px 15px 34px rgba(56, 182, 255, 0.40))",
+                    filter:
+                      "drop-shadow(1px 15px 34px rgba(56, 182, 255, 0.40))",
                     color: "#FFF",
-                    width: { xs: '100%', sm: '50vh' },
-                    height: '8vh',
+                    width: { xs: "100%", sm: "50vh" },
+                    height: "8vh",
                     borderRadius: "2vh",
                     display: "flex",
                     alignItems: "center",
@@ -57,28 +55,34 @@ const ChemistryTutoring = ({ data }: any) => {
 
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Grid container spacing={2}>
-              {data?.ArrayOflist.map((box: any, index: React.Key | null | undefined) => (
-                <Grid item xs={12} key={index}>
-                  <Box sx={style.boxes}>
-                    <Box>
-                      <Typography sx={style.titlebox}>{box.head}</Typography>
-                      <Typography sx={style.desc}>{box.body}</Typography>
+              {data?.ArrayOflist?.map(
+                (box: any, index: React.Key | null | undefined) => (
+                  <Grid item xs={12} key={index}>
+                    <Box sx={style.boxes}>
+                      <Box>
+                        <Typography sx={style.titlebox}>{box.head}</Typography>
+                        <Typography sx={style.desc}>{box.body}</Typography>
+                      </Box>
+                      <Box sx={{ display: { xs: "block", sm: "block" } }}>
+                        <Image
+                          src={icon}
+                          alt="icon"
+                          style={{ height: "6vh", width: "6vh" }}
+                        />
+                      </Box>
                     </Box>
-                    <Box sx={{ display: { xs: 'block', sm: 'block' } }}>
-                      <Image src={icon} alt="icon" style={{ height: "6vh", width: "6vh" }} />
-                    </Box>
-                  </Box>
-                </Grid>
-              ))}
+                  </Grid>
+                )
+              )}
             </Grid>
           </Grid>
         </Grid>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default ChemistryTutoring
+export default ChemistryTutoring;
 
 const style = {
   tutorheading: {
@@ -135,4 +139,4 @@ const style = {
       lg: "72.5vh",
     },
   },
-}
+};
