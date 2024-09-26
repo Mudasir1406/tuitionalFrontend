@@ -1,34 +1,43 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
-import Image from 'next/image'
-import React from 'react'
-import counsling from '../../../public/assets/images/static/Guidence.png'
+import { Box, Button, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import counsling from "../../../public/assets/images/static/Guidence.png";
+import { PageData } from "@/types/grade-subject-level.types";
 
-const EducationalCounseling = ({ data }: any) => {
-
+const EducationalCounseling: React.FunctionComponent<{
+  data: PageData["education_counseling"];
+}> = ({ data }) => {
   return (
     <div>
-      <Box sx={{
-        minHeight: "auto",
-        marginX: {
-          xs: "2vh",
-          sm: "2vh",
-          md: "8vh",
-          lg: "13vh",
-        },
-        padding: {
-          xs: "3vh",
-          sm: "3vh",
-          md: "10vh",
-          // lg: "12vh 0 15vh 0",
-        }
-      }}>
+      <Box
+        sx={{
+          minHeight: "auto",
+          marginX: {
+            xs: "2vh",
+            sm: "2vh",
+            md: "8vh",
+            lg: "13vh",
+          },
+          padding: {
+            xs: "3vh",
+            sm: "3vh",
+            md: "10vh",
+            // lg: "12vh 0 15vh 0",
+          },
+        }}
+      >
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Box>
               <Typography sx={style.counseling}>
                 Educational Counseling
               </Typography>
-              <Typography sx={style.guidence}>{data?.header}</Typography>
+              <Typography
+                sx={style.guidence}
+                component={data.headerTag as keyof JSX.IntrinsicElements}
+              >
+                {data?.header}
+              </Typography>
               <Typography sx={style.desc}>{data?.paragraph}</Typography>
               <Box>
                 <Button variant="contained" sx={style.containedBtn}>
@@ -38,19 +47,23 @@ const EducationalCounseling = ({ data }: any) => {
             </Box>
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={6} alignItems="end">
-            <Box >
-              <Image src={counsling} alt='Counseling Image' style={{
-                width: "100%",
-                height: "auto",
-              }} />
+            <Box>
+              <Image
+                src={counsling}
+                alt="Counseling Image"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
+              />
             </Box>
           </Grid>
         </Grid>
       </Box>
     </div>
-  )
-}
-export default EducationalCounseling
+  );
+};
+export default EducationalCounseling;
 
 const style = {
   counseling: {
@@ -60,13 +73,13 @@ const style = {
       xs: "53%",
       sm: "28vh",
       md: "30vh",
-      lg: "22vh"
+      lg: "22vh",
     },
     fontSize: {
       xs: "2vh",
       sm: "2.5vh",
       md: "2.2vh",
-      lg: "2vh"
+      lg: "2vh",
     },
     paddingX: {
       xs: "3vh",
@@ -113,15 +126,15 @@ const style = {
       xs: "90%",
       sm: "70vh",
       md: "70vh",
-      lg: "68vh"
+      lg: "68vh",
     },
     fontWeight: 400,
     fontSize: {
       xs: "2vh",
       sm: "2.2vh",
       md: "2.4vh",
-      lg: "2vh"
-    }
+      lg: "2vh",
+    },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
@@ -155,4 +168,4 @@ const style = {
       backgroundColor: "#38B6FF",
     },
   },
-}
+};

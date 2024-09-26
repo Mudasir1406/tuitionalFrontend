@@ -1,56 +1,81 @@
 `'use client'`;
-import { Box, Grid, Typography } from '@mui/material';
-import React from 'react';
-import Image from 'next/image';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { Box, Grid, Typography } from "@mui/material";
+import React from "react";
+import Image from "next/image";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { PageData } from "@/types/grade-subject-level.types";
 
-interface Subject {
-  icon: string;
-  header: string;
-  subject: string;
+interface IProps {
+  data: PageData["popular_subjects"];
 }
 
-const PopularIgcseSubjects = ({ data }: any) => {
+const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
   return (
-    <Box sx={{
-      marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
-      marginY: { xs: "1.5vh", sm: "2.5vh", lg: "3vh" }
-    }}>
+    <Box
+      sx={{
+        marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
+        marginY: { xs: "1.5vh", sm: "2.5vh", lg: "3vh" },
+      }}
+    >
       <Box>
-        <Typography sx={style.popularText}>
+        <Typography
+          sx={style.popularText}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
+        >
           {data?.header}
         </Typography>
       </Box>
 
-      <Box sx={{ marginY: { lg: "6vh", sm: "5vh", xs: "4vh", } }}>
+      <Box sx={{ marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } }}>
         <Grid container spacing={2} justifyContent="center">
-          {data?.subjects.map((item: { icon: string | StaticImport; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
-            <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
-              <Box sx={style.cardsBoxes}>
-                <Image
-                  src={item.icon}
-                  alt="icon"
-                  width={50} // Set appropriate width for your icons
-                  height={50} // Set appropriate height for your icons
-                />
-                <Typography sx={style.subjects}>{item.name}</Typography>
-              </Box>
-            </Grid>
-          ))}
+          {data?.subjects.map(
+            (
+              item: {
+                icon: string | StaticImport;
+                name:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | Promise<React.AwaitedReactNode>
+                  | null
+                  | undefined;
+              },
+              index: React.Key | null | undefined
+            ) => (
+              <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
+                <Box sx={style.cardsBoxes}>
+                  <Image
+                    src={item.icon}
+                    alt="icon"
+                    width={50} // Set appropriate width for your icons
+                    height={50} // Set appropriate height for your icons
+                  />
+                  <Typography sx={style.subjects}>{item.name}</Typography>
+                </Box>
+              </Grid>
+            )
+          )}
         </Grid>
       </Box>
     </Box>
   );
 };
-export default PopularIgcseSubjects;
+export default PopularSubjects;
 
 const style = {
   popularText: {
     fontWeight: "600",
     textAlign: "center",
-    fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh", },
+    fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
     width: { lg: "35%", sm: "52%" },
-    margin: "0 auto"
+    margin: "0 auto",
   },
   subjects: {
     color: "#2D2D2D",
@@ -67,14 +92,13 @@ const style = {
       xs: "2.5vh",
       lg: "4vh",
     },
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
     height: {
-      xs: '9vh',
+      xs: "9vh",
       lg: "12vh",
     },
-  }
+  },
 };
-

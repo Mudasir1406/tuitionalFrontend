@@ -3,21 +3,25 @@ import Image from "next/image";
 import React from "react";
 import tutors from "../../../public/assets/images/static/tutoring.png";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
+import { PageData } from "@/types/grade-subject-level.types";
 
-interface Tutoring {
-  Header: string;
-  Button: string;
-  ArrayOflist: any;
+interface IProps {
+  data: PageData["demo_pointers"];
 }
 
-const ChemistryTutoring = ({ data }: any) => {
+const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
       <Box sx={{ margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
-              <Typography sx={style.tutorheading}>{data?.Header}</Typography>
+              <Typography
+                sx={style.tutorheading}
+                component={data?.headerTag as keyof JSX.IntrinsicElements}
+              >
+                {data?.header}
+              </Typography>
               <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
                 <Image src={tutors} alt="image" style={style.image} />
               </Box>
@@ -47,7 +51,7 @@ const ChemistryTutoring = ({ data }: any) => {
                     fontSize: "2vh",
                   }}
                 >
-                  {data?.Button}
+                  {data?.buttonText}
                 </Typography>
               </Box>
             </Box>
@@ -55,12 +59,14 @@ const ChemistryTutoring = ({ data }: any) => {
 
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Grid container spacing={2}>
-              {data?.ArrayOflist?.map(
-                (box: any, index: React.Key | null | undefined) => (
+              {data?.demoPointersData?.map(
+                (box, index: React.Key | null | undefined) => (
                   <Grid item xs={12} key={index}>
                     <Box sx={style.boxes}>
                       <Box>
-                        <Typography sx={style.titlebox}>{box.head}</Typography>
+                        <Typography sx={style.titlebox}>
+                          {box.header}
+                        </Typography>
                         <Typography sx={style.desc}>{box.body}</Typography>
                       </Box>
                       <Box sx={{ display: { xs: "block", sm: "block" } }}>
@@ -82,7 +88,7 @@ const ChemistryTutoring = ({ data }: any) => {
   );
 };
 
-export default ChemistryTutoring;
+export default DemoPointers;
 
 const style = {
   tutorheading: {
