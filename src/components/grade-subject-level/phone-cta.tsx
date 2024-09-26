@@ -1,13 +1,19 @@
+import { leagueSpartan } from "@/app/fonts";
+import { PageData } from "@/types/grade-subject-level.types";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 
-const FindingCambridge = ({ data }: any) => {
+type IProps = {
+  data: PageData["phone_cta"];
+};
+
+const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         width: {
           sm: "100%",
           xs: "100%",
@@ -20,35 +26,46 @@ const FindingCambridge = ({ data }: any) => {
         },
       }}
     >
-      <Box sx={{ width: '100%', maxWidth: '145vh', textAlign: 'center' }}>
-        <Typography sx={style.finding}>
-          {data?.Header}
+      <Box sx={{ width: "100%", maxWidth: "145vh", textAlign: "center" }}>
+        <Typography
+          sx={style.finding}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
+        >
+          {data?.header}
         </Typography>
-        <Typography sx={style.description}>
-          {data?.Paragraph}
-        </Typography>
+        <Typography sx={style.description}>{data?.paragraph}</Typography>
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 'auto',
-            width: { lg: '95%' },
-            maxWidth: '100%',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "auto",
+            width: { lg: "95%" },
+            maxWidth: "100%",
             background: "#FFF",
-            boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
+            boxShadow:
+              "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
             borderRadius: "2vh",
           }}
         >
           <TextField
             placeholder="Mobile Number with Country Code"
+            InputProps={{
+              className: leagueSpartan.className,
+              sx: {
+                fontSize: "20px",
+                fontWeight: 400,
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",
+                },
+              },
+            }}
             sx={{
               width: {
-                xs: '60%',
-                lg: '70%',
+                xs: "60%",
+                lg: "70%",
               },
               border: "none",
-
             }}
           />
           <Button
@@ -58,22 +75,22 @@ const FindingCambridge = ({ data }: any) => {
               backgroundFilter: " blur(5px)",
               color: "#FFFFFF",
               width: {
-                xs: '40%',
-                lg: '40%',
+                xs: "40%",
+                lg: "40%",
               },
               height: {
                 xs: "8vh",
                 sm: "6vh",
                 lg: "8.5vh",
               },
-              border: 'none',
+              border: "none",
               fontSize: {
                 xs: "1.5vh",
                 lg: "auto",
-              }
+              },
             }}
           >
-            {data?.ButtonText}
+            {data?.buttonText}
           </Button>
         </Box>
       </Box>
@@ -81,7 +98,7 @@ const FindingCambridge = ({ data }: any) => {
   );
 };
 
-export default FindingCambridge;
+export default PhoneCta;
 
 const style = {
   finding: {
