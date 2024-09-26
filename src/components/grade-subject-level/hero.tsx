@@ -251,7 +251,7 @@ const styles = {
   heading: {
     width: {
       xs: "100%",
-      lg: "80vh",
+      lg: "35vw",
       sm: "100%",
     },
     textAlign: {
@@ -264,14 +264,14 @@ const styles = {
       xs: "5.7vh",
       sm: "6vh",
       md: "5.3vh",
-      lg: "7vh",
+      lg: "6vh",
     },
     fontWeight: 700,
     lineHeight: {
       xs: "5.5vh",
       sm: "6.5vh",
       md: "5.5vh",
-      lg: "10vh",
+      lg: "7vh",
     },
     marginTop: {
       xs: "3vh",
@@ -297,7 +297,7 @@ const styles = {
       xs: "2.5vh",
       sm: "2.4vh",
       md: "2.8vh",
-      lg: "6vh",
+      lg: "2.8vh",
     },
     textAlign: {
       xs: "center",

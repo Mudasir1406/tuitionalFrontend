@@ -130,9 +130,18 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "what we offer":
         return <Offer />;
       case "get started":
-        return <GetStarted />;
-      case "video section":
-        return <div>Video Section</div>; // Assuming there’s a video component to add here
+        return (
+          <Grid
+            container
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <GetStarted />
+          </Grid>
+        );
+      // case "video section":
+      //   return <div>Video Section</div>; // Assuming there’s a video component to add here
       default:
         return null;
     }

@@ -16,7 +16,7 @@ const EducationalCounseling: React.FunctionComponent<{
             xs: "2vh",
             sm: "2vh",
             md: "8vh",
-            lg: "13vh",
+            // lg: "",
           },
           padding: {
             xs: "3vh",
@@ -83,7 +83,7 @@ const style = {
     },
     paddingX: {
       xs: "3vh",
-      sm: "4vh",
+      sm: "4vw",
     },
     paddingY: {
       xs: "2vh",

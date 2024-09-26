@@ -31,8 +31,8 @@ export const generateMetadata = async ({
       description: data.meta_tags.ogDescription,
     },
     robots: {
-      index: data.meta_tags.metaName.includes("noindex") ? false : true, // Dynamically set 'index' or 'noindex'
-      follow: data.meta_tags.metaName.includes("nofollow") ? false : true, // Dynamically set 'follow' or 'nofollow'
+      index: data.meta_tags.metaName.includes("noindex") ? false : true,
+      follow: data.meta_tags.metaName.includes("nofollow") ? false : true,
     },
   };
 };
@@ -40,7 +40,6 @@ export const generateMetadata = async ({
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data: PageData | undefined = await getPageData(params.slug);
   const sequence: Component_Sequence_Type | undefined = await getPageSequence();
-  console.log(sequence);
   if (!data) return redirect("/404");
   if (sequence)
     return (
