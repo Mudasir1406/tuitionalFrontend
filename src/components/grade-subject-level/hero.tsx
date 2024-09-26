@@ -6,49 +6,59 @@ import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
 
 import CircleIcon from "@mui/icons-material/Circle";
+import { PageData } from "@/types/grade-subject-level.types";
 
 type IProps = {
-  data: any;
+  data: PageData["hero_section"];
 };
 
-const Hero: React.FC<IProps> = ({ data }: any) => {
+const Hero: React.FC<IProps> = ({ data }) => {
   return (
     <>
-      <Box sx={{ padding: { lg: "0 0 0 11vh", xs: "0 3vh" }, height: { lg: "65vh" } }}>
-        <Typography sx={styles.heading} className={leagueSpartan.className}>
-          {data?.Header}
+      <Box
+        sx={{
+          padding: { lg: "0 0 0 11vh", xs: "0 3vh" },
+          height: { lg: "65vh" },
+        }}
+      >
+        <Typography
+          sx={styles.heading}
+          className={leagueSpartan.className}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
+        >
+          {data?.header}
         </Typography>
         <Typography sx={styles.desc} className={leagueSpartan.className}>
-          {data?.Paragraph}
+          {data?.paragraph}
         </Typography>
 
-        <Box sx={{
-          width: {
-            xs: "100%",
-            lg: "53vh",
-          },
-        }}>
+        <Box
+          sx={{
+            width: {
+              xs: "100%",
+              lg: "53vh",
+            },
+          }}
+        >
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
               justifyContent: {
                 xs: "center",
                 lg: "space-between",
               },
-              marginTop: '3vh',
-
+              marginTop: "3vh",
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
+                display: "flex",
+                alignItems: "center",
                 justifyContent: {
                   xs: "center",
                   lg: "start",
                 },
-                cursor: 'pointer',
-
+                cursor: "pointer",
               }}
             >
               <CircleIcon
@@ -80,24 +90,27 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
                   },
                 }}
               />
-              <Typography sx={{
-                fontSize: "2vh", color: "#797979", margin: {
-                  xs: "0 0 0 8px",
-                },
-              }}>
+              <Typography
+                sx={{
+                  fontSize: "2vh",
+                  color: "#797979",
+                  margin: {
+                    xs: "0 0 0 8px",
+                  },
+                }}
+              >
                 9756 Active Students
               </Typography>
             </Box>
           </Box>
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
               justifyContent: {
                 xs: "center",
                 lg: "space-between",
               },
-              marginTop: '3vh',
-
+              marginTop: "3vh",
             }}
           >
             <Box
@@ -109,10 +122,9 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
             >
               <CircleIcon
                 sx={{
-                  color: '#38B6FF',
-                  fontSize: '1rem',
-                  margin: '0 8px 0 0',
-
+                  color: "#38B6FF",
+                  fontSize: "1rem",
+                  margin: "0 8px 0 0",
                 }}
               />
               <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
@@ -129,34 +141,40 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
             >
               <CircleIcon
                 sx={{
-                  color: '#38B6FF',
-                  fontSize: '1rem',
+                  color: "#38B6FF",
+                  fontSize: "1rem",
                   margin: {
                     xs: "0 0 0 8px",
-                    lg: '0 8px 0 0 ',
+                    lg: "0 8px 0 0 ",
                   },
                 }}
               />
-              <Typography sx={{
-                fontSize: "2vh", color: "#797979", margin: {
-                  xs: "0 0 0 8px",
-                },
-              }}>
+              <Typography
+                sx={{
+                  fontSize: "2vh",
+                  color: "#797979",
+                  margin: {
+                    xs: "0 0 0 8px",
+                  },
+                }}
+              >
                 9756 Active Students
               </Typography>
             </Box>
           </Box>
         </Box>
 
-        <Box sx={{
-          width: {
-            xs: "100%",
-            lg: "75vh",
-          },
-        }}>
+        <Box
+          sx={{
+            width: {
+              xs: "100%",
+              lg: "75vh",
+            },
+          }}
+        >
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
               flexDirection: {
                 xs: "row",
                 lg: "row",
@@ -169,7 +187,7 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
                 xs: "center",
                 lg: "start",
               },
-              marginTop: '3vh',
+              marginTop: "3vh",
 
               gap: "1rem",
             }}
@@ -203,7 +221,11 @@ const Hero: React.FC<IProps> = ({ data }: any) => {
               }}
             >
               <Typography
-                sx={{ fontSize: { lg: "2vh", xs: "1.7vh" }, fontWeight: 400, padding: "1vh 0 0 0" }}
+                sx={{
+                  fontSize: { lg: "2vh", xs: "1.7vh" },
+                  fontWeight: 400,
+                  padding: "1vh 0 0 0",
+                }}
               >
                 Excellent (4.7/5)
               </Typography>
