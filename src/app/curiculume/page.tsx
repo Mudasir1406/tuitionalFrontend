@@ -131,14 +131,12 @@ const Home: React.FC = () => {
       <Grid>
         <Pricing />
       </Grid>
-      <Grid>
-        <EducationalCounseling />
-      </Grid>
+      <Grid>{/* <EducationalCounseling /> */}</Grid>
       <Grid>
         <StudentSays />
       </Grid>
       <Grid>
-        <PopularIgcseSubjects header={undefined} subjects={undefined} />
+        {/* <PopularIgcseSubjects header={undefined} subjects={undefined} /> */}
       </Grid>
       <Grid>
         <TuitionalCompetitors />
