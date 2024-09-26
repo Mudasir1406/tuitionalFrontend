@@ -33,7 +33,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
         <Typography sx={style.frequentlyDesc}>{data?.paragraph}</Typography>
       </Box>
 
-      <Box sx={{ marginX: "auto", maxWidth: "140vh", paddingX: { lg: "2vh" } }}>
+      <Box sx={{ marginX: "auto", maxWidth: "80vw", paddingX: { lg: "2vh" } }}>
         <Grid container spacing={1}>
           {data?.faqs.map((item, index) => (
             <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
@@ -102,7 +102,7 @@ const style = {
   },
   boxdesc: {
     fontSize: { lg: "1.9vh", sm: "2vh" },
-    width: { lg: "135vh" },
+    width: { lg: "70vw" },
     marginTop: "2vh",
   },
   TextBox: {

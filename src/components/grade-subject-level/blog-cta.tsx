@@ -10,21 +10,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
 }) => {
   return (
     <>
-      <Box
-        sx={{
-          margin: {
-            xs: "0 3vh",
-            sm: "3vh",
-            md: "0",
-            lg: "0 7vh",
-          },
-          height: {
-            xs: "auto",
-            lg: "45vh",
-          },
-          position: "relative",
-        }}
-      >
+      <Box sx={{ paddingX: "10vw", marginY: "10vh" }}>
         <Typography sx={style.reviewheading}>{data?.header}</Typography>
         <Box
           sx={{
@@ -101,7 +87,7 @@ const style = {
     width: {
       xs: "100%", // Full width on mobile
       sm: "90%",
-      lg: "145vh",
+      lg: "70vw",
     },
     height: {
       lg: "10vh",
@@ -129,10 +115,10 @@ const style = {
     },
     width: {
       xs: "100%", // Full width on mobile
-      lg: "130vh",
+      lg: "55vw",
     },
     height: {
-      lg: "7vh",
+      // lg: "7vh",
     },
     fontWeight: 400,
     textAlign: {

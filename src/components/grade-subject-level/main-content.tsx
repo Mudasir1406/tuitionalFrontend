@@ -65,7 +65,7 @@ const style = {
       xs: "100%", // Mobile view
       sm: "100%", // Tablet view
       md: "100%", // Laptop view
-      lg: "92vh", // Desktop view
+      lg: "50vw", // Desktop view
     },
     fontSize: {
       xs: "3vh",
@@ -83,7 +83,7 @@ const style = {
       xs: "100%",
       sm: "100%",
       md: "100%",
-      lg: "190vh",
+      lg: "100%",
     },
     fontSize: {
       xs: "1.8vh",
