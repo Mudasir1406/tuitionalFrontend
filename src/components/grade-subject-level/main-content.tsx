@@ -11,7 +11,7 @@ interface IProps {
 const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
-      <Box sx={{ margin: { lg: "0 7vh", xs: "3vh" } }}>
+      <Box sx={{ paddingX: "5vw" }}>
         <Typography
           sx={style.title}
           className={leagueSpartan.className}
@@ -36,16 +36,24 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
               <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
                 <Button
                   sx={{
-                    backgroundColor: index === 0 ? "#38B6FF59" : "#FFFFFF",
+                    backgroundColor: "#FFFFFF",
                     color: "#2D2D2D",
                     width: "100%",
                     borderRadius: "5vh",
                     padding: "16px",
+                    boxShadow: "0px -1px 10px 0px rgba(0, 0, 0, 0.15) inset",
+
                     fontSize: {
                       xs: "1.5vh",
                       lg: "2vh",
                     },
+                    transition: "all .2s ease-in-out",
+
                     fontWeight: 500,
+                    ":hover": {
+                      backgroundColor: "#38B6FF59",
+                      transform: "scale(1.02)",
+                    },
                   }}
                   className={leagueSpartan.className}
                 >

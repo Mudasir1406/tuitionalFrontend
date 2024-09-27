@@ -12,7 +12,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
 }) => {
   return (
     <>
-      <Box sx={{ paddingX: "10vw", marginY: "10vh" }}>
+      <Box sx={{ paddingX: "5vw", marginY: "10vh" }}>
         <Typography
           sx={style.reviewheading}
           className={leagueSpartan.className}

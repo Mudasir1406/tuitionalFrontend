@@ -18,8 +18,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
     <>
       <Box
         sx={{
-          padding: { lg: "0 0 0 11vh", xs: "0 3vh" },
           height: { lg: "65vh" },
+          paddingLeft: "5vw",
         }}
       >
         <Typography

@@ -22,14 +22,7 @@ const Offer = () => {
   return (
     <Box
       sx={{
-        width: {
-          xs: "auto",
-        },
-        margin: {
-          xs: "5vh 0",
-          sm: "7vh 0",
-          lg: "10vh 5vh 0vh 5vh",
-        },
+        paddingX: "5vw",
       }}
     >
       <Typography
@@ -373,9 +366,12 @@ const style = {
       md: "30%",
       lg: "14vh", // Auto width on larger screens
     },
+    transition: "all .5s ease-in-out",
+
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
+      transform: "scale(1.05)",
     },
   },
 };

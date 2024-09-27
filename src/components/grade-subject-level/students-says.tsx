@@ -6,32 +6,41 @@ import poster1 from "../../../public/assets/images/static/thumbile.png";
 import poster2 from "../../../public/assets/images/static/thumbile2.png";
 import poster3 from "../../../public/assets/images/static/thumbile3.png";
 import poster4 from "../../../public/assets/images/static/thumbile4.png";
+import { PageData } from "@/types/grade-subject-level.types";
+import { renderWithLineBreaks } from "../line-break-text";
 
-const StudentSays = ({ data }: any) => {
+const StudentSays: React.FunctionComponent<{
+  data: PageData["what_our_student_says"];
+}> = ({ data }) => {
   const posters = [poster1, poster2, poster3, poster4];
 
   return (
     <Box sx={styles.container}>
-      <Typography sx={styles.heading} className={leagueSpartan.className}>
-        {data?.Header}
+      <Typography
+        sx={styles.heading}
+        className={leagueSpartan.className}
+        component={data.headerTag as keyof JSX.IntrinsicElements}
+      >
+        {renderWithLineBreaks(data?.header)}
       </Typography>
       <Typography sx={styles.desc} className={leagueSpartan.className}>
-        {data?.Paragraph}
+        {renderWithLineBreaks(data?.paragraph)}
       </Typography>
       <Grid container spacing={2}>
         {posters.map((poster, index) => (
           <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
-            <Card>
+            <Card
+              sx={{
+                width: { xs: "100%", lg: "100%" },
+                height: { xs: "30vh", lg: "48vh" },
+                borderRadius: "20px",
+              }}
+            >
               <CardMedia
                 component="video"
                 src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 controls
                 poster={poster.src}
-                sx={{
-                  width: { xs: "100%", lg: "100%" },
-                  height: { xs: "30vh", lg: "50vh" },
-                  borderRadius: "10px",
-                }}
               />
             </Card>
           </Grid>

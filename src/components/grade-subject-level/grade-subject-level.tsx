@@ -29,69 +29,71 @@ type IProps = {
 };
 
 const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
-  console.log(sequence);
   const renderSection = (name: string) => {
     switch (name) {
       case "Hero Section":
         return (
-          <Box
-            sx={{
-              width: { lg: "100%", sm: "100%" },
-              paddingTop: {
-                xs: "120px",
-                sm: "150px",
-                md: "200px",
-                lg: 0,
-                xl: 0,
-              },
-              height: { xs: "100%", lg: "100vh" },
-              display: "flex",
-              alignItems: "end",
-              position: "relative",
-            }}
-          >
-            <Grid container>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
-                <Hero data={data?.hero_section} />
-              </Grid>
-              <Grid
-                item
-                lg={6}
-                md={12}
-                sm={12}
-                xs={12}
-                sx={{
-                  position: "relative",
-                  "::before": {
-                    content: "''",
-                    backgroundImage: `url(${
-                      data.hero_section.image || subjectLevelImage.src
-                    })`,
-                    backgroundPosition: "bottom",
-                    backgroundSize: "contain",
-                    height: {
-                      xs: "100vh",
-                      sm: "100vh",
-                      md: "80vh",
-                      lg: "70vh",
+          <>
+            <Box
+              sx={{
+                width: { lg: "100%", sm: "100%" },
+                paddingTop: {
+                  xs: "120px",
+                  sm: "150px",
+                  md: "200px",
+                  lg: 0,
+                  xl: 0,
+                },
+                height: { xs: "100%", lg: "100vh" },
+                display: "flex",
+                alignItems: "end",
+                position: "relative",
+              }}
+            >
+              <Grid container>
+                <Grid item lg={6} md={12} sm={12} xs={12}>
+                  <Hero data={data?.hero_section} />
+                </Grid>
+                <Grid
+                  item
+                  lg={6}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                  sx={{
+                    position: "relative",
+                    "::before": {
+                      content: "''",
+                      backgroundImage: `url(${
+                        data.hero_section.image || subjectLevelImage.src
+                      })`,
+                      backgroundPosition: "bottom",
+                      backgroundSize: "contain",
+                      height: {
+                        xs: "100vh",
+                        sm: "100vh",
+                        md: "80vh",
+                        lg: "70vh",
+                      },
+                      width: "100%",
+                      backgroundRepeat: "no-repeat",
+                      position: "absolute",
+                      bottom: 0,
+                      zIndex: "0",
                     },
-                    width: "100%",
-                    backgroundRepeat: "no-repeat",
-                    position: "absolute",
-                    bottom: 0,
-                    zIndex: "0",
-                  },
-                }}
-              >
-                <img
-                  className="sr-only"
-                  alt={data.hero_section.imageAltText}
-                  src={data.hero_section.image}
-                ></img>
-                <HeroInfo />
+                  }}
+                >
+                  <img
+                    className="sr-only"
+                    alt={data.hero_section.imageAltText}
+                    src={data.hero_section.image}
+                  ></img>
+                  <HeroInfo />
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
+            </Box>
+            <SectionsBox />
+          </>
         );
       case "Main Content":
         return <MainContent data={data?.main_content} />;
@@ -124,7 +126,6 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                 <PhoneCta data={data?.phone_cta} />
               </Box>
             </Box>
-            <SectionsBox />
           </>
         );
       case "Demo Pointers":
@@ -134,7 +135,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Education Counseling":
         return <EducationalCounseling data={data?.education_counseling} />;
       case "What our Student Says":
-        return <StudentSays />;
+        return <StudentSays data={data.what_our_student_says} />;
       case "Blog CTA":
         return <BlogCta data={data?.blog_CTA} />;
       case "FAQs":

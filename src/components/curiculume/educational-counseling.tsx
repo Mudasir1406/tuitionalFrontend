@@ -11,23 +11,7 @@ const EducationalCounseling: React.FunctionComponent<{
 }> = ({ data }) => {
   return (
     <div>
-      <Box
-        sx={{
-          minHeight: "auto",
-          marginX: {
-            xs: "2vh",
-            sm: "2vh",
-            md: "8vh",
-            // lg: "",
-          },
-          padding: {
-            xs: "3vh",
-            sm: "3vh",
-            md: "10vh",
-            // lg: "12vh 0 15vh 0",
-          },
-        }}
-      >
+      <Box sx={{ paddingX: "5vw", paddingY: "10vh" }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Box>
@@ -166,6 +150,7 @@ const style = {
     paddingY: {
       xs: "1.5vh",
       sm: "2vh",
+      lg: "1.5vh",
     },
     marginY: "4vh",
     paddingX: {

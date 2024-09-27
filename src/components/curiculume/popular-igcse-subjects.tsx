@@ -13,12 +13,7 @@ interface IProps {
 
 const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
   return (
-    <Box
-      sx={{
-        marginX: { xs: "1.5vh", sm: "2.5vh", lg: "4vh" },
-        marginY: { xs: "1.5vh", sm: "2.5vh", lg: "3vh" },
-      }}
-    >
+    <Box sx={{ paddingX: "5vw" }}>
       <Box>
         <Typography
           sx={style.popularText}
@@ -55,7 +50,10 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
                 <Box sx={style.cardsBoxes}>
                   <Image
-                    src={item?.icon}
+                    src={
+                      item?.icon ||
+                      "https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/images%2FGroup%201577707240.png?alt=media&token=688d2e56-d995-4c40-b8ad-ae9837138df7"
+                    }
                     alt="icon"
                     width={50} // Set appropriate width for your icons
                     height={50} // Set appropriate height for your icons
@@ -83,7 +81,7 @@ const style = {
     fontWeight: "600",
     textAlign: "center",
     fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
-    width: { lg: "35%", sm: "52%" },
+    width: { lg: "45%", sm: "52%" },
     margin: "0 auto",
   },
   subjects: {
@@ -94,6 +92,7 @@ const style = {
   cardsBoxes: {
     background: "#FFF",
     backdropFilter: "blur(5px)",
+    transition: "all .5s ease-in-out",
     borderRadius: "2vh",
     boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
     textAlign: "center",
@@ -108,6 +107,10 @@ const style = {
     height: {
       xs: "9vh",
       lg: "12vh",
+    },
+    ":hover": {
+      transform: "scale(1.05)",
+      background: "#9EDCFF",
     },
   },
 };
