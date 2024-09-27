@@ -21,7 +21,7 @@ import MainContent from "./main-content";
 import PopularSubjects from "@/components/curiculume/popular-igcse-subjects";
 import FrequentlyQuestions from "./faqs";
 import BlogCta from "./blog-cta";
-import { replaceAltText } from "@/utils/helper";
+import StudentSays from "./students-says";
 
 type IProps = {
   data: PageData;
@@ -29,6 +29,7 @@ type IProps = {
 };
 
 const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
+  console.log(sequence);
   const renderSection = (name: string) => {
     switch (name) {
       case "Hero Section":
@@ -94,34 +95,37 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         );
       case "Main Content":
         return <MainContent data={data?.main_content} />;
-      case "Phone CTA":
+      case "Phone CTA ":
         return (
-          <Box
-            sx={{
-              backgroundImage: `url(${subjectIGC.src})`,
-              backgroundPosition: "center",
-              height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
-              width: "100%",
-              backgroundRepeat: "no-repeat",
-              position: "relative",
-            }}
-          >
+          <>
             <Box
               sx={{
-                backgroundImage: `url(${circleIGC.src})`,
-                backgroundPosition: "right",
-                backgroundSize: "contain",
-                height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "50vh" },
+                backgroundImage: `url(${subjectIGC.src})`,
+                backgroundPosition: "center",
+                height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
                 width: "100%",
                 backgroundRepeat: "no-repeat",
-                position: "absolute",
-                top: 0,
-                left: 0,
+                position: "relative",
               }}
             >
-              <PhoneCta data={data?.phone_cta} />
+              <Box
+                sx={{
+                  backgroundImage: `url(${circleIGC.src})`,
+                  backgroundPosition: "right",
+                  backgroundSize: "contain",
+                  height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "50vh" },
+                  width: "100%",
+                  backgroundRepeat: "no-repeat",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              >
+                <PhoneCta data={data?.phone_cta} />
+              </Box>
             </Box>
-          </Box>
+            <SectionsBox />
+          </>
         );
       case "Demo Pointers":
         return <DemoPointers data={data?.demo_pointers} />;
@@ -130,7 +134,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Education Counseling":
         return <EducationalCounseling data={data?.education_counseling} />;
       case "What our Student Says":
-        return <SectionsBox />;
+        return <StudentSays />;
       case "Blog CTA":
         return <BlogCta data={data?.blog_CTA} />;
       case "FAQs":

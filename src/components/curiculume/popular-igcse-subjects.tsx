@@ -55,7 +55,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
                 <Box sx={style.cardsBoxes}>
                   <Image
-                    src={item.icon}
+                    src={item?.icon}
                     alt="icon"
                     width={50} // Set appropriate width for your icons
                     height={50} // Set appropriate height for your icons
