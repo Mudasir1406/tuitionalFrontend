@@ -96,6 +96,9 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
                 xs: "1.5vh",
                 lg: "auto",
               },
+              ":hover": {
+                backgroundColor: "#38B6FF",
+              },
             }}
             className={leagueSpartan.className}
           >
