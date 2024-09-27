@@ -2,6 +2,7 @@ import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
+import { renderWithLineBreaks } from "../line-break-text";
 
 type IProps = {
   data: PageData["phone_cta"];
@@ -30,10 +31,17 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.finding}
           component={data.headerTag as keyof JSX.IntrinsicElements}
+          className={leagueSpartan.className}
         >
-          {data?.header}
+          {renderWithLineBreaks(data?.header)}
         </Typography>
-        <Typography sx={style.description}>{data?.paragraph}</Typography>
+        <Typography
+          sx={style.description}
+          className={leagueSpartan.className}
+          component={"p"}
+        >
+          {renderWithLineBreaks(data?.paragraph)}
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -89,6 +97,7 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
                 lg: "auto",
               },
             }}
+            className={leagueSpartan.className}
           >
             {data?.buttonText}
           </Button>

@@ -3,6 +3,8 @@ import Image from "next/image";
 import React from "react";
 import counsling from "../../../public/assets/images/static/Guidence.png";
 import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import { renderWithLineBreaks } from "../line-break-text";
 
 const EducationalCounseling: React.FunctionComponent<{
   data: PageData["education_counseling"];
@@ -29,18 +31,33 @@ const EducationalCounseling: React.FunctionComponent<{
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Box>
-              <Typography sx={style.counseling}>
+              <Typography
+                sx={style.counseling}
+                className={leagueSpartan.className}
+                component={"p"}
+              >
                 Educational Counseling
               </Typography>
               <Typography
                 sx={style.guidence}
+                className={leagueSpartan.className}
                 component={data.headerTag as keyof JSX.IntrinsicElements}
               >
-                {data?.header}
+                {renderWithLineBreaks(data?.header)}
               </Typography>
-              <Typography sx={style.desc}>{data?.paragraph}</Typography>
+              <Typography
+                sx={style.desc}
+                className={leagueSpartan.className}
+                component={"p"}
+              >
+                {renderWithLineBreaks(data?.paragraph)}
+              </Typography>
               <Box>
-                <Button variant="contained" sx={style.containedBtn}>
+                <Button
+                  variant="contained"
+                  sx={style.containedBtn}
+                  className={leagueSpartan.className}
+                >
                   Enroll Now
                 </Button>
               </Box>

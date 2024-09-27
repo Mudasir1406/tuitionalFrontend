@@ -15,7 +15,7 @@ const StudentSays = ({ data }: any) => {
       <Typography sx={styles.heading} className={leagueSpartan.className}>
         {data?.Header}
       </Typography>
-      <Typography sx={styles.desc}>
+      <Typography sx={styles.desc} className={leagueSpartan.className}>
         {data?.Paragraph}
       </Typography>
       <Grid container spacing={2}>
@@ -85,7 +85,6 @@ const styles = {
       xs: "2vh 0 4vh 0",
       lg: "1vh 0 3vh 0",
     },
-
   },
   heading: {
     fontSize: {

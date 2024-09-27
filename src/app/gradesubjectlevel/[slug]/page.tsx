@@ -22,12 +22,12 @@ export const generateMetadata = async ({
     title: data.meta_tags.title,
     description: data.meta_tags.description,
     alternates: {
-      canonical: data.meta_tags.canonicalTag,
+      canonical: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
     },
     openGraph: {
       images: data.meta_tags.ogImage,
       title: data.meta_tags.ogTitle,
-      url: data.meta_tags.ogUrl,
+      url: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
       description: data.meta_tags.ogDescription,
     },
     robots: {
