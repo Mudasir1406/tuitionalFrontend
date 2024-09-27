@@ -41,6 +41,11 @@ const StudentSays: React.FunctionComponent<{
                 src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 controls
                 poster={poster.src}
+                sx={{
+                  width: { xs: "100%", lg: "100%" },
+                  height: { xs: "30vh", lg: "48vh" },
+                  borderRadius: "20px",
+                }}
               />
             </Card>
           </Grid>
