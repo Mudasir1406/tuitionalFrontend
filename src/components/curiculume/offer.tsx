@@ -1,12 +1,12 @@
 "use client";
-import { Box, Button, Grid, Typography } from '@mui/material'
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import offer1 from '../../../public/assets/images/static/offer-img-1.png'
-import offer2 from '../../../public/assets/images/static/offer-img-2.png'
-import offer3 from '../../../public/assets/images/static/offer-img-3.png'
+import { Box, Button, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import offer1 from "../../../public/assets/images/static/offer-img-1.png";
+import offer2 from "../../../public/assets/images/static/offer-img-2.png";
+import offer3 from "../../../public/assets/images/static/offer-img-3.png";
+import { leagueSpartan } from "@/app/fonts";
 const Offer = () => {
-
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,66 +20,85 @@ const Offer = () => {
   }
 
   return (
-    <Box sx={{
-      width: {
-        xs: "auto",
-      },
-      margin: {
-        xs: "5vh 0",
-        sm: "7vh 0",
-        lg: "10vh 5vh 0vh 5vh",
-      },
-    }}>
-      <Typography sx={{
-        fontSize: {
-          xs: "4vh",
-          sm: "5vh",
-          md: "7vh",
-          lg: "6vh",
+    <Box
+      sx={{
+        width: {
+          xs: "auto",
         },
-        textAlign: "center",
-        fontWeight: "600",
-        lineHeight: "6vh"
-      }}>
+        margin: {
+          xs: "5vh 0",
+          sm: "7vh 0",
+          lg: "10vh 5vh 0vh 5vh",
+        },
+      }}
+    >
+      <Typography
+        className={leagueSpartan.className}
+        sx={{
+          fontSize: {
+            xs: "4vh",
+            sm: "5vh",
+            md: "7vh",
+            lg: "6vh",
+          },
+          textAlign: "center",
+          fontWeight: "600",
+          lineHeight: "6vh",
+        }}
+        component={"h1"}
+      >
         What We Offer
       </Typography>
 
-      <Box sx={{
-        marginX: {
-          xs: "2.5vh",
-          sm: "2.5vh",
-          md: "2.5vh",
-          lg: "0",
-        }
-      }}>
+      <Box
+        sx={{
+          marginX: {
+            xs: "2.5vh",
+            sm: "2.5vh",
+            md: "2.5vh",
+            lg: "0",
+          },
+        }}
+      >
         <Grid container spacing={1}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
-            <Box sx={{
-              background: "#9EDCFF",
-              borderRadius: "2vh",
-              marginY: "2vh"
-            }}>
-              <Box sx={{
-                display: "flex",
-              }}>
+            <Box
+              sx={{
+                background: "#9EDCFF",
+                borderRadius: "2vh",
+                marginY: "2vh",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                }}
+              >
                 <Box>
-                  <Typography sx={style.coveragetext}>Comprehensive coverage of IGCSE Maths syllabus</Typography>
+                  <Typography
+                    sx={style.coveragetext}
+                    className={leagueSpartan.className}
+                  >
+                    Comprehensive coverage of IGCSE Maths syllabus
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
                     <Button variant="contained" sx={style.containedBtn}>
                       Learn More
                     </Button>
                   </Box>
                 </Box>
-                <Typography sx={style.coverageImg}>
-                  <Box>
-
-                  </Box>
-                  <Image src={offer1} alt='pic'
+                <Typography
+                  sx={style.coverageImg}
+                  className={leagueSpartan.className}
+                >
+                  <Box></Box>
+                  <Image
+                    src={offer1}
+                    alt="pic"
                     style={{
-                      width: 'auto',
-                      height: '20vh',
+                      width: "auto",
+                      height: "20vh",
                     }}
-
                   />
                 </Typography>
               </Box>
@@ -88,42 +107,71 @@ const Offer = () => {
             <Grid container spacing={2}>
               {/* Column 1 */}
               <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box sx={{
-                  background: "#9EDCFF",
-                  borderRadius: "2vh",
-                }}>
-                  <Typography sx={style.regulartxt}>Regular assessments and feedback</Typography>
+                <Box
+                  sx={{
+                    background: "#9EDCFF",
+                    borderRadius: "2vh",
+                  }}
+                >
+                  <Typography
+                    sx={style.regulartxt}
+                    className={leagueSpartan.className}
+                  >
+                    Regular assessments and feedback
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                    >
                       Learn More
                     </Button>
                   </Box>
                   <Box sx={{ textAlign: "right" }}>
-                    <Image src={offer2} alt='pic'
+                    <Image
+                      src={offer2}
+                      alt="pic"
                       style={{
-                        width: 'auto',
-                        height: '25vh',
-                      }} />
+                        width: "auto",
+                        height: "25vh",
+                      }}
+                    />
                   </Box>
                 </Box>
               </Grid>
 
               <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box sx={{
-                  background: "#9EDCFF",
-                  borderRadius: "2vh",
-                }}>
-                  <Typography sx={style.regulartxt}>Access to Resources And Practice Materials</Typography>
+                <Box
+                  sx={{
+                    background: "#9EDCFF",
+                    borderRadius: "2vh",
+                  }}
+                >
+                  <Typography
+                    sx={style.regulartxt}
+                    className={leagueSpartan.className}
+                  >
+                    Access to Resources And Practice Materials
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                    >
                       Learn More
                     </Button>
                   </Box>
                   <Box sx={{ textAlign: "right" }}>
-                    <Image src={offer3} alt='pic' style={{
-                      width: 'auto',
-                      height: '25vh',
-                    }} />
+                    <Image
+                      src={offer3}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "25vh",
+                      }}
+                    />
                   </Box>
                 </Box>
               </Grid>
@@ -133,66 +181,116 @@ const Offer = () => {
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Grid container spacing={2}>
               <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box sx={{
-                  background: "#9EDCFF",
-                  borderRadius: "2vh",
-                  marginY: "2vh",
-                }}>
-                  <Typography sx={style.regulartxt}>Regular assessments and feedback</Typography>
+                <Box
+                  sx={{
+                    background: "#9EDCFF",
+                    borderRadius: "2vh",
+                    marginY: "2vh",
+                  }}
+                >
+                  <Typography
+                    sx={style.regulartxt}
+                    className={leagueSpartan.className}
+                  >
+                    Regular assessments and feedback
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                    >
                       Learn More
                     </Button>
                   </Box>
                   <Box sx={{ textAlign: "right" }}>
-                    <Image src={offer2} alt='pic' style={{
-                      width: 'auto',
-                      height: '25vh',
-                    }} />
+                    <Image
+                      src={offer2}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "25vh",
+                      }}
+                    />
                   </Box>
                 </Box>
               </Grid>
               <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box sx={{
-                  background: "#9EDCFF",
-                  borderRadius: "2vh",
-                  marginY: "2vh",
-                }}>
-                  <Typography sx={style.regulartxt}>Access to Resources And Practice Materials</Typography>
+                <Box
+                  sx={{
+                    background: "#9EDCFF",
+                    borderRadius: "2vh",
+                    marginY: "2vh",
+                  }}
+                >
+                  <Typography
+                    sx={style.regulartxt}
+                    className={leagueSpartan.className}
+                  >
+                    Access to Resources And Practice Materials
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                    >
                       Learn More
                     </Button>
                   </Box>
                   <Box sx={{ textAlign: "right" }}>
-                    <Image src={offer3} alt='pic' style={{
-                      width: 'auto',
-                      height: '25vh',
-                    }} />
+                    <Image
+                      src={offer3}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "25vh",
+                      }}
+                    />
                   </Box>
                 </Box>
               </Grid>
             </Grid>
-            <Box sx={{
-              background: "#9EDCFF",
-              borderRadius: "2vh",
-            }}>
-              <Box sx={{
-                display: "flex",
-              }}>
+            <Box
+              sx={{
+                background: "#9EDCFF",
+                borderRadius: "2vh",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                }}
+              >
                 <Box>
-                  <Typography sx={style.coveragetext}>Comprehensive coverage of IGCSE Maths syllabus</Typography>
+                  <Typography
+                    sx={style.coveragetext}
+                    className={leagueSpartan.className}
+                  >
+                    Comprehensive coverage of IGCSE Maths syllabus
+                  </Typography>
                   <Box sx={{ display: "flex", justifyContent: "left" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                    >
                       Learn More
                     </Button>
                   </Box>
                 </Box>
-                <Typography sx={style.coverageImg}>
-                  <Image src={offer1} alt='pic' style={{
-                    width: 'auto',
-                    height: '20vh',
-                  }} />
+                <Typography
+                  sx={style.coverageImg}
+                  className={leagueSpartan.className}
+                >
+                  <Image
+                    src={offer1}
+                    alt="pic"
+                    style={{
+                      width: "auto",
+                      height: "20vh",
+                    }}
+                  />
                 </Typography>
               </Box>
             </Box>
@@ -200,10 +298,10 @@ const Offer = () => {
         </Grid>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Offer
+export default Offer;
 
 const style = {
   coveragetext: {
@@ -235,7 +333,7 @@ const style = {
       xs: "50%",
       sm: "50%",
       lg: "40%",
-    }
+    },
   },
   regulartxt: {
     color: "#2D2D2D",
@@ -258,7 +356,7 @@ const style = {
     fontSize: {
       xs: "2vh",
       lg: "2.5vh",
-    }
+    },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
@@ -278,7 +376,6 @@ const style = {
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
-
     },
   },
-}
+};

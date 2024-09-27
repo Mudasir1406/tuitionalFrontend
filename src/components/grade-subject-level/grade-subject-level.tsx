@@ -21,6 +21,7 @@ import MainContent from "./main-content";
 import PopularSubjects from "@/components/curiculume/popular-igcse-subjects";
 import FrequentlyQuestions from "./faqs";
 import BlogCta from "./blog-cta";
+import { replaceAltText } from "@/utils/helper";
 
 type IProps = {
   data: PageData;
@@ -62,7 +63,9 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                   position: "relative",
                   "::before": {
                     content: "''",
-                    backgroundImage: `url(${subjectLevelImage.src})`,
+                    backgroundImage: `url(${
+                      data.hero_section.image || subjectLevelImage.src
+                    })`,
                     backgroundPosition: "bottom",
                     backgroundSize: "contain",
                     height: {
@@ -79,6 +82,11 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                   },
                 }}
               >
+                <img
+                  className="sr-only"
+                  alt={data.hero_section.imageAltText}
+                  src={data.hero_section.image}
+                ></img>
                 <HeroInfo />
               </Grid>
             </Grid>

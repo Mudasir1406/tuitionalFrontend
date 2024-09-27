@@ -6,6 +6,8 @@ import downicon from "../../../public/assets/images/static/Downicon.png";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import { renderWithLineBreaks } from "../line-break-text";
 
 interface Question {
   question: string;
@@ -26,11 +28,18 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
       <Box>
         <Typography
           sx={style.frequently}
+          className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {data.header}
+          {renderWithLineBreaks(data.header)}
         </Typography>
-        <Typography sx={style.frequentlyDesc}>{data?.paragraph}</Typography>
+        <Typography
+          sx={style.frequentlyDesc}
+          className={leagueSpartan.className}
+          component={"p"}
+        >
+          {renderWithLineBreaks(data?.paragraph)}
+        </Typography>
       </Box>
 
       <Box sx={{ marginX: "auto", maxWidth: "80vw", paddingX: { lg: "2vh" } }}>
@@ -57,7 +66,13 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     alignItems: "center",
                   }}
                 >
-                  <Typography sx={style.boxhed}>{item.question}</Typography>
+                  <Typography
+                    sx={style.boxhed}
+                    className={leagueSpartan.className}
+                    component={"h1"}
+                  >
+                    {renderWithLineBreaks(item.question)}
+                  </Typography>
                   <Box
                     onClick={() => handleToggle(Number(index))}
                     sx={{ cursor: "pointer" }}
@@ -70,7 +85,13 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                  <Typography sx={style.boxdesc}>{item.answer}</Typography>
+                  <Typography
+                    sx={style.boxdesc}
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    {renderWithLineBreaks(item.answer)}
+                  </Typography>
                 </Collapse>
               </Box>
             </Grid>

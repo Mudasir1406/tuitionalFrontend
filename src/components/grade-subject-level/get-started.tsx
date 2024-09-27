@@ -25,10 +25,20 @@ const GetStarted = () => {
   }, []);
   return (
     <Box>
-      <Typography sx={styles.heading} className={leagueSpartan.className}>
-        Get Started in <span style={{
-          color: "#38B6FF"
-        }}>3</span> Easy Steps!
+      <Typography
+        sx={styles.heading}
+        className={leagueSpartan.className}
+        component={"h1"}
+      >
+        Get Started in{" "}
+        <span
+          style={{
+            color: "#38B6FF",
+          }}
+        >
+          3
+        </span>{" "}
+        Easy Steps!
       </Typography>
       <Box
         sx={{
@@ -271,10 +281,18 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
           style={{ width: "100%", height: "auto", objectFit: "cover" }}
         ></Image>
       </Box>
-      <Typography sx={styles.boxHeading} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.boxHeading}
+        className={leagueSpartan.className}
+        component={"h2"}
+      >
         {heading}
       </Typography>
-      <Typography sx={styles.boxDesc} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.boxDesc}
+        className={leagueSpartan.className}
+        component={"p"}
+      >
         {description}
       </Typography>
       <Button

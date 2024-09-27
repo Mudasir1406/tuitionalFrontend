@@ -4,6 +4,8 @@ import React from "react";
 import elpse1 from "../../../public/assets/images/svg/elpse-white1.svg";
 import elpse2 from "../../../public/assets/images/svg/elpse-white2.svg";
 import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import { renderWithLineBreaks } from "../line-break-text";
 
 const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
   data,
@@ -11,7 +13,13 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
   return (
     <>
       <Box sx={{ paddingX: "10vw", marginY: "10vh" }}>
-        <Typography sx={style.reviewheading}>{data?.header}</Typography>
+        <Typography
+          sx={style.reviewheading}
+          className={leagueSpartan.className}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
+        >
+          {renderWithLineBreaks(data?.header)}
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -27,13 +35,20 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             },
           }}
         >
-          <Typography sx={style.reviewdeesc}>{data?.paragraph}</Typography>
+          <Typography
+            sx={style.reviewdeesc}
+            className={leagueSpartan.className}
+            component={"p"}
+          >
+            {renderWithLineBreaks(data?.paragraph)}
+          </Typography>
 
           <Box>
             <Button
               variant="contained"
               sx={style.containedBtn}
               href={data.link}
+              className={leagueSpartan.className}
             >
               {data.buttonText}
             </Button>

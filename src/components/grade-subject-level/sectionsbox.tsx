@@ -1,47 +1,60 @@
-import { Box, Button, Typography } from '@mui/material'
-import React from 'react'
+import { leagueSpartan } from "@/app/fonts";
+import { Box, Button, Typography } from "@mui/material";
+import React from "react";
 
 const SectionsBox = () => {
   return (
     <>
-      <Box sx={{
-        margin: {
-          xs: "6vh 0 0 0",
-          lg: "0",
-        },
-      }}>
-        <Box sx={{
-          borderRadius: "1.5vh",
-          background: "#E7F6FF",
-          boxShadow: "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px -3px 8px 0px rgba(56, 182, 255, 0.20)",
-          backdropFilter: "blur(5px)",
-
-        }}>
+      <Box
+        sx={{
+          margin: {
+            xs: "6vh 0 0 0",
+            lg: "0",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            borderRadius: "1.5vh",
+            background: "#E7F6FF",
+            boxShadow:
+              "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px -3px 8px 0px rgba(56, 182, 255, 0.20)",
+            backdropFilter: "blur(5px)",
+          }}
+        >
           <Box sx={style.boxsection}>
-            <Typography sx={{
-              fontSize: {
-                xs: "2vh",
-                lg: "3vh",
-              },
-              fontWeight: {
-                xs: "auto",
-                lg: "700",
-              },
-              textAlign: "start",
-              paddingX: {
-                xs: "2vh",
-                lg: "0",
-              },
-              width: {
-                sm: "60%",
-                lg: "45%",
-                xs: "63%",
-              }
-            }}>
+            <Typography
+              className={leagueSpartan.className}
+              sx={{
+                fontSize: {
+                  xs: "2vh",
+                  lg: "3vh",
+                },
+                fontWeight: {
+                  xs: "auto",
+                  lg: "700",
+                },
+                textAlign: "start",
+                paddingX: {
+                  xs: "2vh",
+                  lg: "0",
+                },
+                width: {
+                  sm: "60%",
+                  lg: "45%",
+                  xs: "63%",
+                },
+              }}
+              component={"h1"}
+            >
               Join Live Interactive Online Classes with Our Certified Tutors!
             </Typography>
             <Box>
-              <Button variant="contained" sx={style.containedBtn}>
+              <Button
+                variant="contained"
+                sx={style.containedBtn}
+                className={leagueSpartan.className}
+              >
                 Read More
               </Button>
             </Box>
@@ -49,10 +62,10 @@ const SectionsBox = () => {
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default SectionsBox
+export default SectionsBox;
 
 const style = {
   boxsection: {
@@ -94,4 +107,4 @@ const style = {
       lg: "auto",
     },
   },
-}
+};

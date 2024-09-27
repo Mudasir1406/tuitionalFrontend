@@ -1,9 +1,8 @@
+import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { Box, Button, Grid, Theme, Typography } from "@mui/material";
-import { SystemStyleObject } from "@mui/system";
-import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
-import { Property } from "csstype";
 import React from "react";
+import { renderWithLineBreaks } from "../line-break-text";
 
 interface IProps {
   data: PageData["main_content"];
@@ -15,11 +14,14 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={{ margin: { lg: "0 7vh", xs: "3vh" } }}>
         <Typography
           sx={style.title}
+          className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {data?.header}
+          {renderWithLineBreaks(data?.header)}
         </Typography>
-        <Typography sx={style.description}>{data?.paragraph}</Typography>
+        <Typography sx={style.description} className={leagueSpartan.className}>
+          {renderWithLineBreaks(data?.paragraph)}
+        </Typography>
 
         <Box>
           <Grid
@@ -45,6 +47,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
                     },
                     fontWeight: 500,
                   }}
+                  className={leagueSpartan.className}
                 >
                   {subject.name}
                 </Button>

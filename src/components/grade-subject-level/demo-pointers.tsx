@@ -4,6 +4,8 @@ import React from "react";
 import tutors from "../../../public/assets/images/static/tutoring.png";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import { renderWithLineBreaks } from "../line-break-text";
 
 interface IProps {
   data: PageData["demo_pointers"];
@@ -17,10 +19,11 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
               <Typography
+                className={leagueSpartan.className}
                 sx={style.tutorheading}
                 component={data?.headerTag as keyof JSX.IntrinsicElements}
               >
-                {data?.header}
+                {renderWithLineBreaks(data?.header)}
               </Typography>
               <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
                 <Image src={tutors} alt="image" style={style.image} />
@@ -37,6 +40,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                 }}
               >
                 <Typography
+                  className={leagueSpartan.className}
                   sx={{
                     backgroundColor: "#38B6FF",
                     filter:
@@ -64,10 +68,20 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   <Grid item xs={12} key={index}>
                     <Box sx={style.boxes}>
                       <Box>
-                        <Typography sx={style.titlebox}>
-                          {box.header}
+                        <Typography
+                          sx={style.titlebox}
+                          className={leagueSpartan.className}
+                          component={"h2"}
+                        >
+                          {renderWithLineBreaks(box.header)}
                         </Typography>
-                        <Typography sx={style.desc}>{box.body}</Typography>
+                        <Typography
+                          sx={style.desc}
+                          className={leagueSpartan.className}
+                          component={"p"}
+                        >
+                          {renderWithLineBreaks(box.body)}
+                        </Typography>
                       </Box>
                       <Box sx={{ display: { xs: "block", sm: "block" } }}>
                         <Image
@@ -100,7 +114,7 @@ const style = {
     },
     width: {
       xs: "auto",
-      sm: "66vh",
+      // sm: "66vh",
     },
     fontWeight: 600,
     textAlign: { xs: "center", sm: "left", lg: "left" },
@@ -108,7 +122,7 @@ const style = {
   image: {
     height: "auto",
     width: "100%",
-    maxWidth: "70vh",
+    maxWidth: "43vw",
   },
   boxes: {
     height: "auto",
@@ -138,11 +152,5 @@ const style = {
       sm: "1.8vh",
     },
     fontWeight: 400,
-    width: {
-      xs: "100%",
-      sm: "55.5vh",
-      md: "72.5vh",
-      lg: "72.5vh",
-    },
   },
 };

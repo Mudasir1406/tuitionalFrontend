@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import { renderWithLineBreaks } from "../line-break-text";
 
 interface IProps {
   data: PageData["popular_subjects"];
@@ -20,9 +22,10 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
       <Box>
         <Typography
           sx={style.popularText}
+          className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {data?.header}
+          {renderWithLineBreaks(data?.header)}
         </Typography>
       </Box>
 
@@ -57,7 +60,13 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
                     width={50} // Set appropriate width for your icons
                     height={50} // Set appropriate height for your icons
                   />
-                  <Typography sx={style.subjects}>{item.name}</Typography>
+                  <Typography
+                    sx={style.subjects}
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    {item.name}
+                  </Typography>
                 </Box>
               </Grid>
             )

@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import CircleIcon from "@mui/icons-material/Circle";
 import { PageData } from "@/types/grade-subject-level.types";
+import { renderWithLineBreaks } from "../line-break-text";
 
 type IProps = {
   data: PageData["hero_section"];
@@ -26,10 +27,14 @@ const Hero: React.FC<IProps> = ({ data }) => {
           className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {data?.header}
+          {renderWithLineBreaks(data?.header)}
         </Typography>
-        <Typography sx={styles.desc} className={leagueSpartan.className}>
-          {data?.paragraph}
+        <Typography
+          sx={styles.desc}
+          className={leagueSpartan.className}
+          component={"p"}
+        >
+          {renderWithLineBreaks(data?.paragraph)}
         </Typography>
 
         <Box
@@ -68,7 +73,11 @@ const Hero: React.FC<IProps> = ({ data }) => {
                   marginRight: "8px",
                 }}
               />
-              <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
+              <Typography
+                sx={{ fontSize: "2vh", color: "#797979" }}
+                className={leagueSpartan.className}
+                component={"p"}
+              >
                 9756 Active Students
               </Typography>
             </Box>
@@ -98,6 +107,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                     xs: "0 0 0 8px",
                   },
                 }}
+                className={leagueSpartan.className}
+                component={"p"}
               >
                 9756 Active Students
               </Typography>
@@ -127,7 +138,11 @@ const Hero: React.FC<IProps> = ({ data }) => {
                   margin: "0 8px 0 0",
                 }}
               />
-              <Typography sx={{ fontSize: "2vh", color: "#797979" }}>
+              <Typography
+                sx={{ fontSize: "2vh", color: "#797979" }}
+                className={leagueSpartan.className}
+                component={"p"}
+              >
                 9756 Active Students
               </Typography>
             </Box>
@@ -157,6 +172,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                     xs: "0 0 0 8px",
                   },
                 }}
+                className={leagueSpartan.className}
+                component={"p"}
               >
                 9756 Active Students
               </Typography>
@@ -209,6 +226,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                   padding: ".7vh 0 0 1vh",
                   fontWeight: 600,
                 }}
+                className={leagueSpartan.className}
+                component={"p"}
               >
                 Trustpilot
               </Typography>
@@ -226,6 +245,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                   fontWeight: 400,
                   padding: "1vh 0 0 0",
                 }}
+                className={leagueSpartan.className}
+                component={"p"}
               >
                 Excellent (4.7/5)
               </Typography>
