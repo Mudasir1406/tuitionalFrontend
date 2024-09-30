@@ -67,6 +67,11 @@ export type PageData = {
     ogDescription: string;
     ogUrl: string;
     schema: string;
+    pageSchemaDescription: string;
+    pageSchemaName: string;
+    serviceDescription: string;
+
+    serviceType: string;
   };
 };
 

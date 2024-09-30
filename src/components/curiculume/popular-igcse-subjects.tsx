@@ -92,7 +92,6 @@ const style = {
   cardsBoxes: {
     background: "#FFF",
     backdropFilter: "blur(5px)",
-    transition: "all .5s ease-in-out",
     borderRadius: "2vh",
     boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
     textAlign: "center",
@@ -108,6 +107,8 @@ const style = {
       xs: "9vh",
       lg: "12vh",
     },
+    transition: "all .5s ease-in-out",
+
     ":hover": {
       transform: "scale(1.05)",
       background: "#9EDCFF",

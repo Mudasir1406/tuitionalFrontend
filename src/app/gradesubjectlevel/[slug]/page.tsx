@@ -7,6 +7,7 @@ import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
+import { generateFaqSchema } from "@/utils/helper";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -40,10 +41,44 @@ export const generateMetadata = async ({
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data: PageData | undefined = await getPageData(params.slug);
   const sequence: Component_Sequence_Type | undefined = await getPageSequence();
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: data?.meta_tags.pageSchemaName,
+    description: data?.meta_tags.pageSchemaDescription,
+    url: "https://tuitionaledu.com/igcse-english-language-tutors",
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: data?.meta_tags.serviceType,
+    description: data?.meta_tags.serviceDescription,
+    provider: {
+      "@type": "Organization",
+      name: "Tuitional",
+      url: "https://tuitionaledu.com",
+    },
+  };
+
+  const faqSchema = generateFaqSchema(data?.Faqs);
+
   if (!data) return redirect("/404");
   if (sequence)
     return (
       <div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
         <GradeSubjectLevel data={data} sequence={sequence} />
       </div>
     );
