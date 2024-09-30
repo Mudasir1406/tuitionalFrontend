@@ -91,7 +91,8 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
                 sm: "6vh",
                 lg: "8.5vh",
               },
-              border: "none",
+              borderTopRightRadius: "20px",
+              borderBottomRightRadius: "20px",
               fontSize: {
                 xs: "1.5vh",
                 lg: "auto",

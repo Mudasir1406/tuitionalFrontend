@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import tutors from "../../../public/assets/images/static/tutoring.png";
@@ -28,36 +28,11 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
                 <Image src={tutors} alt="image" style={style.image} />
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                  mt: 2,
-                  mb: 3,
-                  textAlign: { xs: "center", sm: "left" },
-                }}
-              >
-                <Typography
-                  className={leagueSpartan.className}
-                  sx={{
-                    backgroundColor: "#38B6FF",
-                    filter:
-                      "drop-shadow(1px 15px 34px rgba(56, 182, 255, 0.40))",
-                    color: "#FFF",
-                    width: { xs: "100%", sm: "50vh" },
-                    height: "8vh",
-                    borderRadius: "2vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "2vh",
-                  }}
-                >
+              <Button variant="contained" sx={style.containButton}>
+                <Typography className={leagueSpartan.className}>
                   {data?.buttonText}
                 </Typography>
-              </Box>
+              </Button>
             </Box>
           </Grid>
 
@@ -87,7 +62,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Image
                           src={icon}
                           alt="icon"
-                          style={{ height: "6vh", width: "6vh" }}
+                          style={{ height: "5vh", width: "5vh" }}
                         />
                       </Box>
                     </Box>
@@ -131,10 +106,11 @@ const style = {
     flexDirection: { xs: "row", sm: "row" },
     justifyContent: "space-between",
     background: "#D3EFFF",
-    boxShadow: "0px -5px 15px 0px rgba(56, 182, 255, 0.20)",
-    backdropFilter: "blur(5px)",
+    backdropFilter: "blur(10px)",
     borderRadius: "2vh",
     mb: { xs: 2, sm: 0 },
+    alignItems: "center",
+    boxShadow: "0px -5px 15px 0px rgba(56, 182, 255, 0.2) inset",
   },
   titlebox: {
     marginBottom: 1,
@@ -152,5 +128,25 @@ const style = {
       sm: "1.8vh",
     },
     fontWeight: 400,
+    width: "90%",
+    textWrap: "pretty",
+  },
+  containButton: {
+    backgroundColor: "#38B6FF",
+    color: "#FFF",
+    width: { xs: "100%", sm: "50vh" },
+    height: "8vh",
+    borderRadius: "2vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "2vh",
+    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
+    marginLeft: "10vw",
+    marginTop: "100px",
+    ":hover": {
+      boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
+      backgroundColor: "#38B6FF",
+    },
   },
 };

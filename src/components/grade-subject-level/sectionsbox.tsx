@@ -102,8 +102,11 @@ const style = {
       md: "100%",
       lg: "auto",
     },
+    transition: "all .5s ease-in-out",
     ":hover": {
       backgroundColor: "#38B6FF",
+      transform: "scale(1.05)",
+
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
     },
   },
