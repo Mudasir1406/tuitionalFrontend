@@ -46,7 +46,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     "@type": "WebPage",
     name: data?.meta_tags.pageSchemaName,
     description: data?.meta_tags.pageSchemaDescription,
-    url: "https://tuitionaledu.com/igcse-english-language-tutors",
+    url: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
   };
 
   const serviceSchema = {
