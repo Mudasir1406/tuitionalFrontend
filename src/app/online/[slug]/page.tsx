@@ -7,6 +7,7 @@ import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
+import { SITE_URL } from "@/utils/env";
 import { generateFaqSchema } from "@/utils/helper";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -23,12 +24,12 @@ export const generateMetadata = async ({
     title: data.meta_tags.title,
     description: data.meta_tags.description,
     alternates: {
-      canonical: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
+      canonical: `${SITE_URL}/online/${params.slug}`,
     },
     openGraph: {
       images: data.meta_tags.ogImage,
       title: data.meta_tags.ogTitle,
-      url: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
+      url: `${SITE_URL}/online/${params.slug}`,
       description: data.meta_tags.ogDescription,
     },
     robots: {
@@ -46,7 +47,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     "@type": "WebPage",
     name: data?.meta_tags.pageSchemaName,
     description: data?.meta_tags.pageSchemaDescription,
-    url: `https://dev.tuitional.com/gradesubjectlevel/${params.slug}`,
+    url: `${SITE_URL}/online/${params.slug}`,
   };
 
   const serviceSchema = {
