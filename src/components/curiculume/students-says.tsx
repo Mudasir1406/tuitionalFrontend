@@ -16,7 +16,9 @@ const StudentSays = () => {
         What Our Students Says
       </Typography>
       <Typography sx={styles.desc}>
-        Lorem ipsum dolor sit amet consectetur. Amet morbi sit suspendisse dui ut donec vel id. Viverra urna cras nulla elementum. Risus orci dolor euismod in fringilla adipiscing eu condimentum.
+        Lorem ipsum dolor sit amet consectetur. Amet morbi sit suspendisse dui
+        ut donec vel id. Viverra urna cras nulla elementum. Risus orci dolor
+        euismod in fringilla adipiscing eu condimentum.
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={12}>
@@ -26,7 +28,7 @@ const StudentSays = () => {
                 <Card>
                   <CardMedia
                     component="video"
-                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                     controls
                     poster={poster.src} // Use each poster image
                     sx={{
