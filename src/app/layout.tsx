@@ -2,7 +2,7 @@ import "./globals.css";
 import { DrawerProvider } from "@/context/drawer-context";
 import ResponsiveDrawer from "@/components/drawer";
 import { Metadata } from "next";
-
+import Metrics from "./metrics";
 export const metadata: Metadata = {
   title: "Tuitional",
   description: "",
@@ -41,6 +41,7 @@ export default function RootLayout({
           <ResponsiveDrawer />
 
           {children}
+          <Metrics />
         </body>
       </DrawerProvider>
     </html>
