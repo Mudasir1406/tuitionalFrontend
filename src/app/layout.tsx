@@ -3,6 +3,7 @@ import { DrawerProvider } from "@/context/drawer-context";
 import ResponsiveDrawer from "@/components/drawer";
 import { Metadata } from "next";
 import Metrics from "./metrics";
+import Head from "next/head";
 export const metadata: Metadata = {
   title: "Tuitional",
   description: "",
@@ -32,10 +33,14 @@ export default function RootLayout({
   };
   return (
     <html lang="en">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </Head>
       <DrawerProvider>
         <body style={{ margin: 0 }}>
           <ResponsiveDrawer />
