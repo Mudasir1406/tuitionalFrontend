@@ -38,7 +38,7 @@ const StudentSays: React.FunctionComponent<{
             >
               <CardMedia
                 component="video"
-                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 controls
                 poster={poster.src}
                 sx={{
