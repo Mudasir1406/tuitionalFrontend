@@ -10,7 +10,9 @@ import {
 import { SITE_URL } from "@/utils/env";
 import { generateFaqSchema } from "@/utils/helper";
 import { Metadata } from "next";
+import Head from "next/head";
 import { redirect } from "next/navigation";
+import Script from "next/script";
 import React from "react";
 
 export const generateMetadata = async ({
@@ -68,15 +70,15 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   if (sequence)
     return (
       <div>
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
         />
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: faqSchema }}
         />
