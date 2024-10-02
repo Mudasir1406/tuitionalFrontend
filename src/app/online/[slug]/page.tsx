@@ -71,14 +71,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     return (
       <div>
         <Script
+          id="page"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
         />
         <Script
+          id="service"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
         <Script
+          id="faq"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: faqSchema }}
         />
