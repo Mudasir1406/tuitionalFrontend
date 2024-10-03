@@ -311,3 +311,7 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.colored-heading {
+  color: rgba(56, 182, 255, 1);
+}
