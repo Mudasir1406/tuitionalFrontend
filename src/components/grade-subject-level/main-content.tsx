@@ -15,7 +15,8 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.title}
           className={leagueSpartan.className}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={"div"}
+          // component={data.headerTag as keyof JSX.IntrinsicElements}
         >
           <div
             className={leagueSpartan.className}
@@ -24,7 +25,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
             }}
           ></div>
         </Typography>
-        <Typography sx={style.description}>
+        <Typography sx={style.description} component={"div"}>
           <div
             className={leagueSpartan.className}
             dangerouslySetInnerHTML={{

@@ -19,7 +19,8 @@ const StudentSays: React.FunctionComponent<{
       <Typography
         sx={styles.heading}
         className={leagueSpartan.className}
-        component={data.headerTag as keyof JSX.IntrinsicElements}
+        // component={data.headerTag as keyof JSX.IntrinsicElements}
+        component={"div"}
       >
         <div
           className={leagueSpartan.className}
@@ -28,7 +29,11 @@ const StudentSays: React.FunctionComponent<{
           }}
         ></div>
       </Typography>
-      <Typography sx={styles.desc} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.desc}
+        className={leagueSpartan.className}
+        component={"div"}
+      >
         <div
           className={leagueSpartan.className}
           dangerouslySetInnerHTML={{

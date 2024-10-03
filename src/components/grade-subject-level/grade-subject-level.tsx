@@ -190,9 +190,9 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       {sequence.sections
         .sort((a, b) => a.placment - b.placment)
         .map((section) => (
-          <React.Fragment key={section.placment}>
+          <section key={section.placment} style={{ all: "unset" }}>
             {renderSection(section.name)}
-          </React.Fragment>
+          </section>
         ))}
       <Footer />
     </>
