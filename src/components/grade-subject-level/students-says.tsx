@@ -21,10 +21,20 @@ const StudentSays: React.FunctionComponent<{
         className={leagueSpartan.className}
         component={data.headerTag as keyof JSX.IntrinsicElements}
       >
-        {renderWithLineBreaks(data?.header)}
+        <div
+          className={leagueSpartan.className}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></div>
       </Typography>
       <Typography sx={styles.desc} className={leagueSpartan.className}>
-        {renderWithLineBreaks(data?.paragraph)}
+        <div
+          className={leagueSpartan.className}
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
+        ></div>
       </Typography>
       <Grid container spacing={2}>
         {posters.map((poster, index) => (

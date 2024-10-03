@@ -18,7 +18,12 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
           className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {renderWithLineBreaks(data?.header)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></div>
         </Typography>
         <Box
           sx={{
@@ -40,7 +45,12 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             className={leagueSpartan.className}
             component={"p"}
           >
-            {renderWithLineBreaks(data?.paragraph)}
+            <div
+              className={leagueSpartan.className}
+              dangerouslySetInnerHTML={{
+                __html: data?.paragraph,
+              }}
+            ></div>
           </Typography>
 
           <Box>

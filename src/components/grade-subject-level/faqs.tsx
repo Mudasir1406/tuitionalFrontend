@@ -31,14 +31,24 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
           className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {renderWithLineBreaks(data.header)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></div>
         </Typography>
         <Typography
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
           component={"p"}
         >
-          {renderWithLineBreaks(data?.paragraph)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.paragraph,
+            }}
+          ></div>
         </Typography>
       </Box>
 
@@ -71,7 +81,12 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     className={leagueSpartan.className}
                     component={"h1"}
                   >
-                    {renderWithLineBreaks(item.question)}
+                    <div
+                      className={leagueSpartan.className}
+                      dangerouslySetInnerHTML={{
+                        __html: item.question,
+                      }}
+                    ></div>
                   </Typography>
                   <Box
                     onClick={() => handleToggle(Number(index))}
@@ -90,7 +105,12 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     className={leagueSpartan.className}
                     component={"p"}
                   >
-                    {renderWithLineBreaks(item.answer)}
+                    <div
+                      className={leagueSpartan.className}
+                      dangerouslySetInnerHTML={{
+                        __html: item.answer,
+                      }}
+                    ></div>
                   </Typography>
                 </Collapse>
               </Box>

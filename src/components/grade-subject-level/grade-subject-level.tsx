@@ -96,50 +96,74 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
           </>
         );
       case "Main Content":
-        return <MainContent data={data?.main_content} />;
+        return (
+          data.main_content.subjects.length > 0 && (
+            <MainContent data={data?.main_content} />
+          )
+        );
       case "Phone CTA ":
         return (
-          <>
-            <Box
-              sx={{
-                backgroundImage: `url(${subjectIGC.src})`,
-                backgroundPosition: "center",
-                height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
-                width: "100%",
-                backgroundRepeat: "no-repeat",
-                position: "relative",
-              }}
-            >
+          data.phone_cta.paragraph && (
+            <>
               <Box
                 sx={{
-                  backgroundImage: `url(${circleIGC.src})`,
-                  backgroundPosition: "right",
-                  backgroundSize: "contain",
-                  height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "50vh" },
+                  backgroundImage: `url(${subjectIGC.src})`,
+                  backgroundPosition: "center",
+                  // height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
                   width: "100%",
                   backgroundRepeat: "no-repeat",
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
+                  position: "relative",
+                  paddingBottom: "5vh",
                 }}
               >
+                <Box
+                  sx={{
+                    backgroundImage: `url(${circleIGC.src})`,
+                    backgroundPosition: "right",
+                    backgroundSize: "contain",
+                    width: "100%",
+                    backgroundRepeat: "no-repeat",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    zIndex: 2,
+                  }}
+                />
                 <PhoneCta data={data?.phone_cta} />
               </Box>
-            </Box>
-          </>
+            </>
+          )
         );
       case "Demo Pointers":
-        return <DemoPointers data={data?.demo_pointers} />;
+        return (
+          data.demo_pointers.demoPointersData.length > 0 && (
+            <DemoPointers data={data?.demo_pointers} />
+          )
+        );
       case "Popular Subjects":
-        return <PopularSubjects data={data?.popular_subjects} />;
+        return (
+          data.popular_subjects.subjects.length > 0 && (
+            <PopularSubjects data={data?.popular_subjects} />
+          )
+        );
       case "Education Counseling":
-        return <EducationalCounseling data={data?.education_counseling} />;
+        return (
+          data.education_counseling.paragraph && (
+            <EducationalCounseling data={data?.education_counseling} />
+          )
+        );
       case "What our Student Says":
-        return <StudentSays data={data.what_our_student_says} />;
+        return (
+          data.what_our_student_says.paragraph && (
+            <StudentSays data={data.what_our_student_says} />
+          )
+        );
       case "Blog CTA":
-        return <BlogCta data={data?.blog_CTA} />;
+        return data.blog_CTA.paragraph && <BlogCta data={data?.blog_CTA} />;
       case "FAQs":
-        return <FrequentlyQuestions data={data?.Faqs} />;
+        return (
+          data.Faqs.faqs.length > 0 && <FrequentlyQuestions data={data?.Faqs} />
+        );
       case "what we offer":
         return <Offer />;
       case "get started":

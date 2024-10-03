@@ -46,7 +46,7 @@ const SectionsBox = () => {
               sx={style.containedBtn}
               className={leagueSpartan.className}
             >
-              Read More
+              Book a Demo
             </Button>
           </Box>
         </Box>

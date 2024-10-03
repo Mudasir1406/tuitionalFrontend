@@ -17,10 +17,20 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
           className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {renderWithLineBreaks(data?.header)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></div>
         </Typography>
-        <Typography sx={style.description} className={leagueSpartan.className}>
-          {renderWithLineBreaks(data?.paragraph)}
+        <Typography sx={style.description}>
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.paragraph,
+            }}
+          ></div>
         </Typography>
 
         <Box>
