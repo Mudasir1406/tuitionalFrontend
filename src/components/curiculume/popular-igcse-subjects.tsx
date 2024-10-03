@@ -20,7 +20,12 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
           className={leagueSpartan.className}
           component={data.headerTag as keyof JSX.IntrinsicElements}
         >
-          {renderWithLineBreaks(data?.header)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></div>
         </Typography>
       </Box>
 

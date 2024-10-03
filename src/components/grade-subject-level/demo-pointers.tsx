@@ -23,7 +23,12 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                 sx={style.tutorheading}
                 component={data?.headerTag as keyof JSX.IntrinsicElements}
               >
-                {renderWithLineBreaks(data?.header)}
+                <div
+                  className={leagueSpartan.className}
+                  dangerouslySetInnerHTML={{
+                    __html: data?.header,
+                  }}
+                ></div>
               </Typography>
               <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
                 <Image src={tutors} alt="image" style={style.image} />
@@ -48,14 +53,24 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           className={leagueSpartan.className}
                           component={"h2"}
                         >
-                          {renderWithLineBreaks(box.header)}
+                          <div
+                            className={leagueSpartan.className}
+                            dangerouslySetInnerHTML={{
+                              __html: box.header,
+                            }}
+                          ></div>
                         </Typography>
                         <Typography
                           sx={style.desc}
                           className={leagueSpartan.className}
                           component={"p"}
                         >
-                          {renderWithLineBreaks(box.body)}
+                          <div
+                            className={leagueSpartan.className}
+                            dangerouslySetInnerHTML={{
+                              __html: box.body,
+                            }}
+                          ></div>
                         </Typography>
                       </Box>
                       <Box sx={{ display: { xs: "block", sm: "block" } }}>

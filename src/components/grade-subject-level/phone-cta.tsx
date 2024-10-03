@@ -33,23 +33,37 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
           component={data.headerTag as keyof JSX.IntrinsicElements}
           className={leagueSpartan.className}
         >
-          {renderWithLineBreaks(data?.header)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></div>
         </Typography>
         <Typography
           sx={style.description}
           className={leagueSpartan.className}
           component={"p"}
         >
-          {renderWithLineBreaks(data?.paragraph)}
+          <div
+            className={leagueSpartan.className}
+            dangerouslySetInnerHTML={{
+              __html: data?.paragraph,
+            }}
+          ></div>
         </Typography>
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "auto",
             width: { lg: "95%" },
             maxWidth: "100%",
+            height: {
+              xs: "8vh",
+              sm: "6vh",
+              lg: "8.5vh",
+            },
             background: "#FFF",
             boxShadow:
               "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
