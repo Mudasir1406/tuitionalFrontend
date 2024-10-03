@@ -55,7 +55,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
     <div>
       <FormControl sx={{ width: "100%" }}>
         <Select
-          className="select"
+          className={`select ${leagueSpartan.className}`}
           displayEmpty
           sx={{
             borderRadius: "10px",
