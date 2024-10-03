@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig/config";
 import {
   Component_Sequence_Type,
@@ -21,5 +21,19 @@ export const getPageSequence = async () => {
     return docSnap.data() as Component_Sequence_Type;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getAllDocumentsFromCollection = async (collectionName: string) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    const documents = querySnapshot.docs.map((doc) => ({
+      id: doc.id, // Include the document ID
+    }));
+
+    return documents;
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+    return null;
   }
 };
