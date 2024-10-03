@@ -29,7 +29,8 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
         <Typography
           sx={style.frequently}
           className={leagueSpartan.className}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          // component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={"div"}
         >
           <div
             className={leagueSpartan.className}
@@ -41,7 +42,8 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
         <Typography
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
-          component={"p"}
+          // component={"p"}
+          component={"div"}
         >
           <div
             className={leagueSpartan.className}
@@ -79,7 +81,8 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   <Typography
                     sx={style.boxhed}
                     className={leagueSpartan.className}
-                    component={"h1"}
+                    // component={"h1"}
+                    component={"div"}
                   >
                     <div
                       className={leagueSpartan.className}
@@ -103,7 +106,8 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   <Typography
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
-                    component={"p"}
+                    // component={"p"}
+                    component={"div"}
                   >
                     <div
                       className={leagueSpartan.className}

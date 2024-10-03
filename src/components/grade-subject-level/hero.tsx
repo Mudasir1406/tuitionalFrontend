@@ -25,7 +25,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
         <Typography
           sx={styles.heading}
           className={leagueSpartan.className}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={"div"}
+          // component={data.headerTag as keyof JSX.IntrinsicElements}
         >
           <div
             className={leagueSpartan.className}
@@ -37,7 +38,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
         <Typography
           sx={styles.desc}
           className={leagueSpartan.className}
-          component={"p"}
+          // component={"p"}
+          component={"div"}
         >
           <div
             className={leagueSpartan.className}

@@ -30,8 +30,9 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={{ width: "100%", maxWidth: "145vh", textAlign: "center" }}>
         <Typography
           sx={style.finding}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          // component={data.headerTag as keyof JSX.IntrinsicElements}
           className={leagueSpartan.className}
+          component={"div"}
         >
           <div
             className={leagueSpartan.className}
@@ -43,7 +44,8 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           className={leagueSpartan.className}
-          component={"p"}
+          component={"div"}
+          // component={"p"}
         >
           <div
             className={leagueSpartan.className}

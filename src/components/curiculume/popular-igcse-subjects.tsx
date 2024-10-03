@@ -18,7 +18,8 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.popularText}
           className={leagueSpartan.className}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          // component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={"div"}
         >
           <div
             className={leagueSpartan.className}

@@ -5,7 +5,6 @@ import tutors from "../../../public/assets/images/static/tutoring.png";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
-import { renderWithLineBreaks } from "../line-break-text";
 
 interface IProps {
   data: PageData["demo_pointers"];
@@ -21,7 +20,8 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               <Typography
                 className={leagueSpartan.className}
                 sx={style.tutorheading}
-                component={data?.headerTag as keyof JSX.IntrinsicElements}
+                // component={data?.headerTag as keyof JSX.IntrinsicElements}
+                component={"div"}
               >
                 <div
                   className={leagueSpartan.className}
@@ -30,7 +30,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   }}
                 ></div>
               </Typography>
-              <Box sx={{ my: 2, textAlign: { xs: "center", sm: "left" } }}>
+              <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
                 <Image src={tutors} alt="image" style={style.image} />
               </Box>
               <Button variant="contained" sx={style.containButton}>
@@ -51,7 +51,8 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Typography
                           sx={style.titlebox}
                           className={leagueSpartan.className}
-                          component={"h2"}
+                          // component={"h2"}
+                          component={"div"}
                         >
                           <div
                             className={leagueSpartan.className}
@@ -63,7 +64,8 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Typography
                           sx={style.desc}
                           className={leagueSpartan.className}
-                          component={"p"}
+                          // component={"p"}
+                          component={"div"}
                         >
                           <div
                             className={leagueSpartan.className}
@@ -157,8 +159,8 @@ const style = {
     justifyContent: "center",
     fontSize: "2vh",
     boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    marginLeft: "10vw",
-    marginTop: "100px",
+    marginLeft: "6vw",
+    marginTop: "2vh",
     ":hover": {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
       backgroundColor: "#38B6FF",

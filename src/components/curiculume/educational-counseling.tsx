@@ -18,14 +18,16 @@ const EducationalCounseling: React.FunctionComponent<{
               <Typography
                 sx={style.counseling}
                 className={leagueSpartan.className}
-                component={"p"}
+                // component={"p"}
+                component={"div"}
               >
                 Educational Counseling
               </Typography>
               <Typography
                 sx={style.guidence}
                 className={leagueSpartan.className}
-                component={data.headerTag as keyof JSX.IntrinsicElements}
+                component={"div"}
+                // component={data.headerTag as keyof JSX.IntrinsicElements}
               >
                 <div
                   className={leagueSpartan.className}
@@ -37,7 +39,8 @@ const EducationalCounseling: React.FunctionComponent<{
               <Typography
                 sx={style.desc}
                 className={leagueSpartan.className}
-                component={"p"}
+                // component={"p"}
+                component={"div"}
               >
                 <div
                   className={leagueSpartan.className}
