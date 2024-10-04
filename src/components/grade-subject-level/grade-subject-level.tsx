@@ -72,8 +72,8 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                       height: {
                         xs: "100vh",
                         sm: "100vh",
-                        md: "80vh",
-                        lg: "70vh",
+                        md: "90vh",
+                        lg: "90vh",
                       },
                       width: "100%",
                       backgroundRepeat: "no-repeat",
@@ -97,9 +97,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         );
       case "Main Content":
         return (
-          data.main_content.subjects.length > 0 && (
-            <MainContent data={data?.main_content} />
-          )
+          data.main_content.header && <MainContent data={data?.main_content} />
         );
       case "Phone CTA ":
         return (

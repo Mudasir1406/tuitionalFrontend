@@ -8,11 +8,41 @@ export default async function sitemap({
   id: number;
 }): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllDocumentsFromCollection("grade-subject-level");
-  if (slugs)
-    return slugs.map((slug) => ({
+  console.log(slugs);
+  if (slugs) {
+    const urls = slugs.map((slug) => ({
       url: `${SITE_URL}/online/${slug.id}`,
-      lastModified: new Date(),
+      lastModified: new Date(slug.lastModified.seconds * 1000),
       priority: 0.8,
     }));
-  else return [];
+    const data: MetadataRoute.Sitemap = [
+      {
+        url: `${SITE_URL}`,
+        priority: 1,
+        lastModified: new Date(),
+      },
+      {
+        url: `${SITE_URL}/testimonials`,
+        priority: 0.8,
+        lastModified: new Date(
+          "Tue Oct 01 2024 00:00:00 GMT+0500 (Pakistan Standard Time)"
+        ),
+      },
+      {
+        url: `${SITE_URL}/contact`,
+        priority: 0.8,
+        lastModified: new Date(
+          "Tue Oct 01 2024 00:00:00 GMT+0500 (Pakistan Standard Time)"
+        ),
+      },
+      {
+        url: `${SITE_URL}/careers`,
+        priority: 0.8,
+        lastModified: new Date(
+          "Tue Oct 01 2024 00:00:00 GMT+0500 (Pakistan Standard Time)"
+        ),
+      },
+    ];
+    return [...urls, ...data];
+  } else return [];
 }

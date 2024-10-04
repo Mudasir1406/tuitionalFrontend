@@ -61,7 +61,11 @@ const Header: React.FC<IProps> = ({ background }) => {
             <Image
               src={logo.src}
               alt="Logo"
-              style={styles.image}
+              style={{
+                width: 203,
+                height: 49,
+                objectFit: "none",
+              }}
               width={logo.width}
               height={logo.height}
             />
@@ -89,7 +93,7 @@ const Header: React.FC<IProps> = ({ background }) => {
             className={leagueSpartan.className}
           >
             About
-          </Typography> 
+          </Typography>
           {/* </Link> */}
           {/* <Link href={"/Community & Events"} style={styles.link}> */}
           <Typography
@@ -192,6 +196,7 @@ const styles = {
     width: 203,
     height: 49,
     cursor: "pointer",
+    objectfit: "none",
   },
   typography: {
     fontSize: "2vh",
