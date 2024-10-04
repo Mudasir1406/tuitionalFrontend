@@ -40,12 +40,7 @@ const GetStarted = () => {
         </span>{" "}
         Easy Steps!
       </Typography>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-          flexDirection: "row",
-        }}
-      >
+      <Box sx={styles.outer}>
         <Grid container>
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
@@ -54,12 +49,7 @@ const GetStarted = () => {
           ))}
         </Grid>
       </Box>
-      <Box
-        sx={{
-          display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
-          flexDirection: "row",
-        }}
-      >
+      <Box sx={styles.swiperContanier}>
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
@@ -115,6 +105,14 @@ const GetStarted = () => {
 export default GetStarted;
 
 const styles = {
+  outer: {
+    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
+    flexDirection: "row",
+  },
+  swiperContanier: {
+    display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
+    flexDirection: "row",
+  },
   heading: {
     textAlign: {
       lg: "center",
@@ -253,6 +251,13 @@ const styles = {
     textAlign: "center",
     height: "150px",
   },
+  getStartedInner: {
+    height: 320,
+    width: 300,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 };
 
 type Props = {
@@ -264,15 +269,7 @@ type Props = {
 const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
   return (
     <Box sx={styles.contanier}>
-      <Box
-        sx={{
-          height: 320,
-          width: 300,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Box sx={styles.getStartedInner}>
         <Image
           src={image}
           alt=""

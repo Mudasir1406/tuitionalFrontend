@@ -5,7 +5,6 @@ import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
-import { renderWithLineBreaks } from "../line-break-text";
 
 interface IProps {
   data: PageData["popular_subjects"];
@@ -30,7 +29,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         </Typography>
       </Box>
 
-      <Box sx={{ marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } }}>
+      <Box sx={style.contain}>
         <Grid container spacing={2} justifyContent="center">
           {data?.subjects.map(
             (
@@ -83,6 +82,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
 export default PopularSubjects;
 
 const style = {
+  contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
     fontWeight: "600",
     textAlign: "center",

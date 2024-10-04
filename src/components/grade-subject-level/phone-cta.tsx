@@ -10,24 +10,8 @@ type IProps = {
 
 const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: {
-          sm: "100%",
-          xs: "100%",
-          lg: "100%",
-        },
-        margin: {
-          sm: "2vh 4vh",
-          xs: "2vh 2vh",
-          lg: "0",
-        },
-      }}
-    >
-      <Box sx={{ width: "100%", maxWidth: "145vh", textAlign: "center" }}>
+    <Box sx={style.contanier}>
+      <Box sx={style.inner}>
         <Typography
           sx={style.finding}
           // component={data.headerTag as keyof JSX.IntrinsicElements}
@@ -54,71 +38,13 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
             }}
           ></div>
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: { lg: "95%" },
-            maxWidth: "100%",
-            height: {
-              xs: "8vh",
-              sm: "6vh",
-              lg: "8.5vh",
-            },
-            background: "#FFF",
-            boxShadow:
-              "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
-            borderRadius: "2vh",
-          }}
-        >
+        <Box sx={style.mobileContanier}>
           <TextField
             placeholder="Mobile Number with Country Code"
-            InputProps={{
-              className: leagueSpartan.className,
-              sx: {
-                fontSize: "20px",
-                fontWeight: 400,
-                "& .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
-                },
-              },
-            }}
-            sx={{
-              width: {
-                xs: "60%",
-                lg: "70%",
-              },
-              border: "none",
-            }}
+            InputProps={style.inputProps}
+            sx={style.textField}
           />
-          <Button
-            sx={{
-              backgroundColor: "#38B6FF",
-              boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
-              backgroundFilter: " blur(5px)",
-              color: "#FFFFFF",
-              width: {
-                xs: "40%",
-                lg: "40%",
-              },
-              height: {
-                xs: "8vh",
-                sm: "6vh",
-                lg: "8.5vh",
-              },
-              borderTopRightRadius: "20px",
-              borderBottomRightRadius: "20px",
-              fontSize: {
-                xs: "1.5vh",
-                lg: "auto",
-              },
-              ":hover": {
-                backgroundColor: "#38B6FF",
-              },
-            }}
-            className={leagueSpartan.className}
-          >
+          <Button sx={style.button} className={leagueSpartan.className}>
             {data?.buttonText}
           </Button>
         </Box>
@@ -130,6 +56,79 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
 export default PhoneCta;
 
 const style = {
+  button: {
+    backgroundColor: "#38B6FF",
+    boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
+    backgroundFilter: " blur(5px)",
+    color: "#FFFFFF",
+    width: {
+      xs: "40%",
+      lg: "40%",
+    },
+    height: {
+      xs: "8vh",
+      sm: "6vh",
+      lg: "8.5vh",
+    },
+    borderTopRightRadius: "20px",
+    borderBottomRightRadius: "20px",
+    fontSize: {
+      xs: "1.5vh",
+      lg: "auto",
+    },
+    ":hover": {
+      backgroundColor: "#38B6FF",
+    },
+  },
+  textField: {
+    width: {
+      xs: "60%",
+      lg: "70%",
+    },
+    border: "none",
+  },
+  inputProps: {
+    className: leagueSpartan.className,
+    sx: {
+      fontSize: "20px",
+      fontWeight: 400,
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: "none",
+      },
+    },
+  },
+  mobileContanier: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: { lg: "95%" },
+    maxWidth: "100%",
+    height: {
+      xs: "8vh",
+      sm: "6vh",
+      lg: "8.5vh",
+    },
+    background: "#FFF",
+    boxShadow:
+      "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset, 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset",
+    borderRadius: "2vh",
+  },
+  inner: { width: "100%", maxWidth: "145vh", textAlign: "center" },
+  contanier: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: {
+      sm: "100%",
+      xs: "100%",
+      lg: "100%",
+    },
+    margin: {
+      sm: "2vh 4vh",
+      xs: "2vh 2vh",
+      lg: "0",
+    },
+  },
   finding: {
     fontSize: {
       xs: "3.5vh",

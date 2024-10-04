@@ -5,37 +5,11 @@ import React from "react";
 const SectionsBox = () => {
   return (
     <>
-      <Box
-        sx={{
-          margin: {
-            xs: "6vh 0 0 0",
-            lg: "0",
-          },
-        }}
-      >
+      <Box sx={style.contanier}>
         <Box sx={style.boxsection}>
           <Typography
             className={leagueSpartan.className}
-            sx={{
-              fontSize: {
-                xs: "2vh",
-                lg: "3vh",
-              },
-              fontWeight: {
-                xs: "auto",
-                lg: "700",
-              },
-              textAlign: "start",
-              paddingX: {
-                xs: "2vh",
-                lg: "0",
-              },
-              // width: {
-              //   sm: "60%",
-              //   lg: "45%",
-              //   xs: "63%",
-              // },
-            }}
+            sx={style.inner}
             component={"h1"}
           >
             Join Live Interactive Online Classes with Our Certified Tutors!
@@ -58,6 +32,32 @@ const SectionsBox = () => {
 export default SectionsBox;
 
 const style = {
+  contanier: {
+    margin: {
+      xs: "6vh 0 0 0",
+      lg: "0",
+    },
+  },
+  inner: {
+    fontSize: {
+      xs: "2vh",
+      lg: "3vh",
+    },
+    fontWeight: {
+      xs: "auto",
+      lg: "700",
+    },
+    textAlign: "start",
+    paddingX: {
+      xs: "2vh",
+      lg: "0",
+    },
+    // width: {
+    //   sm: "60%",
+    //   lg: "45%",
+    //   xs: "63%",
+    // },
+  },
   boxsection: {
     borderRadius: "1.5vh",
     background: "#E7F6FF",
