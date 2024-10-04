@@ -13,7 +13,7 @@ interface IProps {
 const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
-      <Box sx={{ margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } }}>
+      <Box sx={style.contanier}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
@@ -30,7 +30,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   }}
                 ></div>
               </Typography>
-              <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
+              <Box sx={style.imageContanier}>
                 <Image src={tutors} alt="image" style={style.image} />
               </Box>
               <Button variant="contained" sx={style.containButton}>
@@ -97,6 +97,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
 export default DemoPointers;
 
 const style = {
+  contanier: { margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } },
   tutorheading: {
     fontSize: {
       xs: "3vh",
@@ -116,6 +117,7 @@ const style = {
     width: "100%",
     maxWidth: "43vw",
   },
+  imageContanier: { textAlign: { xs: "center", sm: "left" } },
   boxes: {
     height: "auto",
     padding: 3,

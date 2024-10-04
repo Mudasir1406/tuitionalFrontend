@@ -5,8 +5,6 @@ import { Header } from "@/components";
 import Hero from "@/components/grade-subject-level/hero";
 import HeroInfo from "@/components/grade-subject-level/hero-info";
 import SectionsBox from "@/components/grade-subject-level/sectionsbox";
-// import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.png";
-// import circleIGC from "../../../public/assets/images/svg/circle-subjects.svg";
 import Offer from "@/components/curiculume/offer";
 import GetStarted from "@/components/grade-subject-level/get-started";
 import EducationalCounseling from "@/components/curiculume/educational-counseling";
@@ -34,22 +32,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Hero Section":
         return (
           <>
-            <Box
-              sx={{
-                width: { lg: "100%", sm: "100%" },
-                paddingTop: {
-                  xs: "120px",
-                  sm: "150px",
-                  md: "200px",
-                  lg: 0,
-                  xl: 0,
-                },
-                height: { xs: "100%", lg: "100vh" },
-                display: "flex",
-                alignItems: "end",
-                position: "relative",
-              }}
-            >
+            <Box sx={styles}>
               <Grid container>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Hero data={data?.hero_section} />
@@ -103,17 +86,8 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         return (
           data.phone_cta.paragraph && (
             <>
-              <Box sx={{ position: "relative", paddingBottom: "4vh" }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    width: "100%",
-                    position: "absolute",
-                    zIndex: -1,
-                    background:
-                      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
-                  }}
-                />
+              <Box sx={styles.phoneContanier}>
+                <Box sx={styles.phoneBackground} />
                 <PhoneCta data={data?.phone_cta} />
               </Box>
             </>
@@ -185,3 +159,29 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
 };
 
 export default GradeSubjectLevel;
+
+const styles = {
+  heroContanier: {
+    width: { lg: "100%", sm: "100%" },
+    paddingTop: {
+      xs: "120px",
+      sm: "150px",
+      md: "200px",
+      lg: 0,
+      xl: 0,
+    },
+    height: { xs: "100%", lg: "100vh" },
+    display: "flex",
+    alignItems: "end",
+    position: "relative",
+  },
+  phoneContanier: { position: "relative", paddingBottom: "4vh" },
+  phoneBackground: {
+    height: "100%",
+    width: "100%",
+    position: "absolute",
+    zIndex: -1,
+    background:
+      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
+  },
+};

@@ -44,23 +44,13 @@ const StudentSays: React.FunctionComponent<{
       <Grid container spacing={2}>
         {posters.map((poster, index) => (
           <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
-            <Card
-              sx={{
-                width: { xs: "100%", lg: "100%" },
-                height: { xs: "30vh", lg: "48vh" },
-                borderRadius: "20px",
-              }}
-            >
+            <Card sx={styles.card}>
               <CardMedia
                 component="video"
                 src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 controls
                 poster={poster.src}
-                sx={{
-                  width: { xs: "100%", lg: "100%" },
-                  height: { xs: "30vh", lg: "48vh" },
-                  borderRadius: "20px",
-                }}
+                sx={styles.cardM}
               />
             </Card>
           </Grid>
@@ -73,6 +63,16 @@ const StudentSays: React.FunctionComponent<{
 export default StudentSays;
 
 const styles = {
+  card: {
+    width: { xs: "100%", lg: "100%" },
+    height: { xs: "30vh", lg: "48vh" },
+    borderRadius: "20px",
+  },
+  cardM: {
+    width: { xs: "100%", lg: "100%" },
+    height: { xs: "30vh", lg: "48vh" },
+    borderRadius: "20px",
+  },
   container: {
     display: "flex",
     alignItems: "center",
