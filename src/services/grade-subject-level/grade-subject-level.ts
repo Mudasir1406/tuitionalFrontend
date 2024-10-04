@@ -29,6 +29,7 @@ export const getAllDocumentsFromCollection = async (collectionName: string) => {
     const querySnapshot = await getDocs(collection(db, collectionName));
     const documents = querySnapshot.docs.map((doc) => ({
       id: doc.id, // Include the document ID
+      lastModified: doc.data().timestamp,
     }));
 
     return documents;
