@@ -5,8 +5,8 @@ import { Header } from "@/components";
 import Hero from "@/components/grade-subject-level/hero";
 import HeroInfo from "@/components/grade-subject-level/hero-info";
 import SectionsBox from "@/components/grade-subject-level/sectionsbox";
-import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.png";
-import circleIGC from "../../../public/assets/images/svg/circle-subjects.svg";
+// import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.png";
+// import circleIGC from "../../../public/assets/images/svg/circle-subjects.svg";
 import Offer from "@/components/curiculume/offer";
 import GetStarted from "@/components/grade-subject-level/get-started";
 import EducationalCounseling from "@/components/curiculume/educational-counseling";
@@ -103,28 +103,15 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         return (
           data.phone_cta.paragraph && (
             <>
-              <Box
-                sx={{
-                  backgroundImage: `url(${subjectIGC.src})`,
-                  backgroundPosition: "center",
-                  // height: { xs: "50vh", sm: "50vh", md: "100vh", lg: "45vh" },
-                  width: "100%",
-                  backgroundRepeat: "no-repeat",
-                  position: "relative",
-                  paddingBottom: "5vh",
-                }}
-              >
+              <Box sx={{ position: "relative", paddingBottom: "4vh" }}>
                 <Box
                   sx={{
-                    backgroundImage: `url(${circleIGC.src})`,
-                    backgroundPosition: "right",
-                    backgroundSize: "contain",
+                    height: "100%",
                     width: "100%",
-                    backgroundRepeat: "no-repeat",
                     position: "absolute",
-                    top: 0,
-                    left: 0,
-                    zIndex: 2,
+                    zIndex: -1,
+                    background:
+                      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
                   }}
                 />
                 <PhoneCta data={data?.phone_cta} />
