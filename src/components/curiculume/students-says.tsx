@@ -2,10 +2,10 @@ import React from "react";
 import { Box, Card, CardMedia, Typography, Grid } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 
-import poster1 from "../../../public/assets/images/static/thumbile.png";
-import poster2 from "../../../public/assets/images/static/thumbile2.png";
-import poster3 from "../../../public/assets/images/static/thumbile3.png";
-import poster4 from "../../../public/assets/images/static/thumbile4.png";
+import poster1 from "../../../public/assets/images/static/thumbile.webp";
+import poster2 from "../../../public/assets/images/static/thumbile2.webp";
+import poster3 from "../../../public/assets/images/static/thumbile3.webp";
+import poster4 from "../../../public/assets/images/static/thumbile4.webp";
 
 const StudentSays = () => {
   const posters = [poster1, poster2, poster3, poster4]; // Array of poster images
