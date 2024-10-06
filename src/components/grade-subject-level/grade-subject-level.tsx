@@ -32,7 +32,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Hero Section":
         return (
           <>
-            <Box sx={styles}>
+            <Box sx={styles.heroContanier}>
               <Grid container>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Hero data={data?.hero_section} />
