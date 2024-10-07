@@ -33,7 +33,11 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               <Box sx={style.imageContanier}>
                 <Image src={tutors} alt="image" style={style.image} />
               </Box>
-              <Button variant="contained" sx={style.containButton}>
+              <Button
+                variant="contained"
+                sx={style.containButton}
+                href={data.buttonLink}
+              >
                 <Typography className={leagueSpartan.className}>
                   {data?.buttonText}
                 </Typography>
@@ -153,7 +157,7 @@ const style = {
   containButton: {
     backgroundColor: "#38B6FF",
     color: "#FFF",
-    width: { xs: "100%", sm: "50vh" },
+    width: { xs: "88%", sm: "60%" },
     height: "8vh",
     borderRadius: "2vh",
     display: "flex",
