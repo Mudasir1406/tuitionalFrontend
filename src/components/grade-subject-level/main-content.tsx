@@ -52,7 +52,6 @@ export default MainContent;
 const style = {
   contanier: { paddingX: "5vw" },
   grid: {
-    maxWidth: { xs: "320vh", lg: "170vh" },
     margin: { lg: "4vh auto" },
   },
   title: {
