@@ -17,6 +17,7 @@ export type PageData = {
     header: string;
     headerTag: string;
     buttonText: string;
+    buttonLink: string;
     demoPointersData: Demo_Pointers_Type[];
   };
   main_content: {

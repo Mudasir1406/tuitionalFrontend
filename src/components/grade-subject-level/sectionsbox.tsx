@@ -31,7 +31,7 @@ const style = {
   contanier: {},
   inner: {
     fontSize: {
-      xs: "2vh",
+      xs: "1.5vh",
       lg: "3vh",
     },
     fontWeight: {
@@ -82,7 +82,7 @@ const style = {
     textTransform: "none",
     borderRadius: "10px",
     width: {
-      xs: "20%",
+      xs: "50%",
       sm: "20%",
       md: "20%",
       lg: "20%",

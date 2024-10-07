@@ -76,6 +76,11 @@ const Header: React.FC<IProps> = ({ background }) => {
               alt="Logo"
               width={logoMobile.width}
               height={logoMobile.height}
+              style={{
+                width: 203,
+                height: 49,
+                objectFit: "none",
+              }}
             />
           </Box>
 
@@ -171,7 +176,7 @@ const styles = {
     paddingY: "1vh",
     zIndex: 1000,
     alignItems: "center",
-    marginLeft: "5vw",
+    marginLeft: "7vw",
   },
   logo: {
     display: {
