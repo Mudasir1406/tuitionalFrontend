@@ -101,8 +101,7 @@ const style = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: { lg: "95%" },
-    maxWidth: "100%",
+    width: "95%",
     height: {
       xs: "8vh",
       sm: "6vh",
@@ -118,11 +117,6 @@ const style = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: {
-      sm: "100%",
-      xs: "100%",
-      lg: "100%",
-    },
     margin: {
       sm: "2vh 4vh",
       xs: "2vh 2vh",
@@ -136,10 +130,10 @@ const style = {
     },
     fontWeight: 600,
     textAlign: "center",
-    padding: {
-      xs: "1vh 0",
-      lg: "2vh 0 0 0",
-    },
+    // padding: {
+    //   xs: "1vh 0",
+    //   lg: "2vh 0 0 0",
+    // },
   },
   description: {
     fontSize: {
@@ -157,4 +151,5 @@ const style = {
     },
     color: "#2D2D2D",
   },
+  width: "80vw",
 };

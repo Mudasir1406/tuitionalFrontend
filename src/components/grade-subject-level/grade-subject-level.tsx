@@ -20,6 +20,7 @@ import PopularSubjects from "@/components/curiculume/popular-igcse-subjects";
 import FrequentlyQuestions from "./faqs";
 import BlogCta from "./blog-cta";
 import StudentSays from "./students-says";
+import Image from "next/image";
 
 type IProps = {
   data: PageData;
@@ -66,11 +67,13 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                     },
                   }}
                 >
-                  <img
+                  <Image
                     className="sr-only"
                     alt={data.hero_section.imageAltText}
                     src={data.hero_section.image}
-                  ></img>
+                    width={752}
+                    height={783}
+                  ></Image>
                   <HeroInfo />
                 </Grid>
               </Grid>
@@ -126,16 +129,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "what we offer":
         return <Offer />;
       case "get started":
-        return (
-          <Grid
-            container
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
-            <GetStarted />
-          </Grid>
-        );
+        return <GetStarted />;
       // case "video section":
       //   return <div>Video Section</div>; // Assuming there’s a video component to add here
       default:

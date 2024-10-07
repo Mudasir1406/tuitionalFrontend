@@ -40,7 +40,16 @@ const GetStarted = () => {
         </span>{" "}
         Easy Steps!
       </Typography>
-      <Box sx={styles.outer}>
+      <Box
+        sx={{
+          display: { xs: "none", sm: "none", md: "none", lg: "flex" },
+          flexDirection: "row",
+          width: "90%",
+          alignItems: "center",
+          justifyContent: "center",
+          marginLeft: "5vw",
+        }}
+      >
         <Grid container>
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
@@ -49,7 +58,12 @@ const GetStarted = () => {
           ))}
         </Grid>
       </Box>
-      <Box sx={styles.swiperContanier}>
+      <Box
+        sx={{
+          display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
+          flexDirection: "row",
+        }}
+      >
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
@@ -87,11 +101,11 @@ const GetStarted = () => {
           {data?.map((item, index) => (
             <SwiperSlide
               key={index}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              // style={{
+              //   display: "flex",
+              //   alignItems: "center",
+              //   justifyContent: "center",
+              // }}
             >
               <GetStartedBox {...item} />
             </SwiperSlide>
@@ -105,18 +119,8 @@ const GetStarted = () => {
 export default GetStarted;
 
 const styles = {
-  outer: {
-    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-    flexDirection: "row",
-  },
-  swiperContanier: {
-    display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
-    flexDirection: "row",
-  },
   heading: {
-    textAlign: {
-      lg: "center",
-    },
+    textAlign: "center",
     fontSize: {
       xs: "30px",
       sm: "40px",
@@ -149,10 +153,10 @@ const styles = {
       position: "absolute",
       zIndex: 10,
       left: {
-        xs: -5,
-        sm: 10,
-        md: 10,
-        lg: -30,
+        xs: "10%",
+        sm: "10%",
+        md: "23%",
+        lg: "29%",
       },
       top: {
         xs: -20,
@@ -251,13 +255,6 @@ const styles = {
     textAlign: "center",
     height: "150px",
   },
-  getStartedInner: {
-    height: 320,
-    width: 300,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
 };
 
 type Props = {
@@ -269,7 +266,15 @@ type Props = {
 const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
   return (
     <Box sx={styles.contanier}>
-      <Box sx={styles.getStartedInner}>
+      <Box
+        sx={{
+          height: 320,
+          width: 300,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Image
           src={image}
           alt=""

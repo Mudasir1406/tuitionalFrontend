@@ -5,25 +5,21 @@ import React from "react";
 const SectionsBox = () => {
   return (
     <>
-      <Box sx={style.contanier}>
-        <Box sx={style.boxsection}>
-          <Typography
-            className={leagueSpartan.className}
-            sx={style.inner}
-            component={"h1"}
-          >
-            Join Live Interactive Online Classes with Our Certified Tutors!
-          </Typography>
-          <Box>
-            <Button
-              variant="contained"
-              sx={style.containedBtn}
-              className={leagueSpartan.className}
-            >
-              Book a Demo
-            </Button>
-          </Box>
-        </Box>
+      <Box sx={style.boxsection}>
+        <Typography
+          className={leagueSpartan.className}
+          sx={style.inner}
+          component={"h1"}
+        >
+          Join Live Interactive Online Classes with Our Certified Tutors!
+        </Typography>
+        <Button
+          variant="contained"
+          sx={style.containedBtn}
+          className={leagueSpartan.className}
+        >
+          Book a Demo
+        </Button>
       </Box>
     </>
   );
@@ -32,12 +28,7 @@ const SectionsBox = () => {
 export default SectionsBox;
 
 const style = {
-  contanier: {
-    margin: {
-      xs: "6vh 0 0 0",
-      lg: "0",
-    },
-  },
+  contanier: {},
   inner: {
     fontSize: {
       xs: "2vh",
@@ -52,11 +43,6 @@ const style = {
       xs: "2vh",
       lg: "0",
     },
-    // width: {
-    //   sm: "60%",
-    //   lg: "45%",
-    //   xs: "63%",
-    // },
   },
   boxsection: {
     borderRadius: "1.5vh",
@@ -64,7 +50,6 @@ const style = {
     boxShadow:
       "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px -3px 8px 0px rgba(56, 182, 255, 0.20)",
     backdropFilter: "blur(5px)",
-
     height: {
       xs: "8vh",
       lg: "12vh",
@@ -97,10 +82,10 @@ const style = {
     textTransform: "none",
     borderRadius: "10px",
     width: {
-      xs: "100%",
-      sm: "100%",
-      md: "100%",
-      lg: "auto",
+      xs: "20%",
+      sm: "20%",
+      md: "20%",
+      lg: "20%",
     },
     transition: "all .5s ease-in-out",
     ":hover": {

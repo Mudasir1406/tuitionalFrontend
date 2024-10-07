@@ -107,13 +107,11 @@ const style = {
   },
 
   guidence: {
-    width: {
-      xs: "90%",
-      sm: "60vh",
-      md: "70vh",
-      lg: "76vh",
-    },
     fontWeight: "700",
+    width: {
+      xs: "80vw",
+      lg: "40vw",
+    },
     fontSize: {
       xs: "3.1vh",
       sm: "3.5vh",
@@ -136,13 +134,11 @@ const style = {
 
   desc: {
     color: "#2D2D2D",
-    width: {
-      xs: "90%",
-      sm: "70vh",
-      md: "70vh",
-      lg: "68vh",
-    },
     fontWeight: 400,
+    width: {
+      xs: "80vw",
+      lg: "40vw",
+    },
     fontSize: {
       xs: "2vh",
       sm: "2.2vh",
