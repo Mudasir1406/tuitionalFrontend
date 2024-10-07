@@ -8,7 +8,6 @@ export default async function sitemap({
   id: number;
 }): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllDocumentsFromCollection("grade-subject-level");
-  console.log(slugs);
   if (slugs) {
     const urls = slugs.map((slug) => ({
       url: `${SITE_URL}/online/${slug.id}`,

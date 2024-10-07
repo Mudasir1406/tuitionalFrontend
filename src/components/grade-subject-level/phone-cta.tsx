@@ -44,7 +44,11 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
             InputProps={style.inputProps}
             sx={style.textField}
           />
-          <Button sx={style.button} className={leagueSpartan.className}>
+          <Button
+            sx={style.button}
+            className={leagueSpartan.className}
+            href={data.link}
+          >
             {data?.buttonText}
           </Button>
         </Box>
