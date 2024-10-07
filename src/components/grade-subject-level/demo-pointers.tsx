@@ -123,9 +123,9 @@ const style = {
     textAlign: { xs: "center", sm: "left", lg: "left" },
   },
   image: {
-    height: "auto",
     width: "100%",
     maxWidth: "43vw",
+    height: "100%",
   },
   imageContanier: { textAlign: { xs: "center", sm: "left" } },
   boxes: {
