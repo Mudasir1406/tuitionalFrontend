@@ -93,7 +93,7 @@ const style = {
   subjects: {
     color: "#2D2D2D",
     fontWeight: "600",
-    fontSize: { lg: "2vh", xs: "1.5vh" },
+    fontSize: { lg: "2vh", xs: "1.2vh" },
   },
   cardsBoxes: {
     background: "#FFF",

@@ -31,7 +31,13 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                 ></div>
               </Typography>
               <Box sx={style.imageContanier}>
-                <Image src={tutors} alt="image" style={style.image} />
+                <Image
+                  src={tutors.src}
+                  alt="image"
+                  style={style.image}
+                  width={tutors.width}
+                  height={tutors.height}
+                />
               </Box>
               <Button
                 variant="contained"
