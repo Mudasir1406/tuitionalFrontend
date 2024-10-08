@@ -62,7 +62,7 @@ const Header: React.FC<IProps> = ({ background }) => {
               src={logo.src}
               alt="Logo"
               style={{
-                width: 203,
+                width: 250,
                 height: 49,
                 objectFit: "none",
               }}
@@ -186,7 +186,8 @@ const styles = {
       lg: "flex",
     },
     alignItems: "flex-start",
-    width: "27%",
+    width: "30%",
+    marginLeft: "-50px",
   },
   logoMobile: {
     display: {
@@ -194,7 +195,7 @@ const styles = {
       lg: "none",
     },
     alignItems: "flex-start",
-    marginLeft: "1vw",
+    marginLeft: "-30px",
     cursor: "pointer",
   },
   image: {
