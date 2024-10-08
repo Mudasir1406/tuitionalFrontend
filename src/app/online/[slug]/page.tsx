@@ -7,86 +7,27 @@ import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
-import { SITE_URL } from "@/utils/env";
-import { generateFaqSchema } from "@/utils/helper";
-import { Metadata } from "next";
-import Head from "next/head";
 import { redirect } from "next/navigation";
-import Script from "next/script";
 import React from "react";
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> => {
-  const data: PageData | undefined = await getPageData(params.slug);
-  if (!data) return {};
-  return {
-    title: data.meta_tags.title,
-    description: data.meta_tags.description,
-    alternates: {
-      canonical: `${SITE_URL}/online/${params.slug}`,
-    },
-    openGraph: {
-      images: data.meta_tags.ogImage,
-      title: data.meta_tags.ogTitle,
-      url: `${SITE_URL}/online/${params.slug}`,
-      description: data.meta_tags.ogDescription,
-    },
-    robots: {
-      index: data.meta_tags.metaName.includes("noindex") ? false : true,
-      follow: data.meta_tags.metaName.includes("nofollow") ? false : true,
-    },
-  };
-};
-
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const data: PageData | undefined = await getPageData(params.slug);
-  const sequence: Component_Sequence_Type | undefined = await getPageSequence();
-  const pageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: data?.meta_tags.pageSchemaName,
-    description: data?.meta_tags.pageSchemaDescription,
-    url: `${SITE_URL}/online/${params.slug}`,
-  };
+  // Fetch data concurrently for better performance
+  const [data, sequence]: [
+    PageData | undefined,
+    Component_Sequence_Type | undefined
+  ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: data?.meta_tags.serviceType,
-    description: data?.meta_tags.serviceDescription,
-    provider: {
-      "@type": "Organization",
-      name: "Tuitional",
-      url: "https://tuitionaledu.com",
-    },
-  };
-
-  const faqSchema = generateFaqSchema(data?.Faqs);
-
+  // Redirect if data is not found
   if (!data) return redirect("/404");
-  if (sequence)
-    return (
-      <div>
-        <Script
-          id="page"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
-        />
-        <Script
-          id="service"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        />
-        <Script
-          id="faq"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: faqSchema }}
-        />
-        <GradeSubjectLevel data={data} sequence={sequence} />
-      </div>
-    );
+
+  // If sequence is not found, consider what you want to do (optional)
+  // You may want to return a loading state or an error message
+  if (!sequence) {
+    return <div>Error: Component sequence not found.</div>; // or a loading state, etc.
+  }
+
+  // Render the main component with the fetched data
+  return <GradeSubjectLevel data={data} sequence={sequence} />;
 };
+
 export default Page;
