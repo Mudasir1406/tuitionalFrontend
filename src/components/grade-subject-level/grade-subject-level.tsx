@@ -67,6 +67,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                       position: "absolute",
                       bottom: 0,
                       zIndex: "0",
+                      loading: "lazy",
                     },
                   }}
                 >
