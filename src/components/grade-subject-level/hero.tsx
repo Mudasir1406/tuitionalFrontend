@@ -20,7 +20,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
           paddingLeft: "5vw",
         }}
       >
-        {/* <Typography
+        <Typography
           sx={styles.heading}
           className={leagueSpartan.className}
           component={"div"}
@@ -32,7 +32,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
               __html: data?.header,
             }}
           ></div>
-        </Typography> */}
+        </Typography>
         <Typography
           sx={styles.desc}
           className={leagueSpartan.className}
