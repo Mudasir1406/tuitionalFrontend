@@ -76,6 +76,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                     src={data.hero_section.image}
                     width={1}
                     height={1}
+                    loading="lazy"
                   ></Image>
                   <HeroInfo />
                 </Grid>
