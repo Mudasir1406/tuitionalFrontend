@@ -4,10 +4,8 @@ import { leagueSpartan } from "@/app/fonts";
 import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
-
 import CircleIcon from "@mui/icons-material/Circle";
 import { PageData } from "@/types/grade-subject-level.types";
-import { renderWithLineBreaks } from "../line-break-text";
 
 type IProps = {
   data: PageData["hero_section"];
@@ -294,17 +292,17 @@ const styles = {
       lg: "start",
     },
     fontSize: {
-      xs: "32px",
+      xs: "24px",
       sm: "32px",
-      md: "5.3vh",
+      md: "42px",
       lg: "5.5vh",
     },
     fontWeight: 700,
     lineHeight: {
-      xs: "5.5vh",
-      sm: "6.5vh",
-      md: "5.5vh",
-      lg: "7vh",
+      xs: "28px",
+      sm: "36px",
+      md: "46px",
+      lg: "5.5vh",
     },
     marginTop: {
       xs: "3vh",
