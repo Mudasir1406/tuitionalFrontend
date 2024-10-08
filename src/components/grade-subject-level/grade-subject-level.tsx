@@ -52,12 +52,15 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                         data.hero_section.image || subjectLevelImage.src
                       })`,
                       backgroundPosition: "bottom",
-                      backgroundSize: "contain",
+                      backgroundSize: {
+                        xs: "contain",
+                        lg: "cover",
+                      },
                       height: {
-                        xs: "100vh",
-                        sm: "100vh",
-                        md: "90vh",
-                        lg: "90vh",
+                        xs: "100%",
+                        sm: "100%",
+                        md: "70vh",
+                        lg: "80vh",
                       },
                       width: "100%",
                       backgroundRepeat: "no-repeat",
@@ -71,8 +74,8 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                     className="sr-only"
                     alt={data.hero_section.imageAltText}
                     src={data.hero_section.image}
-                    width={752}
-                    height={783}
+                    width={1}
+                    height={1}
                   ></Image>
                   <HeroInfo />
                 </Grid>
