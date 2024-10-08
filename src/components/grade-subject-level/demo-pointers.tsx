@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import tutors from "../../../public/assets/images/static/tutoring.png";
+import tutors from "../../../public/assets/images/static/tutoring.webp";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
@@ -124,7 +124,7 @@ const style = {
   },
   image: {
     width: "100%",
-    maxWidth: "43vw",
+    // maxWidth: "43vw",
     height: "100%",
   },
   imageContanier: { textAlign: { xs: "center", sm: "left" } },
