@@ -294,10 +294,10 @@ const styles = {
       lg: "start",
     },
     fontSize: {
-      xs: "5.7vh",
-      sm: "6vh",
+      xs: "32px",
+      sm: "32px",
       md: "5.3vh",
-      lg: "6vh",
+      lg: "5.5vh",
     },
     fontWeight: 700,
     lineHeight: {
