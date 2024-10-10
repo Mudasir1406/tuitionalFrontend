@@ -1,27 +1,49 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
-import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import { Header } from "@/components";
-import Hero from "@/components/grade-subject-level/hero";
-import HeroInfo from "@/components/grade-subject-level/hero-info";
-import SectionsBox from "@/components/grade-subject-level/sectionsbox";
-import Offer from "@/components/curiculume/offer";
-import GetStarted from "@/components/grade-subject-level/get-started";
-import EducationalCounseling from "@/components/curiculume/educational-counseling";
-import Footer from "@/components/footer";
+import dynamic from "next/dynamic";
+
+const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), {
+  ssr: true,
+});
+const SectionsBox = dynamic(
+  () => import("@/components/grade-subject-level/sectionsbox"),
+  { ssr: true }
+);
+const Offer = dynamic(() => import("@/components/curiculume/offer"), {
+  ssr: true,
+});
+const GetStarted = dynamic(
+  () => import("@/components/grade-subject-level/get-started"),
+  { ssr: true }
+);
+const EducationalCounseling = dynamic(
+  () => import("@/components/curiculume/educational-counseling"),
+  { ssr: true }
+);
+
+const HeroInfo = dynamic(
+  () => import("@/components/grade-subject-level/hero-info"),
+  { ssr: false }
+);
+const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
+
+const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
+const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
+const MainContent = dynamic(() => import("./main-content"), { ssr: true });
+const PopularSubjects = dynamic(
+  () => import("@/components/curiculume/popular-igcse-subjects"),
+  { ssr: true }
+);
+const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
+const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
+const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
+
 import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
-import PhoneCta from "./phone-cta";
-import DemoPointers from "./demo-pointers";
-import MainContent from "./main-content";
-import PopularSubjects from "@/components/curiculume/popular-igcse-subjects";
-import FrequentlyQuestions from "./faqs";
-import BlogCta from "./blog-cta";
-import StudentSays from "./students-says";
-import Image from "next/image";
-
 type IProps = {
   data: PageData;
   sequence: Component_Sequence_Type;
@@ -38,49 +60,10 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Hero data={data?.hero_section} />
                 </Grid>
-                <Grid
-                  item
-                  lg={6}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  sx={{
-                    position: "relative",
-                    "::before": {
-                      content: "''",
-                      backgroundImage: `url(${
-                        data.hero_section.image || subjectLevelImage.src
-                      })`,
-                      backgroundPosition: "bottom",
-                      backgroundSize: {
-                        xs: "contain",
-                        lg: "cover",
-                      },
-                      height: {
-                        xs: "100%",
-                        sm: "100%",
-                        md: "70vh",
-                        lg: "80vh",
-                      },
-                      width: "100%",
-                      backgroundRepeat: "no-repeat",
-                      position: "absolute",
-                      bottom: 0,
-                      zIndex: "0",
-                      loading: "lazy",
-                    },
-                  }}
-                >
-                  <Image
-                    className="sr-only"
-                    alt={data.hero_section.imageAltText}
-                    src={data.hero_section.image}
-                    width={1}
-                    height={1}
-                    loading="lazy"
-                  ></Image>
-                  <HeroInfo />
-                </Grid>
+                <HeroInfo
+                  image={data.hero_section.image}
+                  imageAltText={data.hero_section.imageAltText}
+                />
               </Grid>
             </Box>
             <SectionsBox />
