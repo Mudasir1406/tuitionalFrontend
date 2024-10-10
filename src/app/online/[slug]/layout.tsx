@@ -7,7 +7,9 @@ import Script from "next/script";
 import React, { ReactNode } from "react";
 
 // Helper function to fetch page data
-const fetchData = async (slug: string): Promise<PageData | undefined> => {
+const fetchData = async (
+  slug: string
+): Promise<PageData | undefined | null> => {
   return await getPageData(slug);
 };
 
@@ -16,7 +18,7 @@ export const generateMetadata = async ({
 }: {
   params: { slug: string };
 }): Promise<Metadata> => {
-  const data: PageData | undefined = await fetchData(params.slug);
+  const data: PageData | undefined | null = await fetchData(params.slug);
   if (!data) return {};
 
   const { title, description, metaName, ogImage, ogTitle, ogDescription } =
@@ -48,7 +50,7 @@ const Layout = async ({
   params: { slug: string };
   children: ReactNode;
 }) => {
-  const data: PageData | undefined = await fetchData(params.slug);
+  const data: PageData | undefined | null = await fetchData(params.slug);
 
   if (!data) return null;
 
