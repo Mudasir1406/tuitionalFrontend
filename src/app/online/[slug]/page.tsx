@@ -12,8 +12,8 @@ import React from "react";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const [data, sequence]: [
-    PageData | undefined,
-    Component_Sequence_Type | undefined
+    PageData | undefined | null,
+    Component_Sequence_Type | undefined | null
   ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
 
   if (!data) return redirect("/404");
