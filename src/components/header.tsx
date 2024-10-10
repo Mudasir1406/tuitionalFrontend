@@ -1,14 +1,6 @@
 "use client";
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  SxProps,
-  Theme,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import logo from "../../public/assets/images/static/logo.png";
 import logoMobile from "../../public/assets/images/static/logoMobile.png";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -176,7 +168,7 @@ const styles = {
     paddingY: "1vh",
     zIndex: 1000,
     alignItems: "center",
-    marginLeft: "7vw",
+    marginLeft: "5vw",
   },
   logo: {
     display: {

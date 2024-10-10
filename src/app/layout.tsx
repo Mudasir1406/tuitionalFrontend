@@ -1,9 +1,11 @@
 import "./globals.css";
 import { DrawerProvider } from "@/context/drawer-context";
-import ResponsiveDrawer from "@/components/drawer";
 import { Metadata } from "next";
 import Metrics from "./metrics";
-import Head from "next/head";
+import dynamic from "next/dynamic";
+const DynamicModel = dynamic(() => import("@/components/drawer"), {
+  ssr: false,
+});
 import Script from "next/script";
 export const metadata: Metadata = {
   title: "Tuitional",
@@ -43,7 +45,7 @@ export default function RootLayout({
       />
       <DrawerProvider>
         <body style={{ margin: 0 }}>
-          <ResponsiveDrawer />
+          <DynamicModel />
           {children}
           <Metrics />
         </body>
