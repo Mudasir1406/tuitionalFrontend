@@ -25,9 +25,9 @@ const EducationalCounseling = dynamic(
 
 const HeroInfo = dynamic(
   () => import("@/components/grade-subject-level/hero-info"),
-  { ssr: false }
+  { ssr: true }
 );
-const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
+const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
 
 const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
 const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
