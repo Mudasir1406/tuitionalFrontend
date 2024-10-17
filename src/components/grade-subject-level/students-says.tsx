@@ -47,7 +47,7 @@ const StudentSays: React.FunctionComponent<{
             <Card sx={styles.card}>
               <CardMedia
                 component="video"
-                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/Testimonial%20Videos%2FHannah%20Maistry%20UAE%20(2).mp4?alt=media&token=48f4cc98-02e5-4bce-a088-5cc8a292ce78"
                 controls
                 poster={poster.src}
                 sx={styles.cardM}
