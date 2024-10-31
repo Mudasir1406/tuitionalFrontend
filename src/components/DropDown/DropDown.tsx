@@ -20,45 +20,39 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 type IProps = {
   placeholder: string;
+  marginBottom?: string;
+  marginTop?: string;
   data: string[];
+  multiple?: boolean;
+  boxShadow?: string;
+  value: string;
+  onChange: (e: SelectChangeEvent) => void;
 };
 
 const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
   placeholder,
   data,
+  multiple,
+  boxShadow,
+  marginBottom,
+  marginTop,
+  value,
+  onChange,
 }) => {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
-
   return (
     <div>
       <FormControl sx={{ width: "100%" }}>
         <Select
           className={`select ${leagueSpartan.className}`}
           displayEmpty
+          multiple={multiple}
           sx={{
             borderRadius: "10px",
+            boxShadow: boxShadow,
+            marginBottom: marginBottom,
+            marginTop: marginTop,
             height: "5.5vh",
             fontSize: "1.5vh", // Adjusted font size with vh unit
             fontWeight: 400,
@@ -72,11 +66,11 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
               border: "none",
             },
           }}
-          value={personName}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
-            if (selected.length === 0) {
+            if (selected?.length === 0) {
               return (
                 <Typography
                   sx={styles.placeholderText}
@@ -86,18 +80,13 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
                 </Typography>
               );
             }
-
-            return selected.join(", ");
+            return selected;
           }}
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
           {data.map((item, index) => (
-            <MenuItem
-              key={index}
-              value={item}
-              style={getStyles(item, personName, theme)}
-            >
+            <MenuItem key={index} value={item}>
               <Typography
                 sx={[styles.placeholderText, { textAlign: "justify" }]}
                 className={leagueSpartan.className}

@@ -22,7 +22,11 @@ const Faqs: React.FC = async () => {
   return (
     <Box sx={styles.contanier}>
       <Box sx={styles.headingContanier}>
-        <Typography sx={styles.heading} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.heading}
+          className={leagueSpartan.className}
+          component={"h4"}
+        >
           Frequently Asked Questions
         </Typography>
       </Box>

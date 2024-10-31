@@ -12,10 +12,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
-import {
-  StaticImageData,
-  StaticImport,
-} from "next/dist/shared/lib/get-img-props";
+import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>();
   useEffect(() => {
@@ -99,14 +96,7 @@ const GetStarted = () => {
           style={{ width: "100%" }}
         >
           {data?.map((item, index) => (
-            <SwiperSlide
-              key={index}
-              // style={{
-              //   display: "flex",
-              //   alignItems: "center",
-              //   justifyContent: "center",
-              // }}
-            >
+            <SwiperSlide key={index}>
               <GetStartedBox {...item} />
             </SwiperSlide>
           ))}

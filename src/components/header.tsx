@@ -49,19 +49,22 @@ const Header: React.FC<IProps> = ({ background }) => {
             alignItems: "center",
           }}
         >
-          <Box sx={styles.logo}>
-            <Image
-              src={logo.src}
-              alt="Logo"
-              style={{
-                width: 250,
-                height: 49,
-                objectFit: "none",
-              }}
-              width={logo.width}
-              height={logo.height}
-            />
-          </Box>
+          <Link href={"https://tuitionaledu.com/"}>
+            <Box sx={styles.logo}>
+              <Image
+                src={logo.src}
+                alt="Logo"
+                style={{
+                  width: 250,
+                  height: 49,
+                  objectFit: "contain",
+                }}
+                width={logo.width}
+                height={logo.height}
+                quality={100}
+              />
+            </Box>
+          </Link>
           <Box sx={styles.logoMobile}>
             <Image
               src={logoMobile.src}
@@ -147,6 +150,27 @@ const Header: React.FC<IProps> = ({ background }) => {
           />
         </Toolbar>
       </AppBar>
+      <Box
+        sx={{
+          position: "fixed", // Use fixed positioning to keep it in view
+          bottom: 0,
+          right: 0, // Change left to right for bottom-right positioning
+          padding: 5, // Optional: Add some padding for spacing from edges
+          zIndex: 1000, // Ensures it stays on top of other elements
+          animation: "rotateAnimation 2s ease-in-out infinite",
+        }}
+      >
+        <Link href={"https://wa.me/97144396296"}>
+          <Image
+            src={
+              "https://img.icons8.com/?size=100&id=DUEq8l5qTqBE&format=png&color=000000"
+            }
+            width={100}
+            height={100}
+            alt="WhatsApp"
+          />
+        </Link>
+      </Box>
     </Box>
   );
 };
@@ -197,7 +221,7 @@ const styles = {
     objectfit: "none",
   },
   typography: {
-    fontSize: "2vh",
+    fontSize: "2.1vh",
     fontWeight: 400,
     lineHeight: "1.84vh",
     textAlign: "center",

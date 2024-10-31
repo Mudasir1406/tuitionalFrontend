@@ -17,7 +17,7 @@ const ReviewsOnWp: React.FC = async () => {
       <Grid container sx={styles.gridContanier} rowSpacing={2}>
         {data.map((item, index) => (
           <Grid item lg={6} key={index}>
-            <Waveform audio={item.audio} />
+            <Waveform audio={item.audio} image={item.imageUrl} />
           </Grid>
         ))}
       </Grid>

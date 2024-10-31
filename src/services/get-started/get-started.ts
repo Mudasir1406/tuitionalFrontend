@@ -16,4 +16,5 @@ export type GetStartedData = {
   heading: string;
   image: StaticImageData;
   description: string;
+  ButtonText: string;
 };

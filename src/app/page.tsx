@@ -13,11 +13,40 @@ import Footer from "../components/footer";
 import ContactUs from "../components/home/contact-us";
 import homeImage from "../../public/assets/images/static/girl-with-book.png";
 import { getTestimonials } from "@/services/testimonials/testimonials";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+import Script from "next/script";
+import { generateFaqSchema } from "@/utils/helper";
+import { getFaqs } from "@/services/faqs/faqs";
+import { Faqs_Type } from "@/types/grade-subject-level.types";
+
+export const metadata: Metadata = {
+  title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
+  description:
+    " Looking for personalized online tutoring and don’t know where to go? Contact Tuitional to ace your examination results through individual online tutoring sessions.",
+  alternates: {
+    canonical: `${SITE_URL}`,
+  },
+};
 
 const Home: React.FC = async () => {
   const data = await getTestimonials();
+  const faqs: Faqs_Type[] = await getFaqs();
+
+  const faqSchema = generateFaqSchema({
+    header: "",
+    headerTag: "",
+    faqs: faqs,
+    paragraph: "",
+  });
   return (
     <>
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        defer
+        dangerouslySetInnerHTML={{ __html: faqSchema }}
+      />
       <Header />
       <Container sx={styles.contanier}>
         <Grid container>

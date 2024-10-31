@@ -1,4 +1,11 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+"use client";
+import {
+  Box,
+  Button,
+  Grid,
+  SelectChangeEvent,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import DropDown from "../DropDown/DropDown";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
@@ -9,6 +16,7 @@ import {
   getFilterData,
 } from "../../services/filter-data/filter-data";
 import { leagueSpartan } from "@/app/fonts";
+import PopUpButton from "../pop-up-button";
 
 const Filter: React.FC = async () => {
   const filterData: Filter_Data | null = await getFilterData();
@@ -16,63 +24,66 @@ const Filter: React.FC = async () => {
     <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
       <Typography
         sx={[styles.heading]}
-        component={"h2"}
+        component={"h1"}
         className={leagueSpartan.className}
       >
-        Learn From{" "}
+        Online Tutoring{" "}
         <Typography
           sx={styles.expertText}
           component={"span"}
           className={leagueSpartan.className}
         >
-          Expert Tutors{" "}
+          Platform <br />{" "}
         </Typography>
-        Face-To-Face Or Online
+        Customized for 1:1 Online Tutoring Sessions
       </Typography>
-      <Typography sx={styles.desc} className={leagueSpartan.className}>
-        Tuitional Is A Virtual Learning Platform Offering Live Sessions For
-        Grades 6-8, IGCSE GCSE, And A-Levels
+      <Typography
+        sx={styles.desc}
+        className={leagueSpartan.className}
+        component={"p"}
+      >
+        Tuitional Is An Online Tutoring Platform Providing Quality Education
+        Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
+        your learning journey.
       </Typography>
       <Box sx={styles.filterBox}>
         <Grid container spacing={2}>
-          <Grid item lg={4} sm={12} xs={12} md={12}>
+          <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Curriculum"
               data={filterData?.curriculum || []}
+              value={""}
+              onChange={() => {}}
             />
           </Grid>
-          <Grid item lg={4} sm={12} xs={12} md={12}>
+          <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Grade"
               data={filterData?.grade || []}
-            />
-          </Grid>
-          <Grid item lg={4} sm={12} xs={12} md={12}>
-            <DropDown
-              placeholder="Select Subject"
-              data={filterData?.subject || []}
+              value={""}
+              onChange={() => {}}
             />
           </Grid>
           <Grid item lg={7} sm={12} xs={12} md={12}>
             <DropDown
-              placeholder="Looking For?"
-              data={filterData?.type || []}
+              placeholder="Select Subject"
+              data={filterData?.subject || []}
+              value={""}
+              onChange={() => {}}
             />
           </Grid>
           <Grid item lg={5} sm={12} xs={12} md={12}>
-            <Button
-              variant="contained"
+            <PopUpButton
+              text="Get Started"
+              href="popup"
               sx={styles.containedBtn}
-              className={leagueSpartan.className}
-            >
-              Search
-            </Button>
+            />
           </Grid>
         </Grid>
       </Box>
-      <Box>
+      {/* <Box>
         <PopularSearches />
-      </Box>
+      </Box> */}
     </Box>
   );
 };
@@ -130,7 +141,7 @@ const styles = {
       zIndex: 10,
       right: {
         md: 0,
-        lg: 0,
+        lg: -45,
       },
       top: {
         xs: -20.5,
@@ -198,6 +209,7 @@ const styles = {
     padding: "2vh",
     textTransform: "none",
     letterSpacing: "-2%",
+    color: "white",
     borderRadius: "10px",
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",

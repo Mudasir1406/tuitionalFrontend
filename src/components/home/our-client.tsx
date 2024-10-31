@@ -53,7 +53,11 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             flexDirection: "column",
           }}
         >
-          <Typography sx={styles.heading} className={leagueSpartan.className}>
+          <Typography
+            sx={styles.heading}
+            className={leagueSpartan.className}
+            component={"h3"}
+          >
             What are Students Says!
           </Typography>
           <Typography sx={styles.desc} className={leagueSpartan.className}>
@@ -64,6 +68,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             variant="contained"
             sx={styles.buttonMobile}
             className={leagueSpartan.className}
+            href={"/testimonials"}
           >
             Read More
           </Button>
@@ -161,6 +166,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             variant="contained"
             sx={styles.button}
             className={leagueSpartan.className}
+            href={"/testimonials"}
           >
             Read More
           </Button>

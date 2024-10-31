@@ -1,6 +1,7 @@
 import { leagueSpartan } from "@/app/fonts";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import PopUpButton from "../pop-up-button";
 
 const SectionsBox = () => {
   return (
@@ -13,13 +14,7 @@ const SectionsBox = () => {
         >
           Join Live Interactive Online Classes with Our Certified Tutors!
         </Typography>
-        <Button
-          variant="contained"
-          sx={style.containedBtn}
-          className={leagueSpartan.className}
-        >
-          Book a Demo
-        </Button>
+        <PopUpButton sx={style.containedBtn} text="Book a Demo" href="popup" />
       </Box>
     </>
   );
@@ -70,6 +65,7 @@ const style = {
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
+    color: "white",
     fontSize: {
       xs: "1.5vh",
       lg: "2vh",
