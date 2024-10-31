@@ -10,9 +10,9 @@ import linkdin from "../../public/assets/images/svg/LinkedIN_black.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import PopUpButton from "./pop-up-button";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
-
   return (
     <Box sx={styles.background}>
       <Box sx={styles.rightCircle} />
@@ -35,7 +35,13 @@ const Footer: React.FC = async () => {
                   width={plan.width}
                   height={plan.height}
                   alt="plan"
-                  style={{ width: "60px", height: "60px", marginTop: "10px" }}
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    marginTop: "10px",
+                    objectFit: "contain",
+                  }}
+                  quality={100}
                 ></Image>
               </Box>
             </Grid>
@@ -44,7 +50,7 @@ const Footer: React.FC = async () => {
                 sx={styles.admissionText}
                 className={leagueSpartan.className}
               >
-                Admission is open for the next year batch
+                Admissions are Open for the Next Year Batch
               </Typography>
             </Grid>
             <Grid item lg={3}>
@@ -64,13 +70,11 @@ const Footer: React.FC = async () => {
               </Box>
             </Grid>
             <Grid item lg={2.5}>
-              <Button
-                variant="contained"
+              <PopUpButton
+                text="Enroll Now!"
+                href="popup"
                 sx={styles.contactButton}
-                className={leagueSpartan.className}
-              >
-                Contact us now
-              </Button>
+              />
             </Grid>
           </Grid>
         </Box>

@@ -7,6 +7,8 @@ const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: false,
 });
 import Script from "next/script";
+import Image from "next/image";
+import { Box } from "@mui/material";
 export const metadata: Metadata = {
   title: "Tuitional",
   description: "",

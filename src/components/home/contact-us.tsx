@@ -1,19 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  SxProps,
-  TextField,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import girl from "../../../public/assets/images/static/contact-us-girl.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import PhoneInput from "react-phone-number-input";
+import CustomInput from "../custom-input/custom-input";
+import "react-phone-number-input/style.css";
+import DropDown from "../DropDown/DropDown";
+import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 
 type IProps = {
   background?: any;
@@ -31,7 +28,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
     Year: "",
     Message: "",
   });
-
+  const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -74,7 +71,11 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
       // alert("Error saving data");
     }
   };
-
+  useEffect(() => {
+    getFilterData().then((data) => {
+      setFilterData(data);
+    });
+  }, []);
   return (
     <Box sx={styles.container}>
       <Box sx={[styles.background, background]} />
@@ -117,8 +118,12 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
               zIndex: 4,
             }}
           >
-            <Typography sx={styles.heading} className={leagueSpartan.className}>
-              Let’s Have A Call!
+            <Typography
+              sx={styles.heading}
+              className={leagueSpartan.className}
+              component={"h5"}
+            >
+              Let&apos;s Get You Started!
             </Typography>
             <Box
               sx={styles.contactForm}
@@ -144,69 +149,54 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     variant="outlined"
                     className={leagueSpartan.className}
                   />
-                  <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Country"
-                    value={formData.Country}
-                    onChange={handleChange}
-                    label="Country*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
+                  <PhoneInput
+                    style={styles.phoneInput}
+                    defaultCountry="SA"
+                    // value={formData?.phone || ""}
+                    onChange={(e) => {}}
+                    inputComponent={CustomInput}
+                    // error={errorData?.phone}
+                    // helperText={errorData?.phone}
                   />
-                  <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Curriculum"
-                    value={formData.Curriculum}
-                    onChange={handleChange}
-                    label="Select Curriculum*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
+                  <DropDown
+                    placeholder="Select Curriculum"
+                    data={filterData?.curriculum || []}
+                    boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    marginTop="1.5vh"
+                    marginBottom="1.5vh"
+                    value={""}
+                    onChange={() => {}}
                   />
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <TextField
                     sx={styles.input}
                     fullWidth
-                    name="Parent"
+                    name="Email"
                     value={formData.Parent}
                     onChange={handleChange}
-                    label="I am parent*"
+                    label="Email*"
                     variant="outlined"
+                    type="email"
                     className={leagueSpartan.className}
                   />
-                  <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Phone"
-                    value={formData.Phone}
-                    onChange={handleChange}
-                    label="Phone no*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
+                  <DropDown
+                    placeholder="Select Grade"
+                    data={filterData?.grade || []}
+                    boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    marginBottom="1.5vh"
+                    marginTop="1.5vh"
+                    value={""}
+                    onChange={() => {}}
                   />
-                  <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Subjects"
-                    value={formData.Subjects}
-                    onChange={handleChange}
-                    label="Select Subject(s)*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
-                  />
-                </Grid>
-                <Grid item lg={12} md={12} sm={12} xs={12}>
-                  <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Grade"
-                    value={formData.Grade}
-                    onChange={handleChange}
-                    label="Select Grade*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
+                  <DropDown
+                    placeholder="Select Subject"
+                    data={filterData?.subject || []}
+                    boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    marginBottom="1.5vh"
+                    marginTop="1.5vh"
+                    value={""}
+                    onChange={() => {}}
                   />
                 </Grid>
               </Grid>
@@ -321,6 +311,25 @@ const styles = {
       },
     },
   },
+  phoneInput: {
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    paddingLeft: "10px",
+    backgroundColor: "white",
+    marginTop: "1.5vh",
+    marginBottom: "1.5vh",
+    outline: "none",
+    ":focusVisible": {
+      outline: "none",
+    },
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0,0,0,0.77)",
+    borderRadius: "10px",
+    height: "5.5vh",
+    fontSize: "1.7vh",
+    fontWeight: 400,
+    minHeight: "50px",
+  },
   contactForm: {
     boxShadow:
       "0px -3px 8px 0px rgba(0, 0, 0, 0.06) inset,0px 3px 8px 0px rgba(0, 0, 0, 0.06) inset",
@@ -371,7 +380,7 @@ const styles = {
 
   input: {
     backgroundColor: "white",
-    marginY: "12px",
+    marginY: "1.5vh",
     // outline: "none",
     // ":focus-visible": {
     //   outline: "none",

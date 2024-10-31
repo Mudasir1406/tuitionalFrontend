@@ -14,7 +14,11 @@ const Trusted: React.FC = async () => {
   const trustedSchools: Trusted_Schools_Type = await getTrustedSchools();
   return (
     <Box sx={styles.background}>
-      <Typography sx={styles.heading} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.heading}
+        className={leagueSpartan.className}
+        component={"h2"}
+      >
         Trusted By Students At Top Schools
       </Typography>
       <Box sx={styles.slideContainer}>

@@ -16,16 +16,16 @@ import {
   StaticImageData,
   StaticImport,
 } from "next/dist/shared/lib/get-img-props";
-const GetStarted = () => {
-  const [data, setData] = useState<GetStartedData[]>();
-  useEffect(() => {
-    getStartedData().then((res) => {
-      setData(res);
-    });
-  }, []);
+import PopUpButton from "../pop-up-button";
+const GetStarted = async () => {
+  const data: GetStartedData[] = await getStartedData();
   return (
     <Box>
-      <Typography sx={styles.heading} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.heading}
+        className={leagueSpartan.className}
+        component={"h2"}
+      >
         How to Get Started
       </Typography>
       <Box
@@ -174,7 +174,7 @@ const styles = {
   },
   containedBtn: {
     boxShadow: "1px 15px 34px 0px #38B6FF66",
-
+    color: "white",
     backgroundColor: "#38B6FF",
 
     fontSize: {
@@ -244,9 +244,15 @@ type Props = {
   heading: string;
   description: string;
   image: StaticImageData;
+  ButtonText: string;
 };
 
-const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
+const GetStartedBox: React.FC<Props> = ({
+  heading,
+  description,
+  image,
+  ButtonText,
+}) => {
   return (
     <Box sx={styles.contanier}>
       <Box
@@ -266,19 +272,17 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
           style={{ width: "100%", height: "auto", objectFit: "cover" }}
         ></Image>
       </Box>
-      <Typography sx={styles.boxHeading} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.boxHeading}
+        className={leagueSpartan.className}
+        component={"strong"}
+      >
         {heading}
       </Typography>
       <Typography sx={styles.boxDesc} className={leagueSpartan.className}>
         {description}
       </Typography>
-      <Button
-        variant="contained"
-        sx={styles.containedBtn}
-        className={leagueSpartan.className}
-      >
-        Learn More
-      </Button>
+      <PopUpButton text={ButtonText} href="popup" sx={styles.containedBtn} />
     </Box>
   );
 };

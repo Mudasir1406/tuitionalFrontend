@@ -7,19 +7,35 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import user from "../../../public/assets/images/static/user.png";
 import Image from "next/image";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { parseUrl } from "next/dist/shared/lib/router/utils/parse-url";
 
 interface WaveformProps {
   audio: string;
+  image: string;
 }
 
-const Waveform: React.FC<WaveformProps> = ({ audio }) => {
+const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const waveSurferRef = useRef<WaveSurfer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState<string>("0");
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!audio) return;
+    const fetchAudioUrl = async () => {
+      const storage = getStorage();
+      const audioRef = ref(storage, audio);
+      const url = await getDownloadURL(audioRef);
+      setAudioUrl(url);
+    };
+
+    if (audio) {
+      fetchAudioUrl();
+    }
+  }, [audio]);
+  useEffect(() => {
+    if (!audioUrl) return;
     if (!containerRef.current) return;
 
     const waveSurfer = WaveSurfer.create({
@@ -28,7 +44,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio }) => {
       barHeight: 1,
       cursorWidth: 0,
     });
-    waveSurfer.load(audio);
+    waveSurfer.load(audioUrl);
     waveSurfer.on("ready", () => {
       waveSurferRef.current = waveSurfer;
     });
@@ -40,7 +56,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio }) => {
     return () => {
       waveSurfer.destroy();
     };
-  }, [audio]);
+  }, [audioUrl]);
 
   const handlePlayPause = () => {
     if (waveSurferRef.current) {
@@ -109,7 +125,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio }) => {
         }}
       >
         <Image
-          src={user.src}
+          src={image || user.src}
           style={styles.image}
           width={user.width}
           height={user.height}
