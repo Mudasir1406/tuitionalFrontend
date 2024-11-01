@@ -102,7 +102,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
       keepMounted
       onClose={handleClose}
       className="pricing-dialog"
-      maxWidth={undefined}
+      maxWidth={false}
       sx={{
         "& .MuiPaper-root": {
           backgroundColor: "transparent",
