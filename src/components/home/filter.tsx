@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DropDown from "../DropDown/DropDown";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
@@ -17,9 +17,28 @@ import {
 } from "../../services/filter-data/filter-data";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";
+import { FormType } from "./form-dialouge";
 
-const Filter: React.FC = async () => {
-  const filterData: Filter_Data | null = await getFilterData();
+const Filter: React.FC = () => {
+  const [filterData, setFilterData] = useState<Filter_Data | null>(null);
+  const [formData, setFormData] = useState<FormType>({
+    name: "",
+    email: "",
+    phone: "",
+    grade: "",
+    curriculum: "",
+    subjects: "",
+    message: "",
+  });
+  const handleChange = (key: string, value: string | string[]) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+  };
+  useEffect(() => {
+    getFilterData().then((data) => setFilterData(data));
+  }, []);
   return (
     <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
       <Typography
@@ -52,24 +71,30 @@ const Filter: React.FC = async () => {
             <DropDown
               placeholder="Select Curriculum"
               data={filterData?.curriculum || []}
-              value={""}
-              onChange={() => {}}
+              value={formData.curriculum}
+              onChange={(e) => {
+                handleChange("curriculum", e.target.value);
+              }}
             />
           </Grid>
           <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Grade"
               data={filterData?.grade || []}
-              value={""}
-              onChange={() => {}}
+              value={formData.grade}
+              onChange={(e) => {
+                handleChange("grade", e.target.value);
+              }}
             />
           </Grid>
           <Grid item lg={7} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Subject"
               data={filterData?.subject || []}
-              value={""}
-              onChange={() => {}}
+              value={formData.subjects}
+              onChange={(e) => {
+                handleChange("subjects", e.target.value);
+              }}
             />
           </Grid>
           <Grid item lg={5} sm={12} xs={12} md={12}>

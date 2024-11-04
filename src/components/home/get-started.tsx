@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
@@ -12,13 +12,16 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
-import {
-  StaticImageData,
-  StaticImport,
-} from "next/dist/shared/lib/get-img-props";
+import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import PopUpButton from "../pop-up-button";
-const GetStarted = async () => {
-  const data: GetStartedData[] = await getStartedData();
+const GetStarted = () => {
+  const [data, setData] = useState<GetStartedData[]>([]);
+
+  useEffect(() => {
+    getStartedData().then((d) => {
+      setData(d);
+    });
+  }, []);
   return (
     <Box>
       <Typography

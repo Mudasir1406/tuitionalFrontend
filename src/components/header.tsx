@@ -202,7 +202,7 @@ const styles = {
       lg: "flex",
     },
     alignItems: "flex-start",
-    width: "30%",
+    // width: "25%",
     marginLeft: "-50px",
   },
   logoMobile: {

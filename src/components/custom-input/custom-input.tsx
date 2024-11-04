@@ -9,7 +9,7 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
         inputRef={ref}
         value={value}
         sx={{}}
-        onChange={(e) => onChange && onChange(e)}
+        onChange={onChange}
         fullWidth
         InputProps={{
           className: leagueSpartan.className,
