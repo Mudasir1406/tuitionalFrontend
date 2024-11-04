@@ -13,12 +13,13 @@ import {
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { leagueSpartan } from "@/app/fonts";
 import "../DropDown/DropDown.css";
-import PhoneInput from "react-phone-number-input/input";
+import PhoneInput from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
+import toast from "react-hot-toast";
 
 type IProps = {
   open: boolean;
@@ -89,6 +90,17 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
       // alert("Error saving data");
     } finally {
       setLoading(false);
+      handleClose();
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        grade: "",
+        curriculum: "",
+        subjects: "",
+        message: "",
+      });
+      toast.success("Form submitted successfully!");
     }
   };
   React.useEffect(() => {
@@ -151,6 +163,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
               onChange={(e) => handleChange("phone", String(e))}
               inputComponent={CustomInput}
               // error={errorData?.phone}
+
               // helperText={errorData?.phone}
             />
             <DropDown

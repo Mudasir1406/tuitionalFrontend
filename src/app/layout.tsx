@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   },
 };
-
+import { Toaster } from "react-hot-toast";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,6 +50,7 @@ export default function RootLayout({
           <DynamicModel />
           {children}
           <Metrics />
+          <Toaster />
         </body>
       </DrawerProvider>
     </html>
