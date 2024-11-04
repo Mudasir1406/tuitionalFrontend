@@ -25,18 +25,19 @@ const VideoBasedReview = async () => {
               borderRadius: "20px",
             }}
           >
-            {data
-              .filter((item) => item.isSelected)
-              .map((item, index) => (
-                <CardMedia
-                  key={index}
-                  component="video"
-                  src={item.video}
-                  controls
-                  poster={item.thumbnil || logo.src}
-                  sx={{ width: "100%", height: "100%" }}
-                />
-              ))}
+            {data &&
+              data
+                .filter((item) => item.isSelected)
+                .map((item, index) => (
+                  <CardMedia
+                    key={index}
+                    component="video"
+                    src={item.video}
+                    controls
+                    poster={item.thumbnil || logo.src}
+                    sx={{ width: "100%", height: "100%" }}
+                  />
+                ))}
           </Card>
         </Grid>
         <Grid
@@ -53,45 +54,46 @@ const VideoBasedReview = async () => {
           }}
         >
           <Grid container spacing={2}>
-            {data
-              .filter((item) => !item.isSelected)
-              .map((item, index) => (
-                <Grid item xs={12} key={index}>
-                  <Card sx={styles.card}>
-                    <CardMedia
-                      component="video"
-                      src={item.video}
-                      controls
-                      poster={item.thumbnil || logo.src}
-                      sx={{
-                        width: { xs: "184px", lg: "283px" },
-                        height: { xs: "135px", lg: "204px" },
-                        borderRadius: "10px",
-                      }}
-                    />
-                    <Box sx={{ marginLeft: "25px" }}>
-                      <Typography
-                        className={leagueSpartan.className}
-                        sx={styles.userName}
-                      >
-                        {item.name}
-                      </Typography>
-                      <Typography
-                        className={leagueSpartan.className}
-                        sx={styles.country}
-                      >
-                        {item.country}
-                      </Typography>
-                      <Typography
-                        className={leagueSpartan.className}
-                        sx={styles.watch}
-                      >
-                        Watch Video <PlayArrowIcon />
-                      </Typography>
-                    </Box>
-                  </Card>
-                </Grid>
-              ))}
+            {data &&
+              data
+                .filter((item) => !item.isSelected)
+                .map((item, index) => (
+                  <Grid item xs={12} key={index}>
+                    <Card sx={styles.card}>
+                      <CardMedia
+                        component="video"
+                        src={item.video}
+                        controls
+                        poster={item.thumbnil || logo.src}
+                        sx={{
+                          width: { xs: "184px", lg: "283px" },
+                          height: { xs: "135px", lg: "204px" },
+                          borderRadius: "10px",
+                        }}
+                      />
+                      <Box sx={{ marginLeft: "25px" }}>
+                        <Typography
+                          className={leagueSpartan.className}
+                          sx={styles.userName}
+                        >
+                          {item.name}
+                        </Typography>
+                        <Typography
+                          className={leagueSpartan.className}
+                          sx={styles.country}
+                        >
+                          {item.country}
+                        </Typography>
+                        <Typography
+                          className={leagueSpartan.className}
+                          sx={styles.watch}
+                        >
+                          Watch Video <PlayArrowIcon />
+                        </Typography>
+                      </Box>
+                    </Card>
+                  </Grid>
+                ))}
           </Grid>
         </Grid>
       </Grid>
