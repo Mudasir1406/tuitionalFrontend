@@ -13,6 +13,7 @@ import "swiper/css";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
+import PopUpButton from "../pop-up-button";
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>();
   useEffect(() => {
@@ -194,6 +195,7 @@ const styles = {
     lineHeight: "18.4px",
     textAlign: "center",
     width: "249px",
+    color: "white",
     padding: "18px",
     textTransform: "none",
     letterSpacing: "-2%",
@@ -251,9 +253,15 @@ type Props = {
   heading: string;
   description: string;
   image: StaticImageData;
+  ButtonText: string;
 };
 
-const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
+const GetStartedBox: React.FC<Props> = ({
+  heading,
+  description,
+  image,
+  ButtonText,
+}) => {
   return (
     <Box sx={styles.contanier}>
       <Box
@@ -287,13 +295,7 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image }) => {
       >
         {description}
       </Typography>
-      <Button
-        variant="contained"
-        sx={styles.containedBtn}
-        className={leagueSpartan.className}
-      >
-        Learn More
-      </Button>
+      <PopUpButton sx={styles.containedBtn} href="popup" text={ButtonText} />
     </Box>
   );
 };

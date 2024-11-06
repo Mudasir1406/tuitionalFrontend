@@ -5,6 +5,7 @@ import counsling from "../../../public/assets/images/static/Guidence.png";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import { renderWithLineBreaks } from "../line-break-text";
+import PopUpButton from "../pop-up-button";
 
 const EducationalCounseling: React.FunctionComponent<{
   data: PageData["education_counseling"];
@@ -50,13 +51,11 @@ const EducationalCounseling: React.FunctionComponent<{
                 ></div>
               </Typography>
               <Box>
-                <Button
-                  variant="contained"
+                <PopUpButton
                   sx={style.containedBtn}
-                  className={leagueSpartan.className}
-                >
-                  Enroll Now
-                </Button>
+                  text="Enroll Now"
+                  href="popup"
+                />
               </Box>
             </Box>
           </Grid>
@@ -149,6 +148,7 @@ const style = {
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
+    color: "white",
     fontSize: {
       xs: "1.8vh",
       sm: "2vh",
