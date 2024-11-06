@@ -5,6 +5,7 @@ import tutors from "../../../public/assets/images/static/tutoring.webp";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
+import PopUpButton from "../pop-up-button";
 
 interface IProps {
   data: PageData["demo_pointers"];
@@ -39,15 +40,11 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   height={tutors.height}
                 />
               </Box>
-              <Button
-                variant="contained"
+              <PopUpButton
                 sx={style.containButton}
                 href={data.buttonLink}
-              >
-                <Typography className={leagueSpartan.className}>
-                  {data?.buttonText}
-                </Typography>
-              </Button>
+                text={data?.buttonText}
+              />
             </Box>
           </Grid>
 

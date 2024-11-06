@@ -5,6 +5,7 @@ import elpse1 from "../../../public/assets/images/svg/elpse-white1.svg";
 import elpse2 from "../../../public/assets/images/svg/elpse-white2.svg";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
+import PopUpButton from "../pop-up-button";
 
 const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
   data,
@@ -55,14 +56,11 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
           </Typography>
 
           <Box>
-            <Button
-              variant="contained"
+            <PopUpButton
               sx={style.containedBtn}
               href={data.link}
-              className={leagueSpartan.className}
-            >
-              {data.buttonText}
-            </Button>
+              text={data.buttonText}
+            />
           </Box>
         </Box>
 

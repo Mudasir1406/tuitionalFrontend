@@ -20,6 +20,7 @@ import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
+import "react-phone-number-input/style.css";
 
 type IProps = {
   open: boolean;

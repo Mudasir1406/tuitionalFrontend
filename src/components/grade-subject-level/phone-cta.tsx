@@ -3,6 +3,7 @@ import { PageData } from "@/types/grade-subject-level.types";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { renderWithLineBreaks } from "../line-break-text";
+import PopUpButton from "../pop-up-button";
 
 type IProps = {
   data: PageData["phone_cta"];
@@ -44,13 +45,11 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
             InputProps={style.inputProps}
             sx={style.textField}
           />
-          <Button
+          <PopUpButton
             sx={style.button}
-            className={leagueSpartan.className}
             href={data.link}
-          >
-            {data?.buttonText}
-          </Button>
+            text={data?.buttonText}
+          />
         </Box>
       </Box>
     </Box>
