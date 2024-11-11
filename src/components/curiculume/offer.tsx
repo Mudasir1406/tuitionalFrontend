@@ -53,13 +53,13 @@ const Offer = () => {
           },
         }}
       >
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box
               sx={{
                 background: "#9EDCFF",
                 borderRadius: "2vh",
-                marginY: "2vh",
+                marginY: "16px",
               }}
             >
               <Box
@@ -178,7 +178,7 @@ const Offer = () => {
                   sx={{
                     background: "#9EDCFF",
                     borderRadius: "2vh",
-                    marginY: "2vh",
+                    marginY: "16px",
                   }}
                 >
                   <Typography
@@ -213,7 +213,7 @@ const Offer = () => {
                   sx={{
                     background: "#9EDCFF",
                     borderRadius: "2vh",
-                    marginY: "2vh",
+                    marginY: "16px",
                   }}
                 >
                   <Typography
