@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["http://localhost:3000"],
+    "origin": ["http://localhost:3000", "https://tuitionaledu.com/"],
     "method": ["GET"],
     "maxAgeSeconds": 3600
   }
