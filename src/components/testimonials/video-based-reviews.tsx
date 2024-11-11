@@ -9,9 +9,11 @@ import { getVideoReviews } from "@/services/video-reviews/video-reviews";
 
 const VideoBasedReview = async () => {
   const data = await getVideoReviews();
+  console.log('getVideoReviews', data)
   return (
     <Box sx={styles.contanier}>
       <Typography sx={styles.heading} className={leagueSpartan.className}>
+        Video-Based Reviews
         Video-Based Reviews
       </Typography>
       <Grid container spacing={2}>
