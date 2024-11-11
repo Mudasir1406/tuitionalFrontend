@@ -8,10 +8,13 @@ import poster3 from "../../../public/assets/images/static/thumbile3.webp";
 import poster4 from "../../../public/assets/images/static/thumbile4.webp";
 import { PageData } from "@/types/grade-subject-level.types";
 import { renderWithLineBreaks } from "../line-break-text";
+import { getVideoReviews } from "@/services/video-reviews/video-reviews";
 
 const StudentSays: React.FunctionComponent<{
   data: PageData["what_our_student_says"];
-}> = ({ data }) => {
+}> = async ({ data }) => {
+  const videoData = await getVideoReviews();
+
   const posters = [poster1, poster2, poster3, poster4];
 
   return (
@@ -42,16 +45,14 @@ const StudentSays: React.FunctionComponent<{
         ></div>
       </Typography>
       <Grid container spacing={2}>
-        {posters.map((poster, index) => (
+        {videoData.map((poster, index) => (
           <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
             <Card sx={styles.card}>
               <CardMedia
                 component="video"
-                src="https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/Testimonial%20Videos%2FHannah%20Maistry%20UAE%20(2).mp4?alt=media&token=48f4cc98-02e5-4bce-a088-5cc8a292ce78"
+                src={poster.video}
                 controls
-                poster={
-                  "https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/images%2FHannah%20Maistry%20UAE.jpg?alt=media&token=5c6061df-9dc1-47b6-b1f7-0870a293e9ea"
-                }
+                poster={poster.thumbnil}
                 sx={styles.cardM}
               />
             </Card>
