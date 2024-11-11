@@ -45,10 +45,11 @@ const GetStarted = () => {
           width: "90%",
           alignItems: "center",
           justifyContent: "center",
-          marginLeft: "5vw",
+          margin: "auto",
+          // columnGap: "24px",
         }}
       >
-        <Grid container>
+        <Grid container spacing={3} justifyContent="center" alignItems="center">
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
               <GetStartedBox {...item} />
