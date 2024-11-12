@@ -24,7 +24,7 @@ const HeroInfo: React.FunctionComponent<IProps> = ({ image, imageAltText }) => {
             backgroundPosition: "bottom",
             backgroundSize: {
               xs: "contain",
-              lg: "cover",
+              lg: "contain",
             },
             height: {
               xs: "100%",

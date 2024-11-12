@@ -183,7 +183,7 @@ const styles = {
   },
   containedBtn: {
     boxShadow: "1px 15px 34px 0px #38B6FF66",
-
+    marginTop: "16px",
     backgroundColor: "#38B6FF",
 
     fontSize: {
@@ -222,6 +222,7 @@ const styles = {
   },
   contanier: {
     height: "700px",
+
     width: {
       lg: "80%",
       xl: "400px",
@@ -229,7 +230,7 @@ const styles = {
     backgroundColor: "#D7F0FF",
     alignItems: "center",
     padding: "10px 30px",
-    margin: "10px 15px",
+    margin: "10px auto",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
