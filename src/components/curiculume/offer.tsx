@@ -22,7 +22,13 @@ const Offer = () => {
   return (
     <Box
       sx={{
-        paddingX: "5vw",
+        // paddingX: "5vw",
+        paddingX: {
+          xs: 0,
+          sm: 0,
+          md: "2vw",
+          lg: "5vw",
+        },
       }}
     >
       <Typography
@@ -46,8 +52,8 @@ const Offer = () => {
       <Box
         sx={{
           marginX: {
-            xs: "2.5vh",
-            sm: "2.5vh",
+            xs: "1.5vh",
+            sm: "1.5vh",
             md: "2.5vh",
             lg: "0",
           },
@@ -84,15 +90,18 @@ const Offer = () => {
                   sx={style.coverageImg}
                   className={leagueSpartan.className}
                 >
-                  <Box></Box>
-                  <Image
-                    src={offer1}
-                    alt="pic"
-                    style={{
-                      width: "auto",
-                      height: "20vh",
-                    }}
-                  />
+                  <Box sx={style.responsiveImageContainer}>
+                    <Image
+                      src={offer1}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "100%",
+                      }}
+                      // layout="responsive"
+                      // objectFit="cover"
+                    />
+                  </Box>
                 </Typography>
               </Box>
             </Box>
@@ -121,13 +130,34 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "right" }}>
+                  {/* <Box sx={{ textAlign: "right" }}>
                     <Image
                       src={offer2}
                       alt="pic"
                       style={{
                         width: "auto",
-                        height: "25vh",
+                        height: "auto",
+                        objectFit: "cover",
+                        // height: "25vh",
+                      }}
+                    />
+                  </Box> */}
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      width: "100%",
+                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
+                      overflow: "hidden",
+                      marginTop: "-40px",
+                    }}
+                  >
+                    <Image
+                      src={offer2}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "100%",
+                        objectFit: "contain",
                       }}
                     />
                   </Box>
@@ -156,13 +186,33 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "right" }}>
+                  {/* <Box sx={{ textAlign: "right" }}>
                     <Image
                       src={offer3}
                       alt="pic"
                       style={{
                         width: "auto",
-                        height: "25vh",
+                        height: "auto",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Box> */}
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      width: "100%",
+                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
+                      overflow: "hidden",
+                      marginTop: "-40px",
+                    }}
+                  >
+                    <Image
+                      src={offer3}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "100%",
+                        objectFit: "contain",
                       }}
                     />
                   </Box>
@@ -171,7 +221,17 @@ const Offer = () => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sm={12} md={12} lg={6}>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column-reverse", md: "column" }, // reverse column on smaller screens
+            }}
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={6}
+          >
             <Grid container spacing={2}>
               <Grid item xs={6} sm={6} md={6} lg={6}>
                 <Box
@@ -196,13 +256,23 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "right" }}>
+
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      width: "100%",
+                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
+                      overflow: "hidden",
+                      marginTop: "-40px",
+                    }}
+                  >
                     <Image
                       src={offer2}
                       alt="pic"
                       style={{
                         width: "auto",
-                        height: "25vh",
+                        height: "100%",
+                        objectFit: "contain",
                       }}
                     />
                   </Box>
@@ -231,13 +301,23 @@ const Offer = () => {
                       Learn More
                     </Button>
                   </Box>
-                  <Box sx={{ textAlign: "right" }}>
+
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      width: "100%",
+                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
+                      overflow: "hidden",
+                      marginTop: "-40px",
+                    }}
+                  >
                     <Image
                       src={offer3}
                       alt="pic"
                       style={{
                         width: "auto",
-                        height: "25vh",
+                        height: "100%",
+                        objectFit: "contain",
                       }}
                     />
                   </Box>
@@ -276,14 +356,26 @@ const Offer = () => {
                   sx={style.coverageImg}
                   className={leagueSpartan.className}
                 >
-                  <Image
+                  <Box sx={style.responsiveImageContainer}>
+                    <Image
+                      src={offer1}
+                      alt="pic"
+                      style={{
+                        width: "auto",
+                        height: "100%",
+                      }}
+                      // layout="responsive"
+                      // objectFit="cover"
+                    />
+                  </Box>
+                  {/* <Image
                     src={offer1}
                     alt="pic"
                     style={{
                       width: "auto",
-                      height: "20vh",
+                      height: "30vh",
                     }}
-                  />
+                  /> */}
                 </Typography>
               </Box>
             </Box>
@@ -335,14 +427,19 @@ const style = {
       sm: "65%",
       lg: "70%",
     },
+    lineHeight: {
+      xs: 1.1,
+      sm: 1.1,
+      lg: 1.5,
+    },
     paddingX: {
-      xs: "3vh",
-      sm: "3vh",
+      xs: "1.5vh",
+      sm: "1.5vh",
       lg: "3vh",
     },
     paddingTop: {
-      xs: "4vh",
-      sm: "4vh",
+      xs: "1.5vh",
+      sm: "1.5vh",
       lg: "4vh",
     },
     fontWeight: 600,
@@ -357,7 +454,7 @@ const style = {
     fontSize: "1.5vh",
     fontWeight: 700,
     padding: "1vh 0",
-    margin: "2vh 3vh",
+    margin: { xs: "16px", sm: "16px", md: "2vh 3vh", lg: "2vh 3vh" },
     textTransform: "none",
     borderRadius: "10px",
     width: {
@@ -372,6 +469,19 @@ const style = {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
       transform: "scale(1.05)",
+    },
+  },
+
+  responsiveImageContainer: {
+    height: "25vh", // Default for large screens
+    "@media (max-width: 960px)": {
+      height: "20vh", // For medium screens
+    },
+    "@media (max-width: 600px)": {
+      height: "15vh", // For small screens
+    },
+    "@media (max-width: 400px)": {
+      height: "10vh", // For extra-small screens
     },
   },
 };
