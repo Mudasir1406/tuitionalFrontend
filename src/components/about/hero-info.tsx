@@ -1,5 +1,5 @@
 import { Box, Typography, colors } from "@mui/material";
-import tutors from "../../../public/assets/images/static/tutors.png";
+import tutors from "../../../public/assets/images/static/about-hero-2.png";
 import React from "react";
 import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import Image from "next/image";
@@ -9,50 +9,14 @@ const HeroInfo: React.FC = () => {
   return (
     <>
       <Box sx={styles.contanier}>
-        <Box sx={styles.registerStudentBox}>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
-            Tuitional is a great place for classes. I see my grades are
-            improving.
-          </Typography>
-          <Box
-            sx={{ marginY: { xs: "2px", sm: "5px", md: "5px", lg: "10px" } }}
-          >
-            {[0, 0, 0, 0, 0].map((item, index) => (
-              <StarPurple500OutlinedIcon
-                key={index}
-                sx={{
-                  height: "2vh",
-                  width: "2vh",
-                  color: "rgba(255, 205, 108, 1)",
-                }}
-              />
-            ))}
-          </Box>
-        </Box>
         <Box sx={styles.liveSessions}>
-          <Box sx={styles.totalReview}>
-            <Typography
-              sx={styles.totalReviewText}
-              className={leagueSpartan.className}
-            >
-              15k
-            </Typography>
-            <Typography
-              sx={styles.clientText}
-              className={leagueSpartan.className}
-            >
-              Clients Reviews
-            </Typography>
-          </Box>
-          <Box sx={styles.usersBox}>
-            <Image
-              src={tutors.src}
-              style={{ width: "150px" }}
-              alt="teacher"
-              width={tutors.width}
-              height={tutors.height}
-            ></Image>
-          </Box>
+          <Image
+            src={tutors.src}
+            style={{ width: "150px" }}
+            alt="teacher"
+            width={tutors.width}
+            height={tutors.height}
+          ></Image>
         </Box>
       </Box>
     </>
