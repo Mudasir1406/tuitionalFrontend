@@ -42,23 +42,21 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
         <Grid item>
           <InfoBox
             heading="Experienced Tutors"
-            dec="Whether it's for our customers or for each other, we always make time to help"
+            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
             icon="succeed"
           />
         </Grid>
         <Grid item>
           <InfoBox
-            heading="Be helpful"
-            dec={`Whether it's for our customers
-or for each other, we always make
-time to help`}
+            heading="One-on-One Learning"
+            dec={`Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements.`}
             icon="helpful"
           />
         </Grid>
         <Grid item>
           <InfoBox
-            heading="Choose ethics"
-            dec="We choose to do what's right, always."
+            heading="Flexible Schedules"
+            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
             icon="ethics"
           />
         </Grid>
@@ -75,7 +73,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
         width: { xs: "186px", sm: "322px", md: "360px", lg: "460px" },
-        height: { xs: "167px", sm: "275px", md: "313px", lg: "413px" },
+        height: { xs: "167px", sm: "275px", md: "313px", lg: "460px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
