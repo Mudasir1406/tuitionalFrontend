@@ -7,43 +7,56 @@ import { leagueSpartan } from "@/app/fonts";
 
 const Hero: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
-      <Typography
-        sx={styles.heading}
-        component={"h2"}
-        className={leagueSpartan.className}
-      >
-        Our Verified <br /> Reviews from{" "}
-        <Typography
-          sx={styles.expertText}
-          component="span"
-          className={leagueSpartan.className}
-        >
-          Students{" "}
-        </Typography>
-        and Parents
-      </Typography>
-      <Typography sx={styles.desc} className={leagueSpartan.className}>
-        Trusted by parents, students, and schools
-      </Typography>
+    <>
       <Box
         sx={{
-          width: { xs: "100%", sm: "100%", md: "100%", lg: "70%" },
-          marginTop: "9vh",
-          marginBottom: "19vh",
-          display: {
-            xs: "flex",
-            sm: "flex",
-            md: "flex",
-            lg: "block",
-          },
-          justifyContent: "center",
-          alignItems: "center",
+          height: { lg: "65vh" },
+          // paddingLeft: "5vw",
         }}
       >
-    
+        <Typography
+          sx={styles.heading}
+          component={"h1"}
+          className={leagueSpartan.className}
+        >
+          Elevating{" "}
+          <Typography
+            sx={styles.expertText}
+            component="span"
+            className={leagueSpartan.className}
+          >
+            Personalized Online Tutoring{" "}
+          </Typography>{" "}
+          Accross the Gulf
+        </Typography>
+
+        <Typography
+          sx={styles.desc}
+          component="p"
+          className={leagueSpartan.className}
+        >
+          Providing high-quality innovative and improved teaching solutions to
+          help students attain academic growth and excellence through individual
+          online tutoring.
+        </Typography>
+
+        <Box
+          sx={{
+            width: { xs: "100%", sm: "100%", md: "100%", lg: "70%" },
+            marginTop: "9vh",
+            marginBottom: "19vh",
+            display: {
+              xs: "flex",
+              sm: "flex",
+              md: "flex",
+              lg: "block",
+            },
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        ></Box>
       </Box>
-    </div>
+    </>
   );
 };
 
@@ -57,7 +70,7 @@ const styles = {
       md: "4.3vh",
       lg: "5.5vh",
     },
-    fontWeight: 500,
+    fontWeight: "bold",
     lineHeight: {
       xs: "5vh",
       sm: "4.5vh",
@@ -77,7 +90,7 @@ const styles = {
     color: "#000000",
   },
   expertText: {
-    color: "#51B893",
+    color: "#38B6FF",
     display: "inline",
     fontSize: {
       xs: "3.5vh",
@@ -85,7 +98,7 @@ const styles = {
       md: "4.5vh",
       lg: "6vh",
     },
-    fontWeight: 600,
+    fontWeight: "bold",
     lineHeight: {
       xs: "3vh",
       sm: "3.5vh",

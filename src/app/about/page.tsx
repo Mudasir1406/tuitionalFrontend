@@ -10,6 +10,7 @@ import GetStarted from "@/components/home/get-started";
 import StudentSays from "@/components/curiculume/students-says";
 import Hero from "@/components/about/hero";
 import HeroInfo from "@/components/about/hero-info";
+import WhyChooseTuitional from "@/components/about/why-choose-tuitional";
 
 const About: React.FC = async () => {
   return (
@@ -43,6 +44,9 @@ const About: React.FC = async () => {
       </Container>
 
       <Grid>
+        <WhyChooseTuitional />
+      </Grid>
+      <Grid sx={{ marginX: "3vh" }}>
         <GetStarted />
       </Grid>
       <Grid>
