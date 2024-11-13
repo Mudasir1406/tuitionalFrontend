@@ -87,14 +87,14 @@ const Header: React.FC<IProps> = ({ background }) => {
               Home
             </Typography>
           </Link>
-          {/* <Link href={"/about"} style={styles.link}> */}
-          <Typography
-            sx={styles.typography}
-            className={leagueSpartan.className}
-          >
-            About
-          </Typography>
-          {/* </Link> */}
+          <Link href={"/about"} style={styles.link}>
+            <Typography
+              sx={styles.typography}
+              className={leagueSpartan.className}
+            >
+              About
+            </Typography>
+          </Link>
           {/* <Link href={"/Community & Events"} style={styles.link}> */}
           <Typography
             sx={styles.typography}
