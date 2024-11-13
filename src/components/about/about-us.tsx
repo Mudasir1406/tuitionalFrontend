@@ -23,7 +23,7 @@ const AboutUs: React.FunctionComponent = () => {
         >
           About Us
         </Typography>
-        <Typography
+        {/* <Typography
           sx={styles.dec}
           component={"p"}
           className={leagueSpartan.className}
@@ -41,12 +41,38 @@ const AboutUs: React.FunctionComponent = () => {
           learning experiences through high-quality, personalized online
           tutoring sessions that cater to each student's unique learning needs
           and academic goals. Tuitional is known for its commitment to
-          innovation, excellence, and quality education, empowering students to
+          innovation, excellence, and quality education, empowering students to 
           reach their highest potential. Through unwavering academic support,
           interactive and engaging lessons, and a solid educational foundation,
           we help students achieve both academic and future professional
           success.
-        </Typography>
+        </Typography> */}
+
+        <Typography
+  sx={styles.dec}
+  component={"p"}
+  className={leagueSpartan.className}
+>
+  Tuitional is a premier online tutoring platform that elevates
+  students&apos; learning and provides an exceptional educational experience
+  across the Gulf region. Licensed and registered by the Sharjah
+  Research and Technology Park in 2022, Tuitional was founded with a
+  visionary goal led by Ahmed Shaheer, Mirza Sinan Baig, Abdul Wahid
+  Sheikh, Sheikh Zeeshan Ahmed, and Juliana Nogueria. Together, they
+  aspired to create a state-of-the-art online tutoring service focused
+  on delivering personalized, high-quality education tailored to
+  individual students&apos; needs. With a qualified team of expert tutors
+  excelling in a wide range of subjects, Tuitional provides customized
+  learning experiences through high-quality, personalized online
+  tutoring sessions that cater to each student&apos;s unique learning needs
+  and academic goals. Tuitional is known for its commitment to
+  innovation, excellence, and quality education, empowering students to 
+  reach their highest potential. Through unwavering academic support,
+  interactive and engaging lessons, and a solid educational foundation,
+  we help students achieve both academic and future professional
+  success.
+</Typography>
+
       </Box>
       <Box
         sx={{
