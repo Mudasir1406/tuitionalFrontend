@@ -79,6 +79,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         justifyContent: "center",
         flexDirection: "column",
         borderRadius: "10px",
+        padding: "24px",
         boxShadow:
           "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
         position: "relative",
@@ -204,7 +205,7 @@ const styles = {
       lg: "30px",
     },
     textAlign: "center",
-    maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "300px" },
+    maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
     color: "rgba(0,0,0,0.77)",
   },
   icon: {
@@ -219,6 +220,7 @@ const styles = {
     boxShadow:
       " 0px -2px 4px 0px #0000005C inset, 0px 4px 12.6px 0px #009BF526",
     marginBottom: { xs: "10px", sm: "20px", md: "30px", lg: "40px" },
+    marginTop: { lg: "-40px" },
   },
   mainHeading: {
     display: "flex",
