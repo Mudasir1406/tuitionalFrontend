@@ -39,7 +39,7 @@ const AboutUs: React.FunctionComponent = () => {
           individual students' needs. With a qualified team of expert tutors
           excelling in a wide range of subjects, Tuitional provides customized
           learning experiences through high-quality, personalized online
-          tutoring sessions that cater to each student’s unique learning needs
+          tutoring sessions that cater to each student's unique learning needs
           and academic goals. Tuitional is known for its commitment to
           innovation, excellence, and quality education, empowering students to
           reach their highest potential. Through unwavering academic support,
