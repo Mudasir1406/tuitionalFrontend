@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
@@ -48,6 +48,22 @@ const AboutUs: React.FunctionComponent = () => {
           success.
         </Typography>
       </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          // justifyContent: "left",
+          rowGap: "16px",
+
+        }}
+      >
+        <Button variant="contained" sx={styles.roundedActiveButton}>
+          Our Mission
+        </Button>
+        <Button variant="contained" sx={styles.roundedButton}>
+          Our Value
+        </Button>
+      </Box>
     </Box>
   );
 };
@@ -56,6 +72,7 @@ export default AboutUs;
 
 const styles = {
   infoBoxContanier: {},
+
   heading: {
     fontSize: {
       xs: "18px",
@@ -175,5 +192,37 @@ const styles = {
     flexDirection: "column",
     width: "100%",
     background: "transparent",
+  },
+  roundedActiveButton: {
+    backgroundColor: "#38B6FF",
+    borderRadius: "50px",
+    color: "white",
+    fontWeight: {
+      xs: "medium",
+      sm: "medium",
+      md: "semiBold",
+      lg: "semiBold",
+    },
+    textTransform: "none",
+
+    // fontSize: {
+    //   xs: "14px",
+    //   sm: "16px",
+    //   md: "18px",
+    //   lg: "14px",
+    // },
+  },
+  roundedButton: {
+    backgroundColor: "white",
+    borderRadius: "50px",
+    color: "black",
+    fontWeight: {
+      xs: "medium",
+      sm: "medium",
+      md: "semiBold",
+      lg: "semiBold",
+    },
+    border: "1px solid #38B6FF",
+    textTransform: "none",
   },
 };
