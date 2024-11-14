@@ -41,6 +41,13 @@ export default async function sitemap({
           "Tue Oct 01 2024 00:00:00 GMT+0500 (Pakistan Standard Time)"
         ),
       },
+      {
+        url: `${SITE_URL}/about`,
+        priority: 0.8,
+        lastModified: new Date(
+          "Thu Nov 15 2024 00:00:00 GMT+0500 (Pakistan Standard Time)"
+        ),
+      },
     ];
     return [...urls, ...data];
   } else return [];
