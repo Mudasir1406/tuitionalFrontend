@@ -1,4 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
+"use client";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
@@ -16,6 +17,10 @@ type IProps = {
 };
 
 const WhyChooseTuitional: React.FunctionComponent = () => {
+  const theme = useTheme();
+
+  const isXL = useMediaQuery(theme.breakpoints.up("xl"));
+
   return (
     <Box sx={{ marginBottom: 20 }}>
       <Box sx={styles.headingContanier}>
@@ -27,15 +32,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
           Why Choose Tuitional?
         </Typography>
       </Box>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      {/* <Grid container={isXL} spacing={2} sx={styles.gridContainer}>
         <Grid item>
           <InfoBox
             heading="Experienced Tutors"
@@ -57,6 +54,32 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
             icon="calendar"
           />
         </Grid>
+        
+        
+      </Grid> */}
+
+      <Grid container={isXL} spacing={2} sx={styles.gridContainer}>
+        <Grid item xs={12} md={3} sx={styles.gridItem}>
+          <InfoBox
+            heading="Experienced Tutors"
+            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
+            icon="scholarHat"
+          />
+        </Grid>
+        <Grid item xs={12} md={3} sx={styles.gridItem}>
+          <InfoBox
+            heading="One-on-One Learning"
+            dec="Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements."
+            icon="book"
+          />
+        </Grid>
+        <Grid item xs={12} md={3} sx={styles.gridItem}>
+          <InfoBox
+            heading="Flexible Schedules"
+            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
+            icon="calendar"
+          />
+        </Grid>
       </Grid>
     </Box>
   );
@@ -69,7 +92,8 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
+        width: { xs: "auto", sm: "auto", md: "360px", lg: "420px" },
+        // width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
         height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
         display: "flex",
         alignItems: "center",
@@ -80,6 +104,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         boxShadow:
           "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
         position: "relative",
+        marginx: { sm: "24px" },
       }}
     >
       <Box sx={styles.icon}>
@@ -175,7 +200,8 @@ const styles = {
       lg: "30px",
     },
     textAlign: "center",
-    maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
+    maxWidth: { xs: "auto", sm: "200px", md: "250px", lg: "450px" },
+    // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
     color: "rgba(0,0,0,0.77)",
   },
   icon: {
@@ -263,5 +289,16 @@ const styles = {
     flexDirection: "column",
     width: "100%",
     background: "transparent",
+  },
+  gridContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: { md: "90%", lg: "auto" },
+    // rowGap: "24px",
+    // display: "flex",
+    // flexDirection: { lg: "row", md: "column" },
+  },
+  gridItem: {
+    marginBottom: { xs: "16px", md: "0" },
   },
 };
