@@ -3,7 +3,7 @@ import { Header } from "../../components";
 import { Box, Container, Grid } from "@mui/material";
 import Footer from "../../components/footer";
 
-import aboutHero from "../../../public/assets/images/static/about-hero.png";
+import aboutHero from "../../../public/assets/images/static/hero-about.png";
 import testimonialHeroMobile from "../../../public/assets/images/static/testimonialHeroMobile.png";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import GetStarted from "@/components/home/get-started";
@@ -89,9 +89,9 @@ const styles = {
     "::before": {
       content: "''",
       backgroundImage: {
-        xs: `url(${testimonialHeroMobile.src})`,
-        sm: `url(${testimonialHeroMobile.src})`,
-        md: `url(${testimonialHeroMobile.src})`,
+        xs: `url(${aboutHero.src})`,
+        sm: `url(${aboutHero.src})`,
+        md: `url(${aboutHero.src})`,
         lg: `url(${aboutHero.src})`,
       },
       backgroundPosition: "bottom",

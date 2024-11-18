@@ -89,7 +89,7 @@ const Footer: React.FC = async () => {
               lg: "100px",
             },
             display: "flex",
-            width: { xs: "100%", sm: "90%" },
+            width: { xs: "100%", sm: "100%" },
             paddingLeft: "5vw",
             paddingRight: "2vw",
           }}

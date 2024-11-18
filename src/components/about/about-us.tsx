@@ -107,11 +107,12 @@ const renderValue = (type: string) => {
             key={index}
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "flexStart",
               justifyContent: {
                 xs: "center",
                 lg: "start",
               },
+
               cursor: "pointer",
             }}
           >
@@ -224,14 +225,16 @@ const AboutUs: React.FunctionComponent = () => {
           </Grid>
           <Grid item lg={12} md={12} sm={12} xs={12} sx={styles.contentDiv}>
             {renderValue(activeType)}
-            <Grid item lg={4} md={12} sm={12} xs={12} sx={styles.imageDiv}>
-              <Image
-                src={studentsImg.src}
-                width={studentsImg.width}
-                height={studentsImg.height}
-                alt="students"
-                style={styles.image}
-              />
+            <Grid item lg={4} md={12} sm={12} xs={12}>
+              <Box sx={styles.imageDiv}>
+                <Image
+                  src={studentsImg.src}
+                  width={studentsImg.width}
+                  height={studentsImg.height}
+                  alt="students"
+                  style={styles.image}
+                />
+              </Box>
             </Grid>
           </Grid>
         </Grid>
@@ -246,13 +249,15 @@ const styles = {
   infoBoxContanier: {
     marginY: { lg: "13vh" },
     // marginX: { lg: "4vw", xs: "4vw" },
-    width: { lg: "80%", xs: "4vw" },
-    marginX: "auto",
+    width: { xl: "80%" },
+    marginX: { lg: "auto", xs: "auto" },
+    paddingX: { lg: "auto", xs: "24px" },
   },
   image: {
     width: "100%",
     height: "100%",
     maxHeight: "553px",
+    marginTop: { sm: "24px" } as any,
     "::before": {
       content: "''",
       position: "absolute",
@@ -477,12 +482,15 @@ const styles = {
     textAlign: "flexStart",
     justifyContent: "left",
     columnGap: "24px",
+    marginTop: "24px",
     // maxHeight: "400px",
-    margin: "auto",
+    // marginX: "auto",
   },
   contentDiv: {
     display: "flex",
-    flexDirection: "row",
+    // flexDirection: "row",
+    flexDirection: { xs: "column", sm: "column", lg: "row" },
+
     textAlign: "flexStart",
     justifyContent: "left",
     columnGap: "24px",
@@ -494,9 +502,13 @@ const styles = {
     justifyContent: "left",
   },
   box: {
+    display: "flex",
+    flexDirection: "column",
+    rowGap: "12px",
     border: "1px solid #B9E5FF",
     borderRadius: "16px",
     padding: "24px",
     marginTop: "32px",
+    // alignItems: "flexStart",
   },
 };
