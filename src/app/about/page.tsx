@@ -24,6 +24,7 @@ const About: React.FC = async () => {
   return (
     <>
       <Header />
+
       <Container
         sx={{
           maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },

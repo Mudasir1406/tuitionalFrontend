@@ -216,8 +216,10 @@ const styles = {
   contanier: {
     height: "700px",
     width: {
-      lg: "360px",
-      xl: "400px",
+      lg: "auto",
+      // lg: "360px",
+      xl: "auto",
+      // xl: "400px",
     },
     backgroundColor: "#D7F0FF",
     alignItems: "center",

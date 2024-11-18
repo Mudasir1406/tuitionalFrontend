@@ -4,12 +4,6 @@ import React, { useState } from "react";
 
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import success from "../../../public/assets/images/svg/success.svg";
-import certificate from "../../../public/assets/images/svg/certificate.svg";
-import equality from "../../../public/assets/images/svg/equality.svg";
-import ethics from "../../../public/assets/images/svg/ethics.svg";
-import growth from "../../../public/assets/images/svg/growth.svg";
-import handshake from "../../../public/assets/images/svg/handshake.svg";
 import studentsImg from "../../../public/assets/images/static/about-students.webp";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
@@ -94,16 +88,18 @@ const renderValue = (type: string) => {
 
   return (
     <Grid item lg={8} md={12} sm={12} xs={12} sx={styles.valueDiv}>
-      <Typography
-        sx={styles.heading}
-        component={"h2"}
-        className={leagueSpartan.className}
-      >
-        {content.title}
-      </Typography>
-      <Typography sx={styles.paragraph} className={leagueSpartan.className}>
-        {content.paragraph}
-      </Typography>
+      <div>
+        <Typography
+          sx={styles.heading}
+          component={"h2"}
+          className={leagueSpartan.className}
+        >
+          {content.title}
+        </Typography>
+        <Typography sx={styles.paragraph} className={leagueSpartan.className}>
+          {content.paragraph}
+        </Typography>
+      </div>
 
       <Box sx={styles.box}>
         {content.points.map((point, index) => (
@@ -171,24 +167,6 @@ const AboutUs: React.FunctionComponent = () => {
           component={"p"}
           className={leagueSpartan.className}
         >
-          {/* Tuitional is a premier online tutoring platform that elevates
-          students&apos; learning and provides an exceptional educational
-          experience across the Gulf region. Licensed and registered by the
-          Sharjah Research and Technology Park in 2022, Tuitional was founded
-          with a visionary goal led by Ahmed Shaheer, Mirza Sinan Baig, Abdul
-          Wahid Sheikh, Sheikh Zeeshan Ahmed, and Juliana Nogueria. Together,
-          they aspired to create a state-of-the-art online tutoring service
-          focused on delivering personalized, high-quality education tailored to
-          individual students&apos; needs. With a qualified team of expert
-          tutors excelling in a wide range of subjects, Tuitional provides
-          customized learning experiences through high-quality, personalized
-          online tutoring sessions that cater to each student&apos;s unique
-          learning needs and academic goals. Tuitional is known for its
-          commitment to innovation, excellence, and quality education,
-          empowering students to reach their highest potential. Through
-          unwavering academic support, interactive and engaging lessons, and a
-          solid educational foundation, we help students achieve both academic
-          and future professional success. */}
           {`Tuitional is a premier online tutoring platform that elevates
           students' learning and provides an exceptional educational experience
           across the Gulf region. Licensed and registered by the Sharjah
@@ -346,6 +324,8 @@ const styles = {
       lg: "24px",
     },
     color: "#2D2D2D",
+    wordBreak: "break-word",
+    maxWidth: "1000px",
   },
   text: {
     fontSize: {
@@ -497,7 +477,7 @@ const styles = {
     textAlign: "flexStart",
     justifyContent: "left",
     columnGap: "24px",
-    height: "400px",
+    // maxHeight: "400px",
     margin: "auto",
   },
   contentDiv: {
