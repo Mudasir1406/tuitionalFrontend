@@ -3,12 +3,9 @@ import React from "react";
 
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import success from "../../../public/assets/images/svg/success.svg";
-import certificate from "../../../public/assets/images/svg/certificate.svg";
-import equality from "../../../public/assets/images/svg/equality.svg";
-import ethics from "../../../public/assets/images/svg/ethics.svg";
-import growth from "../../../public/assets/images/svg/growth.svg";
-import handshake from "../../../public/assets/images/svg/handshake.svg";
+import scholarHat from "../../../public/assets/images/svg/scholarHat.svg";
+import book from "../../../public/assets/images/svg/book.svg";
+import calendar from "../../../public/assets/images/svg/calendar.svg";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 
@@ -43,21 +40,21 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
           <InfoBox
             heading="Experienced Tutors"
             dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
-            icon="succeed"
+            icon="scholarHat"
           />
         </Grid>
         <Grid item>
           <InfoBox
             heading="One-on-One Learning"
             dec={`Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements.`}
-            icon="helpful"
+            icon="book"
           />
         </Grid>
         <Grid item>
           <InfoBox
             heading="Flexible Schedules"
             dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
-            icon="ethics"
+            icon="calendar"
           />
         </Grid>
       </Grid>
@@ -72,8 +69,8 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "186px", sm: "322px", md: "360px", lg: "460px" },
-        height: { xs: "167px", sm: "275px", md: "313px", lg: "460px" },
+        width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
+        height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -102,58 +99,31 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
             },
           }}
         >
-          {icon === "succeed" && (
+          {icon === "scholarHat" && (
             <Image
-              src={success.src}
-              width={success.width}
-              height={success.height}
+              src={scholarHat.src}
+              width={scholarHat.width}
+              height={scholarHat.height}
               alt="sucess"
               style={{ width: "100%", height: "100%" }}
             />
           )}
-          {icon === "helpful" && (
+          {icon === "book" && (
             <Image
-              src={handshake.src}
-              width={handshake.width}
-              height={handshake.height}
-              alt="handshake"
+              src={book.src}
+              width={book.width}
+              height={book.height}
+              alt="book"
               style={{ width: "100%", height: "100%" }}
             />
           )}
 
-          {icon === "ethics" && (
+          {icon === "calendar" && (
             <Image
-              src={ethics.src}
-              width={ethics.width}
-              height={ethics.height}
-              alt="ethics"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-          {icon === "equality" && (
-            <Image
-              src={equality.src}
-              width={equality.width}
-              height={equality.height}
-              alt="equality"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-          {icon === "debate" && (
-            <Image
-              src={certificate.src}
-              width={certificate.width}
-              height={certificate.height}
-              alt="sucess"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-          {icon === "grow" && (
-            <Image
-              src={growth.src}
-              width={growth.width}
-              height={growth.height}
-              alt="growth"
+              src={calendar.src}
+              width={calendar.width}
+              height={calendar.height}
+              alt="calendar"
               style={{ width: "100%", height: "100%" }}
             />
           )}
@@ -220,7 +190,7 @@ const styles = {
     boxShadow:
       " 0px -2px 4px 0px #0000005C inset, 0px 4px 12.6px 0px #009BF526",
     marginBottom: { xs: "10px", sm: "20px", md: "30px", lg: "40px" },
-    marginTop: { lg: "-40px" },
+    marginTop: { lg: "-80px" },
   },
   mainHeading: {
     display: "flex",
