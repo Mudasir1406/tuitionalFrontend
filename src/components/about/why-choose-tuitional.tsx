@@ -60,7 +60,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
 
       <Grid
         container={!isGreaterThanLarge}
-        spacing={2}
+        // spacing={2}
         sx={styles.gridContainer}
       >
         <Grid item xs={12} md={3} sx={styles.gridItem}>
@@ -301,7 +301,7 @@ const styles = {
     justifyContent: "center",
     width: "auto",
     // width: { lg: "90%", md: "auto" },
-    rowGap: "24px",
+    // rowGap: "12px",
     columnGap: "24px",
     // display: "flex",
     flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
