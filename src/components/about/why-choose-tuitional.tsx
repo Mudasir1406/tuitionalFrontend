@@ -63,21 +63,21 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
         // spacing={2}
         sx={styles.gridContainer}
       >
-        <Grid item sm={12} md={3} sx={styles.gridItem}>
+        <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
             heading="Experienced Tutors"
             dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
             icon="scholarHat"
           />
         </Grid>
-        <Grid item sm={12} md={3} sx={styles.gridItem}>
+        <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
             heading="One-on-One Learning"
             dec="Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements."
             icon="book"
           />
         </Grid>
-        <Grid item sm={12} md={3} sx={styles.gridItem}>
+        <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
             heading="Flexible Schedules"
             dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
@@ -205,7 +205,7 @@ const styles = {
       lg: "30px",
     },
     textAlign: "center",
-    maxWidth: { xs: "auto", sm: "200px", md: "250px", lg: "450px" },
+    maxWidth: { xs: "auto", sm: "auto", md: "auto", lg: "450px" },
     // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
     color: "rgba(0,0,0,0.77)",
   },
@@ -307,6 +307,7 @@ const styles = {
     flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
   },
   gridItem: {
-    marginBottom: { xs: "16px", md: "0" },
+    marginBottom: { xs: "16px", lg: "0" },
+    width: { xs: "100%", sm: "100%", md: "90%", lg: "auto" },
   },
 };
