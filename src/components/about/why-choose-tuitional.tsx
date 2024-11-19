@@ -19,7 +19,7 @@ type IProps = {
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
 
-  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("xl")); // Greater than `lg`
+  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("lg")); // Greater than `lg`
 
   return (
     <Box sx={{ marginBottom: 20 }}>
@@ -59,7 +59,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
       </Grid> */}
 
       <Grid
-        container={isGreaterThanLarge}
+        container={!isGreaterThanLarge}
         spacing={2}
         sx={styles.gridContainer}
       >
