@@ -19,7 +19,7 @@ type IProps = {
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
 
-  const isXL = useMediaQuery(theme.breakpoints.up("xl"));
+  const isXL = useMediaQuery(theme.breakpoints.down("xl"));
 
   return (
     <Box sx={{ marginBottom: 20 }}>
