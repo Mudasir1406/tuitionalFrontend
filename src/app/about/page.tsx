@@ -55,7 +55,7 @@ const About: React.FC = async () => {
       <Grid sx={styles.aboutUsContainer}>
         <AboutUs />
       </Grid>
-      <Grid>
+      <Grid sx={styles.whyChooseContainer}>
         <WhyChooseTuitional />
       </Grid>
       <Grid sx={{ marginX: "3vh" }}>
@@ -75,6 +75,9 @@ const styles = {
   contanier: {},
   aboutUsContainer: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+  },
+  whyChooseContainer: {
+    paddingX: { xs: "24px", sm: "24px", md: 0, lg: 0 },
   },
   studentSaysContainer: {
     background: "#9EDCFF",
