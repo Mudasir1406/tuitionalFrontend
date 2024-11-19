@@ -19,7 +19,7 @@ type IProps = {
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
 
-  const isXL = useMediaQuery(theme.breakpoints.down("xl"));
+  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
     <Box sx={{ marginBottom: 20 }}>
@@ -58,7 +58,11 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
         
       </Grid> */}
 
-      <Grid container={isXL} spacing={2} sx={styles.gridContainer}>
+      <Grid
+        container={isGreaterThanLarge}
+        spacing={2}
+        sx={styles.gridContainer}
+      >
         <Grid item xs={12} md={3} sx={styles.gridItem}>
           <InfoBox
             heading="Experienced Tutors"
@@ -92,7 +96,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "auto", sm: "auto", md: "auto", lg: "420px" },
+        width: { xs: "auto", sm: "auto", md: "auto", lg: "auto", xl: "420px" },
         // width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
         height: { xs: "auto", sm: "auto", md: "auto", lg: "460px" },
         // height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
@@ -297,7 +301,8 @@ const styles = {
     justifyContent: "center",
     width: "auto",
     // width: { lg: "90%", md: "auto" },
-    // rowGap: "24px",
+    rowGap: "24px",
+    columnGap: "24px",
     // display: "flex",
     flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
   },
