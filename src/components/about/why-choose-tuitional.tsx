@@ -92,9 +92,10 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "auto", sm: "auto", md: "360px", lg: "420px" },
+        width: { xs: "auto", sm: "auto", md: "auto", lg: "420px" },
         // width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
-        height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
+        height: { xs: "auto", sm: "auto", md: "auto", lg: "460px" },
+        // height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -291,12 +292,13 @@ const styles = {
     background: "transparent",
   },
   gridContainer: {
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: { md: "90%", lg: "auto" },
     // rowGap: "24px",
     // display: "flex",
-    // flexDirection: { lg: "row", md: "column" },
+    flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
   },
   gridItem: {
     marginBottom: { xs: "16px", md: "0" },
