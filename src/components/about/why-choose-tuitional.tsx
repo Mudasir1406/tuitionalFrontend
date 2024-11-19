@@ -19,7 +19,7 @@ type IProps = {
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
 
-  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("xl"));
+  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("xl")); // Greater than `lg`
 
   return (
     <Box sx={{ marginBottom: 20 }}>
@@ -96,7 +96,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "auto", sm: "auto", md: "auto", lg: "auto", xl: "420px" },
+        width: { xs: "auto", sm: "auto", md: "auto", lg: "420px" },
         // width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
         height: { xs: "auto", sm: "auto", md: "auto", lg: "460px" },
         // height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
