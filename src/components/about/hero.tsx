@@ -9,10 +9,12 @@ const Hero: React.FC = () => {
   return (
     <>
       <Box
-        sx={{
-          height: { lg: "65vh" },
-          // paddingLeft: "5vw",
-        }}
+        sx={
+          {
+            // height: { lg: "65vh" },
+            // paddingLeft: "5vw",
+          }
+        }
       >
         <Typography
           sx={styles.heading}
@@ -44,7 +46,7 @@ const Hero: React.FC = () => {
           sx={{
             width: { xs: "100%", sm: "100%", md: "100%", lg: "70%" },
             marginTop: "9vh",
-            marginBottom: "19vh",
+            // marginBottom: "19vh",
             display: {
               xs: "flex",
               sm: "flex",
@@ -65,10 +67,10 @@ export default Hero;
 const styles = {
   heading: {
     fontSize: {
-      xs: "5vh",
-      sm: "4.2vh",
-      md: "4.3vh",
-      lg: "5.5vh",
+      xs: "40px",
+      sm: "42px",
+      md: "65px",
+      lg: "62px",
     },
     fontWeight: "bold",
     lineHeight: {
@@ -87,16 +89,17 @@ const styles = {
     marginTop: {
       xs: "3vh",
     },
+    paddingX: { xs: "2vw", sm: "2vw", md: "0" },
     color: "#000000",
   },
   expertText: {
     color: "#38B6FF",
     display: "inline",
     fontSize: {
-      xs: "3.5vh",
-      sm: "4vh",
-      md: "4.5vh",
-      lg: "6vh",
+      xs: "40px",
+      sm: "42px",
+      md: "65px",
+      lg: "62px",
     },
     fontWeight: "bold",
     lineHeight: {

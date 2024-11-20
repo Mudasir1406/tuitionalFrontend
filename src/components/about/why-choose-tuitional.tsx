@@ -22,7 +22,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
   const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("lg")); // Greater than `lg`
 
   return (
-    <Box sx={{ marginBottom: 20 }}>
+    <Box>
       <Box sx={styles.headingContanier}>
         <Typography
           sx={styles.mainHeading}

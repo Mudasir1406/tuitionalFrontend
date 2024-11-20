@@ -247,11 +247,11 @@ export default AboutUs;
 
 const styles = {
   infoBoxContanier: {
-    marginY: { lg: "13vh" },
-    // marginX: { lg: "4vw", xs: "4vw" },
-    width: { xl: "80%" },
-    marginX: { lg: "auto", xs: "auto" },
-    paddingX: { lg: "auto", xs: "24px" },
+    // marginY: { lg: "13vh" },
+    // // marginX: { lg: "4vw", xs: "4vw" },
+    // width: { xl: "80%" },
+    // marginX: { lg: "auto", xs: "auto" },
+    // paddingX: { lg: "auto", xs: "24px" },
   },
   image: {
     width: "100%",
@@ -431,38 +431,44 @@ const styles = {
     background: "transparent",
   },
   roundedActiveButton: {
-    backgroundColor: "#38B6FF",
-    borderRadius: "50px",
-    color: "white",
-    maxWidth: "213px",
-    fontWeight: {
-      xs: "medium",
-      sm: "medium",
-      md: "semiBold",
-      lg: "semiBold",
+    borderColor: "#51B893",
+    paddingY: "1.2vh",
+    fontSize: "1.5vh",
+    fontWeight: 700,
+    lineHeight: "1.84vh",
+    textAlign: "center",
+    ":hover": {
+      backgroundColor: "white",
+      color: "#38B6FF",
+      borderColor: "#38B6FF",
+      fontSize: "1.5vh",
+      fontWeight: 700,
+      lineHeight: "1.84vh",
+      textAlign: "center",
     },
-    textTransform: "none",
-
-    // fontSize: {
-    //   xs: "14px",
-    //   sm: "16px",
-    //   md: "18px",
-    //   lg: "14px",
-    // },
+    display: {
+      lg: "flex",
+    },
   },
   roundedButton: {
     backgroundColor: "white",
-    borderRadius: "50px",
     color: "black",
-    maxWidth: "213px",
-    fontWeight: {
-      xs: "medium",
-      sm: "medium",
-      md: "semiBold",
-      lg: "semiBold",
+    paddingY: "1.2vh",
+    fontSize: "1.5vh",
+    fontWeight: 700,
+    lineHeight: "1.84vh",
+    textAlign: "center",
+    ":hover": {
+      color: "white",
+      borderColor: "white",
+      fontSize: "1.5vh",
+      fontWeight: 700,
+      lineHeight: "1.84vh",
+      textAlign: "center",
     },
-    border: "1px solid #38B6FF",
-    textTransform: "none",
+    display: {
+      lg: "flex",
+    },
   },
   aboutContent: {
     marginTop: "36px",
@@ -482,7 +488,10 @@ const styles = {
     textAlign: "flexStart",
     justifyContent: "left",
     columnGap: "24px",
-    marginTop: "24px",
+    marginTop: { xs: "24px", lg: 0 },
+    height: "100%",
+    maxHeight: { xs: "auto", lg: "535px" },
+
     // maxHeight: "400px",
     // marginX: "auto",
   },
@@ -499,7 +508,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     textAlign: "flexStart",
-    justifyContent: "left",
+    justifyContent: "spaceEvenly",
   },
   box: {
     display: "flex",

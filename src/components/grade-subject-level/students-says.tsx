@@ -81,9 +81,9 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: {
+    paddingX: {
       xs: "0",
-      lg: "7vh",
+      lg: "5vw",
     },
     width: {
       xs: "90%",
