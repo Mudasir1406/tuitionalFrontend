@@ -3,7 +3,7 @@ import { Header } from "../../components";
 import { Box, Container, Grid } from "@mui/material";
 import Footer from "../../components/footer";
 
-import aboutHero from "../../../public/assets/images/static/hero-about.png";
+import aboutHero from "../../../public/assets/images/static/hero-about.webp";
 import testimonialHeroMobile from "../../../public/assets/images/static/testimonialHeroMobile.png";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import GetStarted from "@/components/home/get-started";
