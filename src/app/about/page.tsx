@@ -86,7 +86,7 @@ const styles = {
   },
 
   whyChooseContainer: {
-    paddingX: { xs: "24px", sm: "24px", md: 0, lg: 0 },
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
   },
   getStartedContainer: {
     paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
