@@ -67,13 +67,13 @@ export default StudentSays;
 
 const styles = {
   card: {
-    width: { xs: "180px", lg: "100%" },
-    height: { xs: "180px", lg: "48vh" },
+    width: { xs: "165px", lg: "100%" },
+    height: { xs: "165px", lg: "48vh" },
     borderRadius: "20px",
   },
   cardM: {
-    width: { xs: "180px", lg: "100%" },
-    height: { xs: "180px", lg: "48vh" },
+    width: { xs: "165px", lg: "100%" },
+    height: { xs: "165px", lg: "48vh" },
     borderRadius: "20px",
   },
   container: {
