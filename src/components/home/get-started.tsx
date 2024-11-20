@@ -1,5 +1,5 @@
 "use client";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
@@ -120,12 +120,12 @@ const styles = {
       lg: "65px",
     },
     fontWeight: 600,
-    marginTop: {
-      xs: "70px",
-      sm: "80px",
-      md: "95px",
-      lg: "105px",
-    },
+    // marginTop: {
+    //   xs: "70px",
+    //   sm: "80px",
+    //   md: "95px",
+    //   lg: "105px",
+    // },
     marginBottom: "20px",
     position: "relative",
     paddingLeft: {
@@ -194,6 +194,7 @@ const styles = {
     textTransform: "none",
     letterSpacing: "-2%",
     borderRadius: "10px",
+    marginBottom: "36px",
     ":hover": {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "#38B6FF",
@@ -214,7 +215,8 @@ const styles = {
     },
   },
   contanier: {
-    height: "700px",
+    height: { xs: "550px", lg: "600px" },
+    // height: "auto",
     width: {
       lg: "auto",
       // lg: "360px",
@@ -224,7 +226,7 @@ const styles = {
     backgroundColor: "#D7F0FF",
     alignItems: "center",
     padding: "10px",
-    margin: "10px",
+    margin: { lg: "10px" },
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
@@ -234,14 +236,17 @@ const styles = {
     fontWeight: 600,
     lineHeight: "34px",
     textAlign: "center",
-    height: "100px",
+    // height: "100px",
+    marginTop: "16px",
+    marginBottom: "16px",
   },
   boxDesc: {
-    fontSize: "22px",
+    fontSize: { xs: "18px", lg: "22px" },
     fontWeight: 400,
-    lineHeight: "32px",
+    lineHeight: { xs: "28px", lg: "32px" },
     textAlign: "center",
-    height: "150px",
+    // height: "150px",
+    marginBottom: "24px",
   },
 };
 
@@ -258,11 +263,15 @@ const GetStartedBox: React.FC<Props> = ({
   image,
   ButtonText,
 }) => {
+  const theme = useTheme();
+
+  const isLargeOrAbove = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
     <Box sx={styles.contanier}>
       <Box
         sx={{
-          height: 320,
+          height: isLargeOrAbove ? 300 : 280,
           width: 300,
           display: "flex",
           alignItems: "center",
@@ -273,7 +282,8 @@ const GetStartedBox: React.FC<Props> = ({
           src={image}
           alt=""
           width={300}
-          height={360}
+          height={isLargeOrAbove ? 300 : 280}
+          // height={360}
           style={{ width: "100%", height: "auto", objectFit: "cover" }}
         ></Image>
       </Box>

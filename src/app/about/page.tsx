@@ -27,7 +27,8 @@ const About: React.FC = async () => {
 
       <Container
         sx={{
-          maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },
+          maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "90vw" },
+          // maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },
           p: 0,
           padding: 0,
           paddingTop: {
@@ -58,7 +59,7 @@ const About: React.FC = async () => {
       <Grid sx={styles.whyChooseContainer}>
         <WhyChooseTuitional />
       </Grid>
-      <Grid sx={{ marginX: "3vh" }}>
+      <Grid sx={styles.getStartedContainer}>
         <GetStarted />
       </Grid>
       <Grid sx={styles.studentSaysContainer}>
@@ -75,12 +76,33 @@ const styles = {
   contanier: {},
   aboutUsContainer: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+    // marginY: {
+    //   xs: "70px",
+    //   sm: "80px",
+    //   md: "95px",
+    //   lg: "105px",
+    // },
   },
+
   whyChooseContainer: {
     paddingX: { xs: "24px", sm: "24px", md: 0, lg: 0 },
   },
+  getStartedContainer: {
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+    marginY: {
+      xs: "70px",
+      sm: "80px",
+      md: "95px",
+      lg: "105px",
+    },
+  },
   studentSaysContainer: {
     background: "#9EDCFF",
+    paddingY: {
+      xs: "1vh",
+      lg: "7vh",
+    },
   },
   heroPicture: {
     background: {
