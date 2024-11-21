@@ -69,15 +69,16 @@ const styles = {
     fontSize: {
       xs: "40px",
       sm: "42px",
-      md: "65px",
-      lg: "62px",
+      // md: "65px",
+      lg: "50px",
     },
     fontWeight: "bold",
     lineHeight: {
-      xs: "5vh",
-      sm: "4.5vh",
-      md: "5.5vh",
-      lg: "6vh",
+      xs: "50px",
+      // sm: "4.5vh",
+      // md: "5.5vh",
+      lg: "70px",
+      // xl: "70px",
     },
     width: {
       lg: "90%",
@@ -98,15 +99,15 @@ const styles = {
     fontSize: {
       xs: "40px",
       sm: "42px",
-      md: "65px",
-      lg: "62px",
+      // md: "65px",
+      lg: "50px",
     },
     fontWeight: "bold",
     lineHeight: {
       xs: "3vh",
       sm: "3.5vh",
-      md: "5vh",
-      lg: "8vh",
+      // md: "5vh",
+      lg: "70px",
     },
     position: "relative",
     "::before": {

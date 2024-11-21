@@ -369,7 +369,7 @@ const styles = {
       xs: "12px",
       sm: "16px",
       md: "18px",
-      lg: "20px",
+      lg: "24px",
     },
     fontWeight: 400,
     lineHeight: {
@@ -432,7 +432,9 @@ const styles = {
   },
   roundedActiveButton: {
     borderColor: "#51B893",
-    paddingY: "1.2vh",
+    paddingY: "1.6vh",
+    paddingX: "4vh",
+
     fontSize: "1.5vh",
     fontWeight: 700,
     lineHeight: "1.84vh",
@@ -453,7 +455,9 @@ const styles = {
   roundedButton: {
     backgroundColor: "white",
     color: "black",
-    paddingY: "1.2vh",
+    paddingY: "1.6vh",
+    paddingX: "4vh",
+
     fontSize: "1.5vh",
     fontWeight: 700,
     lineHeight: "1.84vh",
