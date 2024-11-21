@@ -138,8 +138,8 @@ const GetInTouch: React.FunctionComponent = () => {
               className={leagueSpartan.className}
               component={"p"}
             >
-              Can't Assess What You're Looking For?
-              <br /> Don't Worry! We Can Help!
+              {`Can't Assess What You're Looking For?`}
+              <br /> {`Don't Worry! We Can Help!`}
             </Typography>
             <Box
               sx={{
