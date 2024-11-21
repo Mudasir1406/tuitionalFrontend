@@ -46,7 +46,7 @@ const StudentSays: React.FunctionComponent<{
       </Typography>
       <Grid container spacing={2}>
         {videoData.map((poster, index) => (
-          <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Card sx={styles.card}>
               <CardMedia
                 component="video"
@@ -67,12 +67,14 @@ export default StudentSays;
 
 const styles = {
   card: {
-    width: { xs: "165px", lg: "100%" },
+    width: { xs: "100%", sm: "100%", lg: "100%" },
+    // width: { xs: "165px", sm: "100%", lg: "100%" },
     height: { xs: "165px", lg: "48vh" },
     borderRadius: "20px",
   },
   cardM: {
-    width: { xs: "165px", lg: "100%" },
+    width: { xs: "100%", sm: "100%", lg: "100%" },
+    // width: { xs: "165px", sm: "100%", lg: "100%" },
     height: { xs: "165px", lg: "48vh" },
     borderRadius: "20px",
   },
@@ -101,10 +103,10 @@ const styles = {
       xs: "90%",
     },
     fontSize: {
-      xs: "2vh",
-      sm: "2vh",
-      md: "55px",
-      lg: "2vh",
+      // xs: "2vh",
+      xs: "14px",
+      md: "20px",
+      // lg: "2vh",
     },
     fontWeight: 400,
     textAlign: {
@@ -120,10 +122,10 @@ const styles = {
   },
   heading: {
     fontSize: {
-      xs: "3.5vh",
-      sm: "5vh",
+      xs: "30px",
+      // sm: "5vh",
       md: "55px",
-      lg: "5.5vh",
+      // lg: "5.5vh",
     },
     fontWeight: 600,
     textAlign: {

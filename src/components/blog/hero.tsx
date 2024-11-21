@@ -163,9 +163,9 @@ const styles = {
     backgroundColor: "#38B6FF",
     fontSize: { lg: "2vh", xs: "1.6vh" },
     fontWeight: 700,
+    paddingX: "4vh",
     paddingY: "2vh",
     marginY: "2vh",
-    paddingX: "4vh",
     textTransform: "none",
     borderRadius: "5vh",
     width: {
