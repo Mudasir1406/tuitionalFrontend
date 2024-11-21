@@ -123,7 +123,16 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
               className={leagueSpartan.className}
               component={"h5"}
             >
-              Let&apos;s Get You Started!
+              {/* Let&apos;s Get You Started! */}
+              Schedule a Call
+            </Typography>
+            <Typography
+              sx={styles.desc}
+              className={leagueSpartan.className}
+              component={"p"}
+            >
+              Request a call from our academic specialist to get started with
+              your successful educational journey with Tuitional.
             </Typography>
             <Box
               sx={styles.contactForm}
@@ -309,6 +318,29 @@ const styles = {
         md: "-6%",
         lg: "-4%",
       },
+    },
+  },
+  desc: {
+    fontSize: {
+      xs: "20px",
+      sm: "22px",
+      md: "22px",
+      lg: "22px",
+    },
+    fontWeight: 400,
+    lineHeight: "35px",
+    color: "black",
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "center",
+      lg: "start",
+    },
+    paddingX: {
+      xs: "20px",
+      sm: "22px",
+      md: "0px",
+      lg: "0px",
     },
   },
   phoneInput: {

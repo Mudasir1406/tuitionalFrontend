@@ -14,12 +14,17 @@ const LearnTogeather: React.FC = () => {
         style={{ position: "absolute", left: "11%", top: "-10%" }}
       />
 
-      <Typography sx={styles.learn} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.learn}
+        className={leagueSpartan.className}
+        component={"h1"}
+      >
         Let’s Learn Together
       </Typography>
       <Typography
         sx={[styles.learn, { color: "rgba(56, 182, 255, 1)" }]}
         className={leagueSpartan.className}
+        component={"h1"}
       >
         Anywhere & Everywhere
       </Typography>

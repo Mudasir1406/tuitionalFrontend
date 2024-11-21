@@ -38,7 +38,7 @@ const TopTalent: React.FC = () => {
         <Box>
           <Typography
             sx={styles.heading}
-            component={"h2"}
+            component={"h3"}
             className={leagueSpartan.className}
           >
             Why Top Talent <br />
@@ -51,15 +51,31 @@ const TopTalent: React.FC = () => {
               Tuitional
             </Typography>
           </Typography>
-          <Typography sx={styles.desc} className={leagueSpartan.className}>
-            Tuitional builds products that transform experience and know-how
+          <Typography
+            sx={styles.desc}
+            className={leagueSpartan.className}
+            component={"p"}
+          >
+            {/* Tuitional builds products that transform experience and know-how
             into thriving businesses. We believe shared knowledge has the power
             to change lives, and by enabling people to share what they know we
-            create a better world together.
-            <br /> We’re on a mission to empower creators to transform their
+            create a better world together. */}
+            Tuitional helps individuals transform their experiences and
+            knowledge into incredible products enabling them to thrive
+            businesses. We believe shared knowledge has the power to change
+            lives, and by enabling people to share what they know we can
+            definitely create a better world together that is more creative and
+            knowledgeable.
+            <br />
+            We’re on a mission to empower creators to transform their
+            <br />
+            knowledge and learning into income. We’re looking for talented
+            individuals having diverse interests to help strengthen what we
+            already do.
+            {/* <br /> We’re on a mission to empower creators to transform their
             <br />
             knowledge into income. We’re looking for talented individuals with
-            diverse interests to help power what we do.
+            diverse interests to help power what we do. */}
           </Typography>
           <Box
             sx={{

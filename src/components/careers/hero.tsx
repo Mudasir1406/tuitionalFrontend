@@ -1,16 +1,18 @@
+"use client";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
 import arrow from "../../../public/assets/images/static/arrow.png";
 import { leagueSpartan } from "@/app/fonts";
+import { scrollToApplyForm } from "@/utils/helper";
 
 const Hero: React.FC = () => {
   return (
     <div style={{ width: "100%", paddingBottom: "15vh" }}>
       <Typography
         sx={styles.heading}
-        component={"h2"}
+        component={"h1"}
         className={leagueSpartan.className}
       >
         Let’s build something
@@ -25,7 +27,11 @@ const Hero: React.FC = () => {
           together{" "}
         </Typography>
       </Typography>
-      <Typography sx={styles.desc} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.desc}
+        className={leagueSpartan.className}
+        component={"p"}
+      >
         Passionate Educators And Change Lives
       </Typography>
       <Box
@@ -42,6 +48,7 @@ const Hero: React.FC = () => {
           variant="contained"
           sx={styles.containedBtn}
           className={leagueSpartan.className}
+          onClick={scrollToApplyForm}
         >
           Get in touch
         </Button>

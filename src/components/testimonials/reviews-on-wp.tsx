@@ -11,7 +11,7 @@ const ReviewsOnWp: React.FC = async () => {
   const data = await getWPReviews();
   return (
     <Box sx={styles.background}>
-      <Typography sx={styles.heading} className={leagueSpartan.className}>
+      <Typography sx={styles.heading} className={leagueSpartan.className} component={'h2'}>
         Reviews on WhatsApp
       </Typography>
       <Grid container sx={styles.gridContanier} rowSpacing={2}>

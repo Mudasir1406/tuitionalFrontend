@@ -9,6 +9,17 @@ import TeamValues from "../../components/careers/team-values";
 import TopTalent from "../../components/careers/top-talent";
 import ApplyNow from "../../components/careers/apply-now";
 import HeroInfo from "../../components/careers/hero-info";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export const metadata: Metadata = {
+  title: "We Are Always on the Lookout for Talented People",
+  description: ` Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact.`,
+  alternates: {
+    canonical: `${SITE_URL}/careers`,
+  },
+};
+
 const Careers: React.FC = () => {
   return (
     <>
@@ -33,7 +44,15 @@ const Careers: React.FC = () => {
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Hero />
           </Grid>
-          <Grid item lg={8} md={12} sm={12} xs={12} sx={styles.hero}>
+          <Grid
+            item
+            lg={8}
+            md={12}
+            sm={12}
+            xs={12}
+            sx={styles.hero}
+            aria-label="Tuitional's Talented individuals"
+          >
             <HeroInfo />
           </Grid>
         </Grid>
@@ -46,7 +65,9 @@ const Careers: React.FC = () => {
       <Container sx={{ maxWidth: { lg: "1650px" } }}>
         <TopTalent />
       </Container>
-      <ApplyNow />
+      <div id="careersForm">
+        <ApplyNow />
+      </div>
       <Footer />
     </>
   );

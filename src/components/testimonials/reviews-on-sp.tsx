@@ -52,10 +52,14 @@ const ReviewsOnSp: React.FC = () => {
             // justifyContent: "center",
           }}
         >
-          <Typography sx={styles.heading} className={leagueSpartan.className}>
+          <Typography
+            sx={styles.heading}
+            className={leagueSpartan.className}
+            component={"h2"}
+          >
             Reviews on Social <br /> Platforms
           </Typography>
-          <Typography sx={styles.desc} className={leagueSpartan.className}>
+          <Typography sx={styles.desc} className={leagueSpartan.className}  component={'p'}>
             The teachers at Tuitional are really great. they help a lot of
             students and they have been helping me since past 3 years now. The
             teachers are nice and understanding. My grades are improving.
