@@ -104,8 +104,8 @@ const styles = {
     },
     fontSize: {
       // xs: "2vh",
-      xs: "14px",
-      md: "20px",
+      xs: "20px",
+      md: "25px",
       // lg: "2vh",
     },
     fontWeight: 400,

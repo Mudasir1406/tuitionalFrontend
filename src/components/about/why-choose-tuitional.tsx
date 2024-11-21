@@ -192,14 +192,14 @@ const styles = {
   },
   dec: {
     fontSize: {
-      xs: "12px",
+      xs: "16px",
       sm: "16px",
       md: "18px",
       lg: "20px",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "15px",
+      xs: "20px",
       sm: "20px",
       md: "25px",
       lg: "30px",
