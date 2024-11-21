@@ -133,9 +133,13 @@ const GetInTouch: React.FunctionComponent = () => {
                 {`    Touch`}
               </Typography>
             </Typography>
-            <Typography sx={styles.looking} className={leagueSpartan.className}>
-              You can’t what you are looking for?
-              <br /> It is ok. We can help.
+            <Typography
+              sx={styles.looking}
+              className={leagueSpartan.className}
+              component={"p"}
+            >
+              Can't Assess What You're Looking For?
+              <br /> Don't Worry! We Can Help!
             </Typography>
             <Box
               sx={{
@@ -153,7 +157,7 @@ const GetInTouch: React.FunctionComponent = () => {
                 src={girlLaptop.src}
                 width={girlLaptop.width}
                 height={girlLaptop.height}
-                alt="girlLaptop"
+                alt="Contact Tuitional Support"
                 style={{
                   width: "100%",
                   height: "100%",

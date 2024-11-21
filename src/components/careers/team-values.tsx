@@ -21,7 +21,11 @@ const TeamValues: React.FunctionComponent = () => {
   return (
     <Box sx={{ marginBottom: 20 }}>
       <Box sx={styles.headingContanier}>
-        <Typography sx={styles.mainHeading} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.mainHeading}
+          className={leagueSpartan.className}
+          component={"h2"}
+        >
           Our Team Values
         </Typography>
       </Box>

@@ -6,6 +6,16 @@ import LearnTogeather from "../../components/contact/learn-togeather";
 import { Box, Container, Grid } from "@mui/material";
 import GetInTouch from "../../components/contact/get-in-touch";
 import Info from "../../components/contact/info";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export const metadata: Metadata = {
+  title: "Contact Tuitional Support for your enquiries",
+  description: `Contact Tuitional to gain academic support and get answers to all your queries. Don't hesitate, we're just a click away.`,
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
+};
 
 const Contact: React.FC = () => {
   return (

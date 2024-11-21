@@ -12,6 +12,16 @@ import VideoBasedReview from "../../components/testimonials/video-based-reviews"
 import testimonialsImage from "../../../public/assets/images/static/hero-testimonial.png";
 import testimonialHeroMobile from "../../../public/assets/images/static/testimonialHeroMobile.png";
 import { getTestimonials } from "@/services/testimonials/testimonials";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export const metadata: Metadata = {
+  title: "Testimonials - Hear What Our Students Have to Say",
+  description: `Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience.`,
+  alternates: {
+    canonical: `${SITE_URL}/testimonials`,
+  },
+};
 
 const Testimonials: React.FC = async () => {
   const data = await getTestimonials();
@@ -39,12 +49,22 @@ const Testimonials: React.FC = async () => {
           <Grid item lg={5} md={12} sm={12} xs={12}>
             <Hero />
           </Grid>
-          <Grid item lg={7} md={12} sm={12} xs={12} sx={styles.heroPicture}>
+          <Grid
+            item
+            lg={7}
+            md={12}
+            sm={12}
+            xs={12}
+            sx={styles.heroPicture}
+            aria-label="Tuitional Testimonials"
+          >
             <HeroInfo />
           </Grid>
         </Grid>
       </Container>
-      <ReviewsOnWp />
+      <div id="testimonials">
+        <ReviewsOnWp />
+      </div>
       <ReviewsOnSp />
       <Box
         sx={{

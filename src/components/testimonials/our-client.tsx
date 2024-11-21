@@ -22,6 +22,7 @@ import linesInvertPrimarySmall from "../../../public/assets/images/static/lines-
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import { Testimonials_Type } from "@/services/testimonials/testimonials";
+import { redirectToTrustpilot } from "@/utils/helper";
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 7,
   borderRadius: 5,
@@ -75,12 +76,21 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             flexDirection: "column",
           }}
         >
-          <Typography sx={styles.heading} className={leagueSpartan.className}>
+          <Typography
+            sx={styles.heading}
+            className={leagueSpartan.className}
+            component={"h2"}
+          >
             What are Students Says!{" "}
           </Typography>
-          <Typography sx={[styles.desc]} className={leagueSpartan.className}>
-            Listen to the incredible experiences shared by our students!
-            Register now to unlock an enriching world of enjoyable learning
+          <Typography
+            sx={[styles.desc]}
+            className={leagueSpartan.className}
+            component={"p"}
+          >
+            Listen to the incredible and valuable experience shared by our
+            students. Register now to unlock an enriching world of enjoyable and
+            quality learning and education.
           </Typography>
           <Button
             variant="contained"
@@ -189,6 +199,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             variant="contained"
             sx={styles.button}
             className={leagueSpartan.className}
+            onClick={redirectToTrustpilot}
           >
             Write A Review
           </Button>
