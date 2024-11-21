@@ -28,7 +28,7 @@ const Footer: React.FC = async () => {
             }}
             spacing={2}
           >
-            <Grid item lg={1}>
+            <Grid item lg={1} sm={12}>
               <Box sx={styles.imageContanier}>
                 <Image
                   src={plan.src}
@@ -99,7 +99,7 @@ const Footer: React.FC = async () => {
               <Box
                 sx={{
                   width: "100%",
-                  display: { xs: "flex", sm: "block" },
+                  display: { xs: "flex", sm: "flex" },
 
                   alignItems: "center",
                   justifyContent: "center",
@@ -340,6 +340,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
   },
+
   imageContanier: {
     maxWidth: "90px",
     maxHeight: "90px",

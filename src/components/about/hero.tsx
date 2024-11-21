@@ -77,7 +77,7 @@ const styles = {
       xs: "50px",
       // sm: "4.5vh",
       // md: "5.5vh",
-      lg: "70px",
+      lg: "60px",
       // xl: "70px",
     },
     width: {
@@ -107,7 +107,7 @@ const styles = {
       xs: "3vh",
       sm: "3.5vh",
       // md: "5vh",
-      lg: "70px",
+      lg: "60px",
     },
     position: "relative",
     "::before": {
@@ -146,16 +146,16 @@ const styles = {
   },
   desc: {
     fontSize: {
-      xs: "2.5vh",
-      sm: "2vh",
-      md: "2.5vh",
-      lg: "2.6vh",
+      xs: "20px",
+      sm: "20px",
+      md: "22px",
+      lg: "20px",
     },
     fontWeight: 400,
     lineHeight: {
-      xs: "2.5vh",
-      sm: "2.4vh",
-      md: "2.8vh",
+      xs: "26px",
+      // sm: "2.4vh",
+      // md: "2.8vh",
       lg: "3.4vh",
     },
     textAlign: {
