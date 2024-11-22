@@ -1,21 +1,40 @@
+"use client";
+
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesmobile from "../../../public/assets/images/static/linesMobile.png";
 import "swiper/css";
 import Waveform from "./wave-form";
 import { leagueSpartan } from "@/app/fonts";
-import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
+import { WP_Reviews_Type } from "@/services/reviews-on-wp/reviews-on-wp";
+// import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
 
-const ReviewsOnWp: React.FC = async () => {
-  const data = await getWPReviews();
+interface Props {
+  reviews: WP_Reviews_Type[];
+}
+
+const ReviewsOnWp = ({ reviews }: Props) => {
+  const [showAll, setShowAll] = useState(false);
+
+  const handleLoadMore = () => {
+    setShowAll((prev) => !prev);
+  };
+
+  const displayedReviews = showAll ? reviews : reviews.slice(0, 4);
+
+  // console.log("ReviewsOnWp", reviews);
   return (
     <Box sx={styles.background}>
-      <Typography sx={styles.heading} className={leagueSpartan.className} component={'h2'}>
+      <Typography
+        sx={styles.heading}
+        className={leagueSpartan.className}
+        component={"h2"}
+      >
         Reviews on WhatsApp
       </Typography>
       <Grid container sx={styles.gridContanier} rowSpacing={2}>
-        {data.map((item, index) => (
+        {displayedReviews.map((item, index) => (
           <Grid item lg={6} key={index}>
             <Waveform audio={item.audio} image={item.imageUrl} />
           </Grid>
@@ -24,13 +43,17 @@ const ReviewsOnWp: React.FC = async () => {
       <Typography className={leagueSpartan.className}>
         10000+ student trusting our Tuitional classes.
       </Typography>
-      <Button
-        variant="contained"
-        sx={styles.containedBtn}
-        className={leagueSpartan.className}
-      >
-        Load More
-      </Button>
+      {!showAll && (
+        <Button
+          variant="contained"
+          sx={styles.containedBtn}
+          className={leagueSpartan.className}
+          onClick={handleLoadMore}
+        >
+          Load More
+          {/* {showAll ? "Show Less" : "Load More"} */}
+        </Button>
+      )}
     </Box>
   );
 };

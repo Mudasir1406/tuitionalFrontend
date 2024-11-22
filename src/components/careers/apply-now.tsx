@@ -1,34 +1,55 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import applynow from "../../../public/assets/images/static/applynow.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import { CareersFormType } from "../home/form-dialouge";
+import toast from "react-hot-toast";
+import { sendEmail } from "@/services/email-service/email-service";
+import { createCareerTemplate } from "@/services/email-service/template";
+import PhoneInput from "react-phone-number-input";
+import CustomInput from "../custom-input/custom-input";
+import { CAREERSTUITIONALEDU } from "@/utils/env";
 
 const ApplyNow: React.FunctionComponent = () => {
-  const [formData, setFormData] = useState({
-    Name: "",
-    Country: "",
-    Curriculum: "",
-    Grade: "",
-    Parent: "",
-    Phone: "",
-    Subjects: "",
-    Year: "",
-    Message: "",
+  const [formData, setFormData] = useState<CareersFormType>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    country: "",
+    phone: "",
+    position: "",
+    resume: "",
   });
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  // const handleChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
+  const handleChange = (key: string, value: string | string[]) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const formDataObject = new FormData();
 
@@ -57,9 +78,27 @@ const ApplyNow: React.FunctionComponent = () => {
           },
         }
       );
+      await sendEmail({
+        recipientEmail: CAREERSTUITIONALEDU,
+        subject: "Get Started",
+        text: "",
+        html: createCareerTemplate(formData),
+      });
+      toast.success("Form submitted successfully!");
     } catch (error) {
       console.error("Error saving data:", error);
-      // alert("Error saving data");
+      toast.error("Form submitted Failed!");
+    } finally {
+      setLoading(false);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        country: "",
+        position: "",
+        resume: "",
+      });
     }
   };
 
@@ -131,10 +170,20 @@ const ApplyNow: React.FunctionComponent = () => {
                     className={leagueSpartan.className}
                     sx={styles.input}
                     fullWidth
-                    name="Name"
-                    value={formData.Name}
-                    onChange={handleChange}
-                    label="Name*"
+                    name="First Name"
+                    value={formData.firstName}
+                    onChange={(e) => handleChange("firstName", e.target.value)}
+                    label="First Name*"
+                    variant="outlined"
+                  />
+                  <TextField
+                    className={leagueSpartan.className}
+                    sx={styles.input}
+                    fullWidth
+                    name="Email"
+                    value={formData.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    label="Email*"
                     variant="outlined"
                   />
                   <TextField
@@ -142,8 +191,8 @@ const ApplyNow: React.FunctionComponent = () => {
                     sx={styles.input}
                     fullWidth
                     name="Country"
-                    value={formData.Country}
-                    onChange={handleChange}
+                    value={formData.country}
+                    onChange={(e) => handleChange("country", e.target.value)}
                     label="Country*"
                     variant="outlined"
                   />
@@ -153,21 +202,18 @@ const ApplyNow: React.FunctionComponent = () => {
                     className={leagueSpartan.className}
                     sx={styles.input}
                     fullWidth
-                    name="Parent"
-                    value={formData.Parent}
-                    onChange={handleChange}
-                    label="I am parent*"
+                    name="Last Name"
+                    value={formData.lastName}
+                    onChange={(e) => handleChange("lastName", e.target.value)}
+                    label="Last Name*"
                     variant="outlined"
                   />
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Phone"
-                    value={formData.Phone}
-                    onChange={handleChange}
-                    label="Phone no*"
-                    variant="outlined"
+                  <PhoneInput
+                    style={styles.phoneInput}
+                    defaultCountry="SA"
+                    value={formData?.phone || ""}
+                    onChange={(e) => handleChange("phone", String(e))}
+                    inputComponent={CustomInput}
                   />
                 </Grid>
                 <Grid item lg={12}>
@@ -175,9 +221,9 @@ const ApplyNow: React.FunctionComponent = () => {
                     className={leagueSpartan.className}
                     sx={styles.input}
                     fullWidth
-                    name="applyFor"
-                    value={formData.Grade}
-                    onChange={handleChange}
+                    name="Position"
+                    value={formData?.position}
+                    onChange={(e) => handleChange("position", String(e))}
                     label="Position Apply for*"
                     variant="outlined"
                   />
@@ -190,7 +236,15 @@ const ApplyNow: React.FunctionComponent = () => {
                 type="submit"
                 className={leagueSpartan.className}
               >
-                Submit Now
+                {/* Submit Now */}
+                {loading ? (
+                  <CircularProgress
+                    sx={{ width: "12px", height: "12px", color: "white" }}
+                    size={20}
+                  />
+                ) : (
+                  "Submit Now"
+                )}
               </Button>
             </Box>
           </Box>
@@ -330,7 +384,25 @@ const styles = {
     height: "100%",
     width: "100%",
   },
-
+  phoneInput: {
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    paddingLeft: "10px",
+    backgroundColor: "white",
+    marginTop: "1.5vh",
+    marginBottom: "1.5vh",
+    outline: "none",
+    ":focusVisible": {
+      outline: "none",
+    },
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0,0,0,0.77)",
+    borderRadius: "10px",
+    height: "5.5vh",
+    fontSize: "1.7vh",
+    fontWeight: 400,
+    minHeight: "50px",
+  },
   input: {
     backgroundColor: "white",
     marginY: "12px",
