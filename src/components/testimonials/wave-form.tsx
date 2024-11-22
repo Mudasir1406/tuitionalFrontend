@@ -33,6 +33,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
     if (audio) {
       fetchAudioUrl();
     }
+    console.log("Waveform", audio, "image", image);
   }, [audio]);
   useEffect(() => {
     if (!audioUrl) return;
