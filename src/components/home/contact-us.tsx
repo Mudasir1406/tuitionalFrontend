@@ -1,6 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import girl from "../../../public/assets/images/static/contact-us-girl.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
@@ -11,33 +18,40 @@ import CustomInput from "../custom-input/custom-input";
 import "react-phone-number-input/style.css";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
+import { FormType } from "./form-dialouge";
+import { sendEmail } from "@/services/email-service/email-service";
+import { createEmailTemplate } from "@/services/email-service/template";
+import toast from "react-hot-toast";
+import { HELLOTUITIONALEDU } from "@/utils/env";
 
 type IProps = {
   background?: any;
 };
 
 const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
-  const [formData, setFormData] = useState({
-    Name: "",
-    Country: "",
-    Curriculum: "",
-    Grade: "",
-    Parent: "",
-    Phone: "",
-    Subjects: "",
-    Year: "",
-    Message: "",
+  const [formData, setFormData] = React.useState<FormType>({
+    name: "",
+    email: "",
+    phone: "",
+    grade: "",
+    curriculum: "",
+    subjects: "",
+    message: "",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [loading, setLoading] = React.useState<boolean>(false);
 
+ 
+
+  const handleChange = (key: string, value: string | string[]) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const formDataObject = new FormData();
 
@@ -68,9 +82,27 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
           },
         }
       );
+      await sendEmail({
+        recipientEmail: HELLOTUITIONALEDU,
+        subject: "Get Started",
+        text: "",
+        html: createEmailTemplate(formData),
+      });
+      toast.success("Form submitted successfully!");
     } catch (error) {
       console.error("Error saving data:", error);
-      // alert("Error saving data");
+      toast.error("Form submitted Failed!");
+    } finally {
+      setLoading(false);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        grade: "",
+        curriculum: "",
+        subjects: "",
+        message: "",
+      });
     }
   };
   useEffect(() => {
@@ -153,9 +185,9 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                   <TextField
                     sx={styles.input}
                     fullWidth
-                    name="Name"
-                    value={formData.Name}
-                    onChange={handleChange}
+                    name="name"
+                    value={formData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
                     label="Name*"
                     variant="outlined"
                     className={leagueSpartan.className}
@@ -164,7 +196,9 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     style={styles.phoneInput}
                     defaultCountry="SA"
                     // value={formData?.phone || ""}
-                    onChange={(e) => {}}
+                    // onChange={(e) => {}}
+                    value={formData?.phone || ""}
+                    onChange={(e) => handleChange("phone", String(e))}
                     inputComponent={CustomInput}
                     // error={errorData?.phone}
                     // helperText={errorData?.phone}
@@ -175,8 +209,10 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginTop="1.5vh"
                     marginBottom="1.5vh"
-                    value={""}
-                    onChange={() => {}}
+                    value={formData.curriculum}
+                    onChange={(e) => {
+                      handleChange("curriculum", e.target.value);
+                    }}
                   />
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -184,8 +220,10 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     sx={styles.input}
                     fullWidth
                     name="Email"
-                    value={formData.Parent}
-                    onChange={handleChange}
+                    // value={formData.Parent}
+                    // onChange={handleChange}
+                    value={formData.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
                     label="Email*"
                     variant="outlined"
                     type="email"
@@ -197,8 +235,12 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
-                    value={""}
-                    onChange={() => {}}
+                    // value={""}
+                    // onChange={() => {}}value={formData.grade}
+                    value={formData.grade}
+                    onChange={(e) => {
+                      handleChange("grade", e.target.value);
+                    }}
                   />
                   <DropDown
                     placeholder="Select Subject"
@@ -206,8 +248,10 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
-                    value={""}
-                    onChange={() => {}}
+                    value={formData.subjects}
+                    onChange={(e) => {
+                      handleChange("subjects", e.target.value);
+                    }}
                   />
                 </Grid>
               </Grid>
@@ -217,8 +261,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                 multiline
                 rows={5}
                 name="Message"
-                value={formData.Message}
-                onChange={handleChange}
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
                 label="Message*"
                 variant="outlined"
                 className={leagueSpartan.className}
@@ -228,8 +272,17 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                 className={leagueSpartan.className}
                 sx={styles.containedButton}
                 type="submit"
+                // onClick={handleSubmit}
               >
-                Submit Now
+
+                {loading ? (
+                  <CircularProgress
+                    sx={{ width: "12px", height: "12px", color: "white" }}
+                    size={20}
+                  />
+                ) : (
+                  "Submit Now"
+                )}
               </Button>
             </Box>
           </Box>

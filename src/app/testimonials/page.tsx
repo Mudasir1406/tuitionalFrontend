@@ -14,6 +14,7 @@ import testimonialHeroMobile from "../../../public/assets/images/static/testimon
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
+import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
 
 export const metadata: Metadata = {
   title: "Testimonials - Hear What Our Students Have to Say",
@@ -25,6 +26,8 @@ export const metadata: Metadata = {
 
 const Testimonials: React.FC = async () => {
   const data = await getTestimonials();
+  const wpReviews = await getWPReviews();
+
   return (
     <>
       <Header />
@@ -63,7 +66,7 @@ const Testimonials: React.FC = async () => {
         </Grid>
       </Container>
       <div id="testimonials">
-        <ReviewsOnWp />
+        <ReviewsOnWp reviews={wpReviews} />
       </div>
       <ReviewsOnSp />
       <Box

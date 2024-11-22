@@ -38,6 +38,16 @@ export type FormType = {
   message: string;
 };
 
+export type CareersFormType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  position: string;
+  resume: string;
+};
+
 const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
   const [filterData, setFilterData] = React.useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
