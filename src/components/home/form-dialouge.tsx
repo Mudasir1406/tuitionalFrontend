@@ -21,6 +21,7 @@ import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import "react-phone-number-input/style.css";
+import { HELLOTUITIONALEDU } from "@/utils/env";
 
 type IProps = {
   open: boolean;
@@ -50,6 +51,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
     message: "",
   });
   const handleChange = (key: string, value: string | string[]) => {
+    // console.log("handleChange", value);
     setFormData({
       ...formData,
       [key]: value,
@@ -80,14 +82,17 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
           },
         }
       );
+      // console.log("formData", formData);
       await sendEmail({
-        recipientEmail: "mudasir1406@gmail.com",
+        recipientEmail: HELLOTUITIONALEDU,
         subject: "Get Started",
         text: "",
         html: createEmailTemplate(formData),
       });
+      toast.success("Form submitted successfully!");
     } catch (error) {
       console.error("Error saving data:", error);
+      toast.error("Form submitted Failed!");
       // alert("Error saving data");
     } finally {
       setLoading(false);
@@ -101,7 +106,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
         subjects: "",
         message: "",
       });
-      toast.success("Form submitted successfully!");
     }
   };
   React.useEffect(() => {

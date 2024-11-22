@@ -54,6 +54,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
 
     const formDataString = keyValuePairs.join("&");
 
+    console.log("formDataString", formDataString);
+
     try {
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
