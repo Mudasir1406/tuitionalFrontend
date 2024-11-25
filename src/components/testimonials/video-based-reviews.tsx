@@ -9,7 +9,6 @@ import { getVideoReviews } from "@/services/video-reviews/video-reviews";
 
 const VideoBasedReview = async () => {
   const data = await getVideoReviews();
-  console.log("getVideoReviews", data);
   return (
     <Box sx={styles.contanier}>
       <Typography
