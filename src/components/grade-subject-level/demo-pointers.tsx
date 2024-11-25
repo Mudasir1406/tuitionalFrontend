@@ -18,7 +18,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
-              <Typography
+              {/* <Typography
                 className={leagueSpartan.className}
                 sx={style.tutorheading}
                 // component={data?.headerTag as keyof JSX.IntrinsicElements}
@@ -30,7 +30,15 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                     __html: data?.header,
                   }}
                 ></div>
-              </Typography>
+              </Typography> */}
+              <Typography
+                sx={style.tutorheading}
+                className={leagueSpartan.className}
+                component={"h2"}
+                dangerouslySetInnerHTML={{
+                  __html: data?.header,
+                }}
+              ></Typography>
               <Box sx={style.imageContanier}>
                 <Image
                   src={tutors.src}
@@ -55,7 +63,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   <Grid item xs={12} key={index}>
                     <Box sx={style.boxes}>
                       <Box>
-                        <Typography
+                        {/* <Typography
                           sx={style.titlebox}
                           className={leagueSpartan.className}
                           // component={"h2"}
@@ -67,8 +75,24 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                               __html: box.header,
                             }}
                           ></div>
-                        </Typography>
+                        </Typography> */}
                         <Typography
+                          sx={style.titlebox}
+                          className={leagueSpartan.className}
+                          component={"b"}
+                          dangerouslySetInnerHTML={{
+                            __html: data?.header,
+                          }}
+                        ></Typography>
+                        <Typography
+                          sx={style.desc}
+                          className={leagueSpartan.className}
+                          component={"p"}
+                          dangerouslySetInnerHTML={{
+                            __html: box.body,
+                          }}
+                        ></Typography>
+                        {/* <Typography
                           sx={style.desc}
                           className={leagueSpartan.className}
                           // component={"p"}
@@ -80,7 +104,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                               __html: box.body,
                             }}
                           ></div>
-                        </Typography>
+                        </Typography> */}
                       </Box>
                       <Box sx={{ display: { xs: "block", sm: "block" } }}>
                         <Image

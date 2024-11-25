@@ -24,7 +24,7 @@ const EducationalCounseling: React.FunctionComponent<{
               >
                 Educational Counseling
               </Typography>
-              <Typography
+              {/* <Typography
                 sx={style.guidence}
                 className={leagueSpartan.className}
                 component={"div"}
@@ -36,8 +36,25 @@ const EducationalCounseling: React.FunctionComponent<{
                     __html: data?.header,
                   }}
                 ></div>
-              </Typography>
+              </Typography> */}
               <Typography
+                sx={style.guidence}
+                className={leagueSpartan.className}
+                component={"h3"}
+                dangerouslySetInnerHTML={{
+                  __html: data?.header,
+                }}
+              ></Typography>
+              <Typography
+                sx={style.desc}
+                className={leagueSpartan.className}
+                component={"p"}
+                dangerouslySetInnerHTML={{
+                  __html: data?.paragraph,
+                }}
+              ></Typography>
+
+              {/* <Typography
                 sx={style.desc}
                 className={leagueSpartan.className}
                 // component={"p"}
@@ -49,7 +66,7 @@ const EducationalCounseling: React.FunctionComponent<{
                     __html: data?.paragraph,
                   }}
                 ></div>
-              </Typography>
+              </Typography> */}
               <Box>
                 <PopUpButton
                   sx={style.containedBtn}

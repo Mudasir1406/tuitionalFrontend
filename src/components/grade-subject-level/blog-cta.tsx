@@ -13,7 +13,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
   return (
     <>
       <Box sx={{ paddingX: "5vw", marginY: "10vh" }}>
-        <Typography
+        {/* <Typography
           sx={style.reviewheading}
           className={leagueSpartan.className}
           component={"div"}
@@ -25,7 +25,15 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
               __html: data?.header,
             }}
           ></div>
-        </Typography>
+        </Typography> */}
+        <Typography
+          sx={style.reviewheading}
+          className={leagueSpartan.className}
+          component={"h2"}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
         <Box
           sx={{
             display: "flex",
@@ -41,7 +49,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             },
           }}
         >
-          <Typography
+          {/* <Typography
             sx={style.reviewdeesc}
             className={leagueSpartan.className}
             // component={"p"}
@@ -53,8 +61,16 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
                 __html: data?.paragraph,
               }}
             ></div>
-          </Typography>
-
+          </Typography> */}
+          
+          <Typography
+          sx={style.reviewdeesc}
+          className={leagueSpartan.className}
+          component={"p"}
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
+        ></Typography>
           <Box>
             <PopUpButton
               sx={style.containedBtn}

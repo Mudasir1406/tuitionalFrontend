@@ -297,6 +297,26 @@
 .p {
   font-family: var(--font-leagueSpartan);
 }
+/* .MuiMenuItem-root {
+  font-family: var(--font-leagueSpartan) !important;
+} */
+
+/* .MuiOutlinedInput-root,
+.MuiOutlinedInput-input {
+  font-family: var(--font-leagueSpartan) !important;
+} */
+
+/* Apply font to dropdown options */
+/* .MuiMenuItem-root {
+  font-family: var(--font-leagueSpartan) !important;
+} */
+
+/* Apply font to placeholder text */
+/* .MuiSelect-root {
+  font-size: "1.7vh" !important;
+  font-family: var(--font-leagueSpartan) !important;
+} */
+
 .html {
   font-family: var(--font-leagueSpartan);
 }

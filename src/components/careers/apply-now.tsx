@@ -29,18 +29,14 @@ const ApplyNow: React.FunctionComponent = () => {
     country: "",
     phone: "",
     position: "",
-    resume: "",
+    message: "",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  // const handleChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
-
   const handleChange = (key: string, value: string | string[]) => {
+    if (key === "message" && typeof value === "string") {
+      value = value.slice(0, 500);
+    }
     setFormData({
       ...formData,
       [key]: value,
@@ -79,7 +75,8 @@ const ApplyNow: React.FunctionComponent = () => {
         }
       );
       await sendEmail({
-        recipientEmail: CAREERSTUITIONALEDU,
+        recipientEmail: "careers@tuitionaledu.com",
+        // recipientEmail: CAREERSTUITIONALEDU,
         subject: "Get Started",
         text: "",
         html: createCareerTemplate(formData),
@@ -97,7 +94,7 @@ const ApplyNow: React.FunctionComponent = () => {
         phone: "",
         country: "",
         position: "",
-        resume: "",
+        message: "",
       });
     }
   };
@@ -162,7 +159,7 @@ const ApplyNow: React.FunctionComponent = () => {
               <Grid
                 container
                 columnSpacing={2}
-                rowSpacing={2}
+                rowSpacing={0}
                 sx={{ zIndex: 1 }}
               >
                 <Grid item lg={6}>
@@ -215,17 +212,31 @@ const ApplyNow: React.FunctionComponent = () => {
                     onChange={(e) => handleChange("phone", String(e))}
                     inputComponent={CustomInput}
                   />
-                </Grid>
-                <Grid item lg={12}>
                   <TextField
                     className={leagueSpartan.className}
                     sx={styles.input}
                     fullWidth
                     name="Position"
                     value={formData?.position}
-                    onChange={(e) => handleChange("position", String(e))}
+                    onChange={(e) =>
+                      handleChange("position", String(e.target.value))
+                    }
                     label="Position Apply for*"
                     variant="outlined"
+                  />
+                </Grid>
+                <Grid item lg={12}>
+                  <TextField
+                    sx={[styles.input]}
+                    fullWidth
+                    multiline
+                    rows={5}
+                    name="Message"
+                    value={formData.message}
+                    onChange={(e) => handleChange("message", e.target.value)}
+                    label="Message*"
+                    variant="outlined"
+                    className={leagueSpartan.className}
                   />
                 </Grid>
               </Grid>
@@ -398,7 +409,7 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    height: "5.5vh",
+    height: "58px",
     fontSize: "1.7vh",
     fontWeight: 400,
     minHeight: "50px",
