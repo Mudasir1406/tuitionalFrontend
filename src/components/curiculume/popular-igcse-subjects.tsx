@@ -14,7 +14,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box sx={{ paddingX: "5vw" }}>
       <Box>
-        <Typography
+        {/* <Typography
           sx={style.popularText}
           className={leagueSpartan.className}
           // component={data.headerTag as keyof JSX.IntrinsicElements}
@@ -26,7 +26,15 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               __html: data?.header,
             }}
           ></div>
-        </Typography>
+        </Typography> */}
+                    <Typography
+                sx={style.popularText}
+                className={leagueSpartan.className}
+                component={"h3"}
+                dangerouslySetInnerHTML={{
+                  __html: data?.header,
+                }}
+              ></Typography>
       </Box>
 
       <Box sx={style.contain}>

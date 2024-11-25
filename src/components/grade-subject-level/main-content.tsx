@@ -9,7 +9,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
       <Box sx={style.contanier}>
-        <Typography
+        {/* <Typography
           sx={style.title}
           className={leagueSpartan.className}
           component={"div"}
@@ -21,7 +21,15 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
               __html: data?.header,
             }}
           ></div>
-        </Typography>
+        </Typography> */}
+        <Typography
+          sx={style.title}
+          className={leagueSpartan.className}
+          component={"h2"}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
         <Typography sx={style.description} component={"div"}>
           <div
             className={leagueSpartan.className}

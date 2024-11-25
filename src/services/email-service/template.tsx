@@ -30,8 +30,8 @@ export const createCareerTemplate = (formData: CareersFormType) => `
           <td style="border: 1px solid #dddddd; padding: 8px;">${formData.position}</td>
         </tr>
         <tr>
-          <td style="border: 1px solid #dddddd; padding: 8px;">Attached Resume:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.resume}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
         </tr>
        
       </table>

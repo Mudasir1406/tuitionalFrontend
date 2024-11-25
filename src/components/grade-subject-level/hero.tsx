@@ -20,10 +20,10 @@ const Hero: React.FC<IProps> = ({ data }) => {
           paddingLeft: "5vw",
         }}
       >
-        <Typography
+        {/* <Typography
           sx={styles.heading}
           className={leagueSpartan.className}
-          component={"div"}
+          component={"h1"}
           // component={data.headerTag as keyof JSX.IntrinsicElements}
         >
           <div
@@ -32,8 +32,26 @@ const Hero: React.FC<IProps> = ({ data }) => {
               __html: data?.header,
             }}
           ></div>
-        </Typography>
+
+          
+        </Typography> */}
         <Typography
+          sx={styles.heading}
+          className={leagueSpartan.className}
+          component={"h1"} // Render Typography as an h1 element
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
+        <Typography
+          sx={styles.desc}
+          className={leagueSpartan.className}
+          component={"p"} // Render Typography as an h1 element
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
+        ></Typography>
+        {/* <Typography
           sx={styles.desc}
           className={leagueSpartan.className}
           // component={"p"}
@@ -45,7 +63,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
               __html: data?.paragraph,
             }}
           ></div>
-        </Typography>
+        </Typography> */}
 
         <Box
           sx={{

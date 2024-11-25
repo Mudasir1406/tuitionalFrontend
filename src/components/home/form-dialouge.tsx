@@ -45,7 +45,7 @@ export type CareersFormType = {
   phone: string;
   country: string;
   position: string;
-  resume: string;
+  message: string;
 };
 
 const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
@@ -273,10 +273,10 @@ const styles = {
       xs: "100%",
       lg: "50vw",
     },
-    height: "60vh",
+    // height: "60vh",
     borderRadius: "30px",
     p: 0,
-    overflow: "scroll",
+    overflow: "auto",
   },
   lable: {
     fontSize: "1.7vh", // Adjusted font size with vh unit

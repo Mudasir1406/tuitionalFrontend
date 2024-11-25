@@ -54,9 +54,12 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
             marginBottom: marginBottom,
             marginTop: marginTop,
             height: "5.5vh",
-            fontSize: "1.5vh", // Adjusted font size with vh unit
+            fontSize: "18px", // Adjusted font size with vh unit
             fontWeight: 400,
             lineHeight: "1.6vh",
+            fontFamily: "var(--font-leagueSpartan)",
+            // fontFamily: "League Spartan",
+
             minHeight: "50px", // Ensure minHeight of the OutlinedInput
 
             // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
@@ -90,7 +93,13 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           {data.map((item, index) => (
             <MenuItem key={index} value={item}>
               <Typography
-                sx={[styles.placeholderText, { textAlign: "justify" }]}
+                sx={[
+                  styles.placeholderText,
+                  {
+                    textAlign: "justify",
+                    fontFamily: "var(--font-leagueSpartan)",
+                  },
+                ]}
                 className={leagueSpartan.className}
               >
                 {item}

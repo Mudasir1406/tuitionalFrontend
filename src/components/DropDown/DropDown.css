@@ -2,6 +2,8 @@
   min-width: 10em;
   position: relative;
   top: 0;
+  font-size: 20px;
+  /* font-family: "League Spartan" !important; */
 }
 .select {
   background: white;
@@ -59,7 +61,6 @@
 }
 .selected {
   color: black;
-  font-family: "League Spartan";
 }
 
 .MuiSelect-select.MuiOutlinedInput-input {

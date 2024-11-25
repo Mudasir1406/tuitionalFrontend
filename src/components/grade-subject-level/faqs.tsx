@@ -26,7 +26,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
   return (
     <Box sx={style.contanier}>
       <Box>
-        <Typography
+        {/* <Typography
           sx={style.frequently}
           className={leagueSpartan.className}
           // component={data.headerTag as keyof JSX.IntrinsicElements}
@@ -38,7 +38,17 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
               __html: data?.header,
             }}
           ></div>
-        </Typography>
+        </Typography> */}
+
+        <Typography
+          sx={style.frequently}
+          className={leagueSpartan.className}
+          component={"h3"}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
+
         <Typography
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
@@ -65,11 +75,11 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                 ]}
               >
                 <Box sx={style.questionBox}>
-                  <Typography
+                  {/* <Typography
                     sx={style.boxhed}
                     className={leagueSpartan.className}
                     // component={"h1"}
-                    component={"div"}
+                    component={"b"}
                   >
                     <div
                       className={leagueSpartan.className}
@@ -77,7 +87,16 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                         __html: item.question,
                       }}
                     ></div>
-                  </Typography>
+                  </Typography> */}
+
+                  <Typography
+                    sx={style.boxhed}
+                    className={leagueSpartan.className}
+                    component={"b"}
+                    dangerouslySetInnerHTML={{
+                      __html: item?.question,
+                    }}
+                  ></Typography>
                   <Box
                     onClick={() => handleToggle(Number(index))}
                     sx={{ cursor: "pointer" }}
@@ -90,7 +109,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                  <Typography
+                  {/* <Typography
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
                     // component={"p"}
@@ -102,7 +121,15 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                         __html: item.answer,
                       }}
                     ></div>
-                  </Typography>
+                  </Typography> */}
+                  <Typography
+                    sx={style.boxdesc}
+                    className={leagueSpartan.className}
+                    component={"p"}
+                    dangerouslySetInnerHTML={{
+                      __html: item?.answer,
+                    }}
+                  ></Typography>
                 </Collapse>
               </Box>
             </Grid>
