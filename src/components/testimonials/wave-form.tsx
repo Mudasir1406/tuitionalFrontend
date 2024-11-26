@@ -33,7 +33,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
     if (audio) {
       fetchAudioUrl();
     }
-    console.log("Waveform", audio, "image", image);
+    // console.log("Waveform", audio, "image", image);
   }, [audio]);
   useEffect(() => {
     if (!audioUrl) return;
@@ -42,7 +42,7 @@ const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,
       barWidth: 2,
-      barHeight: 1,
+      barHeight: .5,
       cursorWidth: 0,
     });
     waveSurfer.load(audioUrl);
