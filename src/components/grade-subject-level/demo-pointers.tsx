@@ -55,7 +55,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           className={leagueSpartan.className}
                           component={"p"}
                           dangerouslySetInnerHTML={{
-                            __html: data?.header,
+                            __html: box.header,
                           }}
                         ></Typography>
                         <Typography
