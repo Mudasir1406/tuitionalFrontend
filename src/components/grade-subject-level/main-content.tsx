@@ -9,28 +9,18 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
       <Box sx={style.contanier}>
-        {/* <Typography
-          sx={style.title}
-          className={leagueSpartan.className}
-          component={"div"}
-          // component={data.headerTag as keyof JSX.IntrinsicElements}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.header,
-            }}
-          ></div>
-        </Typography> */}
         <Typography
           sx={style.title}
           className={leagueSpartan.className}
-          component={"h2"}
+          component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
         ></Typography>
-        <Typography sx={style.description} component={"div"}>
+        <Typography
+          sx={style.description}
+          component={data?.headerTag as keyof JSX.IntrinsicElements}
+        >
           <div
             className={leagueSpartan.className}
             dangerouslySetInnerHTML={{

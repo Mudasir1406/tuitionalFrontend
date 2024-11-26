@@ -19,23 +19,11 @@ const StudentSays: React.FunctionComponent<{
 
   return (
     <Box sx={styles.container}>
-      {/* <Typography
-        sx={styles.heading}
-        className={leagueSpartan.className}
-        // component={data.headerTag as keyof JSX.IntrinsicElements}
-        component={"div"}
-      >
-        <div
-          className={leagueSpartan.className}
-          dangerouslySetInnerHTML={{
-            __html: data?.header,
-          }}
-        ></div>
-      </Typography> */}
+    
       <Typography
         sx={styles.heading}
         className={leagueSpartan.className}
-        component={"h2"}
+        component={data?.headerTag as keyof JSX.IntrinsicElements}
         dangerouslySetInnerHTML={{
           __html: data?.header,
         }}
@@ -43,23 +31,12 @@ const StudentSays: React.FunctionComponent<{
       <Typography
         sx={styles.desc}
         className={leagueSpartan.className}
-        component={"p"}
+        component={data?.headerTag as keyof JSX.IntrinsicElements}
         dangerouslySetInnerHTML={{
           __html: data?.paragraph,
         }}
       ></Typography>
-      {/* <Typography
-        sx={styles.desc}
-        className={leagueSpartan.className}
-        component={"div"}
-      >
-        <div
-          className={leagueSpartan.className}
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></div>
-      </Typography> */}
+
       <Grid container spacing={2}>
         {videoData.map((poster, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
