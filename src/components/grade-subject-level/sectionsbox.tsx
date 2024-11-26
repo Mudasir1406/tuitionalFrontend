@@ -10,7 +10,7 @@ const SectionsBox = () => {
         <Typography
           className={leagueSpartan.className}
           sx={style.inner}
-          component={"h1"}
+          component={"p"}
         >
           Join Live Interactive Online Classes with Our Certified Tutors!
         </Typography>

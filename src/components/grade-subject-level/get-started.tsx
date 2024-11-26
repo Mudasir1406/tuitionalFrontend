@@ -26,7 +26,7 @@ const GetStarted = () => {
       <Typography
         sx={styles.heading}
         className={leagueSpartan.className}
-        component={"h1"}
+        component={"p"}
       >
         Get Started in{" "}
         <span
