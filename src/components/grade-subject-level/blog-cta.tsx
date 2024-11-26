@@ -39,7 +39,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
           <Typography
             sx={style.reviewdeesc}
             className={leagueSpartan.className}
-            component={data?.headerTag as keyof JSX.IntrinsicElements}
+            component={"p"}
             dangerouslySetInnerHTML={{
               __html: data?.paragraph,
             }}

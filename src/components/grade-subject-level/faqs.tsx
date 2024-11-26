@@ -38,8 +38,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
         <Typography
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
-          // component={"p"}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          component={"p"}
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -57,12 +56,10 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                 ]}
               >
                 <Box sx={style.questionBox}>
-              
-
                   <Typography
                     sx={style.boxhed}
                     className={leagueSpartan.className}
-                    component={data?.headerTag as keyof JSX.IntrinsicElements}
+                    component={"p"}
                     dangerouslySetInnerHTML={{
                       __html: item?.question,
                     }}
@@ -79,11 +76,10 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-              
                   <Typography
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
-                    component={data?.headerTag as keyof JSX.IntrinsicElements}
+                    component={"p"}
                     dangerouslySetInnerHTML={{
                       __html: item?.answer,
                     }}

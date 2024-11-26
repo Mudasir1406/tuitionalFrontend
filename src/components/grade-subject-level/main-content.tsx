@@ -19,14 +19,17 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
         <Typography
           sx={style.description}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          component={"p"}
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
         >
-          <div
+          {/* <div
             className={leagueSpartan.className}
             dangerouslySetInnerHTML={{
               __html: data?.paragraph,
             }}
-          ></div>
+          ></div> */}
         </Typography>
 
         <Box>

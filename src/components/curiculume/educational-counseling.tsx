@@ -23,7 +23,7 @@ const EducationalCounseling: React.FunctionComponent<{
               >
                 Educational Counseling
               </Typography>
-    
+
               <Typography
                 sx={style.guidence}
                 className={leagueSpartan.className}
@@ -35,13 +35,12 @@ const EducationalCounseling: React.FunctionComponent<{
               <Typography
                 sx={style.desc}
                 className={leagueSpartan.className}
-                component={data.headerTag as keyof JSX.IntrinsicElements}
+                component={"p"}
                 dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}
               ></Typography>
 
-     
               <Box>
                 <PopUpButton
                   sx={style.containedBtn}

@@ -19,7 +19,6 @@ const StudentSays: React.FunctionComponent<{
 
   return (
     <Box sx={styles.container}>
-    
       <Typography
         sx={styles.heading}
         className={leagueSpartan.className}
@@ -31,7 +30,7 @@ const StudentSays: React.FunctionComponent<{
       <Typography
         sx={styles.desc}
         className={leagueSpartan.className}
-        component={data?.headerTag as keyof JSX.IntrinsicElements}
+        component={"p"}
         dangerouslySetInnerHTML={{
           __html: data?.paragraph,
         }}

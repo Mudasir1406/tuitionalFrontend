@@ -53,9 +53,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Typography
                           sx={style.titlebox}
                           className={leagueSpartan.className}
-                          component={
-                            data?.headerTag as keyof JSX.IntrinsicElements
-                          }
+                          component={"p"}
                           dangerouslySetInnerHTML={{
                             __html: data?.header,
                           }}
@@ -63,9 +61,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Typography
                           sx={style.desc}
                           className={leagueSpartan.className}
-                          component={
-                            data?.headerTag as keyof JSX.IntrinsicElements
-                          }
+                          component={"p"}
                           dangerouslySetInnerHTML={{
                             __html: box.body,
                           }}

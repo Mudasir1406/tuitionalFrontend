@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import FormDialog from "./home/form-dialouge";
+import FormDialog, { FormType } from "./home/form-dialouge";
 import { leagueSpartan } from "@/app/fonts";
 import { Button, SxProps, Theme } from "@mui/material";
 
@@ -9,9 +9,15 @@ type IProps = {
   text: string;
   backgroundColor?: string;
   sx?: SxProps<Theme> | undefined;
+  values?: FormType;
 };
 
-const PopUpButton: React.FunctionComponent<IProps> = ({ href, text, sx }) => {
+const PopUpButton: React.FunctionComponent<IProps> = ({
+  href,
+  text,
+  sx,
+  values,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -37,7 +43,7 @@ const PopUpButton: React.FunctionComponent<IProps> = ({ href, text, sx }) => {
       >
         {text}
       </Button>
-      <FormDialog open={open} handleClose={handleClose} />
+      <FormDialog open={open} handleClose={handleClose} values={values} />
     </>
   );
 };
