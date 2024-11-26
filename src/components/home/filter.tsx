@@ -101,6 +101,7 @@ const Filter: React.FC = () => {
             <PopUpButton
               text="Get Started"
               href="popup"
+              values={formData}
               sx={styles.containedBtn}
             />
           </Grid>

@@ -26,6 +26,7 @@ import { HELLOTUITIONALEDU } from "@/utils/env";
 type IProps = {
   open: boolean;
   handleClose: () => void;
+  values?: FormType;
 };
 
 export type FormType = {
@@ -48,7 +49,11 @@ export type CareersFormType = {
   message: string;
 };
 
-const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
+const FormDialog: React.FunctionComponent<IProps> = ({
+  open,
+  handleClose,
+  values,
+}) => {
   const [filterData, setFilterData] = React.useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [formData, setFormData] = React.useState<FormType>({
@@ -67,6 +72,13 @@ const FormDialog: React.FunctionComponent<IProps> = ({ open, handleClose }) => {
       [key]: value,
     });
   };
+
+  React.useEffect(() => {
+    if (values) {
+      setFormData(values);
+    }
+  }, [values]);
+
   const onClickUpload = async () => {
     setLoading(true);
     const formDataObject = new FormData();

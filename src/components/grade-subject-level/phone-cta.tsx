@@ -1,15 +1,33 @@
+"use client";
+
 import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { renderWithLineBreaks } from "../line-break-text";
 import PopUpButton from "../pop-up-button";
+import { FormType } from "../home/form-dialouge";
 
 type IProps = {
   data: PageData["phone_cta"];
 };
 
 const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
+  const [formData, setFormData] = useState<FormType>({
+    name: "",
+    email: "",
+    phone: "",
+    grade: "",
+    curriculum: "",
+    subjects: "",
+    message: "",
+  });
+  const handleChange = (key: string, value: string | string[]) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+  };
   return (
     <Box sx={style.contanier}>
       <Box sx={style.inner}>
@@ -24,22 +42,27 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           className={leagueSpartan.className}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={"p"}
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
         ></Typography>
-       
+
         <Box sx={style.mobileContanier}>
           <TextField
             placeholder="Mobile Number with Country Code"
             InputProps={style.inputProps}
             sx={style.textField}
+            value={formData.phone}
+            onChange={(e) => {
+              handleChange("phone", e.target.value);
+            }}
           />
           <PopUpButton
             sx={style.button}
             href={data.link}
             text={data?.buttonText}
+            values={formData}
           />
         </Box>
       </Box>
