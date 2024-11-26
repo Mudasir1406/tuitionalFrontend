@@ -18,23 +18,10 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
-              {/* <Typography
-                className={leagueSpartan.className}
-                sx={style.tutorheading}
-                // component={data?.headerTag as keyof JSX.IntrinsicElements}
-                component={"div"}
-              >
-                <div
-                  className={leagueSpartan.className}
-                  dangerouslySetInnerHTML={{
-                    __html: data?.header,
-                  }}
-                ></div>
-              </Typography> */}
               <Typography
                 sx={style.tutorheading}
                 className={leagueSpartan.className}
-                component={"h2"}
+                component={data?.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
                   __html: data?.header,
                 }}
@@ -63,23 +50,12 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                   <Grid item xs={12} key={index}>
                     <Box sx={style.boxes}>
                       <Box>
-                        {/* <Typography
-                          sx={style.titlebox}
-                          className={leagueSpartan.className}
-                          // component={"h2"}
-                          component={"div"}
-                        >
-                          <div
-                            className={leagueSpartan.className}
-                            dangerouslySetInnerHTML={{
-                              __html: box.header,
-                            }}
-                          ></div>
-                        </Typography> */}
                         <Typography
                           sx={style.titlebox}
                           className={leagueSpartan.className}
-                          component={"b"}
+                          component={
+                            data?.headerTag as keyof JSX.IntrinsicElements
+                          }
                           dangerouslySetInnerHTML={{
                             __html: data?.header,
                           }}
@@ -87,24 +63,13 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                         <Typography
                           sx={style.desc}
                           className={leagueSpartan.className}
-                          component={"p"}
+                          component={
+                            data?.headerTag as keyof JSX.IntrinsicElements
+                          }
                           dangerouslySetInnerHTML={{
                             __html: box.body,
                           }}
                         ></Typography>
-                        {/* <Typography
-                          sx={style.desc}
-                          className={leagueSpartan.className}
-                          // component={"p"}
-                          component={"div"}
-                        >
-                          <div
-                            className={leagueSpartan.className}
-                            dangerouslySetInnerHTML={{
-                              __html: box.body,
-                            }}
-                          ></div>
-                        </Typography> */}
                       </Box>
                       <Box sx={{ display: { xs: "block", sm: "block" } }}>
                         <Image

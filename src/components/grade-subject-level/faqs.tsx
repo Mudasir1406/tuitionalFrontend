@@ -26,24 +26,10 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
   return (
     <Box sx={style.contanier}>
       <Box>
-        {/* <Typography
-          sx={style.frequently}
-          className={leagueSpartan.className}
-          // component={data.headerTag as keyof JSX.IntrinsicElements}
-          component={"div"}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.header,
-            }}
-          ></div>
-        </Typography> */}
-
         <Typography
           sx={style.frequently}
           className={leagueSpartan.className}
-          component={"h3"}
+          component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
@@ -53,15 +39,11 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
           // component={"p"}
-          component={"div"}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.paragraph,
-            }}
-          ></div>
-        </Typography>
+          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
+        ></Typography>
       </Box>
 
       <Box sx={style.faqContanier}>
@@ -75,24 +57,12 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                 ]}
               >
                 <Box sx={style.questionBox}>
-                  {/* <Typography
-                    sx={style.boxhed}
-                    className={leagueSpartan.className}
-                    // component={"h1"}
-                    component={"b"}
-                  >
-                    <div
-                      className={leagueSpartan.className}
-                      dangerouslySetInnerHTML={{
-                        __html: item.question,
-                      }}
-                    ></div>
-                  </Typography> */}
+              
 
                   <Typography
                     sx={style.boxhed}
                     className={leagueSpartan.className}
-                    component={"b"}
+                    component={data?.headerTag as keyof JSX.IntrinsicElements}
                     dangerouslySetInnerHTML={{
                       __html: item?.question,
                     }}
@@ -109,23 +79,11 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                   </Box>
                 </Box>
                 <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                  {/* <Typography
-                    sx={style.boxdesc}
-                    className={leagueSpartan.className}
-                    // component={"p"}
-                    component={"div"}
-                  >
-                    <div
-                      className={leagueSpartan.className}
-                      dangerouslySetInnerHTML={{
-                        __html: item.answer,
-                      }}
-                    ></div>
-                  </Typography> */}
+              
                   <Typography
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
-                    component={"p"}
+                    component={data?.headerTag as keyof JSX.IntrinsicElements}
                     dangerouslySetInnerHTML={{
                       __html: item?.answer,
                     }}

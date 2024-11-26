@@ -13,23 +13,10 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
   return (
     <>
       <Box sx={{ paddingX: "5vw", marginY: "10vh" }}>
-        {/* <Typography
-          sx={style.reviewheading}
-          className={leagueSpartan.className}
-          component={"div"}
-          // component={data.headerTag as keyof JSX.IntrinsicElements}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.header,
-            }}
-          ></div>
-        </Typography> */}
         <Typography
           sx={style.reviewheading}
           className={leagueSpartan.className}
-          component={"h2"}
+          component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
@@ -49,28 +36,14 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             },
           }}
         >
-          {/* <Typography
+          <Typography
             sx={style.reviewdeesc}
             className={leagueSpartan.className}
-            // component={"p"}
-            component={"div"}
-          >
-            <div
-              className={leagueSpartan.className}
-              dangerouslySetInnerHTML={{
-                __html: data?.paragraph,
-              }}
-            ></div>
-          </Typography> */}
-          
-          <Typography
-          sx={style.reviewdeesc}
-          className={leagueSpartan.className}
-          component={"p"}
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
+            component={data?.headerTag as keyof JSX.IntrinsicElements}
+            dangerouslySetInnerHTML={{
+              __html: data?.paragraph,
+            }}
+          ></Typography>
           <Box>
             <PopUpButton
               sx={style.containedBtn}

@@ -19,28 +19,15 @@ const EducationalCounseling: React.FunctionComponent<{
               <Typography
                 sx={style.counseling}
                 className={leagueSpartan.className}
-                // component={"p"}
-                component={"div"}
+                component={"p"}
               >
                 Educational Counseling
               </Typography>
-              {/* <Typography
-                sx={style.guidence}
-                className={leagueSpartan.className}
-                component={"div"}
-                // component={data.headerTag as keyof JSX.IntrinsicElements}
-              >
-                <div
-                  className={leagueSpartan.className}
-                  dangerouslySetInnerHTML={{
-                    __html: data?.header,
-                  }}
-                ></div>
-              </Typography> */}
+    
               <Typography
                 sx={style.guidence}
                 className={leagueSpartan.className}
-                component={"h3"}
+                component={data.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
                   __html: data?.header,
                 }}
@@ -48,25 +35,13 @@ const EducationalCounseling: React.FunctionComponent<{
               <Typography
                 sx={style.desc}
                 className={leagueSpartan.className}
-                component={"p"}
+                component={data.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}
               ></Typography>
 
-              {/* <Typography
-                sx={style.desc}
-                className={leagueSpartan.className}
-                // component={"p"}
-                component={"div"}
-              >
-                <div
-                  className={leagueSpartan.className}
-                  dangerouslySetInnerHTML={{
-                    __html: data?.paragraph,
-                  }}
-                ></div>
-              </Typography> */}
+     
               <Box>
                 <PopUpButton
                   sx={style.containedBtn}

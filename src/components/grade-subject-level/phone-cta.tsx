@@ -13,23 +13,10 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box sx={style.contanier}>
       <Box sx={style.inner}>
-        {/* <Typography
-          sx={style.finding}
-          // component={data.headerTag as keyof JSX.IntrinsicElements}
-          className={leagueSpartan.className}
-          component={"div"}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.header,
-            }}
-          ></div>
-        </Typography> */}
         <Typography
           sx={style.finding}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
           className={leagueSpartan.className}
-          component={"h2"}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
@@ -37,24 +24,12 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           className={leagueSpartan.className}
-          component={"p"}
+          component={data.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
         ></Typography>
-        {/* <Typography
-          sx={style.description}
-          className={leagueSpartan.className}
-          component={"div"}
-          // component={"p"}
-        >
-          <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.paragraph,
-            }}
-          ></div>
-        </Typography> */}
+       
         <Box sx={style.mobileContanier}>
           <TextField
             placeholder="Mobile Number with Country Code"
