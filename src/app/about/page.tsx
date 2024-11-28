@@ -8,11 +8,12 @@ import testimonialHeroMobile from "../../../public/assets/images/static/testimon
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import GetStarted from "@/components/home/get-started";
 // import StudentSays from "@/components/curiculume/students-says";
-import Hero from "@/components/about/hero";
 import HeroInfo from "@/components/about/hero-info";
 import WhyChooseTuitional from "@/components/about/why-choose-tuitional";
 import StudentSays from "@/components/grade-subject-level/students-says";
 import AboutUs from "@/components/about/about-us";
+import Hero from "@/components/about/hero/hero";
+import styles from "./about.module.css";
 
 const About: React.FC = async () => {
   const studentSays = {
@@ -25,10 +26,9 @@ const About: React.FC = async () => {
     <>
       <Header />
 
-      <Container
+      {/* <Container
         sx={{
           maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "90vw" },
-          // maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },
           p: 0,
           padding: 0,
           paddingTop: {
@@ -51,18 +51,29 @@ const About: React.FC = async () => {
             <HeroInfo />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
 
-      <Grid sx={styles.aboutUsContainer}>
+      <div className={styles.container}>
+        <div className={styles["grid-container"]}>
+          <div className={styles["hero"]}>
+            <Hero />
+          </div>
+          <div className={styles["hero-picture"]}>
+            <HeroInfo />
+          </div>
+        </div>
+      </div>
+
+      <Grid sx={style.aboutUsContainer}>
         <AboutUs />
       </Grid>
-      <Grid sx={styles.whyChooseContainer}>
+      <Grid sx={style.whyChooseContainer}>
         <WhyChooseTuitional />
       </Grid>
-      <Grid sx={styles.getStartedContainer}>
+      <Grid sx={style.getStartedContainer}>
         <GetStarted />
       </Grid>
-      <Grid sx={styles.studentSaysContainer}>
+      <Grid sx={style.studentSaysContainer}>
         <StudentSays data={studentSays} />
       </Grid>
       <Footer />
@@ -72,7 +83,7 @@ const About: React.FC = async () => {
 
 export default About;
 
-const styles = {
+const style = {
   contanier: {},
   aboutUsContainer: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
