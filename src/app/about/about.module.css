@@ -1,0 +1,100 @@
+/* Container Styles */
+.container {
+  max-width: 100%;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; /* Align content to the right */
+  align-items: flex-end;
+  margin: auto;
+
+
+}
+
+/* Grid Container */
+.grid-container {
+  margin: 0 28px;
+  display: grid;
+  grid-template-columns: 1fr; /* Default 1 column layout for mobile */
+  grid-gap: 0;
+  grid-template-areas:
+    "hero"
+    "hero-info";
+}
+
+/* Hero Section */
+.hero {
+  /* grid-area: hero; */
+  padding-top: 120px; /* Default paddingTop for xs */
+}
+
+/* Hero Picture Section */
+.hero-picture {
+  grid-area: hero-info;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Make sure it's on the right */
+}
+
+/* Hero Picture Background */
+.hero-picture::before {
+  content: "";
+  background-image: url("../../../public/assets/images/static/hero-about.webp"); /* Replace with actual image path */
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  height: 400px; /* Default height for xs */
+  width: 100%;
+}
+
+/* Responsive Styles */
+
+/* sm and above */
+@media (min-width: 600px) {
+  .hero {
+    padding-top: 150px;
+  }
+
+  .hero-picture::before {
+    height: 500px;
+  }
+}
+
+/* md and above */
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 200px;
+  }
+
+  .hero-picture::before {
+    height: 80vh; /* 80vh for larger screens */
+  }
+}
+
+/* lg and above */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 90vw; /* 90vw for lg screens */
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr 1fr; /* Two-column grid for lg and up */
+    grid-template-areas: "hero hero-info"; /* Hero and hero-info side by side */
+  }
+
+  .hero {
+    padding-top: 0; /* Reset padding for larger screens */
+  }
+
+  .hero-picture {
+    background: none;
+    justify-content: flex-start; /* Ensure it's on the right side */
+  }
+
+  .hero-picture::before {
+    height: 80vh; /* 80vh for large screens */
+  }
+}

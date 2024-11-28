@@ -1,7 +1,6 @@
 import React from "react";
-import styles from "./styles.module.css";
+import styles from "./hero.module.css";
 import { leagueSpartan } from "@/app/fonts";
-// import styles from "./styles.module.css";
 
 const Hero: React.FC = () => {
   return (
