@@ -19,7 +19,7 @@ import { sendEmail } from "@/services/email-service/email-service";
 import { createCareerTemplate } from "@/services/email-service/template";
 import PhoneInput from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
-import { CAREERSTUITIONALEDU } from "@/utils/env";
+import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -75,8 +75,9 @@ const ApplyNow: React.FunctionComponent = () => {
         }
       );
       await sendEmail({
-        recipientEmail: "careers@tuitionaledu.com",
-        // recipientEmail: CAREERSTUITIONALEDU,
+        // recipientEmail: "careers@tuitionaledu.com",
+        recipientEmail: CAREERSTUITIONALEDU,
+        cc: HRTUITIONALEDU,
         subject: "Get Started",
         text: "",
         html: createCareerTemplate(formData),

@@ -19,6 +19,7 @@ export const sendEmail = async (
 
 export type Send_Email = {
   recipientEmail: string;
+  cc?: string;
   subject: string;
   text: string;
   html: string;

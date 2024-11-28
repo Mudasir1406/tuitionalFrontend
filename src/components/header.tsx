@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import logo from "../../public/assets/images/static/logo.png";
 import logoMobile from "../../public/assets/images/static/logoMobile.png";
@@ -8,11 +8,20 @@ import { useDrawer } from "../context/drawer-context";
 import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import FormDialog from "./home/form-dialouge";
 type IProps = {
   background?: any;
 };
 const Header: React.FC<IProps> = ({ background }) => {
   const { toggleDrawer } = useDrawer();
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClick = () => {
+    setOpen(true);
+  };
   return (
     <Box sx={[styles.background, background]}>
       <Box
@@ -130,6 +139,7 @@ const Header: React.FC<IProps> = ({ background }) => {
             variant="contained"
             sx={styles.containedBtn}
             className={leagueSpartan.className}
+            onClick={() => handleClick()}
           >
             Book Demo Classes
           </Button>
@@ -150,6 +160,8 @@ const Header: React.FC<IProps> = ({ background }) => {
           />
         </Toolbar>
       </AppBar>
+      <FormDialog open={open} handleClose={handleClose} />
+
       <Box
         sx={{
           position: "fixed", // Use fixed positioning to keep it in view
