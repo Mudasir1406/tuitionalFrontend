@@ -24,6 +24,7 @@ export default function AboutLayout({
       <Head>
         {schema && (
           <Script
+            id="https://tuitionaledu.com/about/#webpage"
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
