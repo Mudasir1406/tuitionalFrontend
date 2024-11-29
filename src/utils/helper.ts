@@ -53,6 +53,7 @@ export const getSchema = ({
   pageUrl,
   pageName,
   pageDescription,
+  email
 }: any) => {
   const organizationSchema = {
     "@type": "Organization",
@@ -66,7 +67,7 @@ export const getSchema = ({
       "@type": "ContactPoint",
       contactType: "Customer Support",
       telephone: "+971 56 490 0376",
-      email: "hello@tuitionaledu.com",
+      email: email,
       areaServed: [
         "United Arab Emirates",
         "Saudi Arabia",
