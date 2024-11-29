@@ -14,6 +14,7 @@ import StudentSays from "@/components/grade-subject-level/students-says";
 import AboutUs from "@/components/about/about-us";
 import Hero from "@/components/about/hero/hero";
 import styles from "./about.module.css";
+import AboutLayout from "./layout";
 
 const About: React.FC = async () => {
   const studentSays = {
@@ -22,8 +23,24 @@ const About: React.FC = async () => {
     paragraph:
       "Students affiliated with Tuitional have always shared their exceptional academic journey in a positive way. Students at Tuitional have not only excelled in their required examination but have also improved their academic horizon and educational capabilities. Here is what our valued students have to share about their experience at Tuition.",
   };
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://tuitionaledu.com/about/#webpage",
+    url: "https://tuitionaledu.com/about",
+    name: "About Tuitional",
+    description:
+      "Learn more about Tuitional, our mission, vision, and how we help students in the Gulf region achieve academic success through personalized online tutoring.",
+    isPartOf: {
+      "@id": "https://tuitionaledu.com/#website",
+    },
+    about: {
+      "@id": "https://tuitionaledu.com/#organization",
+    },
+  };
   return (
-    <>
+    <AboutLayout schema={schema}>
       <Header />
 
       {/* <Container
@@ -77,7 +94,7 @@ const About: React.FC = async () => {
         <StudentSays data={studentSays} />
       </Grid>
       <Footer />
-    </>
+    </AboutLayout>
   );
 };
 

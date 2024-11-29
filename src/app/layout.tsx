@@ -23,6 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -36,6 +37,7 @@ export default function RootLayout({
       email: "hello@tuitionaledu.com",
     },
   };
+  
   return (
     <html lang="en">
       <Script
