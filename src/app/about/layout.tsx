@@ -1,30 +1,45 @@
+import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
+import { PageData } from "@/types/grade-subject-level.types";
+import { SITE_URL } from "@/utils/env";
+import { generateFaqSchema, getSchema } from "@/utils/helper";
+import { Metadata } from "next";
 import Script from "next/script";
-import Head from "next/head";
+import React, { ReactNode } from "react";
 
-export default function AboutLayout({ children, schema }: any) {
+// Helper function to fetch page data
+const fetchData = async (
+  slug: string
+): Promise<PageData | undefined | null> => {
+  return await getPageData(slug);
+};
+
+const Layout = async ({
+  params,
+  children,
+}: {
+  params: { slug: string };
+  children: ReactNode;
+}) => {
+  const schemaData = getSchema({
+    pageId: "https://tuitionaledu.com/about/#webpage",
+    pageUrl: "https://tuitionaledu.com/about",
+    pageName: "About Tuitional",
+    pageDescription:
+      "Learn more about Tuitional, our mission, vision, and how we help students in the Gulf region achieve academic success through personalized online tutoring.",
+  });
+
   return (
-    // <Head>
-    //   <Script
-    //     // id="WebPage"
-    //     type="application/ld+json"
-    //     dangerouslySetInnerHTML={{
-    //       __html: JSON.stringify(schema),
-    //     }}
-    //   />
-    //   {children}
-    // </Head>
+    <div>
+      <Script
+        id="page-schema"
+        type="application/ld+json"
+        defer
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
 
-    <>
-      <Head>
-        {schema && (
-          <Script
-            id="https://tuitionaledu.com/about/#webpage"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-        )}
-      </Head>
-      <main>{children}</main>
-    </>
+      {children}
+    </div>
   );
-}
+};
+
+export default Layout;
