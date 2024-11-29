@@ -10,11 +10,11 @@ const Layout = async ({
   children: ReactNode;
 }) => {
   const schemaData = getSchema({
-    pageId: "https://tuitionaledu.com/about/#webpage",
-    pageUrl: "https://tuitionaledu.com/about",
-    pageName: "About Tuitional",
+    pageId: "https://tuitionaledu.com/careers/#webpage",
+    pageUrl: "https://tuitionaledu.com/careers",
+    pageName: "Careers at Tuitional",
     pageDescription:
-      "Learn more about Tuitional, our mission, vision, and how we help students in the Gulf region achieve academic success through personalized online tutoring.",
+      "Join the Tuitional team! Fill out the form and attach your resume to apply for exciting career opportunities in online tutoring and education.",
   });
 
   return (
