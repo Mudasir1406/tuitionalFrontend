@@ -1,13 +1,7 @@
 import Script from "next/script";
 import Head from "next/head";
 
-export default function AboutLayout({
-  children,
-  schema,
-}: Readonly<{
-  children: React.ReactNode;
-  schema: any;
-}>) {
+export default function AboutLayout({ children, schema }: any) {
   return (
     // <Head>
     //   <Script
