@@ -9,16 +9,16 @@ const Layout = async ({
   params: { slug: string };
   children: ReactNode;
 }) => {
-  const careersSchema = {
+  const contactSchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://tuitionaledu.com/careers/#webpage",
-        url: "https://tuitionaledu.com/careers",
-        name: "Careers at Tuitional",
+        "@id": "https://tuitionaledu.com/contact/#webpage",
+        url: "https://tuitionaledu.com/contact",
+        name: "Contact Us - Tuitional",
         description:
-          "Join the Tuitional team! Fill out the form and attach your resume to apply for exciting career opportunities in online tutoring and education.",
+          "Get in touch with Tuitional for expert online tutoring services in the Gulf region. Contact us for a free consultation or any inquiries.",
         isPartOf: {
           "@id": "https://tuitionaledu.com/#website",
         },
@@ -35,7 +35,7 @@ const Layout = async ({
           "@type": "ContactPoint",
           contactType: "Customer Support",
           telephone: "+971 56 490 0376",
-          email: "careers@tuitionaledu.com",
+          email: "hello@tuitionaledu.com",
           areaServed: [
             "United Arab Emirates",
             "Saudi Arabia",
@@ -77,15 +77,13 @@ const Layout = async ({
     ],
   };
 
- 
-
   return (
     <div>
       <Script
         id="page-schema"
         type="application/ld+json"
         defer
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(careersSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
 
       {children}
