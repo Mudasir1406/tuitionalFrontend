@@ -15,6 +15,7 @@ const Layout = async ({
     pageName: "About Tuitional",
     pageDescription:
       "Learn more about Tuitional, our mission, vision, and how we help students in the Gulf region achieve academic success through personalized online tutoring.",
+    email: "hello@tuitionaledu.com",
   });
 
   return (
