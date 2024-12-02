@@ -85,7 +85,7 @@ const styles = {
     },
     margin: {
       xs: "4vh 2vh",
-      lg: "0",
+      lg: "4vh 2vh",
     },
   },
   desc: {
@@ -95,10 +95,10 @@ const styles = {
       xs: "90%",
     },
     fontSize: {
-      // xs: "2vh",
-      xs: "20px",
-      md: "25px",
-      // lg: "2vh",
+      xs: "12px",
+      sm: "12px",
+      md: "16px",
+      lg: "18px",
     },
     fontWeight: 400,
     textAlign: {
