@@ -1,0 +1,301 @@
+:root {
+  --heading-size: 65px;
+  --heading-breakpoint: 10px;
+  --heading-lineheight: 6px;
+  --title-size: 40px;
+  --title-breakpoint: 2px;
+  --title-lineheight: 6px;
+  --paragraph-size: 20px;
+  --paragraph-breakpoint: 2px;
+  --paragraph-lineheight: 6px;
+  --cta-size: 32px;
+  --cta-breakpoint: 2px;
+  --cta-lineheight: 6px;
+}
+
+/*---------- Heading Style Start ----------*/
+
+/**
+@Note: Each heading size is 10px less than the previous. Line height of each heading is 6px more than their respective size
+**/
+
+.heading-1,
+.heading-2,
+.heading-3,
+.heading-4,
+.heading-5,
+.heading-6,
+.heading-7 {
+  font-weight: 700;
+}
+
+.heading-1 {
+  font-size: var(--heading-size);
+  line-height: calc(var(--heading-size) + var(--heading-lineheight));
+}
+
+.heading-2 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 1));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 1)) +
+      var(--heading-lineheight)
+  );
+}
+
+.heading-3 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 2));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 2)) +
+      var(--heading-lineheight)
+  );
+}
+
+.heading-4 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 3));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 3)) +
+      var(--heading-lineheight)
+  );
+}
+
+.heading-5 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 4));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 4)) +
+      var(--heading-lineheight)
+  );
+}
+
+.heading-6 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 5));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 5)) +
+      var(--heading-lineheight)
+  );
+}
+
+.heading-7 {
+  font-size: calc(var(--heading-size) - calc(var(--heading-breakpoint) * 6));
+  line-height: calc(
+    (var(--heading-size) - calc(var(--heading-breakpoint) * 6)) +
+      var(--heading-lineheight)
+  );
+}
+
+/*---------- Heading Style End ----------*/
+
+/*---------- Title Style Start ----------*/
+/**
+@Note: Each title size is 2px less than the previous. Line height of each title is 6px more than their respective size
+**/
+
+.title-1,
+.title-2,
+.title-3,
+.title-4,
+.title-5,
+.title-6,
+.title-7 {
+  font-weight: 600;
+}
+
+.title-1 {
+  font-size: var(--title-size);
+  line-height: calc(var(--title-size) + var(--title-lineheight));
+}
+
+.title-2 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 1));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 1)) +
+      var(--title-lineheight)
+  );
+}
+
+.title-3 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 2));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 2)) +
+      var(--title-lineheight)
+  );
+}
+
+.title-4 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 3));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 3)) +
+      var(--title-lineheight)
+  );
+}
+
+.title-5 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 4));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 4)) +
+      var(--title-lineheight)
+  );
+}
+
+.title-6 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 5));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 5)) +
+      var(--title-lineheight)
+  );
+}
+
+.title-7 {
+  font-size: calc(var(--title-size) - calc(var(--title-breakpoint) * 6));
+  line-height: calc(
+    (var(--title-size) - calc(var(--title-breakpoint) * 6)) +
+      var(--title-lineheight)
+  );
+}
+
+/*---------- Title Style End ----------*/
+
+/*---------- Paragraph Style Start ----------*/
+/**
+@Note: Each paragraph size is 2px less than the previous. Line height of each paragraph is 6px more than their respective size
+**/
+
+.paragraph-1,
+.paragraph-2,
+.paragraph-3,
+.paragraph-4,
+.paragraph-5,
+.paragraph-6,
+.paragraph-7 {
+  font-weight: 400;
+}
+
+.paragraph-1 {
+  font-size: var(--paragraph-size);
+  line-height: calc(var(--paragraph-size) + var(--paragraph-lineheight));
+}
+
+.paragraph-2 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 1)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 1)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+.paragraph-3 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 2)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 2)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+.paragraph-4 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 3)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 3)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+.paragraph-5 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 4)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 4)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+.paragraph-6 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 5)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 5)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+.paragraph-7 {
+  font-size: calc(
+    var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 6)
+  );
+  line-height: calc(
+    (var(--paragraph-size) - calc(var(--paragraph-breakpoint) * 6)) +
+      var(--paragraph-lineheight)
+  );
+}
+
+/*---------- Paragraph Style End ----------*/
+
+/*---------- CTA Style Start ----------*/
+/**
+@Note: Each cta size is 2px less than the previous. Line height of each cta is 6px more than their respective size
+**/
+
+.cta-1,
+.cta-2,
+.cta-3,
+.cta-4,
+.cta-5,
+.cta-6,
+.cta-7 {
+  font-weight: 600;
+}
+
+.cta-1 {
+  font-size: var(--cta-size);
+  line-height: calc(var(--cta-size) + var(--cta-lineheight));
+}
+
+.cta-2 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 1));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 1)) + var(--cta-lineheight)
+  );
+}
+
+.cta-3 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 2));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 2)) + var(--cta-lineheight)
+  );
+}
+
+.cta-4 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 3));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 3)) + var(--cta-lineheight)
+  );
+}
+
+.cta-5 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 4));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 4)) + var(--cta-lineheight)
+  );
+}
+
+.cta-6 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 5));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 5)) + var(--cta-lineheight)
+  );
+}
+
+.cta-7 {
+  font-size: calc(var(--cta-size) - calc(var(--cta-breakpoint) * 6));
+  line-height: calc(
+    (var(--cta-size) - calc(var(--cta-breakpoint) * 6)) + var(--cta-lineheight)
+  );
+}
+
+/*---------- CTA Style End ----------*/

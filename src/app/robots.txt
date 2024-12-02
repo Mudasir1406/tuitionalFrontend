@@ -1,4 +1,2 @@
 User-Agent: *
-Allow: /
-
-Sitemap: https://tuitionaledu.com/sitemap.xml
+Disallow: /
