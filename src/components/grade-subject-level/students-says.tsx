@@ -21,6 +21,7 @@ const StudentSays: React.FunctionComponent<{
     <Box sx={styles.container}>
       <Typography
         sx={styles.heading}
+        variant="h1"
         className={leagueSpartan.className}
         component={data?.headerTag as keyof JSX.IntrinsicElements}
         dangerouslySetInnerHTML={{
@@ -29,6 +30,7 @@ const StudentSays: React.FunctionComponent<{
       ></Typography>
       <Typography
         sx={styles.desc}
+        variant="body1"
         className={leagueSpartan.className}
         component={"p"}
         dangerouslySetInnerHTML={{
@@ -94,13 +96,13 @@ const styles = {
       lg: "139vh",
       xs: "90%",
     },
-    fontSize: {
-      xs: "12px",
-      sm: "12px",
-      md: "16px",
-      lg: "18px",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "12px",
+    //   sm: "12px",
+    //   md: "16px",
+    //   lg: "18px",
+    // },
+    // fontWeight: 400,
     textAlign: {
       xs: "justify",
       sm: "center",
@@ -113,13 +115,13 @@ const styles = {
     },
   },
   heading: {
-    fontSize: {
-      xs: "30px",
-      // sm: "5vh",
-      md: "55px",
-      // lg: "5.5vh",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "30px",
+    //   // sm: "5vh",
+    //   md: "55px",
+    //   // lg: "5.5vh",
+    // },
+    // fontWeight: 600,
     textAlign: {
       xs: "center",
       sm: "center",

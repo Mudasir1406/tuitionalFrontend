@@ -120,3 +120,7 @@
 .textBtn:hover {
   font-weight: 700;
 }
+
+.animatedImg {
+  object-fit: cover;
+}

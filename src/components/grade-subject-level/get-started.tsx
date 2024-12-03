@@ -25,6 +25,7 @@ const GetStarted = () => {
     <Box>
       <Typography
         sx={styles.heading}
+        variant="h1"
         className={leagueSpartan.className}
         component={"p"}
       >
@@ -113,19 +114,19 @@ export default GetStarted;
 const styles = {
   heading: {
     textAlign: "center",
-    fontSize: {
-      xs: "30px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "30px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 600,
     marginTop: {
       xs: "70px",
       sm: "80px",
@@ -243,9 +244,9 @@ const styles = {
     height: "100px",
   },
   boxDesc: {
-    fontSize: "22px",
-    fontWeight: 400,
-    lineHeight: "32px",
+    // fontSize: "22px",
+    // fontWeight: 400,
+    // lineHeight: "32px",
     textAlign: "center",
     height: "150px",
   },
@@ -294,6 +295,7 @@ const GetStartedBox: React.FC<Props> = ({
         sx={styles.boxDesc}
         className={leagueSpartan.className}
         component={"p"}
+        variant="body1"
       >
         {description}
       </Typography>

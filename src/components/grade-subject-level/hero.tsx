@@ -22,6 +22,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
       >
         <Typography
           sx={styles.heading}
+          variant="h3"
           className={leagueSpartan.className}
           // component={data?.headerTag}
 
@@ -408,13 +409,13 @@ const styles = {
       md: "start",
       lg: "start",
     },
-    fontSize: {
-      xs: "24px",
-      sm: "32px",
-      md: "42px",
-      lg: "5.5vh",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "24px",
+    //   sm: "32px",
+    //   md: "42px",
+    //   lg: "5.5vh",
+    // },
+    // fontWeight: 700,
     lineHeight: {
       xs: "28px",
       sm: "36px",
@@ -434,13 +435,13 @@ const styles = {
       sm: "100%",
       lg: "75vh",
     },
-    fontSize: {
-      xs: "12px",
-      sm: "12px",
-      md: "14px",
-      lg: "17px",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "12px",
+    //   sm: "12px",
+    //   md: "14px",
+    //   lg: "17px",
+    // },
+    // fontWeight: 400,
     lineHeight: {
       xs: "2.5vh",
       sm: "2.4vh",

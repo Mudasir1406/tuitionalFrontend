@@ -14,217 +14,173 @@ import PopUpButton from "./pop-up-button";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
-    <Box sx={styles.background}>
-      <Box sx={styles.rightCircle} />
-      <Box sx={styles.leftCircle} />
-      <Box sx={styles.contanier}>
-        <Box sx={styles.contactContanier}>
+    <footer>
+      <Box sx={styles.background}>
+        <Box sx={styles.rightCircle} />
+        <Box sx={styles.leftCircle} />
+        <Box sx={styles.contanier}>
+          <Box sx={styles.contactContanier}>
+            <Grid
+              container
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              spacing={2}
+            >
+              <Grid item lg={1} sm={12}>
+                <Box sx={styles.imageContanier}>
+                  <Image
+                    src={plan.src}
+                    width={plan.width}
+                    height={plan.height}
+                    alt="plan"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      marginTop: "10px",
+                      objectFit: "contain",
+                    }}
+                    quality={100}
+                  ></Image>
+                </Box>
+              </Grid>
+              <Grid item lg={5.5}>
+                <Typography
+                  variant="h4"
+                  sx={styles.admissionText}
+                  className={leagueSpartan.className}
+                >
+                  Admissions are Open for the Next Year Batch
+                </Typography>
+              </Grid>
+              <Grid item lg={3}>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Image
+                    src={phone.src}
+                    width={phone.width}
+                    height={phone.height}
+                    alt="phone"
+                  ></Image>
+                  <Typography
+                    variant="h6"
+                    sx={styles.phoneText}
+                    className={leagueSpartan.className}
+                  >
+                    +971 56 490 0376
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item lg={2.5}>
+                <PopUpButton
+                  text="Enroll Now!"
+                  href="popup"
+                  sx={styles.contactButton}
+                />
+              </Grid>
+            </Grid>
+          </Box>
           <Grid
             container
+            columnSpacing={5}
             sx={{
+              marginY: {
+                xs: "70px",
+                sm: "80px",
+                md: "90px",
+                lg: "100px",
+              },
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: { xs: "100%", sm: "100%" },
+              paddingLeft: { xs: 0, md: "5vw" },
+              paddingRight: "2vw",
             }}
-            spacing={2}
           >
-            <Grid item lg={1} sm={12}>
-              <Box sx={styles.imageContanier}>
-                <Image
-                  src={plan.src}
-                  width={plan.width}
-                  height={plan.height}
-                  alt="plan"
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    marginTop: "10px",
-                    objectFit: "contain",
-                  }}
-                  quality={100}
-                ></Image>
-              </Box>
-            </Grid>
-            <Grid item lg={5.5}>
-              <Typography
-                sx={styles.admissionText}
-                className={leagueSpartan.className}
-              >
-                Admissions are Open for the Next Year Batch
-              </Typography>
-            </Grid>
-            <Grid item lg={3}>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Image
-                  src={phone.src}
-                  width={phone.width}
-                  height={phone.height}
-                  alt="phone"
-                ></Image>
-                <Typography
-                  sx={styles.phoneText}
-                  className={leagueSpartan.className}
-                >
-                  +971 56 490 0376
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item lg={2.5}>
-              <PopUpButton
-                text="Enroll Now!"
-                href="popup"
-                sx={styles.contactButton}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-        <Grid
-          container
-          columnSpacing={5}
-          sx={{
-            marginY: {
-              xs: "70px",
-              sm: "80px",
-              md: "90px",
-              lg: "100px",
-            },
-            display: "flex",
-            width: { xs: "100%", sm: "100%" },
-            paddingLeft: { xs: 0, md: "5vw" },
-            paddingRight: "2vw",
-          }}
-        >
-          <Grid item lg={3} sm={12}>
-            <Box sx={styles.gridContent}>
-              <Box
-                sx={{
-                  width: "100%",
-                  display: { xs: "flex", sm: "flex" },
+            <Grid item lg={3} sm={12}>
+              <Box sx={styles.gridContent}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: { xs: "flex", sm: "flex" },
 
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Image
-                  src={logo.src}
-                  width={logo.width}
-                  height={logo.height}
-                  style={{ alignSelf: "start" }}
-                  alt="logo"
-                ></Image>
-              </Box>
-              <Typography sx={styles.desc} className={leagueSpartan.className}>
-                Tuitional is an Online Ed-Tech Platform. We do live tutoring
-                classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all
-                boards like Cambridge, Pearson Edexcel
-              </Typography>
-              <Box sx={styles.socialBox}>
-                <Link
-                  target="_blank"
-                  href={footerData?.link.facebook}
-                  rel="noreferrer"
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
                   <Image
-                    src={facebook.src}
-                    style={styles.social}
-                    alt="facebook"
-                    width={facebook.width}
-                    height={facebook.height}
+                    src={logo.src}
+                    width={logo.width}
+                    height={logo.height}
+                    style={{ alignSelf: "start" }}
+                    alt="logo"
                   ></Image>
-                </Link>
-                <Link
-                  target="_blank"
-                  href={footerData?.link.insta}
-                  rel="noreferrer"
-                >
-                  <Image
-                    src={insta}
-                    style={styles.social}
-                    alt="insta"
-                    width={insta.width}
-                    height={insta.height}
-                  ></Image>
-                </Link>
-                <Link
-                  target="_blank"
-                  href={footerData?.link.linkdin}
-                  rel="noreferrer"
-                >
-                  <Image
-                    src={linkdin}
-                    style={styles.social}
-                    alt="linkdin"
-                    width={linkdin.width}
-                    height={linkdin.height}
-                  ></Image>
-                </Link>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={6}>
-            <Box sx={styles.gridContent}>
-              <Typography
-                sx={styles.heading}
-                className={leagueSpartan.className}
-              >
-                Curriculums
-              </Typography>
-              {footerData?.curriculums.map((item, index) => (
+                </Box>
                 <Typography
-                  sx={styles.text}
-                  key={index}
+                  sx={styles.desc}
                   className={leagueSpartan.className}
+                  variant="body1"
                 >
-                  {item}
+                  Tuitional is an Online Ed-Tech Platform. We do live tutoring
+                  classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all
+                  boards like Cambridge, Pearson Edexcel
                 </Typography>
-              ))}
-            </Box>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={6}>
-            <Box
-              sx={[
-                styles.gridContent,
-                {
-                  height: {
-                    xs: "100%",
-                    sm: "100%",
-                    md: "100%",
-                    lg: "650px",
-                  },
-                  flexWrap: "wrap",
-                },
-              ]}
-            >
-              <Typography
-                sx={styles.heading}
-                className={leagueSpartan.className}
-              >
-                Subjects
-              </Typography>
-              {footerData?.subjects.slice(0, 10).map((item, index) => (
-                <Typography
-                  sx={styles.text}
-                  key={index}
-                  className={leagueSpartan.className}
-                >
-                  {item}
-                </Typography>
-              ))}
-            </Box>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={6}>
-            <Box sx={styles.gridContent}>
-              <Box>
+                <Box sx={styles.socialBox}>
+                  <Link
+                    target="_blank"
+                    href={footerData?.link.facebook}
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src={facebook.src}
+                      style={styles.social}
+                      alt="facebook"
+                      width={facebook.width}
+                      height={facebook.height}
+                    ></Image>
+                  </Link>
+                  <Link
+                    target="_blank"
+                    href={footerData?.link.insta}
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src={insta}
+                      style={styles.social}
+                      alt="insta"
+                      width={insta.width}
+                      height={insta.height}
+                    ></Image>
+                  </Link>
+                  <Link
+                    target="_blank"
+                    href={footerData?.link.linkdin}
+                    rel="noreferrer"
+                  >
+                    <Image
+                      src={linkdin}
+                      style={styles.social}
+                      alt="linkdin"
+                      width={linkdin.width}
+                      height={linkdin.height}
+                    ></Image>
+                  </Link>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item lg={3} sm={6} xs={6}>
+              <Box sx={styles.gridContent}>
                 <Typography
                   sx={styles.heading}
+                  variant="h5"
                   className={leagueSpartan.className}
                 >
-                  Get Help
+                  Curriculums
                 </Typography>
-
-                {footerData?.getHelp.map((item, index) => (
+                {footerData?.curriculums.map((item, index) => (
                   <Typography
                     sx={styles.text}
+                    variant="body1"
                     key={index}
                     className={leagueSpartan.className}
                   >
@@ -232,82 +188,147 @@ const Footer: React.FC = async () => {
                   </Typography>
                 ))}
               </Box>
-              <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                <Typography
-                  className={leagueSpartan.className}
-                  sx={[
-                    styles.heading,
-                    {
-                      textAlign: "left",
-                      marginTop: "20px",
+            </Grid>
+            <Grid item lg={3} sm={6} xs={6}>
+              <Box
+                sx={[
+                  styles.gridContent,
+                  {
+                    height: {
+                      xs: "100%",
+                      sm: "100%",
+                      md: "100%",
+                      lg: "650px",
                     },
-                  ]}
+                    flexWrap: "wrap",
+                  },
+                ]}
+              >
+                <Typography
+                  sx={styles.heading}
+                  variant="h5"
+                  className={leagueSpartan.className}
                 >
-                  About us
+                  Subjects
                 </Typography>
-                {footerData?.aboutUs.map((item, index) => (
-                  <Link
-                    href={`/${item.toLowerCase()}`}
-                    style={{
-                      textDecoration: "none",
-                      textDecorationColor: "none",
-                    }}
+                {footerData?.subjects.slice(0, 10).map((item, index) => (
+                  <Typography
+                    sx={styles.text}
+                    variant="body1"
                     key={index}
+                    className={leagueSpartan.className}
                   >
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
+            </Grid>
+            <Grid item lg={3} sm={6} xs={6}>
+              <Box sx={styles.gridContent}>
+                <Box>
+                  <Typography
+                    sx={styles.heading}
+                    variant="h5"
+                    className={leagueSpartan.className}
+                  >
+                    Get Help
+                  </Typography>
+
+                  {footerData?.getHelp.map((item, index) => (
                     <Typography
                       sx={styles.text}
+                      variant="body1"
                       key={index}
                       className={leagueSpartan.className}
                     >
                       {item}
                     </Typography>
-                  </Link>
-                ))}
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={6}>
-            <Box sx={styles.gridContent}>
-              <Box sx={{ display: { xs: "block", lg: "none" } }}>
-                <Typography
-                  className={leagueSpartan.className}
-                  sx={[
-                    styles.heading,
-                    {
-                      textAlign: "left",
-                      marginTop: "20px",
-                    },
-                  ]}
-                >
-                  About us
-                </Typography>
-                {footerData?.aboutUs.map((item, index) => {
-                  const url = item.toLowerCase();
-                  return (
+                  ))}
+                </Box>
+                <Box sx={{ display: { xs: "none", lg: "block" } }}>
+                  <Typography
+                    variant="h5"
+                    className={leagueSpartan.className}
+                    sx={[
+                      styles.heading,
+                      {
+                        textAlign: "left",
+                        marginTop: "20px",
+                      },
+                    ]}
+                  >
+                    About us
+                  </Typography>
+                  {footerData?.aboutUs.map((item, index) => (
                     <Link
-                      href={`/${url}`}
-                      style={{ textDecoration: "none" }}
+                      href={`/${item.toLowerCase()}`}
+                      style={{
+                        textDecoration: "none",
+                        textDecorationColor: "none",
+                      }}
                       key={index}
                     >
                       <Typography
                         sx={styles.text}
+                        variant="body1"
+                        key={index}
                         className={leagueSpartan.className}
                       >
                         {item}
                       </Typography>
                     </Link>
-                  );
-                })}
+                  ))}
+                </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid item lg={3} sm={6} xs={6}>
+              <Box sx={styles.gridContent}>
+                <Box sx={{ display: { xs: "block", lg: "none" } }}>
+                  <Typography
+                    className={leagueSpartan.className}
+                    sx={[
+                      styles.heading,
+                      {
+                        textAlign: "left",
+                        marginTop: "20px",
+                      },
+                    ]}
+                  >
+                    About us
+                  </Typography>
+                  {footerData?.aboutUs.map((item, index) => {
+                    const url = item.toLowerCase();
+                    return (
+                      <Link
+                        href={`/${url}`}
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <Typography
+                          sx={styles.text}
+                          variant="body1"
+                          className={leagueSpartan.className}
+                        >
+                          {item}
+                        </Typography>
+                      </Link>
+                    );
+                  })}
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-        <Divider sx={{ color: "black", width: "78%" }}></Divider>
-        <Typography sx={styles.rights} className={leagueSpartan.className}>
-          All Rights Reserved ©2024 Tuitional
-        </Typography>
+          <Divider sx={{ color: "black", width: "78%" }}></Divider>
+          <Typography
+            sx={styles.rights}
+            variant="h5"
+            className={leagueSpartan.className}
+          >
+            All Rights Reserved ©2024 Tuitional
+          </Typography>
+        </Box>
       </Box>
-    </Box>
+    </footer>
   );
 };
 
@@ -355,14 +376,14 @@ const styles = {
     justifyContent: "center",
   },
   admissionText: {
-    fontSize: {
-      xs: "4.5vw",
-      sm: "4.5vw",
-      md: "3.5vw",
-      lg: "2vw",
-    },
-    fontWeight: 700,
-    lineHeight: "32px",
+    // fontSize: {
+    //   xs: "4.5vw",
+    //   sm: "4.5vw",
+    //   md: "3.5vw",
+    //   lg: "2vw",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "32px",
     marginLeft: "10px",
     color: "white",
     textAlign: {
@@ -386,14 +407,14 @@ const styles = {
     width: { xs: "80%", sm: "80%", md: "85%" },
   },
   phoneText: {
-    fontSize: {
-      xs: "5vw",
-      sm: "3vw",
-      md: "1.5vw",
-      lg: "1.5vw",
-    },
-    fontWeight: 700,
-    lineHeight: "23px",
+    // fontSize: {
+    //   xs: "5vw",
+    //   sm: "3vw",
+    //   md: "1.5vw",
+    //   lg: "1.5vw",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "23px",
     color: "white",
     marginX: "10px",
   },
@@ -433,14 +454,14 @@ const styles = {
     },
   },
   desc: {
-    fontSize: {
-      xs: "17px",
-      sm: "21px",
-      md: "22px",
-      lg: "22px",
-    },
-    fontWeight: 400,
-    lineHeight: "32px",
+    // fontSize: {
+    //   xs: "17px",
+    //   sm: "21px",
+    //   md: "22px",
+    //   lg: "22px",
+    // },
+    // fontWeight: 400,
+    // lineHeight: "32px",
     marginTop: "40px",
     textAlign: {
       xs: "center",
@@ -455,30 +476,30 @@ const styles = {
     flexDirection: "column",
   },
   heading: {
-    fontSize: {
-      xs: "22px",
-      sm: "26px",
-      md: "28px",
-      lg: "30px",
-    },
+    // fontSize: {
+    //   xs: "22px",
+    //   sm: "26px",
+    //   md: "28px",
+    //   lg: "30px",
+    // },
     fontWeight: 700,
-    lineHeight: {
-      xs: "26px",
-      sm: "28px",
-      md: "30px",
-      lg: "32px",
-    },
+    // lineHeight: {
+    //   xs: "26px",
+    //   sm: "28px",
+    //   md: "30px",
+    //   lg: "32px",
+    // },
     marginBottom: "15px",
     marginTop: "12px",
   },
   text: {
-    fontSize: {
-      xs: "19px",
-      sm: "20px",
-      md: "21px",
-      lg: "21px",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "19px",
+    //   sm: "20px",
+    //   md: "21px",
+    //   lg: "21px",
+    // },
+    // fontWeight: 400,
     lineHeight: {
       xs: "35px",
       sm: "40px",
@@ -488,19 +509,19 @@ const styles = {
     color: "black",
   },
   rights: {
-    fontSize: {
-      xs: "12px",
-      sm: "20px",
-      md: "22px",
-      lg: "25px",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "26px",
-      sm: "28px",
-      md: "30px",
-      lg: "32px",
-    },
+    // fontSize: {
+    //   xs: "12px",
+    //   sm: "20px",
+    //   md: "22px",
+    //   lg: "25px",
+    // },
+    // fontWeight: 500,
+    // lineHeight: {
+    //   xs: "26px",
+    //   sm: "28px",
+    //   md: "30px",
+    //   lg: "32px",
+    // },
     marginY: {
       xs: "20px",
       sm: "30px",
