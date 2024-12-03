@@ -50,6 +50,7 @@ type IProps = {
 };
 
 const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
+  // console.log("GradeSubjectLevel", data, "sequence", sequence);
   const renderSection = (name: string) => {
     switch (name) {
       case "Hero Section":
