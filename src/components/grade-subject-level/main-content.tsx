@@ -11,6 +11,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={style.contanier}>
         <Typography
           sx={style.title}
+          variant="h3"
           className={leagueSpartan.className}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
@@ -20,19 +21,13 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           component={"p"}
+          variant="body1"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
-        >
-          {/* <div
-            className={leagueSpartan.className}
-            dangerouslySetInnerHTML={{
-              __html: data?.paragraph,
-            }}
-          ></div> */}
-        </Typography>
+        ></Typography>
 
-        <Box>
+        <Box sx={style.box}>
           <Grid container spacing={2} sx={style.grid}>
             {data?.subjects.map((subject, index) => (
               <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
@@ -66,15 +61,18 @@ const style = {
       md: "100%", // Laptop view
       lg: "50vw", // Desktop view
     },
-    fontSize: {
-      xs: "3vh",
-      sm: "5vh",
-      md: "5.5vh",
-      lg: "6vh",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "3vh",
+    //   sm: "5vh",
+    //   md: "5.5vh",
+    //   lg: "6vh",
+    // },
+    // fontWeight: 600,
     textAlign: { xs: "center", md: "left" },
     marginBottom: { xs: "2vh", md: "3vh" },
+  },
+  box: {
+    margin: "36px 0",
   },
   description: {
     color: "#2D2D2D",
@@ -84,12 +82,12 @@ const style = {
       md: "100%",
       lg: "100%",
     },
-    fontSize: {
-      xs: "1.8vh",
-      sm: "2vh",
-      md: "2vh",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "1.8vh",
+    //   sm: "2vh",
+    //   md: "2vh",
+    // },
+    // fontWeight: 400,
     textAlign: { xs: "justify", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
   },

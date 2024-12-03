@@ -14,6 +14,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
     <>
       <Box sx={{ paddingX: "5vw", marginY: "10vh" }}>
         <Typography
+          variant="body1"
           sx={style.reviewheading}
           className={leagueSpartan.className}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
@@ -88,15 +89,15 @@ export default BlogCta;
 
 const style = {
   reviewheading: {
-    fontSize: {
-      xs: "2.6vh", // Adjusted heading size for mobile
-      sm: "2.9vh",
-      lg: "6vh",
-    },
-    lineHeight: {
-      xs: "3.5vh", // Adjusted line height for better spacing on mobile
-      lg: "7vh",
-    },
+    // fontSize: {
+    //   xs: "2.6vh", // Adjusted heading size for mobile
+    //   sm: "2.9vh",
+    //   lg: "6vh",
+    // },
+    // lineHeight: {
+    //   xs: "3.5vh", // Adjusted line height for better spacing on mobile
+    //   lg: "7vh",
+    // },
     width: {
       xs: "100%", // Full width on mobile
       sm: "90%",
@@ -105,7 +106,7 @@ const style = {
     height: {
       lg: "10vh",
     },
-    fontWeight: 700,
+    // fontWeight: 700,
     textAlign: {
       sm: "left",
       xs: "left", // Center text on mobile for better layout

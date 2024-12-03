@@ -28,6 +28,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
       <Box>
         <Typography
           sx={style.frequently}
+          variant="h3"
           className={leagueSpartan.className}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
@@ -39,6 +40,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
           component={"p"}
+          variant="body1"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -60,6 +62,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     sx={style.boxhed}
                     className={leagueSpartan.className}
                     component={"p"}
+                    variant="body1"
                     dangerouslySetInnerHTML={{
                       __html: item?.question,
                     }}
@@ -80,6 +83,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
                     component={"p"}
+                    variant="body1"
                     dangerouslySetInnerHTML={{
                       __html: item?.answer,
                     }}
@@ -113,10 +117,10 @@ const style = {
     padding: { xs: "2vh 0", sm: "2vh" },
   },
   boxhed: {
-    fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh" },
+    // fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh" },
   },
   boxdesc: {
-    fontSize: { lg: "1.9vh", sm: "2vh" },
+    fontSize: { lg: "2.1vh", sm: "2vh" },
     width: { lg: "70vw" },
     marginTop: "2vh",
   },
