@@ -2,18 +2,20 @@ import { Box, Typography, colors } from "@mui/material";
 import tutors from "../../../public/assets/images/static/about-hero-2.png";
 import React from "react";
 import Image from "next/image";
+import styles from "./styles.module.css";
 
 const HeroInfo: React.FC = () => {
   return (
     <>
-      <Box sx={styles.contanier}>
-        <Box sx={styles.liveSessions}>
+      <Box sx={style.contanier}>
+        <Box sx={style.liveSessions}>
           <Image
             src={tutors.src}
-            style={{ width: "150px" }}
+            // style={{ width: "150px" }}
             alt="teacher"
             width={tutors.width}
             height={tutors.height}
+            className={styles.animatedImg}
           ></Image>
         </Box>
       </Box>
@@ -23,7 +25,7 @@ const HeroInfo: React.FC = () => {
 
 export default HeroInfo;
 
-const styles = {
+const style = {
   contanier: {
     display: "flex",
     alignItems: "center",
@@ -52,5 +54,8 @@ const styles = {
     marginTop: "-100px",
     marginRight: "80px",
     animation: "bounce 6s ease-in-out infinite",
+  },
+  image: {
+    objectFit: "contain",
   },
 };

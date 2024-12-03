@@ -33,6 +33,7 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={style.inner}>
         <Typography
           sx={style.finding}
+          variant="h4"
           component={data.headerTag as keyof JSX.IntrinsicElements}
           className={leagueSpartan.className}
           dangerouslySetInnerHTML={{
@@ -41,6 +42,7 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
         <Typography
           sx={style.description}
+          variant="body1"
           className={leagueSpartan.className}
           component={"p"}
           dangerouslySetInnerHTML={{
@@ -89,10 +91,10 @@ const style = {
     },
     borderTopRightRadius: "20px",
     borderBottomRightRadius: "20px",
-    fontSize: {
-      xs: "1.5vh",
-      lg: "auto",
-    },
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   lg: "auto",
+    // },
     ":hover": {
       backgroundColor: "#38B6FF",
     },
@@ -107,8 +109,8 @@ const style = {
   inputProps: {
     className: leagueSpartan.className,
     sx: {
-      fontSize: "20px",
-      fontWeight: 400,
+      // fontSize: "20px",
+      // fontWeight: 400,
       "& .MuiOutlinedInput-notchedOutline": {
         border: "none",
       },
@@ -141,11 +143,11 @@ const style = {
     },
   },
   finding: {
-    fontSize: {
-      xs: "3.5vh",
-      lg: "4vh",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "3.5vh",
+    //   lg: "4vh",
+    // },
+    // fontWeight: 600,
     textAlign: "center",
     // padding: {
     //   xs: "1vh 0",
@@ -153,11 +155,11 @@ const style = {
     // },
   },
   description: {
-    fontSize: {
-      xs: "2vh",
-      lg: "2.2vh",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "2vh",
+    //   lg: "2.2vh",
+    // },
+    // fontWeight: 400,
     textAlign: {
       xs: "justify",
       lg: "center",

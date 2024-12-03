@@ -20,6 +20,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
             <Box>
               <Typography
                 sx={style.tutorheading}
+                variant="h4"
                 className={leagueSpartan.className}
                 component={data?.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
@@ -54,6 +55,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           sx={style.titlebox}
                           className={leagueSpartan.className}
                           component={"p"}
+                          variant="h6"
                           dangerouslySetInnerHTML={{
                             __html: box.header,
                           }}
@@ -62,6 +64,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           sx={style.desc}
                           className={leagueSpartan.className}
                           component={"p"}
+                          variant="body1"
                           dangerouslySetInnerHTML={{
                             __html: box.body,
                           }}
@@ -91,17 +94,17 @@ export default DemoPointers;
 const style = {
   contanier: { margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } },
   tutorheading: {
-    fontSize: {
-      xs: "3vh",
-      sm: "4vh",
-      md: "4vh",
-      lg: "5vh",
-    },
+    // fontSize: {
+    //   xs: "3vh",
+    //   sm: "4vh",
+    //   md: "4vh",
+    //   lg: "5vh",
+    // },
     width: {
       xs: "auto",
       // sm: "66vh",
     },
-    fontWeight: 600,
+    // fontWeight: 600,
     textAlign: { xs: "center", sm: "left", lg: "left" },
   },
   image: {

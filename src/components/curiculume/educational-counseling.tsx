@@ -20,12 +20,14 @@ const EducationalCounseling: React.FunctionComponent<{
                 sx={style.counseling}
                 className={leagueSpartan.className}
                 component={"p"}
+                variant="body1"
               >
                 Educational Counseling
               </Typography>
 
               <Typography
                 sx={style.guidence}
+                variant="h2"
                 className={leagueSpartan.className}
                 component={data.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
@@ -36,7 +38,8 @@ const EducationalCounseling: React.FunctionComponent<{
                 sx={style.desc}
                 className={leagueSpartan.className}
                 component={"p"}
-                dangerouslySetInnerHTML={{
+                variant="body1"
+                  dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}
               ></Typography>
@@ -87,7 +90,7 @@ const style = {
     },
     paddingX: {
       xs: "3vh",
-      sm: "4vw",
+      sm: "3.6vw",
     },
     paddingY: {
       xs: "2vh",
@@ -97,23 +100,23 @@ const style = {
   },
 
   guidence: {
-    fontWeight: "700",
+    // fontWeight: "700",
     width: {
       xs: "80vw",
       lg: "40vw",
     },
-    fontSize: {
-      xs: "3.1vh",
-      sm: "3.5vh",
-      md: "6vh",
-      lg: "6vh",
-    },
-    lineHeight: {
-      xs: "6vh",
-      sm: "6.5vh",
-      md: "7vh",
-      lg: "7vh",
-    },
+    // fontSize: {
+    //   xs: "3.1vh",
+    //   sm: "3.5vh",
+    //   md: "6vh",
+    //   lg: "6vh",
+    // },
+    // lineHeight: {
+    //   xs: "6vh",
+    //   sm: "6.5vh",
+    //   md: "7vh",
+    //   lg: "7vh",
+    // },
     paddingY: {
       xs: "2vh",
       sm: "2.5vh",
@@ -124,17 +127,17 @@ const style = {
 
   desc: {
     color: "#2D2D2D",
-    fontWeight: 400,
+    // fontWeight: 400,
     width: {
       xs: "80vw",
       lg: "40vw",
     },
-    fontSize: {
-      xs: "2vh",
-      sm: "2.2vh",
-      md: "2.4vh",
-      lg: "2vh",
-    },
+    // fontSize: {
+    //   xs: "2vh",
+    //   sm: "2.2vh",
+    //   md: "2.4vh",
+    //   lg: "2vh",
+    // },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",

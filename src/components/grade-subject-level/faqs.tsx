@@ -97,16 +97,16 @@ export default FrequentlyQuestions;
 const style = {
   contanier: { marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } },
   frequently: {
-    fontWeight: "600",
-    fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
+    // fontWeight: "600",
+    // fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
     textAlign: "center",
   },
   faqContanier: { marginX: "auto", maxWidth: "80vw", paddingX: { lg: "2vh" } },
   frequentlyDesc: {
     color: "#2D2D2D",
     textAlign: "center",
-    fontWeight: 400,
-    fontSize: { lg: "2vh", sm: "2.5vh", md: "2.5vh" },
+    // fontWeight: 400,
+    // fontSize: { lg: "2vh", sm: "2.5vh", md: "2.5vh" },
     width: { lg: "55%" },
     margin: "0 auto",
     lineHeight: "3vh",

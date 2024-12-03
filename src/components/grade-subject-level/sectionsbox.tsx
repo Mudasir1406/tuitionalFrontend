@@ -10,6 +10,7 @@ const SectionsBox = () => {
         <Typography
           className={leagueSpartan.className}
           sx={style.inner}
+          variant="h5"
           component={"p"}
         >
           Join Live Interactive Online Classes with Our Certified Tutors!
@@ -25,14 +26,14 @@ export default SectionsBox;
 const style = {
   contanier: {},
   inner: {
-    fontSize: {
-      xs: "1.5vh",
-      lg: "3vh",
-    },
-    fontWeight: {
-      xs: "auto",
-      lg: "700",
-    },
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   lg: "3vh",
+    // },
+    // fontWeight: {
+    //   xs: "auto",
+    //   lg: "700",
+    // },
     textAlign: "start",
     paddingX: {
       xs: "2vh",
