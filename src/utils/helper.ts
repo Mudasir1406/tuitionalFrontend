@@ -141,7 +141,7 @@ export function generateMergedSchema(data: any) {
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-
+        "@id": `${data?.slugData}/#faqpage`,
         mainEntity: data?.Faqs?.faqs.map((faq: any) => ({
           "@type": "Question",
           name: faq.question,
