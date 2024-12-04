@@ -49,15 +49,16 @@ export const scrollToApplyForm = () => {
 };
 
 export function generateMergedSchema(data: any) {
+  console.log("generateMergedSchema", data);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": `${data?.url}#webpage`,
-        url: data?.url,
-        name: data?.name,
-        description: data?.description,
+        "@id": `${data?.slugData}/#webpage`,
+        url: data?.slugData,
+        name: data?.meta_tags?.title,
+        description: data?.meta_tags?.description,
         isPartOf: {
           "@type": "WebPage",
           "@id": "https://tuitionaledu.com/#webpage",
@@ -108,14 +109,13 @@ export function generateMergedSchema(data: any) {
       },
       {
         "@type": "Service",
-        "@id": `${data?.url}#service`,
-        serviceType: "will get its value from Service Type text field in cms.",
+        "@id": `${data?.slugData}/#service`,
+        serviceType: data?.meta_tags?.serviceType,
         provider: {
           "@id": "https://tuitionaledu.com/#organization",
         },
-        name: "will get its value from Page Schema Name text field in cms.",
-        description:
-          "will get its value from Service Description text field in cms.",
+        name: data?.meta_tags?.title,
+        description: data?.meta_tags?.description,
         serviceArea: {
           "@type": "Place",
           name: "United Arab Emirates, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman",
@@ -142,7 +142,7 @@ export function generateMergedSchema(data: any) {
         "@context": "https://schema.org",
         "@type": "FAQPage",
 
-        mainEntity: data?.faqs?.faqs.map((faq: any) => ({
+        mainEntity: data?.Faqs?.faqs.map((faq: any) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: {
