@@ -1,7 +1,7 @@
 import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL } from "@/utils/env";
-import { generateFaqSchema } from "@/utils/helper";
+import { generateFaqSchema, generateMergedSchema } from "@/utils/helper";
 import { Metadata } from "next";
 import Script from "next/script";
 import React, { ReactNode } from "react";
@@ -54,27 +54,28 @@ const Layout = async ({
 
   if (!data) return null;
 
-  const pageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: data.meta_tags.pageSchemaName,
-    description: data.meta_tags.pageSchemaDescription,
-    url: `${SITE_URL}/online/${params.slug}`,
-  };
+  // const pageSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "WebPage",
+  //   name: data.meta_tags.pageSchemaName,
+  //   description: data.meta_tags.pageSchemaDescription,
+  //   url: `${SITE_URL}/online/${params.slug}`,
+  // };
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: data.meta_tags.serviceType,
-    description: data.meta_tags.serviceDescription,
-    provider: {
-      "@type": "Organization",
-      name: "Tuitional",
-      url: "https://tuitionaledu.com",
-    },
-  };
+  // const serviceSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "Service",
+  //   serviceType: data.meta_tags.serviceType,
+  //   description: data.meta_tags.serviceDescription,
+  //   provider: {
+  //     "@type": "Organization",
+  //     name: "Tuitional",
+  //     url: "https://tuitionaledu.com",
+  //   },
+  // };
 
-  const faqSchema = generateFaqSchema(data.Faqs);
+  // const faqSchema = generateFaqSchema(data.Faqs);
+  const pageSchema = generateMergedSchema(data);
 
   return (
     <div>
@@ -82,9 +83,9 @@ const Layout = async ({
         id="page-schema"
         type="application/ld+json"
         defer
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+        dangerouslySetInnerHTML={{ __html: pageSchema }}
       />
-      <Script
+      {/* <Script
         id="service-schema"
         type="application/ld+json"
         defer
@@ -95,7 +96,7 @@ const Layout = async ({
         type="application/ld+json"
         defer
         dangerouslySetInnerHTML={{ __html: faqSchema }}
-      />
+      /> */}
       {children}
     </div>
   );

@@ -48,12 +48,129 @@ export const scrollToApplyForm = () => {
   }
 };
 
+export function generateMergedSchema({ data }: any) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${data?.url}#webpage`,
+        url: data?.url,
+        name: data?.name,
+        description: data?.description,
+        isPartOf: {
+          "@type": "WebPage",
+          "@id": "https://tuitionaledu.com/#webpage",
+        },
+        inLanguage: "en",
+        publisher: {
+          "@id": "https://tuitionaledu.com/#organization",
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://tuitionaledu.com/#organization",
+        name: "Tuitional",
+        url: "https://tuitionaledu.com/",
+        logo: "https://tuitionaledu.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.e75c8b12.png&w=640&q=75",
+        description:
+          "Tuitional is a leading online tutoring platform in the Gulf region, providing personalized tutoring services across various curricula including CAIE, Pearson Edexcel, OCR, AQA, IB, SABIS, GED and AP.",
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "Customer Support",
+          telephone: "+971 56 490 0376",
+          email: "hello@tuitionaledu.com",
+          areaServed: [
+            "United Arab Emirates",
+            "Saudi Arabia",
+            "Qatar",
+            "Kuwait",
+            "Bahrain",
+            "Oman",
+          ],
+          availableLanguage: ["English"],
+        },
+        sameAs: [
+          "https://www.trustpilot.com/review/tuitionaledu.com",
+          "https://www.facebook.com/tuitionaledu",
+          "https://www.instagram.com/tuitionaledu/",
+          "https://www.linkedin.com/company/tuitionaledu/",
+        ],
+        foundingDate: "2022",
+        foundingLocation: "Sharjah, UAE",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.4",
+          reviewCount: "100",
+          bestRating: "5",
+          worstRating: "1",
+        },
+      },
+      {
+        "@type": "Service",
+        "@id": `${data?.url}#service`,
+        serviceType: "will get its value from Service Type text field in cms.",
+        provider: {
+          "@id": "https://tuitionaledu.com/#organization",
+        },
+        name: "will get its value from Page Schema Name text field in cms.",
+        description:
+          "will get its value from Service Description text field in cms.",
+        serviceArea: {
+          "@type": "Place",
+          name: "United Arab Emirates, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman",
+        },
+        offers: {
+          "@type": "Offer",
+          eligibleRegion:
+            "United Arab Emirates, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman",
+        },
+      },
+      // {
+      //   "@type": "FAQPage",
+      //   "@id": `${data?.url}#faqpage`,
+      //   mainEntity: faqs.map((faq: any) => ({
+      //     "@type": "Question",
+      //     name: faq.question,
+      //     acceptedAnswer: {
+      //       "@type": "Answer",
+      //       text: faq.answer,
+      //     },
+      //   })),
+      // },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+
+        mainEntity: data?.faqs?.faqs.map((faq: any) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+        // mainEntity: data?.faqs?.faqs.map((faq?: PageData["Faqs"]) => ({
+        //   "@type": "Question",
+        //   name: faq.question,
+        //   acceptedAnswer: {
+        //     "@type": "Answer",
+        //     text: faq.answer,
+        //   },
+        // })),
+      },
+    ],
+  };
+
+  return JSON.stringify(schema, null, 2);
+}
+
 export const getSchema = ({
   pageId,
   pageUrl,
   pageName,
   pageDescription,
-  email
+  email,
 }: any) => {
   const organizationSchema = {
     "@type": "Organization",
