@@ -22,7 +22,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
       >
         <Typography
           sx={styles.heading}
-          variant="h3"
+          variant={data.headerTag as any}
           className={leagueSpartan.className}
           // component={data?.headerTag}
 
@@ -35,6 +35,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
           sx={styles.desc}
           className={leagueSpartan.className}
           component={"p"}
+          variant="body1"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -218,7 +219,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: "2vh", color: "#797979" }}
+                // sx={{ fontSize: "2vh", color: "#797979" }}
+                variant="caption"
                 className={leagueSpartan.className}
                 component={"p"}
               >
@@ -245,7 +247,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: "2vh", color: "#797979" }}
+                // sx={{ fontSize: "2vh", color: "#797979" }}
+                variant="caption"
                 className={leagueSpartan.className}
                 component={"p"}
               >
@@ -272,7 +275,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: "2vh", color: "#797979" }}
+                // sx={{ fontSize: "2vh", color: "#797979" }}
+                variant="caption"
                 className={leagueSpartan.className}
                 component={"p"}
               >
@@ -299,7 +303,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: "2vh", color: "#797979" }}
+                // sx={{ fontSize: "2vh", color: "#797979" }}
+                variant="caption"
                 className={leagueSpartan.className}
                 component={"p"}
               >
@@ -350,12 +355,13 @@ const Hero: React.FC<IProps> = ({ data }) => {
               />
               <Typography
                 sx={{
-                  fontSize: "2.3vh",
+                  //   fontSize: "2.3vh",
                   padding: ".7vh 0 0 1vh",
-                  fontWeight: 600,
+                  //   fontWeight: 600,
                 }}
                 className={leagueSpartan.className}
                 component={"p"}
+                variant="subtitle2"
               >
                 Trustpilot
               </Typography>
@@ -369,12 +375,13 @@ const Hero: React.FC<IProps> = ({ data }) => {
             >
               <Typography
                 sx={{
-                  fontSize: { lg: "2vh", xs: "1.7vh" },
-                  fontWeight: 400,
+                  // fontSize: { lg: "2vh", xs: "1.7vh" },
+                  // fontWeight: 400,
                   padding: "1vh 0 0 0",
                 }}
                 className={leagueSpartan.className}
                 component={"p"}
+                variant="caption"
               >
                 Excellent (4.7/5)
               </Typography>
@@ -400,7 +407,7 @@ const styles = {
   heading: {
     width: {
       xs: "100%",
-      lg: "35vw",
+      // lg: "35vw",
       sm: "100%",
     },
     textAlign: {
@@ -416,12 +423,12 @@ const styles = {
     //   lg: "5.5vh",
     // },
     // fontWeight: 700,
-    lineHeight: {
-      xs: "28px",
-      sm: "36px",
-      md: "46px",
-      lg: "5.5vh",
-    },
+    // lineHeight: {
+    //   xs: "28px",
+    //   sm: "36px",
+    //   md: "46px",
+    //   lg: "5.5vh",
+    // },
     marginTop: {
       xs: "3vh",
       sm: "3vh",
@@ -442,12 +449,12 @@ const styles = {
     //   lg: "17px",
     // },
     // fontWeight: 400,
-    lineHeight: {
-      xs: "2.5vh",
-      sm: "2.4vh",
-      md: "2.8vh",
-      lg: "2.8vh",
-    },
+    // lineHeight: {
+    //   xs: "2.5vh",
+    //   sm: "2.4vh",
+    //   md: "2.8vh",
+    //   lg: "2.8vh",
+    // },
     textAlign: {
       xs: "center",
       lg: "start",

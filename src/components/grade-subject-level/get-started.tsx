@@ -237,9 +237,9 @@ const styles = {
     flexDirection: "column",
   },
   boxHeading: {
-    fontSize: "28px",
-    fontWeight: 600,
-    lineHeight: "34px",
+    // fontSize: "28px",
+    // fontWeight: 600,
+    // lineHeight: "34px",
     textAlign: "center",
     height: "100px",
   },
@@ -287,6 +287,7 @@ const GetStartedBox: React.FC<Props> = ({
       <Typography
         sx={styles.boxHeading}
         className={leagueSpartan.className}
+        variant="h2"
         component={"h2"}
       >
         {heading}

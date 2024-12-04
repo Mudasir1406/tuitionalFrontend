@@ -20,7 +20,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
             <Box>
               <Typography
                 sx={style.tutorheading}
-                variant="h4"
+                variant={data?.headerTag as any}
                 className={leagueSpartan.className}
                 component={data?.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
@@ -55,7 +55,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           sx={style.titlebox}
                           className={leagueSpartan.className}
                           component={"p"}
-                          variant="h6"
+                          variant="subtitle2"
                           dangerouslySetInnerHTML={{
                             __html: box.header,
                           }}
@@ -64,7 +64,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           sx={style.desc}
                           className={leagueSpartan.className}
                           component={"p"}
-                          variant="body1"
+                          variant="caption"
                           dangerouslySetInnerHTML={{
                             __html: box.body,
                           }}
@@ -128,20 +128,20 @@ const style = {
   },
   titlebox: {
     marginBottom: 1,
-    fontSize: {
-      xs: "2vh",
-      sm: "2.1vh",
-    },
-    color: "#2D2D2D",
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "2vh",
+    //   sm: "2.1vh",
+    // },
+    // color: "#2D2D2D",
+    // fontWeight: 600,
   },
   desc: {
     color: "#505050",
-    fontSize: {
-      xs: "1.7vh",
-      sm: "1.8vh",
-    },
-    fontWeight: 400,
+    // fontSize: {
+    //   xs: "1.7vh",
+    //   sm: "1.8vh",
+    // },
+    // fontWeight: 400,
     width: "90%",
     textWrap: "pretty",
   },

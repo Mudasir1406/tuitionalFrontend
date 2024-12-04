@@ -86,82 +86,99 @@ const theme = createTheme({
   typography: {
     // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
     h1: {
-      fontSize: "65px",
+      fontSize: "6.88vh",
       fontWeight: 700,
-      lineHeight: 1.2,
+      lineHeight: "7.5vh",
       "@media (max-width:900px)": {
-        fontSize: "50px",
+        // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        fontSize: "35px",
+        // fontSize: "35px",
       },
     },
     h2: {
-      fontSize: "50px",
+      fontSize: "5.29vh",
       fontWeight: 600,
-      lineHeight: 1.3,
+      lineHeight: "6.6vh",
       "@media (max-width:900px)": {
-        fontSize: "40px",
+        // fontSize: "40px",
       },
       "@media (max-width:600px)": {
-        fontSize: "32px",
+        // fontSize: "32px",
       },
     },
     h3: {
-      fontSize: "40px",
+      fontSize: "4.23vh",
       fontWeight: 600,
-      lineHeight: 1.4,
+      lineHeight: "5.56vh",
       "@media (max-width:900px)": {
-        fontSize: "32px",
+        // fontSize: "32px",
       },
       "@media (max-width:600px)": {
-        fontSize: "30px",
+        // fontSize: "30px",
       },
     },
     h4: {
-      fontSize: "30px",
+      fontSize: "3.7vh",
       fontWeight: 500,
       lineHeight: 1.5,
       "@media (max-width:900px)": {
-        fontSize: "25px",
+        // fontSize: "25px",
       },
       "@media (max-width:600px)": {
-        fontSize: "20px",
+        // fontSize: "20px",
       },
     },
-    h5: {
-      fontSize: "25px",
-      fontWeight: 500,
-      lineHeight: 1.5,
+    // h5: {
+    //   fontSize: "25px",
+    //   fontWeight: 500,
+    //   lineHeight: 1.5,
+    //   "@media (max-width:900px)": {
+    //     // fontSize: "20px",
+    //   },
+    //   "@media (max-width:600px)": {
+    //     // fontSize: "18px",
+    //   },
+    // },
+    // h6: {
+    //   fontSize: "20px",
+    //   fontWeight: 500,
+    //   lineHeight: 1.6,
+    //   "@media (max-width:900px)": {
+    //     fontSize: "18px",
+    //   },
+    //   "@media (max-width:600px)": {
+    //     fontSize: "16px",
+    //   },
+    // },
+
+    body1: {
+      fontSize: "2.667vh",
+      fontWeight: 400,
+      lineHeight: "3.5vh",
       "@media (max-width:900px)": {
-        fontSize: "20px",
+        // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "18px",
-      },
-    },
-    h6: {
-      fontSize: "20px",
-      fontWeight: 500,
-      lineHeight: 1.6,
-      "@media (max-width:900px)": {
-        fontSize: "18px",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "16px",
+        // fontSize: "12px",
       },
     },
 
-    body1: {
-      fontSize: "20px",
+    subtitle1: {
+      fontSize: "3vh",
+      fontWeight: 600,
+      lineHeight: "3.9vh",
+    },
+    subtitle2: {
+      fontSize: "2.9vh",
+      fontWeight: 600,
+      lineHeight: "3.333vh",
+    },
+    caption: {
+      fontSize: "1.9vh",
       fontWeight: 400,
-      lineHeight: 1.5,
-      "@media (max-width:900px)": {
-        fontSize: "16px",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "12px",
-      },
+      lineHeight: "2.5vh",
+      color: "#797979",
     },
   },
   components: {
