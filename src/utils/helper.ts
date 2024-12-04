@@ -48,7 +48,7 @@ export const scrollToApplyForm = () => {
   }
 };
 
-export function generateMergedSchema({ data }: any) {
+export function generateMergedSchema(data: any) {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
