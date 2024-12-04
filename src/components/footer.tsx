@@ -48,7 +48,7 @@ const Footer: React.FC = async () => {
               </Grid>
               <Grid item lg={5.5}>
                 <Typography
-                  variant="h4"
+                  variant="subtitle1"
                   sx={styles.admissionText}
                   className={leagueSpartan.className}
                 >
@@ -64,7 +64,7 @@ const Footer: React.FC = async () => {
                     alt="phone"
                   ></Image>
                   <Typography
-                    variant="h6"
+                    variant="subtitle1"
                     sx={styles.phoneText}
                     className={leagueSpartan.className}
                   >
@@ -172,7 +172,7 @@ const Footer: React.FC = async () => {
               <Box sx={styles.gridContent}>
                 <Typography
                   sx={styles.heading}
-                  variant="h5"
+                  variant="subtitle2"
                   className={leagueSpartan.className}
                 >
                   Curriculums
@@ -206,7 +206,7 @@ const Footer: React.FC = async () => {
               >
                 <Typography
                   sx={styles.heading}
-                  variant="h5"
+                  variant="subtitle2"
                   className={leagueSpartan.className}
                 >
                   Subjects
@@ -228,7 +228,7 @@ const Footer: React.FC = async () => {
                 <Box>
                   <Typography
                     sx={styles.heading}
-                    variant="h5"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Get Help
@@ -247,7 +247,7 @@ const Footer: React.FC = async () => {
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography
-                    variant="h5"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                     sx={[
                       styles.heading,
@@ -321,7 +321,7 @@ const Footer: React.FC = async () => {
           <Divider sx={{ color: "black", width: "78%" }}></Divider>
           <Typography
             sx={styles.rights}
-            variant="h5"
+            variant="subtitle2"
             className={leagueSpartan.className}
           >
             All Rights Reserved ©2024 Tuitional

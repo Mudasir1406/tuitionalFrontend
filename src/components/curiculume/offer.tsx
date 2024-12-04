@@ -33,7 +33,7 @@ const Offer = () => {
     >
       <Typography
         className={leagueSpartan.className}
-        variant="h2"
+        variant="h1"
         sx={{
           // fontSize: {
           //   xs: "4vh",
@@ -78,7 +78,7 @@ const Offer = () => {
                 <Box>
                   <Typography
                     sx={style.coveragetext}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Comprehensive coverage of IGCSE Maths syllabus
@@ -120,7 +120,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Regular assessments and feedback
@@ -177,7 +177,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Access to Resources And Practice Materials
@@ -248,7 +248,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Regular assessments and feedback
@@ -294,7 +294,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Access to Resources And Practice Materials
@@ -345,7 +345,7 @@ const Offer = () => {
                 <Box>
                   <Typography
                     sx={style.coveragetext}
-                    variant="h6"
+                    variant="subtitle1"
                     className={leagueSpartan.className}
                   >
                     Comprehensive coverage of IGCSE Maths syllabus
@@ -435,11 +435,11 @@ const style = {
       sm: "65%",
       lg: "70%",
     },
-    lineHeight: {
-      xs: 1.1,
-      sm: 1.1,
-      lg: 1.5,
-    },
+    // lineHeight: {
+    //   xs: 1.1,
+    //   sm: 1.1,
+    //   lg: 1.5,
+    // },
     paddingX: {
       xs: "1.5vh",
       sm: "1.5vh",

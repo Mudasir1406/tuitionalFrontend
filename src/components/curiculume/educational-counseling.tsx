@@ -20,14 +20,14 @@ const EducationalCounseling: React.FunctionComponent<{
                 sx={style.counseling}
                 className={leagueSpartan.className}
                 component={"p"}
-                variant="body1"
+                variant="subtitle2"
               >
                 Educational Counseling
               </Typography>
 
               <Typography
                 sx={style.guidence}
-                variant="h2"
+                variant={data.headerTag as any}
                 className={leagueSpartan.className}
                 component={data.headerTag as keyof JSX.IntrinsicElements}
                 dangerouslySetInnerHTML={{
@@ -39,7 +39,7 @@ const EducationalCounseling: React.FunctionComponent<{
                 className={leagueSpartan.className}
                 component={"p"}
                 variant="body1"
-                  dangerouslySetInnerHTML={{
+                dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}
               ></Typography>

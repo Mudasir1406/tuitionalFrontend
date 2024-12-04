@@ -14,10 +14,10 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box sx={{ paddingX: "5vw" }}>
       <Box>
-   
         <Typography
           sx={style.popularText}
           className={leagueSpartan.className}
+          variant={data?.headerTag as any}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{
             __html: data?.header,
@@ -62,6 +62,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
                   <Typography
                     sx={style.subjects}
                     className={leagueSpartan.className}
+                    variant="body1"
                     component={"p"}
                   >
                     {item.name}
@@ -80,16 +81,16 @@ export default PopularSubjects;
 const style = {
   contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
-    fontWeight: "600",
-    textAlign: "center",
-    fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
+    // fontWeight: "600",
+    // textAlign: "center",
+    // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
     width: { lg: "45%", sm: "52%" },
     margin: "0 auto",
   },
   subjects: {
     color: "#2D2D2D",
-    fontWeight: "600",
-    fontSize: { lg: "2vh", xs: "1.2vh" },
+    // fontWeight: "600",
+    // fontSize: { lg: "2vh", xs: "1.2vh" },
   },
   cardsBoxes: {
     background: "#FFF",

@@ -11,7 +11,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={style.contanier}>
         <Typography
           sx={style.title}
-          variant="h3"
+          variant={data?.headerTag as any}
           className={leagueSpartan.className}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
           dangerouslySetInnerHTML={{

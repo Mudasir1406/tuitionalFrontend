@@ -14,7 +14,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
     <>
       <Box sx={{ paddingX: "5vw", marginY: "10vh" }}>
         <Typography
-          variant="body1"
+          variant={data?.headerTag as any}
           sx={style.reviewheading}
           className={leagueSpartan.className}
           component={data?.headerTag as keyof JSX.IntrinsicElements}
@@ -41,6 +41,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             sx={style.reviewdeesc}
             className={leagueSpartan.className}
             component={"p"}
+            variant="body1"
             dangerouslySetInnerHTML={{
               __html: data?.paragraph,
             }}
@@ -119,14 +120,14 @@ const style = {
       xs: "2vh 0", // Reduced padding for mobile
       lg: "8vh 0 5vh 0",
     },
-    fontSize: {
-      xs: "1.8vh", // Adjusted font size for mobile readability
-      lg: "2.5vh",
-    },
-    lineHeight: {
-      xs: "3vh", // Line height adjustment for mobile
-      lg: "5vh",
-    },
+    // fontSize: {
+    //   xs: "1.8vh", // Adjusted font size for mobile readability
+    //   lg: "2.5vh",
+    // },
+    // lineHeight: {
+    //   xs: "3vh", // Line height adjustment for mobile
+    //   lg: "5vh",
+    // },
     width: {
       xs: "100%", // Full width on mobile
       lg: "55vw",
@@ -134,7 +135,7 @@ const style = {
     height: {
       // lg: "7vh",
     },
-    fontWeight: 400,
+    // fontWeight: 400,
     textAlign: {
       xs: "justify",
       lg: "left",
