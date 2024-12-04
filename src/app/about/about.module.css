@@ -1,18 +1,19 @@
 /* Container Styles */
 .container {
   max-width: 100%;
-  padding: 0;
+  /* padding: 5vh 0 0 0; */
   height: 100vh;
   display: flex;
   justify-content: flex-end; /* Align content to the right */
-  align-items: flex-end;
+  /* align-items: flex-end; */
+  align-items: center;
   margin: auto;
-
-
 }
 
 /* Grid Container */
 .grid-container {
+  height: 100%;
+  align-items: center;
   margin: 0 28px;
   display: grid;
   grid-template-columns: 1fr; /* Default 1 column layout for mobile */
@@ -35,6 +36,8 @@
   position: relative;
   display: flex;
   justify-content: flex-end; /* Make sure it's on the right */
+  margin-top: auto;
+  width: 100%;
 }
 
 /* Hero Picture Background */
@@ -46,7 +49,8 @@
   background-repeat: no-repeat;
   position: absolute;
   bottom: 0;
-  height: 400px; /* Default height for xs */
+  height: 80vh;
+  /* height: 400px; */
   width: 100%;
 }
 
