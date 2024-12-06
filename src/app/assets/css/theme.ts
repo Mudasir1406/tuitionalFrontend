@@ -93,7 +93,8 @@ const theme = createTheme({
         // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        // fontSize: "35px",
+        fontSize: "4.88vh",
+        lineHeight: "5.5vh",
       },
     },
     h2: {
@@ -104,7 +105,8 @@ const theme = createTheme({
         // fontSize: "40px",
       },
       "@media (max-width:600px)": {
-        // fontSize: "32px",
+        fontSize: "4vh",
+        lineHeight: "5vh",
       },
     },
     h3: {
@@ -116,6 +118,8 @@ const theme = createTheme({
       },
       "@media (max-width:600px)": {
         // fontSize: "30px",
+        fontSize: "3.5vh",
+        lineHeight: "4.4vh",
       },
     },
     h4: {
@@ -160,7 +164,8 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        // fontSize: "12px",
+        fontSize: "2.1vh",
+        lineHeight: "2.7vh",
       },
     },
 
@@ -168,17 +173,29 @@ const theme = createTheme({
       fontSize: "3vh",
       fontWeight: 600,
       lineHeight: "3.9vh",
+      "@media (max-width:600px)": {
+        fontSize: "2.2vh",
+        lineHeight: "2.9vh",
+      },
     },
     subtitle2: {
       fontSize: "2.9vh",
       fontWeight: 600,
       lineHeight: "3.333vh",
+      "@media (max-width:600px)": {
+        fontSize: "2vh",
+        lineHeight: "2.8vh",
+      },
     },
     caption: {
       fontSize: "1.9vh",
       fontWeight: 400,
       lineHeight: "2.5vh",
       color: "#797979",
+      "@media (max-width:600px)": {
+        fontSize: "2.1vh",
+        lineHeight: "2.8vh",
+      },
     },
   },
   components: {

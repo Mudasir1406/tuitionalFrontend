@@ -19,6 +19,7 @@ import Script from "next/script";
 import { generateFaqSchema } from "@/utils/helper";
 import { getFaqs } from "@/services/faqs/faqs";
 import { Faqs_Type } from "@/types/grade-subject-level.types";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
