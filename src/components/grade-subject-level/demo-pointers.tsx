@@ -34,7 +34,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               mb: { xs: 2, sm: 2, md: 0 }, // Add margin-bottom for medium and smaller screens
             }}
           >
-            <Box>
+            <Box sx={style.imgDiv}>
               <Typography
                 sx={style.tutorheading}
                 variant={data?.headerTag as any}
@@ -66,7 +66,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               container
               spacing={{
                 xs: 0, // No spacing for extra-small and small screens
-                sm: 0, // No spacing for small screens
+                sm: 2, // No spacing for small screens
                 md: 2, // No spacing for medium screens
                 lg: 2, // Apply spacing for large screens and above
               }}
@@ -117,7 +117,18 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
 export default DemoPointers;
 
 const style = {
-  contanier: { margin: { lg: "6vh 7vh", xs: "3vh 3vw" } },
+  contanier: {
+    //  margin: { lg: "6vh 7vh", xs: "3vh 3vw" }
+    width: { lg: "auto", sm: "auto" },
+    margin: {
+      xs: "3vh 3vw",
+      lg: "6vh 5vw",
+    },
+  },
+
+  imgDiv: {
+    //  display: "flex", flexDirection: "column"
+  },
   tutorheading: {
     // fontSize: {
     //   xs: "3vh",
@@ -182,7 +193,8 @@ const style = {
     justifyContent: "center",
     fontSize: "2vh",
     boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    marginLeft: "6vw",
+    marginLeft: { xs: "auto", md: "6vw" },
+    marginRight: { xs: "auto" },
     marginTop: "2vh",
     ":hover": {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",

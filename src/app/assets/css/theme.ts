@@ -188,7 +188,7 @@ const theme = createTheme({
       },
     },
     caption: {
-      fontSize: "2.1vh",
+      fontSize: "2.3vh",
       fontWeight: 400,
       lineHeight: "2.5vh",
       "@media (max-width:900px)": {

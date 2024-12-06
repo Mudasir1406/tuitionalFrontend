@@ -89,8 +89,8 @@ const style = {
       sm: "6vh",
       lg: "8.5vh",
     },
-    borderTopRightRadius: "20px",
-    borderBottomRightRadius: "20px",
+    borderTopRightRadius: "14px",
+    borderBottomRightRadius: "14px",
     // fontSize: {
     //   xs: "1.5vh",
     //   lg: "auto",

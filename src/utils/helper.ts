@@ -55,8 +55,8 @@ export function generateMergedSchema(data: any) {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": `${data?.slugData}/#webpage`,
-        url: data?.slugData,
+        "@id": `https://tuitionaledu.com/${data?.slugData}/#webpage`,
+        url: `https://tuitionaledu.com/${data?.slugData}`,
         name: data?.meta_tags?.title,
         description: data?.meta_tags?.description,
         isPartOf: {
@@ -109,7 +109,7 @@ export function generateMergedSchema(data: any) {
       },
       {
         "@type": "Service",
-        "@id": `${data?.slugData}/#service`,
+        "@id": `https://tuitionaledu.com/${data?.slugData}/#service`,
         serviceType: data?.meta_tags?.serviceType,
         provider: {
           "@id": "https://tuitionaledu.com/#organization",
