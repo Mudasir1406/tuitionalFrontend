@@ -55,8 +55,8 @@ export function generateMergedSchema(data: any) {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": `https://tuitionaledu.com/${data?.slugData}/#webpage`,
-        url: `https://tuitionaledu.com/${data?.slugData}`,
+        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#webpage`,
+        url: `https://tuitionaledu.com/onine/${data?.slugData}`,
         name: data?.meta_tags?.title,
         description: data?.meta_tags?.description,
         isPartOf: {
@@ -109,7 +109,7 @@ export function generateMergedSchema(data: any) {
       },
       {
         "@type": "Service",
-        "@id": `https://tuitionaledu.com/${data?.slugData}/#service`,
+        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#service`,
         serviceType: data?.meta_tags?.serviceType,
         provider: {
           "@id": "https://tuitionaledu.com/#organization",
@@ -141,7 +141,7 @@ export function generateMergedSchema(data: any) {
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "@id": `${data?.slugData}/#faqpage`,
+        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#faqpage`,
         mainEntity: data?.Faqs?.faqs.map((faq: any) => ({
           "@type": "Question",
           name: faq.question,
