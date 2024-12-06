@@ -33,6 +33,8 @@ const GetStarted = () => {
         <span
           style={{
             color: "#38B6FF",
+            fontSize: "inherit",
+            fontWeight: "inherit",
           }}
         >
           3
@@ -91,7 +93,7 @@ const GetStarted = () => {
           loop
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 3000,
+            delay: 300000,
           }}
           pagination={{
             dynamicBullets: true,
@@ -184,7 +186,7 @@ const styles = {
   },
   containedBtn: {
     boxShadow: "1px 15px 34px 0px #38B6FF66",
-    marginTop: "16px",
+    margin: "2vh 0",
     backgroundColor: "#38B6FF",
 
     fontSize: {
@@ -222,7 +224,8 @@ const styles = {
     },
   },
   contanier: {
-    height: "700px",
+    height: "auto",
+    // height: "700px",
 
     width: {
       lg: "80%",
@@ -241,14 +244,16 @@ const styles = {
     // fontWeight: 600,
     // lineHeight: "34px",
     textAlign: "center",
-    height: "100px",
+    // height: "100px",
+    margin: "2vh 0",
   },
   boxDesc: {
     // fontSize: "22px",
     // fontWeight: 400,
     // lineHeight: "32px",
     textAlign: "center",
-    height: "150px",
+    // height: "150px",
+    margin: "2vh 0",
   },
 };
 
@@ -269,7 +274,7 @@ const GetStartedBox: React.FC<Props> = ({
     <Box sx={styles.contanier}>
       <Box
         sx={{
-          height: 320,
+          height: "auto",
           width: 300,
           display: "flex",
           alignItems: "center",
@@ -280,8 +285,8 @@ const GetStartedBox: React.FC<Props> = ({
           src={image}
           alt=""
           width={300}
-          height={360}
-          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          height={300}
+          style={{ width: "100%", height: "250px", objectFit: "contain" }}
         ></Image>
       </Box>
       <Typography

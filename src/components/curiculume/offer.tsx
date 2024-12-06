@@ -89,23 +89,25 @@ const Offer = () => {
                     </Button>
                   </Box>
                 </Box>
-                <Typography
+                {/* <Typography
                   sx={style.coverageImg}
                   className={leagueSpartan.className}
-                >
-                  <Box sx={style.responsiveImageContainer}>
-                    <Image
-                      src={offer1}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                      }}
-                      // layout="responsive"
-                      // objectFit="cover"
-                    />
-                  </Box>
-                </Typography>
+                > */}
+                {/* <div> */}
+                <Box sx={style.responsiveImageContainer}>
+                  <Image
+                    src={offer1}
+                    alt="pic"
+                    style={{
+                      width: "auto",
+                      height: "100%",
+                    }}
+                    // layout="responsive"
+                    // objectFit="cover"
+                  />
+                </Box>
+                {/* </div> */}
+                {/* </Typography> */}
               </Box>
             </Box>
 
@@ -360,23 +362,23 @@ const Offer = () => {
                     </Button>
                   </Box>
                 </Box>
-                <Typography
+                {/* <Typography
                   sx={style.coverageImg}
                   className={leagueSpartan.className}
-                >
-                  <Box sx={style.responsiveImageContainer}>
-                    <Image
-                      src={offer1}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                      }}
-                      // layout="responsive"
-                      // objectFit="cover"
-                    />
-                  </Box>
-                  {/* <Image
+                > */}
+                <Box sx={style.responsiveImageContainer}>
+                  <Image
+                    src={offer1}
+                    alt="pic"
+                    style={{
+                      width: "auto",
+                      height: "100%",
+                    }}
+                    // layout="responsive"
+                    // objectFit="cover"
+                  />
+                </Box>
+                {/* <Image
                     src={offer1}
                     alt="pic"
                     style={{
@@ -384,7 +386,7 @@ const Offer = () => {
                       height: "30vh",
                     }}
                   /> */}
-                </Typography>
+                {/* </Typography> */}
               </Box>
             </Box>
           </Grid>
@@ -489,7 +491,7 @@ const style = {
       height: "15vh", // For small screens
     },
     "@media (max-width: 400px)": {
-      height: "10vh", // For extra-small screens
+      height: "auto", // For extra-small screens
     },
   },
 };

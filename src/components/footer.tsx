@@ -503,8 +503,8 @@ const styles = {
     lineHeight: {
       xs: "35px",
       sm: "40px",
-      md: "45px",
-      lg: "50px",
+      md: "40px",
+      lg: "40px",
     },
     color: "black",
   },
