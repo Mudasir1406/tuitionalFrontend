@@ -82,11 +82,11 @@ const styles = {
       lg: "5vw",
     },
     width: {
-      xs: "90%",
+      // xs: "100%",
       lg: "auto",
     },
     margin: {
-      xs: "4vh 2vh",
+      xs: "4vh 3vw",
       lg: "4vh 2vh",
     },
   },
@@ -94,7 +94,7 @@ const styles = {
     color: "#2D2D2D",
     width: {
       lg: "139vh",
-      xs: "90%",
+      xs: "100%",
     },
     // fontSize: {
     //   xs: "12px",

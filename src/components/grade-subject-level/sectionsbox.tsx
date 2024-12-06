@@ -36,7 +36,7 @@ const style = {
     // },
     textAlign: "start",
     paddingX: {
-      xs: "2vh",
+      // xs: "2vh",
       lg: "0",
     },
   },
@@ -58,10 +58,15 @@ const style = {
     },
     justifyContent: "center",
     paddingX: {
-      xs: "1vh",
+      xs: "3vw",
+      sm: "3vw",
       lg: "0",
     },
     gap: "2vh",
+    marginY: {
+      xs: "16px",
+      lg: 0,
+    },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",

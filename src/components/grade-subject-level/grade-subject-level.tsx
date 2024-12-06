@@ -157,6 +157,7 @@ const styles = {
     display: "flex",
     alignItems: "end",
     position: "relative",
+    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
   },
   phoneContanier: { position: "relative", paddingBottom: "4vh" },
   phoneBackground: {

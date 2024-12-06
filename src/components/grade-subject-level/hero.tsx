@@ -17,7 +17,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
       <Box
         sx={{
           height: { lg: "65vh" },
-          paddingLeft: "5vw",
+          paddingLeft: { lg: "5vw" },
+          // marginX: { sm: "12px", lg: 0 },
         }}
       >
         <Typography
@@ -45,7 +46,8 @@ const Hero: React.FC<IProps> = ({ data }) => {
           sx={{
             width: {
               xs: "100%",
-              lg: "70vh",
+              lg: "100%",
+              // lg: "70vh",
             },
           }}
         >
@@ -440,7 +442,7 @@ const styles = {
   desc: {
     width: {
       sm: "100%",
-      lg: "75vh",
+      lg: "90%",
     },
     // fontSize: {
     //   xs: "12px",

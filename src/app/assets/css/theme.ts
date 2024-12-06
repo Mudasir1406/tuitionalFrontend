@@ -105,8 +105,8 @@ const theme = createTheme({
         // fontSize: "40px",
       },
       "@media (max-width:600px)": {
-        fontSize: "4vh",
-        lineHeight: "5vh",
+        fontSize: "3.4vh",
+        lineHeight: "4.5vh",
       },
     },
     h3: {
@@ -164,8 +164,8 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "2.1vh",
-        lineHeight: "2.7vh",
+        fontSize: "1.8vh",
+        lineHeight: "2.4vh",
       },
     },
 
@@ -183,18 +183,20 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "2vh",
+        fontSize: "1.7vh",
         lineHeight: "2.8vh",
       },
     },
     caption: {
-      fontSize: "1.9vh",
+      fontSize: "2.1vh",
       fontWeight: 400,
       lineHeight: "2.5vh",
-      color: "#797979",
+      "@media (max-width:900px)": {
+        // fontSize: "16px",
+      },
       "@media (max-width:600px)": {
-        fontSize: "2.1vh",
-        lineHeight: "2.8vh",
+        fontSize: "1.7vh",
+        lineHeight: "2.3vh",
       },
     },
   },
