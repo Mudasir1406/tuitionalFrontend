@@ -504,7 +504,7 @@ const styles = {
       xs: "35px",
       sm: "40px",
       md: "40px",
-      lg: "40px",
+      lg: "45px",
     },
     color: "black",
   },
