@@ -15,8 +15,25 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <>
       <Box sx={style.contanier}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={12} lg={6}>
+        <Grid
+          container
+          spacing={{
+            xs: 0, // No spacing for extra-small and small screens
+            sm: 0, // No spacing for small screens
+            md: 2, // No spacing for medium screens
+            lg: 2, // Apply spacing for large screens and above
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={6}
+            sx={{
+              mb: { xs: 2, sm: 2, md: 0 }, // Add margin-bottom for medium and smaller screens
+            }}
+          >
             <Box>
               <Typography
                 sx={style.tutorheading}
@@ -45,7 +62,15 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} lg={6}>
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={{
+                xs: 0, // No spacing for extra-small and small screens
+                sm: 0, // No spacing for small screens
+                md: 2, // No spacing for medium screens
+                lg: 2, // Apply spacing for large screens and above
+              }}
+            >
               {data?.demoPointersData?.map(
                 (box, index: React.Key | null | undefined) => (
                   <Grid item xs={12} key={index}>
@@ -92,7 +117,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
 export default DemoPointers;
 
 const style = {
-  contanier: { margin: { lg: "6vh 7vh", xs: "3vh", sm: "0 5vh" } },
+  contanier: { margin: { lg: "6vh 7vh", xs: "3vh 3vw" } },
   tutorheading: {
     // fontSize: {
     //   xs: "3vh",
@@ -123,7 +148,8 @@ const style = {
     backdropFilter: "blur(10px)",
     borderRadius: "2vh",
     mb: { xs: 2, sm: 0 },
-    alignItems: "center",
+    alignItems: { xs: "flex-start", lg: "center" },
+
     boxShadow: "0px -5px 15px 0px rgba(56, 182, 255, 0.2) inset",
   },
   titlebox: {

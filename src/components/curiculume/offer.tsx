@@ -78,7 +78,7 @@ const Offer = () => {
                 <Box>
                   <Typography
                     sx={style.coveragetext}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Comprehensive coverage of IGCSE Maths syllabus
@@ -120,7 +120,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Regular assessments and feedback
@@ -177,7 +177,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Access to Resources And Practice Materials
@@ -248,7 +248,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Regular assessments and feedback
@@ -294,7 +294,7 @@ const Offer = () => {
                 >
                   <Typography
                     sx={style.regulartxt}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Access to Resources And Practice Materials
@@ -345,7 +345,7 @@ const Offer = () => {
                 <Box>
                   <Typography
                     sx={style.coveragetext}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     className={leagueSpartan.className}
                   >
                     Comprehensive coverage of IGCSE Maths syllabus

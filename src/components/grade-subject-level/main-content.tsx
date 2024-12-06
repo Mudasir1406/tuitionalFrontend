@@ -50,7 +50,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
 export default MainContent;
 
 const style = {
-  contanier: { paddingX: "5vw" },
+  contanier: { paddingX: "5vw", },
   grid: {
     margin: { lg: "4vh auto" },
   },

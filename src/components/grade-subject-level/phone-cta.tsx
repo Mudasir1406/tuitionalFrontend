@@ -120,7 +120,7 @@ const style = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "95%",
+    // width: "95%",
     height: {
       xs: "8vh",
       sm: "6vh",
@@ -137,8 +137,8 @@ const style = {
     justifyContent: "center",
     alignItems: "center",
     margin: {
-      sm: "2vh 4vh",
-      xs: "2vh 2vh",
+      sm: "2vh 3vw",
+      xs: "2vh 3vw",
       lg: "0",
     },
   },
