@@ -53,20 +53,20 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
             boxShadow: boxShadow,
             marginBottom: marginBottom,
             marginTop: marginTop,
-            height: "5.5vh",
-            fontSize: "18px", // Adjusted font size with vh unit
-            fontWeight: 400,
-            lineHeight: "1.6vh",
-            fontFamily: "var(--font-leagueSpartan)",
+            // height: "5.5vh",
+            // fontSize: "18px", // Adjusted font size with vh unit
+            // fontWeight: 400,
+            // lineHeight: "1.6vh",
+            // fontFamily: "var(--font-leagueSpartan)",
             // fontFamily: "League Spartan",
 
             minHeight: "50px", // Ensure minHeight of the OutlinedInput
 
             // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
-            "& .MuiOutlinedInput-root": {
-              height: "5.5vh", // Set the height of the OutlinedInput
-              minHeight: "50px", // Ensure minHeight of the OutlinedInput
-            },
+            // "& .MuiOutlinedInput-root": {
+            //   height: "5.5vh", // Set the height of the OutlinedInput
+            //   minHeight: "50px", // Ensure minHeight of the OutlinedInput
+            // },
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
@@ -97,7 +97,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
                   styles.placeholderText,
                   {
                     textAlign: "justify",
-                    fontFamily: "var(--font-leagueSpartan)",
+                    // fontFamily: "var(--font-leagueSpartan)",
                   },
                 ]}
                 className={leagueSpartan.className}
@@ -116,9 +116,10 @@ export default MultipleSelectPlaceholder;
 
 const styles = {
   placeholderText: {
-    fontSize: "1.5vh", // Adjusted font size with vh unit
-    fontWeight: 400,
-    lineHeight: "1.6vh",
+    color: "gray",
+    // fontSize: "1.5vh", // Adjusted font size with vh unit
+    // fontWeight: 400,
+    // lineHeight: "1.6vh",
     // Adjusted line height if necessary
   },
 };

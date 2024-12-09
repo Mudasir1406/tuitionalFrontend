@@ -39,11 +39,15 @@ const PopularSubjects = dynamic(
 const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
 const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
+const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), {
+  ssr: true,
+});
 
 import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
+import Form from "./form/form";
 type IProps = {
   data: PageData;
   sequence: Component_Sequence_Type;
@@ -65,6 +69,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                   image={data.hero_section.image}
                   imageAltText={data.hero_section.imageAltText}
                 />
+                {/* <Form /> */}
               </Grid>
             </Box>
             <SectionsBox />
@@ -72,7 +77,12 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         );
       case "Main Content":
         return (
-          data.main_content.header && <MainContent data={data?.main_content} />
+          data.main_content.header && (
+            <>
+              <MainContent data={data?.main_content} />
+              <TutorSection />
+            </>
+          )
         );
       case "Phone CTA ":
         return (

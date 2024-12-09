@@ -1,0 +1,19 @@
+.main {
+  border-radius: 16px;
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: #d7f0ff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1vh;
+}
+.cardContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
