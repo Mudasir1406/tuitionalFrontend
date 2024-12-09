@@ -80,7 +80,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
           data.main_content.header && (
             <>
               <MainContent data={data?.main_content} />
-              <TutorSection />
+              {/* <TutorSection /> */}
             </>
           )
         );
