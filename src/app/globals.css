@@ -422,7 +422,10 @@ button:hover,
 input,
 textarea,
 select {
-  font-size: var(--font-size-body);
+  /* font-size: var(--font-size-body); */
+  font-size: 2.667vh;
+  font-weight: 400;
+  line-height: 3.5vh;
   padding: 10px 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -432,6 +435,9 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--color-primary);
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }
 
 /* Global Typography Styles */

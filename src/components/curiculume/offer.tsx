@@ -33,7 +33,7 @@ const Offer = () => {
     >
       <Typography
         className={leagueSpartan.className}
-        variant="h1"
+        variant="h3"
         sx={{
           // fontSize: {
           //   xs: "4vh",
@@ -46,7 +46,7 @@ const Offer = () => {
           fontWeight: "600",
           lineHeight: "6vh",
         }}
-        component={"h1"}
+        component={"h3"}
       >
         What We Offer
       </Typography>

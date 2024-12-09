@@ -204,19 +204,39 @@ const theme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: "20px",
+          // fontSize: "20px",
+          // fontWeight: 400,
+          // lineHeight: 1.5,
+          // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
+          fontSize: "2.667vh",
           fontWeight: 400,
-          lineHeight: 1.5,
-          fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
+          lineHeight: "3.5vh",
+          "@media (max-width:900px)": {
+            // fontSize: "16px",
+          },
+          "@media (max-width:600px)": {
+            fontSize: "1.8vh",
+            lineHeight: "2.4vh",
+          },
         },
       },
     },
     MuiSelect: {
       styleOverrides: {
         root: {
-          fontSize: "20px",
+          // fontSize: "20px",
+          // fontWeight: 400,
+          // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
+          fontSize: "2.667vh",
           fontWeight: 400,
-          fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
+          lineHeight: "3.5vh",
+          "@media (max-width:900px)": {
+            // fontSize: "16px",
+          },
+          "@media (max-width:600px)": {
+            fontSize: "1.8vh",
+            lineHeight: "2.4vh",
+          },
         },
       },
     },
