@@ -4,6 +4,7 @@ import { CardProps } from "../grade-subject-level/tutor-section/TutorSection";
 import { Button, CircularProgress, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { useState } from "react";
+import Tag from "../tags/Tag";
 
 interface props {
   data: CardProps;
@@ -28,7 +29,7 @@ const ImageCard = ({ data }: props) => {
         />
       </div>
       <div className={styles.cardTextDiv}>
-        <h3 className={styles.name}></h3>
+        {/* <h3 className={styles.name}></h3> */}
         <Typography
           className={`${leagueSpartan.className} ${styles.title}`}
           component={"p"}
@@ -37,11 +38,16 @@ const ImageCard = ({ data }: props) => {
           {data.name}{" "}
         </Typography>
         <div className={styles.subjects}>
-          {data.subjects.map((subject, i) => (
+          {/* <div className="flex flex-wrap"> */}
+          {data?.subjects?.map((tag, index) => (
+            <Tag key={index} label={tag} />
+          ))}
+          {/* </div> */}
+          {/* {data.subjects.map((subject, i) => (
             <span key={i} className={styles.subject}>
               {subject}
             </span>
-          ))}
+          ))} */}
         </div>
         <Typography
           className={`${leagueSpartan.className} ${styles.title}`}

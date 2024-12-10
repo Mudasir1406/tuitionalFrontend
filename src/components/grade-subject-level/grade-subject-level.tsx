@@ -60,71 +60,72 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Hero Section":
         return (
           <>
-            <Box sx={styles.heroContanier}>
-              <Grid container>
-                <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <Hero data={data?.hero_section} />
-                </Grid>
-                <HeroInfo
-                  image={data.hero_section.image}
-                  imageAltText={data.hero_section.imageAltText}
-                />
-                {/* <Form /> */}
-              </Grid>
-            </Box>
-            <SectionsBox />
+            {data.hero_section && (
+              <>
+                <Box sx={styles.heroContanier}>
+                  <Grid container>
+                    <Grid item lg={6} md={12} sm={12} xs={12}>
+                      <Hero data={data?.hero_section} />
+                    </Grid>
+                    <HeroInfo
+                      image={data?.hero_section?.image}
+                      imageAltText={data?.hero_section?.imageAltText}
+                    />
+                    {/* <Form /> */}
+                  </Grid>
+                </Box>
+                <SectionsBox />
+              </>
+            )}
           </>
         );
       case "Main Content":
         return (
-          data.main_content.header && (
+          data.main_content && (
             <>
               <MainContent data={data?.main_content} />
-              {/* <TutorSection /> */}
             </>
           )
         );
       case "Phone CTA ":
         return (
-          data.phone_cta.paragraph && (
+          data.phone_cta && (
             <>
               <Box sx={styles.phoneContanier}>
                 <Box sx={styles.phoneBackground} />
                 <PhoneCta data={data?.phone_cta} />
               </Box>
+
+              <TutorSection />
             </>
           )
         );
       case "Demo Pointers":
         return (
-          data.demo_pointers.demoPointersData.length > 0 && (
-            <DemoPointers data={data?.demo_pointers} />
-          )
+          data.demo_pointers && <DemoPointers data={data?.demo_pointers} />
         );
       case "Popular Subjects":
         return (
-          data.popular_subjects.subjects.length > 0 && (
+          data?.popular_subjects && (
             <PopularSubjects data={data?.popular_subjects} />
           )
         );
       case "Education Counseling":
         return (
-          data.education_counseling.paragraph && (
+          data.education_counseling && (
             <EducationalCounseling data={data?.education_counseling} />
           )
         );
       case "What our Student Says":
         return (
-          data.what_our_student_says.paragraph && (
+          data.what_our_student_says && (
             <StudentSays data={data.what_our_student_says} />
           )
         );
       case "Blog CTA":
-        return data.blog_CTA.paragraph && <BlogCta data={data?.blog_CTA} />;
+        return data.blog_CTA && <BlogCta data={data?.blog_CTA} />;
       case "FAQs":
-        return (
-          data.Faqs.faqs.length > 0 && <FrequentlyQuestions data={data?.Faqs} />
-        );
+        return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
       case "what we offer":
         return <Offer />;
       case "get started":
