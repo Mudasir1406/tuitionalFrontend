@@ -147,7 +147,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         Featured IGCSE Tutors In Dubai{" "}
       </Typography>
 
-      {/* <GridView cardsData={cardsData} /> */}
+      <GridView cardsData={cardsData} />
 
       <ListView data={teachers} />
     </div>
