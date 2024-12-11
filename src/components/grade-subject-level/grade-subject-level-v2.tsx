@@ -116,8 +116,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
                 );
             case "school_logos ":
                 return (
-                    <p>Thius is
-                        school_logos  in dubai</p>
+                    <p>Thius is school_logos  in dubai</p>
                 );
             case "tutor_section":
                 return (
