@@ -1,0 +1,18 @@
+.main {
+  background: linear-gradient(to right, white, #58b9f6);
+  height: 30vh;
+  margin: auto;
+  display: flex;
+}
+
+.logosDiv {
+  display: flex;
+  flex-direction: row;
+  row-gap: 24px;
+  column-gap: 48px;
+  /* max-width: 80vw;
+  overflow-x: auto; */
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+}

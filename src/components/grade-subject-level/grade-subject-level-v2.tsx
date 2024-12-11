@@ -42,12 +42,38 @@ const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
 const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), {
   ssr: true,
 });
+const SchoolLogosSection = dynamic(
+  () => import("./school-logos-section/SchoolLogosSection"),
+  {
+    ssr: true,
+  }
+);
+const BenifitsOfStudyingSection = dynamic(
+  () => import("./benifts-of-studying-section/BenifitsOfStudyingSection"),
+  {
+    ssr: true,
+  }
+);
+const Form = dynamic(() => import("./form/form"), {
+  ssr: true,
+});
+const TutoringProgramSection = dynamic(
+  () => import("./tutoring-program-section/TutoringProgramSection"),
+  {
+    ssr: true,
+  }
+);
+const BenifitsSection = dynamic(
+  () => import("./benifts-section/BenifitsSection"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
-import Form from "./form/form";
 type IProps = {
   data: PageData;
 };
@@ -98,7 +124,12 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
         );
 
       case "igcse_in_dubai":
-        return <TutorSection />;
+        return (
+          <>
+            <BenifitsOfStudyingSection />
+            <BenifitsSection />
+          </>
+        );
       case "main_content":
         return (
           data.main_content && (
@@ -108,11 +139,15 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
           )
         );
       case "school_logos ":
-        return <p>Thius is school_logos in dubai</p>;
+        return <SchoolLogosSection />;
       case "tutor_section":
-        return <p>Thius is tutor_section in dubai</p>;
+        return (
+          <>
+            <TutorSection data={data?.tutor_section} />
+          </>
+        );
       case "tutoring_program":
-        return <p>Thius is tutoring_program in dubai</p>;
+        return <TutoringProgramSection data={data?.tutoring_program} />;
 
       case "Main Content":
         return (
