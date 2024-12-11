@@ -6,6 +6,13 @@ export type PageData = {
     image: string;
     imageAltText: string;
   };
+  hero_section_from: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    image: string;
+    imageAltText: string;
+  };
   phone_cta: {
     header: string;
     headerTag: string;
