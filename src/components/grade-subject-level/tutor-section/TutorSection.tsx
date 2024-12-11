@@ -11,6 +11,8 @@ import img2 from "../../../../public/assets/images/static/blogimg2.png";
 import img3 from "../../../../public/assets/images/static/blogimg3.png";
 import img4 from "../../../../public/assets/images/static/blogimg4.png";
 import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
+import GridView from "./grid-view/GridView";
+import ListView from "./list-view/ListView";
 type IProps = {
   background?: any;
 };
@@ -56,7 +58,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
-      imageSrc: img1.src, // Replace with your image path
+      imageSrc: img1.src,
     },
     {
       name: "Sheikh",
@@ -74,7 +76,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
-      imageSrc: img1.src, // Replace with your image path
+      imageSrc: img1.src,
     },
     {
       name: "Khan",
@@ -92,7 +94,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
-      imageSrc: img1.src, // Replace with your image path
+      imageSrc: img1.src,
     },
     {
       name: "Abraham",
@@ -101,6 +103,57 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
+      imageSrc: img2.src,
+    },
+  ];
+
+  const teachers = [
+    {
+      name: "Edward Norton",
+      hoursProvided: 450,
+      description:
+        "Accusamus et justo odio dignissimos corrupti quas dolores etolestias excep officiate deserunt mollitia animi.",
+      title: "Experienced English Teacher",
+      imageSrc: img1.src,
+    },
+    {
+      name: "Jane Doe",
+      hoursProvided: 500,
+      description:
+        "Passionate about teaching and making a difference in students' lives through education.",
+      title: "Professional Mathematics Teacher",
+      imageSrc: img3.src,
+    },
+    {
+      name: "John Smith",
+      hoursProvided: 300,
+      description:
+        "Helping students achieve their academic goals with personalized guidance.",
+      title: "Dedicated Physics Tutor",
+      imageSrc: img2.src,
+    },
+    {
+      name: "Edward Norton",
+      hoursProvided: 450,
+      description:
+        "Accusamus et justo odio dignissimos corrupti quas dolores etolestias excep officiate deserunt mollitia animi.",
+      title: "Experienced English Teacher",
+      imageSrc: img1.src,
+    },
+    {
+      name: "Jane Doe",
+      hoursProvided: 500,
+      description:
+        "Passionate about teaching and making a difference in students' lives through education.",
+      title: "Professional Mathematics Teacher",
+      imageSrc: img3.src,
+    },
+    {
+      name: "John Smith",
+      hoursProvided: 300,
+      description:
+        "Helping students achieve their academic goals with personalized guidance.",
+      title: "Dedicated Physics Tutor",
       imageSrc: img2.src,
     },
   ];
@@ -119,24 +172,9 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           <West color="info" />
         </button>
 
-        <div className={styles.cardContainer}>
-          <div
-            className={styles.cardWrapper}
-            style={{
-              transform: `translateX(-${currentIndex * (100 / 4)}%)`,
-            }}
-          >
-            {cardsData.map((card, i) => (
-              <div key={i} className={styles.card}>
-                <ImageCard data={card} />
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* <GridView cardsData={cardsData} /> */}
 
-        <button onClick={handleNext} className={styles.rightButton}>
-          <East color="info" />
-        </button>
+        <ListView data={teachers} />
       </div>
     </div>
   );
