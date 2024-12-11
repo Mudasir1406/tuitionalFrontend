@@ -10,6 +10,9 @@ import img1 from "../../../../public/assets/images/static/blogimg1.png";
 import img2 from "../../../../public/assets/images/static/blogimg2.png";
 import img3 from "../../../../public/assets/images/static/blogimg3.png";
 import img4 from "../../../../public/assets/images/static/blogimg4.png";
+import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
+import GridView from "./grid-view/GridView";
+import ListView from "./list-view/ListView";
 type IProps = {
   background?: any;
 };
@@ -34,15 +37,102 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
-      imageSrc: img1.src, // Replace with your image path
+      imageSrc: img1.src,
     },
     {
-      name: "Muhammad",
+      name: "Sheikh",
       university: "University Of Waterloo",
       subjects: ["IGCSE", "Physics"],
       description:
         "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
       rating: 4.8,
+      imageSrc: img2.src,
+    },
+    {
+      name: "Siddiqi",
+      university: "University Of Waterloo",
+      subjects: ["IGCSE", "Physics"],
+      description:
+        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+      rating: 4.8,
+      imageSrc: img1.src,
+    },
+    {
+      name: "Khan",
+      university: "University Of Waterloo",
+      subjects: ["IGCSE", "Physics"],
+      description:
+        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+      rating: 4.8,
+      imageSrc: img2.src,
+    },
+    {
+      name: "Joseph",
+      university: "University Of Waterloo",
+      subjects: ["IGCSE", "Physics"],
+      description:
+        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+      rating: 4.8,
+      imageSrc: img1.src,
+    },
+    {
+      name: "Abraham",
+      university: "University Of Waterloo",
+      subjects: ["IGCSE", "Physics"],
+      description:
+        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+      rating: 4.8,
+      imageSrc: img2.src,
+    },
+  ];
+
+  const teachers = [
+    {
+      name: "Edward Norton",
+      hoursProvided: 450,
+      description:
+        "Accusamus et justo odio dignissimos corrupti quas dolores etolestias excep officiate deserunt mollitia animi.",
+      title: "Experienced English Teacher",
+      imageSrc: img1.src,
+    },
+    {
+      name: "Jane Doe",
+      hoursProvided: 500,
+      description:
+        "Passionate about teaching and making a difference in students' lives through education.",
+      title: "Professional Mathematics Teacher",
+      imageSrc: img3.src,
+    },
+    {
+      name: "John Smith",
+      hoursProvided: 300,
+      description:
+        "Helping students achieve their academic goals with personalized guidance.",
+      title: "Dedicated Physics Tutor",
+      imageSrc: img2.src,
+    },
+    {
+      name: "Edward Norton",
+      hoursProvided: 450,
+      description:
+        "Accusamus et justo odio dignissimos corrupti quas dolores etolestias excep officiate deserunt mollitia animi.",
+      title: "Experienced English Teacher",
+      imageSrc: img1.src,
+    },
+    {
+      name: "Jane Doe",
+      hoursProvided: 500,
+      description:
+        "Passionate about teaching and making a difference in students' lives through education.",
+      title: "Professional Mathematics Teacher",
+      imageSrc: img3.src,
+    },
+    {
+      name: "John Smith",
+      hoursProvided: 300,
+      description:
+        "Helping students achieve their academic goals with personalized guidance.",
+      title: "Dedicated Physics Tutor",
       imageSrc: img2.src,
     },
   ];
@@ -57,11 +147,9 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         Featured IGCSE Tutors In Dubai{" "}
       </Typography>
 
-      <div className={styles.cardContainer}>
-        {cardsData?.map((card, i) => (
-          <ImageCard key={i} data={card} />
-        ))}
-      </div>
+      {/* <GridView cardsData={cardsData} /> */}
+
+      <ListView data={teachers} />
     </div>
   );
 };

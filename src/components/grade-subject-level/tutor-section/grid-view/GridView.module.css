@@ -1,0 +1,43 @@
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardContainer {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.cardWrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card {
+  flex: 1 0 calc(25% - 16px); /* Show 4 cards per row with spacing */
+  margin: 8px;
+}
+
+.leftButton,
+.rightButton {
+  /* position: absolute; */
+  /* top: 50%; */
+  transform: translateY(-50%);
+  background-color: #e5e7eb;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  display: flex;
+}
+
+.leftButton:hover,
+.rightButton:hover {
+  background-color: #d1d5db;
+}
