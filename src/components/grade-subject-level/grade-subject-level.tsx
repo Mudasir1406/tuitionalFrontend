@@ -91,7 +91,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
                 <Box sx={styles.phoneBackground} />
                 <PhoneCta data={data?.phone_cta} />
               </Box>
-              <TutorSection />
+              {/* <TutorSection /> */}
             </>
           )
         );
