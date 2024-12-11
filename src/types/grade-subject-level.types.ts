@@ -1,4 +1,15 @@
+export interface tutor_section {
+  headerTag: string;
+  sequenceNumber: number;
+  subject: string;
+  curriculum: string;
+  header: string;
+  view: string;
+  grade: string;
+}
+
 export type PageData = {
+  tutoring_program: any;
   hero_section: {
     header: string;
     headerTag: string;
@@ -13,6 +24,7 @@ export type PageData = {
     image: string;
     imageAltText: string;
   };
+  tutor_section: tutor_section;
   phone_cta: {
     header: string;
     headerTag: string;
@@ -44,6 +56,7 @@ export type PageData = {
     header: string;
     headerTag: string;
     paragraph: string;
+    tags?: { name: string; link: string }[];
   };
   what_our_student_says: {
     header: string;

@@ -13,8 +13,9 @@ import img4 from "../../../../public/assets/images/static/blogimg4.png";
 import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
+import { tutor_section } from "@/types/grade-subject-level.types";
 type IProps = {
-  background?: any;
+  data?: tutor_section;
 };
 
 export type CardProps = {
@@ -26,7 +27,7 @@ export type CardProps = {
   imageSrc: string;
 };
 
-const Form: React.FunctionComponent<IProps> = ({ background }) => {
+const Form: React.FunctionComponent<IProps> = ({ data }) => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const cardsData: CardProps[] = [
@@ -147,9 +148,11 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         Featured IGCSE Tutors In Dubai{" "}
       </Typography>
 
-      <GridView cardsData={cardsData} />
-
-      <ListView data={teachers} />
+      {data?.view === "Row View" ? (
+        <GridView cardsData={cardsData} />
+      ) : (
+        <ListView data={teachers} />
+      )}
     </div>
   );
 };

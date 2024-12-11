@@ -6,15 +6,26 @@ import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import { renderWithLineBreaks } from "../line-break-text";
 import PopUpButton from "../pop-up-button";
+import Tag from "../tag/Tag";
+import { Widgets } from "@mui/icons-material";
 
 const EducationalCounseling: React.FunctionComponent<{
   data: PageData["education_counseling"];
 }> = ({ data }) => {
+  const dummyTags = [
+    { name: "Algebra", link: "" },
+    { name: "Statistics", link: "" },
+    { name: "Trignometery", link: "" },
+    { name: "Geometry", link: "" },
+    { name: "Set Theory", link: "" },
+    { name: "Pysics", link: "" },
+    { name: "Chemistry", link: "" },
+  ];
   return (
     <div>
       <Box sx={{ paddingX: "5vw", paddingTop: "10vh" }}>
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={6} md={6} lg={6}>
+          <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
               <Typography
                 sx={style.counseling}
@@ -43,13 +54,34 @@ const EducationalCounseling: React.FunctionComponent<{
                   __html: data?.paragraph,
                 }}
               ></Typography>
+              {/* {data?.tags && ( */}
+              <Box sx={style.btnDiv}>
+                {dummyTags && (
+                  <div style={style.tagsDiv}>
+                    <Typography
+                      sx={style.guidence}
+                      variant={"subtitle2"}
+                      className={leagueSpartan.className}
+                      component={"p"}
+                    >
+                      Key Focus Areas
+                    </Typography>
 
-              <Box>
-                <PopUpButton
-                  sx={style.containedBtn}
-                  text="Enroll Now"
-                  href="popup"
-                />
+                    <div>
+                      {/* {data?.tags?.map((tag, index) => ( */}
+                      {dummyTags?.map((tag, index) => (
+                        <Tag key={index} label={tag.name} index={index} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div style={style.buttonDiv}>
+                  <PopUpButton
+                    sx={style.containedBtn}
+                    text="Enroll Now"
+                    href="popup"
+                  />
+                </div>
               </Box>
             </Box>
           </Grid>
@@ -98,7 +130,15 @@ const style = {
     },
     color: "#1F90D1",
   },
-
+  btnDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    maxWidth: { xs: "100%", md: "90%" },
+    marginRight: "auto",
+  },
+  tagsDiv: {
+    width: "50%",
+  },
   guidence: {
     // fontWeight: "700",
     width: {
@@ -139,6 +179,10 @@ const style = {
     //   lg: "2vh",
     // },
   },
+  buttonDiv: {
+    display: "flex",
+    alignItems: "flex-end",
+  },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
@@ -155,19 +199,26 @@ const style = {
       sm: "2vh",
       lg: "1.5vh",
     },
-    marginY: "4vh",
+    marginY: "2vh",
     paddingX: {
       xs: "3vh",
       sm: "4vh",
     },
     textTransform: "none",
     borderRadius: "10px",
+
     width: {
-      xs: "40%", // Wider on mobile
-      sm: "60%",
-      md: "60%",
-      lg: "30%",
+      xs: "100%", // Wider on mobile
+      sm: "100%",
+      md: "100%",
+      lg: "100%",
     },
+    // width: {
+    //   xs: "40%", // Wider on mobile
+    //   sm: "60%",
+    //   md: "60%",
+    //   lg: "30%",
+    // },
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
