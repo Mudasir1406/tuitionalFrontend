@@ -11,9 +11,3 @@
   text-align: center;
   margin-bottom: 1vh;
 }
-.cardContainer {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}

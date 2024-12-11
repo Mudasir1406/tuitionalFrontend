@@ -38,7 +38,7 @@ export default function RootLayout({
           <body style={{ margin: 0 }}>
             <DynamicModel />
             {children}
-            <Metrics />
+            {/* <Metrics /> */}
             <Toaster />
           </body>
         </DrawerProvider>
