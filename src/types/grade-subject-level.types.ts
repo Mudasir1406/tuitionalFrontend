@@ -58,6 +58,7 @@ export type PageData = {
     faqs: Faqs_Type[];
   };
   slugData: string;
+  variation: string;
   meta_tags: {
     title: string;
     description: string;
