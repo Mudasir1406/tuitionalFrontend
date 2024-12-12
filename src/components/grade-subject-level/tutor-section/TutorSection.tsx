@@ -145,7 +145,7 @@ const Form: React.FunctionComponent<IProps> = ({ data }) => {
         component={"h5"}
         variant="subtitle1"
       >
-        Featured IGCSE Tutors In Dubai{" "}
+        {data?.header}
       </Typography>
 
       {data?.view === "Row View" ? (
