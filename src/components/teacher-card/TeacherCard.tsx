@@ -38,21 +38,21 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           </Typography>
 
           <Typography
-            className={`${leagueSpartan.className}`}
+            className={`${leagueSpartan.className} ${styles.bold}`}
             component={"span"}
             variant="caption"
           >
             +{teacher.hoursProvided} Hours Provided •
           </Typography>
           <Typography
-            className={`${leagueSpartan.className}`}
+            className={`${leagueSpartan.className} ${styles.bold}`}
             component={"span"}
             variant="caption"
           >
             {teacher.title}
           </Typography>
           <Typography
-            className={`${leagueSpartan.className}`}
+            className={`${leagueSpartan.className}  ${styles.mt1}`}
             component={"p"}
             variant="caption"
           >

@@ -1,5 +1,5 @@
 import { leagueSpartan } from "@/app/fonts";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./TutoringProgramSection.module.css";
 import Image from "next/image";
@@ -17,9 +17,13 @@ interface props {
   };
 }
 
+const handleRedirect = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
 function TutoringProgramSection({ data }: props) {
   return (
-    <div>
+    <div className={styles.main}>
       <Typography
         // clas={styles.guidence}
         variant={data.headerTag as any}
@@ -38,7 +42,6 @@ function TutoringProgramSection({ data }: props) {
           __html: data?.paragraph,
         }}
       ></Typography>
-
       <div className={styles.contactContanier}>
         <Grid
           container
@@ -66,38 +69,33 @@ function TutoringProgramSection({ data }: props) {
               ></Image>
             </div>
           </Grid>
-          <Grid item lg={5.5}>
+          <Grid item lg={8.5}>
             <Typography
               variant="subtitle1"
               //   sx={styles.admissionText}
-              className={leagueSpartan.className}
+              className={`${leagueSpartan.className} ${styles.heading}`}
             >
               Admissions are Open for the Next Year Batch
             </Typography>
           </Grid>
-          <Grid item lg={3}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Image
-                src={phone.src}
-                width={phone.width}
-                height={phone.height}
-                alt="phone"
-              ></Image>
-              <Typography
-                variant="subtitle1"
-                // sx={styles.phoneText}
+
+          <Grid item lg={2.5}>
+            {data.link ? (
+              <Button
+                onClick={() => handleRedirect(data.link)}
+                variant="outlined"
+                sx={style.contactButton}
                 className={leagueSpartan.className}
               >
-                +971 56 490 0376
-              </Typography>
-            </div>
-          </Grid>
-          <Grid item lg={2.5}>
-            <PopUpButton
-              text="Enroll Now!"
-              href="popup"
-              //   sx={styles.contactButton}
-            />
+                {data.buttonTitle}
+              </Button>
+            ) : (
+              <PopUpButton
+                text="Enroll Now!"
+                href="popup"
+                sx={style.contactButton}
+              />
+            )}
           </Grid>
         </Grid>
       </div>
@@ -106,3 +104,41 @@ function TutoringProgramSection({ data }: props) {
 }
 
 export default TutoringProgramSection;
+
+const style = {
+  contactButton: {
+    boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
+    backgroundColor: "white",
+
+    fontSize: {
+      xs: "4vw",
+      sm: "2.1vw",
+      md: "2vw",
+      lg: "1.4vw",
+    },
+    borderRadius: "10px",
+    letterSpacing: "-2%",
+    fontWeight: 700,
+    lineHeight: "23px",
+    color: "#009BF5",
+    textTransform: "none",
+    paddingY: {
+      xs: "15px",
+      sm: "21px",
+      md: "22px",
+      lg: "22px",
+    },
+    paddingX: {
+      xs: "25px",
+      sm: "25px",
+      md: "22px",
+      lg: "25px",
+    },
+    ":hover": {
+      backgroundColor: "white",
+      borderRadius: "10px",
+      letterSpacing: "-2%",
+      boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
+    },
+  },
+};

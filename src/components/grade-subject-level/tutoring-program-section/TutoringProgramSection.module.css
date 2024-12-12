@@ -1,3 +1,35 @@
+.main {
+  background: linear-gradient(to top, #d7f0ff, rgba(255, 255, 255, 0.7));
+  /* height: 400px; */
+  position: relative;
+  margin-bottom: 12vh;
+  padding-bottom: 15vh; /* Reserve space for the absolute div */
+}
+.contactContanier {
+  background-color: rgba(56, 182, 255, 1);
+  position: absolute;
+  bottom: -8vh;
+  left: 50%; /* Start positioning from the center */
+  transform: translateX(-50%);
+  width: 90%;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.heading {
+  color: white;
+}
+
+.imageContanier {
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  justify-content: center;
+}
+
 .contact-container {
   display: flex;
   align-items: center;
@@ -41,7 +73,7 @@
   justify-content: center;
 }
 
-.contact-button {
+.contactButton {
   box-shadow: 1px 15px 34px 0px rgba(0, 0, 0, 0.2);
   background-color: white;
   font-size: 4vw;
@@ -55,27 +87,27 @@
 }
 
 @media (min-width: 576px) {
-  .contact-button {
+  .contactButton {
     font-size: 2.1vw;
     padding: 21px 25px;
   }
 }
 
 @media (min-width: 768px) {
-  .contact-button {
+  .contactButton {
     font-size: 2vw;
     padding: 22px 22px;
   }
 }
 
 @media (min-width: 992px) {
-  .contact-button {
+  .contactButton {
     font-size: 1.4vw;
     padding: 22px 25px;
   }
 }
 
-.contact-button:hover {
+.contactButton:hover {
   background-color: white;
   border-radius: 10px;
   letter-spacing: -2%;

@@ -81,10 +81,11 @@ export default PopularSubjects;
 const style = {
   contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
+    textAlign: "center",
     // fontWeight: "600",
     // textAlign: "center",
     // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
-    width: { lg: "45%", sm: "52%" },
+    // width: { lg: "45%", sm: "52%" },
     margin: "0 auto",
   },
   subjects: {
