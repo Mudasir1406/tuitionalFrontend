@@ -134,7 +134,11 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
         );
 
       case "school_logos":
-        return <SchoolLogosSection />;
+        return (
+          <Box sx={{ marginTop: "10vh" }}>
+            <SchoolLogosSection />
+          </Box>
+        );
       case "tutor_section":
         return (
           <>
@@ -147,9 +151,9 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       case "main_content":
         return (
           data.main_content && (
-            <>
+            <Box sx={{ marginTop: "10vh" }}>
               <MainContent data={data?.main_content} />
-            </>
+            </Box>
           )
         );
       case "phone_cta":
@@ -160,7 +164,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
                 <Box sx={styles.phoneBackground} />
                 <PhoneCta data={data?.phone_cta} />
               </Box>
-              <TutorSection />
+              {/* <TutorSection /> */}
             </>
           )
         );
@@ -197,7 +201,13 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       case "Faqs":
         return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
       case "what_we_offer":
-        return data.what_we_offer.isShow && <Offer />;
+        return (
+          data.what_we_offer.isShow && (
+            <Box sx={{ marginTop: "10vh" }}>
+              <Offer />
+            </Box>
+          )
+        );
       case "get_started":
         return data.get_started.isShow && <GetStarted />;
       // case "video section":

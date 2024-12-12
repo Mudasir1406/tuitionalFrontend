@@ -3,20 +3,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 800px;
+  width: 95%;
+  /* width: calc(100% - 20px); */
+  /* width: 100%;
+  
+  max-width: 800px; */
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 12px;
   padding: 16px;
   margin: 16px auto;
   transition: transform 0.3s ease;
 }
-
+.bold {
+  font-weight: 600;
+}
 .card:hover {
   transform: translateY(-4px);
 }
 
+.mt1 {
+  margin-top: 6px;
+}
 /* Card Content */
 .cardContent {
   display: flex;
