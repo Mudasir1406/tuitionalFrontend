@@ -149,9 +149,9 @@ const Form: React.FunctionComponent<IProps> = ({ data }) => {
       </Typography>
 
       {data?.view === "Row View" ? (
-        <GridView cardsData={cardsData} />
-      ) : (
         <ListView data={teachers} />
+      ) : (
+        <GridView cardsData={cardsData} />
       )}
     </div>
   );
