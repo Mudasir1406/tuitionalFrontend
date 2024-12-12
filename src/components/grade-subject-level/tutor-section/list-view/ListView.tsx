@@ -30,127 +30,127 @@ interface props {
 
 function ListView({ data }: props) {
   return (
-      <div className={styles.main}>
-        <div className={styles.mainList}>
-          {data?.map((teacher, index) => (
-            <TeacherCard key={index} teacher={teacher} />
-          ))}
+    <div className={styles.main}>
+      <div className={styles.mainList}>
+        {data?.slice(0, 4).map((teacher, index) => (
+          <TeacherCard key={index} teacher={teacher} />
+        ))}
+      </div>
+      <div className={styles.info}>
+        <div className={styles.largeCard}>
+          <div className={styles.iconDiv}>
+            <Image
+              src={TutorIcon}
+              alt="Tutor Icon"
+              width={50} // Set width
+              height={50}
+            />
+          </div>
+          <Typography
+            className={`${leagueSpartan.className}`}
+            component={"p"}
+            variant="subtitle1"
+          >
+            Vetted Tutor
+          </Typography>
+          <Typography
+            className={`${leagueSpartan.className}`}
+            component={"p"}
+            variant="body1"
+          >
+            Our tutors go through a rigorous selection process, having been
+            interviewed to assess their teaching skills & subject knowledge.
+            They have extensive tutoring experience with a track record of
+            success, helping students achieve their academic goals.{" "}
+          </Typography>
         </div>
-        <div className={styles.info}>
-          <div className={styles.largeCard}>
-            <div className={styles.iconDiv}>
-              <Image
-                src={TutorIcon}
-                alt="Tutor Icon"
-                width={50} // Set width
-                height={50}
+
+        <div className={styles.smallCards}>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <AccountCircle
+                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
               />
             </div>
             <Typography
               className={`${leagueSpartan.className}`}
               component={"p"}
-              variant="subtitle1"
+              variant="caption"
             >
-              Vetted Tutor
+              Pool of 100s of Tutors to choose from{" "}
             </Typography>
+          </div>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <Mic sx={{ color: "#009BF5", width: "35px", height: "30px" }} />
+            </div>
             <Typography
               className={`${leagueSpartan.className}`}
               component={"p"}
-              variant="body1"
+              variant="caption"
             >
-              Our tutors go through a rigorous selection process, having been
-              interviewed to assess their teaching skills & subject knowledge.
-              They have extensive tutoring experience with a track record of
-              success, helping students achieve their academic goals.{" "}
+              Recorded classes for review{" "}
             </Typography>
           </div>
-
-          <div className={styles.smallCards}>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <AccountCircle
-                  sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-                />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Pool of 100s of Tutors to choose from{" "}
-              </Typography>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <BarChart
+                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
+              />
             </div>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <Mic sx={{ color: "#009BF5", width: "35px", height: "30px" }} />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Recorded classes for review{" "}
-              </Typography>
+            <Typography
+              className={`${leagueSpartan.className}`}
+              component={"p"}
+              variant="caption"
+            >
+              Progress Tracking{" "}
+            </Typography>
+          </div>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <ScheduleOutlined
+                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
+              />
             </div>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <BarChart
-                  sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-                />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Progress Tracking{" "}
-              </Typography>
+            <Typography
+              className={`${leagueSpartan.className}`}
+              component={"p"}
+              variant="caption"
+            >
+              Flexible Scheduling{" "}
+            </Typography>
+          </div>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <Insights
+                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
+              />
             </div>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <ScheduleOutlined
-                  sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-                />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Flexible Scheduling{" "}
-              </Typography>
+            <Typography
+              className={`${leagueSpartan.className}`}
+              component={"p"}
+              variant="caption"
+            >
+              Post-Test Analysis{" "}
+            </Typography>
+          </div>
+          <div className={styles.smallCard}>
+            <div className={styles.iconDivSmall}>
+              <SupervisorAccount
+                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
+              />
             </div>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <Insights
-                  sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-                />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Post-Test Analysis{" "}
-              </Typography>
-            </div>
-            <div className={styles.smallCard}>
-              <div className={styles.iconDivSmall}>
-                <SupervisorAccount
-                  sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-                />
-              </div>
-              <Typography
-                className={`${leagueSpartan.className}`}
-                component={"p"}
-                variant="caption"
-              >
-                Parental Updates{" "}
-              </Typography>
-            </div>
+            <Typography
+              className={`${leagueSpartan.className}`}
+              component={"p"}
+              variant="caption"
+            >
+              Parental Updates{" "}
+            </Typography>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 

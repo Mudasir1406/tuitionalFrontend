@@ -83,7 +83,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
 
   const renderSection = (name: string) => {
     switch (name) {
-      case "Hero Section":
+      case "hero_section":
         return (
           <>
             <Box sx={styles.heroContanier}>
@@ -111,10 +111,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
                   <Grid item lg={6} md={12} sm={12} xs={12}>
                     <Hero data={data?.hero_section_from} />
                   </Grid>
-                  {/* <HeroInfo
-                                    image={data?.hero_section?.image}
-                                    imageAltText={data?.hero_section?.imageAltText}
-                                /> */}
+
                   <Form />
                 </Grid>
               </Box>
@@ -127,18 +124,16 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
         return (
           <>
             <BenifitsOfStudyingSection />
+          </>
+        );
+      case "igcse_tutoring_program":
+        return (
+          <>
             <BenifitsSection />
           </>
         );
-      case "main_content":
-        return (
-          data.main_content && (
-            <>
-              <MainContent data={data?.main_content} />
-            </>
-          )
-        );
-      case "school_logos ":
+
+      case "school_logos":
         return <SchoolLogosSection />;
       case "tutor_section":
         return (
@@ -149,7 +144,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       case "tutoring_program":
         return <TutoringProgramSection data={data?.tutoring_program} />;
 
-      case "Main Content":
+      case "main_content":
         return (
           data.main_content && (
             <>
@@ -157,7 +152,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
             </>
           )
         );
-      case "Phone CTA ":
+      case "phone_cta":
         return (
           data.phone_cta && (
             <>
@@ -169,38 +164,42 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
             </>
           )
         );
-      case "Demo Pointers":
+      case "demo_pointers":
         return (
           data?.demo_pointers?.demoPointersData.length > 0 && (
             <DemoPointers data={data?.demo_pointers} />
           )
         );
-      case "Popular Subjects":
+      case "popular_subjects":
         return (
           data?.popular_subjects?.subjects.length > 0 && (
             <PopularSubjects data={data?.popular_subjects} />
           )
         );
-      case "Education Counseling":
+      case "education_counseling":
         return (
           data.education_counseling && (
             <EducationalCounseling data={data?.education_counseling} />
           )
         );
-      case "What our Student Says":
+      case "why_igsce":
+        return (
+          data.why_igsce && <EducationalCounseling data={data?.why_igsce} />
+        );
+      case "what_our_student_says":
         return (
           data.what_our_student_says && (
             <StudentSays data={data.what_our_student_says} />
           )
         );
-      case "Blog CTA":
+      case "blog_CTA":
         return data.blog_CTA && <BlogCta data={data?.blog_CTA} />;
-      case "FAQs":
+      case "Faqs":
         return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
-      case "what we offer":
-        return <Offer />;
-      case "get started":
-        return <GetStarted />;
+      case "what_we_offer":
+        return data.what_we_offer.isShow && <Offer />;
+      case "get_started":
+        return data.get_started.isShow && <GetStarted />;
       // case "video section":
       //   return <div>Video Section</div>; // Assuming there’s a video component to add here
       default:
@@ -221,11 +220,11 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
         ))} */}
 
       {Object.entries(data).map(([key, value]) => (
-        <li key={key}>
+        <div key={key}>
           {renderSection(key)}
 
           {/* <p>{key}</p> */}
-        </li>
+        </div>
       ))}
 
       <Footer />

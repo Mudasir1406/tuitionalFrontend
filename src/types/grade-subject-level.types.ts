@@ -10,6 +10,12 @@ export interface tutor_section {
 
 export type PageData = {
   tutoring_program: any;
+  what_we_offer: {
+    isShow: boolean;
+  };
+  get_started: {
+    isShow: boolean;
+  };
   hero_section: {
     header: string;
     headerTag: string;
@@ -57,6 +63,12 @@ export type PageData = {
     headerTag: string;
     paragraph: string;
     tags?: { name: string; link: string }[];
+  };
+  why_igsce: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    subjects?: { name: string; link: string }[];
   };
   what_our_student_says: {
     header: string;
