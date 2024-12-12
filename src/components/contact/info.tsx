@@ -56,7 +56,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     >
       <Box sx={styles.icon}>
         {icon === "email" && (
-          < 
+          <EmailOutlinedIcon
             sx={{ color: "#009BF5", width: "35px", height: "30px" }}
           />
         )}
