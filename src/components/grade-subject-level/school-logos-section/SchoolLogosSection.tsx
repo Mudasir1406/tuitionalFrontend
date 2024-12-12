@@ -13,6 +13,7 @@ function SchoolLogosSection() {
       <div className={styles.logosDiv}>
         {logos?.map((logo, i) => (
           <Image
+            key={i}
             src={logo}
             alt="logo"
             width={120} // Set width
