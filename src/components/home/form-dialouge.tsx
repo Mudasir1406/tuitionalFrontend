@@ -93,17 +93,17 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
     const formDataString = keyValuePairs.join("&");
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
-        {
-          redirect: "follow",
-          method: "POST",
-          body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-        }
-      );
+      // const response = await fetch(
+      //   "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
+      //   {
+      //     redirect: "follow",
+      //     method: "POST",
+      //     body: formDataString,
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      //     },
+      //   }
+      // );
       // console.log("formData", formData);
       await sendEmail({
         recipientEmail: HELLOTUITIONALEDU,
