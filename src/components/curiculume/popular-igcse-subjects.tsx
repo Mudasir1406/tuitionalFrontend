@@ -17,8 +17,8 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.popularText}
           className={leagueSpartan.className}
-          variant={data?.headerTag as any}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+          component={data?.headerTag ? data.headerTag : ("h3" as any)}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}

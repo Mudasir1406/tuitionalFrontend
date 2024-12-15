@@ -123,13 +123,13 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       case "igcse_in_dubai":
         return (
           <>
-            <BenifitsOfStudyingSection />
+            <BenifitsOfStudyingSection data={data.igcse_in_dubai} />
           </>
         );
       case "igcse_tutoring_program":
         return (
           <>
-            <BenifitsSection />
+            <BenifitsSection data={data.igcse_tutoring_program} />
           </>
         );
 

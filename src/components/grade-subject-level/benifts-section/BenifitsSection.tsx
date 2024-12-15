@@ -18,21 +18,31 @@ import {
   ScheduleOutlined,
   SupervisorAccount,
 } from "@mui/icons-material";
+import { PageData } from "@/types/grade-subject-level.types";
 
 type IProps = {
-  background?: any;
+  data: PageData["igcse_tutoring_program"];
 };
 
-const BenifitsSection: React.FunctionComponent<IProps> = ({ background }) => {
+const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <div className={styles.main}>
-      <Typography
+      {/* <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         component={"h3"}
         variant="h3"
       >
         Benefits of Our Dubai IGCSE Tutoring Program{" "}
-      </Typography>
+      </Typography> */}
+      <Typography
+        // sx={style.popularText}
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+        component={data?.headerTag ? data.headerTag : ("h3" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.header,
+        }}
+      ></Typography>
 
       <div className={styles.cards}>
         <div className={styles.smallCard}>

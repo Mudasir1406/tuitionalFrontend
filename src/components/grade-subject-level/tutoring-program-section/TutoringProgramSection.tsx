@@ -26,9 +26,9 @@ function TutoringProgramSection({ data }: props) {
     <div className={styles.main}>
       <Typography
         // clas={styles.guidence}
-        variant={data.headerTag as any}
+        variant={data.headerTag ? data?.headerTag : ("h3" as any)}
         className={`${leagueSpartan.className} ${styles.title}`}
-        component={data.headerTag as keyof JSX.IntrinsicElements}
+        component={data?.headerTag ? data.headerTag:'h3' as any}
         dangerouslySetInnerHTML={{
           __html: data?.header,
         }}

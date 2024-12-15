@@ -28,9 +28,9 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
       <Box>
         <Typography
           sx={style.frequently}
-          variant={data?.headerTag as any}
+          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
           className={leagueSpartan.className}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          component={data?.headerTag ? data.headerTag : ("h3" as any)}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
