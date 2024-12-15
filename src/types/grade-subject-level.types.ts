@@ -9,6 +9,13 @@ export interface tutor_section {
 }
 
 export type PageData = {
+  igcse_in_dubai: {
+    header: string;
+    headerTag: string;
+    subTitle: string;
+    subTitleTag: string;
+    list: { name: string; paragraph: string }[];
+  };
   tutoring_program: any;
   what_we_offer: {
     isShow: boolean;
@@ -31,6 +38,13 @@ export type PageData = {
     imageAltText: string;
   };
   tutor_section: tutor_section;
+  igcse_tutoring_program: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    buttonText: string;
+    link: string;
+  };
   phone_cta: {
     header: string;
     headerTag: string;

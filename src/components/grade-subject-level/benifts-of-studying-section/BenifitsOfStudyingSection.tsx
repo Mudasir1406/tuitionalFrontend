@@ -7,10 +7,13 @@ import styles from "./BenifitsOfStudyingSection.module.css";
 
 import Image from "next/image";
 import minusIcon from "../../../../public/assets/images/svg/blueminusicon.svg";
+import { PageData } from "@/types/grade-subject-level.types";
 
-type IProps = {};
+type IProps = { data: PageData["igcse_in_dubai"] };
 
-const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({}) => {
+const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
+  data,
+}) => {
   const [expandedBoxes, setExpandedBoxes] = useState<{
     [key: number]: boolean;
   }>({ 0: true }); // First benefit is open by default.
@@ -76,23 +79,40 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({}) => {
 
   return (
     <div className={styles.main}>
-      <Typography
+      {/* <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         component={"h3"}
         variant="h3"
       >
-        Benefits of Studying IGCSE in Dubai{" "}
-      </Typography>
-
+       
+      </Typography> */}{" "}
+      <Typography
+        // sx={style.popularText}
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+        component={data?.headerTag ? data.headerTag : ("h3" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.header,
+        }}
+      ></Typography>
       <div className={styles.sections}>
         <div className={styles.eachSection}>
-          <Typography
+          {/* <Typography
             className={`${leagueSpartan.className} ${styles.subHeading}`}
             component={"h3"}
             variant="h3"
           >
             Benefits of CAIE
-          </Typography>
+          </Typography> */}
+
+            <Typography
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.subTitleTag ? data.subTitleTag : ("h4" as any)}
+        component={data?.subTitleTag ? data.subTitleTag : ("h4" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.subTitle,
+        }}
+      ></Typography>
 
           {benifts?.map((box, index: any) => (
             <Grid item xs={12} key={index}>

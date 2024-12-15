@@ -208,7 +208,7 @@ const theme = createTheme({
           // fontWeight: 400,
           // lineHeight: 1.5,
           // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
           "@media (max-width:900px)": {
@@ -227,7 +227,7 @@ const theme = createTheme({
           // fontSize: "20px",
           // fontWeight: 400,
           // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
           "@media (max-width:900px)": {

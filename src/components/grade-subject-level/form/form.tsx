@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
@@ -39,12 +39,28 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
+  // const handleChange = (key: string, value: string | string[]) => {
+  //   setFormData({
+  //     ...formData,
+  //     [key]: value,
+  //   });
+  // };
+
   const handleChange = (key: string, value: string | string[]) => {
+    // Perform validation if the key is "phone"
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        return;
+      }
+    }
+
     setFormData({
       ...formData,
       [key]: value,
     });
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);

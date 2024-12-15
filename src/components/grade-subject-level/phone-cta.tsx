@@ -33,8 +33,8 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={style.inner}>
         <Typography
           sx={style.finding}
-          variant={data.headerTag as any}
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          variant={data.headerTag ? data.headerTag : ("h3" as any)}
+          component={data.headerTag ? data.headerTag : ("h3" as any)}
           className={leagueSpartan.className}
           dangerouslySetInnerHTML={{
             __html: data?.header,
