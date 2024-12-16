@@ -8,6 +8,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./DropDown.css";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+import { ClassNames } from "@emotion/react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -28,6 +29,7 @@ type IProps = {
   multiple?: boolean;
   boxShadow?: string;
   value: string;
+  ClassName?: string;
   onChange: (e: SelectChangeEvent) => void;
 };
 
@@ -40,12 +42,13 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
   marginTop,
   value,
   onChange,
+  ClassName,
 }) => {
   return (
     <div>
       <FormControl sx={{ width: "100%" }}>
         <Select
-          className={`select ${leagueSpartan.className}`}
+          className={`select ${leagueSpartan.className} ${ClassName}`}
           displayEmpty
           multiple={multiple}
           sx={{

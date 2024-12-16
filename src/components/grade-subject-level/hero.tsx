@@ -12,6 +12,7 @@ type IProps = {
 };
 
 const Hero: React.FC<IProps> = ({ data }) => {
+  console.log("heroComp", data);
   return (
     <>
       <Box
@@ -23,11 +24,11 @@ const Hero: React.FC<IProps> = ({ data }) => {
       >
         <Typography
           sx={styles.heading}
-          variant={data.headerTag as any}
+          variant={data.headerTag ? data.headerTag : ("h1" as any)}
           className={leagueSpartan.className}
           // component={data?.headerTag}
 
-          component={data.headerTag as keyof JSX.IntrinsicElements}
+          component={data.headerTag ? data?.headerTag : ("h1" as any)}
         >
           {data?.header}
         </Typography>
@@ -36,7 +37,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
           sx={styles.desc}
           className={leagueSpartan.className}
           component={"p"}
-          variant="body1"
+          variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -51,7 +52,6 @@ const Hero: React.FC<IProps> = ({ data }) => {
             },
           }}
         >
-     
           <Box
             sx={{
               display: "flex",

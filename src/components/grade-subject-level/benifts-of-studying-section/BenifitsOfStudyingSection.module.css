@@ -1,0 +1,126 @@
+.main {
+  /* border-radius: 16px; */
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background: linear-gradient(to bottom, white, #58b9f6);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.sections {
+  /* flex: 1; */
+  display: flex;
+  /* flex-direction: column; */
+  width: 100%;
+  justify-content: center;
+  column-gap: 24px;
+}
+.eachSection {
+  margin: 36px 0;
+  flex: 0.4;
+}
+
+.subHeading {
+  margin-bottom: 16px;
+}
+.boxes {
+  width: 90%;
+  height: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: row; /* Maintains 'row' for both xs and sm screen sizes */
+  justify-content: space-between;
+  background: #d3efff;
+  backdrop-filter: blur(10px);
+  border-radius: 2vh;
+  margin-bottom: 16px; /* 'mb: 2' converts to 16px */
+  align-items: flex-start; /* Default for smaller screens (xs) */
+  box-shadow: inset 0px -5px 15px 0px rgba(56, 182, 255, 0.2);
+  transition: background-color 0.3s ease;
+}
+.boxesWhite {
+  width: 90%;
+
+  height: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: row; /* Maintains 'row' for both xs and sm screen sizes */
+  justify-content: space-between;
+  background: white;
+  backdrop-filter: blur(10px);
+  border-radius: 2vh;
+  margin-bottom: 16px; /* 'mb: 2' converts to 16px */
+  align-items: flex-start; /* Default for smaller screens (xs) */
+  box-shadow: inset 0px -5px 15px 0px rgba(56, 182, 255, 0.2);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.title {
+  text-align: center;
+}
+
+.sections {
+  display: flex;
+}
+
+/* Extra small devices (phones, portrait, less than 576px) */
+@media (max-width: 575.98px) {
+  .main {
+    padding: 12px;
+
+  }
+  .sections {
+    display: flex;
+    flex-direction: column;
+  }
+  .eachSection {
+    flex: 1;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .main {
+    padding: 16px;
+
+  }
+  .sections {
+    display: flex;
+    flex-direction: column;
+  }
+  .eachSection {
+    flex: 1;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .main {
+    padding: 24px;
+
+  }
+  .sections {
+    display: flex;
+    flex-direction: column;
+  }
+  .eachSection {
+    flex: 1;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .eachSection {
+    flex: 1;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* Your styles here */
+}
+
+/* XXL devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* Your styles here */
+}

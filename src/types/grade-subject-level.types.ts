@@ -1,10 +1,49 @@
+export interface tutor_section {
+  headerTag: string;
+  sequenceNumber: number;
+  subject: string;
+  curriculum: string;
+  header: string;
+  view: string;
+  grade: string;
+}
+
 export type PageData = {
+  igcse_in_dubai: {
+    header: string;
+    headerTag: string;
+    subTitle: string;
+    subTitleTag: string;
+    list: { name: string; paragraph: string }[];
+  };
+  tutoring_program: any;
+  what_we_offer: {
+    isShow: boolean;
+  };
+  get_started: {
+    isShow: boolean;
+  };
   hero_section: {
     header: string;
     headerTag: string;
     paragraph: string;
     image: string;
     imageAltText: string;
+  };
+  hero_section_from: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    image: string;
+    imageAltText: string;
+  };
+  tutor_section: tutor_section;
+  igcse_tutoring_program: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    buttonText: string;
+    link: string;
   };
   phone_cta: {
     header: string;
@@ -37,6 +76,13 @@ export type PageData = {
     header: string;
     headerTag: string;
     paragraph: string;
+    tags?: { name: string; link: string }[];
+  };
+  why_igsce: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    subjects?: { name: string; link: string }[];
   };
   what_our_student_says: {
     header: string;

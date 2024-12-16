@@ -423,7 +423,7 @@ input,
 textarea,
 select {
   /* font-size: var(--font-size-body); */
-  font-size: 2.667vh;
+  /* font-size: 2.667vh; */
   font-weight: 400;
   line-height: 3.5vh;
   padding: 10px 15px;
@@ -439,6 +439,8 @@ select:focus {
 .MuiOutlinedInput-notchedOutline {
   border: none !important;
 }
+
+
 
 /* Global Typography Styles */
 
@@ -480,7 +482,7 @@ h6 {
 }
 
 p {
-  font-size: 2.667vh;
+  /* font-size: 2.667vh; */
   font-weight: 400;
   line-height: 3.5vh;
 }

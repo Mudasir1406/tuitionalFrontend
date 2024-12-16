@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
@@ -39,12 +39,28 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
+  // const handleChange = (key: string, value: string | string[]) => {
+  //   setFormData({
+  //     ...formData,
+  //     [key]: value,
+  //   });
+  // };
+
   const handleChange = (key: string, value: string | string[]) => {
+    // Perform validation if the key is "phone"
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        return;
+      }
+    }
+
     setFormData({
       ...formData,
       [key]: value,
     });
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -150,6 +166,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             onChange={(e) => handleChange("phone", String(e))}
             inputComponent={CustomInput}
             className={styles.phoneInput}
+            style={{ boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)" }}
           />
         </div>
         <div className={styles.div}>
@@ -157,7 +174,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             placeholder="Select Grade"
             data={filterData?.grade || []}
             boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            marginBottom="1.5vh"
+            // marginBottom="1.5vh"
             marginTop="1.5vh"
             // value={""}
             // onChange={() => {}}value={formData.grade}
@@ -175,7 +192,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             data={filterData?.curriculum || []}
             boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
             marginTop="1.5vh"
-            marginBottom="1.5vh"
+            // marginBottom="1.5vh"
             value={formData.curriculum}
             onChange={(e) => {
               handleChange("curriculum", e.target.value);
@@ -184,16 +201,14 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         </div>
         <div className={styles.div}>
           <DropDown
-            placeholder="Select Grade"
-            data={filterData?.grade || []}
-            boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            marginBottom="1.5vh"
+            placeholder="Select Subject"
+            data={filterData?.subject || []}
+            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+            // marginBottom="1.5vh"
             marginTop="1.5vh"
-            // value={""}
-            // onChange={() => {}}value={formData.grade}
-            value={formData.grade}
+            value={formData.subjects}
             onChange={(e) => {
-              handleChange("grade", e.target.value);
+              handleChange("subjects", e.target.value);
             }}
           />
         </div>
@@ -209,7 +224,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           onChange={(e) => handleChange("message", e.target.value)}
           label="Message*"
           variant="outlined"
-          className={`${leagueSpartan.className} ${styles.input}`}
+          className={`${leagueSpartan.className} ${styles.input} ${styles.textField}`}
         />
       </div>
 

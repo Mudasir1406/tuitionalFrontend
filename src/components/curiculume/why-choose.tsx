@@ -5,9 +5,10 @@ import counsling from "../../../public/assets/images/static/Guidence.png";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";
+import Tag from "../tag/Tag";
 
 const EducationalCounseling: React.FunctionComponent<{
-  data: PageData["education_counseling"];
+  data: PageData["why_igsce"];
 }> = ({ data }) => {
   return (
     <div>
@@ -44,6 +45,25 @@ const EducationalCounseling: React.FunctionComponent<{
               ></Typography>
               {/* {data?.tags && ( */}
               <Box sx={style.btnDiv}>
+                {data?.subjects && data?.subjects?.length > 0 && (
+                  <div style={style.tagsDiv}>
+                    <Typography
+                      sx={style.guidence}
+                      variant={"subtitle2"}
+                      className={leagueSpartan.className}
+                      component={"p"}
+                    >
+                      Key Focus Areas
+                    </Typography>
+
+                    <div>
+                      {/* {data?.tags?.map((tag, index) => ( */}
+                      {data?.subjects?.map((tag, index) => (
+                        <Tag key={index} label={tag.name} index={index} />
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div style={style.buttonDiv}>
                   <PopUpButton
                     sx={style.containedBtn}
