@@ -27,8 +27,8 @@
   border-radius: 16px;
   background-color: white;
   padding: 16px;
-  box-shadow: inset 0px 6px 8px rgba(0, 0, 0, 0.05),
-    /* Light shadow on top */ inset -4px -4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on left and bottom */
+  /* box-shadow: inset 0px 6px 8px rgba(0, 0, 0, 0.05),
+    inset -4px -4px 10px rgba(0, 0, 0, 0.15); */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
