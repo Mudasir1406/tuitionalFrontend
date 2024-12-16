@@ -30,7 +30,7 @@ const StudentSays: React.FunctionComponent<{
       ></Typography>
       <Typography
         sx={styles.desc}
-        variant="body1"
+        variant="body2"
         className={leagueSpartan.className}
         component={"p"}
         dangerouslySetInnerHTML={{

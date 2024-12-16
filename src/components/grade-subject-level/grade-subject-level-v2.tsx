@@ -111,8 +111,9 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
                   <Grid item lg={6} md={12} sm={12} xs={12}>
                     <Hero data={data?.hero_section_from} />
                   </Grid>
-
-                  <Form />
+                  <Grid item lg={5} md={12} sm={12} xs={12}>
+                    <Form />
+                  </Grid>
                 </Grid>
               </Box>
             </Box>

@@ -62,7 +62,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
                   <Typography
                     sx={style.subjects}
                     className={leagueSpartan.className}
-                    variant="body1"
+                    variant="body2"
                     component={"p"}
                   >
                     {item.name}

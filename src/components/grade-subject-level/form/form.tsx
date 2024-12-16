@@ -166,6 +166,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             onChange={(e) => handleChange("phone", String(e))}
             inputComponent={CustomInput}
             className={styles.phoneInput}
+            style={{ boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)" }}
           />
         </div>
         <div className={styles.div}>
@@ -173,7 +174,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             placeholder="Select Grade"
             data={filterData?.grade || []}
             boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            marginBottom="1.5vh"
+            // marginBottom="1.5vh"
             marginTop="1.5vh"
             // value={""}
             // onChange={() => {}}value={formData.grade}
@@ -191,7 +192,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             data={filterData?.curriculum || []}
             boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
             marginTop="1.5vh"
-            marginBottom="1.5vh"
+            // marginBottom="1.5vh"
             value={formData.curriculum}
             onChange={(e) => {
               handleChange("curriculum", e.target.value);
@@ -200,16 +201,14 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         </div>
         <div className={styles.div}>
           <DropDown
-            placeholder="Select Grade"
-            data={filterData?.grade || []}
-            boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            marginBottom="1.5vh"
+            placeholder="Select Subject"
+            data={filterData?.subject || []}
+            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+            // marginBottom="1.5vh"
             marginTop="1.5vh"
-            // value={""}
-            // onChange={() => {}}value={formData.grade}
-            value={formData.grade}
+            value={formData.subjects}
             onChange={(e) => {
-              handleChange("grade", e.target.value);
+              handleChange("subjects", e.target.value);
             }}
           />
         </div>
@@ -225,7 +224,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           onChange={(e) => handleChange("message", e.target.value)}
           label="Message*"
           variant="outlined"
-          className={`${leagueSpartan.className} ${styles.input}`}
+          className={`${leagueSpartan.className} ${styles.input} ${styles.textField}`}
         />
       </div>
 

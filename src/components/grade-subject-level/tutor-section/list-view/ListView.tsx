@@ -56,7 +56,7 @@ function ListView({ data }: props) {
           <Typography
             className={`${leagueSpartan.className}`}
             component={"p"}
-            variant="body1"
+            variant="body2"
           >
             Our tutors go through a rigorous selection process, having been
             interviewed to assess their teaching skills & subject knowledge.

@@ -41,7 +41,7 @@ const BlogCta: React.FunctionComponent<{ data: PageData["blog_CTA"] }> = ({
             sx={style.reviewdeesc}
             className={leagueSpartan.className}
             component={"p"}
-            variant="body1"
+            variant="body2"
             dangerouslySetInnerHTML={{
               __html: data?.paragraph,
             }}

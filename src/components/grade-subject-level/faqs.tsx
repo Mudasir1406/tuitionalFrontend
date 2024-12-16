@@ -40,7 +40,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
           sx={style.frequentlyDesc}
           className={leagueSpartan.className}
           component={"p"}
-          variant="body1"
+          variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -83,7 +83,7 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
                     sx={style.boxdesc}
                     className={leagueSpartan.className}
                     component={"p"}
-                    variant="body1"
+                    variant="body2"
                     dangerouslySetInnerHTML={{
                       __html: item?.answer,
                     }}

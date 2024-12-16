@@ -42,7 +42,7 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
         <Typography
           sx={style.description}
-          variant="body1"
+          variant="body2"
           className={leagueSpartan.className}
           component={"p"}
           dangerouslySetInnerHTML={{
