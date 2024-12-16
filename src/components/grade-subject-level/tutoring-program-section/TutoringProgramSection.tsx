@@ -37,7 +37,7 @@ function TutoringProgramSection({ data }: props) {
         // clas={styles.desc}
         className={`${leagueSpartan.className} ${styles.description}`}
         component={"p"}
-        variant="body1"
+        variant="body2"
         dangerouslySetInnerHTML={{
           __html: data?.paragraph,
         }}

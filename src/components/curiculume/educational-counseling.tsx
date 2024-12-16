@@ -37,7 +37,7 @@ const EducationalCounseling: React.FunctionComponent<{
                 sx={style.desc}
                 className={leagueSpartan.className}
                 component={"p"}
-                variant="body1"
+                variant="body2"
                 dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}

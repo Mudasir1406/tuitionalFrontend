@@ -21,7 +21,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           component={"p"}
-          variant="body1"
+          variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}

@@ -301,7 +301,7 @@ const GetStartedBox: React.FC<Props> = ({
         sx={styles.boxDesc}
         className={leagueSpartan.className}
         component={"p"}
-        variant="body1"
+        variant="body2"
       >
         {description}
       </Typography>
