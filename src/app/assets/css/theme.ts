@@ -121,6 +121,8 @@ const theme = createTheme({
           "@media (max-width:600px)": {
             fontSize: "1.8vh",
             lineHeight: "2.4vh",
+            // height: "42px",
+            // padding: "0",
           },
         },
       },
@@ -140,6 +142,7 @@ const theme = createTheme({
           "@media (max-width:600px)": {
             fontSize: "1.8vh",
             lineHeight: "2.4vh",
+            // height: "42px",
           },
         },
       },
