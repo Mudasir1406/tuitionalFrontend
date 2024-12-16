@@ -11,9 +11,9 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
       <Box sx={style.contanier}>
         <Typography
           sx={style.title}
-          variant={data?.headerTag as any}
+          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
           className={leagueSpartan.className}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          component={data?.headerTag ? data.headerTag : ("h3" as any)}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
@@ -21,7 +21,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.description}
           component={"p"}
-          variant="body1"
+          variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
           }}
@@ -50,7 +50,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
 export default MainContent;
 
 const style = {
-  contanier: { paddingX: "5vw", },
+  contanier: { paddingX: "5vw" },
   grid: {
     margin: { lg: "4vh auto" },
   },

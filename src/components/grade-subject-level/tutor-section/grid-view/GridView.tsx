@@ -22,18 +22,18 @@ function GridView({ cardsData }: props) {
     );
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, 6000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className={styles.carouselContainer}>
-      <button onClick={handlePrev} className={styles.leftButton}>
+      {/* <button onClick={handlePrev} className={styles.leftButton}>
         <West color="info" />
-      </button>
+      </button> */}
 
       <div className={styles.cardContainer}>
         <div
@@ -42,7 +42,7 @@ function GridView({ cardsData }: props) {
             transform: `translateX(-${currentIndex * (100 / 4)}%)`,
           }}
         >
-          {cardsData.map((card, i) => (
+          {cardsData.slice(0, 4)?.map((card, i) => (
             <div key={i} className={styles.card}>
               <ImageCard data={card} />
             </div>
@@ -50,9 +50,9 @@ function GridView({ cardsData }: props) {
         </div>
       </div>
 
-      <button onClick={handleNext} className={styles.rightButton}>
+      {/* <button onClick={handleNext} className={styles.rightButton}>
         <East color="info" />
-      </button>
+      </button> */}
     </div>
   );
 }

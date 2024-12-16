@@ -17,8 +17,8 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         <Typography
           sx={style.popularText}
           className={leagueSpartan.className}
-          variant={data?.headerTag as any}
-          component={data?.headerTag as keyof JSX.IntrinsicElements}
+          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+          component={data?.headerTag ? data.headerTag : ("h3" as any)}
           dangerouslySetInnerHTML={{
             __html: data?.header,
           }}
@@ -62,7 +62,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
                   <Typography
                     sx={style.subjects}
                     className={leagueSpartan.className}
-                    variant="body1"
+                    variant="body2"
                     component={"p"}
                   >
                     {item.name}
@@ -81,10 +81,11 @@ export default PopularSubjects;
 const style = {
   contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
+    textAlign: "center",
     // fontWeight: "600",
     // textAlign: "center",
     // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
-    width: { lg: "45%", sm: "52%" },
+    // width: { lg: "45%", sm: "52%" },
     margin: "0 auto",
   },
   subjects: {

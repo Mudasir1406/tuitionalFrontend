@@ -8,18 +8,18 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
       <TextField
         inputRef={ref}
         value={value}
-        sx={{}}
+        // sx={{}}
         onChange={onChange}
         fullWidth
         InputProps={{
           className: leagueSpartan.className,
-          sx: {
-            fontSize: "1.9vh",
-            fontWeight: 400,
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-          },
+          // sx: {
+          //   // fontSize: "1.9vh",
+          //   fontWeight: 400,
+          //   "& .MuiOutlinedInput-notchedOutline": {
+          //     border: "none",
+          //   },
+          // },
         }}
         {...rest}
         label={
@@ -39,8 +39,8 @@ export default CustomInput;
 
 const styles = {
   label: {
-    fontSize: "1.7vh",
-    fontWeight: 400,
-    color: "rgba(0,0,0,0.77)",
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
+    // color: "rgba(0,0,0,0.77)",
   },
 };

@@ -1,82 +1,3 @@
-// "use client";
-
-// import { createTheme } from "@mui/material/styles";
-
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: "League Spartan, sans-serif",
-//     h1: {
-//       fontSize: "65px",
-//       fontWeight: 700,
-//       lineHeight: 1.2,
-//     },
-//     h2: {
-//       fontSize: "50px",
-//       fontWeight: 600,
-//       lineHeight: 1.3,
-//     },
-//     h3: {
-//       fontSize: "40px",
-//       fontWeight: 600,
-//       lineHeight: 1.4,
-//     },
-//     body1: {
-//       fontSize: "20px",
-//       fontWeight: 400,
-//       lineHeight: 1.5,
-//     },
-//   },
-//   components: {
-//     // MuiButton: {
-//     //   styleOverrides: {
-//     //     root: {
-//     //       fontSize: "20px",
-//     //       fontWeight: 600,
-//     //       padding: "12px 24px",
-//     //       backgroundColor: "#38B6FF",
-//     //       color: "#fff",
-//     //       borderRadius: "4px",
-//     //       "&:hover": {
-//     //         backgroundColor: "#2a9cdf",
-//     //       },
-//     //     },
-//     //   },
-//     // },
-//     MuiInputBase: {
-//       styleOverrides: {
-//         root: {
-//           fontSize: "20px",
-//           fontWeight: 400,
-//           lineHeight: 1.5,
-//           fontFamily: "League Spartan, sans-serif",
-//           // padding: "10px 15px",
-//         },
-//       },
-//     },
-//     MuiSelect: {
-//       styleOverrides: {
-//         root: {
-//           fontSize: "20px",
-//           fontWeight: 400,
-//           fontFamily: "League Spartan, sans-serif",
-//         },
-//       },
-//     },
-//     MuiTypography: {
-//       defaultProps: {
-//         variantMapping: {
-//           h1: "h1",
-//           h2: "h2",
-//           h3: "h3",
-//           body1: "p",
-//         },
-//       },
-//     },
-//   },
-// });
-
-// export default theme;
-
 "use client";
 
 import { leagueSpartan } from "@/app/fonts";
@@ -133,30 +54,17 @@ const theme = createTheme({
         // fontSize: "20px",
       },
     },
-    // h5: {
-    //   fontSize: "25px",
-    //   fontWeight: 500,
-    //   lineHeight: 1.5,
-    //   "@media (max-width:900px)": {
-    //     // fontSize: "20px",
-    //   },
-    //   "@media (max-width:600px)": {
-    //     // fontSize: "18px",
-    //   },
-    // },
-    // h6: {
-    //   fontSize: "20px",
-    //   fontWeight: 500,
-    //   lineHeight: 1.6,
-    //   "@media (max-width:900px)": {
-    //     fontSize: "18px",
-    //   },
-    //   "@media (max-width:600px)": {
-    //     fontSize: "16px",
-    //   },
-    // },
 
     body1: {
+      fontSize: "2vh",
+      fontWeight: 400,
+      lineHeight: "2.8vh",
+      "@media (max-width:600px)": {
+        fontSize: "1.5vh",
+        lineHeight: "2vh",
+      },
+    },
+    body2: {
       fontSize: "2.667vh",
       fontWeight: 400,
       lineHeight: "3.5vh",
@@ -204,11 +112,7 @@ const theme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          // fontSize: "20px",
-          // fontWeight: 400,
-          // lineHeight: 1.5,
-          // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
           "@media (max-width:900px)": {
@@ -217,6 +121,8 @@ const theme = createTheme({
           "@media (max-width:600px)": {
             fontSize: "1.8vh",
             lineHeight: "2.4vh",
+            // height: "42px",
+            // padding: "0",
           },
         },
       },
@@ -227,7 +133,7 @@ const theme = createTheme({
           // fontSize: "20px",
           // fontWeight: 400,
           // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
           "@media (max-width:900px)": {
@@ -236,6 +142,7 @@ const theme = createTheme({
           "@media (max-width:600px)": {
             fontSize: "1.8vh",
             lineHeight: "2.4vh",
+            // height: "42px",
           },
         },
       },
@@ -247,6 +154,7 @@ const theme = createTheme({
           h2: "h2",
           h3: "h3",
           body1: "p",
+          body2: "label",
         },
       },
     },

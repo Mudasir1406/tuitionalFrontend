@@ -1,0 +1,122 @@
+.largeCard {
+  border: 1px solid #9f9c9c;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+  gap: 16px;
+  padding: 16px;
+}
+
+.mainList {
+  flex: 2;
+  max-height: 95vh;
+  overflow-y: auto;
+
+  /* gap: 16px; */
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.iconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50px;
+  justify-content: center;
+  margin-bottom: 16px;
+  background-color: #e8f7ff;
+}
+.iconDivSmall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+  justify-content: center;
+  margin-bottom: 16px;
+  background-color: #e8f7ff;
+}
+
+/* .cardTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #009bf5;
+  margin-bottom: 8px;
+} */
+
+/* .cardBody {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+} */
+/* .smallCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.smallCard {
+  border-radius: 16px;
+  background-color: white;
+  padding: 16px;
+} */
+
+.smallCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Show 2 cards per row */
+  gap: 16px; /* Add spacing between cards */
+  margin-top: 24px;
+}
+
+.smallCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  background-color: white;
+  padding: 16px;
+  box-shadow: inset 0px 6px 8px rgba(0, 0, 0, 0.05),
+    /* Light shadow on top */ inset -4px -4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on left and bottom */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Add a hover effect for better interactivity */
+.smallCard:hover {
+  box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.15),
+    0px 4px 10px rgba(0, 0, 0, 0.1); /* Inner shadow + light outer shadow */
+  transform: translateY(-5px); /* Lift the card slightly */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .main {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
+  .mainList {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    ); /* Smaller columns for tablets */
+  }
+
+  .info {
+    align-items: center; /* Center align for smaller screens */
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+}

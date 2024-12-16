@@ -43,7 +43,7 @@ const ImageCard = ({ data }: props) => {
         <Typography
           className={`${leagueSpartan.className} ${styles.title}`}
           component={"p"}
-          variant="body1"
+          variant="body2"
         >
           {data.university}{" "}
         </Typography>
@@ -51,7 +51,7 @@ const ImageCard = ({ data }: props) => {
         <Typography
           className={`${leagueSpartan.className} ${styles.title}`}
           component={"p"}
-          variant="body1"
+          variant="body2"
         >
           {data.description}{" "}
         </Typography>

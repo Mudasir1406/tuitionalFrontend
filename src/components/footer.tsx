@@ -119,7 +119,7 @@ const Footer: React.FC = async () => {
                 <Typography
                   sx={styles.desc}
                   className={leagueSpartan.className}
-                  variant="body1"
+                  variant="body2"
                 >
                   Tuitional is an Online Ed-Tech Platform. We do live tutoring
                   classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all
@@ -180,7 +180,7 @@ const Footer: React.FC = async () => {
                 {footerData?.curriculums.map((item, index) => (
                   <Typography
                     sx={styles.text}
-                    variant="body1"
+                    variant="body2"
                     key={index}
                     className={leagueSpartan.className}
                   >
@@ -214,7 +214,7 @@ const Footer: React.FC = async () => {
                 {footerData?.subjects.slice(0, 10).map((item, index) => (
                   <Typography
                     sx={styles.text}
-                    variant="body1"
+                    variant="body2"
                     key={index}
                     className={leagueSpartan.className}
                   >
@@ -237,7 +237,7 @@ const Footer: React.FC = async () => {
                   {footerData?.getHelp.map((item, index) => (
                     <Typography
                       sx={styles.text}
-                      variant="body1"
+                      variant="body2"
                       key={index}
                       className={leagueSpartan.className}
                     >
@@ -270,7 +270,7 @@ const Footer: React.FC = async () => {
                     >
                       <Typography
                         sx={styles.text}
-                        variant="body1"
+                        variant="body2"
                         key={index}
                         className={leagueSpartan.className}
                       >
@@ -306,7 +306,7 @@ const Footer: React.FC = async () => {
                       >
                         <Typography
                           sx={styles.text}
-                          variant="body1"
+                          variant="body2"
                           className={leagueSpartan.className}
                         >
                           {item}
