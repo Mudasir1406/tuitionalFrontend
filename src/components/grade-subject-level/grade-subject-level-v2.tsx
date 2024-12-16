@@ -106,8 +106,8 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
         return (
           <>
             <Box sx={styles.heroContanier}>
-              <Box sx={{ marginTop: "10vh" }}>
-                <Grid container>
+              <Box sx={{ marginTop: { lg: "10vh" } }}>
+                <Grid container gap={4} sx={styles.heroDiv}>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
                     <Hero data={data?.hero_section_from} />
                   </Grid>
@@ -247,7 +247,7 @@ export default GradeSubjectLevelV2;
 
 const styles = {
   heroContanier: {
-    width: { lg: "100%", sm: "100%" },
+    // width: { lg: "100%", sm: "100%" },
     paddingTop: {
       xs: "120px",
       sm: "150px",
@@ -262,6 +262,10 @@ const styles = {
     position: "relative",
     marginX: { xs: "3vw", sm: "3vw", lg: "0" },
     // background: '#ff00ff'
+  },
+
+  heroDiv: {
+    alignItems: "center",
   },
   phoneContanier: { position: "relative", paddingBottom: "4vh" },
   phoneBackground: {
