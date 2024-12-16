@@ -41,6 +41,6 @@ const styles = {
   label: {
     // fontSize: "1.7vh",
     // fontWeight: 400,
-    color: "rgba(0,0,0,0.77)",
+    // color: "rgba(0,0,0,0.77)",
   },
 };
