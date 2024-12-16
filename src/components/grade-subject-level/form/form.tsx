@@ -21,6 +21,7 @@ import styles from "./style.module.css";
 import { FormType } from "@/components/home/form-dialouge";
 import DropDown from "../../DropDown/DropDown";
 import CustomInput from "@/components/custom-input/custom-input";
+import Input from "@/components/input/Input";
 
 type IProps = {
   background?: any;
@@ -132,7 +133,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         Avail A 10% Discount If You Sign Up Today!
       </Typography>
       <div className={styles.inputDiv}>
-        <TextField
+        {/* <TextField
           //sx={styles.input}
           fullWidth
           name="name"
@@ -141,9 +142,28 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           label="Name*"
           variant="outlined"
           className={`${leagueSpartan.className} ${styles.input}`}
+        /> */}
+
+        <Input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          label="Name"
+          placeholder="Enter your name"
+          required
+          // className={styles.input}
         />
 
-        <TextField
+        <Input
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          label="Email"
+          placeholder="Enter your Email"
+          required
+          // className={styles.input}
+        />
+        {/* <TextField
           // sx={styles.input}
 
           fullWidth
@@ -156,7 +176,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           variant="outlined"
           type="email"
           className={`${leagueSpartan.className} ${styles.input}`}
-        />
+        /> */}
       </div>
 
       <div className={styles.inputDiv}>
@@ -167,7 +187,10 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             onChange={(e) => handleChange("phone", String(e))}
             inputComponent={CustomInput}
             className={styles.phoneInput}
-            style={{ boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)" }}
+            style={{
+              boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+              height: "42px",
+            }}
           />
         </div>
         <div className={styles.div}>
@@ -217,7 +240,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       <div>
         <TextField
           //   sx={[styles.input]}
-          
+
           fullWidth
           multiline
           rows={4}
