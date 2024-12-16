@@ -107,14 +107,14 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
 
             <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.subTitleTag ? data.subTitleTag : ("h4" as any)}
-        component={data?.subTitleTag ? data.subTitleTag : ("h4" as any)}
+        variant={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
+        component={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
         dangerouslySetInnerHTML={{
-          __html: data?.subTitle,
+          __html: data?.subTextLeft,
         }}
       ></Typography>
 
-          {benifts?.map((box, index: any) => (
+          {data?.listArray.slice(0, 3)?.map((box, index: any) => (
             <Grid item xs={12} key={index}>
               {/* <Box sx={style.boxes}> */}
               <div
@@ -130,7 +130,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                     component={"p"}
                     variant="subtitle2"
                   >
-                    {box.title}
+                    {box.name}
                   </Typography>
                   {expandedBoxes[index] && (
                     <Typography
@@ -140,7 +140,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                       variant="caption"
                     >
                       {" "}
-                      {box.description}
+                      {box.paragraph}
                     </Typography>
                   )}
                 </Box>
@@ -160,15 +160,17 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
           ))}
         </div>
         <div className={styles.eachSection}>
-          <Typography
-            className={`${leagueSpartan.className} ${styles.subHeading}`}
-            component={"h3"}
-            variant="h3"
-          >
-            Requirements of CAIE{" "}
-          </Typography>
+         
+        <Typography
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)}
+        component={data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.subTextRight,
+        }}
+      ></Typography>
 
-          {requirements?.map((box, index: any) => (
+{data?.listArray.slice(3, 6)?.map((box, index: any) => (
             <Grid item xs={12} key={index}>
               {/* <Box sx={style.boxes}> */}
               <div
@@ -183,7 +185,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                     component={"p"}
                     variant="subtitle2"
                   >
-                    {box.title}
+                    {box.name}
                   </Typography>
                   {expandedRequirement[index] && (
                     <Typography
@@ -193,7 +195,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                       variant="caption"
                     >
                       {" "}
-                      {box.description}
+                      {box.paragraph}
                     </Typography>
                   )}
                 </Box>

@@ -51,6 +51,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
           className={`select ${leagueSpartan.className} ${ClassName}`}
           displayEmpty
           multiple={multiple}
+         
           sx={{
             borderRadius: "10px",
             boxShadow: boxShadow,
@@ -63,7 +64,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
             // fontFamily: "var(--font-leagueSpartan)",
             // fontFamily: "League Spartan",
 
-            minHeight: "50px", // Ensure minHeight of the OutlinedInput
+            minHeight: "40px", // Ensure minHeight of the OutlinedInput
 
             // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
             // "& .MuiOutlinedInput-root": {
@@ -73,6 +74,13 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
+
+            '& .MuiSelect-select': {
+               paddingRight: 2,
+               paddingLeft: 2,
+               paddingTop: 1,
+               paddingBottom: 1,
+            }
           }}
           value={value}
           onChange={onChange}
