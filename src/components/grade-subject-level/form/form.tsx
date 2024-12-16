@@ -133,7 +133,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       </Typography>
       <div className={styles.inputDiv}>
         <TextField
-          //   sx={styles.input}
+          //sx={styles.input}
           fullWidth
           name="name"
           value={formData.name}
@@ -145,6 +145,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
 
         <TextField
           // sx={styles.input}
+
           fullWidth
           name="Email"
           // value={formData.Parent}
@@ -216,9 +217,10 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       <div>
         <TextField
           //   sx={[styles.input]}
+          
           fullWidth
           multiline
-          rows={5}
+          rows={4}
           name="Message"
           value={formData.message}
           onChange={(e) => handleChange("message", e.target.value)}
