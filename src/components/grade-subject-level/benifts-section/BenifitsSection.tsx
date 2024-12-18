@@ -25,6 +25,7 @@ type IProps = {
 };
 
 const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
+  console.log("BenifitsSection", data);
   return (
     <div className={styles.main}>
       {/* <Typography
@@ -37,10 +38,10 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
       <Typography
         // sx={style.popularText}
         className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-        component={data?.headerTag ? data.headerTag : ("h3" as any)}
+        variant={data?.sectionTag ? data.sectionTag : ("h3" as any)}
+        component={data?.sectionTag ? data.sectionTag : ("h3" as any)}
         dangerouslySetInnerHTML={{
-          __html: data?.header,
+          __html: data?.section,
         }}
       ></Typography>
 

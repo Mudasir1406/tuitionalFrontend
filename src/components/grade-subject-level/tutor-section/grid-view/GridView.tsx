@@ -3,12 +3,16 @@ import styles from "./GridView.module.css";
 import { East, West } from "@mui/icons-material";
 import ImageCard from "@/components/image-card/ImageCard";
 import { CardProps } from "../TutorSection";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 interface props {
   cardsData: CardProps[];
 }
 function GridView({ cardsData }: props) {
+  const theme = useTheme();
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isLargeOrAbove = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -39,7 +43,9 @@ function GridView({ cardsData }: props) {
         <div
           className={styles.cardWrapper}
           style={{
-            transform: `translateX(-${currentIndex * (100 / 4)}%)`,
+            transform: `translateX(-${
+              currentIndex * (100 / (isLargeOrAbove ? 4 : 2))
+            }%)`,
           }}
         >
           {cardsData.slice(0, 4)?.map((card, i) => (

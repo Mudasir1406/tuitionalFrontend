@@ -16,10 +16,10 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
 }) => {
   const [expandedBoxes, setExpandedBoxes] = useState<{
     [key: number]: boolean;
-  }>({ 0: true }); // First benefit is open by default.
+  }>({ 0: true }); 
   const [expandedRequirement, setExpandedRequirement] = useState<{
     [key: number]: boolean;
-  }>({ 0: true }); // First requirement is open by default.
+  }>({ 0: true }); 
 
   const toggleBox = (index: number) => {
     setExpandedBoxes((prev) => ({
@@ -35,47 +35,6 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
     }));
   };
 
-  const benifts = [
-    {
-      id: 0,
-      title: "Global Recognition",
-      description:
-        "CAIE qualifications are recognized by top universities and employers worldwide, providing students with opportunities for higher education and careers.",
-    },
-    {
-      id: 1,
-      title: "Comprehensive Curriculum",
-      description:
-        "CAIE qualifications are recognized by top universities and employers worldwide, providing students with opportunities for higher education and careers.",
-    },
-    {
-      id: 2,
-      title: "Flexible Learning Pathways",
-      description:
-        "CAIE qualifications are recognized by top universities and employers worldwide, providing students with opportunities for higher education and careers.",
-    },
-  ];
-
-  const requirements = [
-    {
-      id: 0,
-      title: "Age",
-      description:
-        "Typically, there are no specific age requirements, but most students take IGCSE exams at the age of 14-16 and AS/A Level exams at 16-19.",
-    },
-    {
-      id: 1,
-      title: "Enrollment",
-      description:
-        "Typically, there are no specific age requirements, but most students take IGCSE exams at the age of 14-16 and AS/A Level exams at 16-19.",
-    },
-    {
-      id: 2,
-      title: "Subjects",
-      description:
-        "Typically, there are no specific age requirements, but most students take IGCSE exams at the age of 14-16 and AS/A Level exams at 16-19.",
-    },
-  ];
 
   return (
     <div className={styles.main}>

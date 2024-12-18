@@ -3,13 +3,14 @@ import { TextField, Typography, TextFieldProps } from "@mui/material";
 import { forwardRef } from "react";
 
 const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ value, onChange, ...rest }, ref) => {
+  ({ value, onChange, placeholder, ...rest }, ref) => {
     return (
       <TextField
         inputRef={ref}
         value={value}
         // sx={{}}
         onChange={onChange}
+        placeholder={placeholder}
         fullWidth
         InputProps={{
           className: leagueSpartan.className,
@@ -22,12 +23,12 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
           // },
         }}
         {...rest}
-        label={
-          <Typography sx={styles.label} className={leagueSpartan.className}>
-            Phone
-          </Typography>
-        }
-        variant="outlined"
+        // label={
+        //   <Typography sx={styles.label} className={leagueSpartan.className}>
+        //     Phone
+        //   </Typography>
+        // }
+        // variant="outlined"
         className={leagueSpartan.className}
       />
     );

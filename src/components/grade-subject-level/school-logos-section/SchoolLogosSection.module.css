@@ -1,24 +1,12 @@
 .main {
   background: linear-gradient(to right, white, #58b9f6);
-  /* height: 30vh; */
-  /* margin-right: auto;
-  margin-left: auto; */
+
   display: flex;
   overflow: hidden;
-  padding: 2vh  ;
+  padding: 2vh;
 }
 
 .logosDiv {
-  /* display: flex;
-  flex-direction: row;
-  row-gap: 24px;
-  column-gap: 48px;
-
-  align-items: center;
-  margin: auto;
-  justify-content: center;
-  animation: slide 20s linear infinite;  */
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,6 +24,6 @@
     transform: translateX(0); /* Start from the left */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
