@@ -79,13 +79,14 @@ const BenifitsSection = dynamic(
 import {
   Component_Sequence_Type,
   PageData,
+  tutor_section,
 } from "@/types/grade-subject-level.types";
 type IProps = {
   data: PageData;
 };
 
 const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
-  // console.log("GradeSubjectLevel", data.hero_section_from);
+  console.log("GradeSubjectLevel", data);
 
   const renderSection = (name: string) => {
     // switch (name) {
@@ -93,15 +94,15 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     if (name.includes("hero_section")) {
       return (
         <>
-          {data?.hero_section && (
+          {data?.[name as keyof PageData] && (
             <Box sx={styles.heroContanier}>
               <Grid container>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <Hero data={data?.hero_section} />
+                  <Hero data={data?.[name as keyof PageData]} />
                 </Grid>
                 <HeroInfo
-                  image={data?.hero_section?.image}
-                  imageAltText={data?.hero_section?.imageAltText}
+                  image={data?.[name as keyof PageData]?.image}
+                  imageAltText={data?.[name as keyof PageData]?.imageAltText}
                 />
                 {/* <Form /> */}
               </Grid>
@@ -115,12 +116,12 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     else if (name.includes("with_form")) {
       return (
         <>
-          {data?.with_form && (
+          {data?.[name as keyof PageData] && (
             <Box sx={styles.heroContanier}>
               <Box sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
                 <Grid container gap={4} sx={styles.heroDiv}>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <Hero data={data?.with_form} />
+                    <Hero data={data?.[name as keyof PageData]} />
                   </Grid>
 
                   <Grid
@@ -144,7 +145,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       // case "igcse_in_dubai":
       return (
         <>
-          <BenifitsOfStudyingSection data={data.igcse_in_dubai} />
+          <BenifitsOfStudyingSection data={data?.[name as keyof PageData]} />
         </>
       );
     }
@@ -152,15 +153,15 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     else if (name.includes("link_list")) {
       return (
         <>
-          <LinkListViewSection data={data.link_list} />
+          <LinkListViewSection data={data?.[name as keyof PageData]} />
         </>
       );
     } // case "igcse_tutoring_program":
     else if (name.includes("igcse_tutoring_program")) {
       return (
         <>
-          {data?.igcse_tutoring_program?.isShow && (
-            <BenifitsSection data={data.igcse_tutoring_program} />
+          {data?.[name as keyof PageData]?.isShow && (
+            <BenifitsSection data={data?.[name as keyof PageData]} />
           )}
         </>
       );
@@ -178,20 +179,20 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     else if (name.includes("tutor_section")) {
       return (
         <>
-          <TutorSection data={data?.tutor_section} />
+          <TutorSection data={data?.[name as keyof PageData]} />
         </>
       );
     }
     // case "tutoring_program":
     else if (name.includes("tutoring_program")) {
-      return <TutoringProgramSection data={data?.tutoring_program} />;
+      return <TutoringProgramSection data={data?.[name as keyof PageData]} />;
     }
     // case "main_content":
     else if (name.includes("main_content")) {
       return (
-        data.main_content && (
+        data?.[name as keyof PageData] && (
           <Box sx={{ marginTop: "10vh" }}>
-            <MainContent data={data?.main_content} />
+            <MainContent data={data?.[name as keyof PageData]} />
           </Box>
         )
       );
@@ -199,11 +200,11 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     // case "phone_cta":
     else if (name.includes("phone_cta")) {
       return (
-        data.phone_cta && (
+        data?.[name as keyof PageData] && (
           <>
             <Box sx={styles.phoneContanier}>
               <Box sx={styles.phoneBackground} />
-              <PhoneCta data={data?.phone_cta} />
+              <PhoneCta data={data?.[name as keyof PageData]} />
             </Box>
             {/* <TutorSection /> */}
           </>
@@ -214,49 +215,61 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     // case "demo_pointers":
     else if (name.includes("demo_pointers")) {
       return (
-        data?.demo_pointers?.demoPointersData.length > 0 && (
-          <DemoPointers data={data?.demo_pointers} />
+        data?.[name as keyof PageData]?.demoPointersData.length > 0 && (
+          <DemoPointers data={data?.[name as keyof PageData]} />
         )
       );
     }
     // case "popular_subjects":
     else if (name.includes("popular_subjects")) {
       return (
-        data?.popular_subjects?.subjects.length > 0 && (
-          <PopularSubjects data={data?.popular_subjects} />
+        data?.[name as keyof PageData]?.subjects.length > 0 && (
+          <PopularSubjects data={data?.[name as keyof PageData]} />
         )
       );
     } else if (name.includes("education_counseling")) {
       // case "education_counseling":
       return (
-        data.education_counseling && (
-          <EducationalCounseling data={data?.education_counseling} />
+        data?.[name as keyof PageData] && (
+          <EducationalCounseling data={data?.[name as keyof PageData]} />
         )
       );
     } else if (name.includes("why_igsce")) {
       // case "why_igsce":
-      return data.why_igsce && <EducationalCounseling data={data?.why_igsce} />;
+      return (
+        data?.[name as keyof PageData] && (
+          <EducationalCounseling data={data?.[name as keyof PageData]} />
+        )
+      );
     }
     // case "what_our_student_says":
     else if (name.includes("what_our_student_says")) {
       return (
-        data.what_our_student_says && (
-          <StudentSays data={data.what_our_student_says} />
+        data?.[name as keyof PageData] && (
+          <StudentSays data={data?.[name as keyof PageData]} />
         )
       );
     }
     // case "blog_CTA":
     else if (name.includes("blog_CTA")) {
-      return data.blog_CTA && <BlogCta data={data?.blog_CTA} />;
+      return (
+        data?.[name as keyof PageData] && (
+          <BlogCta data={data?.[name as keyof PageData]} />
+        )
+      );
     }
     // case "Faqs":
     else if (name.includes("Faqs")) {
-      return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
+      return (
+        data?.[name as keyof PageData] && (
+          <FrequentlyQuestions data={data?.[name as keyof PageData]} />
+        )
+      );
     }
     // case "what_we_offer":
     else if (name.includes("what_we_offer")) {
       return (
-        data.what_we_offer.isShow && (
+        data?.[name as keyof PageData].isShow && (
           <Box sx={{ marginTop: "10vh" }}>
             <Offer />
           </Box>
@@ -265,7 +278,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     }
     // case "get_started":
     else if (name.includes("get_started")) {
-      return data.get_started.isShow && <GetStarted />;
+      return data?.[name as keyof PageData].isShow && <GetStarted />;
     }
     // case "video section":
     //   return <div>Video Section</div>; // Assuming there’s a video component to add here
@@ -308,7 +321,7 @@ const styles = {
     alignItems: "center",
     padding: "100 0",
   },
-  phoneContanier: { position: "relative", paddingBottom: "4vh" },
+  phoneContanier: { position: "relative", paddingTop: "4vh" },
   phoneBackground: {
     height: "100%",
     width: "100%",

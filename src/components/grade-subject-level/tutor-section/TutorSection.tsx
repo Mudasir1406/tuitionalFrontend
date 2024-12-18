@@ -21,11 +21,12 @@ type IProps = {
 
 export type CardProps = {
   "First Name": string;
-  "Last Name": string;
+  "Last Name"?: string;
   university: string;
-  subjects: string[];
-  description: string;
-  rating: number;
+  Subjects: string[];
+  Curiculum: string[];
+  Description: string;
+  "Success rate": number;
   profileImageUrl: string;
 };
 
@@ -34,58 +35,58 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
 
   // const cardsData: CardProps[] = [
   //   {
-  //     name: "Muhammad",
+  //     "First Name": "Muhammad",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img1.src,
+  //     profileImageUrl: img1.src,
   //   },
   //   {
-  //     name: "Sheikh",
+  //     "First Name": "Sheikh",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img2.src,
+  //     profileImageUrl: img2.src,
   //   },
   //   {
-  //     name: "Siddiqi",
+  //     "First Name": "Siddiqi",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img1.src,
+  //     profileImageUrl: img1.src,
   //   },
   //   {
-  //     name: "Khan",
+  //     "First Name": "Khan",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img2.src,
+  //     profileImageUrl: img2.src,
   //   },
   //   {
-  //     name: "Joseph",
+  //     "First Name": "Joseph",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img1.src,
+  //     profileImageUrl: img1.src,
   //   },
   //   {
-  //     name: "Abraham",
+  //     "First Name": "Abraham",
   //     university: "University Of Waterloo",
-  //     subjects: ["IGCSE", "Physics"],
-  //     description:
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
   //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
   //     rating: 4.8,
-  //     imageSrc: img2.src,
+  //     profileImageUrl: img2.src,
   //   },
   // ];
 
@@ -142,7 +143,8 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
 
   const val = await getTutorsByFilter(data.curriculum, data.subject);
 
-  console.log("Tutor Section is here..", val);
+  console.log("Tutor val is here..", val);
+  console.log("Tutor Section is here..", data);
   return (
     <div className={styles.main}>
       <Typography
@@ -154,7 +156,7 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
       </Typography>
 
       {data?.view === "Row View" ? (
-        <ListView data={teachers} />
+        <ListView data={val} />
       ) : (
         <GridView cardsData={val} />
       )}
