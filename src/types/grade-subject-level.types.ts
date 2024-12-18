@@ -9,12 +9,21 @@ export interface tutor_section {
 }
 
 export type PageData = {
+  link_list: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    subjects: { name: string; link: string }[];
+  };
   igcse_in_dubai: {
     header: string;
     headerTag: string;
-    subTitle: string;
-    subTitleTag: string;
-    list: { name: string; paragraph: string }[];
+
+    subTextRightTag: string;
+    subTextRight: string;
+    subTextLeft: string;
+    subTextLeftTag: string;
+    listArray: { name: string; paragraph: string }[];
   };
   tutoring_program: any;
   what_we_offer: {
@@ -39,9 +48,10 @@ export type PageData = {
   };
   tutor_section: tutor_section;
   igcse_tutoring_program: {
-    header: string;
-    headerTag: string;
+    section: string;
+    sectionTag: string;
     paragraph: string;
+    isShow: boolean;
     buttonText: string;
     link: string;
   };
@@ -104,7 +114,7 @@ export type PageData = {
     faqs: Faqs_Type[];
   };
   slugData: string;
-  variation: string;
+  variant: string;
   meta_tags: {
     title: string;
     description: string;

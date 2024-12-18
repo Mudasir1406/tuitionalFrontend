@@ -27,21 +27,23 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
           }}
         ></Typography>
 
-        <Box sx={style.box}>
-          <Grid container spacing={2} sx={style.grid}>
-            {data?.subjects.map((subject, index) => (
-              <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
-                <Button
-                  sx={style.button}
-                  className={leagueSpartan.className}
-                  href={subject.link || "#"}
-                >
-                  {subject.name}
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+        {data?.subjects?.length > 0 && (
+          <Box sx={style.box}>
+            <Grid container spacing={2} sx={style.grid}>
+              {data?.subjects.map((subject, index) => (
+                <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
+                  <Button
+                    sx={style.button}
+                    className={leagueSpartan.className}
+                    href={subject.link || "#"}
+                  >
+                    {subject.name}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
       </Box>
     </>
   );

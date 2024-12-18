@@ -34,6 +34,20 @@ export const redirectToTrustpilot = () => {
   window.open(SITE_URL_TRUSTPILOT, "_blank");
 };
 
+// export const redirectTo = (route: string) => {
+//   window.open(route, "_blank");
+// };
+
+export const redirectToExternal = (url: string, newTab: boolean = false) => {
+  if (!url || typeof window === "undefined") return;
+
+  if (newTab) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  } else {
+    window.location.href = url;
+  }
+};
+
 export const scrollToTestimonials = () => {
   const element = document.getElementById("testimonials");
   if (element) {
@@ -49,7 +63,7 @@ export const scrollToApplyForm = () => {
 };
 
 export function generateMergedSchema(data: any) {
-  console.log("generateMergedSchema", data);
+  // console.log("generateMergedSchema", data);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [

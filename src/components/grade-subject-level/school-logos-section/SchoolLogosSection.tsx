@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./SchoolLogosSection.module.css";
-import logo1 from "../../../../public/assets/images/static/logo.png";
-import logo2 from "../../../../public/assets/images/static/playbutton.png";
-import logo3 from "../../../../public/assets/images/static/LinkedIN_black.png";
+
 import Image from "next/image";
 import {
   getTrustedSchools,

@@ -24,24 +24,24 @@ const Hero: React.FC<IProps> = ({ data }) => {
       >
         <Typography
           sx={styles.heading}
-          variant={data.headerTag ? data.headerTag : ("h1" as any)}
+          variant={data?.headerTag ? data?.headerTag : ("h1" as any)}
           className={leagueSpartan.className}
           // component={data?.headerTag}
 
-          component={data.headerTag ? data?.headerTag : ("h1" as any)}
-        >
-          {data?.header}
-        </Typography>
+          component={data?.headerTag ? data?.headerTag : ("h1" as any)}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
 
         <Typography
           sx={styles.desc}
           className={leagueSpartan.className}
           component={"p"}
           variant="body2"
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
+        >
+          {data?.paragraph}
+        </Typography>
 
         <Box
           sx={{
