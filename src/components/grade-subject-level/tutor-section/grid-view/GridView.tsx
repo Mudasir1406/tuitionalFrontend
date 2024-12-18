@@ -6,7 +6,8 @@ import { CardProps } from "../TutorSection";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 interface props {
-  cardsData: CardProps[];
+  // cardsData: CardProps[];
+  cardsData: any[];
 }
 function GridView({ cardsData }: props) {
   const theme = useTheme();

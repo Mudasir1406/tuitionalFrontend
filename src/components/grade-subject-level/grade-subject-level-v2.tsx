@@ -85,56 +85,58 @@ type IProps = {
 };
 
 const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
-  console.log("GradeSubjectLevel", data.hero_section_from);
+  // console.log("GradeSubjectLevel", data.hero_section_from);
 
   const renderSection = (name: string) => {
     // switch (name) {
     //   case "hero_section":
-    // if (name.includes("hero_section")) {
-    //   return (
-    //     <>
-    //       {data?.hero_section && (
-    //         <Box sx={styles.heroContanier}>
-    //           <Grid container>
-    //             <Grid item lg={6} md={12} sm={12} xs={12}>
-    //               <Hero data={data?.hero_section} />
-    //             </Grid>
-    //             <HeroInfo
-    //               image={data?.hero_section?.image}
-    //               imageAltText={data?.hero_section?.imageAltText}
-    //             />
-    //             {/* <Form /> */}
-    //           </Grid>
-    //         </Box>
-    //       )}
-    //       <SectionsBox />
-    //     </>
-    //   );
-    // }
-    // case "hero_section_from":
-     if (name.includes("hero_section_from")) {
+    if (name.includes("hero_section")) {
       return (
         <>
-          <Box sx={styles.heroContanier}>
-            <Box sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
-              <Grid container gap={4} sx={styles.heroDiv}>
+          {data?.hero_section && (
+            <Box sx={styles.heroContanier}>
+              <Grid container>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <Hero data={data?.hero_section_from} />
+                  <Hero data={data?.hero_section} />
                 </Grid>
-
-                <Grid
-                  item
-                  lg={5}
-                  md={12}
-                  sm={12}
-                  xs={12}
-                  sx={{ margin: "24px 0" }}
-                >
-                  <Form />
-                </Grid>
+                <HeroInfo
+                  image={data?.hero_section?.image}
+                  imageAltText={data?.hero_section?.imageAltText}
+                />
+                {/* <Form /> */}
               </Grid>
             </Box>
-          </Box>
+          )}
+          <SectionsBox />
+        </>
+      );
+    }
+    // case "hero_section_from":
+    else if (name.includes("with_form")) {
+      return (
+        <>
+          {data?.with_form && (
+            <Box sx={styles.heroContanier}>
+              <Box sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
+                <Grid container gap={4} sx={styles.heroDiv}>
+                  <Grid item lg={6} md={12} sm={12} xs={12}>
+                    <Hero data={data?.with_form} />
+                  </Grid>
+
+                  <Grid
+                    item
+                    lg={5}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    sx={{ margin: "24px 0" }}
+                  >
+                    <Form />
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
+          )}
           <SectionsBox />
         </>
       );
@@ -273,20 +275,8 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
     <>
       <Header />
 
-      {/* {sequence.sections
-        .sort((a, b) => a.placment - b.placment)
-        .map((section) => (
-          <section key={section.placment} style={{ all: "unset" }}>
-            {renderSection(section.name)}
-          </section>
-        ))} */}
-
       {Object.entries(data).map(([key, value]) => (
-        <div key={key}>
-          {renderSection(key)}
-
-          {/* <p>{key}</p> */}
-        </div>
+        <div key={key}>{renderSection(key.trim())}</div>
       ))}
 
       <Footer />
