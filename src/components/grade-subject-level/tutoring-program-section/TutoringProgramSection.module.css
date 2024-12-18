@@ -3,13 +3,14 @@
   /* height: 400px; */
   position: relative;
   margin-bottom: 12vh;
-  padding: 7vh ; /* Reserve space for the absolute div */
+  padding-top: 7vh;
+  padding-bottom: 17vh;
   text-align: center;
 }
 .contactContanier {
   background-color: rgba(56, 182, 255, 1);
   position: absolute;
-  bottom: -8vh;
+  /* bottom: -8vh; */
   left: 50%; /* Start positioning from the center */
   transform: translateX(-50%);
   width: 90%;
@@ -41,9 +42,12 @@
   padding: 10px;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
   .contact-container {
     padding: 20px;
+  }
+  .main {
+    padding-bottom: 23vh;
   }
 }
 

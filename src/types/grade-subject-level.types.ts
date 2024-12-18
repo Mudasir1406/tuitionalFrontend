@@ -9,6 +9,12 @@ export interface tutor_section {
 }
 
 export type PageData = {
+  link_list: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    subjects: { name: string; link: string }[];
+  };
   igcse_in_dubai: {
     header: string;
     headerTag: string;
@@ -108,7 +114,7 @@ export type PageData = {
     faqs: Faqs_Type[];
   };
   slugData: string;
-  variation: string;
+  variant: string;
   meta_tags: {
     title: string;
     description: string;
