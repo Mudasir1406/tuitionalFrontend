@@ -20,8 +20,8 @@ const ImageCard = ({ data }: props) => {
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image
-          src={data.imageSrc}
-          alt={`${data.name}'s profile`}
+          src={data?.profileImageUrl}
+          alt={`${data?.["First Name"]}'s profile`}
           layout="fill"
           objectFit="cover"
           className={styles.image}
@@ -33,7 +33,7 @@ const ImageCard = ({ data }: props) => {
           component={"p"}
           variant="subtitle1"
         >
-          {data.name}{" "}
+          {`${data?.["First Name"]} ${data?.["Last Name"]} `}{" "}
         </Typography>
         <div className={styles.subjects}>
           {data?.subjects?.map((tag, index) => (

@@ -16,77 +16,78 @@ import ListView from "./list-view/ListView";
 import { tutor_section } from "@/types/grade-subject-level.types";
 import { getTutorsByFilter } from "@/services/grade-subject-level/grade-subject-level";
 type IProps = {
-  data?: tutor_section;
+  data: tutor_section;
 };
 
 export type CardProps = {
-  name: string;
+  "First Name": string;
+  "Last Name": string;
   university: string;
   subjects: string[];
   description: string;
   rating: number;
-  imageSrc: string;
+  profileImageUrl: string;
 };
 
 const Form: React.FunctionComponent<IProps> = async ({ data }) => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const cardsData: CardProps[] = [
-    {
-      name: "Muhammad",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Sheikh",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-    {
-      name: "Siddiqi",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Khan",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-    {
-      name: "Joseph",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Abraham",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-  ];
+  // const cardsData: CardProps[] = [
+  //   {
+  //     name: "Muhammad",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img1.src,
+  //   },
+  //   {
+  //     name: "Sheikh",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img2.src,
+  //   },
+  //   {
+  //     name: "Siddiqi",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img1.src,
+  //   },
+  //   {
+  //     name: "Khan",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img2.src,
+  //   },
+  //   {
+  //     name: "Joseph",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img1.src,
+  //   },
+  //   {
+  //     name: "Abraham",
+  //     university: "University Of Waterloo",
+  //     subjects: ["IGCSE", "Physics"],
+  //     description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     imageSrc: img2.src,
+  //   },
+  // ];
 
   const teachers = [
     {
@@ -139,10 +140,9 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
     },
   ];
 
+  const val = await getTutorsByFilter(data.curriculum, data.subject);
 
-const val = await getTutorsByFilter(data.curriculum, data.subject)
-
-  console.log("Tutor Section is here..", val)
+  console.log("Tutor Section is here..", val);
   return (
     <div className={styles.main}>
       <Typography
@@ -156,7 +156,7 @@ const val = await getTutorsByFilter(data.curriculum, data.subject)
       {data?.view === "Row View" ? (
         <ListView data={teachers} />
       ) : (
-        <GridView cardsData={cardsData} />
+        <GridView cardsData={val} />
       )}
     </div>
   );

@@ -39,7 +39,7 @@ export type PageData = {
     image: string;
     imageAltText: string;
   };
-  hero_section_from: {
+  with_form: {
     header: string;
     headerTag: string;
     paragraph: string;
