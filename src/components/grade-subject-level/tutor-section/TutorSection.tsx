@@ -14,6 +14,7 @@ import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
 import { tutor_section } from "@/types/grade-subject-level.types";
+import { getTutorsByFilter } from "@/services/grade-subject-level/grade-subject-level";
 type IProps = {
   data?: tutor_section;
 };
@@ -27,7 +28,7 @@ export type CardProps = {
   imageSrc: string;
 };
 
-const Form: React.FunctionComponent<IProps> = ({ data }) => {
+const Form: React.FunctionComponent<IProps> = async ({ data }) => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const cardsData: CardProps[] = [
@@ -138,6 +139,10 @@ const Form: React.FunctionComponent<IProps> = ({ data }) => {
     },
   ];
 
+
+const val = await getTutorsByFilter(data.curriculum, data.subject)
+
+  console.log("Tutor Section is here..", val)
   return (
     <div className={styles.main}>
       <Typography
