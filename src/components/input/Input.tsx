@@ -39,28 +39,35 @@ function Input({
     onChange(name, e.target.value);
   };
   return (
-    <div className={`${styles.container} ${className}`}>
-      <label
-        htmlFor={name}
-        className={`${styles.label} ${
-          isFocused || value ? styles.labelFocused : ""
-        }  ${leagueSpartan.className}`}
-      >
-        {label} {required && "*"}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={handleInputChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        placeholder={isFocused ? placeholder : ""}
-        className={`${styles.input} ${leagueSpartan.className}`} // Apply the font class to the input
-        required={required}
-      />
-    </div>
+    // <div className={`${styles.container} ${className}`}>
+    //   <label
+    //     htmlFor={name}
+    //     className={`${styles.label} ${
+    //       isFocused || value ? styles.labelFocused : ""
+    //     }  ${leagueSpartan.className}`}
+    //   >
+    //     {label} {required && "*"}
+    //   </label>
+    //   <input
+    //     id={name}
+    //     name={name}
+    //     type={type}
+    //     value={value}
+    //     onChange={handleInputChange}
+    //     onFocus={handleFocus}
+    //     onBlur={handleBlur}
+    //     placeholder={isFocused ? placeholder : ""}
+    //     className={`${styles.input} ${leagueSpartan.className}`}
+    //     required={required}
+    //   />
+    // </div>
+    <input
+      value={label}
+      onChange={handleInputChange}
+      placeholder={placeholder}
+      // placeholder={isFocused ? placeholder : ""}
+      className={`${styles.input} ${leagueSpartan.className}`}
+    />
   );
 }
 

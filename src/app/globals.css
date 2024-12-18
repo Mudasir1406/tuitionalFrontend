@@ -440,8 +440,6 @@ select:focus {
   border: none !important;
 }
 
-
-
 /* Global Typography Styles */
 
 /* Base styles for larger screens */
@@ -613,3 +611,12 @@ a {
     line-height: 2.5vh;
   }
 }
+
+/* .PhoneInputCountry {
+  height: 22px;
+}
+
+.PhoneInputCountry img {
+  height: 22px;
+  width: auto;
+} */

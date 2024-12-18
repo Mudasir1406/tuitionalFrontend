@@ -148,13 +148,37 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          placeholder={"Enter name here ..."}
+          className={`${styles.input} ${leagueSpartan.className}`}
+        />
+
+        <Input
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder={"Enter email here ..."}
+          className={`${styles.input} ${leagueSpartan.className}`}
+        />
+
+        {/* <Input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           label="Name"
           placeholder="Enter your name"
           required
           // className={styles.input}
-        />
+        /> */}
+        {/* 
+        <input
+          value={formData.email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          placeholder={"Enter email here ..."}
+          className={`${styles.input} ${leagueSpartan.className}`}
+          // placeholder="Enter your name"
+        /> */}
 
-        <Input
+        {/* <Input
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -162,7 +186,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           placeholder="Enter your Email"
           required
           // className={styles.input}
-        />
+        /> */}
         {/* <TextField
           // sx={styles.input}
 
@@ -186,7 +210,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             value={formData?.phone || ""}
             onChange={(e) => handleChange("phone", String(e))}
             inputComponent={CustomInput}
-            className={styles.phoneInput}
+            className={`${styles.phoneInput}`}
             style={{
               boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
               height: "42px",
@@ -239,17 +263,16 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       </div>
       <div>
         <TextField
-          //   sx={[styles.input]}
-
           fullWidth
           multiline
           rows={4}
           name="Message"
           value={formData.message}
           onChange={(e) => handleChange("message", e.target.value)}
-          label="Message*"
-          variant="outlined"
-          className={`${leagueSpartan.className} ${styles.input} ${styles.textField}`}
+          // label="Message*"
+          // variant="outlined"
+          placeholder="Enter your message here..."
+          className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
         />
       </div>
 

@@ -60,18 +60,20 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Hero Section":
         return (
           <>
-            <Box sx={styles.heroContanier}>
-              <Grid container>
-                <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <Hero data={data?.hero_section} />
+            {data?.hero_section && (
+              <Box sx={styles.heroContanier}>
+                <Grid container>
+                  <Grid item lg={6} md={12} sm={12} xs={12}>
+                    <Hero data={data?.hero_section} />
+                  </Grid>
+                  <HeroInfo
+                    image={data?.hero_section?.image}
+                    imageAltText={data?.hero_section?.imageAltText}
+                  />
+                  {/* <Form /> */}
                 </Grid>
-                <HeroInfo
-                  image={data?.hero_section?.image}
-                  imageAltText={data?.hero_section?.imageAltText}
-                />
-                {/* <Form /> */}
-              </Grid>
-            </Box>
+              </Box>
+            )}
             <SectionsBox />
           </>
         );
@@ -122,9 +124,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Blog CTA":
         return data.blog_CTA && <BlogCta data={data?.blog_CTA} />;
       case "FAQs":
-        return (
-          data.Faqs  && <FrequentlyQuestions data={data?.Faqs} />
-        );
+        return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
       case "what we offer":
         return <Offer />;
       case "get started":
