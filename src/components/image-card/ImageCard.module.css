@@ -44,7 +44,8 @@
   display: flex;
   justify-content: left;
   /* gap: 3px; */
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  column-gap: 4px;
 }
 
 .subject {
@@ -116,4 +117,10 @@
   text-align: center;
   padding: 18px;
   margin: 20px 0;
+}
+
+.showMore {
+  color: #38b6ff;
+  cursor: pointer;
+  font-weight: bold;
 }

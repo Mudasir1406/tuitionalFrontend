@@ -19,13 +19,14 @@ import {
 // import TutorIcon from '../../../../../public/assets/icons/11036302 1.svg'
 
 interface props {
-  data: {
-    name: string;
-    hoursProvided: number;
-    description: string;
-    title: string;
-    imageSrc: string;
-  }[];
+  data: any[];
+  // data: {
+  //   name: string;
+  //   hoursProvided: number;
+  //   description: string;
+  //   title: string;
+  //   imageSrc: string;
+  // }[];
 }
 
 function ListView({ data }: props) {
@@ -33,7 +34,7 @@ function ListView({ data }: props) {
     <div className={styles.main}>
       <div className={styles.mainList}>
         {data?.slice(0, 4).map((teacher, index) => (
-          <TeacherCard key={index} teacher={teacher} />
+          <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </div>
       <div className={styles.info}>

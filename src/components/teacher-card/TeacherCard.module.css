@@ -13,14 +13,14 @@
   border-radius: 12px;
   padding: 16px;
   margin: 16px auto;
-  transition: transform 0.3s ease;
+  /* transition: transform 0.3s ease; */
 }
 .bold {
   font-weight: 600;
 }
-.card:hover {
+/* .card:hover {
   transform: translateY(-4px);
-}
+} */
 
 .mt1 {
   margin-top: 6px;
@@ -141,4 +141,10 @@
   text-align: center;
   padding: 18px;
   /* margin: 20px 0; */
+}
+
+.showMore {
+  color: #38b6ff;
+  cursor: pointer;
+  font-weight: bold;
 }
