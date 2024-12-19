@@ -43,11 +43,11 @@ function GridView({ cardsData }: props) {
       <div className={styles.cardContainer}>
         <div
           className={styles.cardWrapper}
-          style={{
-            transform: `translateX(-${
-              currentIndex * (100 / (isLargeOrAbove ? 4 : 2))
-            }%)`,
-          }}
+          // style={{
+          //   transform: `translateX(-${
+          //     currentIndex * (100 / (isLargeOrAbove ? 1 : 2))
+          //   }%)`,
+          // }}
         >
           {cardsData.slice(0, 4)?.map((card, i) => (
             <div key={i} className={styles.card}>

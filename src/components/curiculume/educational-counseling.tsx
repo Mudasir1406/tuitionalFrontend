@@ -11,7 +11,7 @@ const EducationalCounseling: React.FunctionComponent<{
 }> = ({ data }) => {
   return (
     <div>
-      <Box sx={{ paddingX: "5vw", paddingTop: "10vh" }}>
+      <Box sx={{ paddingX: "5vw" }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>

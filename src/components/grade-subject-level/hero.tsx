@@ -12,13 +12,16 @@ type IProps = {
 };
 
 const Hero: React.FC<IProps> = ({ data }) => {
-  console.log("heroComp", data);
+  // console.log("heroComp", data);
   return (
     <>
       <Box
         sx={{
           height: { lg: "65vh" },
           paddingLeft: { lg: "5vw" },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
           // marginX: { sm: "12px", lg: 0 },
         }}
       >
@@ -201,7 +204,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 xs: "center",
                 lg: "start",
               },
-              marginTop: "3vh",
+              marginTop: "5vh",
 
               gap: "1rem",
             }}
@@ -210,6 +213,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
+                
               }}
             >
               <Image
@@ -235,6 +239,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
+                
               }}
             >
               <Typography

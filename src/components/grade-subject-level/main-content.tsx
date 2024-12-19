@@ -54,7 +54,7 @@ export default MainContent;
 const style = {
   contanier: { paddingX: "5vw" },
   grid: {
-    margin: { lg: "4vh auto" },
+    margin: { lg: "0vh auto" },
   },
   title: {
     width: {
@@ -74,7 +74,7 @@ const style = {
     marginBottom: { xs: "2vh", md: "3vh" },
   },
   box: {
-    margin: "36px 0",
+    margin: "0px 0",
   },
   description: {
     color: "#2D2D2D",

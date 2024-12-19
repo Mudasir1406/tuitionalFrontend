@@ -25,7 +25,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
       </Box>
 
-      <Box sx={style.contain}>
+      <Box>
         <Grid container spacing={2} justifyContent="center">
           {data?.subjects.map(
             (
@@ -79,7 +79,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
 export default PopularSubjects;
 
 const style = {
-  contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
+  // contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
     textAlign: "center",
     // fontWeight: "600",

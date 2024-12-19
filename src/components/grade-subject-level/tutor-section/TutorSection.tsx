@@ -143,8 +143,8 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
 
   const val = await getTutorsByFilter(data.curriculum, data.subject);
 
-  console.log("Tutor val is here..", val);
-  console.log("Tutor Section is here..", data);
+  // console.log("Tutor val is here..", val);
+  // console.log("Tutor Section is here..", data);
   return (
     <div className={styles.main}>
       <Typography

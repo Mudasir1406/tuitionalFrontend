@@ -121,8 +121,8 @@ const style = {
     //  margin: { lg: "6vh 7vh", xs: "3vh 3vw" }
     width: { lg: "auto", sm: "auto" },
     margin: {
-      xs: "3vh 3vw",
-      lg: "6vh 5vw",
+      xs: "0vh 3vw",
+      lg: "0vh 5vw",
     },
   },
 

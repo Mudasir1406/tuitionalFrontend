@@ -13,7 +13,9 @@
 }
 
 .cardWrapper {
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -40,4 +42,22 @@
 .leftButton:hover,
 .rightButton:hover {
   background-color: #d1d5db;
+}
+
+@media (max-width: 576px) {
+  .cardWrapper {
+    grid-template-columns: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardWrapper {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .cardWrapper {
+    grid-template-columns: auto auto auto;
+  }
 }
