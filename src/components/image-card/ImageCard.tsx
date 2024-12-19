@@ -20,7 +20,7 @@ const ImageCard = ({ data }: props) => {
     setShowFull((prev) => !prev);
   };
 
-  const maxLength = 120;
+  const maxLength = 100;
 
   return (
     // <div className={styles.cardContainer}>
@@ -76,14 +76,14 @@ const ImageCard = ({ data }: props) => {
         >
           {showFull || data?.Description.length <= maxLength
             ? data?.Description
-            : `${data?.Description.substring(0, maxLength)}...`}
+            : `${data?.Description.substring(0, maxLength)} `}
           {data?.Description.length > maxLength && (
             <span
               className={styles.showMore}
               onClick={toggleShowMore}
               style={{ color: "blue", cursor: "pointer", marginLeft: "5px" }}
             >
-              {showFull ? "Show Less" : "Show More"}
+              {showFull ? "Show Less" : "..."}
             </span>
           )}
         </Typography>

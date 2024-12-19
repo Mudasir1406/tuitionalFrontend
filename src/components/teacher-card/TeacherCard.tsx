@@ -26,7 +26,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
     setShowFull((prev) => !prev);
   };
 
-  const maxLength = 120;
+  const maxLength = 100;
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -93,14 +93,14 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           >
             {showFull || teacher?.Description.length <= maxLength
               ? teacher?.Description
-              : `${teacher?.Description.substring(0, maxLength)}...`}
+              : `${teacher?.Description.substring(0, maxLength)} `}
             {teacher?.Description.length > maxLength && (
               <span
                 className={styles.showMore}
                 onClick={toggleShowMore}
                 style={{ color: "blue", cursor: "pointer", marginLeft: "5px" }}
               >
-                {showFull ? "Show Less" : "Show More"}
+                {showFull ? "Show Less" : "..."}
               </span>
             )}
           </Typography>
