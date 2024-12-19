@@ -99,7 +99,10 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
 };
 export default FrequentlyQuestions;
 const style = {
-  contanier: { marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } },
+  contanier: {
+    //  marginY: { lg: "13vh" },
+    marginX: { lg: "4vh", xs: "3vh" },
+  },
   frequently: {
     // fontWeight: "600",
     // fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },

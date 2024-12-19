@@ -148,3 +148,10 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+@media (max-width: 576px) {
+  .cardContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}

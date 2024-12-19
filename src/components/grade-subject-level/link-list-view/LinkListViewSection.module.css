@@ -3,7 +3,7 @@
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  padding: 2vh 5vw;
+  padding: 0vh 5vw;
 }
 
 .list {

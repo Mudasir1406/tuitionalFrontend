@@ -38,15 +38,8 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
 
   return (
     <div className={styles.main}>
-      {/* <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        component={"h3"}
-        variant="h3"
-      >
-       
-      </Typography> */}{" "}
+     
       <Typography
-        // sx={style.popularText}
         className={`${leagueSpartan.className} ${styles.title}`}
         variant={data?.headerTag ? data.headerTag : ("h3" as any)}
         component={data?.headerTag ? data.headerTag : ("h3" as any)}
@@ -56,14 +49,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
       ></Typography>
       <div className={styles.sections}>
         <div className={styles.eachSection}>
-          {/* <Typography
-            className={`${leagueSpartan.className} ${styles.subHeading}`}
-            component={"h3"}
-            variant="h3"
-          >
-            Benefits of CAIE
-          </Typography> */}
-
+      
             <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         variant={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
