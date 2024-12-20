@@ -92,36 +92,36 @@ const styles = {
   questionText: {
     display: "flex",
     fontSize: {
-      xs: "1.7vh",
+      xs: "3.7vh",
       sm: "1.8vh",
       md: "2vh",
       lg: "2.5vh",
     },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "2.7vh",
-      sm: "2.8vh",
-      md: "3.2vh",
-      lg: "3.4vh",
-    },
+    // fontWeight: 500,
+    // lineHeight: {
+    //   xs: "2.7vh",
+    //   sm: "2.8vh",
+    //   md: "3.2vh",
+    //   lg: "3.4vh",
+    // },
     marginX: "10px",
     color: "#000000",
   },
   answerText: {
     display: "flex",
-    fontSize: {
-      xs: "1.2vh",
-      sm: "1.3vh",
-      md: "1.4vh",
-      lg: "1.7vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "2.6vh",
-      sm: "2.8vh",
-      md: "3.2vh",
-      lg: "3.2vh",
-    },
+    // fontSize: {
+    //   xs: "1.2vh",
+    //   sm: "1.3vh",
+    //   md: "1.4vh",
+    //   lg: "1.7vh",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "2.6vh",
+    //   sm: "2.8vh",
+    //   md: "3.2vh",
+    //   lg: "3.2vh",
+    // },
   },
   containedButton: {
     display: "flex",

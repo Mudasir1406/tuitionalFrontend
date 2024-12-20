@@ -104,7 +104,7 @@ const styles = {
     // },
     // fontWeight: 400,
     textAlign: {
-      xs: "justify",
+      xs: "center",
       sm: "center",
       md: "start",
       lg: "center",

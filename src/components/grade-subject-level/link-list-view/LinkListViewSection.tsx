@@ -23,7 +23,7 @@ async function LinkListViewSection({ data }: IProps) {
       ></Typography>
 
       <Typography
-        className={leagueSpartan.className}
+        className={`${leagueSpartan.className} ${styles.description}`}
         component={"p"}
         variant="body2"
         dangerouslySetInnerHTML={{

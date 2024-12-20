@@ -64,8 +64,10 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                 xs: "center",
                 lg: "space-between",
               },
-              gap: "24px", // Adds equal spacing between items
+              gap: "16px", // Adds equal spacing between items
               marginTop: "3vh",
+              width: { xs: "100%", sm: "60%", lg: "100%" },
+              marginX: "auto",
             }}
           >
             {withForm ? (
@@ -85,7 +87,8 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "left",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
                     flex: "1 1 calc(50% - 24px)", // Ensures equal width for all items
                     maxWidth: "calc(50% - 24px)", // Prevents items from growing too much
                     cursor: "pointer",
@@ -112,7 +115,8 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "left",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
                     flex: "1 1 calc(50% - 24px)",
                     maxWidth: "calc(50% - 24px)",
                     cursor: "pointer",
@@ -139,7 +143,8 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "left",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
                     flex: "1 1 calc(50% - 24px)",
                     maxWidth: "calc(50% - 24px)",
                     cursor: "pointer",
@@ -166,7 +171,8 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "left",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
                     flex: "1 1 calc(50% - 24px)",
                     maxWidth: "calc(50% - 24px)",
                     cursor: "pointer",
@@ -216,9 +222,9 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                 xs: "center",
                 lg: "start",
               },
-              marginTop: "5vh",
+              marginTop: "4vh",
 
-              gap: "3rem",
+              gap: "1rem",
             }}
           >
             <Box
@@ -250,7 +256,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "1rem",
+                // gap: "1rem",
               }}
             >
               <Typography
@@ -293,7 +299,7 @@ const styles = {
     textAlign: {
       xs: "center",
       sm: "center",
-      md: "start",
+      md: "center",
       lg: "start",
     },
     // fontSize: {

@@ -26,3 +26,7 @@
 .item:hover {
   transform: translateY(-4px);
 }
+
+.description {
+  margin-top: 2.5vh;
+}

@@ -1,10 +1,17 @@
 "use client";
 
-import { leagueSpartan } from "@/app/fonts";
+// import { leagueSpartan } from "@/app/fonts";
 import { createTheme } from "@mui/material/styles";
+import { League_Spartan } from "next/font/google";
+export const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const theme = createTheme({
   typography: {
+    fontFamily: `${leagueSpartan.style.fontFamily}`, // Add font family globally
+
     // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
     h1: {
       fontSize: "6.88vh",
@@ -60,7 +67,7 @@ const theme = createTheme({
       fontWeight: 400,
       lineHeight: "2.8vh",
       "@media (max-width:600px)": {
-        fontSize: "1.5vh",
+        fontSize: "1.6vh",
         lineHeight: "2vh",
       },
     },
@@ -68,12 +75,15 @@ const theme = createTheme({
       fontSize: "2.667vh",
       fontWeight: 400,
       lineHeight: "3.5vh",
+      // textAlign: "left",
+
       "@media (max-width:900px)": {
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "1.8vh",
+        fontSize: "1.9vh",
         lineHeight: "2.4vh",
+        // textAlign: "left",
       },
     },
 
@@ -93,6 +103,7 @@ const theme = createTheme({
       "@media (max-width:600px)": {
         fontSize: "1.7vh",
         lineHeight: "2.8vh",
+        textAlign: "left",
       },
     },
     caption: {
@@ -109,12 +120,29 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "2.667vh", // Set the font size for all buttons
+          fontWeight: 500,
+          textTransform: "none", // Optional: Disable uppercase transformation
+          "@media (max-width:900px)": {
+            fontSize: "2vh", // Adjust font size for medium screens
+          },
+          "@media (max-width:600px)": {
+            fontSize: "1.8vh",
+          },
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         root: {
           fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
+          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
+
           "@media (max-width:900px)": {
             // fontSize: "16px",
           },
@@ -136,6 +164,8 @@ const theme = createTheme({
           fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
+          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
+
           "@media (max-width:900px)": {
             // fontSize: "16px",
           },

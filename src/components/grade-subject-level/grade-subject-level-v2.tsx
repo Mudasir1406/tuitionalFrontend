@@ -334,7 +334,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
 export default GradeSubjectLevelV2;
 
 const styles = {
-  verticalMargin: { marginY: "10vh" },
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
   heroContanier: {
     // width: { lg: "100%", sm: "100%" },
     paddingTop: {
