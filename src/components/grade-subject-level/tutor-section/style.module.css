@@ -12,16 +12,18 @@
   margin-bottom: 1vh;
 }
 
+.mt1 {
+  margin-top: 2vh;
+}
+
 @media (max-width: 576px) {
- .main{
-  padding: 0 12px;
- }
+  .main {
+    padding: 0 12px;
+  }
 }
 
 @media (min-width: 768px) {
-  
 }
 
 @media (min-width: 992px) {
-  
 }

@@ -121,7 +121,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
               <Box sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
                 <Grid container gap={4} sx={styles.heroDiv}>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <Hero data={data?.[name as keyof PageData]} />
+                    <Hero data={data?.[name as keyof PageData]} withForm />
                   </Grid>
 
                   <Grid

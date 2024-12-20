@@ -37,7 +37,7 @@ const Footer: React.FC = async () => {
                     height={plan.height}
                     alt="plan"
                     style={{
-                      width: "60px",
+                      width: "50px",
                       height: "60px",
                       marginTop: "10px",
                       objectFit: "contain",
@@ -110,8 +110,8 @@ const Footer: React.FC = async () => {
                 >
                   <Image
                     src={logo.src}
-                    width={logo.width}
-                    height={logo.height}
+                    width={logo.width - 40}
+                    height={logo.height - 40}
                     style={{ alignSelf: "start" }}
                     alt="logo"
                   ></Image>

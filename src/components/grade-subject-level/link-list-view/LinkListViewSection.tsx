@@ -25,7 +25,7 @@ async function LinkListViewSection({ data }: IProps) {
       <Typography
         className={leagueSpartan.className}
         component={"p"}
-        variant="subtitle2"
+        variant="body2"
         dangerouslySetInnerHTML={{
           __html: data?.paragraph,
         }}
@@ -38,7 +38,7 @@ async function LinkListViewSection({ data }: IProps) {
             key={i}
             onClick={() => redirectToExternal(ls.link, true)}
           >
-            <ArrowCircleRight color="primary" />
+            <ArrowCircleRight style={{ color: "#38b6ff" }} />
             <Typography
               className={leagueSpartan.className}
               component={"p"}

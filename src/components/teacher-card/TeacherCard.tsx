@@ -98,7 +98,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
               <span
                 className={styles.showMore}
                 onClick={toggleShowMore}
-                style={{ color: "blue", cursor: "pointer", marginLeft: "5px" }}
+                style={{ color: "#38b6ff", cursor: "pointer", marginLeft: "5px" }}
               >
                 {showFull ? "Show Less" : "..."}
               </span>

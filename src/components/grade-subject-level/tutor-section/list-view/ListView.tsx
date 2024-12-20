@@ -55,7 +55,7 @@ function ListView({ data }: props) {
             Vetted Tutor
           </Typography>
           <Typography
-            className={`${leagueSpartan.className}`}
+            className={`${leagueSpartan.className} ${styles.mt1}`}
             component={"p"}
             variant="body2"
           >

@@ -147,19 +147,30 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
   // console.log("Tutor Section is here..", data);
   return (
     <div className={styles.main}>
-      <Typography
+      {/* <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         component={"h5"}
         variant="subtitle1"
       >
         {data?.header}
-      </Typography>
+      </Typography> */}
 
-      {data?.view === "Row View" ? (
-        <ListView data={val} />
-      ) : (
-        <GridView cardsData={val} />
-      )}
+      <Typography
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+        component={data?.headerTag ? data.headerTag : ("h3" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.header,
+        }}
+      ></Typography>
+
+      <div className={styles.mt1}>
+        {data?.view === "Row View" ? (
+          <ListView data={val} />
+        ) : (
+          <GridView cardsData={val} />
+        )}
+      </div>
     </div>
   );
 };
