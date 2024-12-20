@@ -81,7 +81,9 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
         return (
           data.main_content && (
             <>
-              <MainContent data={data?.main_content} />
+              <Box sx={styles.verticalMargin}>
+                <MainContent data={data?.main_content} />
+              </Box>{" "}
             </>
           )
         );
@@ -100,35 +102,63 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "Demo Pointers":
         return (
           data?.demo_pointers?.demoPointersData.length > 0 && (
-            <DemoPointers data={data?.demo_pointers} />
+            <Box sx={styles.verticalMargin}>
+              <DemoPointers data={data?.demo_pointers} />
+            </Box>
           )
         );
       case "Popular Subjects":
         return (
           data?.popular_subjects?.subjects.length > 0 && (
-            <PopularSubjects data={data?.popular_subjects} />
+            <Box sx={styles.verticalMargin}>
+              <PopularSubjects data={data?.popular_subjects} />
+            </Box>
           )
         );
       case "Education Counseling":
         return (
           data.education_counseling && (
-            <EducationalCounseling data={data?.education_counseling} />
+            <Box sx={styles.verticalMargin}>
+              <EducationalCounseling data={data?.education_counseling} />
+            </Box>
           )
         );
       case "What our Student Says":
         return (
           data.what_our_student_says && (
-            <StudentSays data={data.what_our_student_says} />
+            <Box sx={styles.verticalMargin}>
+              <StudentSays data={data.what_our_student_says} />
+            </Box>
           )
         );
       case "Blog CTA":
-        return data.blog_CTA && <BlogCta data={data?.blog_CTA} />;
+        return (
+          data.blog_CTA && (
+            <Box sx={styles.verticalMargin}>
+              <BlogCta data={data?.blog_CTA} />
+            </Box>
+          )
+        );
       case "FAQs":
-        return data.Faqs && <FrequentlyQuestions data={data?.Faqs} />;
+        return (
+          data.Faqs && (
+            <Box sx={styles.verticalMargin}>
+              <FrequentlyQuestions data={data?.Faqs} />
+            </Box>
+          )
+        );
       case "what we offer":
-        return <Offer />;
+        return (
+          <Box sx={styles.verticalMargin}>
+            <Offer />
+          </Box>
+        );
       case "get started":
-        return <GetStarted />;
+        return (
+          <Box sx={styles.verticalMargin}>
+            <GetStarted />
+          </Box>
+        );
       // case "video section":
       //   return <div>Video Section</div>; // Assuming there’s a video component to add here
       default:
@@ -154,22 +184,35 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
 export default GradeSubjectLevel;
 
 const styles = {
+  verticalMargin: { marginY: "10vh" },
+
   heroContanier: {
-    width: { lg: "100%", sm: "100%" },
+    // width: { lg: "100%", sm: "100%" },
+    // paddingTop: {
+    //   xs: "120px",
+    //   sm: "150px",
+    //   md: "200px",
+    //   lg: 0,
+    //   xl: 0,
+    // },
     paddingTop: {
       xs: "120px",
-      sm: "150px",
-      md: "200px",
+      sm: "120px",
+      md: "120px",
       lg: 0,
       xl: 0,
     },
     height: { xs: "100%", lg: "100vh" },
+    // display: "flex",
+    // alignItems: "end",
+    // position: "relative",
+    // marginX: { xs: "3vw", sm: "3vw", lg: "0" },
     display: "flex",
-    alignItems: "end",
+    alignItems: "center",
     position: "relative",
     marginX: { xs: "3vw", sm: "3vw", lg: "0" },
   },
-  phoneContanier: { position: "relative", paddingBottom: "4vh" },
+  phoneContanier: { position: "relative", paddingBottom: "5vh" },
   phoneBackground: {
     height: "100%",
     width: "100%",
