@@ -105,14 +105,15 @@
   border: 2px solid green;
   border-radius: 8px;
   /* font-size: 14px; */
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .outlinedButton:hover {
-  background-color: green;
-  color: white;
+  background-color: white;
+  color: green;
+  border: 2px solid green;
 }
 
 .containedButton {
@@ -122,7 +123,7 @@
   background-color: #38b6ff;
   text-transform: none;
   /* font-size: 25px; */
-  font-weight: 700;
+  /* font-weight: 700; */
   line-height: 18.4px;
   text-align: center;
   border-radius: 10px;
@@ -136,7 +137,7 @@
   background-color: #38b6ff;
   /* font-size: 25px; */
   border-radius: 10px;
-  font-weight: 700;
+  /* font-weight: 700; */
   line-height: 18.4px;
   text-align: center;
   padding: 18px;
@@ -155,7 +156,7 @@
     text-align: center;
   }
 
-  .card{
+  .card {
     padding: 12px;
     width: 92%;
   }

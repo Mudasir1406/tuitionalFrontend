@@ -12,7 +12,7 @@ const EducationalCounseling: React.FunctionComponent<{
   return (
     <div>
       <Box sx={{ paddingX: "5vw" }}>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2} alignItems="">
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
               <Typography
@@ -75,6 +75,7 @@ export default EducationalCounseling;
 
 const style = {
   counseling: {
+    // justifyContent: { xs: "center" },
     background: "#B8E1F9",
     borderRadius: "5vh",
     width: {
@@ -110,6 +111,12 @@ const style = {
   },
   guidence: {
     // fontWeight: "700",
+    textAlign: {
+      xs: "start",
+      sm: "start",
+      md: "start",
+      lg: "left",
+    },
     width: {
       xs: "80vw",
       lg: "40vw",
@@ -141,6 +148,12 @@ const style = {
       xs: "80vw",
       lg: "40vw",
     },
+    textAlign: {
+      xs: "start",
+      sm: "start",
+      md: "start",
+      lg: "start",
+    },
     // fontSize: {
     //   xs: "2vh",
     //   sm: "2.2vh",
@@ -156,13 +169,13 @@ const style = {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
     color: "white",
-    fontSize: {
-      xs: "1.8vh",
-      sm: "2vh",
-      md: "2vh",
-      lg: "2vh",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "1.8vh",
+    //   sm: "2vh",
+    //   md: "2vh",
+    //   lg: "2vh",
+    // },
+    // fontWeight: 700,
     paddingY: {
       xs: "1.5vh",
       sm: "2vh",

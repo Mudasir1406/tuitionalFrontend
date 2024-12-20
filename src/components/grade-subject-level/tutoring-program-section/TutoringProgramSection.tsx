@@ -113,15 +113,15 @@ const style = {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
     backgroundColor: "white",
 
-    fontSize: {
-      xs: "4vw",
-      sm: "2.1vw",
-      md: "2vw",
-      lg: "1.4vw",
-    },
+    // fontSize: {
+    //   xs: "4vw",
+    //   sm: "2.1vw",
+    //   md: "2vw",
+    //   lg: "1.4vw",
+    // },
     borderRadius: "10px",
     letterSpacing: "-2%",
-    fontWeight: 700,
+    // fontWeight: 700,
     lineHeight: "23px",
     color: "#009BF5",
     textTransform: "none",

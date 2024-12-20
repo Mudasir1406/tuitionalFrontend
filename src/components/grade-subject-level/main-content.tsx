@@ -90,7 +90,7 @@ const style = {
     //   md: "2vh",
     // },
     // fontWeight: 400,
-    textAlign: { xs: "justify", md: "left", lg: "left" },
+    textAlign: { xs: "center", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
   },
   button: {

@@ -88,8 +88,8 @@
   box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 0.4);
   background-color: #38b6ff;
   text-transform: none;
-  font-size: 18px;
-  font-weight: 700;
+  /* font-size: 18px; */
+  /* font-weight: 700; */
   line-height: 18.4px;
   text-align: center;
   border-radius: 10px;

@@ -86,7 +86,7 @@ const style = {
     // textAlign: "center",
     // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
     // width: { lg: "45%", sm: "52%" },
-    margin: "0 auto",
+    margin: "0 auto 2.5vh auto",
   },
   subjects: {
     color: "#2D2D2D",

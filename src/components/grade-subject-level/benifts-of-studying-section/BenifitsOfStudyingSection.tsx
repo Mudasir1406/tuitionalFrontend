@@ -34,7 +34,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
       [index]: !prev[index],
     }));
   };
-
+  console.log("BenifitsOfStudyingSection", data);
   return (
     <div className={styles.main}>
       <Typography
@@ -117,7 +117,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
             }}
           ></Typography>
 
-          {data?.listArray.slice(3, 6)?.map((box, index: any) => (
+          {data?.listArray.slice(-3)?.map((box, index: any) => (
             <Grid item xs={12} key={index}>
               {/* <Box sx={style.boxes}> */}
               <div
