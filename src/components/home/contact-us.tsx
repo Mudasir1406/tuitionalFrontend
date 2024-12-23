@@ -41,8 +41,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
- 
-
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
       ...formData,
@@ -156,14 +154,16 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
               sx={styles.heading}
               className={leagueSpartan.className}
               component={"h5"}
+              variant="h2"
             >
               {/* Let&apos;s Get You Started! */}
-              Schedule a Call
+              Schedule a Call   
             </Typography>
             <Typography
               sx={styles.desc}
               className={leagueSpartan.className}
               component={"p"}
+              variant="body2"
             >
               Request a call from our academic specialist to get started with
               your successful educational journey with Tuitional.
@@ -274,7 +274,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                 type="submit"
                 // onClick={handleSubmit}
               >
-
                 {loading ? (
                   <CircularProgress
                     sx={{ width: "12px", height: "12px", color: "white" }}
@@ -304,32 +303,32 @@ export default ContactUs;
 const styles = {
   heading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 700,
 
-    marginTop: {
-      xs: "60px",
-      sm: "80px",
-      md: "90px",
-      lg: "105px",
-    },
-    marginBottom: {
-      xs: "40px",
-      sm: "20px",
-      md: "20px",
-      lg: "20px",
-    },
+    // marginTop: {
+    //   xs: "60px",
+    //   sm: "80px",
+    //   md: "90px",
+    //   lg: "105px",
+    // },
+    // marginBottom: {
+    //   xs: "40px",
+    //   sm: "20px",
+    //   md: "20px",
+    //   lg: "20px",
+    // },
     position: "relative",
     marginLeft: {
       xs: "0px",
@@ -376,15 +375,16 @@ const styles = {
     },
   },
   desc: {
-    fontSize: {
-      xs: "20px",
-      sm: "22px",
-      md: "22px",
-      lg: "22px",
-    },
-    fontWeight: 400,
-    lineHeight: "35px",
+    // fontSize: {
+    //   xs: "20px",
+    //   sm: "22px",
+    //   md: "22px",
+    //   lg: "22px",
+    // },
+    // fontWeight: 400,
+    // lineHeight: "35px",
     color: "black",
+    marginBottom:'2vh',
     textAlign: {
       xs: "center",
       sm: "center",
@@ -489,14 +489,14 @@ const styles = {
     backgroundColor: "#38B6FF",
 
     textTransform: "none",
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+    // fontSize: {
+    //   xs: "25px",
+    //   sm: "25px",
+    //   md: "25px",
+    //   lg: "25px",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "18.4px",
     textAlign: "center",
     borderRadius: "10px",
     width: "100%",
@@ -506,16 +506,16 @@ const styles = {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
       backgroundColor: "#38B6FF",
 
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
+      // fontSize: {
+      //   xs: "25px",
+      //   sm: "25px",
+      //   md: "25px",
+      //   lg: "25px",
+      // },
       borderRadius: "10px",
 
-      fontWeight: 700,
-      lineHeight: "18.4px",
+      // fontWeight: 700,
+      // lineHeight: "18.4px",
       textAlign: "center",
       padding: "18px",
       marginY: "20px",
