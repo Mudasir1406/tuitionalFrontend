@@ -48,7 +48,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               },
               index: React.Key | null | undefined
             ) => (
-              <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
+              <Grid item xs={4} sm={4} md={3} lg={1.5} key={index}>
                 <Box sx={style.cardsBoxes}>
                   <Image
                     src={

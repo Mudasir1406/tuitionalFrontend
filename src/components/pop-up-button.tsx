@@ -33,6 +33,7 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
       <Button
         sx={sx}
         className={leagueSpartan.className}
+        // variant="contained"
         href={href !== "popup" ? href : undefined} // Only set href if not "popup"
         onClick={(e) => {
           if (href === "popup") {

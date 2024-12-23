@@ -81,7 +81,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
 
     const formDataString = keyValuePairs.join("&");
 
-    console.log("formDataString", formDataString);
+    // console.log("formDataString", formDataString);
 
     try {
       const response = await fetch(
@@ -160,47 +160,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           className={`${styles.input} ${leagueSpartan.className}`}
         />
 
-        {/* <Input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          label="Name"
-          placeholder="Enter your name"
-          required
-          // className={styles.input}
-        /> */}
-        {/* 
-        <input
-          value={formData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          placeholder={"Enter email here ..."}
-          className={`${styles.input} ${leagueSpartan.className}`}
-          // placeholder="Enter your name"
-        /> */}
-
-        {/* <Input
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          label="Email"
-          placeholder="Enter your Email"
-          required
-          // className={styles.input}
-        /> */}
-        {/* <TextField
-          // sx={styles.input}
-
-          fullWidth
-          name="Email"
-          // value={formData.Parent}
-          // onChange={handleChange}
-          value={formData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          label="Email*"
-          variant="outlined"
-          type="email"
-          className={`${leagueSpartan.className} ${styles.input}`}
-        /> */}
+       
       </div>
 
       <div className={styles.inputDiv}>

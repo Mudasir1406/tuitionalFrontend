@@ -21,7 +21,7 @@ const theme = createTheme({
         // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        fontSize: "4.88vh",
+        fontSize: "4.9vh",
         lineHeight: "5.5vh",
       },
     },
@@ -33,8 +33,8 @@ const theme = createTheme({
         // fontSize: "40px",
       },
       "@media (max-width:600px)": {
-        fontSize: "3.4vh",
-        lineHeight: "4.5vh",
+        fontSize: "3.8vh",
+        lineHeight: "4.6vh",
       },
     },
     h3: {
@@ -46,7 +46,7 @@ const theme = createTheme({
       },
       "@media (max-width:600px)": {
         // fontSize: "30px",
-        fontSize: "3.5vh",
+        fontSize: "3.6vh",
         lineHeight: "4.4vh",
       },
     },
@@ -67,8 +67,8 @@ const theme = createTheme({
       fontWeight: 400,
       lineHeight: "2.8vh",
       "@media (max-width:600px)": {
-        fontSize: "1.6vh",
-        lineHeight: "2vh",
+        fontSize: "1.7vh",
+        lineHeight: "2.1vh",
       },
     },
     body2: {
@@ -81,8 +81,8 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "1.9vh",
-        lineHeight: "2.4vh",
+        fontSize: "2vh",
+        lineHeight: "2.5vh",
         // textAlign: "left",
       },
     },
@@ -92,7 +92,7 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.9vh",
       "@media (max-width:600px)": {
-        fontSize: "2.2vh",
+        fontSize: "2.3vh",
         lineHeight: "2.9vh",
       },
     },
@@ -101,7 +101,7 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "1.7vh",
+        fontSize: "1.8vh",
         lineHeight: "2.8vh",
         textAlign: "left",
       },
@@ -114,7 +114,7 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "1.7vh",
+        fontSize: "1.8vh",
         lineHeight: "2.3vh",
       },
     },
@@ -130,7 +130,7 @@ const theme = createTheme({
             fontSize: "2vh", // Adjust font size for medium screens
           },
           "@media (max-width:600px)": {
-            fontSize: "1.8vh",
+            fontSize: "1.9vh",
           },
         },
       },
@@ -147,7 +147,7 @@ const theme = createTheme({
             // fontSize: "16px",
           },
           "@media (max-width:600px)": {
-            fontSize: "1.8vh",
+            fontSize: "1.9vh",
             lineHeight: "2.4vh",
             // height: "42px",
             // padding: "0",
@@ -170,7 +170,7 @@ const theme = createTheme({
             // fontSize: "16px",
           },
           "@media (max-width:600px)": {
-            fontSize: "1.8vh",
+            fontSize: "1.9vh",
             lineHeight: "2.4vh",
             // height: "42px",
           },

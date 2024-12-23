@@ -64,7 +64,7 @@ const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
             // fontFamily: "var(--font-leagueSpartan)",
             // fontFamily: "League Spartan",
 
-            minHeight: "40px", // Ensure minHeight of the OutlinedInput
+            minHeight: "40px", 
 
             // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
             // "& .MuiOutlinedInput-root": {

@@ -161,7 +161,7 @@ const style = {
     // },
     // fontWeight: 400,
     textAlign: {
-      xs: "justify",
+      xs: "center",
       lg: "center",
     },
     padding: {
