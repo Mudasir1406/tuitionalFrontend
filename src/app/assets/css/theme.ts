@@ -67,7 +67,7 @@ const theme = createTheme({
       fontWeight: 400,
       lineHeight: "2.8vh",
       "@media (max-width:600px)": {
-        fontSize: "1.7vh",
+        fontSize: "1.8vh",
         lineHeight: "2.1vh",
       },
     },
@@ -81,7 +81,7 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "2vh",
+        fontSize: "2.1vh",
         lineHeight: "2.5vh",
         // textAlign: "left",
       },
@@ -101,7 +101,7 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "1.8vh",
+        fontSize: "2vh",
         lineHeight: "2.8vh",
         textAlign: "left",
       },

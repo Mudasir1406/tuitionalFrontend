@@ -101,13 +101,13 @@ const style = {
     padding: "16px",
     boxShadow: "0px -1px 10px 0px rgba(0, 0, 0, 0.15) inset",
 
-    fontSize: {
-      xs: "1.5vh",
-      lg: "2vh",
-    },
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   lg: "2vh",
+    // },
     transition: "all .2s ease-in-out",
 
-    fontWeight: 500,
+    // fontWeight: 500,
     ":hover": {
       backgroundColor: "#38B6FF59",
       transform: "scale(1.02)",
