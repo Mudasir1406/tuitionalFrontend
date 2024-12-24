@@ -201,9 +201,12 @@ const style = {
     //   md: "60%",
     //   lg: "30%",
     // },
+    transition: "all .5s ease-in-out",
+
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
+      transform: "scale(1.02)",
     },
   },
 };

@@ -25,7 +25,7 @@ const Faqs: React.FC = async () => {
         <Typography
           sx={styles.heading}
           className={leagueSpartan.className}
-          component={"h4"}
+          component={"h2"}
           variant="h2"
         >
           Frequently Asked Questions
@@ -196,14 +196,14 @@ const styles = {
 
     letterSpacing: "-2%",
 
-    fontSize: {
-      xs: "1.5vh",
-      sm: "1.7vh",
-      md: "1.9vh",
-      lg: "2.2vh",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   sm: "1.7vh",
+    //   md: "1.9vh",
+    //   lg: "2.2vh",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "18.4px",
     textAlign: "center",
     borderRadius: "10px",
 
