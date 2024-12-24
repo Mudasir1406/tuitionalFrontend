@@ -107,13 +107,15 @@
   /* font-size: 14px; */
   /* font-weight: bold; */
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.5s ease-in-out;
 }
 
 .outlinedButton:hover {
   background-color: white;
   color: green;
   border: 2px solid green;
+  transform: scale(1.02);
+
 }
 
 .containedButton {
@@ -130,18 +132,13 @@
   width: 100%;
   padding: 18px;
   /* margin: 20px 0; */
+  transition: all 0.5s ease-in-out;
 }
 
 .containedButton:hover {
-  box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 0.4);
   background-color: #38b6ff;
-  /* font-size: 25px; */
-  border-radius: 10px;
-  /* font-weight: 700; */
-  line-height: 18.4px;
-  text-align: center;
-  padding: 18px;
-  /* margin: 20px 0; */
+  transform: scale(1.02);
+  box-shadow: 1px 4px 24px 0px #38b6ffb2;
 }
 
 .showMore {

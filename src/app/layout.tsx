@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   // verification: {
   //   google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   // },
-};
+};  
 import { Toaster } from "react-hot-toast";
 import theme from "./assets/css/theme";
 export default function RootLayout({

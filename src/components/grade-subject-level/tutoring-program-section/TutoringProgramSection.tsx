@@ -50,12 +50,12 @@ function TutoringProgramSection({ data }: props) {
             alignItems: "center",
             justifyContent: "center",
           }}
-          spacing={2}
+          // spacing={2}
         >
           {/* <Grid item lg={1} sm={12}> */}
 
           {/* </Grid> */}
-          <Grid item md={9.5} sm={9.5} xs={12}>
+          <Grid  md={9.5} sm={9.5} xs={12}>
             <div className={styles.leftDiv}>
               <div className={styles.imageContanier}>
                 <Image
@@ -82,7 +82,7 @@ function TutoringProgramSection({ data }: props) {
             </div>
           </Grid>
 
-          <Grid item md={2.5} sm={2.5} xs={12}>
+          <Grid  md={2.5} sm={2.5} xs={12}>
             {data.link ? (
               <Button
                 onClick={() => handleRedirect(data.link)}
