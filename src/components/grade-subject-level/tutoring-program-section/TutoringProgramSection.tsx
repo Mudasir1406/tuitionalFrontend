@@ -55,7 +55,7 @@ function TutoringProgramSection({ data }: props) {
           {/* <Grid item lg={1} sm={12}> */}
 
           {/* </Grid> */}
-          <Grid  md={9.5} sm={9.5} xs={12}>
+          <Grid md={9.5} sm={9.5} xs={12}>
             <div className={styles.leftDiv}>
               <div className={styles.imageContanier}>
                 <Image
@@ -82,7 +82,7 @@ function TutoringProgramSection({ data }: props) {
             </div>
           </Grid>
 
-          <Grid  md={2.5} sm={2.5} xs={12}>
+          <Grid md={2.5} sm={2.5} xs={12}>
             {data.link ? (
               <Button
                 onClick={() => handleRedirect(data.link)}
@@ -126,10 +126,10 @@ const style = {
     color: "#009BF5",
     textTransform: "none",
     paddingY: {
-      xs: "15px",
-      sm: "21px",
-      md: "22px",
-      lg: "22px",
+      xs: "1.5vh",
+      sm: "1.5vh",
+      md: "2vh",
+      lg: "2vh",
     },
     paddingX: {
       xs: "25px",

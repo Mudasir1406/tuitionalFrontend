@@ -121,7 +121,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             )}
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             className={`${leagueSpartan.className} ${styles.outlinedButton}`}
             type="submit"
           >

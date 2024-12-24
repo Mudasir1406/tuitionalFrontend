@@ -71,7 +71,7 @@
 .description {
   font-size: 14px;
   color: #666;
-  margin: 0;
+  margin-bottom: 0;
 }
 
 /* Action Section */
@@ -99,15 +99,21 @@
 }
 
 .outlinedButton {
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
+  padding: 2vh;
+  display: flex;
+  align-self: center;
   background-color: white;
   color: green;
+  text-transform: none;
+
   border: 2px solid green;
-  border-radius: 8px;
+  border-radius: 10px;
   /* font-size: 14px; */
   /* font-weight: bold; */
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  line-height: 18.4px;
 }
 
 .outlinedButton:hover {
@@ -115,7 +121,6 @@
   color: green;
   border: 2px solid green;
   transform: scale(1.02);
-
 }
 
 .containedButton {
@@ -130,9 +135,11 @@
   text-align: center;
   border-radius: 10px;
   width: 100%;
-  padding: 18px;
+  /* padding: 18px; */
+
   /* margin: 20px 0; */
   transition: all 0.5s ease-in-out;
+  padding: 2vh;
 }
 
 .containedButton:hover {
@@ -156,5 +163,10 @@
   .card {
     padding: 12px;
     width: 92%;
+  }
+
+  .infoSection {
+
+    margin-bottom: 16px;
   }
 }
