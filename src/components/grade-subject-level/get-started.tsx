@@ -292,8 +292,8 @@ const GetStartedBox: React.FC<Props> = ({
       <Typography
         sx={styles.boxHeading}
         className={leagueSpartan.className}
-        variant="h2"
-        component={"h2"}
+        component={"strong"}
+        variant="h4"
       >
         {heading}
       </Typography>

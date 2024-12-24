@@ -435,10 +435,10 @@ const styles = {
     color: "#009BF5",
     textTransform: "none",
     paddingY: {
-      xs: "15px",
-      sm: "21px",
-      md: "22px",
-      lg: "22px",
+      xs: "1.5vh",
+      sm: "1.5vh",
+      md: "2vh",
+      lg: "2vh",
     },
     paddingX: {
       xs: "25px",
