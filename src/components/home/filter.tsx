@@ -72,9 +72,11 @@ const Filter: React.FC = () => {
               placeholder="Select Curriculum"
               data={filterData?.curriculum || []}
               value={formData.curriculum}
-              onChange={(e) => {
-                handleChange("curriculum", e.target.value);
-              }}
+              onChange={handleChange}
+              name="curriculum"
+              // onChange={(e) => {
+              //   handleChange("curriculum", e.target.value);
+              // }}
             />
           </Grid>
           <Grid item lg={6} sm={12} xs={12} md={12}>
@@ -82,9 +84,11 @@ const Filter: React.FC = () => {
               placeholder="Select Grade"
               data={filterData?.grade || []}
               value={formData.grade}
-              onChange={(e) => {
-                handleChange("grade", e.target.value);
-              }}
+              onChange={handleChange}
+              name="grade"
+              // onChange={(e) => {
+              //   handleChange("grade", e.target.value);
+              // }}
             />
           </Grid>
           <Grid item lg={7} sm={12} xs={12} md={12}>
@@ -92,9 +96,11 @@ const Filter: React.FC = () => {
               placeholder="Select Subject"
               data={filterData?.subject || []}
               value={formData.subjects}
-              onChange={(e) => {
-                handleChange("subjects", e.target.value);
-              }}
+              onChange={handleChange}
+              name="subjects"
+              // onChange={(e) => {
+              //   handleChange("subjects", e.target.value);
+              // }}
             />
           </Grid>
           <Grid item lg={5} sm={12} xs={12} md={12}>

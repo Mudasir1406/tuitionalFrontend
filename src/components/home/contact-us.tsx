@@ -157,7 +157,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
               variant="h2"
             >
               {/* Let&apos;s Get You Started! */}
-              Schedule a Call   
+              Schedule a Call
             </Typography>
             <Typography
               sx={styles.desc}
@@ -206,13 +206,16 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                   <DropDown
                     placeholder="Select Curriculum"
                     data={filterData?.curriculum || []}
-                    boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginTop="1.5vh"
                     marginBottom="1.5vh"
                     value={formData.curriculum}
-                    onChange={(e) => {
-                      handleChange("curriculum", e.target.value);
-                    }}
+                    onChange={handleChange}
+                    name="curriculum"
+                    // value={formData.curriculum}
+                    // onChange={(e) => {
+                    //   handleChange("curriculum", e.target.value);
+                    // }}
                   />
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -232,26 +235,31 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                   <DropDown
                     placeholder="Select Grade"
                     data={filterData?.grade || []}
-                    boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    // boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
                     // value={""}
                     // onChange={() => {}}value={formData.grade}
                     value={formData.grade}
-                    onChange={(e) => {
-                      handleChange("grade", e.target.value);
-                    }}
+                    onChange={handleChange}
+                    name="grade"
+                    // onChange={(e) => {
+                    //   handleChange("grade", e.target.value);
+                    // }}
                   />
                   <DropDown
                     placeholder="Select Subject"
                     data={filterData?.subject || []}
-                    boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+                    // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
                     value={formData.subjects}
-                    onChange={(e) => {
-                      handleChange("subjects", e.target.value);
-                    }}
+                    onChange={handleChange}
+                    name="subjects"
+                    // value={formData.subjects}
+                    // onChange={(e) => {
+                    //   handleChange("subjects", e.target.value);
+                    // }}
                   />
                 </Grid>
               </Grid>
@@ -384,7 +392,7 @@ const styles = {
     // fontWeight: 400,
     // lineHeight: "35px",
     color: "black",
-    marginBottom:'2vh',
+    marginBottom: "2vh",
     textAlign: {
       xs: "center",
       sm: "center",
