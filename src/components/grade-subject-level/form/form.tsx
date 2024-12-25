@@ -19,9 +19,9 @@ import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import styles from "./style.module.css";
 import { FormType } from "@/components/home/form-dialouge";
-import DropDown from "../../DropDown/DropDown";
 import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
+import DropDown from "@/components/DropDown/DropDown";
 
 type IProps = {
   background?: any;
@@ -159,8 +159,6 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           placeholder={"Enter email here ..."}
           className={`${styles.input} ${leagueSpartan.className}`}
         />
-
-       
       </div>
 
       <div className={styles.inputDiv}>
@@ -178,7 +176,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           />
         </div>
         <div className={styles.div}>
-          <DropDown
+          {/* <DropDown
             placeholder="Select Grade"
             data={filterData?.grade || []}
             boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
@@ -190,6 +188,15 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             onChange={(e) => {
               handleChange("grade", e.target.value);
             }}
+          /> */}
+          <DropDown
+            name="grade"
+            placeholder="Select Grade"
+            marginTop="1.5vh"
+            data={filterData?.grade || []}
+            // multiple
+            value={formData.grade}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -197,27 +204,32 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         <div className={styles.div}>
           <DropDown
             placeholder="Select Curriculum"
+            name="curriculum"
             data={filterData?.curriculum || []}
-            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+            // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
             marginTop="1.5vh"
             // marginBottom="1.5vh"
             value={formData.curriculum}
-            onChange={(e) => {
-              handleChange("curriculum", e.target.value);
-            }}
+            onChange={handleChange}
+
+            // onChange={(e) => {
+            //   handleChange("curriculum", e.target.value);
+            // }}
           />
         </div>
         <div className={styles.div}>
           <DropDown
+            name="subjects"
             placeholder="Select Subject"
             data={filterData?.subject || []}
-            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+            // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
             // marginBottom="1.5vh"
             marginTop="1.5vh"
             value={formData.subjects}
-            onChange={(e) => {
-              handleChange("subjects", e.target.value);
-            }}
+            // onChange={(e) => {
+            //   handleChange("subjects", e.target.value);
+            // }}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -228,6 +240,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           rows={4}
           name="Message"
           value={formData.message}
+          // variant=""
           onChange={(e) => handleChange("message", e.target.value)}
           // label="Message*"
           // variant="outlined"
