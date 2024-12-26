@@ -1,7 +1,8 @@
+"use client";
+
 import React from "react";
 import styles from "./ListView.module.css";
 import TeacherCard from "@/components/teacher-card/TeacherCard";
-import PortraitIcon from "@mui/icons-material/Portrait";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import TutorIcon from "../../../../../public/assets/icons/11036302 1.svg";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import styles from "./GridView.module.css";
 import { East, West } from "@mui/icons-material";
