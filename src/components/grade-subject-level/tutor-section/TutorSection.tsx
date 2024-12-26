@@ -1,16 +1,14 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Button, CircularProgress, Typography } from "@mui/material";
+// "use client";
+import React from "react";
+import { Typography } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./style.module.css";
 
-import ImageCard from "@/components/image-card/ImageCard";
 import img1 from "../../../../public/assets/images/static/blogimg1.png";
 import img2 from "../../../../public/assets/images/static/blogimg2.png";
 import img3 from "../../../../public/assets/images/static/blogimg3.png";
-import img4 from "../../../../public/assets/images/static/blogimg4.png";
-import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
+
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
 import { tutor_section } from "@/types/grade-subject-level.types";
@@ -31,7 +29,6 @@ export type CardProps = {
 };
 
 const Form: React.FunctionComponent<IProps> = async ({ data }) => {
-  const [loading, setLoading] = React.useState<boolean>(false);
 
   // const cardsData: CardProps[] = [
   //   {
