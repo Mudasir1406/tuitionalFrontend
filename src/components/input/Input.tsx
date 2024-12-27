@@ -11,6 +11,7 @@ interface CustomInputProps {
   type?: string;
   required?: boolean;
   className?: string;
+  style?: any;
 }
 
 function Input({
@@ -22,6 +23,7 @@ function Input({
   type = "text",
   required = false,
   className = "",
+  style,
 }: CustomInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -39,35 +41,36 @@ function Input({
     onChange(name, e.target.value);
   };
   return (
-    // <div className={`${styles.container} ${className}`}>
-    //   <label
-    //     htmlFor={name}
-    //     className={`${styles.label} ${
-    //       isFocused || value ? styles.labelFocused : ""
-    //     }  ${leagueSpartan.className}`}
-    //   >
-    //     {label} {required && "*"}
-    //   </label>
-    //   <input
-    //     id={name}
-    //     name={name}
-    //     type={type}
-    //     value={value}
-    //     onChange={handleInputChange}
-    //     onFocus={handleFocus}
-    //     onBlur={handleBlur}
-    //     placeholder={isFocused ? placeholder : ""}
-    //     className={`${styles.input} ${leagueSpartan.className}`}
-    //     required={required}
-    //   />
-    // </div>
-    <input
-      value={label}
-      onChange={handleInputChange}
-      placeholder={placeholder}
-      // placeholder={isFocused ? placeholder : ""}
-      className={`${styles.input} ${leagueSpartan.className}`}
-    />
+    <div className={`${styles.container} ${className}`}>
+      {/* <label
+         htmlFor={name}
+         className={`${styles.label} ${
+           isFocused || value ? styles.labelFocused : ""
+         }  ${leagueSpartan.className}`}
+       >
+         {label} {required && "*"}
+       </label>
+       <input
+         id={name}
+         name={name}
+         type={type}
+         value={value}
+         onChange={handleInputChange}
+         onFocus={handleFocus}
+         onBlur={handleBlur}
+         placeholder={isFocused ? placeholder : ""}
+         className={`${styles.input} ${leagueSpartan.className}`}
+         required={required}
+       /> */}
+      <input
+        style={style}
+        value={label}
+        onChange={handleInputChange}
+        placeholder={placeholder}
+        //  placeholder={isFocused ? placeholder : ""}
+        className={`${styles.input} ${leagueSpartan.className}`}
+      />
+    </div>
   );
 }
 

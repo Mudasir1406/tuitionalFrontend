@@ -13,9 +13,9 @@
 }
 
 .cardWrapper {
-  /* display: flex; */
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  display: flex;
+  /* display: grid; */
+  /* grid-template-columns: auto auto auto auto; */
   transition: transform 0.5s ease-in-out;
 }
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
@@ -6,6 +8,7 @@ import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";
 import Tag from "../tag/Tag";
+import { redirectToExternal } from "@/utils/helper";
 
 const EducationalCounseling: React.FunctionComponent<{
   data: PageData["why_igsce"];
@@ -13,18 +16,37 @@ const EducationalCounseling: React.FunctionComponent<{
   return (
     <div>
       <Box sx={{ paddingX: "5vw", paddingTop: "10vh" }}>
+        {data?.subjects && data?.subjects?.length > 0 && (
+          <Typography
+            sx={style.section}
+            variant={data.sectionTag as any}
+            className={leagueSpartan.className}
+            component={data.sectionTag as keyof JSX.IntrinsicElements}
+            dangerouslySetInnerHTML={{
+              __html: data?.section,
+            }}
+          ></Typography>
+        )}
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={12} md={12} lg={6}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={6}
+            order={{ xs: 1, lg: data?.right_to_left ? 2 : 1 }} // Change order only on larger screens
+          >
             <Box>
-              <Typography
-                sx={style.counseling}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle2"
-              >
-                Educational Counseling
-              </Typography>
-
+              {data?.subjects && data?.subjects?.length < 1 && (
+                <Typography
+                  sx={style.counseling}
+                  className={leagueSpartan.className}
+                  component={"p"}
+                  variant="subtitle2"
+                >
+                  Educational Counseling
+                </Typography>
+              )}
               <Typography
                 sx={style.guidence}
                 variant={data.headerTag as any}
@@ -56,33 +78,54 @@ const EducationalCounseling: React.FunctionComponent<{
                       Key Focus Areas
                     </Typography>
 
-                    <div>
+                    <Box sx={style.tags}>
                       {/* {data?.tags?.map((tag, index) => ( */}
                       {data?.subjects?.map((tag, index) => (
                         <Tag key={index} label={tag.name} index={index} />
                       ))}
-                    </div>
+                    </Box>
                   </div>
                 )}
                 <div style={style.buttonDiv}>
-                  <PopUpButton
-                    sx={style.containedBtn}
-                    text="Enroll Now"
-                    href="popup"
-                  />
+                  {data?.subjects && data?.subjects?.length > 0 ? (
+                    <Button
+                      variant="contained"
+                      sx={style.containedBtn}
+                      className={leagueSpartan.className}
+                      onClick={() => redirectToExternal(data?.buttonLink)}
+                    >
+                      {data?.buttonText}
+                    </Button>
+                  ) : (
+                    <PopUpButton
+                      sx={style.containedBtn}
+                      text={data?.buttonText}
+                      href="popup"
+                    />
+                  )}
                 </div>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={6} alignItems="end">
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={6}
+            alignItems="end"
+            order={{ xs: 2, lg: data?.right_to_left ? 1 : 2 }} // Change order only on larger screens
+          >
             <Box>
               <Image
-                src={counsling}
+                src={data?.image ? data?.image : counsling}
                 alt="Counseling Image"
                 style={{
                   width: "100%",
                   height: "auto",
                 }}
+                width={counsling.width}
+                height={counsling.height}
               />
             </Box>
           </Grid>
@@ -121,6 +164,7 @@ const style = {
   },
   btnDiv: {
     display: "flex",
+    flexDirection: { xs: "column", lg: "row" },
     justifyContent: "space-between",
     maxWidth: { xs: "100%", md: "90%" },
     marginRight: "auto",
@@ -128,24 +172,17 @@ const style = {
   tagsDiv: {
     width: "50%",
   },
+  tags: {
+    display: "flex",
+    columnGap: "6px",
+  },
+  section: { textAlign: "center" },
   guidence: {
     // fontWeight: "700",
     width: {
       xs: "80vw",
       lg: "40vw",
     },
-    // fontSize: {
-    //   xs: "3.1vh",
-    //   sm: "3.5vh",
-    //   md: "6vh",
-    //   lg: "6vh",
-    // },
-    // lineHeight: {
-    //   xs: "6vh",
-    //   sm: "6.5vh",
-    //   md: "7vh",
-    //   lg: "7vh",
-    // },
     paddingY: {
       xs: "2vh",
       sm: "2.5vh",
@@ -156,17 +193,10 @@ const style = {
 
   desc: {
     color: "#2D2D2D",
-    // fontWeight: 400,
     width: {
       xs: "80vw",
       lg: "40vw",
     },
-    // fontSize: {
-    //   xs: "2vh",
-    //   sm: "2.2vh",
-    //   md: "2.4vh",
-    //   lg: "2vh",
-    // },
   },
   buttonDiv: {
     display: "flex",

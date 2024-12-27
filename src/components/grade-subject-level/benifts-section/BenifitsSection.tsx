@@ -25,7 +25,7 @@ type IProps = {
 };
 
 const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
-  console.log("BenifitsSection", data);
+  // console.log("BenifitsSection", data);
   return (
     <div className={styles.main}>
       {/* <Typography
