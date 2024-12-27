@@ -1,3 +1,5 @@
+"use client";
+
 import { leagueSpartan } from "@/app/fonts";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
@@ -42,7 +44,20 @@ function TutoringProgramSection({ data }: props) {
           __html: data?.paragraph,
         }}
       ></Typography>
-      <div className={styles.contactContanier}>
+
+      <div className={styles.btnDiv}>
+        {/* {data.link && ( */}
+        <Button
+          onClick={() => handleRedirect(data.link)}
+          variant="contained"
+          sx={style.contactButton}
+          className={leagueSpartan.className}
+        >
+          {data.buttonTitle}
+        </Button>
+        {/* )} */}
+      </div>
+      {/* <div className={styles.contactContanier}>
         <Grid
           container
           sx={{
@@ -52,9 +67,7 @@ function TutoringProgramSection({ data }: props) {
           }}
           // spacing={2}
         >
-          {/* <Grid item lg={1} sm={12}> */}
-
-          {/* </Grid> */}
+         
           <Grid md={9.5} sm={9.5} xs={12}>
             <div className={styles.leftDiv}>
               <div className={styles.imageContanier}>
@@ -101,7 +114,7 @@ function TutoringProgramSection({ data }: props) {
             )}
           </Grid>
         </Grid>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -111,7 +124,7 @@ export default TutoringProgramSection;
 const style = {
   contactButton: {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
-    backgroundColor: "white",
+    backgroundColor: "#009bf5",
 
     // fontSize: {
     //   xs: "4vw",
@@ -123,7 +136,7 @@ const style = {
     letterSpacing: "-2%",
     // fontWeight: 700,
     lineHeight: "23px",
-    color: "#009BF5",
+    color: "white",
     textTransform: "none",
     paddingY: {
       xs: "1.5vh",
@@ -138,7 +151,7 @@ const style = {
       lg: "25px",
     },
     ":hover": {
-      backgroundColor: "white",
+      backgroundColor: "#009bf5",
       borderRadius: "10px",
       letterSpacing: "-2%",
       boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
