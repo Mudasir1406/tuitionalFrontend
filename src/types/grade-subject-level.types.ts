@@ -92,6 +92,13 @@ export type PageData = {
     header: string;
     headerTag: string;
     paragraph: string;
+    buttonText: string;
+    buttonLink: string;
+    image: string;
+    imageAltText: string;
+    section: string;
+    sectionTag: string;
+    right_to_left: boolean;
     subjects?: { name: string; link: string }[];
   };
   what_our_student_says: {

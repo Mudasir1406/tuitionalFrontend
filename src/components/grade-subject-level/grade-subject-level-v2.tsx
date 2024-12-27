@@ -19,7 +19,7 @@ const GetStarted = dynamic(
   { ssr: true }
 );
 const EducationalCounseling = dynamic(
-  () => import("@/components/curiculume/educational-counseling"),
+  () => import("@/components/curiculume/why-choose"),
   { ssr: true }
 );
 
@@ -108,7 +108,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
               </Grid>
             </Box>
           )}
-          <SectionsBox />
+          {/* <SectionsBox /> */}
         </>
       );
     }
@@ -138,7 +138,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
               </Box>
             </Box>
           )}
-          <SectionsBox />
+          {/* <SectionsBox /> */}
         </>
       );
     } else if (name.includes("igcse_in_dubai")) {
@@ -165,9 +165,10 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       return (
         <>
           {data?.[name as keyof PageData]?.isShow && (
-            <Box sx={styles.verticalMargin}>
-              <BenifitsSection data={data?.[name as keyof PageData]} />
-            </Box>
+            // <Box sx={styles.verticalMargin}>
+            // <Box sx={styles.phoneContanier}>
+            <BenifitsSection data={data?.[name as keyof PageData]} />
+            // </Box>
           )}
         </>
       );
@@ -192,7 +193,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       );
     }
     // case "tutoring_program":
-    else if (name.includes("tutoring_program")) {
+    else if (name.includes("tutor_program")) {
       return (
         <Box sx={styles.verticalMargin}>
           <TutoringProgramSection data={data?.[name as keyof PageData]} />
@@ -245,16 +246,18 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
           </Box>
         )
       );
-    } else if (name.includes("education_counseling")) {
-      // case "education_counseling":
-      return (
-        data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
-            <EducationalCounseling data={data?.[name as keyof PageData]} />
-          </Box>
-        )
-      );
-    } else if (name.includes("why_igsce")) {
+    }
+    // else if (name.includes("education_counseling")) {
+    //   // case "education_counseling":
+    //   return (
+    //     data?.[name as keyof PageData] && (
+    //       <Box sx={styles.verticalMargin}>
+    //         <EducationalCounseling data={data?.[name as keyof PageData]} />
+    //       </Box>
+    //     )
+    //   );
+    // }
+    else if (name.includes("why_igsce")) {
       // case "why_igsce":
       return (
         data?.[name as keyof PageData] && (

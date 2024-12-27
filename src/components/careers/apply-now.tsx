@@ -251,8 +251,9 @@ const ApplyNow: React.FunctionComponent = () => {
                 rowSpacing={0}
                 sx={{ zIndex: 1 }}
               >
-                <Grid item lg={6}>
+                <Grid item xs={12} md={12} lg={6}>
                   <Input
+                    // style={{ width: "93%" }}
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
@@ -272,6 +273,7 @@ const ApplyNow: React.FunctionComponent = () => {
 
                   <Box sx={styles.my}>
                     <Input
+                      // style={{ width: "93%" }}
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
@@ -290,6 +292,7 @@ const ApplyNow: React.FunctionComponent = () => {
                     )}
                   </Box>
                   <Input
+                    // style={{ width: "93%" }}
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
@@ -307,8 +310,9 @@ const ApplyNow: React.FunctionComponent = () => {
                     </Typography>
                   )}
                 </Grid>
-                <Grid item lg={6}>
+                <Grid item xs={12} lg={6}>
                   <Input
+                    // style={{ width: "93%" }}
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
@@ -343,6 +347,7 @@ const ApplyNow: React.FunctionComponent = () => {
                     </Typography>
                   )}
                   <Input
+                    // style={{ width: "93%" }}
                     name="position"
                     value={formData.position}
                     onChange={handleChange}
@@ -360,7 +365,7 @@ const ApplyNow: React.FunctionComponent = () => {
                     </Typography>
                   )}
                 </Grid>
-                <Grid item lg={12}>
+                <Grid item xs={12}>
                   <TextField
                     sx={[styles.input]}
                     fullWidth
@@ -609,7 +614,7 @@ const styles = {
   input: {
     backgroundColor: "white",
     marginY: "12px",
-
+    width: "100%",
     // outline: "none",
     // ":focus-visible": {
     //   outline: "none",
