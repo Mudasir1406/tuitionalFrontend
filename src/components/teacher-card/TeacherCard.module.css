@@ -13,14 +13,14 @@
   border-radius: 12px;
   padding: 16px;
   margin: 16px auto;
-  transition: transform 0.3s ease;
+  /* transition: transform 0.3s ease; */
 }
 .bold {
   font-weight: 600;
 }
-.card:hover {
+/* .card:hover {
   transform: translateY(-4px);
-}
+} */
 
 .mt1 {
   margin-top: 6px;
@@ -71,7 +71,7 @@
 .description {
   font-size: 14px;
   color: #666;
-  margin: 0;
+  margin-bottom: 0;
 }
 
 /* Action Section */
@@ -99,20 +99,28 @@
 }
 
 .outlinedButton {
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
+  padding: 2vh;
+  display: flex;
+  align-self: center;
   background-color: white;
   color: green;
+  text-transform: none;
+
   border: 2px solid green;
-  border-radius: 8px;
+  border-radius: 10px;
   /* font-size: 14px; */
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.5s ease-in-out;
+  line-height: 18.4px;
 }
 
 .outlinedButton:hover {
-  background-color: green;
-  color: white;
+  background-color: white;
+  color: green;
+  border: 2px solid green;
+  transform: scale(1.02);
 }
 
 .containedButton {
@@ -122,23 +130,43 @@
   background-color: #38b6ff;
   text-transform: none;
   /* font-size: 25px; */
-  font-weight: 700;
+  /* font-weight: 700; */
   line-height: 18.4px;
   text-align: center;
   border-radius: 10px;
   width: 100%;
-  padding: 18px;
+  /* padding: 18px; */
+
   /* margin: 20px 0; */
+  transition: all 0.5s ease-in-out;
+  padding: 2vh;
 }
 
 .containedButton:hover {
-  box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 0.4);
   background-color: #38b6ff;
-  /* font-size: 25px; */
-  border-radius: 10px;
-  font-weight: 700;
-  line-height: 18.4px;
-  text-align: center;
-  padding: 18px;
-  /* margin: 20px 0; */
+  transform: scale(1.02);
+  box-shadow: 1px 4px 24px 0px #38b6ffb2;
+}
+
+.showMore {
+  color: #38b6ff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .cardContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card {
+    padding: 12px;
+    width: 92%;
+  }
+
+  .infoSection {
+
+    margin-bottom: 16px;
+  }
 }

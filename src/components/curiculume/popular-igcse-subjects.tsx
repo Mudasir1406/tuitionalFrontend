@@ -25,7 +25,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
       </Box>
 
-      <Box sx={style.contain}>
+      <Box>
         <Grid container spacing={2} justifyContent="center">
           {data?.subjects.map(
             (
@@ -48,7 +48,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               },
               index: React.Key | null | undefined
             ) => (
-              <Grid item xs={3} sm={3} md={3} lg={1.5} key={index}>
+              <Grid item xs={4} sm={4} md={3} lg={1.5} key={index}>
                 <Box sx={style.cardsBoxes}>
                   <Image
                     src={
@@ -79,14 +79,14 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
 export default PopularSubjects;
 
 const style = {
-  contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
+  // contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
   popularText: {
     textAlign: "center",
     // fontWeight: "600",
     // textAlign: "center",
     // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
     // width: { lg: "45%", sm: "52%" },
-    margin: "0 auto",
+    margin: "0 auto 2.5vh auto",
   },
   subjects: {
     color: "#2D2D2D",

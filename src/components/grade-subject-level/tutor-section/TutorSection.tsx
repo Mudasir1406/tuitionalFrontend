@@ -1,92 +1,91 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Button, CircularProgress, Typography } from "@mui/material";
+// "use client";
+import React from "react";
+import { Typography } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./style.module.css";
 
-import ImageCard from "@/components/image-card/ImageCard";
 import img1 from "../../../../public/assets/images/static/blogimg1.png";
 import img2 from "../../../../public/assets/images/static/blogimg2.png";
 import img3 from "../../../../public/assets/images/static/blogimg3.png";
-import img4 from "../../../../public/assets/images/static/blogimg4.png";
-import { ChevronLeftSharp, East, JoinLeft, West } from "@mui/icons-material";
+
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
 import { tutor_section } from "@/types/grade-subject-level.types";
 import { getTutorsByFilter } from "@/services/grade-subject-level/grade-subject-level";
 type IProps = {
-  data?: tutor_section;
+  data: tutor_section;
 };
 
 export type CardProps = {
-  name: string;
+  "First Name": string;
+  "Last Name"?: string;
   university: string;
-  subjects: string[];
-  description: string;
-  rating: number;
-  imageSrc: string;
+  Subjects: string[];
+  Curiculum: string[];
+  Description: string;
+  "Success rate": number;
+  profileImageUrl: string;
 };
 
 const Form: React.FunctionComponent<IProps> = async ({ data }) => {
-  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const cardsData: CardProps[] = [
-    {
-      name: "Muhammad",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Sheikh",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-    {
-      name: "Siddiqi",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Khan",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-    {
-      name: "Joseph",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img1.src,
-    },
-    {
-      name: "Abraham",
-      university: "University Of Waterloo",
-      subjects: ["IGCSE", "Physics"],
-      description:
-        "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
-      rating: 4.8,
-      imageSrc: img2.src,
-    },
-  ];
+  // const cardsData: CardProps[] = [
+  //   {
+  //     "First Name": "Muhammad",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img1.src,
+  //   },
+  //   {
+  //     "First Name": "Sheikh",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img2.src,
+  //   },
+  //   {
+  //     "First Name": "Siddiqi",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img1.src,
+  //   },
+  //   {
+  //     "First Name": "Khan",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img2.src,
+  //   },
+  //   {
+  //     "First Name": "Joseph",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img1.src,
+  //   },
+  //   {
+  //     "First Name": "Abraham",
+  //     university: "University Of Waterloo",
+  //     Subjects: ["IGCSE", "Physics"],
+  //     Description:
+  //       "My love for mathematics and teaching has ever been growing and this is the reason I felt the need to not only teach high-level mathematics but also get proper degree in education.",
+  //     rating: 4.8,
+  //     profileImageUrl: img2.src,
+  //   },
+  // ];
 
   const teachers = [
     {
@@ -139,25 +138,36 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
     },
   ];
 
+  const val = await getTutorsByFilter(data.curriculum, data.subject);
 
-const val = await getTutorsByFilter(data.curriculum, data.subject)
-
-  console.log("Tutor Section is here..", val)
+  // console.log("Tutor val is here..", val);
+  // console.log("Tutor Section is here..", data);
   return (
     <div className={styles.main}>
-      <Typography
+      {/* <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         component={"h5"}
         variant="subtitle1"
       >
         {data?.header}
-      </Typography>
+      </Typography> */}
 
-      {data?.view === "Row View" ? (
-        <ListView data={teachers} />
-      ) : (
-        <GridView cardsData={cardsData} />
-      )}
+      <Typography
+        className={`${leagueSpartan.className} ${styles.title}`}
+        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+        component={data?.headerTag ? data.headerTag : ("h3" as any)}
+        dangerouslySetInnerHTML={{
+          __html: data?.header,
+        }}
+      ></Typography>
+
+      <div className={styles.mt1}>
+        {data?.view === "Row View" ? (
+          <ListView data={val} />
+        ) : (
+          <GridView cardsData={val} />
+        )}
+      </div>
     </div>
   );
 };

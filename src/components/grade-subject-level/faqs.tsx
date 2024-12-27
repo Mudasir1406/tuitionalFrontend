@@ -99,13 +99,20 @@ const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
 };
 export default FrequentlyQuestions;
 const style = {
-  contanier: { marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } },
+  contanier: {
+    //  marginY: { lg: "13vh" },
+    marginX: { lg: "4vh", xs: "1vh" },
+  },
   frequently: {
     // fontWeight: "600",
     // fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
     textAlign: "center",
   },
-  faqContanier: { marginX: "auto", maxWidth: "80vw", paddingX: { lg: "2vh" } },
+  faqContanier: {
+    marginX: "auto",
+    maxWidth: { sm: "100%", md: "80vw" },
+    paddingX: { lg: "2vh" },
+  },
   frequentlyDesc: {
     color: "#2D2D2D",
     textAlign: "center",
@@ -133,7 +140,7 @@ const style = {
     // Change background for active item
     backdropFilter: "blur(5px)",
     padding: "3vh",
-    marginTop: "3vh",
+    marginTop: { xs: "1vh", md: "3vh" },
     width: "100%", // Ensure consistent width
     boxSizing: "border-box", // Include padding and border in width
     minWidth: "300px", // Set a minimum width for consistency

@@ -1,7 +1,8 @@
+"use client";
+
 import React from "react";
 import styles from "./ListView.module.css";
 import TeacherCard from "@/components/teacher-card/TeacherCard";
-import PortraitIcon from "@mui/icons-material/Portrait";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import TutorIcon from "../../../../../public/assets/icons/11036302 1.svg";
@@ -19,13 +20,14 @@ import {
 // import TutorIcon from '../../../../../public/assets/icons/11036302 1.svg'
 
 interface props {
-  data: {
-    name: string;
-    hoursProvided: number;
-    description: string;
-    title: string;
-    imageSrc: string;
-  }[];
+  data: any[];
+  // data: {
+  //   name: string;
+  //   hoursProvided: number;
+  //   description: string;
+  //   title: string;
+  //   imageSrc: string;
+  // }[];
 }
 
 function ListView({ data }: props) {
@@ -33,7 +35,7 @@ function ListView({ data }: props) {
     <div className={styles.main}>
       <div className={styles.mainList}>
         {data?.slice(0, 4).map((teacher, index) => (
-          <TeacherCard key={index} teacher={teacher} />
+          <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </div>
       <div className={styles.info}>
@@ -54,7 +56,7 @@ function ListView({ data }: props) {
             Vetted Tutor
           </Typography>
           <Typography
-            className={`${leagueSpartan.className}`}
+            className={`${leagueSpartan.className} ${styles.mt1}`}
             component={"p"}
             variant="body2"
           >

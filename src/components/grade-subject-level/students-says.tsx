@@ -86,8 +86,8 @@ const styles = {
       lg: "auto",
     },
     margin: {
-      xs: "4vh 3vw",
-      lg: "4vh 2vh",
+      xs: "0vh 3vw",
+      lg: "0vh 2vh",
     },
   },
   desc: {
@@ -104,7 +104,7 @@ const styles = {
     // },
     // fontWeight: 400,
     textAlign: {
-      xs: "justify",
+      xs: "center",
       sm: "center",
       md: "start",
       lg: "center",

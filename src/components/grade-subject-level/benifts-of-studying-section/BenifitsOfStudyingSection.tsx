@@ -16,10 +16,10 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
 }) => {
   const [expandedBoxes, setExpandedBoxes] = useState<{
     [key: number]: boolean;
-  }>({ 0: true }); 
+  }>({ 0: true });
   const [expandedRequirement, setExpandedRequirement] = useState<{
     [key: number]: boolean;
-  }>({ 0: true }); 
+  }>({ 0: true });
 
   const toggleBox = (index: number) => {
     setExpandedBoxes((prev) => ({
@@ -34,19 +34,10 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
       [index]: !prev[index],
     }));
   };
-
-
+  console.log("BenifitsOfStudyingSection", data);
   return (
     <div className={styles.main}>
-      {/* <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        component={"h3"}
-        variant="h3"
-      >
-       
-      </Typography> */}{" "}
       <Typography
-        // sx={style.popularText}
         className={`${leagueSpartan.className} ${styles.title}`}
         variant={data?.headerTag ? data.headerTag : ("h3" as any)}
         component={data?.headerTag ? data.headerTag : ("h3" as any)}
@@ -56,22 +47,16 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
       ></Typography>
       <div className={styles.sections}>
         <div className={styles.eachSection}>
-          {/* <Typography
-            className={`${leagueSpartan.className} ${styles.subHeading}`}
-            component={"h3"}
-            variant="h3"
-          >
-            Benefits of CAIE
-          </Typography> */}
-
-            <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
-        component={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.subTextLeft,
-        }}
-      ></Typography>
+          <Typography
+            className={`${leagueSpartan.className} ${styles.title} `}
+            variant={data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)}
+            component={
+              data?.subTextLeftTag ? data.subTextLeftTag : ("h4" as any)
+            }
+            dangerouslySetInnerHTML={{
+              __html: data?.subTextLeft,
+            }}
+          ></Typography>
 
           {data?.listArray.slice(0, 3)?.map((box, index: any) => (
             <Grid item xs={12} key={index}>
@@ -94,7 +79,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                   {expandedBoxes[index] && (
                     <Typography
                       // sx={style.desc}
-                      className={leagueSpartan.className}
+                      className={`${leagueSpartan.className} ${styles.mt1}`}
                       component={"p"}
                       variant="caption"
                     >
@@ -119,17 +104,20 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
           ))}
         </div>
         <div className={styles.eachSection}>
-         
-        <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)}
-        component={data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.subTextRight,
-        }}
-      ></Typography>
+          <Typography
+            className={`${leagueSpartan.className} ${styles.title}`}
+            variant={
+              data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)
+            }
+            component={
+              data?.subTextRightTag ? data.subTextRightTag : ("h4" as any)
+            }
+            dangerouslySetInnerHTML={{
+              __html: data?.subTextRight,
+            }}
+          ></Typography>
 
-{data?.listArray.slice(3, 6)?.map((box, index: any) => (
+          {data?.listArray.slice(-3)?.map((box, index: any) => (
             <Grid item xs={12} key={index}>
               {/* <Box sx={style.boxes}> */}
               <div
@@ -149,7 +137,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
                   {expandedRequirement[index] && (
                     <Typography
                       // sx={style.desc}
-                      className={leagueSpartan.className}
+                      className={`${leagueSpartan.className} ${styles.mt1}`}
                       component={"p"}
                       variant="caption"
                     >

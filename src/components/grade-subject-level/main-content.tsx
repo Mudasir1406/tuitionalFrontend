@@ -54,7 +54,7 @@ export default MainContent;
 const style = {
   contanier: { paddingX: "5vw" },
   grid: {
-    margin: { lg: "4vh auto" },
+    margin: { lg: "0vh auto" },
   },
   title: {
     width: {
@@ -74,7 +74,7 @@ const style = {
     marginBottom: { xs: "2vh", md: "3vh" },
   },
   box: {
-    margin: "36px 0",
+    margin: "0px 0",
   },
   description: {
     color: "#2D2D2D",
@@ -90,7 +90,7 @@ const style = {
     //   md: "2vh",
     // },
     // fontWeight: 400,
-    textAlign: { xs: "justify", md: "left", lg: "left" },
+    textAlign: { xs: "center", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
   },
   button: {
@@ -101,13 +101,13 @@ const style = {
     padding: "16px",
     boxShadow: "0px -1px 10px 0px rgba(0, 0, 0, 0.15) inset",
 
-    fontSize: {
-      xs: "1.5vh",
-      lg: "2vh",
-    },
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   lg: "2vh",
+    // },
     transition: "all .2s ease-in-out",
 
-    fontWeight: 500,
+    // fontWeight: 500,
     ":hover": {
       backgroundColor: "#38B6FF59",
       transform: "scale(1.02)",

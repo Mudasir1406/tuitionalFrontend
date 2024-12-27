@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import styles from "./GridView.module.css";
 import { East, West } from "@mui/icons-material";
@@ -6,7 +7,8 @@ import { CardProps } from "../TutorSection";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 interface props {
-  cardsData: CardProps[];
+  // cardsData: CardProps[];
+  cardsData: any[];
 }
 function GridView({ cardsData }: props) {
   const theme = useTheme();
@@ -42,11 +44,11 @@ function GridView({ cardsData }: props) {
       <div className={styles.cardContainer}>
         <div
           className={styles.cardWrapper}
-          style={{
-            transform: `translateX(-${
-              currentIndex * (100 / (isLargeOrAbove ? 4 : 2))
-            }%)`,
-          }}
+          // style={{
+          //   transform: `translateX(-${
+          //     currentIndex * (100 / (isLargeOrAbove ? 1 : 2))
+          //   }%)`,
+          // }}
         >
           {cardsData.slice(0, 4)?.map((card, i) => (
             <div key={i} className={styles.card}>

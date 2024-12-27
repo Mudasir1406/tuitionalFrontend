@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Tag.module.css";
+import { Typography } from "@mui/material";
+import { leagueSpartan } from "@/app/fonts";
 
 type TagProps = {
   label: string;
@@ -19,7 +21,16 @@ const Tag: React.FC<TagProps> = ({ label, index }) => {
   // Determine the class based on the index
   const colorClass = colorClasses[index % colorClasses.length];
 
-  return <div className={`${styles.tag} ${colorClass}`}>{label}</div>;
+  return (
+    <Typography
+      className={`${leagueSpartan.className} ${styles.tag} ${colorClass}`}
+      component={"p"}
+      variant="body2"
+    >
+      {label}
+    </Typography>
+  );
+  // <div className={`${styles.tag} ${colorClass}`}>{label}</div>);
 };
 
 export default Tag;

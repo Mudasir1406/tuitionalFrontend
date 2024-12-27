@@ -1,136 +1,148 @@
-"use client";
-import * as React from "react";
-import { Theme, useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import React, { useEffect, useRef, useState } from "react";
 import "./DropDown.css";
-import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import { ClassNames } from "@emotion/react";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: "10vh",
-    },
-  },
-};
 
 type IProps = {
   placeholder: string;
-  marginBottom?: string;
-  marginTop?: string;
   data: string[];
   multiple?: boolean;
-  boxShadow?: string;
-  value: string;
-  ClassName?: string;
-  onChange: (e: SelectChangeEvent) => void;
+  value: string | string[];
+  onChange: (field: string, value: string | string[]) => void; // Match the handleChange signature
+  className?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  name: string; // Add a 'name' prop for reusability
 };
 
-const MultipleSelectPlaceholder: React.FunctionComponent<IProps> = ({
+const DropDown: React.FunctionComponent<IProps> = ({
   placeholder,
   data,
-  multiple,
-  boxShadow,
-  marginBottom,
-  marginTop,
+  multiple = false,
   value,
   onChange,
-  ClassName,
+  className,
+  marginTop,
+  marginBottom,
+  name,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleSelect = (item: string) => {
+    let newValue: string | string[];
+
+    if (multiple) {
+      const selectedValues = Array.isArray(value) ? [...value] : [];
+      const index = selectedValues.indexOf(item);
+      if (index > -1) {
+        selectedValues.splice(index, 1); // Remove item if already selected
+      } else {
+        selectedValues.push(item); // Add item if not selected
+      }
+      newValue = selectedValues;
+    } else {
+      newValue = item;
+      setIsOpen(false); // Close dropdown for single selection
+    }
+
+    // Pass the updated value and field name to the parent
+    onChange(name, newValue);
+  };
+
+  const renderSelectedValue = () => {
+    if (multiple && Array.isArray(value)) {
+      return value.length > 0 ? value.join(", ") : placeholder;
+    }
+    return value || placeholder;
+  };
+  const isPlaceholder = renderSelectedValue() === placeholder;
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div>
-      <FormControl sx={{ width: "100%" }}>
-        <Select
-          className={`select ${leagueSpartan.className} ${ClassName}`}
-          displayEmpty
-          multiple={multiple}
-         
-          sx={{
-            borderRadius: "10px",
-            boxShadow: boxShadow,
-            marginBottom: marginBottom,
-            marginTop: marginTop,
-            // height: "5.5vh",
-            // fontSize: "18px", // Adjusted font size with vh unit
-            // fontWeight: 400,
-            // lineHeight: "1.6vh",
-            // fontFamily: "var(--font-leagueSpartan)",
-            // fontFamily: "League Spartan",
+    // <div
+    //   className={`dropdown ${leagueSpartan.className} ${className || ""} `}
+    //   style={{ marginTop }}
+    // >
+    //   <div
+    //     className="dropdown-header"
+    //     onClick={() => setIsOpen((prev) => !prev)}
+    //   >
+    //     <span className="dropdown-placeholder">{renderSelectedValue()}</span>
+    //     <span className="dropdown-arrow">{isOpen ? "▲" : "▼"}</span>
+    //   </div>
+    //   {isOpen && (
+    //     <ul className="dropdown-menu">
+    //       {data.map((item, index) => (
+    //         <li
+    //           key={index}
+    //           className={`dropdown-item ${
+    //             (multiple && Array.isArray(value) && value.includes(item)) ||
+    //             value === item
+    //               ? "selected"
+    //               : ""
+    //           }`}
+    //           onClick={() => handleSelect(item)}
+    //         >
+    //           {item}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   )}
+    // </div>
 
-            minHeight: "40px", // Ensure minHeight of the OutlinedInput
-
-            // minHeight: "5.5vh", // Ensure minHeight is also set to vh unit
-            // "& .MuiOutlinedInput-root": {
-            //   height: "5.5vh", // Set the height of the OutlinedInput
-            //   minHeight: "50px", // Ensure minHeight of the OutlinedInput
-            // },
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-
-            '& .MuiSelect-select': {
-               paddingRight: 2,
-               paddingLeft: 2,
-               paddingTop: 1,
-               paddingBottom: 1,
-            }
+    <div
+      ref={dropdownRef}
+      className={`dropdown ${leagueSpartan.className} ${className || ""}`}
+      style={{ marginTop, marginBottom }}
+    >
+      <div
+        className="dropdown-header"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span
+          className="dropdown-placeholder"
+          style={{
+            color: isPlaceholder ? "gray" : "black", // Placeholder is gray, selected is black
           }}
-          value={value}
-          onChange={onChange}
-          input={<OutlinedInput />}
-          renderValue={(selected) => {
-            if (selected?.length === 0) {
-              return (
-                <Typography
-                  sx={styles.placeholderText}
-                  className={leagueSpartan.className}
-                >
-                  {placeholder}
-                </Typography>
-              );
-            }
-            return selected;
-          }}
-          MenuProps={MenuProps}
-          inputProps={{ "aria-label": "Without label" }}
         >
+          {renderSelectedValue()}
+        </span>
+        <span className="dropdown-arrow">{isOpen ? "▲" : "▼"}</span>
+      </div>
+      {isOpen && (
+        <ul className="dropdown-menu">
           {data.map((item, index) => (
-            <MenuItem key={index} value={item}>
-              <Typography
-                sx={[
-                  styles.placeholderText,
-                  {
-                    textAlign: "justify",
-                    // fontFamily: "var(--font-leagueSpartan)",
-                  },
-                ]}
-                className={leagueSpartan.className}
-              >
-                {item}
-              </Typography>
-            </MenuItem>
+            <li
+              key={index}
+              className={`dropdown-item ${
+                (multiple && Array.isArray(value) && value.includes(item)) ||
+                value === item
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => handleSelect(item)}
+            >
+              {item}
+            </li>
           ))}
-        </Select>
-      </FormControl>
+        </ul>
+      )}
     </div>
   );
 };
 
-export default MultipleSelectPlaceholder;
-
-const styles = {
-  placeholderText: {
-    color: "gray",
-    // fontSize: "1.5vh", // Adjusted font size with vh unit
-    // fontWeight: 400,
-    // lineHeight: "1.6vh",
-    // Adjusted line height if necessary
-  },
-};
+export default DropDown;

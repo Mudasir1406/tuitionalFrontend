@@ -177,8 +177,8 @@ const Header: React.FC<IProps> = ({ background }) => {
             src={
               "https://img.icons8.com/?size=100&id=DUEq8l5qTqBE&format=png&color=000000"
             }
-            width={100}
-            height={100}
+            width={60}
+            height={60}
             alt="WhatsApp"
           />
         </Link>

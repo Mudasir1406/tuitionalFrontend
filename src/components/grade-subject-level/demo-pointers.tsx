@@ -89,7 +89,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                           sx={style.desc}
                           className={leagueSpartan.className}
                           component={"p"}
-                          variant="caption"
+                          variant="body2"
                           dangerouslySetInnerHTML={{
                             __html: box.body,
                           }}
@@ -121,8 +121,8 @@ const style = {
     //  margin: { lg: "6vh 7vh", xs: "3vh 3vw" }
     width: { lg: "auto", sm: "auto" },
     margin: {
-      xs: "3vh 3vw",
-      lg: "6vh 5vw",
+      xs: "0vh 3vw",
+      lg: "0vh 5vw",
     },
   },
 
@@ -191,7 +191,7 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "2vh",
+    // fontSize: "2vh",
     boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
     marginLeft: { xs: "auto", md: "6vw" },
     marginRight: { xs: "auto" },

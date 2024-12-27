@@ -143,7 +143,10 @@ const Home: React.FC = async () => {
       </Container>
       <Trusted />
       <Container sx={{ maxWidth: { lg: "1450px" } }}>
-        <GetStarted />
+        {" "}
+        <Box sx={styles.verticalMargin}>
+          <GetStarted />
+        </Box>
       </Container>
       <OurClient data={data} />
       <Box sx={styles.backgroundImage}>
@@ -164,6 +167,8 @@ const Home: React.FC = async () => {
 export default Home;
 
 const styles = {
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
+
   contanier: {
     maxWidth: { lg: "1650px" },
     paddingTop: {

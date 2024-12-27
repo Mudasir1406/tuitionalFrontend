@@ -19,9 +19,10 @@ import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import styles from "./style.module.css";
 import { FormType } from "@/components/home/form-dialouge";
-import DropDown from "../../DropDown/DropDown";
 import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
+import DropDown from "@/components/DropDown/DropDown";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
 
 type IProps = {
   background?: any;
@@ -39,6 +40,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [errors, setErrors] = React.useState<Partial<FormType>>({});
 
   // const handleChange = (key: string, value: string | string[]) => {
   //   setFormData({
@@ -48,23 +50,91 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   // };
 
   const handleChange = (key: string, value: string | string[]) => {
+    let newErrors = { ...errors };
+
     // Perform validation if the key is "phone"
     if (key === "phone" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
         console.log("Invalid phone number!");
+        newErrors.phone = isValidPhoneNumber(value)
+          ? ""
+          : "Invalid phone number";
+
         return;
       }
+    }
+    if (key === "email" && typeof value === "string") {
+      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    }
+    if (key === "name" && typeof value === "string") {
+      newErrors.name = isNotEmpty(value) ? "" : "Name cannot be empty";
+    }
+    if (key === "grade" && typeof value === "string") {
+      newErrors.grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+    }
+    if (key === "curriculum" && typeof value === "string") {
+      newErrors.curriculum = isNotEmpty(value)
+        ? ""
+        : "Curriculum cannot be empty";
+    }
+    if (key === "subjects" && typeof value === "string") {
+      newErrors.subjects = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+    }
+    if (key === "message" && typeof value === "string") {
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
       ...formData,
       [key]: value,
     });
+    setErrors(newErrors);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
+    // Step 1: Perform Validation
+    const newErrors: Partial<FormType> = {};
+
+    if (!isNotEmpty(formData.name)) {
+      newErrors.name = "Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Invalid phone number";
+    }
+
+    if (!isNotEmpty(formData.grade)) {
+      newErrors.grade = "Grade is required";
+    }
+
+    if (!isNotEmpty(formData.curriculum)) {
+      newErrors.curriculum = "Curriculum is required";
+    }
+
+    if (!isNotEmpty(formData.subjects)) {
+      newErrors.subjects = "Subjects cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
 
     const formDataObject = new FormData();
 
@@ -81,7 +151,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
 
     const formDataString = keyValuePairs.join("&");
 
-    console.log("formDataString", formDataString);
+    // console.log("formDataString", formDataString);
 
     try {
       const response = await fetch(
@@ -125,173 +195,176 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   }, []);
   return (
     <div className={styles.main}>
-      <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        component={"h5"}
-        variant="subtitle1"
-      >
-        Avail A 10% Discount If You Sign Up Today!
-      </Typography>
-      <div className={styles.inputDiv}>
-        {/* <TextField
-          //sx={styles.input}
-          fullWidth
-          name="name"
-          value={formData.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-          label="Name*"
-          variant="outlined"
-          className={`${leagueSpartan.className} ${styles.input}`}
-        /> */}
+      <form onSubmit={handleSubmit}>
+        <Typography
+          className={`${leagueSpartan.className} ${styles.title}`}
+          component={"h5"}
+          variant="subtitle1"
+        >
+          Avail A 10% Discount If You Sign Up Today!
+        </Typography>
+        <div className={styles.inputDiv}>
+          <div className={styles.inputInner}>
+            <Input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder={"Enter name here ..."}
+              className={`${styles.input} ${leagueSpartan.className}`}
+            />
+            {errors.name && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.name}
+              </Typography>
+            )}
+          </div>
 
-        <Input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder={"Enter name here ..."}
-          className={`${styles.input} ${leagueSpartan.className}`}
-        />
-
-        <Input
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder={"Enter email here ..."}
-          className={`${styles.input} ${leagueSpartan.className}`}
-        />
-
-        {/* <Input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          label="Name"
-          placeholder="Enter your name"
-          required
-          // className={styles.input}
-        /> */}
-        {/* 
-        <input
-          value={formData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          placeholder={"Enter email here ..."}
-          className={`${styles.input} ${leagueSpartan.className}`}
-          // placeholder="Enter your name"
-        /> */}
-
-        {/* <Input
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          label="Email"
-          placeholder="Enter your Email"
-          required
-          // className={styles.input}
-        /> */}
-        {/* <TextField
-          // sx={styles.input}
-
-          fullWidth
-          name="Email"
-          // value={formData.Parent}
-          // onChange={handleChange}
-          value={formData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          label="Email*"
-          variant="outlined"
-          type="email"
-          className={`${leagueSpartan.className} ${styles.input}`}
-        /> */}
-      </div>
-
-      <div className={styles.inputDiv}>
-        <div className={styles.div}>
-          <PhoneInput
-            defaultCountry="SA"
-            value={formData?.phone || ""}
-            onChange={(e) => handleChange("phone", String(e))}
-            inputComponent={CustomInput}
-            className={`${styles.phoneInput}`}
-            style={{
-              boxShadow: " 0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-              height: "42px",
-            }}
-          />
+          <div className={styles.inputInner}>
+            <Input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder={"Enter email here ..."}
+              className={`${styles.input} ${leagueSpartan.className}`}
+            />
+            {errors.email && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.email}
+              </Typography>
+            )}
+          </div>
         </div>
-        <div className={styles.div}>
-          <DropDown
-            placeholder="Select Grade"
-            data={filterData?.grade || []}
-            boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            // marginBottom="1.5vh"
-            marginTop="1.5vh"
-            // value={""}
-            // onChange={() => {}}value={formData.grade}
-            value={formData.grade}
-            onChange={(e) => {
-              handleChange("grade", e.target.value);
-            }}
-          />
-        </div>
-      </div>
-      <div className={styles.inputDiv}>
-        <div className={styles.div}>
-          <DropDown
-            placeholder="Select Curriculum"
-            data={filterData?.curriculum || []}
-            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            marginTop="1.5vh"
-            // marginBottom="1.5vh"
-            value={formData.curriculum}
-            onChange={(e) => {
-              handleChange("curriculum", e.target.value);
-            }}
-          />
-        </div>
-        <div className={styles.div}>
-          <DropDown
-            placeholder="Select Subject"
-            data={filterData?.subject || []}
-            boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-            // marginBottom="1.5vh"
-            marginTop="1.5vh"
-            value={formData.subjects}
-            onChange={(e) => {
-              handleChange("subjects", e.target.value);
-            }}
-          />
-        </div>
-      </div>
-      <div>
-        <TextField
-          fullWidth
-          multiline
-          rows={4}
-          name="Message"
-          value={formData.message}
-          onChange={(e) => handleChange("message", e.target.value)}
-          // label="Message*"
-          // variant="outlined"
-          placeholder="Enter your message here..."
-          className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
-        />
-      </div>
 
-      <Button
-        variant="contained"
-        className={`${leagueSpartan.className} ${styles.containedButton}`}
-        // sx={styles.containedButton}
-        type="submit"
-        // onClick={handleSubmit}
-      >
-        {loading ? (
-          <CircularProgress
-            sx={{ width: "12px", height: "12px", color: "white" }}
-            size={20}
-          />
-        ) : (
-          "Submit Now"
-        )}
-      </Button>
+        <div className={styles.inputDiv}>
+          <div className={styles.div}>
+            <PhoneInput
+              defaultCountry="SA"
+              value={formData?.phone || ""}
+              onChange={(e) => handleChange("phone", String(e))}
+              inputComponent={CustomInput}
+              className={`${styles.phoneInput}`}
+            />
+            {errors.phone && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.phone}
+              </Typography>
+            )}
+          </div>
+          <div className={styles.div}>
+            <DropDown
+              name="grade"
+              placeholder="Select Grade"
+              marginTop="1.5vh"
+              data={filterData?.grade || []}
+              // multiple
+              value={formData.grade}
+              onChange={handleChange}
+            />
+            {errors.grade && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.grade}
+              </Typography>
+            )}
+          </div>
+        </div>
+        <div className={styles.inputDiv}>
+          <div className={styles.div}>
+            <DropDown
+              placeholder="Select Curriculum"
+              name="curriculum"
+              data={filterData?.curriculum || []}
+              marginTop="1.5vh"
+              value={formData.curriculum}
+              onChange={handleChange}
+            />
+            {errors.curriculum && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.curriculum}
+              </Typography>
+            )}
+          </div>
+          <div className={styles.div}>
+            <DropDown
+              name="subjects"
+              placeholder="Select Subject"
+              data={filterData?.subject || []}
+              marginTop="1.5vh"
+              value={formData.subjects}
+              onChange={handleChange}
+            />{" "}
+            {errors.subjects && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.subjects}
+              </Typography>
+            )}
+          </div>
+        </div>
+        <div>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            name="Message"
+            value={formData.message}
+            // variant=""
+            onChange={(e) => handleChange("message", e.target.value)}
+            // label="Message*"
+            // variant="outlined"
+            placeholder="Enter your message here..."
+            className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
+          />{" "}
+          {errors.message && (
+            <Typography
+              className={`${leagueSpartan.className} ${styles.error}`}
+              component={"p"}
+              variant="caption"
+            >
+              {errors.message}
+            </Typography>
+          )}
+        </div>
+
+        <Button
+          variant="contained"
+          className={`${leagueSpartan.className} ${styles.containedButton}`}
+          // sx={styles.containedButton}
+          type="submit"
+          // onClick={handleSubmit}
+        >
+          {loading ? (
+            <CircularProgress
+              sx={{ width: "12px", height: "12px", color: "white" }}
+              size={20}
+            />
+          ) : (
+            "Submit Now"
+          )}
+        </Button>
+      </form>
     </div>
   );
 };

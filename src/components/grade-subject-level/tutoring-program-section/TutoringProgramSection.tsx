@@ -28,7 +28,7 @@ function TutoringProgramSection({ data }: props) {
         // clas={styles.guidence}
         variant={data.headerTag ? data?.headerTag : ("h3" as any)}
         className={`${leagueSpartan.className} ${styles.title}`}
-        component={data?.headerTag ? data.headerTag:'h3' as any}
+        component={data?.headerTag ? data.headerTag : ("h3" as any)}
         dangerouslySetInnerHTML={{
           __html: data?.header,
         }}
@@ -50,36 +50,39 @@ function TutoringProgramSection({ data }: props) {
             alignItems: "center",
             justifyContent: "center",
           }}
-          spacing={2}
+          // spacing={2}
         >
-          <Grid item lg={1} sm={12}>
-            <div className={styles.imageContanier}>
-              <Image
-                src={plan.src}
-                width={plan.width}
-                height={plan.height}
-                alt="plan"
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  marginTop: "10px",
-                  objectFit: "contain",
-                }}
-                quality={100}
-              ></Image>
+          {/* <Grid item lg={1} sm={12}> */}
+
+          {/* </Grid> */}
+          <Grid md={9.5} sm={9.5} xs={12}>
+            <div className={styles.leftDiv}>
+              <div className={styles.imageContanier}>
+                <Image
+                  src={plan.src}
+                  width={plan.width}
+                  height={plan.height}
+                  alt="plan"
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    marginTop: "10px",
+                    objectFit: "contain",
+                  }}
+                  quality={100}
+                ></Image>
+              </div>
+              <Typography
+                variant="subtitle1"
+                //   sx={styles.admissionText}
+                className={`${leagueSpartan.className} ${styles.heading}`}
+              >
+                Admissions are Open for the Next Year Batch
+              </Typography>
             </div>
           </Grid>
-          <Grid item lg={8.5}>
-            <Typography
-              variant="subtitle1"
-              //   sx={styles.admissionText}
-              className={`${leagueSpartan.className} ${styles.heading}`}
-            >
-              Admissions are Open for the Next Year Batch
-            </Typography>
-          </Grid>
 
-          <Grid item lg={2.5}>
+          <Grid md={2.5} sm={2.5} xs={12}>
             {data.link ? (
               <Button
                 onClick={() => handleRedirect(data.link)}
@@ -110,23 +113,23 @@ const style = {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
     backgroundColor: "white",
 
-    fontSize: {
-      xs: "4vw",
-      sm: "2.1vw",
-      md: "2vw",
-      lg: "1.4vw",
-    },
+    // fontSize: {
+    //   xs: "4vw",
+    //   sm: "2.1vw",
+    //   md: "2vw",
+    //   lg: "1.4vw",
+    // },
     borderRadius: "10px",
     letterSpacing: "-2%",
-    fontWeight: 700,
+    // fontWeight: 700,
     lineHeight: "23px",
     color: "#009BF5",
     textTransform: "none",
     paddingY: {
-      xs: "15px",
-      sm: "21px",
-      md: "22px",
-      lg: "22px",
+      xs: "1.5vh",
+      sm: "1.5vh",
+      md: "2vh",
+      lg: "2vh",
     },
     paddingX: {
       xs: "25px",

@@ -49,6 +49,10 @@
   background-color: #e8f7ff;
 }
 
+.mt1 {
+  margin-top: 1.5vh;
+}
+
 /* .cardTitle {
   font-size: 1.2rem;
   font-weight: bold;
@@ -119,4 +123,15 @@
 }
 
 @media (max-width: 768px) {
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 0;
+  }
+
+  .info {
+    align-items: center; /* Center align for smaller screens */
+    padding: 0px;
+  }
 }
