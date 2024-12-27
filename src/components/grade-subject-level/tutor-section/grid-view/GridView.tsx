@@ -31,7 +31,7 @@ function GridView({ cardsData }: props) {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 50000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -46,7 +46,8 @@ function GridView({ cardsData }: props) {
           className={styles.cardWrapper}
           style={{
             transform: `translateX(-${
-              currentIndex * (100 / (isLargeOrAbove ? 8 : 4))
+              currentIndex *
+              (100 / (cardsData?.length > 4 ? cardsData?.length + 3 : 8))
             }%)`,
           }}
         >
