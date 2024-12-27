@@ -44,19 +44,20 @@ function TutoringProgramSection({ data }: props) {
           __html: data?.paragraph,
         }}
       ></Typography>
-
-      <div className={styles.btnDiv}>
-        {/* {data.link && ( */}
-        <Button
-          onClick={() => handleRedirect(data.link)}
-          variant="contained"
-          sx={style.contactButton}
-          className={leagueSpartan.className}
-        >
-          {data.buttonTitle}
-        </Button>
-        {/* )} */}
-      </div>
+      {data.buttonTitle && data.link && (
+        <div className={styles.btnDiv}>
+          {/* {data.link && ( */}
+          <Button
+            onClick={() => handleRedirect(data.link)}
+            variant="contained"
+            sx={style.contactButton}
+            className={leagueSpartan.className}
+          >
+            {data.buttonTitle}
+          </Button>
+          {/* )} */}
+        </div>
+      )}
       {/* <div className={styles.contactContanier}>
         <Grid
           container
