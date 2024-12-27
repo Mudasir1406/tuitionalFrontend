@@ -20,7 +20,7 @@ const ImageCard = ({ data }: props) => {
     setShowFull((prev) => !prev);
   };
 
-  const maxLength = 100;
+  const maxLength = 90;
 
   return (
     // <div className={styles.cardContainer}>
@@ -74,10 +74,10 @@ const ImageCard = ({ data }: props) => {
           component={"p"}
           variant="body2"
         >
-          {showFull || data?.Description.length <= maxLength
+          {showFull || data?.Description?.length <= maxLength
             ? data?.Description
-            : `${data?.Description.substring(0, maxLength)} `}
-          {data?.Description.length > maxLength && (
+            : `${data?.Description?.substring(0, maxLength)} `}
+          {data?.Description?.length > maxLength && (
             <span
               className={styles.showMore}
               onClick={toggleShowMore}

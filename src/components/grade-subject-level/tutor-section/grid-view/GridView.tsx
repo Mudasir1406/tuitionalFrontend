@@ -31,7 +31,7 @@ function GridView({ cardsData }: props) {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 50000);
     return () => clearInterval(interval);
   }, []);
 

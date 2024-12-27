@@ -20,7 +20,9 @@
 }
 
 .card {
-  flex: 1 0 calc(25% - 16px); /* Show 4 cards per row with spacing */
+  flex: 1 0 calc(16% - 16px);
+  /* width: calc(25% - 24px); */
+  /* width: 25%; */
   margin: 8px;
 }
 
@@ -45,19 +47,19 @@
 }
 
 @media (max-width: 576px) {
-  .cardWrapper {
+  /* .cardWrapper {
     grid-template-columns: auto;
-  }
+  } */
 }
 
 @media (min-width: 768px) {
-  .cardWrapper {
+  /* .cardWrapper {
     grid-template-columns: auto auto;
-  }
+  } */
 }
 
 @media (min-width: 992px) {
-  .cardWrapper {
+  /* .cardWrapper {
     grid-template-columns: auto auto auto;
-  }
+  } */
 }
