@@ -319,7 +319,7 @@ const styles = {
       xs: "3vh",
       sm: "3vh",
       md: "3vh",
-      lg: "10vh",
+      lg: "0vh",
     },
     color: "#000000",
   },

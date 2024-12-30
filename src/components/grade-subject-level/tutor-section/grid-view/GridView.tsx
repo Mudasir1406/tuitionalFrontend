@@ -14,17 +14,26 @@ function GridView({ cardsData }: props) {
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isLargeOrAbove = useMediaQuery(theme.breakpoints.up("lg"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Determine the number of visible cards based on the screen size
+  const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + 1 >= cardsData.length ? 0 : prevIndex + 1
+      prevIndex + visibleCards >= cardsData.length
+        ? 0
+        : prevIndex + visibleCards
     );
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? cardsData.length - 1 : prevIndex - 1
+      prevIndex - visibleCards < 0
+        ? Math.max(cardsData.length - visibleCards, 0)
+        : prevIndex - visibleCards
     );
   };
 
@@ -45,10 +54,11 @@ function GridView({ cardsData }: props) {
         <div
           className={styles.cardWrapper}
           style={{
-            transform: `translateX(-${
-              currentIndex *
-              (100 / (cardsData?.length > 4 ? cardsData?.length + 3 : 8))
-            }%)`,
+            // transform: `translateX(-${
+            //   currentIndex *
+            //   (100 / (cardsData?.length > 4 ? cardsData?.length + 3 : 8))
+            // }%)`,
+            transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`,
           }}
         >
           {cardsData?.map((card, i) => (

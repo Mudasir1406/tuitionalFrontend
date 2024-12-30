@@ -15,7 +15,7 @@ const EducationalCounseling: React.FunctionComponent<{
 }> = ({ data }) => {
   return (
     <div>
-      <Box sx={{ paddingX: "5vw", paddingTop: "10vh" }}>
+      <Box sx={{ paddingX: "5vw" }}>
         {data?.subjects && data?.subjects?.length > 0 && (
           <Typography
             sx={style.section}
@@ -49,9 +49,9 @@ const EducationalCounseling: React.FunctionComponent<{
               )}
               <Typography
                 sx={style.guidence}
-                variant={data.headerTag as any}
+                variant={data.headerTag ? data.headerTag : ("h3" as any)}
                 className={leagueSpartan.className}
-                component={data.headerTag as keyof JSX.IntrinsicElements}
+                component={data.headerTag ? data.headerTag : ("h3" as any)}
                 dangerouslySetInnerHTML={{
                   __html: data?.header,
                 }}
