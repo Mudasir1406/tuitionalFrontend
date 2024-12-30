@@ -129,26 +129,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setFormData(values);
     }
   }, [values]);
-  // React.useEffect(() => {
-  //   const fetchExtraData = async () => {
-  //     // const browser = navigator.userAgent;
-  //     // const pageURL = window.location.href;
 
-  //     const res = await fetch("https://ipapi.co/json/");
-  //     const data = await res.json();
-
-  //     console.log("locationData", data);
-  //     setFormData({
-  //       ...formData,
-  //       // browser,
-  //       // pageURL,
-  //       ip: data?.ip,
-  //       country: data?.country_name,
-  //     });
-  //   };
-
-  //   fetchExtraData();
-  // }, []);
   React.useEffect(() => {
     const getClientLocation = async () => {
       const browser = navigator.userAgent;
@@ -168,7 +149,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         browser,
         pageURL,
         ip: locationData?.ip,
-        country: locationData?.country_name,
+        country: locationData?.country,
       });
     };
 
@@ -177,7 +158,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
   const onClickUpload = async () => {
     setLoading(true);
-
 
     // Step 1: Perform Validation
     const newErrors: Partial<FormType> = {};
@@ -245,7 +225,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       // console.log("formData", formData);
       await sendEmail({
         // recipientEmail: HELLOTUITIONALEDU,
-        recipientEmail: 'aaashir128@gmail.com',
+        recipientEmail: "aaashir128@gmail.com",
         subject: "Get Started",
         text: "",
         html: createEmailTemplate(formData),
