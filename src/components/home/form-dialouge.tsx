@@ -70,6 +70,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     curriculum: "",
     subjects: "",
     message: "",
+    browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
 
@@ -125,9 +129,55 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setFormData(values);
     }
   }, [values]);
+  // React.useEffect(() => {
+  //   const fetchExtraData = async () => {
+  //     // const browser = navigator.userAgent;
+  //     // const pageURL = window.location.href;
+
+  //     const res = await fetch("https://ipapi.co/json/");
+  //     const data = await res.json();
+
+  //     console.log("locationData", data);
+  //     setFormData({
+  //       ...formData,
+  //       // browser,
+  //       // pageURL,
+  //       ip: data?.ip,
+  //       country: data?.country_name,
+  //     });
+  //   };
+
+  //   fetchExtraData();
+  // }, []);
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const res = await fetch("https://ipinfo.io/json");
+      const locationData = await res.json();
+      console.log(
+        "locationData",
+        locationData,
+        "pageURL",
+        pageURL,
+        "browser",
+        browser
+      );
+      setFormData({
+        ...formData,
+        browser,
+        pageURL,
+        ip: locationData?.ip,
+        country: locationData?.country_name,
+      });
+    };
+
+    getClientLocation();
+  }, []);
 
   const onClickUpload = async () => {
     setLoading(true);
+
 
     // Step 1: Perform Validation
     const newErrors: Partial<FormType> = {};
@@ -194,7 +244,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       // );
       // console.log("formData", formData);
       await sendEmail({
-        recipientEmail: HELLOTUITIONALEDU,
+        // recipientEmail: HELLOTUITIONALEDU,
+        recipientEmail: 'aaashir128@gmail.com',
         subject: "Get Started",
         text: "",
         html: createEmailTemplate(formData),
@@ -420,14 +471,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   style={styles.phoneInput}
                 />
 
-                {/* style={styles.phoneInput}
-              defaultCountry="SA"
-              value={formData?.phone || ""}
-              onChange={(e) => handleChange("phone", String(e))}
-              inputComponent={CustomInput}
-              // error={errorData?.phone}
-
-              // helperText={errorData?.phone} */}
                 {errors.phone && (
                   <Typography
                     sx={styles.error}
