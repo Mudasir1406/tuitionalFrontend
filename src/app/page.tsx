@@ -142,8 +142,8 @@ const Home: React.FC = async () => {
         </Grid>
       </Container>
       <Trusted />
-      <Container sx={{ maxWidth: { lg: "1450px" } }}>
-        {" "}
+      {/* <Container sx={{ maxWidth: { lg: "90%", xl: "80%" } }}> */}
+        <Container sx={{ maxWidth: { lg: "1450px" } }}>{" "}
         <Box sx={styles.verticalMargin}>
           <GetStarted />
         </Box>
