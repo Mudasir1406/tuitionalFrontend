@@ -20,7 +20,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
         <Typography
           sx={style.description}
-          component={"p"}
+          // component={'div'}
           variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
@@ -58,9 +58,9 @@ const style = {
   },
   title: {
     width: {
-      xs: "100%", // Mobile view
-      sm: "100%", // Tablet view
-      md: "100%", // Laptop view
+      xs: "100%", 
+      sm: "100%", 
+      md: "100%", 
       lg: "50vw", // Desktop view
     },
     // fontSize: {

@@ -12,7 +12,7 @@
   text-align: center;
   margin-bottom: 1.5vh;
 }
-.error{
+.error {
   color: red;
   margin-top: 6px;
   margin-left: 6px;
@@ -22,7 +22,6 @@
   display: flex;
   column-gap: 24px;
   flex: 1;
-
 }
 .inputInner {
   display: flex;
@@ -38,7 +37,7 @@
 
 .input {
   /* width: 100%; */
-  height: 20px;
+  /* height: 20px; */
 
   font-size: 2.3vh;
   border: 1px solid transparent;
@@ -72,7 +71,12 @@
 
 .phoneInput {
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
-  height: 42px;
+  /* height: auto; */
+  /* height: 42px; */
+  height: 5.5vh;
+
+  /* height: 4.6vh; */
+  /* padding: 10px 15px; */
   padding-left: 10px;
   background-color: white;
   /* margin: 1.4vh 0; */
@@ -89,6 +93,7 @@
   font-size: 2.3vh;
   font-weight: 400;
   line-height: 3.5vh;
+  /* padding: auto 0; */
 }
 
 .phoneInput:focus-visible {
@@ -124,4 +129,23 @@
 
 .textField {
   margin-top: 12px;
+}
+
+@media (max-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  /* .phoneInput {
+    padding: 0px;
+  } */
+}
+
+/* XXL devices (larger desktops, 1400px and up) */
+@media only screen and (min-width: 1440px) {
+  .phoneInput {
+    /* height: 4.6vh; */
+  }
 }

@@ -27,7 +27,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
 
       <Box>
         <Grid container spacing={2} justifyContent="center">
-          {data?.subjects.map(
+          {data?.subjects?.map(
             (
               item: {
                 icon: string | StaticImport;

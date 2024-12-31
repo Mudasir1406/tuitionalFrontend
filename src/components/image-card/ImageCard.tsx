@@ -7,6 +7,7 @@ import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import { useState } from "react";
 import Tag from "../tag/Tag";
 import dummyImg from "../../../public/assets/images/static/blogimg3.png";
+import PopUpButton from "../pop-up-button";
 
 interface props {
   data: CardProps;
@@ -20,7 +21,7 @@ const ImageCard = ({ data }: props) => {
     setShowFull((prev) => !prev);
   };
 
-  const maxLength = 100;
+  const maxLength = 90;
 
   return (
     // <div className={styles.cardContainer}>
@@ -74,10 +75,10 @@ const ImageCard = ({ data }: props) => {
           component={"p"}
           variant="body2"
         >
-          {showFull || data?.Description.length <= maxLength
+          {showFull || data?.Description?.length <= maxLength
             ? data?.Description
-            : `${data?.Description.substring(0, maxLength)} `}
-          {data?.Description.length > maxLength && (
+            : `${data?.Description?.substring(0, maxLength)} `}
+          {data?.Description?.length > maxLength && (
             <span
               className={styles.showMore}
               onClick={toggleShowMore}
@@ -97,7 +98,7 @@ const ImageCard = ({ data }: props) => {
             {data?.["Success rate"]}
           </Typography>
         </div>
-        <Button
+        {/* <Button
           variant="contained"
           className={`${leagueSpartan.className} ${styles.containedButton}`}
           type="submit"
@@ -110,7 +111,12 @@ const ImageCard = ({ data }: props) => {
           ) : (
             "Book A Trial Today"
           )}
-        </Button>
+        </Button> */}
+        <PopUpButton
+          text="Book A Trial Today"
+          href="popup"
+          sx={style.contactButton}
+        />
       </div>
     </div>
     //   ))}
@@ -119,3 +125,26 @@ const ImageCard = ({ data }: props) => {
 };
 
 export default ImageCard;
+
+const style = {
+  contactButton: {
+    display: "flex",
+    alignSelf: "center",
+    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
+    backgroundColor: "#38b6ff",
+    textTransform: "none",
+    lineHeight: "18.4px",
+    textAlign: "center",
+    borderRadius: "10px",
+    width: "100%",
+    padding: "18px",
+    margin: "20px 0",
+    transition: "all 0.5s ease-in-out",
+    color: "white",
+    ":hover": {
+      backgroundColor: "#38b6ff",
+      transform: "scale(1.02)",
+      boxShadow: "1px 4px 24px 0px #38b6ffb2",
+    },
+  },
+};

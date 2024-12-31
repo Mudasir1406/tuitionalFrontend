@@ -70,6 +70,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     curriculum: "",
     subjects: "",
     message: "",
+    browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
 
@@ -125,6 +129,32 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setFormData(values);
     }
   }, [values]);
+
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const res = await fetch("https://ipinfo.io/json");
+      const locationData = await res.json();
+      console.log(
+        "locationData",
+        locationData,
+        "pageURL",
+        pageURL,
+        "browser",
+        browser
+      );
+      setFormData({
+        ...formData,
+        browser,
+        pageURL,
+        ip: locationData?.ip,
+        country: locationData?.country,
+      });
+    };
+
+    getClientLocation();
+  }, []);
 
   const onClickUpload = async () => {
     setLoading(true);
@@ -420,14 +450,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   style={styles.phoneInput}
                 />
 
-                {/* style={styles.phoneInput}
-              defaultCountry="SA"
-              value={formData?.phone || ""}
-              onChange={(e) => handleChange("phone", String(e))}
-              inputComponent={CustomInput}
-              // error={errorData?.phone}
-
-              // helperText={errorData?.phone} */}
                 {errors.phone && (
                   <Typography
                     sx={styles.error}
@@ -727,9 +749,11 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    height: "42px",
-    fontSize: "1.7vh",
-    fontWeight: 400,
+    // height: "42px",
+    height: "5.5vh",
+
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
     // minHeight: "50px",
   },
 };

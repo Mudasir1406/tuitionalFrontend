@@ -36,7 +36,7 @@ async function LinkListViewSection({ data }: IProps) {
           <div
             className={styles.item}
             key={i}
-            onClick={() => redirectToExternal(ls.link, true)}
+            onClick={() => redirectToExternal(ls.link, false)}
           >
             <ArrowCircleRight style={{ color: "#38b6ff" }} />
             <Typography
