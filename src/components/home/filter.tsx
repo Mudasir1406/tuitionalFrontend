@@ -40,7 +40,8 @@ const Filter: React.FC = () => {
     getFilterData().then((data) => setFilterData(data));
   }, []);
   return (
-    <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
+    // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
+    <Box sx={styles.filter}>
       <Typography
         sx={[styles.heading]}
         component={"h1"}
@@ -123,6 +124,14 @@ const Filter: React.FC = () => {
 export default Filter;
 
 const styles = {
+  filter: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "100%",
+    maxHeight: "700px",
+  },
   heading: {
     fontSize: {
       xs: "4vh",
