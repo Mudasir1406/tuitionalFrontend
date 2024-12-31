@@ -25,7 +25,8 @@ const Faqs: React.FC = async () => {
         <Typography
           sx={styles.heading}
           className={leagueSpartan.className}
-          component={"h4"}
+          component={"h2"}
+          variant="h2"
         >
           Frequently Asked Questions
         </Typography>
@@ -90,19 +91,19 @@ const styles = {
   },
   heading: {
     display: "flex",
-    fontSize: {
-      xs: "4vh",
-      sm: "4vh",
-      md: "4.5vh",
-      lg: "5.5vh",
-    },
-    lineHeight: {
-      xs: "5vh",
-      sm: "5.5vh",
-      md: "6vh",
-      lg: "6.5vh",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "4vh",
+    //   sm: "4vh",
+    //   md: "4.5vh",
+    //   lg: "5.5vh",
+    // },
+    // lineHeight: {
+    //   xs: "5vh",
+    //   sm: "5.5vh",
+    //   md: "6vh",
+    //   lg: "6.5vh",
+    // },
+    // fontWeight: 600,
     marginTop: {
       xs: "4vh",
       sm: "5vh",
@@ -146,7 +147,7 @@ const styles = {
         lg: -35,
       },
       left: {
-        xs: "11%",
+        xs: "12%",
         sm: "-6%",
         md: "-6%",
         lg: "-6%",
@@ -195,14 +196,14 @@ const styles = {
 
     letterSpacing: "-2%",
 
-    fontSize: {
-      xs: "1.5vh",
-      sm: "1.7vh",
-      md: "1.9vh",
-      lg: "2.2vh",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   sm: "1.7vh",
+    //   md: "1.9vh",
+    //   lg: "2.2vh",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "18.4px",
     textAlign: "center",
     borderRadius: "10px",
 

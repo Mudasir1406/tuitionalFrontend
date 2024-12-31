@@ -60,9 +60,9 @@ const styles = {
   container: {
     width: "100%",
     height: {
-      xs: "55vh",
+      xs: "45vh",
       sm: "80vh",
-      md: "60vh",
+      md: "70vh",
       lg: "80vh",
     },
     marginTop: {

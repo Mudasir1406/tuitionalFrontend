@@ -9,38 +9,43 @@ import { PageData } from "@/types/grade-subject-level.types";
 
 type IProps = {
   data: PageData["hero_section"];
+  withForm?: boolean;
 };
 
-const Hero: React.FC<IProps> = ({ data }) => {
+const Hero: React.FC<IProps> = ({ data, withForm }) => {
+  // console.log("heroComp", data);
   return (
     <>
       <Box
         sx={{
           height: { lg: "65vh" },
           paddingLeft: { lg: "5vw" },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
           // marginX: { sm: "12px", lg: 0 },
         }}
       >
         <Typography
           sx={styles.heading}
-          variant={data.headerTag as any}
+          variant={data?.headerTag ? data?.headerTag : ("h1" as any)}
           className={leagueSpartan.className}
           // component={data?.headerTag}
 
-          component={data.headerTag as keyof JSX.IntrinsicElements}
-        >
-          {data?.header}
-        </Typography>
+          component={data?.headerTag ? data?.headerTag : ("h1" as any)}
+          dangerouslySetInnerHTML={{
+            __html: data?.header,
+          }}
+        ></Typography>
 
         <Typography
           sx={styles.desc}
           className={leagueSpartan.className}
           component={"p"}
-          variant="body1"
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
+          variant="body2"
+        >
+          {data?.paragraph}
+        </Typography>
 
         <Box
           sx={{
@@ -51,7 +56,6 @@ const Hero: React.FC<IProps> = ({ data }) => {
             },
           }}
         >
-     
           <Box
             sx={{
               display: "flex",
@@ -60,121 +64,138 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 xs: "center",
                 lg: "space-between",
               },
-              gap: "24px", // Adds equal spacing between items
+              gap: "16px", // Adds equal spacing between items
               marginTop: "3vh",
+              width: { xs: "100%", sm: "60%", lg: "100%" },
+              marginX: "auto",
             }}
           >
-            {/* Item 1 */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                flex: "1 1 calc(50% - 24px)", // Ensures equal width for all items
-                maxWidth: "calc(50% - 24px)", // Prevents items from growing too much
-                cursor: "pointer",
-              }}
-            >
-              <CircleIcon
-                sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
-                }}
-              />
+            {withForm ? (
               <Typography
-                // sx={{ fontSize: "2vh", color: "#797979" }}
-                variant="caption"
+                sx={styles.desc}
                 className={leagueSpartan.className}
                 component={"p"}
+                variant="subtitle1"
               >
-                9756 Active Students
+                {data?.imageAltText
+                  ? data?.imageAltText
+                  : "IGCSE A Level | IGCSE AS Level"}
               </Typography>
-            </Box>
+            ) : (
+              <>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
+                    flex: "1 1 calc(50% - 24px)", // Ensures equal width for all items
+                    maxWidth: "calc(50% - 24px)", // Prevents items from growing too much
+                    cursor: "pointer",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{
+                      color: "#38B6FF",
+                      fontSize: "1rem",
+                      marginRight: "8px",
+                    }}
+                  />
+                  <Typography
+                    // sx={{ fontSize: "2vh", color: "#797979" }}
+                    variant="caption"
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    9756 Active Students
+                  </Typography>
+                </Box>
 
-            {/* Item 2 */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                flex: "1 1 calc(50% - 24px)",
-                maxWidth: "calc(50% - 24px)",
-                cursor: "pointer",
-              }}
-            >
-              <CircleIcon
-                sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
-                }}
-              />
-              <Typography
-                // sx={{ fontSize: "2vh", color: "#797979" }}
-                variant="caption"
-                className={leagueSpartan.className}
-                component={"p"}
-              >
-                35000+ Tutoring Hours Provided
-              </Typography>
-            </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
+                    flex: "1 1 calc(50% - 24px)",
+                    maxWidth: "calc(50% - 24px)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{
+                      color: "#38B6FF",
+                      fontSize: "1rem",
+                      marginRight: "8px",
+                    }}
+                  />
+                  <Typography
+                    // sx={{ fontSize: "2vh", color: "#797979" }}
+                    variant="caption"
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    35000+ Tutoring Hours Provided
+                  </Typography>
+                </Box>
 
-            {/* Item 3 */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                flex: "1 1 calc(50% - 24px)",
-                maxWidth: "calc(50% - 24px)",
-                cursor: "pointer",
-              }}
-            >
-              <CircleIcon
-                sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
-                }}
-              />
-              <Typography
-                // sx={{ fontSize: "2vh", color: "#797979" }}
-                variant="caption"
-                className={leagueSpartan.className}
-                component={"p"}
-              >
-                1 : 1 Online Classes
-              </Typography>
-            </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
+                    flex: "1 1 calc(50% - 24px)",
+                    maxWidth: "calc(50% - 24px)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{
+                      color: "#38B6FF",
+                      fontSize: "1rem",
+                      marginRight: "8px",
+                    }}
+                  />
+                  <Typography
+                    // sx={{ fontSize: "2vh", color: "#797979" }}
+                    variant="caption"
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    1 : 1 Online Classes
+                  </Typography>
+                </Box>
 
-            {/* Item 4 */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                flex: "1 1 calc(50% - 24px)",
-                maxWidth: "calc(50% - 24px)",
-                cursor: "pointer",
-              }}
-            >
-              <CircleIcon
-                sx={{
-                  color: "#38B6FF",
-                  fontSize: "1rem",
-                  marginRight: "8px",
-                }}
-              />
-              <Typography
-                // sx={{ fontSize: "2vh", color: "#797979" }}
-                variant="caption"
-                className={leagueSpartan.className}
-                component={"p"}
-              >
-                12+ Tutor Year Experience
-              </Typography>
-            </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    // justifyContent: "left",
+                    justifyContent: { xs: "center", sm: "center", lg: "left" },
+                    flex: "1 1 calc(50% - 24px)",
+                    maxWidth: "calc(50% - 24px)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{
+                      color: "#38B6FF",
+                      fontSize: "1rem",
+                      marginRight: "8px",
+                    }}
+                  />
+                  <Typography
+                    // sx={{ fontSize: "2vh", color: "#797979" }}
+                    variant="caption"
+                    className={leagueSpartan.className}
+                    component={"p"}
+                  >
+                    12+ Tutor Year Experience
+                  </Typography>
+                </Box>
+              </>
+            )}
           </Box>
         </Box>
 
@@ -201,7 +222,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
                 xs: "center",
                 lg: "start",
               },
-              marginTop: "3vh",
+              marginTop: "4vh",
 
               gap: "1rem",
             }}
@@ -235,6 +256,7 @@ const Hero: React.FC<IProps> = ({ data }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
+                // gap: "1rem",
               }}
             >
               <Typography
@@ -277,7 +299,7 @@ const styles = {
     textAlign: {
       xs: "center",
       sm: "center",
-      md: "start",
+      md: "center",
       lg: "start",
     },
     // fontSize: {
@@ -297,7 +319,7 @@ const styles = {
       xs: "3vh",
       sm: "3vh",
       md: "3vh",
-      lg: "10vh",
+      lg: "0vh",
     },
     color: "#000000",
   },

@@ -4,7 +4,6 @@ import React from "react";
 import counsling from "../../../public/assets/images/static/Guidence.png";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
-import { renderWithLineBreaks } from "../line-break-text";
 import PopUpButton from "../pop-up-button";
 
 const EducationalCounseling: React.FunctionComponent<{
@@ -12,9 +11,9 @@ const EducationalCounseling: React.FunctionComponent<{
 }> = ({ data }) => {
   return (
     <div>
-      <Box sx={{ paddingX: "5vw", paddingTop: "10vh" }}>
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={6} md={6} lg={6}>
+      <Box sx={{ paddingX: "5vw" }}>
+        <Grid container spacing={2} alignItems="">
+          <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
               <Typography
                 sx={style.counseling}
@@ -38,18 +37,20 @@ const EducationalCounseling: React.FunctionComponent<{
                 sx={style.desc}
                 className={leagueSpartan.className}
                 component={"p"}
-                variant="body1"
+                variant="body2"
                 dangerouslySetInnerHTML={{
                   __html: data?.paragraph,
                 }}
               ></Typography>
-
-              <Box>
-                <PopUpButton
-                  sx={style.containedBtn}
-                  text="Enroll Now"
-                  href="popup"
-                />
+              {/* {data?.tags && ( */}
+              <Box sx={style.btnDiv}>
+                <div style={style.buttonDiv}>
+                  <PopUpButton
+                    sx={style.containedBtn}
+                    text="Enroll Now"
+                    href="popup"
+                  />
+                </div>
               </Box>
             </Box>
           </Grid>
@@ -74,6 +75,7 @@ export default EducationalCounseling;
 
 const style = {
   counseling: {
+    // justifyContent: { xs: "center" },
     background: "#B8E1F9",
     borderRadius: "5vh",
     width: {
@@ -98,9 +100,23 @@ const style = {
     },
     color: "#1F90D1",
   },
-
+  btnDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    maxWidth: { xs: "100%", md: "90%" },
+    marginRight: "auto",
+  },
+  tagsDiv: {
+    width: "50%",
+  },
   guidence: {
     // fontWeight: "700",
+    textAlign: {
+      xs: "start",
+      sm: "start",
+      md: "start",
+      lg: "left",
+    },
     width: {
       xs: "80vw",
       lg: "40vw",
@@ -132,6 +148,12 @@ const style = {
       xs: "80vw",
       lg: "40vw",
     },
+    textAlign: {
+      xs: "start",
+      sm: "start",
+      md: "start",
+      lg: "start",
+    },
     // fontSize: {
     //   xs: "2vh",
     //   sm: "2.2vh",
@@ -139,38 +161,52 @@ const style = {
     //   lg: "2vh",
     // },
   },
+  buttonDiv: {
+    display: "flex",
+    alignItems: "flex-end",
+  },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
     color: "white",
-    fontSize: {
-      xs: "1.8vh",
-      sm: "2vh",
-      md: "2vh",
-      lg: "2vh",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "1.8vh",
+    //   sm: "2vh",
+    //   md: "2vh",
+    //   lg: "2vh",
+    // },
+    // fontWeight: 700,
     paddingY: {
       xs: "1.5vh",
       sm: "2vh",
       lg: "1.5vh",
     },
-    marginY: "4vh",
+    marginY: "2vh",
     paddingX: {
       xs: "3vh",
       sm: "4vh",
     },
     textTransform: "none",
     borderRadius: "10px",
+
     width: {
-      xs: "40%", // Wider on mobile
-      sm: "60%",
-      md: "60%",
-      lg: "30%",
+      xs: "100%", // Wider on mobile
+      sm: "100%",
+      md: "100%",
+      lg: "100%",
     },
+    // width: {
+    //   xs: "40%", // Wider on mobile
+    //   sm: "60%",
+    //   md: "60%",
+    //   lg: "30%",
+    // },
+    transition: "all .5s ease-in-out",
+
     ":hover": {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
       backgroundColor: "#38B6FF",
+      transform: "scale(1.02)",
     },
   },
 };

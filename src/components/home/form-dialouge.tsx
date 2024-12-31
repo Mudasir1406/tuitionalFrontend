@@ -13,7 +13,7 @@ import {
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { leagueSpartan } from "@/app/fonts";
 import "../DropDown/DropDown.css";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
@@ -22,6 +22,8 @@ import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import "react-phone-number-input/style.css";
 import { HELLOTUITIONALEDU } from "@/utils/env";
+import Input from "../input/Input";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
 
 type IProps = {
   open: boolean;
@@ -37,6 +39,10 @@ export type FormType = {
   curriculum: string;
   subjects: string;
   message: string;
+  country?: string;
+  ip?: string;
+  browser?: string;
+  pageURL?: string;
 };
 
 export type CareersFormType = {
@@ -64,13 +70,58 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     curriculum: "",
     subjects: "",
     message: "",
+    browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
   });
+  const [errors, setErrors] = React.useState<Partial<FormType>>({});
+
   const handleChange = (key: string, value: string | string[]) => {
-    // console.log("handleChange", value);
+    // setFormData({
+    //   ...formData,
+    //   [key]: value,
+    // });
+
+    let newErrors = { ...errors };
+
+    // Perform validation if the key is "phone"
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        newErrors.phone = isValidPhoneNumber(value)
+          ? ""
+          : "Invalid phone number";
+
+        return;
+      }
+    }
+    if (key === "email" && typeof value === "string") {
+      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    }
+    if (key === "name" && typeof value === "string") {
+      newErrors.name = isNotEmpty(value) ? "" : "Name cannot be empty";
+    }
+    if (key === "grade" && typeof value === "string") {
+      newErrors.grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+    }
+    if (key === "curriculum" && typeof value === "string") {
+      newErrors.curriculum = isNotEmpty(value)
+        ? ""
+        : "Curriculum cannot be empty";
+    }
+    if (key === "subjects" && typeof value === "string") {
+      newErrors.subjects = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+    }
+    if (key === "message" && typeof value === "string") {
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    }
+
     setFormData({
       ...formData,
       [key]: value,
     });
+    setErrors(newErrors);
   };
 
   React.useEffect(() => {
@@ -79,8 +130,75 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
   }, [values]);
 
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const res = await fetch("https://ipinfo.io/json");
+      const locationData = await res.json();
+      console.log(
+        "locationData",
+        locationData,
+        "pageURL",
+        pageURL,
+        "browser",
+        browser
+      );
+      setFormData({
+        ...formData,
+        browser,
+        pageURL,
+        ip: locationData?.ip,
+        country: locationData?.country,
+      });
+    };
+
+    getClientLocation();
+  }, []);
+
   const onClickUpload = async () => {
     setLoading(true);
+
+    // Step 1: Perform Validation
+    const newErrors: Partial<FormType> = {};
+
+    if (!isNotEmpty(formData.name)) {
+      newErrors.name = "Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Invalid phone number";
+    }
+
+    if (!isNotEmpty(formData.grade)) {
+      newErrors.grade = "Grade is required";
+    }
+
+    if (!isNotEmpty(formData.curriculum)) {
+      newErrors.curriculum = "Curriculum is required";
+    }
+
+    if (!isNotEmpty(formData.subjects)) {
+      newErrors.subjects = "Subjects cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
     const formDataObject = new FormData();
     Object.entries(formData).map((value) =>
       formDataObject.append(value[0], value[1])
@@ -171,8 +289,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
           />
         </Box>
         <Divider />
-        <Grid container columnSpacing={2} paddingX={"2%"}>
-          <Grid item lg={6} md={12} sm={12} xs={12}>
+        {/* <Grid container columnSpacing={2} paddingX={"2%"}> */}
+        {/* <Grid item lg={6} md={12} sm={12} xs={12}>
             <TextField
               sx={styles.input}
               fullWidth
@@ -196,13 +314,15 @@ const FormDialog: React.FunctionComponent<IProps> = ({
             <DropDown
               placeholder="Select Curriculum"
               data={filterData?.curriculum || []}
-              boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+              // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
               marginTop="1.5vh"
               marginBottom="1.5vh"
               value={formData.curriculum}
-              onChange={(e) => {
-                handleChange("curriculum", e.target.value);
-              }}
+              onChange={handleChange}
+              name="curriculum"
+              // onChange={(e) => {
+              //   handleChange("curriculum", e.target.value);
+              // }}
             />
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -220,28 +340,32 @@ const FormDialog: React.FunctionComponent<IProps> = ({
             <DropDown
               placeholder="Select Grade"
               data={filterData?.grade || []}
-              boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+              // boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
               marginBottom="1.5vh"
               marginTop="1.5vh"
               value={formData.grade}
-              onChange={(e) => {
-                handleChange("grade", e.target.value);
-              }}
+              onChange={handleChange}
+              name="grade"
+              // onChange={(e) => {
+              //   handleChange("grade", e.target.value);
+              // }}
             />
             <DropDown
               placeholder="Select Subject"
               data={filterData?.subject || []}
-              boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
+              // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
               marginBottom="1.5vh"
               marginTop="1.5vh"
               value={formData.subjects}
-              onChange={(e) => {
-                handleChange("subjects", e.target.value);
-              }}
+              onChange={handleChange}
+              name="subjects"
+              // onChange={(e) => {
+              //   handleChange("subjects", e.target.value);
+              // }}
             />
-          </Grid>
-        </Grid>
-        <Box paddingX={"2%"}>
+          </Grid> */}
+        {/* </Grid> */}
+        {/* <Box paddingX={"2%"}>
           <TextField
             sx={[styles.input]}
             fullWidth
@@ -254,8 +378,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
             variant="outlined"
             className={leagueSpartan.className}
           />
-        </Box>
-        <Button
+        </Box> */}
+
+        {/* <Button
           sx={styles.containedButton}
           className={leagueSpartan.className}
           onClick={onClickUpload}
@@ -268,7 +393,181 @@ const FormDialog: React.FunctionComponent<IProps> = ({
           ) : (
             "Enroll"
           )}
-        </Button>
+        </Button> */}
+        {/* <Grid container columnSpacing={2} paddingX={"2%"}> */}
+        <Box sx={styles.mainDiv}>
+          <form onSubmit={onClickUpload}>
+            <Box sx={styles.inputDivTop}>
+              <Box sx={styles.inputInner}>
+                <Input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder={"Enter name here ..."}
+                  className={`${styles.input} ${leagueSpartan.className}`}
+                />
+                {errors.name && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} `}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.name}
+                  </Typography>
+                )}
+              </Box>
+
+              <Box sx={styles.inputInner}>
+                <Input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={"Enter email here ..."}
+                  className={`${styles.input} ${leagueSpartan.className} `}
+                />
+                {errors.email && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.email}
+                  </Typography>
+                )}
+              </Box>
+            </Box>
+
+            <Box sx={styles.inputDiv}>
+              <div style={styles.div}>
+                <PhoneInput
+                  defaultCountry="SA"
+                  value={formData?.phone || ""}
+                  onChange={(e) => handleChange("phone", String(e))}
+                  inputComponent={CustomInput}
+                  // className={`${styles.phoneInput}`}
+                  style={styles.phoneInput}
+                />
+
+                {errors.phone && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.phone}
+                  </Typography>
+                )}
+              </div>
+              <div style={styles.div}>
+                <DropDown
+                  name="grade"
+                  placeholder="Select Grade"
+                  marginTop="1.5vh"
+                  data={filterData?.grade || []}
+                  // multiple
+                  value={formData.grade}
+                  onChange={handleChange}
+                />
+                {errors.grade && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.grade}
+                  </Typography>
+                )}
+              </div>
+            </Box>
+            <Box sx={styles.inputDiv}>
+              <div style={styles.div}>
+                <DropDown
+                  placeholder="Select Curriculum"
+                  name="curriculum"
+                  data={filterData?.curriculum || []}
+                  marginTop="1.5vh"
+                  value={formData.curriculum}
+                  onChange={handleChange}
+                />
+                {errors.curriculum && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.curriculum}
+                  </Typography>
+                )}
+              </div>
+              <div style={styles.div}>
+                <DropDown
+                  name="subjects"
+                  placeholder="Select Subject"
+                  data={filterData?.subject || []}
+                  marginTop="1.5vh"
+                  value={formData.subjects}
+                  onChange={handleChange}
+                />{" "}
+                {errors.subjects && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.subjects}
+                  </Typography>
+                )}
+              </div>
+            </Box>
+            <div>
+              <TextField
+                sx={[styles.input]}
+                fullWidth
+                multiline
+                rows={5}
+                name="Message"
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+                // label="Message*"
+                variant="outlined"
+                placeholder="Enter your message here..."
+                className={leagueSpartan.className}
+              />
+              {errors.message && (
+                <Typography
+                  sx={styles.error}
+                  className={`${leagueSpartan.className} ${styles.error}`}
+                  component={"p"}
+                  variant="caption"
+                >
+                  {errors.message}
+                </Typography>
+              )}
+            </div>
+
+            <Button
+              sx={styles.containedButton}
+              className={leagueSpartan.className}
+              onClick={onClickUpload}
+            >
+              {loading ? (
+                <CircularProgress
+                  sx={{ width: "12px", height: "12px", color: "white" }}
+                  size={20}
+                />
+              ) : (
+                "Enroll"
+              )}
+            </Button>
+          </form>
+        </Box>
+        {/* </Grid> */}
       </DialogContent>
     </Dialog>
   );
@@ -282,14 +581,76 @@ const styles = {
       "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
     backgroundColor: "white",
     width: {
-      xs: "100%",
-      lg: "50vw",
+      xs: "90vw",
+      md: "50vw",
     },
     // height: "60vh",
     borderRadius: "30px",
     p: 0,
     overflow: "auto",
   },
+  mainDiv: {
+    paddingX: "2%",
+    paddingY: "2%",
+    // minWidth: { xs: "90vw", md: "500px" },
+  },
+  // form: {
+  //   maxWidth: "95%",
+  //   margin: "auto",
+  // },
+  title: {
+    textAlign: "center",
+    marginBottom: "1.5vh",
+  },
+  error: {
+    color: "red",
+    marginTop: "6px",
+    marginLeft: "6px",
+  },
+  div: {
+    flex: 1,
+  },
+  textArea: {
+    backgroundColor: "white",
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0, 0, 0, 0.77)",
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    borderRadius: "5px",
+    border: "none",
+    padding: 0,
+  },
+  textField: {
+    marginTop: "12px",
+  },
+  inputDiv: {
+    display: "flex",
+    flexDirection: { xs: "column", lg: "row" },
+
+    columnGap: "24px",
+    // rowGap: "12px",
+
+    flex: 1,
+  },
+  inputDivTop: {
+    display: "flex",
+    flexDirection: { xs: "column", lg: "row" },
+
+    columnGap: "24px",
+    rowGap: "12px",
+
+    flex: 1,
+  },
+  inputInner: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+  },
+
+  rowGap: {
+    rowGap: "12px",
+  },
+
   lable: {
     fontSize: "1.7vh", // Adjusted font size with vh unit
     fontWeight: 400,
@@ -379,7 +740,7 @@ const styles = {
     paddingLeft: "10px",
     backgroundColor: "white",
     marginTop: "1.5vh",
-    marginBottom: "1.5vh",
+    // marginBottom: "1.5vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -388,9 +749,11 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
+    // height: "42px",
     height: "5.5vh",
-    fontSize: "1.7vh",
-    fontWeight: 400,
-    minHeight: "50px",
+
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
+    // minHeight: "50px",
   },
 };

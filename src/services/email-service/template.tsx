@@ -69,6 +69,22 @@ export const createEmailTemplate = (formData: FormType) => `
           <td style="border: 1px solid #dddddd; padding: 8px;">${formData.subjects}</td>
         </tr>
         <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Country:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.country}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">IP:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.ip}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">browser:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.browser}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Source Page URL:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.pageURL}</td>
+        </tr>
+        <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
           <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
         </tr>

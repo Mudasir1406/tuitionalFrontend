@@ -18,6 +18,7 @@ const Trusted: React.FC = async () => {
         sx={styles.heading}
         className={leagueSpartan.className}
         component={"h2"}
+        variant="h2"
       >
         Trusted By Students At Top Schools
       </Typography>
@@ -89,19 +90,19 @@ const styles = {
   },
   heading: {
     color: "#000000",
-    fontSize: {
-      xs: "3.5vh",
-      sm: "4vh",
-      md: "5.5vh",
-      lg: "5.5vh",
-    },
-    fontWeight: 700,
-    lineHeight: {
-      xs: "4.5vh",
-      sm: "5vh",
-      md: "6.5vh",
-      lg: "6.5vh",
-    },
+    // fontSize: {
+    //   xs: "3.5vh",
+    //   sm: "4vh",
+    //   md: "5.5vh",
+    //   lg: "5.5vh",
+    // },
+    // fontWeight: 700,
+    // lineHeight: {
+    //   xs: "4.5vh",
+    //   sm: "5vh",
+    //   md: "6.5vh",
+    //   lg: "6.5vh",
+    // },
     marginTop: {
       xs: "7vh",
       sm: "8vh",

@@ -1,0 +1,142 @@
+.main {
+  background: linear-gradient(to top, #d7f0ff, rgba(255, 255, 255, 0.7));
+  /* height: 400px; */
+  position: relative;
+  margin-bottom: 17vh;
+  /* padding-top: 7vh; */
+  /* padding-bottom: 17vh; */
+  padding-bottom: 7vh;
+  text-align: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+.contactContanier {
+  background-color: rgba(56, 182, 255, 1);
+  position: absolute;
+  /* bottom: -8vh; */
+  left: 50%; /* Start positioning from the center */
+  transform: translateX(-50%);
+  width: 90%;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.description{
+  margin-top: 2.5vh;
+}
+.heading {
+  color: white;
+}
+
+.leftDiv {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+.imageContanier {
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  justify-content: center;
+}
+
+.contactContanier {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background-color: rgba(56, 182, 255, 1);
+  border-radius: 5px;
+  margin-bottom: -30px;
+  width: 80%;
+  padding: 10px;
+}
+
+.btnDiv{
+  margin-top: 24px;
+}
+
+@media (max-width: 576px) {
+  .leftDiv {
+    flex-direction: column;
+  }
+  .contactContanier {
+    padding: 20px;
+  }
+  .main {
+    padding-bottom: 23vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactContanier {
+    padding: 25px;
+    width: 85%;
+  }
+}
+
+@media (min-width: 992px) {
+  .contactContanier {
+    padding: 30px;
+  }
+}
+
+.image-container {
+  max-width: 90px;
+  max-height: 90px;
+  min-width: 75px;
+  min-height: 75px;
+  width: 9vh;
+  height: 9vh;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactButton {
+  box-shadow: 1px 15px 34px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  font-size: 4vw;
+  border-radius: 10px;
+  letter-spacing: -2%;
+  font-weight: 700;
+  line-height: 23px;
+  color: #009bf5;
+  text-transform: none;
+  padding: 15px 25px;
+}
+
+@media (min-width: 576px) {
+  .contactButton {
+    font-size: 2.1vw;
+    padding: 21px 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactButton {
+    font-size: 2vw;
+    padding: 22px 22px;
+  }
+}
+
+@media (min-width: 992px) {
+  .contactButton {
+    font-size: 1.4vw;
+    padding: 22px 25px;
+  }
+}
+
+.contactButton:hover {
+  background-color: white;
+  border-radius: 10px;
+  letter-spacing: -2%;
+  box-shadow: 1px 15px 34px 0px rgba(0, 0, 0, 0.2);
+}

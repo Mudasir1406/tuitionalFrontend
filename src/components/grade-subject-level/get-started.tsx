@@ -189,13 +189,13 @@ const styles = {
     margin: "2vh 0",
     backgroundColor: "#38B6FF",
 
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "25px",
+    //   sm: "25px",
+    //   md: "25px",
+    //   lg: "25px",
+    // },
+    // fontWeight: 700,
     lineHeight: "18.4px",
     textAlign: "center",
     width: "249px",
@@ -212,13 +212,13 @@ const styles = {
       letterSpacing: "-2%",
 
       borderRadius: "10px",
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      fontWeight: 700,
+      // fontSize: {
+      //   xs: "25px",
+      //   sm: "25px",
+      //   md: "25px",
+      //   lg: "25px",
+      // },
+      // fontWeight: 700,
       lineHeight: "18.4px",
       textAlign: "center",
     },
@@ -292,8 +292,8 @@ const GetStartedBox: React.FC<Props> = ({
       <Typography
         sx={styles.boxHeading}
         className={leagueSpartan.className}
-        variant="h2"
-        component={"h2"}
+        component={"strong"}
+        variant="h4"
       >
         {heading}
       </Typography>
@@ -301,7 +301,7 @@ const GetStartedBox: React.FC<Props> = ({
         sx={styles.boxDesc}
         className={leagueSpartan.className}
         component={"p"}
-        variant="body1"
+        variant="body2"
       >
         {description}
       </Typography>

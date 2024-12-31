@@ -1,4 +1,37 @@
+export interface tutor_section {
+  headerTag: string;
+  sequenceNumber: number;
+  subject: string;
+  curriculum: string;
+  header: string;
+  view: string;
+  grade: string;
+}
+
 export type PageData = {
+  link_list: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    subjects: { name: string; link: string }[];
+  };
+  igcse_in_dubai: {
+    header: string;
+    headerTag: string;
+
+    subTextRightTag: string;
+    subTextRight: string;
+    subTextLeft: string;
+    subTextLeftTag: string;
+    listArray: { name: string; paragraph: string }[];
+  };
+  tutoring_program: any;
+  what_we_offer: {
+    isShow: boolean;
+  };
+  get_started: {
+    isShow: boolean;
+  };
   hero_section: {
     header: string;
     headerTag: string;
@@ -6,12 +39,21 @@ export type PageData = {
     image: string;
     imageAltText: string;
   };
-  hero_section_from: {
+  with_form: {
     header: string;
     headerTag: string;
     paragraph: string;
     image: string;
     imageAltText: string;
+  };
+  tutor_section: tutor_section;
+  igcse_tutoring_program: {
+    section: string;
+    sectionTag: string;
+    paragraph: string;
+    isShow: boolean;
+    buttonText: string;
+    link: string;
   };
   phone_cta: {
     header: string;
@@ -44,6 +86,20 @@ export type PageData = {
     header: string;
     headerTag: string;
     paragraph: string;
+    tags?: { name: string; link: string }[];
+  };
+  why_igsce: {
+    header: string;
+    headerTag: string;
+    paragraph: string;
+    buttonText: string;
+    buttonLink: string;
+    image: string;
+    imageAltText: string;
+    section: string;
+    sectionTag: string;
+    right_to_left: boolean;
+    subjects?: { name: string; link: string }[];
   };
   what_our_student_says: {
     header: string;
@@ -65,7 +121,7 @@ export type PageData = {
     faqs: Faqs_Type[];
   };
   slugData: string;
-  variation: string;
+  variant: string;
   meta_tags: {
     title: string;
     description: string;

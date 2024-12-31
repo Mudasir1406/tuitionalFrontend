@@ -1,89 +1,17 @@
-// "use client";
-
-// import { createTheme } from "@mui/material/styles";
-
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: "League Spartan, sans-serif",
-//     h1: {
-//       fontSize: "65px",
-//       fontWeight: 700,
-//       lineHeight: 1.2,
-//     },
-//     h2: {
-//       fontSize: "50px",
-//       fontWeight: 600,
-//       lineHeight: 1.3,
-//     },
-//     h3: {
-//       fontSize: "40px",
-//       fontWeight: 600,
-//       lineHeight: 1.4,
-//     },
-//     body1: {
-//       fontSize: "20px",
-//       fontWeight: 400,
-//       lineHeight: 1.5,
-//     },
-//   },
-//   components: {
-//     // MuiButton: {
-//     //   styleOverrides: {
-//     //     root: {
-//     //       fontSize: "20px",
-//     //       fontWeight: 600,
-//     //       padding: "12px 24px",
-//     //       backgroundColor: "#38B6FF",
-//     //       color: "#fff",
-//     //       borderRadius: "4px",
-//     //       "&:hover": {
-//     //         backgroundColor: "#2a9cdf",
-//     //       },
-//     //     },
-//     //   },
-//     // },
-//     MuiInputBase: {
-//       styleOverrides: {
-//         root: {
-//           fontSize: "20px",
-//           fontWeight: 400,
-//           lineHeight: 1.5,
-//           fontFamily: "League Spartan, sans-serif",
-//           // padding: "10px 15px",
-//         },
-//       },
-//     },
-//     MuiSelect: {
-//       styleOverrides: {
-//         root: {
-//           fontSize: "20px",
-//           fontWeight: 400,
-//           fontFamily: "League Spartan, sans-serif",
-//         },
-//       },
-//     },
-//     MuiTypography: {
-//       defaultProps: {
-//         variantMapping: {
-//           h1: "h1",
-//           h2: "h2",
-//           h3: "h3",
-//           body1: "p",
-//         },
-//       },
-//     },
-//   },
-// });
-
-// export default theme;
-
 "use client";
 
-import { leagueSpartan } from "@/app/fonts";
+// import { leagueSpartan } from "@/app/fonts";
 import { createTheme } from "@mui/material/styles";
+import { League_Spartan } from "next/font/google";
+export const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const theme = createTheme({
   typography: {
+    fontFamily: `${leagueSpartan.style.fontFamily}`, // Add font family globally
+
     // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
     h1: {
       fontSize: "6.88vh",
@@ -93,7 +21,7 @@ const theme = createTheme({
         // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        fontSize: "4.88vh",
+        fontSize: "4.9vh",
         lineHeight: "5.5vh",
       },
     },
@@ -105,8 +33,8 @@ const theme = createTheme({
         // fontSize: "40px",
       },
       "@media (max-width:600px)": {
-        fontSize: "3.4vh",
-        lineHeight: "4.5vh",
+        fontSize: "3.8vh",
+        lineHeight: "4.6vh",
       },
     },
     h3: {
@@ -118,7 +46,7 @@ const theme = createTheme({
       },
       "@media (max-width:600px)": {
         // fontSize: "30px",
-        fontSize: "3.5vh",
+        fontSize: "3.6vh",
         lineHeight: "4.4vh",
       },
     },
@@ -133,39 +61,29 @@ const theme = createTheme({
         // fontSize: "20px",
       },
     },
-    // h5: {
-    //   fontSize: "25px",
-    //   fontWeight: 500,
-    //   lineHeight: 1.5,
-    //   "@media (max-width:900px)": {
-    //     // fontSize: "20px",
-    //   },
-    //   "@media (max-width:600px)": {
-    //     // fontSize: "18px",
-    //   },
-    // },
-    // h6: {
-    //   fontSize: "20px",
-    //   fontWeight: 500,
-    //   lineHeight: 1.6,
-    //   "@media (max-width:900px)": {
-    //     fontSize: "18px",
-    //   },
-    //   "@media (max-width:600px)": {
-    //     fontSize: "16px",
-    //   },
-    // },
 
     body1: {
+      fontSize: "2vh",
+      fontWeight: 400,
+      lineHeight: "2.8vh",
+      "@media (max-width:600px)": {
+        fontSize: "1.8vh",
+        lineHeight: "2.1vh",
+      },
+    },
+    body2: {
       fontSize: "2.667vh",
       fontWeight: 400,
       lineHeight: "3.5vh",
+      // textAlign: "left",
+
       "@media (max-width:900px)": {
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "1.8vh",
-        lineHeight: "2.4vh",
+        fontSize: "2.1vh",
+        lineHeight: "2.5vh",
+        // textAlign: "left",
       },
     },
 
@@ -174,7 +92,7 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.9vh",
       "@media (max-width:600px)": {
-        fontSize: "2.2vh",
+        fontSize: "2.3vh",
         lineHeight: "2.9vh",
       },
     },
@@ -183,8 +101,9 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "1.7vh",
+        fontSize: "2vh",
         lineHeight: "2.8vh",
+        textAlign: "left",
       },
     },
     caption: {
@@ -195,28 +114,43 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "1.7vh",
+        fontSize: "1.8vh",
         lineHeight: "2.3vh",
       },
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "2.667vh", // Set the font size for all buttons
+          fontWeight: 500,
+          textTransform: "none", // Optional: Disable uppercase transformation
+          "@media (max-width:900px)": {
+            fontSize: "2vh", // Adjust font size for medium screens
+          },
+          "@media (max-width:600px)": {
+            fontSize: "1.9vh",
+          },
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         root: {
-          // fontSize: "20px",
-          // fontWeight: 400,
-          // lineHeight: 1.5,
-          // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2.3vh",
           fontWeight: 400,
-          lineHeight: "3.5vh",
+          // lineHeight: "3.5vh",
+          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
+
           "@media (max-width:900px)": {
             // fontSize: "16px",
           },
           "@media (max-width:600px)": {
-            fontSize: "1.8vh",
-            lineHeight: "2.4vh",
+            fontSize: "1.9vh",
+            // lineHeight: "2.4vh",
+            // height: "42px",
+            // padding: "0",
           },
         },
       },
@@ -227,15 +161,18 @@ const theme = createTheme({
           // fontSize: "20px",
           // fontWeight: 400,
           // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2.667vh",
+          fontSize: "2vh",
           fontWeight: 400,
           lineHeight: "3.5vh",
+          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
+
           "@media (max-width:900px)": {
             // fontSize: "16px",
           },
           "@media (max-width:600px)": {
-            fontSize: "1.8vh",
+            fontSize: "1.9vh",
             lineHeight: "2.4vh",
+            // height: "42px",
           },
         },
       },
@@ -247,6 +184,7 @@ const theme = createTheme({
           h2: "h2",
           h3: "h3",
           body1: "p",
+          body2: "label",
         },
       },
     },

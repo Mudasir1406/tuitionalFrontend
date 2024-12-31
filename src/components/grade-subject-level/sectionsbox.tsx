@@ -72,11 +72,11 @@ const style = {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
     color: "white",
-    fontSize: {
-      xs: "1.5vh",
-      lg: "2vh",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "1.5vh",
+    //   lg: "2vh",
+    // },
+    // fontWeight: 700,
     paddingY: {
       xs: "1vh",
       lg: "10px",

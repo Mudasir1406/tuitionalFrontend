@@ -1,9 +1,11 @@
 .carouselContainer {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
+  max-width: 85vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 
 .cardContainer {
@@ -13,12 +15,21 @@
 }
 
 .cardWrapper {
+  width: 100%;
+
   display: flex;
+  /* display: grid; */
+  /* grid-template-columns: auto auto auto auto; */
   transition: transform 0.5s ease-in-out;
 }
 
 .card {
-  flex: 1 0 calc(25% - 16px); /* Show 4 cards per row with spacing */
+  /* flex: 0.5; */
+  flex: 1 0 calc(23.7%);
+  /* flex: 1 0 calc(25vw - 48px); */
+  /* width: calc(25% - 24px); */
+  /* width: 25%; */
+  /* width: 351px; */
   margin: 8px;
 }
 
@@ -40,4 +51,54 @@
 .leftButton:hover,
 .rightButton:hover {
   background-color: #d1d5db;
+}
+
+@media (max-width: 576px) {
+  .card {
+    /* width: 267px; */
+    /* flex: 1 0 calc(100vw -22px); */
+    flex: 1 0 calc(94%);
+    margin: 8px;
+    /* width: 100%; */
+  }
+  .carouselContainer {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex: 1 0 calc(48%);
+  }
+  /* .cardWrapper {
+    grid-template-columns: auto auto;
+  } */
+  .carouselContainer {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .card {
+    /* flex: 1 0 calc(21.5vw); */
+  }
+  /* .cardWrapper {
+    grid-template-columns: auto auto auto;
+  } */
+  .carouselContainer {
+    max-width: 100%;
+  }
+}
+
+/* XXL devices (larger desktops, 1400px and up) */
+@media only screen and (min-width: 1400px) {
+  /* Styles for XXL devices */
+ 
+  .card {
+    /* flex: 1 0 calc(21.5vw); */
+    flex: 1 0 calc(23.7%);
+  }
+  .carouselContainer {
+    max-width: 85%;
+  }
 }
