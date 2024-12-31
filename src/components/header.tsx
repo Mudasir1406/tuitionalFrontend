@@ -58,7 +58,11 @@ const Header: React.FC<IProps> = ({ background }) => {
             alignItems: "center",
           }}
         >
-          <Link href={"https://tuitionaledu.com/"}>
+          <Link
+            href={"https://tuitionaledu.com/"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Box sx={styles.logo}>
               <Image
                 src={logo.src}
@@ -172,7 +176,11 @@ const Header: React.FC<IProps> = ({ background }) => {
           animation: "rotateAnimation 2s ease-in-out infinite",
         }}
       >
-        <Link href={"https://wa.me/97144396296"}>
+        <Link
+          href={"https://wa.me/97144396296"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Image
             src={
               "https://img.icons8.com/?size=100&id=DUEq8l5qTqBE&format=png&color=000000"
