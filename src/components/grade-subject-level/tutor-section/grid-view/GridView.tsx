@@ -18,6 +18,7 @@ function GridView({ cardsData }: props) {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isHovered, setIsHovered] = useState(false);
 
   // Determine the number of visible cards based on the screen size
   const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;
@@ -38,12 +39,21 @@ function GridView({ cardsData }: props) {
     );
   };
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        handleNext();
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isHovered]);
 
   return (
     <div className={styles.carouselContainer}>
@@ -63,7 +73,12 @@ function GridView({ cardsData }: props) {
           }}
         >
           {cardsData?.map((card, i) => (
-            <div key={i} className={styles.card}>
+            <div
+              key={i}
+              className={styles.card}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
               <ImageCard data={card} />
             </div>
           ))}
