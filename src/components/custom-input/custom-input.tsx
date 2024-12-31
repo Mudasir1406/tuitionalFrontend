@@ -14,13 +14,15 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
         fullWidth
         InputProps={{
           className: leagueSpartan.className,
-          // sx: {
-          //   // fontSize: "1.9vh",
-          //   fontWeight: 400,
-          //   "& .MuiOutlinedInput-notchedOutline": {
-          //     border: "none",
-          //   },
-          // },
+          sx: {
+            // fontSize: "1.9vh",
+            // fontWeight: 400,
+            // "& .MuiOutlinedInput-notchedOutline": {
+            //   border: "none",
+            // },
+            padding: 0,
+            height: 0,
+          },
         }}
         {...rest}
         // label={

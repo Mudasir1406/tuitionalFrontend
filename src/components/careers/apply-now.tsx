@@ -23,6 +23,7 @@ import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import DropDown from "../DropDown/DropDown";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { Height } from "@mui/icons-material";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -248,12 +249,13 @@ const ApplyNow: React.FunctionComponent = () => {
               <Grid
                 container
                 columnSpacing={2}
-                rowSpacing={0}
+                rowSpacing={2}
                 sx={{ zIndex: 1 }}
               >
                 <Grid item xs={12} md={12} lg={6}>
                   <Input
                     // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
@@ -274,6 +276,7 @@ const ApplyNow: React.FunctionComponent = () => {
                   <Box sx={styles.my}>
                     <Input
                       // style={{ width: "93%" }}
+                      // style={{ padding: "0 8px", height: "5.7vh" }}
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
@@ -293,6 +296,7 @@ const ApplyNow: React.FunctionComponent = () => {
                   </Box>
                   <Input
                     // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
@@ -313,6 +317,8 @@ const ApplyNow: React.FunctionComponent = () => {
                 <Grid item xs={12} lg={6}>
                   <Input
                     // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
+                    // style={{ height: "5.7vh" }}
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
@@ -594,8 +600,8 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "2vh",
-    marginBottom: "2vh",
+    marginTop: "1.8vh",
+    marginBottom: "1.8vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -605,7 +611,11 @@ const styles = {
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
     // height: "58px",
-    height: "42px",
+    height: "5.7vh",
+    // height: "45px",
+    // height: "52px",
+    // padding:'2vh 15px',
+    // padding: "8px 15px",
 
     fontSize: "1.7vh",
     fontWeight: 400,
@@ -613,13 +623,14 @@ const styles = {
   },
   input: {
     backgroundColor: "white",
-    marginY: "12px",
+    // marginY: "12px",
     width: "100%",
     // outline: "none",
     // ":focus-visible": {
     //   outline: "none",
     // },
     // width: "95%"
+    // height:'',
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",

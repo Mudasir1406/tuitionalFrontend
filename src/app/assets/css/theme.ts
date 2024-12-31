@@ -138,9 +138,9 @@ const theme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: "2vh",
+          fontSize: "2.3vh",
           fontWeight: 400,
-          lineHeight: "3.5vh",
+          // lineHeight: "3.5vh",
           fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
 
           "@media (max-width:900px)": {
@@ -148,7 +148,7 @@ const theme = createTheme({
           },
           "@media (max-width:600px)": {
             fontSize: "1.9vh",
-            lineHeight: "2.4vh",
+            // lineHeight: "2.4vh",
             // height: "42px",
             // padding: "0",
           },

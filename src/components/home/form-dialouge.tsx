@@ -224,8 +224,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       // );
       // console.log("formData", formData);
       await sendEmail({
-        // recipientEmail: HELLOTUITIONALEDU,
-        recipientEmail: "aaashir128@gmail.com",
+        recipientEmail: HELLOTUITIONALEDU,
         subject: "Get Started",
         text: "",
         html: createEmailTemplate(formData),
