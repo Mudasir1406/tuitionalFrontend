@@ -25,23 +25,11 @@ function Input({
   className = "",
   style,
 }: CustomInputProps) {
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (!e.target.value) {
-      setIsFocused(false);
-    }
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(name, e.target.value);
   };
   return (
-    <div className={`${styles.container} ${className}`}>
+    <div className={`${styles.container} ${className}`} style={style}>
       {/* <label
          htmlFor={name}
          className={`${styles.label} ${
