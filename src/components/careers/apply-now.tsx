@@ -17,9 +17,13 @@ import { CareersFormType } from "../home/form-dialouge";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createCareerTemplate } from "@/services/email-service/template";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
+import DropDown from "../DropDown/DropDown";
+import Input from "../input/Input";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { Height } from "@mui/icons-material";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -32,20 +36,105 @@ const ApplyNow: React.FunctionComponent = () => {
     message: "",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [errors, setErrors] = React.useState<Partial<CareersFormType>>({});
 
   const handleChange = (key: string, value: string | string[]) => {
+    let newErrors = { ...errors };
+
     if (key === "message" && typeof value === "string") {
       value = value.slice(0, 500);
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
+    // Perform validation if the key is "phone"
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        newErrors.phone = isValidPhoneNumber(value)
+          ? ""
+          : "Invalid phone number";
+
+        return;
+      }
+    }
+    if (key === "email" && typeof value === "string") {
+      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    }
+    if (key === "firstName" && typeof value === "string") {
+      newErrors.firstName = isNotEmpty(value)
+        ? ""
+        : "First Name cannot be empty";
+    }
+
+    if (key === "lastName" && typeof value === "string") {
+      newErrors.lastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
+    }
+
+    if (key === "country" && typeof value === "string") {
+      newErrors.country = isNotEmpty(value) ? "" : "Country cannot be empty";
+    }
+
+    if (key === "position" && typeof value === "string") {
+      newErrors.position = isNotEmpty(value) ? "" : "Position cannot be empty";
+    }
+
+    // if (key === "message" && typeof value === "string") {
+    //   newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    // }
+
     setFormData({
       ...formData,
       [key]: value,
     });
+    setErrors(newErrors);
+    // setFormData({
+    //   ...formData,
+    //   [key]: value,
+    // });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
+    const newErrors: Partial<CareersFormType> = {};
+
+    if (!isNotEmpty(formData.firstName)) {
+      newErrors.firstName = "First Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Invalid phone number";
+    }
+
+    if (!isNotEmpty(formData.lastName)) {
+      newErrors.lastName = "Last Name is required";
+    }
+
+    if (!isNotEmpty(formData.country)) {
+      newErrors.country = "Country is required";
+    }
+
+    if (!isNotEmpty(formData.position)) {
+      newErrors.position = "Position cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
 
     const formDataObject = new FormData();
 
@@ -160,52 +249,92 @@ const ApplyNow: React.FunctionComponent = () => {
               <Grid
                 container
                 columnSpacing={2}
-                rowSpacing={0}
+                rowSpacing={2}
                 sx={{ zIndex: 1 }}
               >
-                <Grid item lg={6}>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="First Name"
+                <Grid item xs={12} md={12} lg={6}>
+                  <Input
+                    // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
+                    name="firstName"
                     value={formData.firstName}
-                    onChange={(e) => handleChange("firstName", e.target.value)}
-                    label="First Name*"
-                    variant="outlined"
+                    onChange={handleChange}
+                    placeholder={"Enter First name here ..."}
+                    className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Email"
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    label="Email*"
-                    variant="outlined"
-                  />
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Country"
+                  {errors.firstName && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} `}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.firstName}
+                    </Typography>
+                  )}
+
+                  <Box sx={styles.my}>
+                    <Input
+                      // style={{ width: "93%" }}
+                      // style={{ padding: "0 8px", height: "5.7vh" }}
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={"Enter Email here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.email && (
+                      <Typography
+                        sx={styles.error}
+                        className={`${leagueSpartan.className} `}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.email}
+                      </Typography>
+                    )}
+                  </Box>
+                  <Input
+                    // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
+                    name="country"
                     value={formData.country}
-                    onChange={(e) => handleChange("country", e.target.value)}
-                    label="Country*"
-                    variant="outlined"
+                    onChange={handleChange}
+                    placeholder={"Enter Country here ..."}
+                    className={`${styles.input} ${leagueSpartan.className}`}
                   />
+                  {errors.country && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} `}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.country}
+                    </Typography>
+                  )}
                 </Grid>
-                <Grid item lg={6}>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Last Name"
+                <Grid item xs={12} lg={6}>
+                  <Input
+                    // style={{ width: "93%" }}
+                    // style={{ padding: "0 8px", height: "5.7vh" }}
+                    // style={{ height: "5.7vh" }}
+                    name="lastName"
                     value={formData.lastName}
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                    label="Last Name*"
-                    variant="outlined"
+                    onChange={handleChange}
+                    placeholder={"Enter Last name here ..."}
+                    className={`${styles.input} ${leagueSpartan.className}`}
                   />
+                  {errors.lastName && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} `}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.lastName}
+                    </Typography>
+                  )}
                   <PhoneInput
                     style={styles.phoneInput}
                     defaultCountry="SA"
@@ -213,20 +342,36 @@ const ApplyNow: React.FunctionComponent = () => {
                     onChange={(e) => handleChange("phone", String(e))}
                     inputComponent={CustomInput}
                   />
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Position"
-                    value={formData?.position}
-                    onChange={(e) =>
-                      handleChange("position", String(e.target.value))
-                    }
-                    label="Position Apply for*"
-                    variant="outlined"
+                  {errors.phone && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.phone}
+                    </Typography>
+                  )}
+                  <Input
+                    // style={{ width: "93%" }}
+                    name="position"
+                    value={formData.position}
+                    onChange={handleChange}
+                    placeholder={"Enter Position here ..."}
+                    className={`${styles.input} ${leagueSpartan.className}`}
                   />
+                  {errors.position && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} `}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.position}
+                    </Typography>
+                  )}
                 </Grid>
-                <Grid item lg={12}>
+                <Grid item xs={12}>
                   <TextField
                     sx={[styles.input]}
                     fullWidth
@@ -235,10 +380,21 @@ const ApplyNow: React.FunctionComponent = () => {
                     name="Message"
                     value={formData.message}
                     onChange={(e) => handleChange("message", e.target.value)}
-                    label="Message*"
+                    // label="Message*"
+                    placeholder="Enter your message here..."
                     variant="outlined"
                     className={leagueSpartan.className}
                   />
+                  {errors.message && (
+                    <Typography
+                      sx={styles.error}
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.message}
+                    </Typography>
+                  )}
                 </Grid>
               </Grid>
 
@@ -349,6 +505,50 @@ const styles = {
       },
     },
   },
+  my: {
+    marginTop: "2vh",
+    marginBottom: "2vh",
+  },
+  inputDiv: {
+    display: "flex",
+    flexDirection: { xs: "column", lg: "row" },
+
+    columnGap: "24px",
+    // rowGap: "12px",
+    width: "100%",
+    flex: 1,
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: "1.5vh",
+  },
+  error: {
+    color: "red",
+    marginTop: "6px",
+    marginLeft: "6px",
+  },
+  inputDivTop: {
+    display: "flex",
+    flexDirection: { xs: "column", lg: "row" },
+
+    columnGap: "24px",
+    rowGap: "12px",
+
+    flex: 1,
+  },
+  div: {
+    flex: 1,
+  },
+  inputInner: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    flex: 1,
+  },
+
+  rowGap: {
+    rowGap: "12px",
+  },
   contactForm: {
     boxShadow:
       "0px -3px 8px 0px rgba(0, 0, 0, 0.06) inset,0px 3px 8px 0px rgba(0, 0, 0, 0.06) inset",
@@ -400,8 +600,8 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "1.5vh",
-    marginBottom: "1.5vh",
+    marginTop: "1.8vh",
+    marginBottom: "1.8vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -410,19 +610,27 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    height: "58px",
+    // height: "58px",
+    height: "5.7vh",
+    // height: "45px",
+    // height: "52px",
+    // padding:'2vh 15px',
+    // padding: "8px 15px",
+
     fontSize: "1.7vh",
     fontWeight: 400,
-    minHeight: "50px",
+    // minHeight: "50px",
   },
   input: {
     backgroundColor: "white",
-    marginY: "12px",
+    // marginY: "12px",
+    width: "100%",
     // outline: "none",
     // ":focus-visible": {
     //   outline: "none",
     // },
     // width: "95%"
+    // height:'',
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",

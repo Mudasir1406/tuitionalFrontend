@@ -14,6 +14,8 @@ import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import PopUpButton from "../pop-up-button";
+import { ForkLeft } from "@mui/icons-material";
+
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>([]);
 
@@ -28,6 +30,7 @@ const GetStarted = () => {
         sx={styles.heading}
         className={leagueSpartan.className}
         component={"h2"}
+        variant="h2"
       >
         How to Get Started
       </Typography>
@@ -107,25 +110,7 @@ export default GetStarted;
 
 const styles = {
   heading: {
-    fontSize: {
-      xs: "30px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 600,
-    // marginTop: {
-    //   xs: "70px",
-    //   sm: "80px",
-    //   md: "95px",
-    //   lg: "105px",
-    // },
+    textAlign: "center",
     marginBottom: "20px",
     position: "relative",
     paddingLeft: {
@@ -138,12 +123,15 @@ const styles = {
       content: "''",
       position: "absolute",
       zIndex: 10,
-      left: {
-        xs: -5,
-        sm: 10,
-        md: 10,
-        lg: -30,
-      },
+      // left: {
+      //   xs: -5,
+      //   sm: 10,
+      //   md: 10,
+      //   lg: '40%',
+      // },
+      left: { xs: "14%",sm: "18%", md: "36%" }, // Start positioning from the horizontal center of the parent
+      // transform: "translateX(-68%)", // Move it left by 50% of its own width to align center
+
       top: {
         xs: -20,
         sm: -40,
@@ -180,14 +168,14 @@ const styles = {
     color: "white",
     backgroundColor: "#38B6FF",
 
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+    // fontSize: {
+    //   xs: "25px",
+    //   sm: "25px",
+    //   md: "25px",
+    //   lg: "25px",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "18.4px",
     textAlign: "center",
     width: "249px",
     padding: "18px",
@@ -232,18 +220,18 @@ const styles = {
     flexDirection: "column",
   },
   boxHeading: {
-    fontSize: "28px",
-    fontWeight: 600,
-    lineHeight: "34px",
+    // fontSize: "28px",
+    // fontWeight: 600,
+    // lineHeight: "34px",
     textAlign: "center",
     // height: "100px",
     marginTop: "16px",
     marginBottom: "16px",
   },
   boxDesc: {
-    fontSize: { xs: "18px", lg: "22px" },
-    fontWeight: 400,
-    lineHeight: { xs: "28px", lg: "32px" },
+    // fontSize: { xs: "18px", lg: "22px" },
+    // fontWeight: 400,
+    // lineHeight: { xs: "28px", lg: "32px" },
     textAlign: "center",
     // height: "150px",
     marginBottom: "24px",
@@ -291,10 +279,15 @@ const GetStartedBox: React.FC<Props> = ({
         sx={styles.boxHeading}
         className={leagueSpartan.className}
         component={"strong"}
+        variant="h4"
       >
         {heading}
       </Typography>
-      <Typography sx={styles.boxDesc} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.boxDesc}
+        className={leagueSpartan.className}
+        variant="body2"
+      >
         {description}
       </Typography>
       <PopUpButton text={ButtonText} href="popup" sx={styles.containedBtn} />

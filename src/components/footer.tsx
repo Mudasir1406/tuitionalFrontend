@@ -37,7 +37,7 @@ const Footer: React.FC = async () => {
                     height={plan.height}
                     alt="plan"
                     style={{
-                      width: "60px",
+                      width: "50px",
                       height: "60px",
                       marginTop: "10px",
                       objectFit: "contain",
@@ -110,8 +110,8 @@ const Footer: React.FC = async () => {
                 >
                   <Image
                     src={logo.src}
-                    width={logo.width}
-                    height={logo.height}
+                    width={logo.width / 1.5}
+                    height={logo.height / 1.5}
                     style={{ alignSelf: "start" }}
                     alt="logo"
                   ></Image>
@@ -119,7 +119,7 @@ const Footer: React.FC = async () => {
                 <Typography
                   sx={styles.desc}
                   className={leagueSpartan.className}
-                  variant="body1"
+                  variant="body2"
                 >
                   Tuitional is an Online Ed-Tech Platform. We do live tutoring
                   classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all
@@ -180,7 +180,7 @@ const Footer: React.FC = async () => {
                 {footerData?.curriculums.map((item, index) => (
                   <Typography
                     sx={styles.text}
-                    variant="body1"
+                    variant="body2"
                     key={index}
                     className={leagueSpartan.className}
                   >
@@ -214,7 +214,7 @@ const Footer: React.FC = async () => {
                 {footerData?.subjects.slice(0, 10).map((item, index) => (
                   <Typography
                     sx={styles.text}
-                    variant="body1"
+                    variant="body2"
                     key={index}
                     className={leagueSpartan.className}
                   >
@@ -237,7 +237,7 @@ const Footer: React.FC = async () => {
                   {footerData?.getHelp.map((item, index) => (
                     <Typography
                       sx={styles.text}
-                      variant="body1"
+                      variant="body2"
                       key={index}
                       className={leagueSpartan.className}
                     >
@@ -270,7 +270,7 @@ const Footer: React.FC = async () => {
                     >
                       <Typography
                         sx={styles.text}
-                        variant="body1"
+                        variant="body2"
                         key={index}
                         className={leagueSpartan.className}
                       >
@@ -306,7 +306,7 @@ const Footer: React.FC = async () => {
                       >
                         <Typography
                           sx={styles.text}
-                          variant="body1"
+                          variant="body2"
                           className={leagueSpartan.className}
                         >
                           {item}
@@ -341,7 +341,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    paddingY: "100px",
+    paddingY: { xs: "40px", md: "100px" },
     position: "relative",
     // zIndex: -3,
   },
@@ -422,23 +422,23 @@ const styles = {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
     backgroundColor: "white",
 
-    fontSize: {
-      xs: "4vw",
-      sm: "2.1vw",
-      md: "2vw",
-      lg: "1.4vw",
-    },
+    // fontSize: {
+    //   xs: "4vw",
+    //   sm: "2.1vw",
+    //   md: "2vw",
+    //   lg: "1.4vw",
+    // },
     borderRadius: "10px",
     letterSpacing: "-2%",
-    fontWeight: 700,
+    // fontWeight: 700,
     lineHeight: "23px",
     color: "#009BF5",
     textTransform: "none",
     paddingY: {
-      xs: "15px",
-      sm: "21px",
-      md: "22px",
-      lg: "22px",
+      xs: "1.5vh",
+      sm: "1.5vh",
+      md: "2vh",
+      lg: "2vh",
     },
     paddingX: {
       xs: "25px",

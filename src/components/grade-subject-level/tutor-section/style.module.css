@@ -1,13 +1,29 @@
 .main {
   border-radius: 16px;
-  padding: 24px;
+  padding: 0 24px;
   justify-content: center;
   align-items: center;
-  background-color: #d7f0ff;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* background-color: #d7f0ff; */
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
 }
 
 .title {
   text-align: center;
   margin-bottom: 1vh;
+}
+
+.mt1 {
+  margin-top: 2vh;
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 0 12px;
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
 }

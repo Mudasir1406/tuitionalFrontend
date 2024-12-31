@@ -3,31 +3,34 @@ import { TextField, Typography, TextFieldProps } from "@mui/material";
 import { forwardRef } from "react";
 
 const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ value, onChange, ...rest }, ref) => {
+  ({ value, onChange, placeholder, ...rest }, ref) => {
     return (
       <TextField
         inputRef={ref}
         value={value}
-        sx={{}}
+        // sx={{}}
         onChange={onChange}
+        placeholder={placeholder}
         fullWidth
         InputProps={{
           className: leagueSpartan.className,
           sx: {
-            fontSize: "1.9vh",
-            fontWeight: 400,
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
+            // fontSize: "1.9vh",
+            // fontWeight: 400,
+            // "& .MuiOutlinedInput-notchedOutline": {
+            //   border: "none",
+            // },
+            padding: 0,
+            height: 0,
           },
         }}
         {...rest}
-        label={
-          <Typography sx={styles.label} className={leagueSpartan.className}>
-            Phone
-          </Typography>
-        }
-        variant="outlined"
+        // label={
+        //   <Typography sx={styles.label} className={leagueSpartan.className}>
+        //     Phone
+        //   </Typography>
+        // }
+        // variant="outlined"
         className={leagueSpartan.className}
       />
     );
@@ -39,8 +42,8 @@ export default CustomInput;
 
 const styles = {
   label: {
-    fontSize: "1.7vh",
-    fontWeight: 400,
-    color: "rgba(0,0,0,0.77)",
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
+    // color: "rgba(0,0,0,0.77)",
   },
 };

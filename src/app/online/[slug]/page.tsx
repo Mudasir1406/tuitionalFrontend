@@ -17,9 +17,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     Component_Sequence_Type | undefined | null
   ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
 
+  // console.log("Pagelevel", data, "data hero", data?.hero_section_from);
 
-
-  const sortJsonObjectBySequenceNumber = (jsonObject: { [key: string]: any }): { [key: string]: any } => {
+  const sortJsonObjectBySequenceNumber = (jsonObject: {
+    [key: string]: any;
+  }): { [key: string]: any } => {
     // Convert the object to an array of key-value pairs
     const entries = Object.entries(jsonObject);
 
@@ -29,10 +31,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       const seqB = valueB.sequenceNumber ?? Infinity; // If sequenceNumber is missing, assign Infinity
       return seqA - seqB;
     });
-  
+
     // Convert the sorted entries back into an object
     return Object.fromEntries(sortedEntries);
-};
+  };
 
   if (!data) return redirect("/404");
 
@@ -40,11 +42,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     return <div>Error: Component sequence not found.</div>;
   }
 
-
-  if(data?.variation == "new"){
-    return <GradeSubjectLevelV2 data={sortJsonObjectBySequenceNumber(data) as any} />;
+  if (data?.variant == "new") {
+    return (
+      <GradeSubjectLevelV2 data={sortJsonObjectBySequenceNumber(data) as any} />
+    );
   }
-  
+
   return <GradeSubjectLevel data={data} sequence={sequence} />;
 };
 

@@ -4,6 +4,8 @@ import {
   getDoc,
   getDocs,
   FirestoreError,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "../../firebaseConfig/config";
 import {
@@ -27,6 +29,90 @@ export const getPageData = async (slug: string): Promise<PageData | null> => {
     handleFirestoreError(error as FirestoreError);
     return null;
   }
+};
+
+interface GroupDocument {
+  id: string;
+  [key: string]: any; // Allow for any other fields in the document
+}
+
+// export const getTutorsByFilter = async (curiculum: string, subject: string):  Promise<GroupDocument[]> => {
+//   // if (cachedPageData) return cachedPageData; // Use cached data if available
+
+//   const query1 = query(
+//     collection(db, "tutors_data"),
+//     where("Curiculum", "array-contains", curiculum)
+//   );
+
+//   // Query for the second condition
+//   const query2 = query(
+//     collection(db, "tutors_data"),
+//     where("Subjects", "array-contains", subject)
+//   );
+
+//   // Execute the queries
+//   const [snapshot1, snapshot2] = await Promise.all([getDocs(query1), getDocs(query2)]);
+
+//   // Combine the results
+//   const resultSet = new Set<string>();
+
+//   snapshot1.forEach(doc => resultSet.add(JSON.stringify({ id: doc.id, ...doc.data() })));
+//   snapshot2.forEach(doc => resultSet.add(JSON.stringify({ id: doc.id, ...doc.data() })));
+
+//   // Convert the result set back to an array of objects
+//   const results: GroupDocument[] = Array.from(resultSet).map((item) => JSON.parse(item));
+//   console.log("Results for Tutors : ",results)
+//   return results;
+// };
+
+export const getTutorsByFilter = async (
+  curiculum: string,
+  subject: string
+): Promise<GroupDocument[]> => {
+  // if (cachedPageData) return cachedPageData; // Use cached data if available
+
+  if (curiculum == "" && subject == "") {
+    var temp: any = [];
+    const queryData = await getDocs(collection(db, "tutors_data"));
+    queryData.forEach((doc) => {
+      temp.push({ id: doc.id, ...doc.data() } as any);
+    });
+    return temp;
+  }
+
+  const query1 = query(
+    collection(db, "tutors_data"),
+    where("Curiculum", "array-contains", curiculum)
+  );
+
+  // Query for the second condition
+  const query2 = query(
+    collection(db, "tutors_data"),
+    where("Subjects", "array-contains", subject)
+  );
+
+  // Execute the queries
+  const [snapshot1, snapshot2] = await Promise.all([
+    getDocs(query1),
+    getDocs(query2),
+  ]);
+
+  // Combine the results
+  const resultSet = new Set<string>();
+
+  snapshot1.forEach((doc) =>
+    resultSet.add(JSON.stringify({ id: doc.id, ...doc.data() }))
+  );
+  snapshot2.forEach((doc) =>
+    resultSet.add(JSON.stringify({ id: doc.id, ...doc.data() }))
+  );
+
+  // Convert the result set back to an array of objects
+  const results: GroupDocument[] = Array.from(resultSet).map((item) =>
+    JSON.parse(item)
+  );
+  console.log("Results for Tutors : ", results);
+  return results;
 };
 
 export const getPageSequence =

@@ -57,6 +57,7 @@ const Questions: React.FunctionComponent<IProps> = ({ question, answer }) => {
           <Typography
             sx={styles.answerText}
             className={leagueSpartan.className}
+            variant="body2"
           >
             {answer}
           </Typography>
@@ -92,10 +93,10 @@ const styles = {
   questionText: {
     display: "flex",
     fontSize: {
-      xs: "1.7vh",
-      sm: "1.8vh",
-      md: "2vh",
-      lg: "2.5vh",
+      xs: "2.3vh",
+      sm: "2.6vh",
+      md: "2.8vh",
+      lg: "2.8vh",
     },
     fontWeight: 500,
     lineHeight: {
@@ -109,19 +110,19 @@ const styles = {
   },
   answerText: {
     display: "flex",
-    fontSize: {
-      xs: "1.2vh",
-      sm: "1.3vh",
-      md: "1.4vh",
-      lg: "1.7vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "2.6vh",
-      sm: "2.8vh",
-      md: "3.2vh",
-      lg: "3.2vh",
-    },
+    // fontSize: {
+    //   xs: "1.2vh",
+    //   sm: "1.3vh",
+    //   md: "1.4vh",
+    //   lg: "1.7vh",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "2.6vh",
+    //   sm: "2.8vh",
+    //   md: "3.2vh",
+    //   lg: "3.2vh",
+    // },
   },
   containedButton: {
     display: "flex",

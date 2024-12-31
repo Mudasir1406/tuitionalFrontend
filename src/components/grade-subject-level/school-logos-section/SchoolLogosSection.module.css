@@ -1,0 +1,29 @@
+.main {
+  background: linear-gradient(to right, white, #58b9f6);
+
+  display: flex;
+  overflow: hidden;
+  padding: 1vh;
+}
+
+.logosDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 48px; /* Space between logos */
+  animation: slide 50s linear infinite;
+}
+.logoWrapper {
+  display: flex;
+  gap: 48px; /* Space between logos */
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0); /* Start from the left */
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
