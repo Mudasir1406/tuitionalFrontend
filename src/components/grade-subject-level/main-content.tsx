@@ -58,9 +58,9 @@ const style = {
   },
   title: {
     width: {
-      xs: "100%", // Mobile view
-      sm: "100%", // Tablet view
-      md: "100%", // Laptop view
+      xs: "100%", 
+      sm: "100%", 
+      md: "100%", 
       lg: "50vw", // Desktop view
     },
     // fontSize: {
