@@ -186,7 +186,7 @@ const styles = {
     },
   },
   contanier: {
-    height: { xs: "565px", lg: "600px" },
+    height: { xs: "565px", lg: "600px", xl: "auto" },
     // height: "auto",
     width: {
       lg: "auto",
