@@ -20,7 +20,7 @@ const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
         ></Typography>
         <Typography
           sx={style.description}
-          component={"p"}
+          // component={'div'}
           variant="body2"
           dangerouslySetInnerHTML={{
             __html: data?.paragraph,
