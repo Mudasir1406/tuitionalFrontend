@@ -87,7 +87,7 @@ const EducationalCounseling: React.FunctionComponent<{
                   </div>
                 )}
                 <div style={style.buttonDiv}>
-                  {data?.subjects && data?.subjects?.length > 0 ? (
+                  {/* {data?.subjects && data?.subjects?.length > 0 ? (
                     <Button
                       variant="contained"
                       sx={style.containedBtn}
@@ -102,6 +102,26 @@ const EducationalCounseling: React.FunctionComponent<{
                       text={data?.buttonText}
                       href="popup"
                     />
+                  )} */}
+                  {data?.buttonLink && data?.buttonLink === "popup" ? (
+                    <PopUpButton
+                      sx={style.containedBtn}
+                      text={data?.buttonText}
+                      href="popup"
+                    />
+                  ) : (
+                    <>
+                      {data?.buttonText && (
+                        <Button
+                          variant="contained"
+                          sx={style.containedBtn}
+                          className={leagueSpartan.className}
+                          onClick={() => redirectToExternal(data?.buttonLink)}
+                        >
+                          {data?.buttonText}
+                        </Button>
+                      )}
+                    </>
                   )}
                 </div>
               </Box>
