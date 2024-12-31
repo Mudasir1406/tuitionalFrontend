@@ -749,9 +749,11 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    height: "42px",
-    fontSize: "1.7vh",
-    fontWeight: 400,
+    // height: "42px",
+    height: "5.5vh",
+
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
     // minHeight: "50px",
   },
 };
