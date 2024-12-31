@@ -4,6 +4,8 @@ import { Button, CircularProgress, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import dummyImg from "../../../public/assets/images/static/blogimg3.png";
 import Image from "next/image";
+import TutorModal from "../home/tutor-modal";
+import PopUpButton from "../pop-up-button";
 
 type Teacher = {
   "First Name": string;
@@ -21,9 +23,18 @@ type TeacherCardProps = {
 const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showFull, setShowFull] = useState(false);
+  const [tutorModal, setTutorModal] = useState<boolean>(false);
+
+  const handleCloseTutorModal = () => {
+    setTutorModal(false);
+  };
+  const handleOpenTutorModal = () => {
+    setTutorModal(true);
+  };
 
   const toggleShowMore = () => {
-    setShowFull((prev) => !prev);
+    // setShowFull((prev) => !prev);
+    // handleOpenTutorModal();
   };
 
   const maxLength = 100;
@@ -98,7 +109,11 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
               <span
                 className={styles.showMore}
                 onClick={toggleShowMore}
-                style={{ color: "#38b6ff", cursor: "pointer", marginLeft: "5px" }}
+                style={{
+                  color: "#38b6ff",
+                  cursor: "pointer",
+                  marginLeft: "5px",
+                }}
               >
                 {showFull ? "Show Less" : "..."}
               </span>
@@ -106,40 +121,54 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           </Typography>
         </div>
         <div className={styles.actionSection}>
-          <Button
-            variant="contained"
-            className={`${leagueSpartan.className} ${styles.containedButton}`}
-            type="submit"
-          >
-            {loading ? (
-              <CircularProgress
-                sx={{ width: "12px", height: "12px", color: "white" }}
-                size={20}
-              />
-            ) : (
-              "Book A Demo"
-            )}
-          </Button>
+          <PopUpButton
+            text="Book A Demo"
+            href="popup"
+            sx={style.contactButton}
+          />
           <Button
             variant="contained"
             className={`${leagueSpartan.className} ${styles.outlinedButton}`}
-            type="submit"
+            type="button"
+            onClick={handleOpenTutorModal}
           >
-            {loading ? (
-              <CircularProgress
-                sx={{ width: "12px", height: "12px", color: "white" }}
-                size={20}
-              />
-            ) : (
-              "View Profile"
-            )}
+            View Profile
           </Button>
           {/* <button className={styles.demoButton}></button>
           <button className={styles.profileButton}></button> */}
         </div>
       </div>
+
+      <TutorModal
+        handleClose={handleCloseTutorModal}
+        open={tutorModal}
+        data={teacher as any}
+      />
     </div>
   );
 };
 
 export default TeacherCard;
+
+const style = {
+  contactButton: {
+    display: "flex",
+    alignSelf: "center",
+    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
+    backgroundColor: "#38b6ff",
+    textTransform: "none",
+    lineHeight: "18.4px",
+    textAlign: "center",
+    borderRadius: "10px",
+    width: "100%",
+    padding: "18px",
+    margin: "20px 0",
+    transition: "all 0.5s ease-in-out",
+    color: "white",
+    ":hover": {
+      backgroundColor: "#38b6ff",
+      transform: "scale(1.02)",
+      boxShadow: "1px 4px 24px 0px #38b6ffb2",
+    },
+  },
+};
