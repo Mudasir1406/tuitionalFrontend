@@ -13,6 +13,7 @@ import { redirectToExternal } from "@/utils/helper";
 const EducationalCounseling: React.FunctionComponent<{
   data: PageData["why_igsce"];
 }> = ({ data }) => {
+  console.log("why_igsce", data);
   return (
     <div>
       <Box sx={{ paddingX: "5vw" }}>
@@ -81,7 +82,7 @@ const EducationalCounseling: React.FunctionComponent<{
                     <Box sx={style.tags}>
                       {/* {data?.tags?.map((tag, index) => ( */}
                       {data?.subjects?.map((tag, index) => (
-                        <Tag key={index} label={tag.name} index={index} />
+                        <Tag key={index} label={tag.name} link={tag?.link} index={index} />
                       ))}
                     </Box>
                   </div>

@@ -2,13 +2,15 @@ import React from "react";
 import styles from "./Tag.module.css";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+import { redirectToExternal } from "@/utils/helper";
 
 type TagProps = {
   label: string;
   index: number;
+  link?: string;
 };
 
-const Tag: React.FC<TagProps> = ({ label, index }) => {
+const Tag: React.FC<TagProps> = ({ label, index, link }) => {
   // Define a fixed array of color classes
   const colorClasses = [
     styles.color1,
@@ -25,7 +27,8 @@ const Tag: React.FC<TagProps> = ({ label, index }) => {
     <Typography
       className={`${leagueSpartan.className} ${styles.tag} ${colorClass}`}
       component={"p"}
-      variant="body2"
+      variant="caption"
+      onClick={() => link && redirectToExternal(link)}
     >
       {label}
     </Typography>
