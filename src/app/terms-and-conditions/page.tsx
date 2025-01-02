@@ -41,7 +41,7 @@ function page() {
       <div className="container">
         <h1>Terms of Service for Tuitional Education</h1>
         <p>
-          <strong>Effective Date:</strong> [Insert Effective Date]
+          <strong>Effective Date:</strong>1/1/2025
         </p>
         <p>
           Welcome to Tuitional Education (&apos;we,&apos; &apos;our,&apos; or
