@@ -8,8 +8,34 @@ function page() {
       <title>Terms of Service - Tuitional Education</title>
       <style
         dangerouslySetInnerHTML={{
-          __html:
-            "\n        body {\n            font-family: Arial, sans-serif;\n            line-height: 1.6;\n            margin: 0;\n            padding: 0;\n            background-color: #f4f4f4;\n            color: #333;\n        }\n        .container {\n            max-width: 800px;\n            margin: 20px auto;\n            background: #fff;\n            padding: 20px;\n            border-radius: 5px;\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n        }\n        h1, h2 {\n            color: #2c3e50;\n        }\n        a {\n            color: #3498db;\n            text-decoration: none;\n        }\n        a:hover {\n            text-decoration: underline;\n        }\n    ",
+          __html: `
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                background: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            h1, h2 {
+                color: #2c3e50;
+            }
+            a {
+                color: #3498db;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+          `,
         }}
       />
       <div className="container">
@@ -18,10 +44,11 @@ function page() {
           <strong>Effective Date:</strong> [Insert Effective Date]
         </p>
         <p>
-          Welcome to Tuitional Education ("we," "our," or "us"). By accessing or
-          using our services, you agree to comply with and be bound by the
-          following Terms of Service ("Terms"). If you do not agree with these
-          Terms, please do not use our services.
+          Welcome to Tuitional Education (&apos;we,&apos; &apos;our,&apos; or
+          &apos;us&apos;). By accessing or using our services, you agree to
+          comply with and be bound by the following Terms of Service
+          (&apos;Terms&apos;). If you do not agree with these Terms, please do
+          not use our services.
         </p>
         <h2>1. Use of Services</h2>
         <p>
