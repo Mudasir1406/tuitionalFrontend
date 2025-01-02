@@ -309,6 +309,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
               placeholder="Select Subject"
               data={filterData?.subject || []}
               marginTop="1.5vh"
+              multiple
               value={formData.subjects}
               onChange={handleChange}
             />{" "}

@@ -94,11 +94,12 @@ const Filter: React.FC = () => {
           </Grid>
           <Grid item lg={7} sm={12} xs={12} md={12}>
             <DropDown
-              placeholder="Select Subject"
+              placeholder="Select Subjects"
               data={filterData?.subject || []}
               value={formData.subjects}
               onChange={handleChange}
               name="subjects"
+              multiple
               // onChange={(e) => {
               //   handleChange("subjects", e.target.value);
               // }}
