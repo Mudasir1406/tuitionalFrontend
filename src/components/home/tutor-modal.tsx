@@ -109,13 +109,22 @@ const TutorModal: React.FunctionComponent<IProps> = ({
               {data.university}{" "}
             </Typography>
 
-            <Typography
+            {/* <Typography
               className={`${leagueSpartan.className} `}
               component={"p"}
               variant="body2"
             >
               {data.Description}{" "}
-            </Typography>
+            </Typography> */}
+            <Typography
+              // sx={style.guidence}
+              variant={"body2"}
+              className={leagueSpartan.className}
+              // component={data.headerTag as keyof JSX.IntrinsicElements}
+              dangerouslySetInnerHTML={{
+                __html: data?.Description,
+              }}
+            ></Typography>
 
             {/* <Typography
                 className={`${leagueSpartan.className} ${styles.title}`}
@@ -151,7 +160,7 @@ const TutorModal: React.FunctionComponent<IProps> = ({
             </Box>
 
             <PopUpButton
-              text="Book A Trial Today"
+              text="Book A Demo"
               href="popup"
               sx={styles.contactButton}
             />
@@ -181,6 +190,8 @@ const styles = {
     overflow: "auto",
   },
   mainDiv: {
+    maxHeight: "70vh",
+    overflowY: "auto",
     paddingX: "2%",
     paddingY: "2%",
   },
