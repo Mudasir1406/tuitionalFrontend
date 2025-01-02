@@ -1,29 +1,18 @@
 /* General Classes */
 .heading {
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #000000;
-  text-align: center;
+  text-align: left;
   margin-top: 3vh;
-  padding-left: 2vw;
+  margin-bottom: 3vh;
+  /* padding-left: 2vw; */
   padding-right: 2vw;
-}
-
-/* Responsive Classes for Heading */
-@media (min-width: 1200px) {
-  .heading {
-    font-size: 50px;
-    line-height: 60px;
-    text-align: start;
-    width: 90%;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 .expertText {
   color: #38b6ff;
   display: inline;
-  font-weight: bold;
+  /* font-weight: bold; */
   position: relative;
 }
 
@@ -36,37 +25,6 @@
   background-size: contain;
 }
 
-/* Responsive Classes for ExpertText */
-@media (max-width: 768px) {
-  .expertText {
-    font-size: 40px;
-    line-height: 3vh;
-  }
-
-  .expertText::before {
-    right: 0;
-    top: -2.5vh;
-    height: 1.9vh;
-    width: 2vh;
-    background-image: url("../../../../public/assets/images/static/linesMobile.png");
-  }
-}
-
-@media (min-width: 1200px) {
-  .expertText {
-    font-size: 50px;
-    line-height: 60px;
-  }
-
-  .expertText::before {
-    right: 0;
-    top: -3vh;
-    height: 4.3vh;
-    width: 4.3vh;
-    background-image: url("../../../../public/assets/images/static/lines.png");
-  }
-}
-
 .desc {
   font-weight: 400;
   text-align: center;
@@ -76,16 +34,9 @@
   margin-top: 3vh;
 }
 
-@media (min-width: 1200px) {
-  .desc {
-    font-size: 20px;
-    line-height: 3.4vh;
-    text-align: start;
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 1vh;
-  }
-}
+/* @media (min-width: 1200px) {
+ 
+} */
 
 .containedBtn {
   box-shadow: 0.5vh 0.5vh 2.5vh 0px #38b6ffb2;
@@ -119,4 +70,67 @@
 
 .textBtn:hover {
   font-weight: 700;
+}
+
+
+@media (max-width: 576px) {
+  .expertText {
+    /* font-size: 40px;
+    line-height: 5.5vh; */
+  }
+  .heading {
+    /* font-size: 40px;
+    line-height: 5.5vh; */
+  }
+
+  .expertText::before {
+    left: -180px;
+    top: -2.5vh;
+    height: 1.9vh;
+    width: 2vh;
+    background-image: url("../../../../public/assets/images/static/linesMobile.png");
+  }
+}
+
+
+@media (min-width: 768px) {
+  .expertText {
+    /* font-size: 40px;
+    line-height: 7vh; */
+  }
+  .heading {
+    /* font-size: 40px;
+    line-height: 7vh; */
+  }
+
+  .expertText::before {
+    right: 0;
+    top: -2.5vh;
+    height: 1.9vh;
+    width: 2vh;
+    background-image: url("../../../../public/assets/images/static/linesMobile.png");
+  }
+}
+
+@media (min-width: 1200px) {
+  .expertText {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  .expertText::before {
+    right: 0;
+    top: -3vh;
+    height: 4.3vh;
+    width: 4.3vh;
+    background-image: url("../../../../public/assets/images/static/lines.png");
+  }
+  .desc {
+    font-size: 20px;
+    line-height: 3.4vh;
+    text-align: start;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 1vh;
+  }
 }
