@@ -8,17 +8,26 @@ import { useState } from "react";
 import Tag from "../tag/Tag";
 import dummyImg from "../../../public/assets/images/static/blogimg3.png";
 import PopUpButton from "../pop-up-button";
+import TutorModal from "../home/tutor-modal";
 
 interface props {
   data: CardProps;
 }
 
 const ImageCard = ({ data }: props) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [tutorModal, setTutorModal] = useState<boolean>(false);
   const [showFull, setShowFull] = useState(false);
 
+  const handleCloseTutorModal = () => {
+    setTutorModal(false);
+  };
+  const handleOpenTutorModal = () => {
+    setTutorModal(true);
+  };
+
   const toggleShowMore = () => {
-    setShowFull((prev) => !prev);
+    // setShowFull((prev) => !prev);
+    handleOpenTutorModal();
   };
 
   const maxLength = 90;
@@ -112,10 +121,12 @@ const ImageCard = ({ data }: props) => {
             "Book A Trial Today"
           )}
         </Button> */}
-        <PopUpButton
-          text="Book A Trial Today"
-          href="popup"
-          sx={style.contactButton}
+        <PopUpButton text="Book A Demo" href="popup" sx={style.contactButton} />
+
+        <TutorModal
+          handleClose={handleCloseTutorModal}
+          open={tutorModal}
+          data={data}
         />
       </div>
     </div>
