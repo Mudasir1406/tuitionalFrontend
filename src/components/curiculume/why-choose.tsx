@@ -82,7 +82,12 @@ const EducationalCounseling: React.FunctionComponent<{
                     <Box sx={style.tags}>
                       {/* {data?.tags?.map((tag, index) => ( */}
                       {data?.subjects?.map((tag, index) => (
-                        <Tag key={index} label={tag.name} link={tag?.link} index={index} />
+                        <Tag
+                          key={index}
+                          label={tag.name}
+                          link={tag?.link}
+                          index={index}
+                        />
                       ))}
                     </Box>
                   </div>
@@ -135,7 +140,7 @@ const EducationalCounseling: React.FunctionComponent<{
             md={12}
             lg={6}
             alignItems="end"
-            order={{ xs: 2, lg: data?.right_to_left ? 1 : 2 }} // Change order only on larger screens
+            order={{ xs: 2, lg: data?.right_to_left ? 1 : 2 }} // Change o  rder only on larger screens
           >
             <Box>
               <Image
@@ -143,10 +148,12 @@ const EducationalCounseling: React.FunctionComponent<{
                 alt="Counseling Image"
                 style={{
                   width: "100%",
-                  height: "auto",
+                  // height: "auto",
+
+                  objectFit: "contain",
                 }}
                 width={counsling.width}
-                height={counsling.height}
+                height={counsling.height / 1.4}
               />
             </Box>
           </Grid>

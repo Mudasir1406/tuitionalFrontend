@@ -26,6 +26,7 @@ import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { useMediaQuery, useTheme } from "@mui/material";
+import zIndex from "@mui/material/styles/zIndex";
 
 type IProps = {
   background?: any;
@@ -380,12 +381,13 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   /> */}
                   <DropDown
                     name="subjects"
-                    placeholder="Select Subject"
+                    placeholder="Select Subjects"
                     data={filterData?.subject || []}
                     // marginBottom="2vh"
                     // marginTop="2vh"
                     value={formData.subjects}
                     onChange={handleChange}
+                    multiple
                   />{" "}
                   {errors.subjects && (
                     <Typography
@@ -495,9 +497,9 @@ const styles = {
     position: "relative",
     marginLeft: {
       xs: "0px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
+      // sm: "55px",
+      // md: "60px",
+      // lg: "65px",
     },
     // width: "100%",
     "::before": {
@@ -546,6 +548,12 @@ const styles = {
     // },
     // fontWeight: 400,
     // lineHeight: "35px",
+    width: {
+      xs: "75%",
+      sm: "75%",
+      md: "75%",
+      lg: "75%",
+    },
     color: "black",
     marginBottom: "2vh",
     textAlign: {
@@ -641,13 +649,14 @@ const styles = {
     backgroundColor: "white",
     marginY: "2vh",
     position: "relative",
-    zIndex: 2,
+    // zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
     },
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     borderRadius: "5px",
+    // zIndex:1,
   },
   containedButton: {
     display: "flex",

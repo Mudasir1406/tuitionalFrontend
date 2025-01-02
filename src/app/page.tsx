@@ -6,7 +6,7 @@ import Info from "../components/home/info";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
 import faqLine from "../../public/assets/images/static/faq-line.png";
 import Trusted from "../components/home/trusted";
-import GetStarted from "../components/home/get-started";
+// import GetStarted from "../components/home/get-started";
 import OurClient from "../components/home/our-client";
 import Faqs from "../components/home/faqs";
 import Footer from "../components/footer";
@@ -20,6 +20,7 @@ import { generateFaqSchema } from "@/utils/helper";
 import { getFaqs } from "@/services/faqs/faqs";
 import { Faqs_Type } from "@/types/grade-subject-level.types";
 import "./globals.css";
+import GetStarted from "@/components/grade-subject-level/get-started";
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
@@ -142,12 +143,11 @@ const Home: React.FC = async () => {
         </Grid>
       </Container>
       <Trusted />
-      <Container sx={{ maxWidth: { lg: "1450px" } }}>
-        {" "}
-        <Box sx={styles.verticalMargin}>
-          <GetStarted />
-        </Box>
-      </Container>
+      {/* <Container sx={{ maxWidth: { lg: "1450px" } }}> */}{" "}
+      <Box sx={styles.verticalMargin}>
+        <GetStarted />
+      </Box>
+      {/* </Container> */}
       <OurClient data={data} />
       <Box sx={styles.backgroundImage}>
         <Container
@@ -158,7 +158,9 @@ const Home: React.FC = async () => {
           <Faqs />
         </Container>
       </Box>
-      <ContactUs />
+      <Box sx={styles.verticalMargin}>
+        <ContactUs />
+      </Box>
       <Footer />
     </>
   );

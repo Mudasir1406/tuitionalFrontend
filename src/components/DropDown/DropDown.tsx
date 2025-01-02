@@ -113,14 +113,16 @@ const DropDown: React.FunctionComponent<IProps> = ({
         className="dropdown-header"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span
-          className="dropdown-placeholder"
-          style={{
-            color: isPlaceholder ? "gray" : "black", // Placeholder is gray, selected is black
-          }}
-        >
-          {renderSelectedValue()}
-        </span>
+        <div className="">
+          <span
+            className="dropdown-placeholder"
+            style={{
+              color: isPlaceholder ? "gray" : "black",
+            }}
+          >
+            {renderSelectedValue()}
+          </span>
+        </div>
         <span className="dropdown-arrow">{isOpen ? "▲" : "▼"}</span>
       </div>
       {isOpen && (
