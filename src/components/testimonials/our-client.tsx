@@ -80,13 +80,15 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             sx={styles.heading}
             className={leagueSpartan.className}
             component={"h2"}
+            variant="h2"
           >
             What are Students Says!{" "}
           </Typography>
           <Typography
-            sx={[styles.desc]}
+            sx={styles.desc}
             className={leagueSpartan.className}
             component={"p"}
+            variant="body1"
           >
             Listen to the incredible and valuable experience shared by our
             students. Register now to unlock an enriching world of enjoyable and
@@ -184,13 +186,18 @@ const OurClient: React.FC<IProps> = ({ data }) => {
         }}
       >
         <Box sx={{ width: "35%", marginLeft: 20 }}>
-          <Typography sx={styles.heading} className={leagueSpartan.className}>
+          <Typography
+            sx={styles.heading}
+            className={leagueSpartan.className}
+            variant="h2"
+          >
             What are
             <br /> Students Says!{" "}
           </Typography>
           <Typography
             sx={[styles.desc, { width: "53%" }]}
             className={leagueSpartan.className}
+            variant="h5"
           >
             Listen to the incredible experiences shared by our students!
             Register now to unlock an enriching world of enjoyable learning
@@ -322,19 +329,19 @@ const styles = {
     maxWidth: "400px",
   },
   heading: {
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "55px",
-      lg: "55px",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "45px",
-      sm: "50px",
-      md: "65px",
-      lg: "65px",
-    },
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "55px",
+    //   lg: "55px",
+    // },
+    // fontWeight: 600,
+    // lineHeight: {
+    //   xs: "45px",
+    //   sm: "50px",
+    //   md: "65px",
+    //   lg: "65px",
+    // },
     position: "relative",
     color: "black",
     textAlign: {
@@ -381,20 +388,21 @@ const styles = {
     alignItems: "center",
   },
   reviewText: {
-    fontSize: {
-      xs: "20px",
-      sm: "22px",
-      md: "24px",
-      lg: "30px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "40px",
-      sm: "38px",
-      md: "36px",
-      lg: "50px",
-    },
-    height: "450px",
+    // fontSize: {
+    //   xs: "20px",
+    //   sm: "22px",
+    //   md: "24px",
+    //   lg: "30px",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "40px",
+    //   sm: "38px",
+    //   md: "36px",
+    //   lg: "50px",
+    // },
+    // height: "300px",
+    marginBottom: "16px",
     color: "rgba(0,0,0,0.77)",
   },
   coma: {
@@ -433,25 +441,25 @@ const styles = {
   },
 
   username: {
-    fontSize: { xs: "26px", sm: "26px" },
-    fontWeight: 500,
-    lineHeight: "35px",
+    // fontSize: { xs: "26px", sm: "26px" },
+    // fontWeight: 500,
+    // lineHeight: "35px",
   },
   userLocation: {
-    fontSize: { xs: "18px", sm: "19px" },
-    fontWeight: 400,
-    lineHeight: "35px",
+    // fontSize: { xs: "18px", sm: "19px" },
+    // fontWeight: 400,
+    // lineHeight: "35px",
     color: "rgba(0,0,0,0.77)",
   },
   desc: {
-    fontSize: {
-      xs: "20px",
-      sm: "22px",
-      md: "22px",
-      lg: "22px",
-    },
-    fontWeight: 400,
-    lineHeight: "35px",
+    // fontSize: {
+    //   xs: "20px",
+    //   sm: "22px",
+    //   md: "22px",
+    //   lg: "22px",
+    // },
+    // fontWeight: 400,
+    // lineHeight: "35px",
     color: "black",
     textAlign: {
       xs: "center",
@@ -538,7 +546,11 @@ const Review: React.FC<RProps> = ({ item }) => {
             {item.rating.toFixed(1)}
           </Typography>
         </Box>
-        <Typography sx={styles.reviewText} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.reviewText}
+          className={leagueSpartan.className}
+          variant="h6"
+        >
           {item.message}
         </Typography>
         <Divider sx={{ marginBottom: "36px" }} />
@@ -554,12 +566,14 @@ const Review: React.FC<RProps> = ({ item }) => {
             <Typography
               sx={styles.username}
               className={leagueSpartan.className}
+              variant="h5"
             >
               {item.userName}
             </Typography>
             <Typography
               sx={styles.userLocation}
               className={leagueSpartan.className}
+              variant="body2"
             >
               {item.country}
             </Typography>
@@ -585,7 +599,11 @@ const ReviewMobile: React.FC<RProps> = ({ item }) => {
           {item.rating.toFixed(1)}
         </Typography>
       </Box>
-      <Typography sx={styles.reviewText} className={leagueSpartan.className}>
+      <Typography
+        sx={styles.reviewText}
+        className={leagueSpartan.className}
+        variant="h6"
+      >
         {item.message}
       </Typography>
       <Box sx={styles.userContanier}>
@@ -597,12 +615,17 @@ const ReviewMobile: React.FC<RProps> = ({ item }) => {
           style={{ borderRadius: 25, marginRight: 10 }}
         ></Image>
         <Box>
-          <Typography sx={styles.username} className={leagueSpartan.className}>
+          <Typography
+            sx={styles.username}
+            className={leagueSpartan.className}
+            variant="h5"
+          >
             {item.userName}
           </Typography>
           <Typography
             sx={styles.userLocation}
             className={leagueSpartan.className}
+            variant="body2"
           >
             {item.country}
           </Typography>

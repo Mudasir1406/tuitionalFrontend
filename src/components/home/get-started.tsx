@@ -178,10 +178,19 @@ const styles = {
     ":hover": {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "#38B6FF",
-      padding: "18px",
+      // padding: "18px",
 
-      borderRadius: "10px",
+      // letterSpacing: "-2%",
 
+      // borderRadius: "10px",
+      // fontSize: {
+      //   xs: "25px",
+      //   sm: "25px",
+      //   md: "25px",
+      //   lg: "25px",
+      // },
+      // fontWeight: 700,
+      // lineHeight: "18.4px",
       textAlign: "center",
     },
   },
