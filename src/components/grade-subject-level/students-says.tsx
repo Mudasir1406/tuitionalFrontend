@@ -21,7 +21,7 @@ const StudentSays: React.FunctionComponent<{
     <Box sx={styles.container}>
       <Typography
         sx={styles.heading}
-        variant={data?.headerTag ? data?.headerTag : ("h3" as any)}
+        variant={data?.headerTag ? data?.headerTag : ("h2" as any)}
         className={leagueSpartan.className}
         component={data?.headerTag as keyof JSX.IntrinsicElements}
         dangerouslySetInnerHTML={{

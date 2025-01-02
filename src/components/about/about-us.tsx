@@ -157,8 +157,9 @@ const AboutUs: React.FunctionComponent = () => {
       <Box sx={styles.headingContanier}>
         <Typography
           sx={styles.mainHeading}
-          component={"h1"}
+          component={"h2"}
           className={leagueSpartan.className}
+          variant="h2"
         >
           About Us
         </Typography>
@@ -397,19 +398,19 @@ const styles = {
   },
   mainHeading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 600,
     marginTop: {
       xs: "40px",
       sm: "50px",

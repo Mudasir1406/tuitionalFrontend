@@ -330,10 +330,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
             rows={4}
             name="Message"
             value={formData.message}
-            // variant=""
             onChange={(e) => handleChange("message", e.target.value)}
-            // label="Message*"
-            // variant="outlined"
             placeholder="Enter your message here..."
             className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
           />{" "}

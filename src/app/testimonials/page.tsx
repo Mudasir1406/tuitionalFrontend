@@ -77,11 +77,13 @@ const Testimonials: React.FC = async () => {
       >
         <OurClient data={data} />
 
-        <Container sx={{ maxWidth: { lg: "1650px" } }}>
+        <Container sx={styles.contanier}>
           <VideoBasedReview />
         </Container>
       </Box>
-      <ContactUs background={{ background: "#DAF2FF" }} />
+      <Box>
+        <ContactUs background={{ background: "#DAF2FF" }} />
+      </Box>
       <Footer />
     </>
   );
@@ -90,7 +92,13 @@ const Testimonials: React.FC = async () => {
 export default Testimonials;
 
 const styles = {
-  contanier: {},
+  contanier: {
+    maxWidth: { lg: "1650px" },
+    paddingY: { xs: "5vh", md: "10vh" },
+  },
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
+  verticalPadding: { paddingY: { xs: "5vh", md: "10vh" } },
+
   heroPicture: {
     background: {
       xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",

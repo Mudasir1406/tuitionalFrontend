@@ -86,6 +86,8 @@ export default About;
 
 const style = {
   contanier: {},
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
+
   aboutUsContainer: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
     paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
@@ -99,21 +101,25 @@ const style = {
 
   whyChooseContainer: {
     paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+    marginY: { xs: "5vh", md: "10vh" },
   },
   getStartedContainer: {
     paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
-    marginY: {
-      xs: "70px",
-      sm: "80px",
-      md: "95px",
-      lg: "105px",
-    },
+    marginY: { xs: "5vh", md: "10vh" },
+    // marginY: {
+    //   xs: "70px",
+    //   sm: "80px",
+    //   md: "95px",
+    //   lg: "105px",
+    // },
   },
   studentSaysContainer: {
     background: "#9EDCFF",
+    // xs: "5vh", md: "10vh"
     paddingY: {
-      xs: "1vh",
-      lg: "7vh",
+      xs: "5vh",
+      md: "10vh",
+      // lg: "7vh",
     },
   },
   heroPicture: {
