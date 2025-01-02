@@ -507,9 +507,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               <div style={styles.div}>
                 <DropDown
                   name="subjects"
-                  placeholder="Select Subject"
+                  placeholder="Select Subjects"
                   data={filterData?.subject || []}
                   marginTop="1.5vh"
+                  multiple
                   value={formData.subjects}
                   onChange={handleChange}
                 />{" "}
