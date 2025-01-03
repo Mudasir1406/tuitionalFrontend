@@ -32,9 +32,11 @@ const style = {
     justifyContent: "end",
     width: "100%",
     height: {
-      xs: "250px",
-      sm: "300px",
-      md: "700px",
+      // xs: "250px",
+      xs: "100%",
+      sm: "100%",
+      // sm: "300px",
+      md: "100%",
       lg: "100%",
     },
     marginTop: {

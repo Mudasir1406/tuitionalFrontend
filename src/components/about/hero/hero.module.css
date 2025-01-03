@@ -26,7 +26,7 @@
 }
 
 .desc {
-  font-weight: 400;
+  /* font-weight: 400; */
   text-align: center;
   color: #000000;
   padding-left: 2vh;
@@ -72,15 +72,12 @@
   font-weight: 700;
 }
 
-
 @media (max-width: 576px) {
   .expertText {
-    /* font-size: 40px;
-    line-height: 5.5vh; */
   }
   .heading {
-    /* font-size: 40px;
-    line-height: 5.5vh; */
+    margin-top: 2vh;
+    text-align: center;
   }
 
   .expertText::before {
@@ -92,15 +89,11 @@
   }
 }
 
-
 @media (min-width: 768px) {
   .expertText {
-    /* font-size: 40px;
-    line-height: 7vh; */
   }
   .heading {
-    /* font-size: 40px;
-    line-height: 7vh; */
+    text-align: center;
   }
 
   .expertText::before {
@@ -110,12 +103,15 @@
     width: 2vh;
     background-image: url("../../../../public/assets/images/static/linesMobile.png");
   }
+  .desc {
+    text-align: center;
+  }
 }
 
 @media (min-width: 1200px) {
   .expertText {
-    font-size: 50px;
-    line-height: 60px;
+    /* font-size: 50px;
+    line-height: 60px; */
   }
 
   .expertText::before {
@@ -125,9 +121,13 @@
     width: 4.3vh;
     background-image: url("../../../../public/assets/images/static/lines.png");
   }
+  .heading {
+    text-align: start;
+  }
+
   .desc {
-    font-size: 20px;
-    line-height: 3.4vh;
+    /* font-size: 20px;
+    line-height: 3.4vh; */
     text-align: start;
     padding-left: 0;
     padding-right: 0;
