@@ -69,7 +69,9 @@ const EducationalCounseling: React.FunctionComponent<{
               {/* {data?.tags && ( */}
               <Box sx={style.btnDiv}>
                 {data?.subjects && data?.subjects?.length > 0 && (
-                  <div style={style.tagsDiv}>
+                  <Box
+                    sx={data?.buttonLink ? style.tagsDiv : style.tagsDivFull}
+                  >
                     <Typography
                       sx={style.guidence}
                       variant={"subtitle2"}
@@ -90,46 +92,32 @@ const EducationalCounseling: React.FunctionComponent<{
                         />
                       ))}
                     </Box>
+                  </Box>
+                )}
+                {data?.buttonLink && (
+                  <div style={style.buttonDiv}>
+                    {data?.buttonLink && data?.buttonLink === "popup" ? (
+                      <PopUpButton
+                        sx={style.containedBtn}
+                        text={data?.buttonText}
+                        href="popup"
+                      />
+                    ) : (
+                      <>
+                        {data?.buttonText && (
+                          <Button
+                            variant="contained"
+                            sx={style.containedBtn}
+                            className={leagueSpartan.className}
+                            onClick={() => redirectToExternal(data?.buttonLink)}
+                          >
+                            {data?.buttonText}
+                          </Button>
+                        )}
+                      </>
+                    )}
                   </div>
                 )}
-                <div style={style.buttonDiv}>
-                  {/* {data?.subjects && data?.subjects?.length > 0 ? (
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                      onClick={() => redirectToExternal(data?.buttonLink)}
-                    >
-                      {data?.buttonText}
-                    </Button>
-                  ) : (
-                    <PopUpButton
-                      sx={style.containedBtn}
-                      text={data?.buttonText}
-                      href="popup"
-                    />
-                  )} */}
-                  {data?.buttonLink && data?.buttonLink === "popup" ? (
-                    <PopUpButton
-                      sx={style.containedBtn}
-                      text={data?.buttonText}
-                      href="popup"
-                    />
-                  ) : (
-                    <>
-                      {data?.buttonText && (
-                        <Button
-                          variant="contained"
-                          sx={style.containedBtn}
-                          className={leagueSpartan.className}
-                          onClick={() => redirectToExternal(data?.buttonLink)}
-                        >
-                          {data?.buttonText}
-                        </Button>
-                      )}
-                    </>
-                  )}
-                </div>
               </Box>
             </Box>
           </Grid>
@@ -198,11 +186,16 @@ const style = {
     marginRight: "auto",
   },
   tagsDiv: {
-    width: "50%",
+    width: { xs: "auto", lg: "75%" },
+  },
+  tagsDivFull: {
+    width: "auto",
   },
   tags: {
     display: "flex",
     columnGap: "6px",
+    rowGap: "6px",
+    flexWrap: "wrap",
   },
   section: { textAlign: "center" },
   guidence: {

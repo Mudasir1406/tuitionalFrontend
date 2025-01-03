@@ -22,7 +22,10 @@ const Hero: React.FC = () => {
         Across the Gulf
       </Typography>
 
-      <Typography className={`${styles.desc} ${leagueSpartan.className}`}>
+      <Typography
+        className={`${styles.desc} ${leagueSpartan.className}`}
+        variant="h5"
+      >
         Providing high-quality innovative and improved teaching solutions to
         help students attain academic growth and excellence through individual
         online tutoring.
