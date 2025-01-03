@@ -40,7 +40,7 @@ const style = {
       lg: "100%",
     },
     marginTop: {
-      xs: 15,
+      // xs: 15,
       sm: 15,
       md: 15,
       lg: 0,
