@@ -73,8 +73,7 @@
 }
 
 @media (max-width: 576px) {
-  .expertText {
-  }
+  
   .heading {
     margin-top: 2vh;
     text-align: center;
@@ -90,8 +89,7 @@
 }
 
 @media (min-width: 768px) {
-  .expertText {
-  }
+  
   .heading {
     text-align: center;
   }
@@ -109,10 +107,7 @@
 }
 
 @media (min-width: 1200px) {
-  .expertText {
-    /* font-size: 50px;
-    line-height: 60px; */
-  }
+ 
 
   .expertText::before {
     right: 0;
