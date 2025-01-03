@@ -86,6 +86,9 @@
     width: 2vh;
     background-image: url("../../../../public/assets/images/static/linesMobile.png");
   }
+  /* .desc{
+    text-align: center;
+  } */
 }
 
 @media (min-width: 768px) {
