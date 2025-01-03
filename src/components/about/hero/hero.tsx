@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
 
       <Typography
         className={`${styles.desc} ${leagueSpartan.className}`}
-        variant="h6"
+        variant="body2"
       >
         Providing high-quality innovative and improved teaching solutions to
         help students attain academic growth and excellence through individual

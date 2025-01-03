@@ -184,7 +184,7 @@ const theme = createTheme({
           h2: "h2",
           h3: "h3",
           body1: "p",
-          body2: "label",
+          body2: "p",
         },
       },
     },

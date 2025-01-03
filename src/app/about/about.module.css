@@ -61,7 +61,8 @@
 
 @media (max-width: 575px) {
   .hero {
-    padding-top: 10vh;
+    /* padding-top: 10vh; */
+    padding-top: 5vh;
   }
 
   .hero-picture::before {
