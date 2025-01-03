@@ -92,11 +92,17 @@ const renderValue = (type: string) => {
         <Typography
           sx={styles.heading}
           component={"h2"}
+          variant="h2"
           className={leagueSpartan.className}
         >
           {content.title}
         </Typography>
-        <Typography sx={styles.paragraph} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.paragraph}
+          className={leagueSpartan.className}
+          variant="body2"
+          component={"p"}
+        >
           {content.paragraph}
         </Typography>
       </div>
@@ -127,12 +133,14 @@ const renderValue = (type: string) => {
             <Typography
               sx={styles.textBold}
               component={"p"}
+              variant="body2"
               className={leagueSpartan.className}
             >
               {point.title}:{" "}
               <Typography
                 sx={styles.text}
                 component="span"
+                variant="caption"
                 className={leagueSpartan.className}
               >
                 {point.description}
@@ -167,6 +175,7 @@ const AboutUs: React.FunctionComponent = () => {
         <Typography
           sx={styles.dec}
           component={"p"}
+          variant="body2"
           className={leagueSpartan.className}
         >
           {`Tuitional is a premier online tutoring platform that elevates
@@ -299,86 +308,22 @@ const styles = {
   },
   // contanier: { marginY: { lg: "13vh" }, marginX: { lg: "4vh", xs: "3vh" } },
   heading: {
-    fontSize: {
-      xs: "18px",
-      sm: "23px",
-      md: "28px",
-      lg: "35px",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "16px",
-      sm: "20px",
-      md: "25px",
-      lg: "35px",
-    },
     marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
     textAlign: "left",
   },
   paragraph: {
-    fontSize: {
-      xs: "16px",
-      sm: "16px",
-      md: "20px",
-      lg: "20px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "19px",
-      sm: "19px",
-      md: "24px",
-      lg: "27px",
-    },
     color: "#2D2D2D",
     wordBreak: "break-word",
     maxWidth: "1000px",
   },
   text: {
-    fontSize: {
-      xs: "16px",
-      sm: "16px",
-      md: "20px",
-      lg: "20px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "16px",
-      sm: "16px",
-      md: "22px",
-      lg: "24px",
-    },
     color: "#2D2D2D",
   },
   textBold: {
-    fontSize: {
-      xs: "16px",
-      sm: "16px",
-      md: "20px",
-      lg: "20px",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "16px",
-      sm: "16px",
-      md: "22px",
-      lg: "24px",
-    },
-    color: "#2D2D2D",
+     fontWeight: 600,
+      color: "#2D2D2D",
   },
   dec: {
-    fontSize: {
-      xs: "16px",
-      sm: "22px",
-      md: "22px",
-      lg: "24px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "20px",
-      sm: "27px",
-      md: "29px",
-      lg: "30px",
-    },
     textAlign: "justify",
     // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "300px" },
     color: "rgba(0,0,0,0.77)",
@@ -398,19 +343,7 @@ const styles = {
   },
   mainHeading: {
     display: "flex",
-    // fontSize: {
-    //   xs: "35px",
-    //   sm: "40px",
-    //   md: "45px",
-    //   lg: "55px",
-    // },
-    // lineHeight: {
-    //   xs: "50px",
-    //   sm: "55px",
-    //   md: "60px",
-    //   lg: "65px",
-    // },
-    // fontWeight: 600,
+
     marginTop: {
       xs: "40px",
       sm: "50px",
@@ -432,23 +365,21 @@ const styles = {
     background: "transparent",
   },
   roundedActiveButton: {
-    borderColor: "#51B893",
-    paddingY: "2vh",
+    boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
+    backgroundColor: "#38B6FF",
+    paddingY: "1.5vh",
     paddingX: { xs: "30px", md: "80px" },
 
-    fontSize: "2vh",
-    fontWeight: 700,
-    lineHeight: "1.84vh",
     textAlign: "center",
+    borderRadius: "1vh",
     ":hover": {
-      backgroundColor: "white",
-      color: "#38B6FF",
-      borderColor: "#38B6FF",
-      fontSize: "2vh",
-      fontWeight: 700,
-      lineHeight: "1.84vh",
+      boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
+      backgroundColor: "#38B6FF",
+      paddingY: "1.5vh",
       textAlign: "center",
+      borderRadius: "1vh",
     },
+
     display: {
       lg: "flex",
     },
@@ -459,17 +390,13 @@ const styles = {
     paddingY: "2vh",
     paddingX: { xs: "30px", md: "80px" },
 
-    fontSize: "2vh",
-    fontWeight: 700,
-    lineHeight: "1.84vh",
     // textTransformation: "none",
     textAlign: "center",
     ":hover": {
       color: "white",
       borderColor: "white",
-      fontSize: "2vh",
-      fontWeight: 700,
-      lineHeight: "1.84vh",
+      backgroundColor: "#38B6FF",
+
       textAlign: "center",
     },
     display: {
