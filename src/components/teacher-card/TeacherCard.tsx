@@ -37,7 +37,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
     // handleOpenTutorModal();
   };
 
-  const maxLength = 100;
+  const maxLength = 120;
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -97,7 +97,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           >
             {teacher.Description}
           </Typography> */}
-          <Typography
+          {/* <Typography
             className={`${leagueSpartan.className} ${styles.mt1}`}
             component={"p"}
             variant="caption"
@@ -118,7 +118,16 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 {showFull ? "Show Less" : "..."}
               </span>
             )}
-          </Typography>
+          </Typography> */}
+          <Typography
+            // sx={style.guidence}
+            variant={"body2"}
+            className={`${leagueSpartan.className} ${styles.mt1}`}
+            component={"div"}
+            dangerouslySetInnerHTML={{
+              __html: teacher?.Description?.substring(0, maxLength),
+            }}
+          ></Typography>
         </div>
         <div className={styles.actionSection}>
           <PopUpButton

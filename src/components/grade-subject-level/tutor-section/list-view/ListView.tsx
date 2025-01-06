@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ListView.module.css";
 import TeacherCard from "@/components/teacher-card/TeacherCard";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import TutorIcon from "../../../../../public/assets/icons/11036302 1.svg";
 import Image from "next/image";
@@ -31,12 +31,26 @@ interface props {
 }
 
 function ListView({ data }: props) {
+  const [showFull, setShowFull] = useState(false);
+  const toggleShowMore = () => {
+    setShowFull((prev) => !prev);
+  };
   return (
     <div className={styles.main}>
       <div className={styles.mainList}>
-        {data?.slice(0, 4).map((teacher, index) => (
+        {data?.slice(0, showFull ? data?.length : 4).map((teacher, index) => (
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
+        {!showFull && (
+          <Button
+            variant="contained"
+            className={`${leagueSpartan.className} ${styles.containedButton}`}
+            type="button"
+            onClick={toggleShowMore}
+          >
+            Show More
+          </Button>
+        )}
       </div>
       <div className={styles.info}>
         <div className={styles.largeCard}>

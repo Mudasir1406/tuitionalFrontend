@@ -48,7 +48,7 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
               },
               index: React.Key | null | undefined
             ) => (
-              <Grid item xs={4} sm={4} md={3} lg={1.5} key={index}>
+              <Grid item xs={6} sm={6} md={3} lg={3} xl={2} key={index}>
                 <Box sx={style.cardsBoxes}>
                   <Image
                     src={
@@ -56,13 +56,14 @@ const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
                       "https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/images%2FGroup%201577707240.png?alt=media&token=688d2e56-d995-4c40-b8ad-ae9837138df7"
                     }
                     alt="icon"
-                    width={50} // Set appropriate width for your icons
-                    height={50} // Set appropriate height for your icons
+                    width={40}
+                    height={40}
+                    
                   />
                   <Typography
                     sx={style.subjects}
                     className={leagueSpartan.className}
-                    variant="body2"
+                    variant="caption"
                     component={"p"}
                   >
                     {item.name}
@@ -100,16 +101,17 @@ const style = {
     boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
     textAlign: "center",
     padding: {
-      xs: "2.5vh",
-      lg: "4vh",
+      xs: "2vh",
+      lg: "3vh",
     },
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "left",
+    columnGap: "10px",
     height: {
-      xs: "9vh",
-      lg: "12vh",
+      xs: "5vh",
+      lg: "5vh",
     },
     transition: "all .5s ease-in-out",
 
