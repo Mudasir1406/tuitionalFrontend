@@ -38,10 +38,10 @@ function ListView({ data }: props) {
   return (
     <div className={styles.main}>
       <div className={styles.mainList}>
-        {data?.slice(0, showFull ? data?.length : 4).map((teacher, index) => (
+        {data?.slice(0, showFull ? data?.length : 10).map((teacher, index) => (
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
-        {!showFull && (
+        {!showFull && data?.length > 10 && (
           <Button
             variant="contained"
             className={`${leagueSpartan.className} ${styles.containedButton}`}
