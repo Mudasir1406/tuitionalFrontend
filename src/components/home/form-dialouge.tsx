@@ -182,9 +182,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       newErrors.curriculum = "Curriculum is required";
     }
 
-    if (!isNotEmpty(formData.subjects)) {
-      newErrors.subjects = "Subjects cannot be empty";
-    }
+    // if (!isNotEmpty(formData.subjects)) {
+    //   newErrors.subjects = "Subjects cannot be empty";
+    // }
 
     if (!isNotEmpty(formData.message)) {
       newErrors.message = "Message cannot be empty";
