@@ -168,7 +168,11 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         >
           {heading}
         </Typography>
-        <Typography sx={styles.dec} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.dec}
+          className={leagueSpartan.className}
+          variant="body2"
+        >
           {dec}
         </Typography>
       </Box>
@@ -179,36 +183,10 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
 const styles = {
   infoBoxContanier: {},
   heading: {
-    // fontSize: {
-    //   xs: "18px",
-    //   sm: "23px",
-    //   md: "28px",
-    //   lg: "35px",
-    // },
-    // fontWeight: 500,
-    // lineHeight: {
-    //   xs: "16px",
-    //   sm: "20px",
-    //   md: "25px",
-    //   lg: "35px",
-    // },
     marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
     textAlign: "center",
   },
   dec: {
-    fontSize: {
-      xs: "16px",
-      sm: "16px",
-      md: "18px",
-      lg: "20px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "20px",
-      sm: "20px",
-      md: "25px",
-      lg: "30px",
-    },
     textAlign: "center",
     maxWidth: { xs: "auto", sm: "auto", md: "auto", lg: "450px" },
     // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },

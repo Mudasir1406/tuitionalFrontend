@@ -60,7 +60,7 @@ const Header: React.FC<IProps> = ({ background }) => {
         >
           <Link
             href={"https://tuitionaledu.com/"}
-            target="_blank"
+            // target="_blank"
             rel="noopener noreferrer"
           >
             <Box sx={styles.logo}>
