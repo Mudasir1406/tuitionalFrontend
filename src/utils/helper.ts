@@ -264,4 +264,5 @@ export const isValidEmail = (email: string): boolean => {
   return emailRegex.test(email);
 };
 
-export const isNotEmpty = (value: string): boolean => value.trim() !== "";
+export const isNotEmpty = (value: any): boolean =>
+  typeof value === "string" && value.trim() !== "";
