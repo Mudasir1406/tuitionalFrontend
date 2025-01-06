@@ -118,9 +118,9 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       newErrors.curriculum = "Curriculum is required";
     }
 
-    if (!isNotEmpty(formData.subjects)) {
-      newErrors.subjects = "Subjects cannot be empty";
-    }
+    // if (!isNotEmpty(formData.subjects)) {
+    //   newErrors.subjects = "Subjects cannot be empty";
+    // }
 
     if (!isNotEmpty(formData.message)) {
       newErrors.message = "Message cannot be empty";
@@ -171,6 +171,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         text: "",
         html: createEmailTemplate(formData),
       });
+      console.log("formData", formData);
       toast.success("Form submitted successfully!");
     } catch (error) {
       console.error("Error saving data:", error);
