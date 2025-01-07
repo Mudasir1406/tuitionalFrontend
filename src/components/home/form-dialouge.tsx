@@ -53,8 +53,22 @@ export type CareersFormType = {
   country: string;
   position: string;
   message: string;
+  ip?: string;
+  browser?: string;
+  pageURL?: string;
 };
 
+export type ContactFormType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+  country?: string;
+  ip?: string;
+  browser?: string;
+  pageURL?: string;
+};
 const FormDialog: React.FunctionComponent<IProps> = ({
   open,
   handleClose,
@@ -136,14 +150,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       const pageURL = window.location.href;
       const res = await fetch("https://ipinfo.io/json");
       const locationData = await res.json();
-      console.log(
-        "locationData",
-        locationData,
-        "pageURL",
-        pageURL,
-        "browser",
-        browser
-      );
+      
       setFormData({
         ...formData,
         browser,

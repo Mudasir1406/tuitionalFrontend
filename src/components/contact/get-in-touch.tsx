@@ -1,35 +1,113 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
 import girlLaptop from "../../../public/assets/images/static/girl-using-laptop.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import Input from "../input/Input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { ContactFormType } from "../home/form-dialouge";
+import CustomInput from "../custom-input/custom-input";
+import toast from "react-hot-toast";
+import { sendEmail } from "@/services/email-service/email-service";
+import { HELLOTUITIONALEDU } from "@/utils/env";
+import { createContactTemplate } from "@/services/email-service/template";
 
 const GetInTouch: React.FunctionComponent = () => {
   const [formData, setFormData] = useState({
-    Name: "",
-    Country: "",
-    Curriculum: "",
-    Grade: "",
-    Parent: "",
-    Phone: "",
-    Subjects: "",
-    Year: "",
-    Message: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
   });
+  const [errors, setErrors] = useState<Partial<ContactFormType>>({});
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleChange = (key: string, value: string | string[]) => {
+    let newErrors = { ...errors };
+
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        newErrors.phone = isValidPhoneNumber(value)
+          ? ""
+          : "Invalid phone number";
+
+        return;
+      }
+    }
+    if (key === "email" && typeof value === "string") {
+      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    }
+    if (key === "firstName" && typeof value === "string") {
+      newErrors.firstName = isNotEmpty(value)
+        ? ""
+        : "First Name cannot be empty";
+    }
+    if (key === "lastName" && typeof value === "string") {
+      newErrors.lastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
+    }
+    if (key === "message" && typeof value === "string") {
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    }
+
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+    setErrors(newErrors);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    const newErrors: Partial<ContactFormType> = {};
+
+    if (!isNotEmpty(formData.firstName)) {
+      newErrors.firstName = "First Name cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.lastName)) {
+      newErrors.lastName = "Last Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Invalid phone number";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
 
     const formDataObject = new FormData();
 
@@ -46,6 +124,46 @@ const GetInTouch: React.FunctionComponent = () => {
 
     const formDataString = keyValuePairs.join("&");
 
+    // console.log("formDataString", formDataString);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
+        {
+          redirect: "follow",
+          method: "POST",
+          body: formDataString,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+        }
+      );
+      await sendEmail({
+        recipientEmail: HELLOTUITIONALEDU,
+        subject: "Get Started",
+        text: "",
+        html: createContactTemplate(formData),
+      });
+      console.log("formData", formData);
+      toast.success("Form submitted successfully!");
+    } catch (error) {
+      console.error("Error saving data:", error);
+      toast.error("Form submitted Failed!");
+    } finally {
+      setLoading(false);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+        browser: "",
+        country: "",
+        ip: "",
+        pageURL: "",
+      });
+    }
+
     try {
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbxC8t_5083m612FzAesqksc8RSinMiq7o32coNB5Rd2fPV9uZOjPxNJGMoekFV9ezVVKg/exec",
@@ -60,10 +178,27 @@ const GetInTouch: React.FunctionComponent = () => {
       );
     } catch (error) {
       console.error("Error saving data:", error);
-      // alert("Error saving data");
     }
   };
 
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const res = await fetch("https://ipinfo.io/json");
+      const locationData = await res.json();
+
+      setFormData({
+        ...formData,
+        browser,
+        pageURL,
+        ip: locationData?.ip,
+        country: locationData?.country,
+      });
+    };
+
+    getClientLocation();
+  }, []);
   return (
     <Box sx={styles.container}>
       <Box sx={styles.background} />
@@ -115,10 +250,12 @@ const GetInTouch: React.FunctionComponent = () => {
               sx={styles.heading}
               className={leagueSpartan.className}
               component={"h2"}
+              variant="h2"
             >
               Get In {"  "}
               <Typography
                 className={leagueSpartan.className}
+                variant="h2"
                 sx={[
                   styles.heading,
                   {
@@ -137,6 +274,7 @@ const GetInTouch: React.FunctionComponent = () => {
               sx={styles.looking}
               className={leagueSpartan.className}
               component={"p"}
+              variant="body2"
             >
               {`Can't Assess What You're Looking For?`}
               <br /> {`Don't Worry! We Can Help!`}
@@ -197,101 +335,165 @@ const GetInTouch: React.FunctionComponent = () => {
                   <Typography
                     sx={styles.label}
                     className={leagueSpartan.className}
+                    variant="body2"
                   >
                     First Name
                   </Typography>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="Name"
-                    value={formData.Name}
-                    onChange={handleChange}
-                    label="First Name"
-                    variant="outlined"
-                  />
+                  <Box sx={styles.inputInner}>
+                    <Input
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      placeholder={"Enter First Name here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.firstName && (
+                      <Typography
+                        className={`${leagueSpartan.className} `}
+                        sx={styles.error}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.firstName}
+                      </Typography>
+                    )}
+                  </Box>
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Typography
                     sx={styles.label}
                     className={leagueSpartan.className}
+                    variant="body2"
                   >
                     Last Name
                   </Typography>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="lastName"
-                    value={formData.Parent}
-                    onChange={handleChange}
-                    label="Last Name"
-                    variant="outlined"
-                  />
+                  <Box sx={styles.inputInner}>
+                    <Input
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      placeholder={"Enter Last Name here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.lastName && (
+                      <Typography
+                        className={`${leagueSpartan.className}`}
+                        sx={styles.error}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.lastName}
+                      </Typography>
+                    )}
+                  </Box>
                 </Grid>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     sx={styles.label}
                     className={leagueSpartan.className}
+                    variant="body2"
                   >
                     Email Address
                   </Typography>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="email"
-                    value={formData.Grade}
-                    onChange={handleChange}
-                    label="Email Address"
-                    variant="outlined"
-                  />
+                  <Box sx={styles.inputInner}>
+                    <Input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={"Enter Email here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.email && (
+                      <Typography
+                        className={`${leagueSpartan.className}`}
+                        sx={styles.error}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.email}
+                      </Typography>
+                    )}
+                  </Box>
                 </Grid>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     sx={styles.label}
                     className={leagueSpartan.className}
+                    variant="body2"
                   >
                     Phone Number
                   </Typography>
-                  <TextField
-                    className={leagueSpartan.className}
-                    sx={styles.input}
-                    fullWidth
-                    name="phoneNumber"
-                    value={formData.Grade}
-                    onChange={handleChange}
-                    label="Phone Number"
-                    variant="outlined"
-                  />
+                  <Box sx={styles.inputInner}>
+                    <PhoneInput
+                      defaultCountry="SA"
+                      value={formData?.phone || ""}
+                      onChange={(e) => handleChange("phone", String(e))}
+                      inputComponent={CustomInput}
+                      style={styles.phoneInput}
+                    />
+                    {errors.phone && (
+                      <Typography
+                        className={`${leagueSpartan.className} `}
+                        sx={styles.error}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.phone}
+                      </Typography>
+                    )}
+                  </Box>
                 </Grid>
               </Grid>
               <Typography
-                sx={[styles.label, { width: "100%" }]}
+                sx={[styles.label, { width: "100%", marginTop: "3vh" }]}
                 className={leagueSpartan.className}
+                variant="body2"
               >
                 Message
               </Typography>
-
               <TextField
-                sx={[styles.input]}
                 fullWidth
                 multiline
-                rows={10}
+                rows={4}
                 name="Message"
-                value={formData.Message}
-                onChange={handleChange}
-                label="Message*"
-                variant="outlined"
-                className={leagueSpartan.className}
-              />
-              <Button
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+                placeholder="Enter your message here..."
+                className={`${leagueSpartan.className}  `}
+                sx={[styles.input]}
+              />{" "}
+              {errors.message && (
+                <Typography
+                  className={`${leagueSpartan.className}`}
+                  sx={styles.error}
+                  component={"p"}
+                  variant="caption"
+                >
+                  {errors.message}
+                </Typography>
+              )}
+              {/* <Button
                 variant="contained"
                 sx={styles.containedButton}
                 type="submit"
                 className={leagueSpartan.className}
               >
                 Submit Now
+              </Button> */}
+              <Button
+                variant="contained"
+                sx={styles.containedButton}
+                type="submit"
+                className={leagueSpartan.className}
+              >
+                {loading ? (
+                  <CircularProgress
+                    sx={{ width: "12px", height: "12px", color: "white" }}
+                    size={20}
+                  />
+                ) : (
+                  "Submit Now"
+                )}
               </Button>
             </Box>
           </Box>
@@ -304,52 +506,43 @@ const GetInTouch: React.FunctionComponent = () => {
 export default GetInTouch;
 
 const styles = {
-  looking: {
-    fontSize: {
-      xs: "18px",
-      sm: "20px",
-      md: "25px",
-      lg: "24px",
-    },
-    lineHeight: {
-      xs: "26px",
-      sm: "28px",
-      md: "33px",
-      lg: "34px",
-    },
+  inputInner: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    marginTop: "8px",
+  },
+
+  phoneInput: {
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    height: "5.5vh",
+    paddingLeft: "10px",
+    backgroundColor: "white",
+    // marginTop: "1.5vh",
+
+    outline: "none",
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0, 0, 0, 0.77)",
+    borderRadius: "10px",
+    fontSize: "2.3vh",
     fontWeight: 400,
+    lineHeight: "3.5vh",
   },
-  label: {
-    fontSize: {
-      xs: "18px",
-      sm: "18px",
-      md: "18px",
-      lg: "18px",
-    },
-    lineHeight: {
-      xs: "16px",
-      sm: "16px",
-      md: "16px",
-      lg: "16px",
-    },
-    fontWeight: 500,
-    marginTop: "10px",
+
+  // phoneInput:focus-visible {
+  //   outline: 'none',
+  // }
+  error: {
+    color: "red",
+    marginTop: "6px",
+    marginLeft: "6px",
   },
+  looking: {},
+  label: {},
   heading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 400,
+
     position: "relative",
   },
   contactForm: {
@@ -417,14 +610,7 @@ const styles = {
     backgroundColor: "#38B6FF",
 
     textTransform: "none",
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+
     textAlign: "center",
     width: "100%",
     padding: "18px",
@@ -435,14 +621,6 @@ const styles = {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
       backgroundColor: "#38B6FF",
 
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      fontWeight: 700,
-      lineHeight: "18.4px",
       textAlign: "center",
       padding: "18px",
       marginY: "20px",
