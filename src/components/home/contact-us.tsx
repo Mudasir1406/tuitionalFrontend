@@ -47,16 +47,18 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     curriculum: "",
     subjects: "",
     message: "",
+    browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
 
-    // Perform validation if the key is "phone"
     if (key === "phone" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
         console.log("Invalid phone number!");
@@ -97,6 +99,39 @@ const ContactUs: React.FunctionComponent<IProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    const newErrors: Partial<FormType> = {};
+
+    if (!isNotEmpty(formData.name)) {
+      newErrors.name = "Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Invalid phone number";
+    }
+    if (!isNotEmpty(formData.grade)) {
+      newErrors.grade = "Grade cannot be empty";
+    }
+    if (!isNotEmpty(formData.curriculum)) {
+      newErrors.curriculum = "Curriculum cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
 
     const formDataObject = new FormData();
 
@@ -113,7 +148,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 
     const formDataString = keyValuePairs.join("&");
 
-    console.log("formDataString", formDataString);
+    // console.log("formDataString", formDataString);
 
     try {
       const response = await fetch(
@@ -154,6 +189,24 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     getFilterData().then((data) => {
       setFilterData(data);
     });
+  }, []);
+  useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const res = await fetch("https://ipinfo.io/json");
+      const locationData = await res.json();
+
+      setFormData({
+        ...formData,
+        browser,
+        pageURL,
+        ip: locationData?.ip,
+        country: locationData?.country,
+      });
+    };
+
+    getClientLocation();
   }, []);
   return (
     <Box sx={styles.container}>
@@ -229,16 +282,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                 sx={{ zIndex: 1 }}
               >
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  {/* <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="name"
-                    value={formData.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                    label="Name*"
-                    variant="outlined"
-                    className={leagueSpartan.className}
-                  /> */}
                   <Box sx={styles.inputDiv}>
                     <Input
                       name="name"
@@ -249,7 +292,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                     />
                     {errors.name && (
                       <Typography
-                        className={`${leagueSpartan.className} ${styles.error}`}
+                        className={`${leagueSpartan.className} `}
+                        sx={styles.error}
                         component={"p"}
                         variant="caption"
                       >
@@ -257,13 +301,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                       </Typography>
                     )}
                   </Box>
-                  {/* <PhoneInput
-                    style={styles.phoneInput}
-                    defaultCountry="SA"
-                    value={formData?.phone || ""}
-                    onChange={(e) => handleChange("phone", String(e))}
-                    inputComponent={CustomInput}
-                  /> */}
                   <PhoneInput
                     defaultCountry="SA"
                     value={formData?.phone || ""}
@@ -273,24 +310,14 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   />
                   {errors.phone && (
                     <Typography
-                      className={`${leagueSpartan.className} ${styles.error}`}
+                      className={`${leagueSpartan.className} `}
+                      sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
                       {errors.phone}
                     </Typography>
                   )}
-                  {/* <DropDown
-                    placeholder="Select Curriculum"
-                    data={filterData?.curriculum || []}
-                    // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
-                    marginTop="1.5vh"
-                    marginBottom="1.5vh"
-                    value={formData.curriculum}
-                    onChange={handleChange}
-                    name="curriculum"
-                    
-                  /> */}
                   <DropDown
                     placeholder="Select Curriculum"
                     name="curriculum"
@@ -302,7 +329,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   />
                   {errors.curriculum && (
                     <Typography
-                      className={`${leagueSpartan.className} ${styles.error}`}
+                      className={`${leagueSpartan.className} `}
+                      sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
@@ -311,19 +339,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   )}
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  {/* <TextField
-                    sx={styles.input}
-                    fullWidth
-                    name="Email"
-                    // value={formData.Parent}
-                    // onChange={handleChange}
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    label="Email*"
-                    variant="outlined"
-                    type="email"
-                    className={leagueSpartan.className}
-                  /> */}
                   <Box sx={styles.inputDiv}>
                     <Input
                       name="email"
@@ -334,7 +349,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                     />
                     {errors.email && (
                       <Typography
-                        className={`${leagueSpartan.className} ${styles.error}`}
+                        className={`${leagueSpartan.className} `}
+                        sx={styles.error}
                         component={"p"}
                         variant="caption"
                       >
@@ -342,15 +358,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                       </Typography>
                     )}
                   </Box>
-                  {/* <DropDown
-                    placeholder="Select Grade"
-                    data={filterData?.grade || []}
-                    marginBottom="1.5vh"
-                    marginTop="1.5vh"
-                    value={formData.grade}
-                    onChange={handleChange}
-                    name="grade"
-                  /> */}
                   <DropDown
                     name="grade"
                     placeholder="Select Grade"
@@ -363,22 +370,14 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   />
                   {errors.grade && (
                     <Typography
-                      className={`${leagueSpartan.className} ${styles.error}`}
+                      className={`${leagueSpartan.className} `}
+                      sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
                       {errors.grade}
                     </Typography>
                   )}
-                  {/* <DropDown
-                    placeholder="Select Subject"
-                    data={filterData?.subject || []}
-                    marginBottom="1.5vh"
-                    marginTop="1.5vh"
-                    value={formData.subjects}
-                    onChange={handleChange}
-                    name="subjects"
-                  /> */}
                   <DropDown
                     name="subjects"
                     placeholder="Select Subjects"
@@ -391,7 +390,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   />{" "}
                   {errors.subjects && (
                     <Typography
-                      className={`${leagueSpartan.className} ${styles.error}`}
+                      className={`${leagueSpartan.className} `}
+                      sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
@@ -400,18 +400,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                   )}
                 </Grid>
               </Grid>
-              {/* <TextField
-                sx={[styles.input]}
-                fullWidth
-                multiline
-                rows={5}
-                name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
-                label="Message*"
-                variant="outlined"
-                className={leagueSpartan.className}
-              /> */}
               <TextField
                 sx={[styles.input]}
                 fullWidth
@@ -425,7 +413,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               />{" "}
               {errors.message && (
                 <Typography
-                  className={`${leagueSpartan.className} ${styles.error}`}
+                  className={`${leagueSpartan.className} `}
+                  sx={styles.error}
                   component={"p"}
                   variant="caption"
                 >
