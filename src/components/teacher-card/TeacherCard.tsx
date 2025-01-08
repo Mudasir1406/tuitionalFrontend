@@ -77,10 +77,10 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             component={"span"}
             variant="caption"
           >
-            +{teacher?.["Hours Taught"]} Hours Provided •
+            +{teacher?.["Hours Taught"]} Tutor Hours Provided •
           </Typography>
 
-          {teacher?.Subjects?.map((sub, i) => (
+          {/* {teacher?.Subjects?.map((sub, i) => (
             <Typography
               key={i}
               className={`${leagueSpartan.className} ${styles.bold}`}
@@ -89,7 +89,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             >
               {sub}
             </Typography>
-          ))}
+          ))} */}
           {/* <Typography
             className={`${leagueSpartan.className}  ${styles.mt1}`}
             component={"p"}
