@@ -15,7 +15,7 @@ interface props {
     header: string;
     paragraph: string;
     buttonTitle: string;
-    link: string;
+    buttonLink: string;
   };
 }
 
@@ -24,6 +24,7 @@ const handleRedirect = (url: string) => {
 };
 
 function TutoringProgramSection({ data }: props) {
+  console.log("TutoringProgramSection", data);
   return (
     <div className={styles.main}>
       <Typography
@@ -44,20 +45,44 @@ function TutoringProgramSection({ data }: props) {
           __html: data?.paragraph,
         }}
       ></Typography>
-      {data.buttonTitle && data.link && (
+      {/* {data.buttonTitle && data.buttonLink && (
         <div className={styles.btnDiv}>
-          {/* {data.link && ( */}
           <Button
-            onClick={() => handleRedirect(data.link)}
+            onClick={() => handleRedirect(data.buttonLink)}
             variant="contained"
             sx={style.contactButton}
             className={leagueSpartan.className}
           >
             {data.buttonTitle}
           </Button>
-          {/* )} */}
         </div>
+      )} */}
+
+      {data?.buttonLink && data?.buttonLink === "popup" ? (
+        <div className={styles.btnDiv}>
+          <PopUpButton
+            sx={style.contactButton}
+            text={data?.buttonTitle}
+            href="popup"
+          />
+        </div>
+      ) : (
+        <>
+          {data?.buttonTitle && (
+            <div className={styles.btnDiv}>
+              <Button
+                onClick={() => handleRedirect(data.buttonLink)}
+                variant="contained"
+                sx={style.contactButton}
+                className={leagueSpartan.className}
+              >
+                {data.buttonTitle}
+              </Button>
+            </div>
+          )}
+        </>
       )}
+
       {/* <div className={styles.contactContanier}>
         <Grid
           container

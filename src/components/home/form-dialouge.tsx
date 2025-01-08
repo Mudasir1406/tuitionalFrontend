@@ -182,9 +182,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       newErrors.curriculum = "Curriculum is required";
     }
 
-    if (!isNotEmpty(formData.subjects)) {
-      newErrors.subjects = "Subjects cannot be empty";
-    }
+    // if (!isNotEmpty(formData.subjects)) {
+    //   newErrors.subjects = "Subjects cannot be empty";
+    // }
 
     if (!isNotEmpty(formData.message)) {
       newErrors.message = "Message cannot be empty";
@@ -507,9 +507,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               <div style={styles.div}>
                 <DropDown
                   name="subjects"
-                  placeholder="Select Subject"
+                  placeholder="Select Subjects"
                   data={filterData?.subject || []}
                   marginTop="1.5vh"
+                  multiple
                   value={formData.subjects}
                   onChange={handleChange}
                 />{" "}

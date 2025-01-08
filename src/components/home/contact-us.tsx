@@ -13,7 +13,7 @@ import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
 import "react-phone-number-input/style.css";
 import DropDown from "../DropDown/DropDown";
@@ -23,12 +23,22 @@ import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
+import Input from "../input/Input";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { useMediaQuery, useTheme } from "@mui/material";
+import zIndex from "@mui/material/styles/zIndex";
 
 type IProps = {
   background?: any;
+  padding?: any;
 };
 
-const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
+const ContactUs: React.FunctionComponent<IProps> = ({
+  background,
+  padding,
+}) => {
+  const theme = useTheme();
+
   const [formData, setFormData] = React.useState<FormType>({
     name: "",
     email: "",
@@ -40,12 +50,49 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [errors, setErrors] = React.useState<Partial<FormType>>({});
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (key: string, value: string | string[]) => {
+    let newErrors = { ...errors };
+
+    // Perform validation if the key is "phone"
+    if (key === "phone" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        newErrors.phone = isValidPhoneNumber(value)
+          ? ""
+          : "Invalid phone number";
+
+        return;
+      }
+    }
+    if (key === "email" && typeof value === "string") {
+      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    }
+    if (key === "name" && typeof value === "string") {
+      newErrors.name = isNotEmpty(value) ? "" : "Name cannot be empty";
+    }
+    if (key === "grade" && typeof value === "string") {
+      newErrors.grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+    }
+    if (key === "curriculum" && typeof value === "string") {
+      newErrors.curriculum = isNotEmpty(value)
+        ? ""
+        : "Curriculum cannot be empty";
+    }
+    if (key === "subjects" && typeof value === "string") {
+      newErrors.subjects = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+    }
+    if (key === "message" && typeof value === "string") {
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    }
+
     setFormData({
       ...formData,
       [key]: value,
     });
+    setErrors(newErrors);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -110,7 +157,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
   }, []);
   return (
     <Box sx={styles.container}>
-      <Box sx={[styles.background, background]} />
+      <Box sx={[styles.background, background, padding && padding]} />
       <Grid container>
         <Grid item lg={5} md={12} sm={12} xs={12}>
           <Box
@@ -178,11 +225,11 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
               <Grid
                 container
                 columnSpacing={2}
-                rowSpacing={2}
+                // rowSpacing={2}
                 sx={{ zIndex: 1 }}
               >
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <TextField
+                  {/* <TextField
                     sx={styles.input}
                     fullWidth
                     name="name"
@@ -191,19 +238,49 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     label="Name*"
                     variant="outlined"
                     className={leagueSpartan.className}
-                  />
-                  <PhoneInput
+                  /> */}
+                  <Box sx={styles.inputDiv}>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder={"Enter name here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.name && (
+                      <Typography
+                        className={`${leagueSpartan.className} ${styles.error}`}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.name}
+                      </Typography>
+                    )}
+                  </Box>
+                  {/* <PhoneInput
                     style={styles.phoneInput}
                     defaultCountry="SA"
-                    // value={formData?.phone || ""}
-                    // onChange={(e) => {}}
                     value={formData?.phone || ""}
                     onChange={(e) => handleChange("phone", String(e))}
                     inputComponent={CustomInput}
-                    // error={errorData?.phone}
-                    // helperText={errorData?.phone}
+                  /> */}
+                  <PhoneInput
+                    defaultCountry="SA"
+                    value={formData?.phone || ""}
+                    onChange={(e) => handleChange("phone", String(e))}
+                    inputComponent={CustomInput}
+                    style={styles.phoneInput}
                   />
-                  <DropDown
+                  {errors.phone && (
+                    <Typography
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.phone}
+                    </Typography>
+                  )}
+                  {/* <DropDown
                     placeholder="Select Curriculum"
                     data={filterData?.curriculum || []}
                     // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
@@ -212,14 +289,29 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     value={formData.curriculum}
                     onChange={handleChange}
                     name="curriculum"
-                    // value={formData.curriculum}
-                    // onChange={(e) => {
-                    //   handleChange("curriculum", e.target.value);
-                    // }}
+                    
+                  /> */}
+                  <DropDown
+                    placeholder="Select Curriculum"
+                    name="curriculum"
+                    data={filterData?.curriculum || []}
+                    // marginBottom="1.5vh"
+                    // marginTop="1.5vh"
+                    value={formData.curriculum}
+                    onChange={handleChange}
                   />
+                  {errors.curriculum && (
+                    <Typography
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.curriculum}
+                    </Typography>
+                  )}
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <TextField
+                  {/* <TextField
                     sx={styles.input}
                     fullWidth
                     name="Email"
@@ -231,39 +323,84 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                     variant="outlined"
                     type="email"
                     className={leagueSpartan.className}
-                  />
-                  <DropDown
+                  /> */}
+                  <Box sx={styles.inputDiv}>
+                    <Input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={"Enter email here ..."}
+                      className={`${styles.input} ${leagueSpartan.className}`}
+                    />
+                    {errors.email && (
+                      <Typography
+                        className={`${leagueSpartan.className} ${styles.error}`}
+                        component={"p"}
+                        variant="caption"
+                      >
+                        {errors.email}
+                      </Typography>
+                    )}
+                  </Box>
+                  {/* <DropDown
                     placeholder="Select Grade"
                     data={filterData?.grade || []}
-                    // boxShadow=" 0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
-                    // value={""}
-                    // onChange={() => {}}value={formData.grade}
                     value={formData.grade}
                     onChange={handleChange}
                     name="grade"
-                    // onChange={(e) => {
-                    //   handleChange("grade", e.target.value);
-                    // }}
-                  />
+                  /> */}
                   <DropDown
+                    name="grade"
+                    placeholder="Select Grade"
+                    marginBottom="2vh"
+                    marginTop="2vh"
+                    data={filterData?.grade || []}
+                    // multiple
+                    value={formData.grade}
+                    onChange={handleChange}
+                  />
+                  {errors.grade && (
+                    <Typography
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.grade}
+                    </Typography>
+                  )}
+                  {/* <DropDown
                     placeholder="Select Subject"
                     data={filterData?.subject || []}
-                    // boxShadow="0px 1px 4px 0px rgba(0, 0, 0, 0.08)"
                     marginBottom="1.5vh"
                     marginTop="1.5vh"
                     value={formData.subjects}
                     onChange={handleChange}
                     name="subjects"
-                    // value={formData.subjects}
-                    // onChange={(e) => {
-                    //   handleChange("subjects", e.target.value);
-                    // }}
-                  />
+                  /> */}
+                  <DropDown
+                    name="subjects"
+                    placeholder="Select Subjects"
+                    data={filterData?.subject || []}
+                    // marginBottom="2vh"
+                    // marginTop="2vh"
+                    value={formData.subjects}
+                    onChange={handleChange}
+                    multiple
+                  />{" "}
+                  {errors.subjects && (
+                    <Typography
+                      className={`${leagueSpartan.className} ${styles.error}`}
+                      component={"p"}
+                      variant="caption"
+                    >
+                      {errors.subjects}
+                    </Typography>
+                  )}
                 </Grid>
               </Grid>
-              <TextField
+              {/* <TextField
                 sx={[styles.input]}
                 fullWidth
                 multiline
@@ -274,7 +411,27 @@ const ContactUs: React.FunctionComponent<IProps> = ({ background }) => {
                 label="Message*"
                 variant="outlined"
                 className={leagueSpartan.className}
-              />
+              /> */}
+              <TextField
+                sx={[styles.input]}
+                fullWidth
+                multiline
+                rows={4}
+                name="Message"
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+                placeholder="Enter your message here..."
+                className={`${leagueSpartan.className} `}
+              />{" "}
+              {errors.message && (
+                <Typography
+                  className={`${leagueSpartan.className} ${styles.error}`}
+                  component={"p"}
+                  variant="caption"
+                >
+                  {errors.message}
+                </Typography>
+              )}
               <Button
                 variant="contained"
                 className={leagueSpartan.className}
@@ -340,9 +497,9 @@ const styles = {
     position: "relative",
     marginLeft: {
       xs: "0px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
+      // sm: "55px",
+      // md: "60px",
+      // lg: "65px",
     },
     // width: "100%",
     "::before": {
@@ -391,6 +548,12 @@ const styles = {
     // },
     // fontWeight: 400,
     // lineHeight: "35px",
+    width: {
+      xs: "75%",
+      sm: "75%",
+      md: "75%",
+      lg: "75%",
+    },
     color: "black",
     marginBottom: "2vh",
     textAlign: {
@@ -410,8 +573,8 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "1.5vh",
-    marginBottom: "1.5vh",
+    marginTop: "2vh",
+    marginBottom: "2vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -421,9 +584,14 @@ const styles = {
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
     height: "5.5vh",
-    fontSize: "1.7vh",
-    fontWeight: 400,
-    minHeight: "50px",
+
+    // height: "5.5vh",
+    // fontSize: "1.7vh",
+    // fontWeight: 400,
+    // minHeight: "50px",
+  },
+  inputDiv: {
+    marginY: "2vh",
   },
   contactForm: {
     boxShadow:
@@ -472,23 +640,23 @@ const styles = {
     height: "100%",
     width: "100%",
   },
-
+  error: {
+    color: "red",
+    marginTop: "6px",
+    marginLeft: "6px",
+  },
   input: {
     backgroundColor: "white",
-    marginY: "1.5vh",
-    // outline: "none",
-    // ":focus-visible": {
-    //   outline: "none",
-    // },
-    // width: "95%"
+    marginY: "2vh",
     position: "relative",
-    zIndex: 2,
+    // zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
     },
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     borderRadius: "5px",
+    // zIndex:1,
   },
   containedButton: {
     display: "flex",
@@ -497,14 +665,7 @@ const styles = {
     backgroundColor: "#38B6FF",
 
     textTransform: "none",
-    // fontSize: {
-    //   xs: "25px",
-    //   sm: "25px",
-    //   md: "25px",
-    //   lg: "25px",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "18.4px",
+
     textAlign: "center",
     borderRadius: "10px",
     width: "100%",
@@ -514,16 +675,8 @@ const styles = {
       boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
       backgroundColor: "#38B6FF",
 
-      // fontSize: {
-      //   xs: "25px",
-      //   sm: "25px",
-      //   md: "25px",
-      //   lg: "25px",
-      // },
       borderRadius: "10px",
 
-      // fontWeight: 700,
-      // lineHeight: "18.4px",
       textAlign: "center",
       padding: "18px",
       marginY: "20px",

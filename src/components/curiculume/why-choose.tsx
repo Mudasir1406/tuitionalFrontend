@@ -69,7 +69,9 @@ const EducationalCounseling: React.FunctionComponent<{
               {/* {data?.tags && ( */}
               <Box sx={style.btnDiv}>
                 {data?.subjects && data?.subjects?.length > 0 && (
-                  <div style={style.tagsDiv}>
+                  <Box
+                    sx={data?.buttonLink ? style.tagsDiv : style.tagsDivFull}
+                  >
                     <Typography
                       sx={style.guidence}
                       variant={"subtitle2"}
@@ -82,49 +84,40 @@ const EducationalCounseling: React.FunctionComponent<{
                     <Box sx={style.tags}>
                       {/* {data?.tags?.map((tag, index) => ( */}
                       {data?.subjects?.map((tag, index) => (
-                        <Tag key={index} label={tag.name} link={tag?.link} index={index} />
+                        <Tag
+                          key={index}
+                          label={tag.name}
+                          link={tag?.link}
+                          index={index}
+                        />
                       ))}
                     </Box>
+                  </Box>
+                )}
+                {data?.buttonLink && (
+                  <div style={style.buttonDiv}>
+                    {data?.buttonLink && data?.buttonLink === "popup" ? (
+                      <PopUpButton
+                        sx={style.containedBtn}
+                        text={data?.buttonText}
+                        href="popup"
+                      />
+                    ) : (
+                      <>
+                        {data?.buttonText && (
+                          <Button
+                            variant="contained"
+                            sx={style.containedBtn}
+                            className={leagueSpartan.className}
+                            onClick={() => redirectToExternal(data?.buttonLink)}
+                          >
+                            {data?.buttonText}
+                          </Button>
+                        )}
+                      </>
+                    )}
                   </div>
                 )}
-                <div style={style.buttonDiv}>
-                  {/* {data?.subjects && data?.subjects?.length > 0 ? (
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                      onClick={() => redirectToExternal(data?.buttonLink)}
-                    >
-                      {data?.buttonText}
-                    </Button>
-                  ) : (
-                    <PopUpButton
-                      sx={style.containedBtn}
-                      text={data?.buttonText}
-                      href="popup"
-                    />
-                  )} */}
-                  {data?.buttonLink && data?.buttonLink === "popup" ? (
-                    <PopUpButton
-                      sx={style.containedBtn}
-                      text={data?.buttonText}
-                      href="popup"
-                    />
-                  ) : (
-                    <>
-                      {data?.buttonText && (
-                        <Button
-                          variant="contained"
-                          sx={style.containedBtn}
-                          className={leagueSpartan.className}
-                          onClick={() => redirectToExternal(data?.buttonLink)}
-                        >
-                          {data?.buttonText}
-                        </Button>
-                      )}
-                    </>
-                  )}
-                </div>
               </Box>
             </Box>
           </Grid>
@@ -135,7 +128,7 @@ const EducationalCounseling: React.FunctionComponent<{
             md={12}
             lg={6}
             alignItems="end"
-            order={{ xs: 2, lg: data?.right_to_left ? 1 : 2 }} // Change order only on larger screens
+            order={{ xs: 2, lg: data?.right_to_left ? 1 : 2 }} // Change o  rder only on larger screens
           >
             <Box>
               <Image
@@ -143,10 +136,12 @@ const EducationalCounseling: React.FunctionComponent<{
                 alt="Counseling Image"
                 style={{
                   width: "100%",
-                  height: "auto",
+                  // height: "auto",
+
+                  objectFit: "contain",
                 }}
                 width={counsling.width}
-                height={counsling.height}
+                height={counsling.height / 1.4}
               />
             </Box>
           </Grid>
@@ -191,11 +186,16 @@ const style = {
     marginRight: "auto",
   },
   tagsDiv: {
-    width: "50%",
+    width: { xs: "auto", lg: "75%" },
+  },
+  tagsDivFull: {
+    width: "auto",
   },
   tags: {
     display: "flex",
     columnGap: "6px",
+    rowGap: "6px",
+    flexWrap: "wrap",
   },
   section: { textAlign: "center" },
   guidence: {

@@ -1,23 +1,35 @@
 import React from "react";
 import styles from "./hero.module.css";
 import { leagueSpartan } from "@/app/fonts";
+import { Typography } from "@mui/material";
 
 const Hero: React.FC = () => {
   return (
     <div className={styles.heroContainer}>
-      <h1 className={`${styles.heading} ${leagueSpartan.className}`}>
+      <Typography
+        className={`${styles.heading} ${leagueSpartan.className}`}
+        variant="h1"
+        component={"h1"}
+      >
         Elevating{" "}
-        <span className={`${styles.expertText} ${leagueSpartan.className}`}>
+        <Typography
+          className={`${styles.expertText} ${leagueSpartan.className}`}
+          variant="h1"
+          component={"span"}
+        >
           Personalized Online Tutoring
-        </span>{" "}
+        </Typography>{" "}
         Across the Gulf
-      </h1>
+      </Typography>
 
-      <p className={`${styles.desc} ${leagueSpartan.className}`}>
+      <Typography
+        className={`${styles.desc} ${leagueSpartan.className}`}
+        variant="body2"
+      >
         Providing high-quality innovative and improved teaching solutions to
         help students attain academic growth and excellence through individual
         online tutoring.
-      </p>
+      </Typography>
     </div>
   );
 };

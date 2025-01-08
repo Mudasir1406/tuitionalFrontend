@@ -23,11 +23,6 @@
     "hero-info";
 }
 
-/* Hero Section */
-.hero {
-  /* grid-area: hero; */
-  padding-top: 120px; /* Default paddingTop for xs */
-}
 
 /* Hero Picture Section */
 .hero-picture {
@@ -54,51 +49,95 @@
   width: 100%;
 }
 
-/* Responsive Styles */
-
-/* sm and above */
-@media (min-width: 600px) {
-  .hero {
-    padding-top: 150px;
-  }
-
-  .hero-picture::before {
-    height: 500px;
-  }
+/* @media (max-width: 600px) {
 }
 
-/* md and above */
 @media (min-width: 900px) {
+}
+
+@media (min-width: 1200px) {
+ 
+} */
+
+@media (max-width: 575px) {
   .hero {
-    padding-top: 200px;
+    /* padding-top: 10vh; */
+    padding-top: 5vh;
   }
 
   .hero-picture::before {
-    height: 80vh; /* 80vh for larger screens */
+    height: 400px;
+  }
+  
+}
+
+/* Mobile (Large) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero {
+    padding-top: 15vh;
+  }
+  .hero-picture::before {
+    height: 50vh;
   }
 }
 
-/* lg and above */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 90vw; /* 90vw for lg screens */
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero {
+    padding-top: 10vh;
+  }
+
+  .hero-picture::before {
+    height: 50vh;
+  }
+}
+
+/* Laptop */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* .container {
+    max-width: 90vw;
   }
 
   .grid-container {
-    grid-template-columns: 1fr 1fr; /* Two-column grid for lg and up */
-    grid-template-areas: "hero hero-info"; /* Hero and hero-info side by side */
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "hero hero-info";
   }
 
   .hero {
-    padding-top: 0; /* Reset padding for larger screens */
+    padding-top: 0;
   }
 
   .hero-picture {
     background: none;
-    justify-content: flex-start; /* Ensure it's on the right side */
+    justify-content: flex-start;
   }
 
   .hero-picture::before {
-    height: 80vh; /* 80vh for large screens */
+    height: 80vh;
+  } */
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 90vw;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "hero hero-info";
+  }
+
+  .hero {
+    padding-top: 0;
+  }
+
+  .hero-picture {
+    background: none;
+    justify-content: flex-start;
+  }
+
+  .hero-picture::before {
+    height: 80vh;
   }
 }

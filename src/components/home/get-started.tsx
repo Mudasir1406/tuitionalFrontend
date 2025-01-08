@@ -129,7 +129,7 @@ const styles = {
       //   md: 10,
       //   lg: '40%',
       // },
-      left: { xs: "14%",sm: "18%", md: "36%" }, // Start positioning from the horizontal center of the parent
+      left: { xs: "14%", sm: "18%", md: "36%" }, // Start positioning from the horizontal center of the parent
       // transform: "translateX(-68%)", // Move it left by 50% of its own width to align center
 
       top: {
@@ -168,14 +168,6 @@ const styles = {
     color: "white",
     backgroundColor: "#38B6FF",
 
-    // fontSize: {
-    //   xs: "25px",
-    //   sm: "25px",
-    //   md: "25px",
-    //   lg: "25px",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "18.4px",
     textAlign: "center",
     width: "249px",
     padding: "18px",
@@ -186,24 +178,24 @@ const styles = {
     ":hover": {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "#38B6FF",
-      padding: "18px",
+      // padding: "18px",
 
-      letterSpacing: "-2%",
+      // letterSpacing: "-2%",
 
-      borderRadius: "10px",
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      fontWeight: 700,
-      lineHeight: "18.4px",
+      // borderRadius: "10px",
+      // fontSize: {
+      //   xs: "25px",
+      //   sm: "25px",
+      //   md: "25px",
+      //   lg: "25px",
+      // },
+      // fontWeight: 700,
+      // lineHeight: "18.4px",
       textAlign: "center",
     },
   },
   contanier: {
-    height: { xs: "565px", lg: "600px" },
+    height: { xs: "565px", lg: "600px", xl: "auto" },
     // height: "auto",
     width: {
       lg: "auto",

@@ -26,7 +26,8 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
       <Box sx={styles.headingContanier}>
         <Typography
           sx={styles.mainHeading}
-          component={"h3"}
+          component={"h2"}
+          variant="h2"
           className={leagueSpartan.className}
         >
           Why Choose Tuitional?
@@ -160,10 +161,18 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         </Box>
       </Box>
       <Box sx={{ height: "35%" }}>
-        <Typography sx={styles.heading} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.heading}
+          className={leagueSpartan.className}
+          variant="h3"
+        >
           {heading}
         </Typography>
-        <Typography sx={styles.dec} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.dec}
+          className={leagueSpartan.className}
+          variant="body2"
+        >
           {dec}
         </Typography>
       </Box>
@@ -174,36 +183,10 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
 const styles = {
   infoBoxContanier: {},
   heading: {
-    fontSize: {
-      xs: "18px",
-      sm: "23px",
-      md: "28px",
-      lg: "35px",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "16px",
-      sm: "20px",
-      md: "25px",
-      lg: "35px",
-    },
     marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
     textAlign: "center",
   },
   dec: {
-    fontSize: {
-      xs: "16px",
-      sm: "16px",
-      md: "18px",
-      lg: "20px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "20px",
-      sm: "20px",
-      md: "25px",
-      lg: "30px",
-    },
     textAlign: "center",
     maxWidth: { xs: "auto", sm: "auto", md: "auto", lg: "450px" },
     // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
@@ -225,19 +208,6 @@ const styles = {
   },
   mainHeading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 600,
     marginTop: {
       xs: "40px",
       sm: "50px",

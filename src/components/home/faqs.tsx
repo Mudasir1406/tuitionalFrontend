@@ -34,15 +34,15 @@ const Faqs: React.FC = async () => {
       {faqs?.map((item, index) => (
         <Questions key={index} question={item.question} answer={item.answer} />
       ))}
-      <Box sx={styles.headingContanier}>
-        <Button
+      {/* <Box sx={styles.marginBottom}> */}
+      {/* <Button
           variant="contained"
           sx={styles.containedButton}
           className={leagueSpartan.className}
         >
           View More
-        </Button>
-      </Box>
+        </Button> */}
+      {/* </Box> */}
       {/* <Image
         src={faqLine.src}
         width={faqLine.width}
@@ -104,12 +104,12 @@ const styles = {
     //   lg: "6.5vh",
     // },
     // fontWeight: 600,
-    marginTop: {
-      xs: "4vh",
-      sm: "5vh",
-      md: "9vh",
-      lg: "10vh",
-    },
+    // marginTop: {
+    //   xs: "4vh",
+    //   sm: "5vh",
+    //   md: "9vh",
+    //   lg: "10vh",
+    // },
     marginBottom: "20px",
     position: "relative",
     textAlign: "center",
@@ -186,6 +186,14 @@ const styles = {
       sm: "2.8vh",
       md: "3.2vh",
       lg: "3.2vh",
+    },
+  },
+  marginBottom: {
+    marginBottom: {
+      xs: "25px",
+      sm: "30px",
+      md: "40px",
+      lg: "50px",
     },
   },
   containedButton: {
