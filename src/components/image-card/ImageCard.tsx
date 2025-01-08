@@ -47,9 +47,10 @@ const ImageCard = ({ data }: props) => {
       </div>
       <div className={styles.cardTextDiv}>
         <Typography
-          className={`${leagueSpartan.className} `}
+          className={`${leagueSpartan.className} ${styles.heading}`}
           component={"p"}
           variant="subtitle1"
+          onClick={toggleShowMore}
         >
           {`${data?.["First Name"]} ${data?.["Last Name"]} `}{" "}
         </Typography>
@@ -71,31 +72,16 @@ const ImageCard = ({ data }: props) => {
           {data.university}{" "}
         </Typography>
 
-        {/* <Typography
-          className={`${leagueSpartan.className} ${styles.title}`}
-          component={"p"}
-          variant="body2"
-        >
-          {data.Description}{" "}
-        </Typography> */}
-
         <Typography
           className={`${leagueSpartan.className} ${styles.title}`}
           component={"p"}
           variant="body2"
         >
-          {showFull || data?.Description?.length <= maxLength
-            ? data?.Description
-            : `${data?.Description?.substring(0, maxLength)} `}
-          {data?.Description?.length > maxLength && (
-            <span
-              className={styles.showMore}
-              onClick={toggleShowMore}
-              style={{ color: "#38b6ff", cursor: "pointer", marginLeft: "5px" }}
-            >
-              {showFull ? "Show Less" : "..."}
-            </span>
-          )}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: data?.Description?.substring(0, maxLength),
+            }}
+          />
         </Typography>
         <div className={styles.rating}>
           <Image src={greenstars} alt="img" className={styles.stars} />
