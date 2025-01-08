@@ -122,6 +122,16 @@
   font-weight: bold;
 }
 
+.heading {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.heading:hover {
+  /* transform: scaleY(1.2);
+  transform: scaleZ(1.4); */
+  transform: scaleY(1.2);
+}
+
 @media (max-width: 576px) {
   /* .containedButton {
     font-size: 4vw;
