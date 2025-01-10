@@ -38,6 +38,7 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
   console.log("GradeSubjectLevel", data);
 
   const renderSection = (name: string) => {
+    
     if (name.includes("hero_section")) {
       return (
         <>
