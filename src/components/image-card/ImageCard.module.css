@@ -125,6 +125,7 @@
 .heading {
   cursor: pointer;
   transition: transform 0.3s ease;
+  margin-bottom: 6px;
 }
 .heading:hover {
   /* transform: scaleY(1.2);

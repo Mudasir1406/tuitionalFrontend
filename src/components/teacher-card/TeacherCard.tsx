@@ -77,7 +77,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             component={"span"}
             variant="caption"
           >
-            +{teacher?.["Hours Taught"]} Tutor Hours Provided •
+            +{teacher?.["Hours Taught"]} Tutor Hours Provided
           </Typography>
 
           {/* {teacher?.Subjects?.map((sub, i) => (
