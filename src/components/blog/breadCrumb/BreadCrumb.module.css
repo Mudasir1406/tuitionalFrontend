@@ -1,0 +1,38 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #eaf6ff;
+  border-radius: 8px;
+}
+
+.breadcrumbItem {
+  color: #333;
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: #2d2d2d;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  font-weight: medium;
+  color: #007bff;
+  /* cursor: pointer; */
+}
+
+.separator {
+  margin: 0 5px;
+  color: #999;
+}

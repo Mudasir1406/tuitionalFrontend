@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     Component_Sequence_Type | undefined | null
   ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
 
-  // console.log("Pagelevel", data, "data hero", data?.hero_section_from);
+  // console.log("Pagelevel", dataz, "data hero", data?.hero_section_from);
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;

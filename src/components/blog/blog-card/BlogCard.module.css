@@ -1,0 +1,46 @@
+.card {
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+  overflow: hidden;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.textDiv {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date {
+  color: #a7a7a7;
+  margin-bottom: 8px;
+}
+
+.text {
+  color: #2d2d2d;
+  margin-top: 8px;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.iconDiv {
+  background-color: #38b6ff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
