@@ -99,6 +99,7 @@ export type PageData = {
     section: string;
     sectionTag: string;
     right_to_left: boolean;
+    focusArea: string;
     subjects?: { name: string; link: string }[];
   };
   what_our_student_says: {

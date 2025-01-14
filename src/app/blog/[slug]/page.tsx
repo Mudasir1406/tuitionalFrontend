@@ -1,4 +1,4 @@
-import GradeSubjectLevelV2 from "@/components/grade-subject-level/grade-subject-level-v2";
+import BlogSequences from "@/components/blog/blogSequences/blog-sequences";
 import {
   getPageData,
   getPageSequence,
@@ -10,13 +10,43 @@ import {
 import { redirect } from "next/navigation";
 import React from "react";
 
+const dumyData = {
+  heroSection: {
+    title: "Title for hero",
+    tag: "H1",
+    image: "url",
+    imageAlt: "imageAlt",
+    socialShare: true,
+    categories: ["Study Material", "Texting"],
+    sequenceNumber: 1,
+  },
+
+  blogContent: {
+    title: "title for blog",
+    tag: "h2",
+    content: "base64 content / html content (quil output)",
+    sequenceNumber: 5,
+  },
+  postCTA: {
+    show: true,
+    sequenceNumber: 6,
+  },
+  relatedBlogs: {
+    show: true,
+  },
+  tag: {
+    data: ["IGCSE", "GCSE", "IB", "AP", "EDEXCEL"],
+    sequenceNumber: 7,
+  },
+};
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const [data, sequence]: [
     PageData | undefined | null,
     Component_Sequence_Type | undefined | null
   ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
 
-  // console.log("Pagelevel", data, "data hero", data?.hero_section_from);
+  console.log("Pagelevel", data, "data hero", "sequence", sequence);
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;
@@ -35,15 +65,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     return Object.fromEntries(sortedEntries);
   };
 
-  if (!data) return redirect("/404");
+  // if (!data) return redirect("/404");
 
-  if (!sequence) {
-    return <div>Error: Component sequence not found.</div>;
-  }
+  // if (!sequence) {
+  //   return <div>Error: Component sequence not found.</div>;
+  // }
 
   // if (data?.variant == "new") {
   return (
-    <GradeSubjectLevelV2 data={sortJsonObjectBySequenceNumber(data) as any} />
+    <BlogSequences
+      data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
+    />
   );
   // }
 
