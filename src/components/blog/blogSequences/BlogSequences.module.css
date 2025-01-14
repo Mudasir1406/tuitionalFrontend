@@ -30,6 +30,9 @@
   .verticalMargin {
     margin: 5vh 0;
   }
+  .container {
+    padding: 0 1vw;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {

@@ -36,12 +36,14 @@ import {
 } from "@/types/grade-subject-level.types";
 import Embrace from "../embrace";
 import ConduciveEnviroment from "../conducive-enviroment";
-import RelatedBlogs from "../related-blogs";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import SectionsBox from "../../curiculume/sectionsbox";
 import Breadcrumb from "../breadCrumb/BreadCrumb";
 import Image from "next/image";
+import AllBlogs from "../all-blogs/All-Blogs";
+import { dummyBlog } from "@/app/blog/page";
+import RelatedBlogs from "../relatedBlogs/RelatedBlogs";
 type IProps = {
   data: PageData;
 };
@@ -290,7 +292,7 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
               ></Typography>
             </div>
             <div className={styles.verticalMargin}>
-              <RelatedBlogs />
+              <RelatedBlogs blogs={dummyBlog} />
             </div>
           </div>
         </>
