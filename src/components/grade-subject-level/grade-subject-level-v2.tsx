@@ -113,7 +113,9 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       );
     }
     // case "hero_section_from":
-    else if (name.includes("with_form")) {
+    else if (name.includes("book_demo_cta")) {
+      return <>{data?.[name as keyof PageData]?.isShow && <SectionsBox />}</>;
+    } else if (name.includes("with_form")) {
       return (
         <>
           {data?.[name as keyof PageData] && (

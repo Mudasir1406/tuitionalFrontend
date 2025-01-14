@@ -50,11 +50,11 @@ const Layout = async ({
   params: { slug: string };
   children: ReactNode;
 }) => {
-  const data: PageData | undefined | null = await fetchData(params.slug);
+  // const data: PageData | undefined | null = await fetchData(params.slug);
 
-  if (!data) return null;
+  // if (!data) return null;
 
-  const pageSchema = generateMergedSchema(data);
+  // const pageSchema = generateMergedSchema(data);
 
   return (
     <div>
@@ -62,7 +62,7 @@ const Layout = async ({
         id="page-schema"
         type="application/ld+json"
         defer
-        dangerouslySetInnerHTML={{ __html: pageSchema }}
+        // dangerouslySetInnerHTML={{ __html: pageSchema }}
       />
      
       {children}

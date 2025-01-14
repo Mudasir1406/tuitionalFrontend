@@ -1,31 +1,64 @@
 import React from "react";
 import styles from "./BlogCard.module.css";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 
-interface Props {
-  data: {
-    date: string;
-    title: string;
-    paragraph: string;
-    _id: string;
-    image: string;
-    imageAlt: string;
-    createdAt: string;
-  };
+export interface BlogsProps {
+  title: string;
+  paragraph: string;
+  _id: string;
+  image: string | StaticImageData;
+  imageAlt?: string;
+  createdAt: string;
 }
 
-function BlogCard({data}:Props) {
-  return <div className={styles.card}>
-    <Image src={data?.image} alt={data?.imageAlt} className={styles.image}/>
+interface Props {
+  data: BlogsProps;
+}
 
-    <Typography
-            className={`${styles.expertText} ${leagueSpartan.className}`}
-            >
-              Home
-            </Typography>
-  </div>;
+function BlogCard({ data }: Props) {
+  return (
+    <div className={styles.card}>
+      <Image
+        src={data?.image}
+        alt={data?.imageAlt ? data?.imageAlt : ""}
+        className={styles.image}
+      />
+      <div className={styles.textDiv}>
+        <div className={styles.textDiv_text}>
+          <Typography
+            className={`${styles.date} ${leagueSpartan.className}`}
+            variant="body1"
+            component={"p"}
+          >
+            {data?.createdAt}
+          </Typography>
+          <Typography
+            className={`${styles.title} ${leagueSpartan.className}`}
+            variant="subtitle2"
+            component={"p"}
+          >
+            {data?.title}
+          </Typography>
+          <Typography
+            className={`${styles.text} ${leagueSpartan.className}`}
+            variant="caption"
+            component={"p"}
+          >
+            {data?.paragraph}
+          </Typography>
+        </div>
+
+        <div className={styles.textDiv_text}>
+          <div className={styles.iconDiv}>
+            <NorthEastIcon />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default BlogCard;
