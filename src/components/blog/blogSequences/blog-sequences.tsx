@@ -39,11 +39,11 @@ import ConduciveEnviroment from "../conducive-enviroment";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import SectionsBox from "../../curiculume/sectionsbox";
-import Breadcrumb from "../breadCrumb/BreadCrumb";
 import Image from "next/image";
 import AllBlogs from "../all-blogs/All-Blogs";
 import { dummyBlog } from "@/app/blog/page";
 import RelatedBlogs from "../relatedBlogs/RelatedBlogs";
+import Breadcrumb from "../breadCrumb/BreadCrumb";
 type IProps = {
   data: PageData;
 };
