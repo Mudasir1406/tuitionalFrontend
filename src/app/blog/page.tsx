@@ -2,7 +2,7 @@ import { Header } from "@/components";
 import ConduciveEnviroment from "@/components/blog/conducive-enviroment";
 import Embrace from "@/components/blog/embrace";
 import OptionsImageHome from "@/components/blog/options-image-home";
-import RelatedBlogs from "@/components/blog/related-blogs";
+import RelatedBlogs from "@/components/blog/relatedBlogs/RelatedBlogs";
 import Footer from "@/components/footer";
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
@@ -18,7 +18,7 @@ import HeroInfo from "@/components/about/hero-info";
 import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 
-const dummyBlog = [
+export const dummyBlog = [
   {
     image: dummyImg1,
     title: "Embracing the Future of Learning",
@@ -230,9 +230,7 @@ const Page = () => {
           <div className={styles["hero"]}>
             <Hero />
           </div>
-          <div className={styles["hero-picture"]}>
-            {/* <HeroInfo /> */}
-          </div>
+          <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
         </div>
       </div>
       {/* <Grid
@@ -257,9 +255,9 @@ const Page = () => {
           <BlogCard data={blog} key={blog._id} />
         ))}
       </div> */}
-        <div className={styles.verticalMargin}>
-          <SchoolLogosSection />
-        </div>
+      <div className={styles.verticalMargin}>
+        <SchoolLogosSection />
+      </div>
       <AllBlogs blogs={dummyBlog} />
 
       {/* <Embrace />

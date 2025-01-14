@@ -38,6 +38,7 @@ const Breadcrumb: React.FC = () => {
       <Typography
         onClick={() => redirectToExternal("/")}
         variant="body2"
+        component={"p"}
         className={`${leagueSpartan.className} ${styles.link}`}
       >
         Home
@@ -50,6 +51,7 @@ const Breadcrumb: React.FC = () => {
             <Typography
               variant="body2"
               className={`${leagueSpartan.className} ${styles.link} ${styles.active} `}
+              component={"p"}
             >
               {item.label}
             </Typography>
@@ -57,6 +59,7 @@ const Breadcrumb: React.FC = () => {
             <Typography
               onClick={() => redirectToExternal(item.href)}
               variant="body2"
+              component={"p"}
               className={`${leagueSpartan.className} `}
             >
               {item.label}

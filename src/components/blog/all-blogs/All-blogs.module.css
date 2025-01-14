@@ -55,6 +55,7 @@
   transform: scale(1.02);
   box-shadow: 6px 6px 6px 0px #38b6ff75;
 }
+
 /* Medium Screens (Tablets) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .blogContainer {

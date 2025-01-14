@@ -84,6 +84,7 @@
   transform: scale(1.02);
   box-shadow: 1px 4px 24px 0px #38b6ffb2;
 }
+
 @media (max-width: 576px) {
   .heading {
     margin-top: 2vh;
