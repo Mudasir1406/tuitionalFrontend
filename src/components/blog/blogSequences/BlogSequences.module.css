@@ -1,0 +1,70 @@
+.container {
+  padding: 0 5vw;
+}
+.verticalMargin {
+  margin: 7vh 0;
+}
+
+.imageDiv {
+  /* background-image: url("../../../../public/assets/images/static/young-students-learning-together-group-study.png");
+  background-position: bottom;
+  background-size: contain;
+  height: 70vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  border-radius: 54px;
+  overflow: hidden; */
+}
+
+.blogImg {
+  height: 70vh;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+@media (max-width: 575px) {
+  .blogImg {
+    height: 20vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .blogImg {
+    /* height: 25vh; */
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .blogImg {
+    height: 30vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .blogImg {
+    height: 35vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .blogImg {
+    height: 70vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+}

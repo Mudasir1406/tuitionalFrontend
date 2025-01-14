@@ -78,7 +78,7 @@ const EducationalCounseling: React.FunctionComponent<{
                       className={leagueSpartan.className}
                       component={"p"}
                     >
-                      Key Focus Areas
+                     {data?.focusArea}
                     </Typography>
 
                     <Box sx={style.tags}>
