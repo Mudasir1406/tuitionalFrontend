@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import styles from "./Breadcrumb.module.css";
 import { Typography } from "@mui/material";
 import { redirectToExternal } from "@/utils/helper";
@@ -16,7 +15,6 @@ interface BreadcrumbItem {
 const Breadcrumb: React.FC = () => {
   const pathname = usePathname();
 
-  // Extract segments from the current path
   const pathSegments = pathname.split("/").filter(Boolean);
 
   // Generate breadcrumb items
