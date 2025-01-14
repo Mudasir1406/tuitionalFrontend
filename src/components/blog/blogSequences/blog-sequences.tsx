@@ -1,6 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+
 import { Header } from "@/components";
 import dynamic from "next/dynamic";
 import students from "../../../../public/assets/images/static/young-students-learning-together-group-study.png";
@@ -11,39 +10,27 @@ import styles from "./BlogSequences.module.css";
 const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), {
   ssr: true,
 });
-const Offer = dynamic(() => import("@/components/curiculume/offer"), {
+
+const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
+const Breadcrumb = dynamic(() => import("../breadCrumb/BreadCrumb"), {
   ssr: true,
 });
-const GetStarted = dynamic(
-  () => import("@/components/grade-subject-level/get-started"),
-  { ssr: true }
-);
-const EducationalCounseling = dynamic(
-  () => import("@/components/curiculume/why-choose"),
-  { ssr: true }
-);
-
-const HeroInfo = dynamic(
-  () => import("@/components/grade-subject-level/hero-info"),
-  { ssr: true }
-);
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
+const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), {
+  ssr: true,
+});
 
 import {
   Component_Sequence_Type,
   PageData,
   tutor_section,
 } from "@/types/grade-subject-level.types";
-import Embrace from "../embrace";
-import ConduciveEnviroment from "../conducive-enviroment";
+
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import SectionsBox from "../../curiculume/sectionsbox";
 import Image from "next/image";
-import AllBlogs from "../all-blogs/All-Blogs";
 import { dummyBlog } from "@/app/blog/page";
-import RelatedBlogs from "../relatedBlogs/RelatedBlogs";
-import Breadcrumb from "../breadCrumb/BreadCrumb";
+
+// import  from "";
 type IProps = {
   data: PageData;
 };
