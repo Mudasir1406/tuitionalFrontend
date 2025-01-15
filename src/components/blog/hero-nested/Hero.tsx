@@ -19,6 +19,18 @@ interface Props {
 }
 
 const Hero = ({ data }: Props) => {
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const shareUrls = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      currentUrl
+    )}`,
+    whatsapp: `https://wa.me/?text=${encodeURIComponent(currentUrl)}`,
+    linkedin: `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
+      currentUrl
+    )}`,
+    instagram: "https://www.instagram.com/", // Instagram does not have a direct URL sharing mechanism
+  };
   return (
     <div className={styles.heroContainer}>
       <div className={styles.leftIcons} />
@@ -46,18 +58,42 @@ const Hero = ({ data }: Props) => {
             <Image src={arrow} alt="arrow" />
           </div>
           <div className={styles.socialDiv}>
-            <Image
-              className={styles.socialIcon}
-              src={facebook}
-              alt="facebook"
-            />
-            <Image
-              className={styles.socialIcon}
-              src={instagram}
-              alt="instagram"
-            />
-            <Image className={styles.socialIcon} src={social} alt="social" />
-            <Image className={styles.socialIcon} src={share} alt="share" />
+            <a
+              href={shareUrls.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className={styles.socialIcon}
+                src={facebook}
+                alt="facebook"
+              />{" "}
+            </a>
+            <a
+              href={shareUrls.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className={styles.socialIcon}
+                src={instagram}
+                alt="instagram"
+              />{" "}
+            </a>
+            <a
+              href={shareUrls.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image className={styles.socialIcon} src={social} alt="social" />{" "}
+            </a>
+            <a
+              href={shareUrls.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image className={styles.socialIcon} src={share} alt="share" />{" "}
+            </a>
           </div>{" "}
         </div>
       </div>

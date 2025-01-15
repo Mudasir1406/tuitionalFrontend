@@ -5,15 +5,16 @@
   margin: 7vh 0;
 }
 
-.imageDiv {
-  /* background-image: url("../../../../public/assets/images/static/young-students-learning-together-group-study.png");
-  background-position: bottom;
-  background-size: contain;
-  height: 70vh;
-  width: 100%;
-  background-repeat: no-repeat;
-  border-radius: 54px;
-  overflow: hidden; */
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+.mainLeft {
+  /* display: flex; */
+  flex: 0.2;
+}
+.mainRight {
+  flex: 0.75;
 }
 
 .blogImg {

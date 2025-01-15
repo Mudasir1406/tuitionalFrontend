@@ -32,6 +32,8 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { dummyBlog } from "@/app/blog/page";
+import Input from "@/components/input/Input";
+import LeftSection from "../left-section/left-section";
 
 // import  from "";
 type IProps = {
@@ -229,6 +231,23 @@ const heroDummy = {
   date: "August 15, 2024",
   category: "Technology",
 };
+
+const accordionData = [
+  {
+    title: "Category",
+    items: [
+      "Curriculum Resources",
+      "Study Materials",
+      "Exam Preparation",
+      "Advice & Tips",
+      "Admissions & Schooling",
+    ],
+  },
+  {
+    title: "Find Tutors",
+    items: ["Maths", "Physics", "Chemistry", "Biology", "Geography"],
+  },
+];
 const BlogSequences: React.FC<IProps> = ({ data }) => {
   console.log("GradeSubjectLevel", data);
 
@@ -246,41 +265,49 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
             <div className={styles.verticalMargin}>
               <Breadcrumb />
             </div>
-            {/* <Embrace /> */}
-            <div className={styles.verticalMargin}>
-              <Typography
-                // sx={style.guidence}
-                // variant={''}
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyHtml,
-                }}
-              ></Typography>
+
+            <div className={styles.main}>
+              <div className={styles.mainLeft}>
+                <LeftSection accordionData={accordionData} />
+              </div>
+              <div className={styles.mainRight}>
+                <div className={styles.verticalMargin}>
+                  <Typography
+                    // sx={style.guidence}
+                    // variant={''}
+                    className={leagueSpartan.className}
+                    component={"div"}
+                    dangerouslySetInnerHTML={{
+                      __html: dummyHtml,
+                    }}
+                  ></Typography>
+                </div>
+                <div className={styles.verticalMargin}>
+                  <Typography
+                    // sx={style.guidence}
+                    // variant={''}
+                    className={leagueSpartan.className}
+                    component={"div"}
+                    dangerouslySetInnerHTML={{
+                      __html: dummyHtml2,
+                    }}
+                  ></Typography>
+                  {/* <ConduciveEnviroment /> */}
+                </div>
+                <div className={styles.verticalMargin}>
+                  <Typography
+                    // sx={style.guidence}
+                    // variant={''}
+                    className={leagueSpartan.className}
+                    component={"div"}
+                    dangerouslySetInnerHTML={{
+                      __html: dummyhtml3,
+                    }}
+                  ></Typography>
+                </div>
+              </div>
             </div>
-            <div className={styles.verticalMargin}>
-              <Typography
-                // sx={style.guidence}
-                // variant={''}
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyHtml2,
-                }}
-              ></Typography>
-              {/* <ConduciveEnviroment /> */}
-            </div>
-            <div className={styles.verticalMargin}>
-              <Typography
-                // sx={style.guidence}
-                // variant={''}
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyhtml3,
-                }}
-              ></Typography>
-            </div>
+
             <div className={styles.verticalMargin}>
               <RelatedBlogs blogs={dummyBlog} />
             </div>
