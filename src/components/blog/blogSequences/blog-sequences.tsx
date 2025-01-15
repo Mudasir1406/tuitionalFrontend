@@ -12,9 +12,12 @@ const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), {
 });
 
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
-const Breadcrumb = dynamic(() => import("../breadCrumb/BreadCrumb"), {
-  ssr: true,
-});
+const Breadcrumb = dynamic(
+  () => import("@/components/bread-crumb/bread-crumb"),
+  {
+    ssr: true,
+  }
+);
 const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), {
   ssr: true,
 });
