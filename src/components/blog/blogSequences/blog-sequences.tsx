@@ -31,7 +31,7 @@ import {
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
-import { dummyBlog } from "@/app/blog/page";
+// import { dummyBlog } from "@/app/blog/page";
 
 // import  from "";
 type IProps = {
@@ -236,7 +236,7 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
     if (name.includes("heroSection")) {
       return (
         <>
-          <Hero data={heroDummy} />
+          {/* <Hero data={heroDummy} />
           <div className={styles.container}>
             <div className={styles.verticalMargin}>
               <div className={styles.imageDiv}>
@@ -246,11 +246,8 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
             <div className={styles.verticalMargin}>
               <Breadcrumb />
             </div>
-            {/* <Embrace /> */}
             <div className={styles.verticalMargin}>
               <Typography
-                // sx={style.guidence}
-                // variant={''}
                 className={leagueSpartan.className}
                 component={"div"}
                 dangerouslySetInnerHTML={{
@@ -260,20 +257,17 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
             </div>
             <div className={styles.verticalMargin}>
               <Typography
-                // sx={style.guidence}
-                // variant={''}
+
                 className={leagueSpartan.className}
                 component={"div"}
                 dangerouslySetInnerHTML={{
                   __html: dummyHtml2,
                 }}
               ></Typography>
-              {/* <ConduciveEnviroment /> */}
             </div>
             <div className={styles.verticalMargin}>
               <Typography
-                // sx={style.guidence}
-                // variant={''}
+
                 className={leagueSpartan.className}
                 component={"div"}
                 dangerouslySetInnerHTML={{
@@ -284,7 +278,7 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
             <div className={styles.verticalMargin}>
               <RelatedBlogs blogs={dummyBlog} />
             </div>
-          </div>
+          </div> */}
         </>
       );
     }
