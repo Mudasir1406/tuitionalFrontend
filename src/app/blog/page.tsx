@@ -17,7 +17,14 @@ import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
 import HeroInfo from "@/components/about/hero-info";
 import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
+import dynamic from "next/dynamic";
 
+const SearchBar = dynamic(
+  () => import("@/components/blog/search-bar/SearchBar"),
+  {
+    ssr: true,
+  }
+);
 export const dummyBlog = [
   {
     image: dummyImg1,
@@ -30,7 +37,8 @@ export const dummyBlog = [
   },
   {
     image: dummyImg2,
-    title: "Unlocking Academic Success  apps and software integrated into our platform asd",
+    title:
+      "Unlocking Academic Success  apps and software integrated into our platform asd",
     paragraph:
       "Educational apps and software integrated into our platform can offer personalized practice.",
     createdAt: "June 3, 2024",
@@ -234,36 +242,14 @@ const Page = () => {
           <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
         </div>
       </div>
-      {/* <Grid
-        item
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
-        sx={{
-          backgroundImage: `url(${students.src})`,
-          backgroundPosition: "bottom",
-          backgroundSize: "contain",
-          height: { xs: "20vh", sm: "25vh", md: "30vh", lg: "70vh" },
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-          borderRadius: "2vh",
-        }}
-      ></Grid> */}
-      {/* <OptionsImageHome /> */}
-      {/* <div className={styles.blogContainer}>
-        {dummyBlog?.map((blog) => (
-          <BlogCard data={blog} key={blog._id} />
-        ))}
-      </div> */}
+
       <div className={styles.verticalMargin}>
         <SchoolLogosSection />
       </div>
+
+      <SearchBar />
       <AllBlogs blogs={dummyBlog} />
 
-      {/* <Embrace />
-      <ConduciveEnviroment />
-      <RelatedBlogs /> */}
       <Footer />
     </>
   );

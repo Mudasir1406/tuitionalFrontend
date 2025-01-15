@@ -1,0 +1,31 @@
+.tagsAndSocial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags {
+  flex: 0.6;
+}
+.socialDiv {
+  flex: 0.3;
+}
+
+.allTags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.socialDiv {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  justify-content: center;
+}
+
+.socialIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  cursor: pointer;
+}

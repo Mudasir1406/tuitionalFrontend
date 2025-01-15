@@ -34,6 +34,7 @@ import Image from "next/image";
 import { dummyBlog } from "@/app/blog/page";
 import Input from "@/components/input/Input";
 import LeftSection from "../left-section/left-section";
+import TagsAndSocial from "../tags-social/TagsAndSocial";
 
 // import  from "";
 type IProps = {
@@ -248,6 +249,9 @@ const accordionData = [
     items: ["Maths", "Physics", "Chemistry", "Biology", "Geography"],
   },
 ];
+
+const dummyTags = ["Maths", "Physics", "Chemistry", "Biology", "Geography"];
+
 const BlogSequences: React.FC<IProps> = ({ data }) => {
   console.log("GradeSubjectLevel", data);
 
@@ -271,17 +275,17 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
                 <LeftSection accordionData={accordionData} />
               </div>
               <div className={styles.mainRight}>
-                <div className={styles.verticalMargin}>
-                  <Typography
-                    // sx={style.guidence}
-                    // variant={''}
-                    className={leagueSpartan.className}
-                    component={"div"}
-                    dangerouslySetInnerHTML={{
-                      __html: dummyHtml,
-                    }}
-                  ></Typography>
-                </div>
+                {/* <div className={styles.verticalMargin}> */}
+                <Typography
+                  // sx={style.guidence}
+                  // variant={''}
+                  className={leagueSpartan.className}
+                  component={"div"}
+                  dangerouslySetInnerHTML={{
+                    __html: dummyHtml,
+                  }}
+                ></Typography>
+                {/* </div> */}
                 <div className={styles.verticalMargin}>
                   <Typography
                     // sx={style.guidence}
@@ -304,6 +308,9 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
                       __html: dummyhtml3,
                     }}
                   ></Typography>
+                </div>
+                <div className={styles.verticalMargin}>
+                  <TagsAndSocial tags={dummyTags} />
                 </div>
               </div>
             </div>
