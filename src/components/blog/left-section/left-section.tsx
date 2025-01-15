@@ -6,6 +6,7 @@ import Input from "@/components/input/Input";
 import { AccordionProps } from "../accordion/Accordion";
 import { leagueSpartan } from "@/app/fonts";
 import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const Accordion = dynamic(() => import("../accordion/Accordion"), {
   ssr: true,
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function LeftSection({ accordionData }: Props) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     search: "",
   });
@@ -29,6 +31,18 @@ function LeftSection({ accordionData }: Props) {
       ...formData,
       [key]: value,
     });
+  };
+
+  const handleSearch = () => {
+    if (formData.search) {
+      // Update the query parameter in the URL
+      const params = new URLSearchParams(window.location.search);
+      params.set("search", formData.search);
+      const newUrl = `/blog?${params.toString()}`;
+      router.replace(newUrl);
+      // window.history.pushState({}, "", newUrl);
+      // setQuerySearch(formData.search);
+    }
   };
   return (
     <div>
@@ -45,6 +59,7 @@ function LeftSection({ accordionData }: Props) {
           variant="contained"
           type="submit"
           className={`${leagueSpartan.className} ${styles.containedButton}`}
+          onClick={handleSearch}
         >
           Search
         </Button>

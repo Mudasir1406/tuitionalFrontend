@@ -57,7 +57,10 @@ function BlogCard({ data }: Props) {
         </div>
 
         <div className={styles.textDiv_text}>
-          <div className={styles.iconDiv}>
+          <div
+            className={styles.iconDiv}
+            onClick={() => redirectToExternal(`${pathname}/${data?._id}`)}
+          >
             <NorthEastIcon />
           </div>
         </div>
