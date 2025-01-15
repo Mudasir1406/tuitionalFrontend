@@ -224,46 +224,22 @@ export const dummyBlog = [
 const Page = () => {
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
             <Hero />
           </div>
-          <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
+          <div className={styles["hero-picture"]}></div>
         </div>
       </div>
-      {/* <Grid
-        item
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
-        sx={{
-          backgroundImage: `url(${students.src})`,
-          backgroundPosition: "bottom",
-          backgroundSize: "contain",
-          height: { xs: "20vh", sm: "25vh", md: "30vh", lg: "70vh" },
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-          borderRadius: "2vh",
-        }}
-      ></Grid> */}
-      {/* <OptionsImageHome /> */}
-      {/* <div className={styles.blogContainer}>
-        {dummyBlog?.map((blog) => (
-          <BlogCard data={blog} key={blog._id} />
-        ))}
-      </div> */}
+
       <div className={styles.verticalMargin}>
         <SchoolLogosSection />
       </div>
       <AllBlogs blogs={dummyBlog} />
 
-      {/* <Embrace />
-      <ConduciveEnviroment />
-      <RelatedBlogs /> */}
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

@@ -73,9 +73,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   // if (data?.variant == "new") {
   return (
-    <BlogSequences
-      data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
-    />
+    <></>
+    // <BlogSequences
+    //   data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
+    // />
   );
   // }
 
