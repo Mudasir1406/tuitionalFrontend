@@ -2,7 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import styles from "./breadcrumb.module.css";
+import styles from "./style.module.css";
 import { Typography } from "@mui/material";
 import { redirectToExternal } from "@/utils/helper";
 import { leagueSpartan } from "@/app/fonts";
