@@ -34,6 +34,16 @@
   .container {
     padding: 0 1vw;
   }
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -43,6 +53,16 @@
   .verticalMargin {
     margin: 5vh 0;
   }
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -51,6 +71,16 @@
   }
   .verticalMargin {
     margin: 5vh 0;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
   }
 }
 
