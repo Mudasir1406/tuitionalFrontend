@@ -15,7 +15,15 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+  const handleRedirect = (item: string) => {
+    // Replace spaces in the title to make it URL-safe (optional)
+    const queryKey = encodeURIComponent(title);
+    const queryValue = encodeURIComponent(item);
 
+    // Build the URL
+    const newUrl = `/blog?${queryKey}=${queryValue}`;
+    window.location.href = newUrl; // Redirect to the new URL
+  };
   return (
     <div className={`${styles.accordion} ${isOpen ? styles.open : ""}`}>
       <div className={styles.header} onClick={toggleAccordion}>
@@ -36,13 +44,13 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
             <Typography
               // sx={style.guidence}
               variant={"caption"}
-              className={leagueSpartan.className}
+              className={`${leagueSpartan.className} ${styles.list}`}
               component={"li"}
+              onClick={() => handleRedirect(item)} // Handle click and redirect
               key={index}
             >
               {item}
             </Typography>
-            // <li key={index}>{item}</li>
           ))}
         </ul>
       )}

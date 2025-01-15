@@ -49,11 +49,6 @@
   width: 95%;
   margin-top: 8vh;
   height: 8.5vh;
-  /* height: {
-    xs: 8vh;
-    sm: 6vh;
-    lg: 8.5vh;
-  } */
   background: #fff;
   box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.2) inset,
     0px 4px 5px 0px rgba(0, 0, 0, 0.25) inset;
@@ -76,13 +71,11 @@
   height: 8.5vh;
   transition: all 0.5s ease-in-out;
 
-  /* border-top-right-radius: 14px;
-  borderbottomrightradius: 14px; */
 }
 .button:hover {
   background-color: #38b6ff;
   transform: scale(1.02);
-  box-shadow: 1px 4px 24px 0px #38b6ffb2;
+  box-shadow: 1px 4px 14px 0px #38b6ff89;
 }
 
 @media (max-width: 576px) {
@@ -100,7 +93,6 @@
   }
   .mobileContanier {
     margin-top: 2vh;
-    /* max-width: 80vw; */
     max-width: 100%;
     height: 5.5vh;
   }
@@ -118,13 +110,8 @@
   }
   .mobileContanier {
     margin-top: 2vh;
-    /* max-width: 50vw; */
   }
-  /* .heroContainer {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  } */
+
 }
 @media (min-width: 576px) {
   .desc {
@@ -132,13 +119,8 @@
   }
   .mobileContanier {
     margin-top: 2vh;
-    /* max-width: 50vw; */
   }
-  /* .heroContainer {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  } */
+  
 }
 
 @media (min-width: 768px) {
