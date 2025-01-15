@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
 import styles from "./BlogCard.module.css";
 import Image, { StaticImageData } from "next/image";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
+import { redirectToExternal } from "@/utils/helper";
+import { usePathname } from "next/navigation";
 
 export interface BlogsProps {
   title: string;
@@ -19,6 +22,7 @@ interface Props {
 }
 
 function BlogCard({ data }: Props) {
+  const pathname = usePathname();
   return (
     <div className={styles.card}>
       <Image
@@ -39,16 +43,17 @@ function BlogCard({ data }: Props) {
             className={`${styles.title} ${leagueSpartan.className}`}
             variant="subtitle2"
             component={"p"}
+            onClick={() => redirectToExternal(`${pathname}/${data?._id}`)}
           >
             {data?.title}
           </Typography>
-          <Typography
+          {/* <Typography
             className={`${styles.text} ${leagueSpartan.className}`}
             variant="caption"
             component={"p"}
           >
             {data?.paragraph}
-          </Typography>
+          </Typography> */}
         </div>
 
         <div className={styles.textDiv_text}>

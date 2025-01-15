@@ -21,7 +21,8 @@ import SchoolLogosSection from "@/components/grade-subject-level/school-logos-se
 export const dummyBlog = [
   {
     image: dummyImg1,
-    title: "Embracing the Future of Learning",
+    title:
+      "Embracing the Future of Learning Educational apps and software integrated into our platform ",
     paragraph:
       "Educational apps and software integrated into our platform can offer personalized practice.",
     createdAt: "July 21, 2024",
@@ -29,7 +30,7 @@ export const dummyBlog = [
   },
   {
     image: dummyImg2,
-    title: "Unlocking Academic Success",
+    title: "Unlocking Academic Success  apps and software integrated into our platform asd",
     paragraph:
       "Educational apps and software integrated into our platform can offer personalized practice.",
     createdAt: "June 3, 2024",
