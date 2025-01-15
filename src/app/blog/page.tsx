@@ -18,7 +18,7 @@ import HeroInfo from "@/components/about/hero-info";
 import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 
-export const dummyBlog = [
+ const dummyBlog = [
   {
     image: dummyImg1,
     title: "Embracing the Future of Learning",
