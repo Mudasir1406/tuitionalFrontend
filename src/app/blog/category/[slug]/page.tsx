@@ -17,7 +17,7 @@ const SearchBar = dynamic(
     ssr: true,
   }
 );
-export const dummyBlog = [
+const dummyBlog = [
   {
     image: dummyImg1,
     title:
