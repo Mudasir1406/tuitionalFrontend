@@ -43,7 +43,7 @@ function BlogCard({ data }: Props) {
             className={`${styles.title} ${leagueSpartan.className}`}
             variant="subtitle2"
             component={"p"}
-            onClick={() => redirectToExternal(`${pathname}/${data?._id}`)}
+            onClick={() => redirectToExternal(`/blog/${data?._id}`)}
           >
             {data?.title}
           </Typography>
@@ -59,7 +59,7 @@ function BlogCard({ data }: Props) {
         <div className={styles.textDiv_text}>
           <div
             className={styles.iconDiv}
-            onClick={() => redirectToExternal(`${pathname}/${data?._id}`)}
+            onClick={() => redirectToExternal(`/blog/${data?._id}`)}
           >
             <NorthEastIcon />
           </div>

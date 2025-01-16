@@ -1,10 +1,10 @@
 import { Header } from "@/components";
 import Footer from "@/components/footer";
 import React, { useState } from "react";
-import dummyImg1 from "../../../public/assets/images/static/blogimg1.png";
-import dummyImg2 from "../../../public/assets/images/static/blogimg2.png";
-import dummyImg3 from "../../../public/assets/images/static/blogimg3.png";
-import dummyImg4 from "../../../public/assets/images/static/blogimg4.png";
+import dummyImg1 from "../../../../../public/assets/images/static/blogimg1.png";
+import dummyImg2 from "../../../../../public/assets/images/static/blogimg2.png";
+import dummyImg3 from "../../../../../public/assets/images/static/blogimg3.png";
+import dummyImg4 from "../../../../../public/assets/images/static/blogimg4.png";
 import styles from "./blog.module.css";
 import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
 import Hero from "@/components/blog/hero/Hero";

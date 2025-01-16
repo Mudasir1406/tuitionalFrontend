@@ -16,12 +16,15 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
     setIsOpen(!isOpen);
   };
   const handleRedirect = (item: string) => {
-    // Replace spaces in the title to make it URL-safe (optional)
-    const queryKey = encodeURIComponent(title);
-    const queryValue = encodeURIComponent(item);
+    const queryKey = encodeURIComponent(
+      title.toLowerCase().replace(/\s+/g, "-")
+    );
+    const queryValue = encodeURIComponent(
+      item.toLowerCase().replace(/\s+/g, "-")
+    );
 
     // Build the URL
-    const newUrl = `/blog?${queryKey}=${queryValue}`;
+    const newUrl = `/blog/${queryKey}/${queryValue}`;
     window.location.href = newUrl; // Redirect to the new URL
   };
   return (

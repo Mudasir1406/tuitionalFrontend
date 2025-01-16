@@ -32,11 +32,11 @@
     margin: 5vh 0;
   }
   .container {
-    padding: 0 1vw;
+    padding: 0 4vw;
   }
   .main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .mainLeft {
     flex: 1;
@@ -47,15 +47,12 @@
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-  .blogImg {
-    /* height: 25vh; */
-  }
   .verticalMargin {
     margin: 5vh 0;
   }
   .main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .mainLeft {
     flex: 1;
@@ -74,7 +71,7 @@
   }
   .main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .mainLeft {
     flex: 1;

@@ -38,7 +38,7 @@ function LeftSection({ accordionData }: Props) {
       // Update the query parameter in the URL
       const params = new URLSearchParams(window.location.search);
       params.set("search", formData.search);
-      const newUrl = `/blog?${params.toString()}`;
+      const newUrl = `/blog?a${params.toString()}`;
       router.replace(newUrl);
       // window.history.pushState({}, "", newUrl);
       // setQuerySearch(formData.search);
