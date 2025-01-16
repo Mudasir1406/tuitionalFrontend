@@ -18,7 +18,7 @@ export default function Custom404() {
             variant="h1"
             component={"h1"}
           >
-            Oops!
+            Ops!
           </Typography>
         </div>
         <Typography
@@ -26,21 +26,21 @@ export default function Custom404() {
           variant="h4"
           component={"p"}
         >
-          The Page That You're Looking For Has Disappeared!
+          {`The Page That You're Looking For Has Disappeared!`}
         </Typography>
         <Typography
           className={`${styles.info} ${leagueSpartan.className}`}
           variant="h4"
           component={"p"}
         >
-          We're Looking For It Too!{" "}
+          {`We're Looking For It Too!`}
         </Typography>
         <Typography
           className={`${styles.info} ${leagueSpartan.className}`}
           variant="h4"
           component={"p"}
         >
-          Till Then.... Head Back To The
+          {`Till Then.... Head Back To The`}
           <Typography
             className={`${styles.info} ${leagueSpartan.className}`}
             variant="h4"
