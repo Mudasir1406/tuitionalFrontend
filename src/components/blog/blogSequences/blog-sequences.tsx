@@ -245,7 +245,7 @@ const accordionData = [
     ],
   },
   {
-    title: "Find Tutors",
+    title: "Tag",
     items: ["Maths", "Physics", "Chemistry", "Biology", "Geography"],
   },
 ];

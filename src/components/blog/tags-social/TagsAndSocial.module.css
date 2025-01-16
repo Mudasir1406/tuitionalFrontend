@@ -22,10 +22,53 @@
   column-gap: 8px;
   justify-content: center;
 }
-
 .socialIcon {
   width: 32px;
   height: 32px;
   object-fit: cover;
   cursor: pointer;
+}
+
+@media (max-width: 575px) {
+  .tagsAndSocial {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+  }
+  .socialDiv {
+    flex: 1;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .tagsAndSocial {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+  }
+  .socialDiv {
+    flex: 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media (min-width: 1200px) {
 }

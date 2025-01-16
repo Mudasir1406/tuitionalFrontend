@@ -6,10 +6,11 @@ import { leagueSpartan } from "@/app/fonts";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import arrow from "../../../../public/assets/images/static/Arrow 8.png";
-import facebook from "../../../../public/assets/images/static/facebook 1.png";
-import share from "../../../../public/assets/images/static/share 1.png";
-import instagram from "../../../../public/assets/images/static/instagram 1.png";
-import social from "../../../../public/assets/images/static/social 1.png";
+import facebook from "../../../../public/assets/images/static/facebook-png-icon-follow-us-facebook-1.png";
+import twitter from "../../../../public/assets/images/static/1707226109new-twitter-logo-png.png";
+import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.png";
+import whatsapp from "../../../../public/assets/images/static/pngimg.com - whatsapp_PNG21.png";
+import { usePathname } from "next/navigation";
 
 interface Props {
   data?: {
@@ -19,17 +20,14 @@ interface Props {
 }
 
 const Hero = ({ data }: Props) => {
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+  const pathname = usePathname();
+  const currentUrl = `https://tuitionaledu.com${pathname}`;
 
   const shareUrls = {
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      currentUrl
-    )}`,
-    whatsapp: `https://wa.me/?text=${encodeURIComponent(currentUrl)}`,
-    linkedin: `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-      currentUrl
-    )}`,
-    instagram: "https://www.instagram.com/", // Instagram does not have a direct URL sharing mechanism
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
+    whatsapp: `https://wa.me/?text=${currentUrl}`,
+    linkedin: `https://www.linkedin.com/shareArticle?url=${currentUrl}`,
+    twitter: `https://twitter.com/intent/tweet?url=${currentUrl}`, // Twitter share URL
   };
   return (
     <div className={styles.heroContainer}>
@@ -70,14 +68,14 @@ const Hero = ({ data }: Props) => {
               />{" "}
             </a>
             <a
-              href={shareUrls.instagram}
+              href={shareUrls.twitter}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Image
                 className={styles.socialIcon}
-                src={instagram}
-                alt="instagram"
+                src={twitter}
+                alt="twitter"
               />{" "}
             </a>
             <a
@@ -85,14 +83,22 @@ const Hero = ({ data }: Props) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image className={styles.socialIcon} src={social} alt="social" />{" "}
+              <Image
+                className={styles.socialIcon}
+                src={whatsapp}
+                alt="whatsapp"
+              />{" "}
             </a>
             <a
               href={shareUrls.linkedin}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image className={styles.socialIcon} src={share} alt="share" />{" "}
+              <Image
+                className={styles.socialIcon}
+                src={linkedin}
+                alt="linkedin"
+              />{" "}
             </a>
           </div>{" "}
         </div>

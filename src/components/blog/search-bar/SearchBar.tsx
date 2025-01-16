@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
 import { Button, TextField, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+import { usePathname } from "next/navigation";
 
 function SearchBar() {
   const [formData, setFormData] = useState<{ search: string }>({
@@ -12,9 +13,8 @@ function SearchBar() {
   const [querySearch, setQuerySearch] = useState<string>("");
   const [queryKey, setQueryKey] = useState<string>("");
 
-  // const params = new URLSearchParams(window.location.search);
+  const pathname = usePathname();
   useEffect(() => {
-    // Get query parameters from the URL
     const params = new URLSearchParams(window.location.search);
 
     // Dynamically extract the first query key-value pair
@@ -80,7 +80,8 @@ function SearchBar() {
               variant="h4"
               component={"span"}
             >
-              {queryKey}:
+              Search:
+              {/* {queryKey}: */}
             </Typography>{" "}
             {querySearch}
           </Typography>
