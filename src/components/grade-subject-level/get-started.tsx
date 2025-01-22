@@ -9,6 +9,7 @@ import {
 } from "../../services/get-started/get-started";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+
 import "swiper/css";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
@@ -67,6 +68,7 @@ const GetStarted = () => {
         }}
       >
         <Swiper
+          pagination={{ clickable: true }}
           spaceBetween={20}
           slidesPerView={1}
           centeredSlides={true}
@@ -93,11 +95,11 @@ const GetStarted = () => {
           loop
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 300000,
+            delay: 5000,
           }}
-          pagination={{
-            dynamicBullets: true,
-          }}
+          // pagination={{
+          //   dynamicBullets: true,
+          // }}
           style={{ width: "100%" }}
         >
           {data?.map((item, index) => (

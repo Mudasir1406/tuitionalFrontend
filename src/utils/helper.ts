@@ -48,6 +48,15 @@ export const redirectToExternal = (url: string, newTab: boolean = false) => {
   }
 };
 
+export const getUrl = (item: string) => {
+  const queryValue = item
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with "-"
+    .replace(/&/g, "and") // Replace "&" with "and"
+    .replace(/[^\w-]/g, ""); // Remove any non-word characters except "-" (optional)
+  return queryValue;
+};
+
 export const scrollToTestimonials = () => {
   const element = document.getElementById("testimonials");
   if (element) {
