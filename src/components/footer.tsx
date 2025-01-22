@@ -11,6 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
+import { getUrl } from "@/utils/helper";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
@@ -234,16 +235,25 @@ const Footer: React.FC = async () => {
                     Get Help
                   </Typography>
 
-                  {footerData?.getHelp.map((item, index) => (
-                    <Typography
-                      sx={styles.text}
-                      variant="body2"
-                      key={index}
-                      className={leagueSpartan.className}
-                    >
-                      {item}
-                    </Typography>
-                  ))}
+                  {footerData?.getHelp.map((item, index) => {
+                    const url = getUrl(item);
+                    return (
+                      <Link
+                        href={`/${url}`}
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <Typography
+                          sx={styles.text}
+                          variant="body2"
+                          key={index}
+                          className={leagueSpartan.className}
+                        >
+                          {item}
+                        </Typography>
+                      </Link>
+                    );
+                  })}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography

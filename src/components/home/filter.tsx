@@ -45,12 +45,14 @@ const Filter: React.FC = () => {
       <Typography
         sx={[styles.heading]}
         component={"h1"}
+        variant="h1"
         className={leagueSpartan.className}
       >
         Online Tutoring{" "}
         <Typography
           sx={styles.expertText}
           component={"span"}
+          variant="h1"
           className={leagueSpartan.className}
         >
           Platform <br />{" "}
@@ -61,6 +63,7 @@ const Filter: React.FC = () => {
         sx={styles.desc}
         className={leagueSpartan.className}
         component={"p"}
+        variant="body2"
       >
         Tuitional Is An Online Tutoring Platform Providing Quality Education
         Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
@@ -134,19 +137,19 @@ const styles = {
     maxHeight: "700px",
   },
   heading: {
-    fontSize: {
-      xs: "4vh",
-      sm: "5.2vh",
-      md: "5.3vh",
-      lg: "5.4vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "5vh",
-      sm: "4.5vh",
-      md: "5.5vh",
-      lg: "6vh",
-    },
+    // fontSize: {
+    //   xs: "4vh",
+    //   sm: "5.2vh",
+    //   md: "5.3vh",
+    //   lg: "5.4vh",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "5vh",
+    //   sm: "4.5vh",
+    //   md: "5.5vh",
+    //   lg: "6vh",
+    // },
     width: {
       lg: "90%",
     },
@@ -162,20 +165,20 @@ const styles = {
   expertText: {
     color: "#51B893",
     display: "inline",
-    fontSize: {
-      xs: "4vh",
-      sm: "5.2vh",
-      md: "5.3vh",
-      lg: "5.4vh",
-    },
+    // fontSize: {
+    //   xs: "4vh",
+    //   sm: "5.2vh",
+    //   md: "5.3vh",
+    //   lg: "5.4vh",
+    // },
 
-    fontWeight: 600,
-    lineHeight: {
-      xs: "3.5vh",
-      sm: "4.5vh",
-      md: "5.5vh",
-      lg: "8vh",
-    },
+    // fontWeight: 600,
+    // lineHeight: {
+    //   xs: "3.5vh",
+    //   sm: "4.5vh",
+    //   md: "5.5vh",
+    //   lg: "8vh",
+    // },
     position: "relative",
     "::before": {
       content: "''",
@@ -214,19 +217,19 @@ const styles = {
     },
   },
   desc: {
-    fontSize: {
-      xs: "2.5vh",
-      sm: "2vh",
-      md: "2.5vh",
-      lg: "2.6vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "2.5vh",
-      sm: "2.4vh",
-      md: "2.8vh",
-      lg: "3.4vh",
-    },
+    // fontSize: {
+    //   xs: "2.5vh",
+    //   sm: "2vh",
+    //   md: "2.5vh",
+    //   lg: "2.6vh",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "2.5vh",
+    //   sm: "2.4vh",
+    //   md: "2.8vh",
+    //   lg: "3.4vh",
+    // },
     textAlign: {
       xs: "center",
       lg: "start",
