@@ -1,6 +1,34 @@
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL_TRUSTPILOT } from "./env";
 
+export const subjectsMap: Record<string, string> = {
+  Math: "https://tuitionaledu.com/online/math-tutors",
+  "Further Math": "https://tuitionaledu.com/online/further-maths-tutors",
+  "Additional Mathematics":
+    "https://tuitionaledu.com/online/additional-maths-tutors",
+  Physics: "https://tuitionaledu.com/online/physics-tutors",
+  Biology: "https://tuitionaledu.com/online/biology-tutors",
+  Chemistry: "https://tuitionaledu.com/online/chemistry-tutors",
+  "Business Studies": "https://tuitionaledu.com/online/business-studies-tutors",
+  Accounting: "https://tuitionaledu.com/online/accounting-tutors",
+  Economics: "https://tuitionaledu.com/online/economics-tutors",
+  History: "https://tuitionaledu.com/online/history-tutors",
+  Arabic: "https://tuitionaledu.com/online/arabic-tutors",
+  "GCSE Tuition": `https://tuitionaledu.com/online/gcse-tutors`,
+  "IGCSE Tuition": "https://tuitionaledu.com/online/igcse-tutors",
+};
+// export const findSubjectURL = (item: string) => {
+//   const match = Object.keys(subjectsMap).find((key) =>
+//     item.toLowerCase().includes(key.toLowerCase())
+//   );
+//   return match ? subjectsMap[match] : "/"; // Return URL if match found, else fallback to '/'
+// };
+
+export const findExactSubjectURL = (item: string) => {
+  // Find an exact match for the subject name in subjectsMap
+  return subjectsMap[item] || "/"; // Default to home if no match is found
+};
+
 export function replaceAltText(url: string, newAlt: string) {
   // Create a new URL object from the given URL
   const urlObj = new URL(url);

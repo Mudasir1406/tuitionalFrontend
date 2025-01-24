@@ -11,6 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
+import { findExactSubjectURL } from "@/utils/helper";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
@@ -177,7 +178,7 @@ const Footer: React.FC = async () => {
                 >
                   Curriculums
                 </Typography>
-                {footerData?.curriculums.map((item, index) => (
+                {/* {footerData?.curriculums.map((item, index) => (
                   <Typography
                     sx={styles.text}
                     variant="body2"
@@ -186,7 +187,29 @@ const Footer: React.FC = async () => {
                   >
                     {item}
                   </Typography>
-                ))}
+                ))} */}
+                {footerData?.curriculums.slice(0, 10).map((item, index) => {
+                  const href = findExactSubjectURL(item);
+                  return (
+                    <Link
+                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                      key={index}
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit", // Adjust this to inherit the text color
+                      }}
+                    >
+                      <Typography
+                        sx={styles.text}
+                        variant="body2"
+                        key={index}
+                        className={leagueSpartan.className}
+                      >
+                        {item}
+                      </Typography>
+                    </Link>
+                  );
+                })}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -211,16 +234,48 @@ const Footer: React.FC = async () => {
                 >
                   Subjects
                 </Typography>
-                {footerData?.subjects.slice(0, 10).map((item, index) => (
-                  <Typography
-                    sx={styles.text}
-                    variant="body2"
+                {/* {footerData?.subjects.slice(0, 10).map((item, index) => (
+                  <Link
+                    href={`/${getFooterUrl( item.toLowerCase())}`}
+                    style={{
+                      textDecoration: "none",
+                      textDecorationColor: "none",
+                    }}
                     key={index}
-                    className={leagueSpartan.className}
                   >
-                    {item}
-                  </Typography>
-                ))}
+                    <Typography
+                      // onClick={() => handleRedirect(item)}
+                      sx={styles.text}
+                      variant="body2"
+                      key={index}
+                      className={leagueSpartan.className}
+                    >
+                      {item}
+                    </Typography>{" "}
+                  </Link>
+                ))} */}
+                {footerData?.subjects.slice(0, 10).map((item, index) => {
+                  const href = findExactSubjectURL(item);
+                  return (
+                    <Link
+                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                      key={index}
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit", // Adjust this to inherit the text color
+                      }}
+                    >
+                      <Typography
+                        sx={styles.text}
+                        variant="body2"
+                        key={index}
+                        className={leagueSpartan.className}
+                      >
+                        {item}
+                      </Typography>
+                    </Link>
+                  );
+                })}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
