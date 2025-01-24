@@ -2,7 +2,7 @@ import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL_TRUSTPILOT } from "./env";
 
 export const subjectsMap: Record<string, string> = {
-  Math: "https://tuitionaledu.com/online/math-tutors",
+  Mathematics: "https://tuitionaledu.com/online/math-tutors",
   "Further Math": "https://tuitionaledu.com/online/further-maths-tutors",
   "Additional Mathematics":
     "https://tuitionaledu.com/online/additional-maths-tutors",
