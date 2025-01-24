@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
-import { findExactSubjectURL } from "@/utils/helper";
+import { findExactSubjectURL, generateSlug } from "@/utils/helper";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
@@ -289,7 +289,7 @@ const Footer: React.FC = async () => {
                     Get Help
                   </Typography>
 
-                  {footerData?.getHelp.map((item, index) => (
+                  {/* {footerData?.getHelp.map((item, index) => (
                     <Typography
                       sx={styles.text}
                       variant="body2"
@@ -298,7 +298,29 @@ const Footer: React.FC = async () => {
                     >
                       {item}
                     </Typography>
-                  ))}
+                  ))} */}
+                  {footerData?.getHelp.slice(0, 10).map((item, index) => {
+                    const href = `/${generateSlug(item)}`;
+                    return (
+                      <Link
+                        href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                        key={index}
+                        style={{
+                          textDecoration: "none",
+                          color: "inherit", // Adjust this to inherit the text color
+                        }}
+                      >
+                        <Typography
+                          sx={styles.text}
+                          variant="body2"
+                          key={index}
+                          className={leagueSpartan.className}
+                        >
+                          {item}
+                        </Typography>
+                      </Link>
+                    );
+                  })}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography

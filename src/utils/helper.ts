@@ -1,6 +1,13 @@
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL_TRUSTPILOT } from "./env";
 
+export const generateSlug = (text: string) => {
+  return text
+    .replace(/&/g, "and") // Replace & with "and"
+    .replace(/\s+/g, "-") // Replace spaces with "-"
+    .toLowerCase(); // Convert to lowercase
+};
+
 export const subjectsMap: Record<string, string> = {
   Mathematics: "https://tuitionaledu.com/online/math-tutors",
   "Further Math": "https://tuitionaledu.com/online/further-maths-tutors",
@@ -17,12 +24,6 @@ export const subjectsMap: Record<string, string> = {
   "GCSE Tuition": `https://tuitionaledu.com/online/gcse-tutors`,
   "IGCSE Tuition": "https://tuitionaledu.com/online/igcse-tutors",
 };
-// export const findSubjectURL = (item: string) => {
-//   const match = Object.keys(subjectsMap).find((key) =>
-//     item.toLowerCase().includes(key.toLowerCase())
-//   );
-//   return match ? subjectsMap[match] : "/"; // Return URL if match found, else fallback to '/'
-// };
 
 export const findExactSubjectURL = (item: string) => {
   // Find an exact match for the subject name in subjectsMap
