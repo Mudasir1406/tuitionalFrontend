@@ -28,7 +28,6 @@ const FooterLinks = ({ footerData }: { footerData: any }) => {
           >
             {item}
           </Typography>
-          // </Link>
         );
       })}
     </>
