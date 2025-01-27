@@ -189,7 +189,7 @@ const Footer: React.FC = async () => {
                     {item}
                   </Typography>
                 ))} */}
-                <FooterLinks footerData={footerData?.curriculums} />
+                <FooterLinks footerData={footerData?.curriculums} exact />
                 {/* {footerData?.curriculums.slice(0, 10).map((item, index) => {
                   const href = findExactSubjectURL(item);
                   return (
@@ -256,7 +256,10 @@ const Footer: React.FC = async () => {
                     </Typography>{" "}
                   </Link>
                 ))} */}
-                {footerData?.subjects.slice(0, 10).map((item, index) => {
+
+                <FooterLinks footerData={footerData?.subjects} exact />
+
+                {/* {footerData?.subjects.slice(0, 10).map((item, index) => {
                   const href = findExactSubjectURL(item);
                   return (
                     <Link
@@ -277,7 +280,7 @@ const Footer: React.FC = async () => {
                       </Typography>
                     </Link>
                   );
-                })}
+                })} */}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -301,7 +304,9 @@ const Footer: React.FC = async () => {
                       {item}
                     </Typography>
                   ))} */}
-                  {footerData?.getHelp.slice(0, 10).map((item, index) => {
+                  <FooterLinks footerData={footerData?.getHelp} exact={false} />
+
+                  {/* {footerData?.getHelp.slice(0, 10).map((item, index) => {
                     const href = `/${generateSlug(item)}`;
                     return (
                       <Link
@@ -322,7 +327,7 @@ const Footer: React.FC = async () => {
                         </Typography>
                       </Link>
                     );
-                  })}
+                  })} */}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography

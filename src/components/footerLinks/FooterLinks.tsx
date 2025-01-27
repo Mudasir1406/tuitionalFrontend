@@ -2,27 +2,27 @@
 
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import { findExactSubjectURL } from "@/utils/helper";
+import { findExactSubjectURL, generateSlug } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 
-const FooterLinks = ({ footerData }: { footerData: any }) => {
+const FooterLinks = ({
+  footerData,
+  exact,
+}: {
+  footerData: any;
+  exact: boolean;
+}) => {
   const router = useRouter();
+
   return (
     <>
       {footerData?.slice(0, 10).map((item: string, index: number) => {
         const href = findExactSubjectURL(item);
+        const href2 = `/${generateSlug(item)}`;
         return (
-          // <Link
-          //   href={href}
-          //   key={index}
-          //   style={{
-          //     textDecoration: "none",
-          //     color: "inherit",
-          //   }}
-          // >
           <Typography
             key={index}
-            onClick={() => router.push(href)}
+            onClick={() => router.push(exact ? href : href2)}
             sx={styles.text}
             variant="body2"
             className={leagueSpartan.className}
