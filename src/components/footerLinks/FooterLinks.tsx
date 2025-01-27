@@ -2,7 +2,11 @@
 
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import { findExactSubjectURL, generateSlug } from "@/utils/helper";
+import {
+  findExactSubjectURL,
+  generateSlug,
+  redirectToExternal,
+} from "@/utils/helper";
 import { useRouter } from "next/navigation";
 
 const FooterLinks = ({
@@ -22,7 +26,8 @@ const FooterLinks = ({
         return (
           <Typography
             key={index}
-            onClick={() => router.push(exact ? href : href2)}
+            // onClick={() => router.push(exact ? href : href2)}
+            onClick={() => redirectToExternal(exact ? href : href2, false)}
             sx={styles.text}
             variant="body2"
             className={leagueSpartan.className}
