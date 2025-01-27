@@ -12,14 +12,7 @@ const FooterLinks = ({ footerData }: { footerData: any }) => {
       {footerData?.slice(0, 10).map((item: string, index: number) => {
         const href = findExactSubjectURL(item);
         return (
-          // <Link
-          //   href={href}
-          //   key={index}
-          //   style={{
-          //     textDecoration: "none",
-          //     color: "inherit",
-          //   }}
-          // >
+  
           <Typography
             onClick={() => router.push(href)}
             sx={styles.text}
