@@ -12,6 +12,7 @@ import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
 import { findExactSubjectURL, generateSlug } from "@/utils/helper";
+import FooterLinks from "./footerLinks/FooterLinks";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
@@ -188,7 +189,8 @@ const Footer: React.FC = async () => {
                     {item}
                   </Typography>
                 ))} */}
-                {footerData?.curriculums.slice(0, 10).map((item, index) => {
+                <FooterLinks footerData={footerData?.curriculums} />
+                {/* {footerData?.curriculums.slice(0, 10).map((item, index) => {
                   const href = findExactSubjectURL(item);
                   return (
                     <Link
@@ -209,7 +211,7 @@ const Footer: React.FC = async () => {
                       </Typography>
                     </Link>
                   );
-                })}
+                })} */}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>

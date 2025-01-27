@@ -9,20 +9,19 @@ export const generateSlug = (text: string) => {
 };
 
 export const subjectsMap: Record<string, string> = {
-  Mathematics: "https://tuitionaledu.com/online/math-tutors",
-  "Further Math": "https://tuitionaledu.com/online/further-maths-tutors",
-  "Additional Mathematics":
-    "https://tuitionaledu.com/online/additional-maths-tutors",
-  Physics: "https://tuitionaledu.com/online/physics-tutors",
-  Biology: "https://tuitionaledu.com/online/biology-tutors",
-  Chemistry: "https://tuitionaledu.com/online/chemistry-tutors",
-  "Business Studies": "https://tuitionaledu.com/online/business-studies-tutors",
-  Accounting: "https://tuitionaledu.com/online/accounting-tutors",
-  Economics: "https://tuitionaledu.com/online/economics-tutors",
-  History: "https://tuitionaledu.com/online/history-tutors",
-  Arabic: "https://tuitionaledu.com/online/arabic-tutors",
-  "GCSE Tuition": `https://tuitionaledu.com/online/gcse-tutors`,
-  "IGCSE Tuition": "https://tuitionaledu.com/online/igcse-tutors",
+  Mathematics: "/online/math-tutors",
+  "Further Math": "/online/further-maths-tutors",
+  "Additional Mathematics": "/online/additional-maths-tutors",
+  Physics: "/online/physics-tutors",
+  Biology: "/online/biology-tutors",
+  Chemistry: "/online/chemistry-tutors",
+  "Business Studies": "/online/business-studies-tutors",
+  Accounting: "/online/accounting-tutors",
+  Economics: "/online/economics-tutors",
+  History: "/online/history-tutors",
+  Arabic: "/online/arabic-tutors",
+  "GCSE Tuition": `/online/gcse-tutors`,
+  "IGCSE Tuition": "/online/igcse-tutors",
 };
 
 export const findExactSubjectURL = (item: string) => {
