@@ -1,22 +1,31 @@
 "use client";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import {
   GetStartedData,
   getStartedData,
 } from "../../services/get-started/get-started";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-
 import "swiper/css";
+import "swiper/css/pagination";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import PopUpButton from "../pop-up-button";
+import {
+  ArrowLeftRounded,
+  ArrowRightAltRounded,
+  ArrowRightRounded,
+  RampRight,
+} from "@mui/icons-material";
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>();
+  // let swiperRef: SwiperClass | null = null; // Explicitly type swiperRef
+  const swiperRef = useRef<SwiperClass | null>(null);
+
   useEffect(() => {
     getStartedData().then((res) => {
       setData(res);
@@ -65,6 +74,7 @@ const GetStarted = () => {
         sx={{
           display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
           flexDirection: "row",
+          position: "relative",
         }}
       >
         <Swiper
@@ -72,6 +82,16 @@ const GetStarted = () => {
           spaceBetween={20}
           slidesPerView={1}
           centeredSlides={true}
+          loop
+          autoplay={{
+            delay: 5000,
+          }}
+          modules={[Pagination, Autoplay]}
+          // onSwiper={(swiper) => (swiperRef = swiper)} // Assign Swiper instance
+          onSwiper={(swiperInstance) => {
+            swiperRef.current = swiperInstance;
+          }}
+          style={{ width: "100%", position: "relative" }} // Ensure relative positioning for arrows
           breakpoints={{
             320: {
               slidesPerView: 1,
@@ -85,23 +105,33 @@ const GetStarted = () => {
               slidesPerView: 2,
               spaceBetween: 10,
             },
-
             1040: {
               slidesPerView: 3,
               spaceBetween: 10,
             },
           }}
-          breakpointsBase="window"
-          loop
-          modules={[Pagination, Autoplay]}
-          autoplay={{
-            delay: 5000,
-          }}
-          // pagination={{
-          //   dynamicBullets: true,
-          // }}
-          style={{ width: "100%" }}
         >
+          {/* Left Arrow */}
+          <Box
+            sx={{ ...styles.arrowDiv, ...styles.leftDiv }}
+            // onClick={() => swiperRef?.slidePrev()}
+            // onClick={() => swiperMovement("prev")}
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <ArrowLeftRounded fontSize="large" />
+          </Box>
+
+          {/* Right Arrow */}
+          <Box
+            sx={{ ...styles.arrowDiv, ...styles.rightDiv }}
+            // onClick={() => swiperRef?.slideNext()}
+            // onClick={() => swiperMovement("next")}
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <ArrowRightRounded fontSize="large" />
+          </Box>
+
+          {/* Slides */}
           {data?.map((item, index) => (
             <SwiperSlide key={index}>
               <GetStartedBox {...item} />
@@ -116,6 +146,30 @@ const GetStarted = () => {
 export default GetStarted;
 
 const styles = {
+  arrowDiv: {
+    backgroundColor: "lightGray",
+    borderRadius: "50px",
+    width: "40px",
+    height: "40px",
+    display: { xs: "flex", sm: "none" },
+    alignItems: "center",
+    cursor: "pointer",
+
+    justifyContent: "center",
+    zIndex: 10, // Ensure buttons are above Swiper
+  },
+  leftDiv: {
+    position: "absolute",
+    top: "50%",
+    left: "10px",
+    transform: "translateY(-50%)",
+  },
+  rightDiv: {
+    position: "absolute",
+    top: "50%",
+    right: "10px",
+    transform: "translateY(-50%)",
+  },
   heading: {
     textAlign: "center",
     // fontSize: {

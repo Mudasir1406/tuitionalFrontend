@@ -11,13 +11,7 @@ import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 import dynamic from "next/dynamic";
 
-const SearchBar = dynamic(
-  () => import("@/components/blog/search-bar/SearchBar"),
-  {
-    ssr: true,
-  }
-);
-const dummyBlog = [
+ const dummyBlog = [
   {
     image: dummyImg1,
     title:
@@ -225,13 +219,13 @@ const dummyBlog = [
 const Page = () => {
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
             <Hero />
           </div>
-          <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
+          <div className={styles["hero-picture"]}></div>
         </div>
       </div>
 
@@ -242,7 +236,7 @@ const Page = () => {
       <SearchBar />
       <AllBlogs blogs={dummyBlog} />
 
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

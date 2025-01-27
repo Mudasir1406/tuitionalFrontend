@@ -1,6 +1,34 @@
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL_TRUSTPILOT } from "./env";
 
+export const generateSlug = (text: string) => {
+  return text
+    .replace(/&/g, "and") // Replace & with "and"
+    .replace(/\s+/g, "-") // Replace spaces with "-"
+    .toLowerCase(); // Convert to lowercase
+};
+
+export const subjectsMap: Record<string, string> = {
+  Mathematics: "/online/math-tutors",
+  "Further Math": "/online/further-maths-tutors",
+  "Additional Mathematics": "/online/additional-maths-tutors",
+  Physics: "/online/physics-tutors",
+  Biology: "/online/biology-tutors",
+  Chemistry: "/online/chemistry-tutors",
+  "Business Studies": "/online/business-studies-tutors",
+  Accounting: "/online/accounting-tutors",
+  Economics: "/online/economics-tutors",
+  History: "/online/history-tutors",
+  Arabic: "/online/arabic-tutors",
+  "GCSE Tuition": `/online/gcse-tutors`,
+  "IGCSE Tuition": "/online/igcse-tutors",
+};
+
+export const findExactSubjectURL = (item: string) => {
+  // Find an exact match for the subject name in subjectsMap
+  return subjectsMap[item] || "/"; // Default to home if no match is found
+};
+
 export function replaceAltText(url: string, newAlt: string) {
   // Create a new URL object from the given URL
   const urlObj = new URL(url);
