@@ -15,8 +15,16 @@
 }
 .mainRight {
   flex: 0.75;
+  max-width: 75%;
 }
 
+.typographyContent img {
+  max-width: 100%; /* Ensures image does not overflow */
+  width: 100%; /* Set a fixed width (adjust as needed) */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevents extra spacing around images */
+  margin: 0 auto; /* Centers the image */
+}
 .imageDiv {
   position: relative;
   width: 100%;
