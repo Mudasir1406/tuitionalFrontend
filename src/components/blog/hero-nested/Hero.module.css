@@ -110,6 +110,8 @@
 
 @media (min-width: 1200px) {
   .arrowDiv {
-    left: 25%;
+    left: 50%;
+    transform: translateX(-50%) rotate(130deg); /* Rotates it upside down */
+    top: 110%;
   }
 }
