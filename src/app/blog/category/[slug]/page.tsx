@@ -10,6 +10,8 @@ import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
 import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 import dynamic from "next/dynamic";
+import { dummyBlog } from "@/utils/constants";
+import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
 
 const SearchBar = dynamic(
   () => import("@/components/blog/search-bar/SearchBar"),
@@ -17,212 +19,214 @@ const SearchBar = dynamic(
     ssr: true,
   }
 );
-const dummyBlog = [
-  {
-    image: dummyImg1,
-    title:
-      "Embracing the Future of Learning Educational apps and software integrated into our platform ",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab1",
-  },
-  {
-    image: dummyImg2,
-    title:
-      "Unlocking Academic Success  apps and software integrated into our platform asd",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "June 3, 2024",
-    _id: "ab2",
-  },
-  {
-    image: dummyImg3,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab3",
-  },
-  {
-    image: dummyImg4,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab4",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab5",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab1",
-  },
-  {
-    image: dummyImg2,
-    title: "Unlocking Academic Success",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "June 3, 2024",
-    _id: "ab2",
-  },
-  {
-    image: dummyImg3,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab3",
-  },
-  {
-    image: dummyImg4,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab4",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab5",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab1",
-  },
-  {
-    image: dummyImg2,
-    title: "Unlocking Academic Success",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "June 3, 2024",
-    _id: "ab2",
-  },
-  {
-    image: dummyImg3,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab3",
-  },
-  {
-    image: dummyImg4,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab4",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab5",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab1",
-  },
-  {
-    image: dummyImg2,
-    title: "Unlocking Academic Success",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "June 3, 2024",
-    _id: "ab2",
-  },
-  {
-    image: dummyImg3,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab3",
-  },
-  {
-    image: dummyImg4,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab4",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab5",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab1",
-  },
-  {
-    image: dummyImg2,
-    title: "Unlocking Academic Success",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "June 3, 2024",
-    _id: "ab2",
-  },
-  {
-    image: dummyImg3,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab3",
-  },
-  {
-    image: dummyImg4,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab4",
-  },
-  {
-    image: dummyImg1,
-    title: "Embracing the Future of Learning",
-    paragraph:
-      "Educational apps and software integrated into our platform can offer personalized practice.",
-    createdAt: "July 21, 2024",
-    _id: "ab5",
-  },
-];
+// const dummyBlog = [
+//   {
+//     image: dummyImg1,
+//     title:
+//       "Embracing the Future of Learning Educational apps and software integrated into our platform ",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab1",
+//   },
+//   {
+//     image: dummyImg2,
+//     title:
+//       "Unlocking Academic Success  apps and software integrated into our platform asd",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "June 3, 2024",
+//     _id: "ab2",
+//   },
+//   {
+//     image: dummyImg3,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab3",
+//   },
+//   {
+//     image: dummyImg4,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab4",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab5",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab1",
+//   },
+//   {
+//     image: dummyImg2,
+//     title: "Unlocking Academic Success",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "June 3, 2024",
+//     _id: "ab2",
+//   },
+//   {
+//     image: dummyImg3,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab3",
+//   },
+//   {
+//     image: dummyImg4,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab4",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab5",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab1",
+//   },
+//   {
+//     image: dummyImg2,
+//     title: "Unlocking Academic Success",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "June 3, 2024",
+//     _id: "ab2",
+//   },
+//   {
+//     image: dummyImg3,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab3",
+//   },
+//   {
+//     image: dummyImg4,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab4",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab5",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab1",
+//   },
+//   {
+//     image: dummyImg2,
+//     title: "Unlocking Academic Success",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "June 3, 2024",
+//     _id: "ab2",
+//   },
+//   {
+//     image: dummyImg3,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab3",
+//   },
+//   {
+//     image: dummyImg4,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab4",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab5",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab1",
+//   },
+//   {
+//     image: dummyImg2,
+//     title: "Unlocking Academic Success",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "June 3, 2024",
+//     _id: "ab2",
+//   },
+//   {
+//     image: dummyImg3,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab3",
+//   },
+//   {
+//     image: dummyImg4,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab4",
+//   },
+//   {
+//     image: dummyImg1,
+//     title: "Embracing the Future of Learning",
+//     paragraph:
+//       "Educational apps and software integrated into our platform can offer personalized practice.",
+//     createdAt: "July 21, 2024",
+//     _id: "ab5",
+//   },
+// ];
 
-const Page = () => {
+const Page = async () => {
+  const data = await getDocumentsByName("blogs");
+
   return (
     <>
       <Header />
@@ -240,7 +244,7 @@ const Page = () => {
       </div>
 
       <SearchBar />
-      <AllBlogs blogs={dummyBlog} />
+      <AllBlogs blogs={data} />
 
       <Footer />
     </>

@@ -8,6 +8,59 @@ export interface tutor_section {
   grade: string;
 }
 
+export type AllBlogsData = {
+  heroSection: {
+    header: string;
+    headerTag: string;
+    image: string;
+    imageAltText: string;
+    socialShare: boolean;
+    categories: string[];
+    sequenceNumber: number;
+  };
+  timestamp: { seconds: number; nanoseconds: number };
+  blogContent: {
+    header: string;
+    headerTag: string;
+    content: string;
+    sequenceNumber: number;
+  };
+  postCTA: {
+    show: boolean;
+    sequenceNumber: number;
+  };
+  relatedBlogs: {
+    show: boolean;
+  };
+  blog_tag: {
+    sequenceNumber: number;
+    tags: Tags[];
+  };
+  id: string;
+  slugData: string;
+  variant: string;
+  meta_tags: {
+    title: string;
+    description: string;
+    canonicalTag: string;
+    metaName: string[];
+    ogTitle: string;
+    ogImage: string;
+    ogDescription: string;
+    ogUrl: string;
+    schema: string;
+    pageSchemaDescription: string;
+    pageSchemaName: string;
+    serviceDescription: string;
+
+    serviceType: string;
+  };
+};
+
+type Tags = {
+  id: string;
+  name: string;
+};
 export type PageData = {
   link_list: {
     header: string;
@@ -32,6 +85,7 @@ export type PageData = {
   get_started: {
     isShow: boolean;
   };
+  postCTA: { isShow: boolean; sequenceNumber: number };
   hero_section: {
     header: string;
     headerTag: string;
@@ -55,6 +109,7 @@ export type PageData = {
     buttonText: string;
     link: string;
   };
+  timestamp: { seconds: number; nanoseconds: number };
   phone_cta: {
     header: string;
     headerTag: string;

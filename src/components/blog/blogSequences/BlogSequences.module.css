@@ -17,12 +17,28 @@
   flex: 0.75;
 }
 
+.imageDiv {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  height: 35vh;
+}
+
+.blogImg {
+  border-radius: 16px;
+  object-fit: contain;
+}
+/* .imageDiv {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .blogImg {
   height: 70vh;
   width: 100%;
   object-fit: cover;
   border-radius: 16px;
-}
+} */
 
 @media (max-width: 575px) {
   .blogImg {

@@ -11,15 +11,21 @@ import twitter from "../../../../public/assets/images/static/1707226109new-twitt
 import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.png";
 import whatsapp from "../../../../public/assets/images/static/pngimg.com - whatsapp_PNG21.png";
 import { usePathname } from "next/navigation";
+import moment from "moment";
 
 interface Props {
   data?: {
-    category: string;
+    category: { name: string; id: string }[];
     date: string;
+    headerTag: any;
+    header: string;
   };
+  timestamp: number;
+  showSocial: boolean;
 }
 
-const Hero = ({ data }: Props) => {
+const Hero = ({ data, timestamp, showSocial }: Props) => {
+  // console.log("timestamp", data);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 
@@ -37,9 +43,10 @@ const Hero = ({ data }: Props) => {
         <Typography
           className={`${styles.expertText} ${leagueSpartan.className}`}
           variant="h1"
-          component={"h1"}
+          component={data?.headerTag ? data?.headerTag : "h1"}
         >
-          Unlocking the Secrets to Effective <br /> Online Learning
+          {data?.header}
+          {/* Unlocking the Secrets to Effective <br /> Online Learning */}
         </Typography>
 
         <div className={styles.categoryDiv}>
@@ -48,60 +55,65 @@ const Hero = ({ data }: Props) => {
             variant="body2"
             component={"p"}
           >
-            {`${data?.category} | ${data?.date}`}
+            {`${data?.category?.[0]?.name} | ${moment(timestamp * 1000).format(
+              "MMMM DD,YYYY"
+            )}
+              `}
           </Typography>
         </div>
-        <div className={styles.centerDiv}>
-          <div className={styles.arrowDiv}>
-            <Image src={arrow} alt="arrow" />
+        {showSocial && (
+          <div className={styles.centerDiv}>
+            <div className={styles.arrowDiv}>
+              <Image src={arrow} alt="arrow" />
+            </div>
+            <div className={styles.socialDiv}>
+              <a
+                href={shareUrls.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className={styles.socialIcon}
+                  src={facebook}
+                  alt="facebook"
+                />{" "}
+              </a>
+              <a
+                href={shareUrls.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className={styles.socialIcon}
+                  src={twitter}
+                  alt="twitter"
+                />{" "}
+              </a>
+              <a
+                href={shareUrls.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className={styles.socialIcon}
+                  src={whatsapp}
+                  alt="whatsapp"
+                />{" "}
+              </a>
+              <a
+                href={shareUrls.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className={styles.socialIcon}
+                  src={linkedin}
+                  alt="linkedin"
+                />{" "}
+              </a>
+            </div>{" "}
           </div>
-          <div className={styles.socialDiv}>
-            <a
-              href={shareUrls.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.socialIcon}
-                src={facebook}
-                alt="facebook"
-              />{" "}
-            </a>
-            <a
-              href={shareUrls.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.socialIcon}
-                src={twitter}
-                alt="twitter"
-              />{" "}
-            </a>
-            <a
-              href={shareUrls.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.socialIcon}
-                src={whatsapp}
-                alt="whatsapp"
-              />{" "}
-            </a>
-            <a
-              href={shareUrls.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.socialIcon}
-                src={linkedin}
-                alt="linkedin"
-              />{" "}
-            </a>
-          </div>{" "}
-        </div>
+        )}
       </div>
     </div>
   );

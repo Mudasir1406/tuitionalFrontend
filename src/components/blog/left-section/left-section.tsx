@@ -13,14 +13,26 @@ const Accordion = dynamic(() => import("../accordion/Accordion"), {
 });
 
 interface Props {
-  accordionData: AccordionProps[];
+  categories?: { name: string; id: string }[];
+  tags: { name: string; id: string }[];
 }
 
-function LeftSection({ accordionData }: Props) {
+function LeftSection({ categories, tags }: Props) {
+  console.log("LeftSection", categories, "tags", tags);
   const router = useRouter();
   const [formData, setFormData] = useState({
     search: "",
   });
+  const accordionData = [
+    {
+      title: "Category",
+      items: categories,
+    },
+    {
+      title: "Tag",
+      items: tags,
+    },
+  ];
 
   const handleChange = (key: string, value: string | string[]) => {
     //   if (key === "lastName" && typeof value === "string") {

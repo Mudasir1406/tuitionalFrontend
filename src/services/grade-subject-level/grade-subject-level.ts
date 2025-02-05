@@ -9,15 +9,69 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebaseConfig/config";
 import {
+  AllBlogsData,
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
+
+// export const getAllBlogsData = async (): Promise<AllBlogsData | null> => {
+//   // if (cachedPageData) return cachedPageData; // Use cached data if available
+
+//   try {
+//     const docRef = doc(db, "blogs");
+//     const docSnap = await getDoc(docRef);
+//     console.error("docSnap:", docSnap);
+//     if (docSnap.exists()) {
+//       return docSnap.data() as PageData;
+//     } else {
+//       console.error("No such document for slug:");
+//       return null;
+//     }
+//   } catch (error) {
+//     handleFirestoreError(error as FirestoreError);
+//     return null;
+//   }
+// };
+
+export const getDocumentsByName = async (collectionName: string) => {
+  try {
+    // console.log("fetching Blogs");
+    const querySnapshot = await getDocs(collection(db, collectionName));
+
+    const documents: any = querySnapshot.docs.map((doc) => ({
+      id: doc.id, // Document ID
+      ...doc.data(), // Spread the document data
+    }));
+    console.log("Snapshot: query", documents);
+    return documents;
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+    return null;
+  }
+};
 
 export const getPageData = async (slug: string): Promise<PageData | null> => {
   // if (cachedPageData) return cachedPageData; // Use cached data if available
 
   try {
     const docRef = doc(db, "grade-subject-level", slug);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data() as PageData;
+    } else {
+      console.error("No such document for slug:", slug);
+      return null;
+    }
+  } catch (error) {
+    handleFirestoreError(error as FirestoreError);
+    return null;
+  }
+};
+export const getBlogData = async (slug: string): Promise<PageData | null> => {
+  // if (cachedPageData) return cachedPageData; // Use cached data if available
+
+  try {
+    const docRef = doc(db, "blogs", slug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       return docSnap.data() as PageData;

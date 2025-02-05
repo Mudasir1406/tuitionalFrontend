@@ -7,6 +7,9 @@ import { leagueSpartan } from "@/app/fonts";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { redirectToExternal } from "@/utils/helper";
 import { usePathname } from "next/navigation";
+import { AllBlogsData } from "@/types/grade-subject-level.types";
+import moment from "moment";
+import dummyImg1 from "../../../../public/assets/images/static/blogimg1.png";
 
 export interface BlogsProps {
   title: string;
@@ -18,18 +21,27 @@ export interface BlogsProps {
 }
 
 interface Props {
-  data: BlogsProps;
+  data: AllBlogsData;
 }
 
 function BlogCard({ data }: Props) {
   const pathname = usePathname();
   return (
     <div className={styles.card}>
-      <Image
-        src={data?.image}
-        alt={data?.imageAlt ? data?.imageAlt : ""}
+      {/* <Image
+        src={data?.heroSection?.image}
+        alt={data?.heroSection?.imageAltText ? data?.heroSection?.imageAltText : ""}
         className={styles.image}
-      />
+        fill
+      /> */}
+      <div className={styles.imageWrapper}>
+        <Image
+          src={data?.heroSection?.image || dummyImg1}
+          alt={data?.heroSection?.imageAltText || ""}
+          className={styles.image}
+          fill
+        />
+      </div>
       <div className={styles.textDiv}>
         <div className={styles.textDiv_text}>
           <Typography
@@ -37,29 +49,22 @@ function BlogCard({ data }: Props) {
             variant="body1"
             component={"p"}
           >
-            {data?.createdAt}
+            {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
           </Typography>
           <Typography
             className={`${styles.title} ${leagueSpartan.className}`}
             variant="subtitle2"
             component={"p"}
-            onClick={() => redirectToExternal(`/blog/${data?._id}`)}
+            onClick={() => redirectToExternal(`/blog/${data?.slugData}`)}
           >
-            {data?.title}
+            {data?.heroSection?.header}
           </Typography>
-          {/* <Typography
-            className={`${styles.text} ${leagueSpartan.className}`}
-            variant="caption"
-            component={"p"}
-          >
-            {data?.paragraph}
-          </Typography> */}
         </div>
 
         <div className={styles.textDiv_text}>
           <div
             className={styles.iconDiv}
-            onClick={() => redirectToExternal(`/blog/${data?._id}`)}
+            onClick={() => redirectToExternal(`/blog/${data?.id}`)}
           >
             <NorthEastIcon />
           </div>
