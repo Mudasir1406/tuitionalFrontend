@@ -234,7 +234,6 @@ const heroDummy = {
   category: "Technology",
 };
 
-
 const MainSection = ({ children }: any) => {
   return <div className={styles.mainRight}>{children}</div>;
 };
@@ -299,16 +298,16 @@ const BlogSequences: React.FC<IProps> = ({
       return (
         data?.[name as keyof PageData] && (
           <BlogInnerLaylout tags={allTags} categories={allCategories}>
-            <div className={styles.verticalMargin}>
-              <Typography
-                className={leagueSpartan.className}
-                variant={data?.[name as keyof PageData]?.headerTag || "h3"}
-                component={data?.[name as keyof PageData]?.headerTag || "h3"}
-                dangerouslySetInnerHTML={{
-                  __html: data?.[name as keyof PageData]?.content,
-                }}
-              ></Typography>
-            </div>
+            {/* <div className={styles.verticalMargin}> */}
+            <Typography
+              className={`${leagueSpartan.className} ${styles.typographyContent}`}
+              variant={data?.[name as keyof PageData]?.headerTag || "h3"}
+              component={"div"}
+              dangerouslySetInnerHTML={{
+                __html: data?.[name as keyof PageData]?.content,
+              }}
+            ></Typography>
+            {/* </div> */}
           </BlogInnerLaylout>
         )
       );
