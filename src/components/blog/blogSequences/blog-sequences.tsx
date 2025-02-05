@@ -234,33 +234,6 @@ const heroDummy = {
   category: "Technology",
 };
 
-var obj = {
-  heroSection: {
-    title: "Title for hero",
-    tag: "H1",
-    image: "url",
-    imageAlt: "imageAlt",
-    socialShare: true,
-    categories: ["Study Material", "Texting"],
-  },
-
-  blogContent: {
-    title: "title for blog",
-    tag: "h2",
-    content: "base64 content / html content (quil output)",
-  },
-  postCTA: {
-    show: true,
-  },
-  relatedBlogs: {
-    show: true,
-  },
-  tag: {
-    data: ["IGCSE", "GCSE", "IB", "AP", "EDEXCEL"],
-  },
-};
-
-const dummyTags = ["Maths", "Physics", "Chemistry", "Biology", "Geography"];
 
 const MainSection = ({ children }: any) => {
   return <div className={styles.mainRight}>{children}</div>;

@@ -8,12 +8,25 @@ import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 import dynamic from "next/dynamic";
 import SearchBar from "@/components/blog/search-bar/SearchBar";
-import { BlogsProps } from "@/components/blog/blog-card/BlogCard";
 import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
+import { AllBlogsData } from "@/types/grade-subject-level.types";
 
-
-const Page = async () => {
+const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
+  // Fetch all blogs
   const data = await getDocumentsByName("blogs");
+
+  // Filter data based on search query (if provided)
+  const filteredData = searchParams?.search
+    ? data.filter(
+        (blog: AllBlogsData) =>
+          blog?.blogContent?.header
+            .toLowerCase()
+            .includes(searchParams.search.toLowerCase()) ||
+          blog?.blogContent?.header
+            .toLowerCase()
+            .includes(searchParams.search.toLowerCase())
+      )
+    : data;
 
   return (
     <>
@@ -31,8 +44,8 @@ const Page = async () => {
         <SchoolLogosSection />
       </div>
 
-      <SearchBar />
-      <AllBlogs blogs={data} />
+      <SearchBar searchQuery={searchParams?.search || ""} />
+      <AllBlogs blogs={filteredData} />
 
       <Footer />
     </>

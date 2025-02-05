@@ -14,7 +14,7 @@ function AllBlogs({ blogs }: Props) {
   const [visibleCount, setVisibleCount] = useState(6);
   const loadMore = 3;
 
-  console.log("allBlogs", blogs);
+  // console.log("allBlogs", blogs);
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + loadMore);
   };
@@ -25,7 +25,7 @@ function AllBlogs({ blogs }: Props) {
           <BlogCard data={blog} key={blog.id} />
         ))}
       </div>
-      <div className={styles.fadeEffect} />
+      {blogs?.length > 3 && <div className={styles.fadeEffect} />}
 
       {visibleCount < blogs.length && (
         <div className={styles.loadMoreButton}>
