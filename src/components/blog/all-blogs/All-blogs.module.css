@@ -21,7 +21,7 @@
 }
 .fadeEffect {
   position: absolute;
-  bottom: 5rem; /* Adjust depending on the "More" button's position */
+  bottom: 1.77rem; /* Adjust depending on the "More" button's position */
   left: 0;
   right: 0;
   height: 50vh; /* Adjust height of the fade effect */

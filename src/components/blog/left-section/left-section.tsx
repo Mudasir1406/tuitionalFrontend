@@ -50,7 +50,7 @@ function LeftSection({ categories, tags }: Props) {
       // Update the query parameter in the URL
       const params = new URLSearchParams(window.location.search);
       params.set("search", formData.search);
-      const newUrl = `/blog?a${params.toString()}`;
+      const newUrl = `/blog?${params.toString()}`;
       router.replace(newUrl);
       // window.history.pushState({}, "", newUrl);
       // setQuerySearch(formData.search);

@@ -4,48 +4,75 @@ import React, { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
 import { Button, TextField, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-function SearchBar() {
-  const [formData, setFormData] = useState<{ search: string }>({
-    search: "",
-  });
-  const [querySearch, setQuerySearch] = useState<string>("");
-  const [queryKey, setQueryKey] = useState<string>("");
+function SearchBar({ searchQuery }: { searchQuery: string }) {
+  const [search, setSearch] = useState(searchQuery);
+  const router = useRouter();
 
-  const pathname = usePathname();
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-
-    // Dynamically extract the first query key-value pair
-    Array.from(params.entries()).forEach(([key, value]) => {
-      setQueryKey(decodeURIComponent(key)); // Set the dynamic key (e.g., "Category")
-      setQuerySearch(decodeURIComponent(value)); // Set the value (e.g., "Study Materials")
-      // Exit after the first key-value pair
-    });
-  }, []);
+  // const handleSearch = () => {
+  //   if (search) {
+  //     // Update the URL with the search query
+  //     const params = new URLSearchParams();
+  //     params.set("search", search);
+  //     router.push(`?${params.toString()}`);
+  //   }
+  // };
   const handleSearch = () => {
-    if (formData.search) {
-      // Update the query parameter in the URL
-      const params = new URLSearchParams(window.location.search);
-      params.set("search", formData.search);
-      const newUrl = `${window.location.pathname}?${params.toString()}`;
-      window.history.pushState({}, "", newUrl);
-      setQuerySearch(formData.search);
-    }
-  };
-  const handleChange = (key: string, value: string | string[]) => {
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
-  };
+    const params = new URLSearchParams();
 
+    if (search) {
+      // If search is not empty, add it to the URL
+      params.set("search", search);
+    }
+
+    // Update the URL
+    router.push(`?${params.toString()}`);
+  };
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
+  // const [formData, setFormData] = useState<{ search: string }>({
+  //   search: "",
+  // });
+  // const [querySearch, setQuerySearch] = useState<string>("");
+  // const [queryKey, setQueryKey] = useState<string>("");
+
+  // const pathname = usePathname();
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+
+  //   // Dynamically extract the first query key-value pair
+  //   Array.from(params.entries()).forEach(([key, value]) => {
+  //     setQueryKey(decodeURIComponent(key)); // Set the dynamic key (e.g., "Category")
+  //     setQuerySearch(decodeURIComponent(value)); // Set the value (e.g., "Study Materials")
+  //     // Exit after the first key-value pair
+  //   });
+  // }, []);
+  // const handleSearch = () => {
+  //   if (formData.search) {
+  //     // Update the query parameter in the URL
+  //     const params = new URLSearchParams(window.location.search);
+  //     params.set("search", formData.search);
+  //     const newUrl = `${window.location.pathname}?${params.toString()}`;
+  //     window.history.pushState({}, "", newUrl);
+  //     setQuerySearch(formData.search);
+  //   }
+  // };
+  // const handleChange = (key: string, value: string | string[]) => {
+  //   setFormData({
+  //     ...formData,
+  //     [key]: value,
+  //   });
+  // };
+
+  // const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === "Enter") {
+  //     handleSearch();
+  //   }
+  // };
   return (
     <div className={styles.SearchBar}>
       <div className={styles.mobileContanier}>
@@ -53,10 +80,12 @@ function SearchBar() {
           placeholder="Search Our Blog"
           //   sx={style.textField}
           className={styles.textField}
-          value={formData.search}
-          onChange={(e) => {
-            handleChange("search", e.target.value);
-          }}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          // value={formData.search}
+          // onChange={(e) => {
+          //   handleChange("search", e.target.value);
+          // }}
           onKeyPress={handleKeyPress} // Trigger search on Enter
         />
         <Button
@@ -68,7 +97,7 @@ function SearchBar() {
           Search
         </Button>
       </div>
-      {querySearch && (
+      {searchQuery && (
         <div className={styles.searchResult}>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -83,7 +112,7 @@ function SearchBar() {
               Search:
               {/* {queryKey}: */}
             </Typography>{" "}
-            {querySearch}
+            {searchQuery}
           </Typography>
         </div>
       )}
