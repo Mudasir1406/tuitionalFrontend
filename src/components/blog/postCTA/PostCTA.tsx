@@ -15,11 +15,22 @@ function PostCTA() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: { xs: "center", sm: "space-between" },
         }}
         spacing={2}
       >
-        <Grid item lg={2.5}>
+        <Grid
+          item
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: { xs: "center" },
+          }}
+          xs={12}
+          sm={3}
+          md={2.5}
+        >
           <Box sx={styles.imageContanier}>
             <Image
               src={plan.src}
@@ -36,7 +47,18 @@ function PostCTA() {
             ></Image>
           </Box>
         </Grid>
-        <Grid item lg={6.5}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: { xs: "center" },
+          }}
+          item
+          xs={12}
+          sm={6}
+          md={6.5}
+        >
           <Typography
             variant="subtitle1"
             sx={styles.admissionText}
@@ -45,7 +67,7 @@ function PostCTA() {
             Admissions are Open for the Next Year Batch
           </Typography>
         </Grid>
-        {/* <Grid item lg={3}>
+        {/* <Grid item md={3}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Image
               src={phone.src}
@@ -62,7 +84,18 @@ function PostCTA() {
             </Typography>
           </Box>
         </Grid> */}
-        <Grid item lg={3}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: { xs: "center" },
+          }}
+          item
+          xs={12}
+          sm={3}
+          md={3}
+        >
           <PopUpButton
             text="Enroll Now!"
             href="popup"
