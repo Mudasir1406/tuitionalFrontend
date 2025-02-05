@@ -4,6 +4,9 @@
 .verticalMargin {
   margin: 7vh 0;
 }
+.bottomMargin {
+  margin-bottom: 7vh;
+}
 
 .main {
   display: flex;
@@ -15,7 +18,7 @@
 }
 .mainRight {
   flex: 0.75;
-  max-width: 75%;
+  /* max-width: 75%; */
 }
 
 .typographyContent img {
@@ -55,6 +58,9 @@
   .verticalMargin {
     margin: 5vh 0;
   }
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
   .container {
     padding: 0 4vw;
   }
@@ -74,6 +80,11 @@
   .verticalMargin {
     margin: 5vh 0;
   }
+
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+
   .main {
     display: flex;
     flex-direction: column-reverse;
@@ -92,6 +103,9 @@
   }
   .verticalMargin {
     margin: 5vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 5vh;
   }
   .main {
     display: flex;
@@ -112,6 +126,9 @@
   .verticalMargin {
     margin: 7vh 0;
   }
+  .bottomMargin {
+    margin-bottom: 7vh;
+  }
 }
 
 /* Desktop */
@@ -121,5 +138,8 @@
   }
   .verticalMargin {
     margin: 7vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 7vh;
   }
 }
