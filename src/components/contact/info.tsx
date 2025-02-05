@@ -12,7 +12,7 @@ type IProps = {
 
 const Info: React.FunctionComponent = () => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ justifyContent: "center" }}>
       <Grid item>
         <InfoBox heading="Address" dec="Registered in the UAE" icon="address" />
       </Grid>

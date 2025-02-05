@@ -303,3 +303,4 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isNotEmpty = (value: any): boolean =>
   typeof value === "string" && value.trim() !== "";
+

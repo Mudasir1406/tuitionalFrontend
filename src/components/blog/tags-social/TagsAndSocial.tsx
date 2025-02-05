@@ -13,8 +13,10 @@ import { usePathname } from "next/navigation";
 
 interface Props {
   tags: string[];
+  showSocial: boolean;
 }
-function TagsAndSocial({ tags }: Props) {
+function TagsAndSocial({ tags, showSocial }: Props) {
+  console.log("showSocial", showSocial);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 
@@ -35,25 +37,51 @@ function TagsAndSocial({ tags }: Props) {
           Tags
         </Typography>
         <div className={styles.allTags}>
-          {tags?.map((tag, i) => (
-            <Tag label={tag} key={i} />
+          {tags?.map((tag: any, i) => (
+            <Tag label={tag.name} key={i} />
           ))}
         </div>
       </div>
-      <div className={styles.socialDiv}>
-        <a href={shareUrls.facebook} target="_blank" rel="noopener noreferrer">
-          <Image className={styles.socialIcon} src={facebook} alt="facebook" />{" "}
-        </a>
-        <a href={shareUrls.twitter} target="_blank" rel="noopener noreferrer">
-          <Image className={styles.socialIcon} src={twitter} alt="twitter" />{" "}
-        </a>
-        <a href={shareUrls.whatsapp} target="_blank" rel="noopener noreferrer">
-          <Image className={styles.socialIcon} src={whatsapp} alt="whatsapp" />{" "}
-        </a>
-        <a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer">
-          <Image className={styles.socialIcon} src={linkedin} alt="linkedin" />{" "}
-        </a>
-      </div>{" "}
+      {showSocial && (
+        <div className={styles.socialDiv}>
+          <a
+            href={shareUrls.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className={styles.socialIcon}
+              src={facebook}
+              alt="facebook"
+            />{" "}
+          </a>
+          <a href={shareUrls.twitter} target="_blank" rel="noopener noreferrer">
+            <Image className={styles.socialIcon} src={twitter} alt="twitter" />{" "}
+          </a>
+          <a
+            href={shareUrls.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className={styles.socialIcon}
+              src={whatsapp}
+              alt="whatsapp"
+            />{" "}
+          </a>
+          <a
+            href={shareUrls.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className={styles.socialIcon}
+              src={linkedin}
+              alt="linkedin"
+            />{" "}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { Header } from "@/components";
 import dynamic from "next/dynamic";
@@ -23,6 +23,7 @@ const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), {
 });
 
 import {
+  AllBlogsData,
   Component_Sequence_Type,
   PageData,
   tutor_section,
@@ -31,217 +32,21 @@ import {
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
-// import { dummyBlog } from "@/app/blog/page";
+
+import Input from "@/components/input/Input";
+import LeftSection from "../left-section/left-section";
+import TagsAndSocial from "../tags-social/TagsAndSocial";
+import BlogCta from "@/components/grade-subject-level/blog-cta";
+import PostCTA from "../postCTA/PostCTA";
+import { TagItem } from "@/app/blog/[slug]/page";
 
 // import  from "";
 type IProps = {
   data: PageData;
+  allBlogs: AllBlogsData[] | null | undefined;
+  allTags: { name: string; id: string }[];
+  allCategories: { name: string; id: string }[];
 };
-
-// const dummyBlog = [
-//   {
-//     image: dummyImg1,
-//     title:
-//       "Embracing the Future of Learning Educational apps and software integrated into our platform ",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab1",
-//   },
-//   {
-//     image: dummyImg2,
-//     title:
-//       "Unlocking Academic Success  apps and software integrated into our platform asd",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "June 3, 2024",
-//     _id: "ab2",
-//   },
-//   {
-//     image: dummyImg3,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab3",
-//   },
-//   {
-//     image: dummyImg4,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab4",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab5",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab1",
-//   },
-//   {
-//     image: dummyImg2,
-//     title: "Unlocking Academic Success",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "June 3, 2024",
-//     _id: "ab2",
-//   },
-//   {
-//     image: dummyImg3,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab3",
-//   },
-//   {
-//     image: dummyImg4,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab4",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab5",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab1",
-//   },
-//   {
-//     image: dummyImg2,
-//     title: "Unlocking Academic Success",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "June 3, 2024",
-//     _id: "ab2",
-//   },
-//   {
-//     image: dummyImg3,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab3",
-//   },
-//   {
-//     image: dummyImg4,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab4",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab5",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab1",
-//   },
-//   {
-//     image: dummyImg2,
-//     title: "Unlocking Academic Success",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "June 3, 2024",
-//     _id: "ab2",
-//   },
-//   {
-//     image: dummyImg3,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab3",
-//   },
-//   {
-//     image: dummyImg4,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab4",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab5",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab1",
-//   },
-//   {
-//     image: dummyImg2,
-//     title: "Unlocking Academic Success",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "June 3, 2024",
-//     _id: "ab2",
-//   },
-//   {
-//     image: dummyImg3,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab3",
-//   },
-//   {
-//     image: dummyImg4,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab4",
-//   },
-//   {
-//     image: dummyImg1,
-//     title: "Embracing the Future of Learning",
-//     paragraph:
-//       "Educational apps and software integrated into our platform can offer personalized practice.",
-//     createdAt: "July 21, 2024",
-//     _id: "ab5",
-//   },
-// ];
 
 const dummyHtml = `<h1>Lorem Ipsum</h1>
 <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Proin nec elit ac eros gravida luctus.</p>
@@ -379,13 +184,11 @@ const dummyhtml3 = `<!DOCTYPE html>
       This is a sample HTML page to demonstrate various elements including text, lists, and images. 
       Use this template for testing your components or layouts.
     </p>
-
     <h2>Sample Headings</h2>
     <p>Below are some sample headings to test typography:</p>
     <h3>Heading Level 3</h3>
     <h4>Heading Level 4</h4>
     <h5>Heading Level 5</h5>
-
     <h2>Sample Paragraphs</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum sapien ut sem suscipit, at tristique libero sodales. 
@@ -394,7 +197,6 @@ const dummyhtml3 = `<!DOCTYPE html>
     <p>
       Suspendisse potenti. Proin quis lectus venenatis, scelerisque nisl sit amet, faucibus purus. Quisque feugiat risus nec nisi viverra, id vehicula sem tempus.
     </p>
-
     <h2>Sample Lists</h2>
     <div class="list">
       <h3>Ordered List</h3>
@@ -403,7 +205,6 @@ const dummyhtml3 = `<!DOCTYPE html>
         <li>Item Two</li>
         <li>Item Three</li>
       </ol>
-
       <h3>Unordered List</h3>
       <ul>
         <li>Item A</li>
@@ -411,7 +212,6 @@ const dummyhtml3 = `<!DOCTYPE html>
         <li>Item C</li>
       </ul>
     </div>
-
     <h2>Sample Images</h2>
     <div class="image-wrapper">
       <img src=${dumyimg1.src} alt="Sample Placeholder Image 1">
@@ -421,7 +221,6 @@ const dummyhtml3 = `<!DOCTYPE html>
       <img src=${dumyimg2.src} alt="Sample Placeholder Image 2">
       <p>Image 2: Another placeholder image</p>
     </div>
-
     <h2>Conclusion</h2>
     <p>
       This dummy HTML content should help you test various components like typography, image rendering, lists, and general layouts. Feel free to modify it as needed.
@@ -435,111 +234,143 @@ const heroDummy = {
   category: "Technology",
 };
 
-const accordionData = [
-  {
-    title: "Category",
-    items: [
-      "Curriculum Resources",
-      "Study Materials",
-      "Exam Preparation",
-      "Advice & Tips",
-      "Admissions & Schooling",
-    ],
+var obj = {
+  heroSection: {
+    title: "Title for hero",
+    tag: "H1",
+    image: "url",
+    imageAlt: "imageAlt",
+    socialShare: true,
+    categories: ["Study Material", "Texting"],
   },
-  {
-    title: "Tag",
-    items: ["Maths", "Physics", "Chemistry", "Biology", "Geography"],
+
+  blogContent: {
+    title: "title for blog",
+    tag: "h2",
+    content: "base64 content / html content (quil output)",
   },
-];
+  postCTA: {
+    show: true,
+  },
+  relatedBlogs: {
+    show: true,
+  },
+  tag: {
+    data: ["IGCSE", "GCSE", "IB", "AP", "EDEXCEL"],
+  },
+};
 
 const dummyTags = ["Maths", "Physics", "Chemistry", "Biology", "Geography"];
 
-const BlogSequences: React.FC<IProps> = ({ data }) => {
-  console.log("GradeSubjectLevel", data);
+const MainSection = ({ children }: any) => {
+  return <div className={styles.mainRight}>{children}</div>;
+};
+const BlogInnerLaylout = ({
+  children,
+  onlyChildren = false,
+  tags,
+  categories,
+}: any) => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.verticalMargin}>
+        <div className={styles.main}>
+          <div className={styles.mainLeft}>
+            {!onlyChildren && (
+              <LeftSection tags={tags} categories={categories} />
+            )}
+          </div>
+          <MainSection>{children}</MainSection>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const BlogSequences: React.FC<IProps> = ({
+  data,
+  allBlogs,
+  allTags,
+  allCategories,
+}) => {
+  // console.log("GradeSubjectLevel", data);
+  // console.log("BlogSequences", allTags);
 
   const renderSection = (name: string) => {
     if (name.includes("heroSection")) {
       return (
         <>
-          {/* <Hero data={heroDummy} />
+          <Hero
+            data={data?.[name as keyof PageData]}
+            timestamp={data?.timestamp?.seconds}
+            showSocial={data?.[name as keyof PageData]?.socialShare}
+          />
           <div className={styles.container}>
             <div className={styles.verticalMargin}>
               <div className={styles.imageDiv}>
-                <Image src={students} alt="blogs" className={styles.blogImg} />
+                <Image
+                  src={data?.[name as keyof PageData]?.image}
+                  alt={data?.[name as keyof PageData]?.imageAltText}
+                  className={styles.blogImg}
+                  fill
+                />
               </div>
             </div>
             <div className={styles.verticalMargin}>
               <Breadcrumb />
             </div>
-            <div className={styles.verticalMargin}>
-              <Typography
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyHtml,
-                }}
-              ></Typography>
-            </div>
-            <div className={styles.verticalMargin}>
-              <Typography
-
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyHtml2,
-                }}
-              ></Typography>
-            </div>
-            <div className={styles.verticalMargin}>
-              <Typography
-
-                className={leagueSpartan.className}
-                component={"div"}
-                dangerouslySetInnerHTML={{
-                  __html: dummyhtml3,
-                }}
-              ></Typography>
-            </div>
-
-            <div className={styles.verticalMargin}>
-              <RelatedBlogs blogs={dummyBlog} />
-            </div>
-          </div> */}
+          </div>
         </>
       );
+    } else if (name.includes("blogContent")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <BlogInnerLaylout tags={allTags} categories={allCategories}>
+            <div className={styles.verticalMargin}>
+              <Typography
+                className={leagueSpartan.className}
+                variant={data?.[name as keyof PageData]?.headerTag || "h3"}
+                component={data?.[name as keyof PageData]?.headerTag || "h3"}
+                dangerouslySetInnerHTML={{
+                  __html: data?.[name as keyof PageData]?.content,
+                }}
+              ></Typography>
+            </div>
+          </BlogInnerLaylout>
+        )
+      );
+    } else if (name.includes("blog_tag")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <BlogInnerLaylout onlyChildren>
+            {/* <div className={styles.container}> */}
+            <TagsAndSocial
+              tags={data?.[name as keyof PageData]?.tags}
+              showSocial={data?.postCTA?.isShow}
+            />
+            {/* </div> */}
+          </BlogInnerLaylout>
+        )
+      );
+    } else if (name.includes("postCTA")) {
+      return (
+        data?.[name as keyof PageData].isShow && (
+          <BlogInnerLaylout onlyChildren>
+            {/* <div className={styles.container}> */}
+            <div className={styles.verticalMargin}>
+              <PostCTA />
+            </div>
+            {/* </div> */}
+          </BlogInnerLaylout>
+        )
+      );
+    } else if (name.includes("get_started")) {
+      return (
+        data?.[name as keyof PageData].isShow && (
+          <div className={styles.verticalMargin}>{/* <GetStarted /> */}</div>
+        )
+      );
     }
-    //  else if (name.includes("why_igsce")) {
-    //   // case "why_igsce":
-    //   return (
-    //     data?.[name as keyof PageData] && (
-    //       <Box sx={styles.verticalMargin}>
-    //         <EducationalCounseling data={data?.[name as keyof PageData]} />
-    //       </Box>
-    //     )
-    //   );
-    // }
-    // // case "what_we_offer":
-    // else if (name.includes("what_we_offer")) {
-    //   return (
-    //     data?.[name as keyof PageData].isShow && (
-    //       <Box sx={styles.verticalMargin}>
-    //         <Offer />
-    //       </Box>
-    //     )
-    //   );
-    // }
-    // // case "get_started":
-    // else if (name.includes("get_started")) {
-    //   return (
-    //     data?.[name as keyof PageData].isShow && (
-    //       <Box sx={styles.verticalMargin}>
-    //         <GetStarted />
-    //       </Box>
-    //     )
-    //   );
-    // }
-    // case "video section":
-    //   return <div>Video Section</div>; // Assuming there’s a video component to add here
   };
 
   return (
@@ -550,6 +381,11 @@ const BlogSequences: React.FC<IProps> = ({ data }) => {
         <div key={key}>{renderSection(key.trim())}</div>
       ))}
 
+      <div className={styles.container}>
+        <div className={styles.verticalMargin}>
+          <RelatedBlogs blogs={allBlogs} />
+        </div>
+      </div>
       <Footer />
     </>
   );

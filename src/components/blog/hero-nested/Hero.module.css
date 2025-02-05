@@ -41,6 +41,7 @@
   position: relative;
   z-index: 2; /* Bring the main content above the background images */
   text-align: center;
+  width: 75vw;
 }
 
 .categoryDiv {

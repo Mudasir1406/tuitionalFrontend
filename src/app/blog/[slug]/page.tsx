@@ -1,9 +1,12 @@
 import BlogSequences from "@/components/blog/blogSequences/blog-sequences";
 import {
+  getBlogData,
+  getDocumentsByName,
   getPageData,
   getPageSequence,
 } from "@/services/grade-subject-level/grade-subject-level";
 import {
+  AllBlogsData,
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
@@ -39,14 +42,25 @@ const dumyData = {
     sequenceNumber: 7,
   },
 };
-
+export type TagItem = {
+  data: { name: string; id: string }[]; // Change this type based on the actual structure
+};
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const [data, sequence]: [
+  const [data, sequence, allBlogs, allTags, allCategories]: [
     PageData | undefined | null,
-    Component_Sequence_Type | undefined | null
-  ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
+    Component_Sequence_Type | undefined | null,
+    AllBlogsData[] | null | undefined,
+    TagItem[],
+    TagItem[]
+  ] = await Promise.all([
+    getBlogData(params.slug),
+    getPageSequence(),
+    getDocumentsByName("blogs"),
+    getDocumentsByName("tags"),
+    getDocumentsByName("categories"),
+  ]);
 
-  console.log("Pagelevel", data, "data hero", "sequence", sequence);
+  // console.log("Pagelevel", data, "data hero", "sequence", sequence);
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;
@@ -73,10 +87,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   // if (data?.variant == "new") {
   return (
-    <></>
-    // <BlogSequences
-    //   data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
-    // />
+    <>
+      <BlogSequences
+        data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
+        allBlogs={allBlogs}
+        allTags={allTags?.[0]?.data}
+        allCategories={allCategories?.[0]?.data}
+      />
+    </>
   );
   // }
 

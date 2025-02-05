@@ -6,7 +6,7 @@ import { leagueSpartan } from "@/app/fonts";
 
 export interface AccordionProps {
   title: string;
-  items: string[];
+  items: { name: string; id: string }[] | undefined;
 }
 
 const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
@@ -43,16 +43,16 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
       </div>
       {isOpen && (
         <ul className={styles.items}>
-          {items.map((item, index) => (
+          {items?.map((item, index) => (
             <Typography
               // sx={style.guidence}
               variant={"caption"}
               className={`${leagueSpartan.className} ${styles.list}`}
               component={"li"}
-              onClick={() => handleRedirect(item)} // Handle click and redirect
+              onClick={() => handleRedirect(item.name)} // Handle click and redirect
               key={index}
             >
-              {item}
+              {item?.name}
             </Typography>
           ))}
         </ul>
