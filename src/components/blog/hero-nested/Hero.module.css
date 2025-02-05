@@ -56,7 +56,6 @@
   margin: auto;
   position: relative;
   margin-top: 2vh;
-
 }
 
 .socialDiv {
@@ -90,12 +89,16 @@
 
 @media (max-width: 576px) {
   .arrowDiv {
-    left: 8%;
+    left: 50%;
+    transform: translateX(-50%) rotate(130deg); /* Rotates it upside down */
+    top: 110%;
   }
 }
 @media (min-width: 576px) {
   .arrowDiv {
-    left: 12%;
+    left: 50%;
+    transform: translateX(-50%) rotate(130deg); /* Rotates it upside down */
+    top: 100%;
   }
 }
 
