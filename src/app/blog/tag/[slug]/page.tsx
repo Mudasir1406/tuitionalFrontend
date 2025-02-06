@@ -17,20 +17,16 @@ const SearchBar = dynamic(
   }
 );
 
-const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
-  // Fetch all blogs
+const Page = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = params;
+  // console.log("searchParams", slug);
   const data = await getDocumentsByName("blogs");
 
-  // Filter data based on search query (if provided)
-  const filteredData = searchParams?.search
-    ? data.filter(
-        (blog: AllBlogsData) =>
-          blog?.blogContent?.header
-            .toLowerCase()
-            .includes(searchParams.search.toLowerCase()) ||
-          blog?.blogContent?.header
-            .toLowerCase()
-            .includes(searchParams.search.toLowerCase())
+  const filteredData = slug
+    ? data.filter((blog: AllBlogsData) =>
+        blog?.blog_tag?.tags?.some((tag: { name: string; id: string }) =>
+          tag.name?.toLowerCase().includes(slug.toLowerCase())
+        )
       )
     : data;
 
@@ -50,7 +46,7 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
         <SchoolLogosSection />
       </div>
 
-      <SearchBar searchQuery={searchParams?.search || ""} />
+      <SearchBar searchQuery={slug || ""} />
       <AllBlogs blogs={filteredData} />
 
       <Footer />

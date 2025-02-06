@@ -25,6 +25,7 @@ interface Props {
 }
 
 function BlogCard({ data }: Props) {
+  console.log("blogCard Image", data?.heroSection?.image);
   const pathname = usePathname();
   return (
     <div className={styles.card}>

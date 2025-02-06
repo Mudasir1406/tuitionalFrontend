@@ -16,7 +16,7 @@ interface Props {
   showSocial: boolean;
 }
 function TagsAndSocial({ tags, showSocial }: Props) {
-  console.log("showSocial", showSocial);
+  // console.log("showSocial", showSocial);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 
@@ -26,6 +26,8 @@ function TagsAndSocial({ tags, showSocial }: Props) {
     linkedin: `https://www.linkedin.com/shareArticle?url=${currentUrl}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentUrl}`, // Twitter share URL
   };
+  const newUrl = `/blog/tag`;
+
   return (
     <div className={styles.tagsAndSocial}>
       <div className={styles.tags}>
@@ -38,7 +40,7 @@ function TagsAndSocial({ tags, showSocial }: Props) {
         </Typography>
         <div className={styles.allTags}>
           {tags?.map((tag: any, i) => (
-            <Tag label={tag.name} key={i} />
+            <Tag label={tag.name} key={i} link={`${newUrl}/${tag.name}`} />
           ))}
         </div>
       </div>

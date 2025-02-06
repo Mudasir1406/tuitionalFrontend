@@ -31,12 +31,9 @@ import {
 
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import Image from "next/image";
 
-import Input from "@/components/input/Input";
 import LeftSection from "../left-section/left-section";
 import TagsAndSocial from "../tags-social/TagsAndSocial";
-import BlogCta from "@/components/grade-subject-level/blog-cta";
 import PostCTA from "../postCTA/PostCTA";
 import { TagItem } from "@/app/blog/[slug]/page";
 
@@ -229,10 +226,6 @@ const dummyhtml3 = `<!DOCTYPE html>
 </body>
 </html>
 `;
-const heroDummy = {
-  date: "August 15, 2024",
-  category: "Technology",
-};
 
 const MainSection = ({ children }: any) => {
   return <div className={styles.mainRight}>{children}</div>;
@@ -265,7 +258,7 @@ const BlogSequences: React.FC<IProps> = ({
   allTags,
   allCategories,
 }) => {
-  // console.log("GradeSubjectLevel", data);
+  console.log("GradeSubjectLevel", data);
   // console.log("BlogSequences", allTags);
 
   const renderSection = (name: string) => {
@@ -278,16 +271,7 @@ const BlogSequences: React.FC<IProps> = ({
             showSocial={data?.[name as keyof PageData]?.socialShare}
           />
           <div className={styles.container}>
-            <div className={styles.verticalMargin}>
-              <div className={styles.imageDiv}>
-                <Image
-                  src={data?.[name as keyof PageData]?.image}
-                  alt={data?.[name as keyof PageData]?.imageAltText}
-                  className={styles.blogImg}
-                  fill
-                />
-              </div>
-            </div>
+            <div className={styles.verticalMargin}></div>
             <div className={styles.verticalMargin}>
               <Breadcrumb />
             </div>
@@ -336,10 +320,14 @@ const BlogSequences: React.FC<IProps> = ({
           </BlogInnerLaylout>
         )
       );
-    } else if (name.includes("get_started")) {
+    } else if (name.includes("relatedBlogs")) {
       return (
         data?.[name as keyof PageData].isShow && (
-          <div className={styles.verticalMargin}>{/* <GetStarted /> */}</div>
+          <div className={styles.container}>
+            <div className={styles.verticalMargin}>
+              <RelatedBlogs blogs={allBlogs} />
+            </div>
+          </div>
         )
       );
     }
@@ -353,49 +341,9 @@ const BlogSequences: React.FC<IProps> = ({
         <div key={key}>{renderSection(key.trim())}</div>
       ))}
 
-      <div className={styles.container}>
-        <div className={styles.verticalMargin}>
-          <RelatedBlogs blogs={allBlogs} />
-        </div>
-      </div>
       <Footer />
     </>
   );
 };
 
 export default BlogSequences;
-
-const style = {
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-  heroContanier: {
-    // width: { lg: "100%", sm: "100%" },
-    paddingTop: {
-      xs: "120px",
-      sm: "120px",
-      md: "120px",
-      lg: 0,
-      xl: 0,
-    },
-    height: { xs: "100%", lg: "100vh" },
-
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
-    // marginTop: { lg: "60px" },
-  },
-
-  heroDiv: {
-    alignItems: "center",
-    padding: "100 0",
-  },
-  phoneContanier: { position: "relative", paddingBottom: "5vh" },
-  phoneBackground: {
-    height: "100%",
-    width: "100%",
-    position: "absolute",
-    zIndex: -1,
-    background:
-      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
-  },
-};

@@ -86,7 +86,7 @@ type IProps = {
 };
 
 const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
-  console.log("GradeSubjectLevel", data);
+  // console.log("GradeSubjectLevel", data);
 
   const renderSection = (name: string) => {
     // switch (name) {

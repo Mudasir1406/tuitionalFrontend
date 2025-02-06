@@ -34,7 +34,7 @@ const BenifitsOfStudyingSection: React.FunctionComponent<IProps> = ({
       [index]: !prev[index],
     }));
   };
-  console.log("BenifitsOfStudyingSection", data);
+  // console.log("BenifitsOfStudyingSection", data);
   return (
     <div className={styles.main}>
       <Typography
