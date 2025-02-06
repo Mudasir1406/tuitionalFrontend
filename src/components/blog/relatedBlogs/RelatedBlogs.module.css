@@ -6,6 +6,10 @@
   gap: 20px;
   padding: 20px;
 }
+
+.heading{
+  text-align: center;
+}
 /* Medium Screens (Tablets) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .blogContainer {

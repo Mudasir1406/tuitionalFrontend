@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { ArrowCircleRight } from "@mui/icons-material";
-import { redirectToExternal } from "@/utils/helper";
+import Link from "next/link";
 
 type IProps = { data: PageData["link_list"] };
 
@@ -33,21 +33,30 @@ async function LinkListViewSection({ data }: IProps) {
 
       <div className={styles.list}>
         {data?.subjects?.map((ls, i) => (
-          <div
-            className={styles.item}
-            key={i}
-            onClick={() => redirectToExternal(ls.link, false)}
-          >
+          // <div
+          //   className={styles.item}
+          //   key={i}
+          //   onClick={() => redirectToExternal(ls.link, false)}
+          // >
+          //   <ArrowCircleRight style={{ color: "#38b6ff" }} />
+          //   <Typography
+          //     className={leagueSpartan.className}
+          //     component={"p"}
+          //     variant="caption"
+          //     dangerouslySetInnerHTML={{
+          //       __html: ls.name,
+          //     }}
+          //   ></Typography>
+          // </div>
+          <Link href={ls.link} className={styles.item}>
             <ArrowCircleRight style={{ color: "#38b6ff" }} />
             <Typography
               className={leagueSpartan.className}
               component={"p"}
               variant="caption"
-              dangerouslySetInnerHTML={{
-                __html: ls.name,
-              }}
+              dangerouslySetInnerHTML={{ __html: ls.name }}
             ></Typography>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

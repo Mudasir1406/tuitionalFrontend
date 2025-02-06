@@ -8,6 +8,7 @@ import {
   redirectToExternal,
 } from "@/utils/helper";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const FooterLinks = ({
   footerData,
@@ -24,16 +25,18 @@ const FooterLinks = ({
         const href = findExactSubjectURL(item);
         const href2 = `/${generateSlug(item)}`;
         return (
-          <Typography
-            key={index}
-            // onClick={() => router.push(exact ? href : href2)}
-            onClick={() => redirectToExternal(exact ? href : href2, false)}
-            sx={styles.text}
-            variant="body2"
-            className={leagueSpartan.className}
-          >
-            {item}
-          </Typography>
+          <Link href={exact ? href : href2}>
+            <Typography
+              key={index}
+              // onClick={() => router.push(exact ? href : href2)}
+              // onClick={() => redirectToExternal(exact ? href : href2, false)}
+              sx={styles.text}
+              variant="body2"
+              className={leagueSpartan.className}
+            >
+              {item}
+            </Typography>
+          </Link>
         );
       })}
     </>

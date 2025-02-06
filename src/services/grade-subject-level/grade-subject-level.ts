@@ -42,7 +42,7 @@ export const getDocumentsByName = async (collectionName: string) => {
       id: doc.id, // Document ID
       ...doc.data(), // Spread the document data
     }));
-    console.log("Snapshot: query", documents);
+    // console.log("Snapshot: query", documents);
     return documents;
   } catch (error) {
     console.error("Error getting documents: ", error);
@@ -165,7 +165,7 @@ export const getTutorsByFilter = async (
   const results: GroupDocument[] = Array.from(resultSet).map((item) =>
     JSON.parse(item)
   );
-  console.log("Results for Tutors : ", results);
+  // console.log("Results for Tutors : ", results);
   return results;
 };
 

@@ -37,7 +37,7 @@ export function replaceAltText(url: string, newAlt: string) {
   urlObj.searchParams.set("alt", newAlt);
 
   // Return the updated URL as a string
-  console.log(urlObj.toString());
+  // console.log(urlObj.toString());
   return urlObj.toString();
 }
 
@@ -67,6 +67,7 @@ export const redirectToTrustpilot = () => {
 // };
 
 export const redirectToExternal = (url: string, newTab: boolean = false) => {
+  console.log("redirectToExternal", url);
   if (!url || typeof window === "undefined") return;
 
   if (newTab) {
@@ -303,4 +304,3 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isNotEmpty = (value: any): boolean =>
   typeof value === "string" && value.trim() !== "";
-

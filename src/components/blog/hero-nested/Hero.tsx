@@ -14,11 +14,13 @@ import { usePathname } from "next/navigation";
 import moment from "moment";
 
 interface Props {
-  data?: {
+  data: {
     category: { name: string; id: string }[];
     date: string;
     headerTag: any;
     header: string;
+    imageAltText: string;
+    image: string;
   };
   timestamp: number;
   showSocial: boolean;
@@ -114,11 +116,21 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
             </div>{" "}
           </div>
         )}
-      </div>
+{data?.image && (
+  <div className={styles.imageDiv}>
+    <Image
+      src={data?.image}
+      alt={data?.imageAltText}
+      className={styles.blogImg}
+      fill
+    />
+  </div>
+)}
+      </div>{" "}
     </div>
   );
 };
 
 export default Hero;
 
-const style = {};
+

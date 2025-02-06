@@ -19,60 +19,25 @@ function SearchBar({ searchQuery }: { searchQuery: string }) {
   //   }
   // };
   const handleSearch = () => {
-    const params = new URLSearchParams();
+    // const params = new URLSearchParams();
 
-    if (search) {
-      // If search is not empty, add it to the URL
-      params.set("search", search);
-    }
+    // if (search) {
+    //   params.set("search", search);
+    // }
 
-    // Update the URL
-    router.push(`?${params.toString()}`);
+    // // Update the URL
+    // router.push(`/${params.toString()}`);
+    const params = new URLSearchParams(window.location.search);
+    params.set("search", search);
+    const newUrl = `/blog?${params.toString()}`;
+    router.replace(newUrl);
   };
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
-  // const [formData, setFormData] = useState<{ search: string }>({
-  //   search: "",
-  // });
-  // const [querySearch, setQuerySearch] = useState<string>("");
-  // const [queryKey, setQueryKey] = useState<string>("");
 
-  // const pathname = usePathname();
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-
-  //   // Dynamically extract the first query key-value pair
-  //   Array.from(params.entries()).forEach(([key, value]) => {
-  //     setQueryKey(decodeURIComponent(key)); // Set the dynamic key (e.g., "Category")
-  //     setQuerySearch(decodeURIComponent(value)); // Set the value (e.g., "Study Materials")
-  //     // Exit after the first key-value pair
-  //   });
-  // }, []);
-  // const handleSearch = () => {
-  //   if (formData.search) {
-  //     // Update the query parameter in the URL
-  //     const params = new URLSearchParams(window.location.search);
-  //     params.set("search", formData.search);
-  //     const newUrl = `${window.location.pathname}?${params.toString()}`;
-  //     window.history.pushState({}, "", newUrl);
-  //     setQuerySearch(formData.search);
-  //   }
-  // };
-  // const handleChange = (key: string, value: string | string[]) => {
-  //   setFormData({
-  //     ...formData,
-  //     [key]: value,
-  //   });
-  // };
-
-  // const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     handleSearch();
-  //   }
-  // };
   return (
     <div className={styles.SearchBar}>
       <div className={styles.mobileContanier}>
@@ -82,10 +47,6 @@ function SearchBar({ searchQuery }: { searchQuery: string }) {
           className={styles.textField}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          // value={formData.search}
-          // onChange={(e) => {
-          //   handleChange("search", e.target.value);
-          // }}
           onKeyPress={handleKeyPress} // Trigger search on Enter
         />
         <Button

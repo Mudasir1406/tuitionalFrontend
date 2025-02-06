@@ -20,10 +20,10 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
     ? data.filter(
         (blog: AllBlogsData) =>
           blog?.blogContent?.header
-            .toLowerCase()
+            ?.toLowerCase()
             .includes(searchParams.search.toLowerCase()) ||
           blog?.blogContent?.header
-            .toLowerCase()
+            ?.toLowerCase()
             .includes(searchParams.search.toLowerCase())
       )
     : data;

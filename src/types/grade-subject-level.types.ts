@@ -15,7 +15,7 @@ export type AllBlogsData = {
     image: string;
     imageAltText: string;
     socialShare: boolean;
-    categories: string[];
+    category: { name: string; id: string }[];
     sequenceNumber: number;
   };
   timestamp: { seconds: number; nanoseconds: number };
