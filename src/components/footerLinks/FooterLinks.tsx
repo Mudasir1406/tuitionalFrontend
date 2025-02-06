@@ -25,9 +25,8 @@ const FooterLinks = ({
         const href = findExactSubjectURL(item);
         const href2 = `/${generateSlug(item)}`;
         return (
-          <Link href={exact ? href : href2}>
+          <Link href={exact ? href : href2} key={index}>
             <Typography
-              key={index}
               // onClick={() => router.push(exact ? href : href2)}
               // onClick={() => redirectToExternal(exact ? href : href2, false)}
               sx={styles.text}
