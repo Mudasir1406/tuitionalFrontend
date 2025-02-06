@@ -48,7 +48,7 @@ async function LinkListViewSection({ data }: IProps) {
           //     }}
           //   ></Typography>
           // </div>
-          <Link href={ls.link} className={styles.item}>
+          <Link href={ls.link} className={styles.item} key={i}>
             <ArrowCircleRight style={{ color: "#38b6ff" }} />
             <Typography
               className={leagueSpartan.className}
