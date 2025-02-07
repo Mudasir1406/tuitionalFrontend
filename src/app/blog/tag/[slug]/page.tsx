@@ -32,13 +32,13 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
             <Hero />
           </div>
-          <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
+          <div className={styles["hero-picture"]}></div>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <SearchBar searchQuery={slug || ""} />
       <AllBlogs blogs={filteredData} />
 
-      <Footer />
+      <Footer /> */}
     </>
   );
 };
