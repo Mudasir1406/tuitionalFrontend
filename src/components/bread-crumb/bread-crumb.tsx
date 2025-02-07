@@ -6,6 +6,7 @@ import styles from "./style.module.css";
 import { Typography } from "@mui/material";
 import { redirectToExternal } from "@/utils/helper";
 import { leagueSpartan } from "@/app/fonts";
+import Link from "next/link";
 
 interface BreadcrumbItem {
   label: string;
@@ -33,14 +34,16 @@ const Breadcrumb: React.FC = () => {
   return (
     <nav className={styles.breadcrumb}>
       {/* <span className={styles.breadcrumbItem}> */}
-      <Typography
-        onClick={() => redirectToExternal("/")}
-        variant="body2"
-        component={"p"}
-        className={`${leagueSpartan.className} ${styles.link}`}
-      >
-        Home
-      </Typography>
+      <Link href={`/`}>
+        <Typography
+          variant="body2"
+          component={"p"}
+          className={`${leagueSpartan.className} ${styles.link}`}
+        >
+          Home
+        </Typography>
+      </Link>
+
       {/* </span> */}
       {breadcrumbItems.map((item, index) => (
         <div key={index} className={styles.breadcrumbItem}>
@@ -54,14 +57,23 @@ const Breadcrumb: React.FC = () => {
               {item.label}
             </Typography>
           ) : (
-            <Typography
-              onClick={() => redirectToExternal(item.href)}
-              variant="body2"
-              component={"p"}
-              className={`${leagueSpartan.className} `}
-            >
-              {item.label}
-            </Typography>
+            <Link href={`${item.href}`}>
+              <Typography
+                variant="body2"
+                component={"p"}
+                className={`${leagueSpartan.className} `}
+              >
+                {item.label}
+              </Typography>
+            </Link>
+            // <Typography
+            //   onClick={() => redirectToExternal(item.href)}
+            //   variant="body2"
+            //   component={"p"}
+            //   className={`${leagueSpartan.className} `}
+            // >
+            //   {item.label}
+            // </Typography>
           )}
         </div>
       ))}

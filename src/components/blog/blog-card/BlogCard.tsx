@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 import moment from "moment";
 import dummyImg1 from "../../../../public/assets/images/static/blogimg1.png";
+import Link from "next/link";
 
 export interface BlogsProps {
   title: string;
@@ -52,23 +53,27 @@ function BlogCard({ data }: Props) {
           >
             {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
           </Typography>
-          <Typography
-            className={`${styles.title} ${leagueSpartan.className}`}
-            variant="subtitle2"
-            component={"p"}
-            onClick={() => redirectToExternal(`/blog/${data?.slugData}`)}
-          >
-            {data?.heroSection?.header}
-          </Typography>
+          <Link href={`/blog/${data?.slugData}`}>
+            <Typography
+              className={`${styles.title} ${leagueSpartan.className}`}
+              variant="subtitle2"
+              component={"p"}
+              // onClick={() => redirectToExternal(`/blog/${data?.slugData}`)}
+            >
+              {data?.heroSection?.header}
+            </Typography>
+          </Link>
         </div>
 
         <div className={styles.textDiv_text}>
-          <div
-            className={styles.iconDiv}
-            onClick={() => redirectToExternal(`/blog/${data?.id}`)}
-          >
-            <NorthEastIcon />
-          </div>
+          <Link href={`/blog/${data?.slugData}`}>
+            <div
+              className={styles.iconDiv}
+              // onClick={() => redirectToExternal(`/blog/${data?.id}`)}
+            >
+              <NorthEastIcon />
+            </div>
+          </Link>
         </div>
       </div>
     </div>
