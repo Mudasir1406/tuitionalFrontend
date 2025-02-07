@@ -88,12 +88,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   // if (data?.variant == "new") {
   return (
     <>
-      <BlogSequences
+      {/* <BlogSequences
         data={sortJsonObjectBySequenceNumber(data ? data : dumyData) as any}
         allBlogs={allBlogs}
         allTags={allTags?.[0]?.data}
         allCategories={allCategories?.[0]?.data}
-      />
+      /> */}
     </>
   );
   // }
