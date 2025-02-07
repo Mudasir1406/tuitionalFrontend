@@ -248,18 +248,16 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
           </Box>
         )
       );
-    }
-    // else if (name.includes("education_counseling")) {
-    //   // case "education_counseling":
-    //   return (
-    //     data?.[name as keyof PageData] && (
-    //       <Box sx={styles.verticalMargin}>
-    //         <EducationalCounseling data={data?.[name as keyof PageData]} />
-    //       </Box>
-    //     )
-    //   );
-    // }
-    else if (name.includes("why_igsce")) {
+    } else if (name.includes("education_counseling")) {
+      // case "education_counseling":
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <EducationalCounseling data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    } else if (name.includes("why_igsce")) {
       // case "why_igsce":
       return (
         data?.[name as keyof PageData] && (
