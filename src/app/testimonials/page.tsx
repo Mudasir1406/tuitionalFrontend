@@ -32,7 +32,7 @@ const Testimonials: React.FC = async () => {
   return (
     <>
       <Header />
-      <Container
+      {/* <Container
         sx={{
           maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },
           p: 0,
@@ -65,15 +65,17 @@ const Testimonials: React.FC = async () => {
             <HeroInfo />
           </Grid>
         </Grid>
-      </Container>
-      {/* <div className={styles.container}>
+      </Container> */}
+      <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
             <Hero />
           </div>
-          <div className={styles["hero-picture"]}><HeroInfo /></div>
+          <div className={styles["hero-picture"]}>
+            <HeroInfo />
+          </div>
         </div>
-      </div> */}
+      </div>
       <div id="testimonials">
         <ReviewsOnWp reviews={wpReviews} />
       </div>

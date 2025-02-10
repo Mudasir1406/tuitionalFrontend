@@ -9,9 +9,10 @@ import { scrollToApplyForm } from "@/utils/helper";
 
 const Hero: React.FC = () => {
   return (
-    <div style={{ width: "100%", paddingBottom: "15vh" }}>
+    <Box sx={{ width: "100%", paddingBottom: { lg: "15vh" } }}>
       <Typography
         sx={styles.heading}
+        variant="h1"
         component={"h1"}
         className={leagueSpartan.className}
       >
@@ -21,6 +22,7 @@ const Hero: React.FC = () => {
         <Typography
           sx={styles.expertText}
           component={"span"}
+          variant={"h1"}
           className={leagueSpartan.className}
         >
           {" "}
@@ -31,6 +33,7 @@ const Hero: React.FC = () => {
         sx={styles.desc}
         className={leagueSpartan.className}
         component={"p"}
+        variant="body2"
       >
         Passionate Educators And Change Lives
       </Typography>
@@ -38,7 +41,7 @@ const Hero: React.FC = () => {
         sx={{
           width: { lg: "70%", xs: "100%" },
           marginTop: "5vh",
-          marginBottom: "10vh",
+          marginBottom: { lg: "10vh" },
           display: { xs: "flex", lg: "block" },
           alignItems: "center",
           justifyContent: "center",
@@ -53,7 +56,7 @@ const Hero: React.FC = () => {
           Get in touch
         </Button>
       </Box>
-    </div>
+    </Box>
   );
 };
 
@@ -61,29 +64,29 @@ export default Hero;
 
 const styles = {
   heading: {
-    fontSize: {
-      xs: "4vh",
-      sm: "5.2vh",
-      md: "5.3vh",
-      lg: "5.4vh",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "5vh",
-      sm: "4.5vh",
-      md: "5.5vh",
-      lg: "6vh",
-    },
-    width: {
-      //   lg: "90%",
-    },
+    // fontSize: {
+    //   xs: "4vh",
+    //   sm: "5.2vh",
+    //   md: "5.3vh",
+    //   lg: "5.4vh",
+    // },
+    // fontWeight: 500,
+    // lineHeight: {
+    //   xs: "5vh",
+    //   sm: "4.5vh",
+    //   md: "5.5vh",
+    //   lg: "6vh",
+    // },
+    width: { xs: "100%", lg: "80%" },
     textAlign: {
       xs: "center",
       lg: "start",
     },
     marginTop: {
-      xs: "30px",
+      // xs: "9vh",
+      sm: "5vh",
     },
+
     position: "relative",
     color: "#000000",
     "::before": {
@@ -93,7 +96,8 @@ const styles = {
       zIndex: 10,
       right: {
         xs: 0,
-        lg: 30,
+        sm: "20vw",
+        lg: 0,
       },
       top: {
         xs: -25,
@@ -125,36 +129,10 @@ const styles = {
   expertText: {
     color: "#51B893",
     display: "inline",
-    fontSize: {
-      xs: "4vh",
-      sm: "5.2vh",
-      md: "5.3vh",
-      lg: "5.4vh",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "5vh",
-      sm: "4.5vh",
-      md: "5.5vh",
-      lg: "6vh",
-    },
 
     position: "relative",
   },
   desc: {
-    fontSize: {
-      xs: "2.5vh",
-      sm: "2vh",
-      md: "2.5vh",
-      lg: "2.6vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "2.5vh",
-      sm: "2.4vh",
-      md: "2.8vh",
-      lg: "3.4vh",
-    },
     textAlign: {
       xs: "center",
       lg: "start",
@@ -164,7 +142,7 @@ const styles = {
       lg: 0,
     },
     marginTop: {
-      xs: "30px",
+      xs: "22px",
       lg: "10px",
     },
     color: "#000000",
@@ -173,9 +151,9 @@ const styles = {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
 
-    fontSize: "2vh",
-    fontWeight: 700,
-    lineHeight: "2vh",
+    // fontSize: "2vh",
+    // fontWeight: 700,
+    // lineHeight: "2vh",
     textAlign: "center",
     width: "50%",
     padding: "2vh",

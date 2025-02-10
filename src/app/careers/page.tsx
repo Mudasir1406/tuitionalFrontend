@@ -19,12 +19,25 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/careers`,
   },
 };
+import styles from "./careers.module.css";
 
 const Careers: React.FC = () => {
   return (
     <>
       <Header />
-      <Container
+      <div className={styles.container}>
+        <div className={styles["grid-container"]}>
+          <div className={styles["hero"]}>
+            <Hero />
+          </div>
+          <div className={styles["hero-picture"]}>
+            {" "}
+            <HeroInfo />
+          </div>
+        </div>
+      </div>
+
+      {/* <Container
         sx={{
           maxWidth: { lg: "1650px" },
           p: 0,
@@ -50,14 +63,14 @@ const Careers: React.FC = () => {
             md={12}
             sm={12}
             xs={12}
-            sx={styles.hero}
+            sx={style.hero}
             aria-label="Tuitional's Talented individuals"
           >
             <HeroInfo />
           </Grid>
         </Grid>
-      </Container>
-      <Box sx={styles.contanier}>
+      </Container> */}
+      <Box sx={style.contanier}>
         <Container sx={{ maxWidth: { lg: "1650px" } }}>
           <TeamValues />
         </Container>
@@ -75,7 +88,7 @@ const Careers: React.FC = () => {
 
 export default Careers;
 
-const styles = {
+const style = {
   contanier: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
   },
