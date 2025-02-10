@@ -33,6 +33,41 @@ export default function RootLayout({
           __html: JSON.stringify(organizationSchema),
         }}
       /> */}
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
+        <title>Tuitional</title>
+        <meta name="description" content="Your website description here." />
+
+        {/* ✅ Google Tag Manager (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16865900759"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16865900759');
+            `,
+          }}
+        />
+
+        {/* ✅ Event Snippet for Book Appointment Conversion */}
+        <Script
+          id="google-conversion-event"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              gtag('event', 'conversion', {'send_to': 'AW-16865900759/k1VvCPHjjJwaENfxpOo-'});
+            `,
+          }}
+        />
+      </head>
       <ThemeProvider theme={theme}>
         <DrawerProvider>
           <body style={{ margin: 0 }}>
