@@ -127,7 +127,7 @@ const styles = {
     height: {
       xs: "150px",
       sm: "200px",
-      md: "500px",
+      md: "100%",
       lg: "100%",
     },
     marginTop: {

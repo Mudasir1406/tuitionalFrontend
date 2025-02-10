@@ -30,6 +30,7 @@ const ReviewsOnWp = ({ reviews }: Props) => {
         sx={styles.heading}
         className={leagueSpartan.className}
         component={"h2"}
+        variant="h2"
       >
         Reviews on WhatsApp
       </Typography>
@@ -40,7 +41,7 @@ const ReviewsOnWp = ({ reviews }: Props) => {
           </Grid>
         ))}
       </Grid>
-      <Typography className={leagueSpartan.className}>
+      <Typography className={leagueSpartan.className} variant="body2">
         10000+ student trusting our Tuitional classes.
       </Typography>
       {!showAll && (
@@ -67,14 +68,14 @@ const styles = {
 
     backgroundColor: "white",
 
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
+    // fontSize: {
+    //   xs: "25px",
+    //   sm: "25px",
+    //   md: "25px",
+    //   lg: "25px",
+    // },
+    // fontWeight: 700,
+    // lineHeight: "18.4px",
     textAlign: "center",
     width: "220px",
     padding: "18px",
@@ -91,14 +92,14 @@ const styles = {
       backgroundColor: "white",
       padding: "18px",
 
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      fontWeight: 700,
-      lineHeight: "18.4px",
+      // fontSize: {
+      //   xs: "25px",
+      //   sm: "25px",
+      //   md: "25px",
+      //   lg: "25px",
+      // },
+      // fontWeight: 700,
+      // lineHeight: "18.4px",
       textAlign: "center",
     },
     color: "rgba(0, 155, 245, 1)",
@@ -123,19 +124,19 @@ const styles = {
   heading: {
     color: "#000000",
 
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "55px",
-      lg: "55px",
-    },
-    fontWeight: 700,
-    lineHeight: {
-      xs: "45px",
-      sm: "50px",
-      md: "65px",
-      lg: "65px",
-    },
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "55px",
+    //   lg: "55px",
+    // },
+    // fontWeight: 700,
+    // lineHeight: {
+    //   xs: "45px",
+    //   sm: "50px",
+    //   md: "65px",
+    //   lg: "65px",
+    // },
     marginTop: {
       xs: "70px",
       sm: "80px",

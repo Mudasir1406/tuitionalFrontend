@@ -12,7 +12,7 @@ const EducationalCounseling: React.FunctionComponent<{
   return (
     <div>
       <Box sx={{ paddingX: "5vw" }}>
-        <Grid container spacing={2} alignItems="">
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
               <Typography
