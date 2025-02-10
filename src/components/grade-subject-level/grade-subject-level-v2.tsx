@@ -18,9 +18,14 @@ const GetStarted = dynamic(
   () => import("@/components/grade-subject-level/get-started"),
   { ssr: true }
 );
+const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), {
+  ssr: true,
+});
 const EducationalCounseling = dynamic(
-  () => import("@/components/curiculume/why-choose"),
-  { ssr: true }
+  () => import("@/components/curiculume/educational-counseling"),
+  {
+    ssr: true,
+  }
 );
 
 const HeroInfo = dynamic(
@@ -262,7 +267,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       return (
         data?.[name as keyof PageData] && (
           <Box sx={styles.verticalMargin}>
-            <EducationalCounseling data={data?.[name as keyof PageData]} />
+            <WhyChoose data={data?.[name as keyof PageData]} />
           </Box>
         )
       );
