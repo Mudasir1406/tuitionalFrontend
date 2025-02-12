@@ -416,7 +416,7 @@ const GetInTouch: React.FunctionComponent = () => {
                   size={20}
                 />
               ) : (
-                "Submit Now"
+                "Get In Touch"
               )}
             </Button>
           </form>

@@ -33,7 +33,7 @@
 
 .hero-picture::before {
   content: "";
-  background-image: url("../../../public/assets/images/static/careersHero.pnge");
+  background-image: url("../../../public/assets/images/static/carrerHero.png");
   background-position: bottom;
   background-size: contain;
   background-repeat: no-repeat;
