@@ -411,7 +411,7 @@ const ApplyNow: React.FunctionComponent = () => {
                     size={20}
                   />
                 ) : (
-                  "Submit Now"
+                  "Apply Now"
                 )}
               </Button>
             </Box>
