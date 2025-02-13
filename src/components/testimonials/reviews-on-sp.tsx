@@ -18,7 +18,7 @@ const ReviewsOnSp: React.FC = () => {
         },
       }}
     >
-      <Grid item lg={7}>
+      <Grid item xs={12} md={12} lg={7}>
         <Box
           sx={{
             height: "100%",
@@ -43,7 +43,7 @@ const ReviewsOnSp: React.FC = () => {
           ></Image>
         </Box>
       </Grid>
-      <Grid item lg={5}>
+      <Grid item xs={12} md={12} lg={5}>
         <Box
           sx={{
             paddingBottom: "52px",
@@ -56,10 +56,16 @@ const ReviewsOnSp: React.FC = () => {
             sx={styles.heading}
             className={leagueSpartan.className}
             component={"h2"}
+            variant="h2"
           >
             Reviews on Social <br /> Platforms
           </Typography>
-          <Typography sx={styles.desc} className={leagueSpartan.className}  component={'p'}>
+          <Typography
+            sx={styles.desc}
+            className={leagueSpartan.className}
+            variant="h5"
+            component={"p"}
+          >
             The teachers at Tuitional are really great. they help a lot of
             students and they have been helping me since past 3 years now. The
             teachers are nice and understanding. My grades are improving.
@@ -68,7 +74,7 @@ const ReviewsOnSp: React.FC = () => {
             sx={{
               display: "flex",
               flexDirection: "row",
-              //   justifyContent: "center",
+              justifyContent: "center",
               alignItems: "center",
               marginTop: "80px",
               paddingLeft: {
@@ -108,19 +114,6 @@ const styles = {
   heading: {
     color: "#000000",
 
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "55px",
-      lg: "55px",
-    },
-    fontWeight: 700,
-    lineHeight: {
-      xs: "45px",
-      sm: "50px",
-      md: "65px",
-      lg: "65px",
-    },
     marginTop: {
       xs: "70px",
       sm: "80px",
@@ -134,6 +127,8 @@ const styles = {
       md: "50px",
       lg: 0,
     },
+    textAlign: { xs: "center", lg: "left" },
+
     "::before": {
       content: "''",
       position: "absolute",
@@ -157,7 +152,7 @@ const styles = {
         lg: `url(${linesInvert.src})`,
       },
       height: "35px",
-      width: "43px",
+      width: { lg: "43px" },
       backgroundRepeat: "no-repeat",
     },
   },
@@ -175,7 +170,7 @@ const styles = {
       md: "40px",
       lg: "40px",
     },
-    width: "60%",
+    width: { lg: "60%" },
     color: "black",
     paddingLeft: {
       xs: "50px",
@@ -183,6 +178,7 @@ const styles = {
       md: "50px",
       lg: 0,
     },
+    textAlign: { xs: "center", lg: "left" },
   },
   complete: {
     fontSize: {
@@ -198,7 +194,7 @@ const styles = {
       md: "40px",
       lg: "40px",
     },
-    width: "60%",
+    width: { lg: "60%" },
     color: "black",
   },
   percent: {

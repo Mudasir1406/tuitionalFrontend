@@ -125,9 +125,9 @@ const styles = {
     justifyContent: "space-between",
     width: "100%",
     height: {
-      xs: "150px",
+      xs: "100px",
       sm: "200px",
-      md: "500px",
+      md: "100%",
       lg: "100%",
     },
     marginTop: {

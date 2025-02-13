@@ -22,6 +22,9 @@ export const subjectsMap: Record<string, string> = {
   Arabic: "/online/arabic-tutors",
   "GCSE Tuition": `/online/gcse-tutors`,
   "IGCSE Tuition": "/online/igcse-tutors",
+  "IB Tuition": "/online/ib-tutors-dubai",
+  "Pearson Edexcel Tuition": "/online/pearson-edexcel-tutors",
+  "A Level Tuition": "/online/a-level-tutors",
 };
 
 export const findExactSubjectURL = (item: string) => {

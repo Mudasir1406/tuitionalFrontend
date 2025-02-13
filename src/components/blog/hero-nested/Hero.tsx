@@ -65,9 +65,9 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
         </div>
         {showSocial && (
           <div className={styles.centerDiv}>
-            <div className={styles.arrowDiv}>
+            {/* <div className={styles.arrowDiv}>
               <Image src={arrow} alt="arrow" />
-            </div>
+            </div> */}
             <div className={styles.socialDiv}>
               <a
                 href={shareUrls.facebook}
@@ -116,16 +116,7 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
             </div>{" "}
           </div>
         )}
-{data?.image && (
-  <div className={styles.imageDiv}>
-    <Image
-      src={data?.image}
-      alt={data?.imageAltText}
-      className={styles.blogImg}
-      fill
-    />
-  </div>
-)}
+
       </div>{" "}
     </div>
   );

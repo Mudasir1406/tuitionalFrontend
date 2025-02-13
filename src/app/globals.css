@@ -468,55 +468,56 @@ select:focus {
 h1 {
   font-size: 6.88vh;
   font-weight: 700;
-  line-height: 7.5vh;
+  line-height: 7.5vh;  margin: 0;
 }
 
 h2 {
   font-size: 5.29vh;
   font-weight: 600;
-  line-height: 6.6vh;
+  line-height: 6.6vh;  margin: 0;
 }
 
 h3 {
   font-size: 4.23vh;
   font-weight: 600;
-  line-height: 5.56vh;
+  line-height: 5.56vh;  margin: 0;
 }
 
 h4 {
   font-size: 3.7vh;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.5;  margin: 0;
 }
 
 h5 {
   font-size: 3vh;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.5;  margin: 0;
 }
 
 h6 {
   font-size: 2.4vh;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.4;  margin: 0;
 }
 
 p {
   font-size: 2.667vh;
   font-weight: 400;
   line-height: 3.5vh;
+  margin: 0;
 }
 
-/* li {
+li {
   font-size: 2.4vh;
   font-weight: 400;
-  line-height: 3.5vh;
-} */
+  line-height: 3.5vh;  margin: 0;
+}
 
 span {
   font-size: 2.3vh;
   font-weight: 400;
-  line-height: 3vh;
+  line-height: 3vh;  margin: 0;
 }
 
 textarea {

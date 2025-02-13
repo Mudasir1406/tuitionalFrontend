@@ -150,7 +150,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       const pageURL = window.location.href;
       const res = await fetch("https://ipinfo.io/json");
       const locationData = await res.json();
-      
+
       setFormData({
         ...formData,
         browser,
@@ -570,7 +570,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   size={20}
                 />
               ) : (
-                "Enroll"
+                "Submit Now"
               )}
             </Button>
           </form>

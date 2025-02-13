@@ -107,7 +107,7 @@ const Footer: React.FC = async () => {
                     display: { xs: "flex", sm: "flex" },
 
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                   }}
                 >
                   <Image
