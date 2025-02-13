@@ -89,42 +89,42 @@ const styles = {
 
     position: "relative",
     color: "#000000",
-    "::before": {
-      //   display: "flex",
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      right: {
-        xs: 0,
-        sm: "20vw",
-        lg: 0,
-      },
-      top: {
-        xs: -25,
-        lg: -30,
-      },
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesMobile.src})`,
-        md: `url(${lines.src})`,
-        lg: `url(${lines.src})`,
-      },
-      height: {
-        xs: "19px",
-        sm: "19px",
-        md: "43px",
-        lg: "43px",
-      },
-      width: {
-        xs: "20px",
-        sm: "20px",
-        md: "43px",
-        lg: "43px",
-      },
-      backgroundPosition: "end",
-      backgroundRepeat: "no-repeat",
-      // animation: "swing 1s linear infinite alternate",
-    },
+    // "::before": {
+    //   //   display: "flex",
+    //   content: "''",
+    //   position: "absolute",
+    //   zIndex: 10,
+    //   right: {
+    //     xs: 0,
+    //     sm: "20vw",
+    //     lg: 0,
+    //   },
+    //   top: {
+    //     xs: -25,
+    //     lg: -30,
+    //   },
+    //   backgroundImage: {
+    //     xs: `url(${linesMobile.src})`,
+    //     sm: `url(${linesMobile.src})`,
+    //     md: `url(${lines.src})`,
+    //     lg: `url(${lines.src})`,
+    //   },
+    //   height: {
+    //     xs: "19px",
+    //     sm: "19px",
+    //     md: "43px",
+    //     lg: "43px",
+    //   },
+    //   width: {
+    //     xs: "20px",
+    //     sm: "20px",
+    //     md: "43px",
+    //     lg: "43px",
+    //   },
+    //   backgroundPosition: "end",
+    //   backgroundRepeat: "no-repeat",
+    //   // animation: "swing 1s linear infinite alternate",
+    // },
   },
   expertText: {
     color: "#51B893",

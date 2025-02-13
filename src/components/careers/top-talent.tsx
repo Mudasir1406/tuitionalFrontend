@@ -12,7 +12,7 @@ const TopTalent: React.FC = () => {
       <Grid item xs={12} md={7}>
         <Box
           sx={{
-            height: "100%",
+            height: {xs:'80%',md:"75%"},
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -57,7 +57,7 @@ const TopTalent: React.FC = () => {
             sx={styles.desc}
             className={leagueSpartan.className}
             component={"p"}
-            variant="h5"
+            variant="body2"
           >
             {/* Tuitional builds products that transform experience and know-how
             into thriving businesses. We believe shared knowledge has the power
@@ -141,8 +141,8 @@ const styles = {
     //   lg: "65px",
     // },
     marginTop: {
-      xs: "70px",
-      sm: "80px",
+      xs: "0px",
+      sm: "0px",
       md: "95px",
       lg: "105px",
     },

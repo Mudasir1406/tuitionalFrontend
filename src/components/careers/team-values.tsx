@@ -39,14 +39,14 @@ const TeamValues: React.FunctionComponent = () => {
           justifyContent: "center",
         }}
       >
-        <Grid item>
-          <InfoBox
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
+        <InfoBox
             heading="Succeed together"
             dec="Whether it's for our customers or for each other, we always make time to help"
             icon="succeed"
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
           <InfoBox
             heading="Be helpful"
             dec={`Whether it's for our customers
@@ -55,21 +55,21 @@ time to help`}
             icon="helpful"
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
           <InfoBox
             heading="Choose ethics"
             dec="We choose to do what's right, always."
             icon="ethics"
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
           <InfoBox
             heading="Strive for equality"
             dec="Nothing works unless we're treating each other with r-e-s-p-e-c-t."
             icon="equality"
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
           <InfoBox
             heading="Passionately debate"
             dec={`We dialogue it out, and share our
@@ -78,7 +78,7 @@ gain perspective`}
             icon="debate"
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
           <InfoBox
             heading="Learn and grow"
             dec="We're always seeking to develop ourselves personally and professionally."
@@ -97,7 +97,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "220px", sm: "322px", md: "360px", lg: "460px" },
+        width: { xs: "100%", sm: "322px", md: "360px", lg: "460px" },
         height: { xs: "200px", sm: "285px", md: "313px", lg: "413px" },
         display: "flex",
         alignItems: "center",
@@ -239,7 +239,7 @@ const styles = {
     textAlign: "center",
     maxWidth: { xs: "90%", sm: "90%", md: "280px", lg: "300px" },
     color: "rgba(0,0,0,0.77)",
-    margin:'auto'
+    margin: "auto",
   },
   icon: {
     width: { xs: "45px", sm: "55px", md: "75px", lg: "115px" },
