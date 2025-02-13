@@ -235,7 +235,7 @@ const ApplyNow: React.FunctionComponent = () => {
               alignItems: "center",
               flexDirection: "column",
               zIndex: 4,
-              marginTop: 10,
+              marginTop: {xs:5, md:10},
             }}
           >
             <Typography sx={styles.heading} variant="h2" className={leagueSpartan.className}>
@@ -451,7 +451,7 @@ const styles = {
     // fontWeight: 700,
 
     marginTop: {
-      xs: "60px",
+      xs: "0px",
       sm: "0px",
       md: "0px",
       lg: "5px",
