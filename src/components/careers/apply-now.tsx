@@ -205,7 +205,9 @@ const ApplyNow: React.FunctionComponent = () => {
               },
               height: {
                 lg: "915px",
+                xs: "auto",
               },
+              margin: "auto",
             }}
           >
             <Image
@@ -450,9 +452,9 @@ const styles = {
 
     marginTop: {
       xs: "60px",
-      sm: "80px",
-      md: "90px",
-      lg: "105px",
+      sm: "0px",
+      md: "0px",
+      lg: "5px",
     },
     marginBottom: {
       xs: "40px",

@@ -36,6 +36,7 @@ import LeftSection from "../left-section/left-section";
 import TagsAndSocial from "../tags-social/TagsAndSocial";
 import PostCTA from "../postCTA/PostCTA";
 import { TagItem } from "@/app/blog/[slug]/page";
+import Image from "next/image";
 
 // import  from "";
 type IProps = {
@@ -270,6 +271,16 @@ const BlogSequences: React.FC<IProps> = ({
             timestamp={data?.timestamp?.seconds}
             showSocial={data?.[name as keyof PageData]?.socialShare}
           />
+          {data?.[name as keyof PageData]?.image && (
+            <div className={styles.imageDiv}>
+              <Image
+                src={data?.[name as keyof PageData]?.image}
+                alt={data?.[name as keyof PageData]?.imageAltText}
+                className={styles.blogImg}
+                fill
+              />
+            </div>
+          )}
           <div className={styles.container}>
             <div className={styles.verticalMargin}></div>
             <div className={styles.verticalMargin}>
