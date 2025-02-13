@@ -86,7 +86,7 @@ const TopTalent: React.FC = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: { xs: "center", md: "left" },
-              marginTop: "80px",
+              marginTop: "40px",
             }}
           >
             <Button
@@ -203,7 +203,7 @@ const styles = {
     //   md: "40px",
     //   lg: "40px",
     // },
-    width: { xs: "90%", lg: "68%" },
+    width: { xs: "auto", lg: "68%" },
     color: "rgba(0,0,0,0.77)",
     marginTop: "20px",
     textAlign: {

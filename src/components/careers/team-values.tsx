@@ -19,7 +19,7 @@ type IProps = {
 
 const TeamValues: React.FunctionComponent = () => {
   return (
-    <Box sx={{ marginBottom: 20 }}>
+    <Box sx={{ marginBottom: { xs: 0, md: 0 } }}>
       <Box sx={styles.headingContanier}>
         <Typography
           sx={styles.mainHeading}
@@ -40,7 +40,7 @@ const TeamValues: React.FunctionComponent = () => {
         }}
       >
         <Grid item sx={{ width: { xs: "100%", sm: "auto" } }}>
-        <InfoBox
+          <InfoBox
             heading="Succeed together"
             dec="Whether it's for our customers or for each other, we always make time to help"
             icon="succeed"
