@@ -21,7 +21,7 @@ const TopTalent: React.FC = () => {
               xs: "70px",
               sm: "60px",
               md: "60px",
-              lg: "0px",
+              lg: "60px",
             },
           }}
         >
