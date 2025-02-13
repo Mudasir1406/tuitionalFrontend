@@ -25,6 +25,7 @@ const TeamValues: React.FunctionComponent = () => {
           sx={styles.mainHeading}
           className={leagueSpartan.className}
           component={"h2"}
+          variant="h2"
         >
           Our Team Values
         </Typography>
@@ -96,8 +97,8 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "186px", sm: "322px", md: "360px", lg: "460px" },
-        height: { xs: "167px", sm: "275px", md: "313px", lg: "413px" },
+        width: { xs: "220px", sm: "322px", md: "360px", lg: "460px" },
+        height: { xs: "200px", sm: "285px", md: "313px", lg: "413px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -183,10 +184,18 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         </Box>
       </Box>
       <Box sx={{ height: "35%" }}>
-        <Typography sx={styles.heading} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.heading}
+          variant="h5"
+          className={leagueSpartan.className}
+        >
           {heading}
         </Typography>
-        <Typography sx={styles.dec} className={leagueSpartan.className}>
+        <Typography
+          sx={styles.dec}
+          variant="body2"
+          className={leagueSpartan.className}
+        >
           {dec}
         </Typography>
       </Box>
@@ -197,39 +206,40 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
 const styles = {
   infoBoxContanier: {},
   heading: {
-    fontSize: {
-      xs: "18px",
-      sm: "23px",
-      md: "28px",
-      lg: "35px",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "16px",
-      sm: "20px",
-      md: "25px",
-      lg: "35px",
-    },
+    // fontSize: {
+    //   xs: "18px",
+    //   sm: "23px",
+    //   md: "28px",
+    //   lg: "35px",
+    // },
+    // fontWeight: 500,
+    // lineHeight: {
+    //   xs: "16px",
+    //   sm: "20px",
+    //   md: "25px",
+    //   lg: "35px",
+    // },
     marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
     textAlign: "center",
   },
   dec: {
-    fontSize: {
-      xs: "12px",
-      sm: "16px",
-      md: "18px",
-      lg: "20px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "15px",
-      sm: "20px",
-      md: "25px",
-      lg: "30px",
-    },
+    // fontSize: {
+    //   xs: "12px",
+    //   sm: "16px",
+    //   md: "18px",
+    //   lg: "20px",
+    // },
+    // fontWeight: 400,
+    // lineHeight: {
+    //   xs: "15px",
+    //   sm: "20px",
+    //   md: "25px",
+    //   lg: "30px",
+    // },
     textAlign: "center",
-    maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "300px" },
+    maxWidth: { xs: "90%", sm: "90%", md: "280px", lg: "300px" },
     color: "rgba(0,0,0,0.77)",
+    margin:'auto'
   },
   icon: {
     width: { xs: "45px", sm: "55px", md: "75px", lg: "115px" },
@@ -246,19 +256,19 @@ const styles = {
   },
   mainHeading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 600,
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 600,
     marginTop: {
       xs: "40px",
       sm: "50px",

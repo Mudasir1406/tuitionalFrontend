@@ -25,7 +25,9 @@ function AllBlogs({ blogs }: Props) {
           <BlogCard data={blog} key={blog.id} />
         ))}
       </div>
-      {blogs?.length > 3 && <div className={styles.fadeEffect} />}
+      {blogs?.length > 3 && visibleCount < blogs.length && (
+        <div className={styles.fadeEffect} />
+      )}
 
       {visibleCount < blogs.length && (
         <div className={styles.loadMoreButton}>

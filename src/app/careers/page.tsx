@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "../../components";
 import { Box, Container, Grid } from "@mui/material";
 import Footer from "../../components/footer";
-import carrerHero from "../../../public/assets/images/static/carrerHero.png";
+// import carrerHero from "../../../public/assets/images/static/carrerHero.png";
 
 import Hero from "../../components/careers/hero";
 import TeamValues from "../../components/careers/team-values";
@@ -92,22 +92,22 @@ const style = {
   contanier: {
     background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
   },
-  hero: {
-    position: "relative",
-    background: {
-      xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",
-      lg: "none",
-    },
-    "::before": {
-      content: "''",
-      backgroundImage: `url(${carrerHero.src})`,
-      backgroundPosition: "bottom",
-      backgroundSize: "contain",
-      height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
-      width: "100%",
-      backgroundRepeat: "no-repeat",
-      position: "absolute",
-      bottom: 0,
-    },
-  },
+  // hero: {
+  //   position: "relative",
+  //   background: {
+  //     xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",
+  //     lg: "none",
+  //   },
+  //   "::before": {
+  //     content: "''",
+  //     backgroundImage: `url(${carrerHero.src})`,
+  //     backgroundPosition: "bottom",
+  //     backgroundSize: "contain",
+  //     height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
+  //     width: "100%",
+  //     backgroundRepeat: "no-repeat",
+  //     position: "absolute",
+  //     bottom: 0,
+  //   },
+  // },
 };
