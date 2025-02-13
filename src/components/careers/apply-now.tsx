@@ -235,10 +235,10 @@ const ApplyNow: React.FunctionComponent = () => {
               alignItems: "center",
               flexDirection: "column",
               zIndex: 4,
-              marginTop: 20,
+              marginTop: 10,
             }}
           >
-            <Typography sx={styles.heading} className={leagueSpartan.className}>
+            <Typography sx={styles.heading} variant="h2" className={leagueSpartan.className}>
               Apply Now
             </Typography>
             <Box
@@ -436,19 +436,19 @@ export default ApplyNow;
 const styles = {
   heading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 700,
 
     marginTop: {
       xs: "60px",
@@ -465,7 +465,7 @@ const styles = {
     position: "relative",
     marginLeft: {
       xs: "0px",
-      sm: "55px",
+      // sm: "55px",
       md: "60px",
       lg: "65px",
     },
