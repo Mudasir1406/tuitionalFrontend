@@ -36,7 +36,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
-            <Hero />
+            <Hero slug={slug} />
           </div>
           <div className={styles["hero-picture"]}>{/* <HeroInfo /> */}</div>
         </div>
@@ -46,7 +46,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <SchoolLogosSection />
       </div>
 
-      <SearchBar searchQuery={slug || ""} />
+      <SearchBar searchQuery={slug || ""} type={'category'}/>
       <AllBlogs blogs={filteredData} />
 
       <Footer />
