@@ -6,7 +6,13 @@ import { Button, TextField, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { usePathname, useRouter } from "next/navigation";
 
-function SearchBar({ searchQuery }: { searchQuery: string }) {
+function SearchBar({
+  searchQuery,
+  type,
+}: {
+  searchQuery: string;
+  type?: string;
+}) {
   const [search, setSearch] = useState(searchQuery);
   const router = useRouter();
 
@@ -58,7 +64,7 @@ function SearchBar({ searchQuery }: { searchQuery: string }) {
           Search
         </Button>
       </div>
-      {searchQuery && (
+      {type === "all" && searchQuery && (
         <div className={styles.searchResult}>
           <Typography
             className={`${leagueSpartan.className}`}

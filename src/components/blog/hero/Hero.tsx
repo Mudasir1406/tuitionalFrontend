@@ -8,8 +8,11 @@ import PopUpButton from "@/components/pop-up-button";
 import Image from "next/image";
 import greenstar from "../../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../../public/assets/images/svg/greenstars.svg";
+interface Props {
+  slug?: string;
+}
 
-const Hero: React.FC = () => {
+const Hero = ({ slug }: Props) => {
   const [formData, setFormData] = useState<{ phone: string }>({
     phone: "",
   });
@@ -28,7 +31,7 @@ const Hero: React.FC = () => {
         variant="h1"
         component={"h1"}
       >
-        Our Blogs{" "}
+        {slug ? slug : "Our Blogs"}
       </Typography>
 
       <Typography
