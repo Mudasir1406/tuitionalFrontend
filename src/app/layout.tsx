@@ -35,7 +35,7 @@ export default function RootLayout({
       /> */}
       <head>
         {/* ✅ Google Tag Manager (gtag.js) */}
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-16865900759"
         />
@@ -50,10 +50,24 @@ export default function RootLayout({
               gtag('config', 'AW-16865900759');
             `,
           }}
-        />
+        /> */}
 
-        {/* ✅ Event Snippet for Book Appointment Conversion */}
+        {/* ✅ Google Tag Manager (GTM) */}
         <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NG7HWSZT');
+          `,
+          }}
+        />
+        {/* ✅ Event Snippet for Book Appointment Conversion */}
+        {/* <Script
           id="google-conversion-event"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -61,11 +75,21 @@ export default function RootLayout({
               gtag('event', 'conversion', {'send_to': 'AW-16865900759/k1VvCPHjjJwaENfxpOo-'});
             `,
           }}
-        />
+        /> */}
       </head>
+
       <ThemeProvider theme={theme}>
         <DrawerProvider>
           <body style={{ margin: 0 }}>
+            <noscript>
+              <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              />
+            </noscript>
+
             <DynamicModel />
             {children}
             <Metrics />
