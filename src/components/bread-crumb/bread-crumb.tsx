@@ -18,10 +18,15 @@ const Breadcrumb: React.FC = () => {
 
   const pathSegments = pathname.split("/").filter(Boolean);
 
+    // Filter out "tag" or "category" if they appear right after "blog"
+    const filteredSegments = pathSegments.filter((segment, index) => {
+      return !(pathSegments[index - 1] === "blog" && (segment === "tag" || segment === "category"));
+    });
+
   // Generate breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = pathSegments.map(
+  const breadcrumbItems: BreadcrumbItem[] = filteredSegments.map(
     (segment, index) => {
-      const href = "/" + pathSegments.slice(0, index + 1).join("/");
+      const href = "/" + filteredSegments.slice(0, index + 1).join("/");
 
       const label = segment
         .replace(/-/g, " ") // Replace dashes with spaces
@@ -66,14 +71,7 @@ const Breadcrumb: React.FC = () => {
                 {item.label}
               </Typography>
             </Link>
-            // <Typography
-            //   onClick={() => redirectToExternal(item.href)}
-            //   variant="body2"
-            //   component={"p"}
-            //   className={`${leagueSpartan.className} `}
-            // >
-            //   {item.label}
-            // </Typography>
+            
           )}
         </div>
       ))}
