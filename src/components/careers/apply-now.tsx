@@ -157,6 +157,8 @@ const ApplyNow: React.FunctionComponent = () => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
+
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -235,10 +237,14 @@ const ApplyNow: React.FunctionComponent = () => {
               alignItems: "center",
               flexDirection: "column",
               zIndex: 4,
-              marginTop: {xs:5, md:10},
+              marginTop: { xs: 5, md: 10 },
             }}
           >
-            <Typography sx={styles.heading} variant="h2" className={leagueSpartan.className}>
+            <Typography
+              sx={styles.heading}
+              variant="h2"
+              className={leagueSpartan.className}
+            >
               Apply Now
             </Typography>
             <Box
