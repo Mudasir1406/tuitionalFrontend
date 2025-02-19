@@ -30,7 +30,7 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
 
   return (
     <>
-      {/* <Header />
+      <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
@@ -47,7 +47,7 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
       <SearchBar searchQuery={searchParams?.search || ""} />
       <AllBlogs blogs={filteredData} />
 
-      <Footer /> */}
+      <Footer />
     </>
   );
 };
