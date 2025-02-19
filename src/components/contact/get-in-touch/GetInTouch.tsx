@@ -134,6 +134,8 @@ const GetInTouch: React.FunctionComponent = () => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
+
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -172,6 +174,8 @@ const GetInTouch: React.FunctionComponent = () => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
+
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
