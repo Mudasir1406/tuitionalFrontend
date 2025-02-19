@@ -40,7 +40,12 @@ function TagsAndSocial({ tags, showSocial }: Props) {
         </Typography>
         <div className={styles.allTags}>
           {tags?.map((tag: any, i) => (
-            <Tag label={tag.name} key={i} link={`${newUrl}/${tag.name}`} />
+            // <Tag label={tag.name} key={i} link={`${newUrl}/${tag.name}`} />
+            <Tag
+              label={tag.name}
+              key={i}
+              link={`${newUrl}/${tag?.name?.replace(/\s+/g, "-")}`}
+            />
           ))}
         </div>
       </div>
