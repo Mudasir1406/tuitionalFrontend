@@ -9,6 +9,7 @@ import SchoolLogosSection from "@/components/grade-subject-level/school-logos-se
 import dynamic from "next/dynamic";
 import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
+import Breadcrumb from "@/components/bread-crumb/bread-crumb";
 
 const SearchBar = dynamic(
   () => import("@/components/blog/search-bar/SearchBar"),
@@ -22,10 +23,28 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getDocumentsByName("blogs");
   console.log("getDocumentsByName", data);
 
+  // const filteredData = slug
+  //   ? data.filter((blog: AllBlogsData) =>
+  //       blog?.heroSection?.category?.some((tag: { name: string; id: string }) =>
+  //         tag.name?.toLowerCase().includes(slug.toLowerCase())
+  //       )
+  //     )
+  //   : data;
+
   const filteredData = slug
     ? data.filter((blog: AllBlogsData) =>
-        blog?.heroSection?.category?.some((tag: { name: string; id: string }) =>
-          tag.name?.toLowerCase().includes(slug.toLowerCase())
+        blog?.heroSection?.category?.some(
+          (tag: { name: string; id: string }) => {
+            const normalizedTagName = tag.name
+              ?.toLowerCase()
+              .replace(/[-\s]+/g, " ");
+            const normalizedSlug = slug.toLowerCase().replace(/[-\s]+/g, " ");
+            return normalizedTagName.includes(normalizedSlug);
+          }
+
+          // tag.name
+          //   ?.toLowerCase()
+          //   .includes(slug.replace(/-/g, " ").toLowerCase())
         )
       )
     : data;
@@ -36,7 +55,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
-            <Hero />
+            <Hero
+              slug={slug
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, (char) => char.toUpperCase())}
+            />{" "}
           </div>
           <div className={styles["hero-picture"]}></div>
         </div>
@@ -46,7 +69,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <SchoolLogosSection />
       </div>
 
-      <SearchBar searchQuery={slug || ""} />
+      {/* <SearchBar searchQuery={slug || ""} type={'category'}/> */}
+      <Breadcrumb />
+
       <AllBlogs blogs={filteredData} />
 
       <Footer /> */}

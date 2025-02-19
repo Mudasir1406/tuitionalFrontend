@@ -159,6 +159,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
