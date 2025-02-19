@@ -51,7 +51,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      {/* <Header />
+      <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
@@ -74,7 +74,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
       <AllBlogs blogs={filteredData} />
 
-      <Footer /> */}
+      <Footer />
     </>
   );
 };
