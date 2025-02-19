@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./Accordion.module.css";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
+import Link from "next/link";
 
 export interface AccordionProps {
   title: string;
@@ -43,18 +44,40 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
       </div>
       {isOpen && (
         <ul className={styles.items}>
-          {items?.map((item, index) => (
-            <Typography
-              // sx={style.guidence}
-              variant={"caption"}
-              className={`${leagueSpartan.className} ${styles.list}`}
-              component={"li"}
-              onClick={() => handleRedirect(item.name)} // Handle click and redirect
-              key={index}
-            >
-              {item?.name}
-            </Typography>
-          ))}
+          {/* {items?.map((item, index) => (
+            <Link href={} key={index}>
+              <Typography
+                // sx={style.guidence}
+                variant={"caption"}
+                className={`${leagueSpartan.className} ${styles.list}`}
+                component={"li"}
+                onClick={() => handleRedirect(item.name)} // Handle click and redirect
+                key={index}
+              >
+                {item?.name}
+              </Typography>
+            </Link>
+          ))} */}
+          {items?.map((item, index) => {
+            const queryKey = encodeURIComponent(
+              title.toLowerCase().replace(/\s+/g, "-")
+            );
+            const queryValue = encodeURIComponent(
+              item.name.toLowerCase().replace(/\s+/g, "-")
+            );
+
+            return (
+              <Link href={`/blog/${queryKey}/${queryValue}`} key={index}>
+                <Typography
+                  variant="caption"
+                  className={`${leagueSpartan.className} ${styles.list}`}
+                  component="li"
+                >
+                  {item?.name}
+                </Typography>
+              </Link>
+            );
+          })}
         </ul>
       )}
     </div>
