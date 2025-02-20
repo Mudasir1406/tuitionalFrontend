@@ -109,6 +109,13 @@ const GetInTouch: React.FunctionComponent = () => {
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "contact_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "contact Form",
+      });
       return;
     }
     await addFormData("contact", formData);
@@ -152,9 +159,20 @@ const GetInTouch: React.FunctionComponent = () => {
       });
       console.log("formData", formData);
       toast.success("Form submitted successfully!");
-    } catch (error) {
+        // ✅ Send Success Event to GTM
+        (window as any).dataLayer.push({
+          event: "contact_form_success",
+          formData: formData, // You can include submitted data for analytics
+          formType: "contact Form",
+        });
+    } catch (error:any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "contact_form_failed",
+        error: error.message,
+        formType: "contact Form",
+      });
     } finally {
       setLoading(false);
       setFormData({
