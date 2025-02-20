@@ -27,6 +27,7 @@ import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { useMediaQuery, useTheme } from "@mui/material";
 import zIndex from "@mui/material/styles/zIndex";
+import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
   background?: any;
@@ -130,8 +131,17 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "form_submission_error",
+        formData: newErrors, // Send errors if needed
+      });
+
       return;
     }
+
+    await addFormData("lead", formData);
 
     const formDataObject = new FormData();
 
@@ -171,9 +181,19 @@ const ContactUs: React.FunctionComponent<IProps> = ({
         html: createEmailTemplate(formData),
       });
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "form_submission_success",
+        formData: formData, // You can include submitted data for analytics
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      // ✅ Send Error Event to GTM
+      (window as any).dataLayer.push({
+        event: "form_submission_failed",
+        error: error.message,
+      });
     } finally {
       setLoading(false);
       setFormData({

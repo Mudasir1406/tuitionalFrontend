@@ -24,6 +24,7 @@ import DropDown from "../DropDown/DropDown";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { Height } from "@mui/icons-material";
+import { addFormData } from "@/utils/globalFunction";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -135,6 +136,7 @@ const ApplyNow: React.FunctionComponent = () => {
       toast.error("Please fix the errors in the form before submitting.");
       return;
     }
+    await addFormData("careers", formData);
 
     const formDataObject = new FormData();
 

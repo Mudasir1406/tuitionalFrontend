@@ -23,6 +23,7 @@ import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
   background?: any;
@@ -135,6 +136,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       toast.error("Please fix the errors in the form before submitting.");
       return;
     }
+    await addFormData("lead", formData);
 
     const formDataObject = new FormData();
 
