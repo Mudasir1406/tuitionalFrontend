@@ -1,15 +1,19 @@
-// import Link from "next/link";
+import { db } from "@/firebaseConfig/config";
+import { addDoc, collection } from "firebase/firestore";
 
-// export const redirectToExternal = (url: string, newTab: boolean = false) => {
-//   if (!url) return null;
-
-//   return (
-//     <Link
-//       href={url}
-//       target={newTab ? "_blank" : "_self"}
-//       rel="noopener noreferrer"
-//     >
-//       {url}
-//     </Link>
-//   );
-// };
+export const addFormData = async (
+  formType: "careers" | "contact" | "lead",
+  formData: any
+) => {
+  try {
+    const docRef = await addDoc(
+      collection(db, `tuitional-forms/${formType}/form`),
+      formData
+    );
+    console.log("Document written with ID: ", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    throw error;
+  }
+};

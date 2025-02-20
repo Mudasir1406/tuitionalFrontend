@@ -24,6 +24,7 @@ import "react-phone-number-input/style.css";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
   open: boolean;
@@ -206,6 +207,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       toast.error("Please fix the errors in the form before submitting.");
       return;
     }
+    await addFormData("contact", formData);
+
     const formDataObject = new FormData();
     Object.entries(formData).map((value) =>
       formDataObject.append(value[0], value[1])
@@ -218,17 +221,18 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
     const formDataString = keyValuePairs.join("&");
     try {
-      // const response = await fetch(
-      //   "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
-      //   {
-      //     redirect: "follow",
-      //     method: "POST",
-      //     body: formDataString,
-      //     headers: {
-      //       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      //     },
-      //   }
-      // );
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
+        {
+          redirect: "follow",
+          method: "POST",
+          mode: "no-cors",
+          body: formDataString,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+        }
+      );
       // console.log("formData", formData);
       await sendEmail({
         recipientEmail: HELLOTUITIONALEDU,

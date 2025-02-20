@@ -25,6 +25,7 @@ import { ContactFormType } from "@/components/home/form-dialouge";
 import Input from "@/components/input/Input";
 import CustomInput from "@/components/custom-input/custom-input";
 import lines from "../../../../public/assets/images/static/lines.png";
+import { addFormData } from "@/utils/globalFunction";
 
 const GetInTouch: React.FunctionComponent = () => {
   const [formData, setFormData] = useState({
@@ -110,6 +111,7 @@ const GetInTouch: React.FunctionComponent = () => {
       toast.error("Please fix the errors in the form before submitting.");
       return;
     }
+    await addFormData("contact", formData);
 
     const formDataObject = new FormData();
 
@@ -168,23 +170,23 @@ const GetInTouch: React.FunctionComponent = () => {
       });
     }
 
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxC8t_5083m612FzAesqksc8RSinMiq7o32coNB5Rd2fPV9uZOjPxNJGMoekFV9ezVVKg/exec",
-        {
-          redirect: "follow",
-          method: "POST",
-          mode: "no-cors", // Bypass CORS
+    // try {
+    //   const response = await fetch(
+    //     "https://script.google.com/macros/s/AKfycbxC8t_5083m612FzAesqksc8RSinMiq7o32coNB5Rd2fPV9uZOjPxNJGMoekFV9ezVVKg/exec",
+    //     {
+    //       redirect: "follow",
+    //       method: "POST",
+    //       mode: "no-cors", // Bypass CORS
 
-          body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-        }
-      );
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
+    //       body: formDataString,
+    //       headers: {
+    //         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    //       },
+    //     }
+    //   );
+    // } catch (error) {
+    //   console.error("Error saving data:", error);
+    // }
   };
 
   React.useEffect(() => {
