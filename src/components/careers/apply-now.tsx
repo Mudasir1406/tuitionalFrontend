@@ -134,6 +134,13 @@ const ApplyNow: React.FunctionComponent = () => {
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "careers_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "careers Form",
+      });
       return;
     }
     await addFormData("careers", formData);
@@ -176,9 +183,20 @@ const ApplyNow: React.FunctionComponent = () => {
         html: createCareerTemplate(formData),
       });
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "careers_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "careers Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "careers_form_failed",
+        error: error.message,
+        formType: "careers Form",
+      });
     } finally {
       setLoading(false);
       setFormData({
