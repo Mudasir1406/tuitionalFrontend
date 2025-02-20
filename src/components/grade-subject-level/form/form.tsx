@@ -134,6 +134,12 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "lead_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "lead Form",
+      });
       return;
     }
     await addFormData("lead", formData);
@@ -174,11 +180,22 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         text: "",
         html: createEmailTemplate(formData),
       });
-      console.log("formData", formData);
+      // console.log("formData", formData);
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "lead_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "lead Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "lead_form_failed",
+        error: error.message,
+        formType: "lead Form",
+      });
     } finally {
       setLoading(false);
       setFormData({
