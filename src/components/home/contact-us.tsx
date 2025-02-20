@@ -134,8 +134,9 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
-        event: "form_submission_error",
+        event: "lead_form_error",
         formData: newErrors, // Send errors if needed
+        formType: "lead Form",
       });
 
       return;
@@ -183,16 +184,18 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({
-        event: "form_submission_success",
+        event: "lead_form_success",
         formData: formData, // You can include submitted data for analytics
+        formType: "lead Form",
       });
     } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       // ✅ Send Error Event to GTM
       (window as any).dataLayer.push({
-        event: "form_submission_failed",
+        event: "lead_form_failed",
         error: error.message,
+        formType: "lead Form",
       });
     } finally {
       setLoading(false);
