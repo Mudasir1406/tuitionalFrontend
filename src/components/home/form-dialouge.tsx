@@ -215,7 +215,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
       return;
     }
-    await addFormData("contact", formData);
+    await addFormData("lead", formData);
 
     const formDataObject = new FormData();
     Object.entries(formData).map((value) =>
@@ -255,7 +255,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         formData: formData, // You can include submitted data for analytics
         formType: "lead Form",
       });
-    } catch (error:any) {
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       (window as any).dataLayer.push({
@@ -716,7 +716,7 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    fontSize: "1.5vh",
+    // fontSize: "1.5vh",
     fontWeight: 400,
     "& .MuiOutlinedInputRoot": {
       height: "5.5vh",
