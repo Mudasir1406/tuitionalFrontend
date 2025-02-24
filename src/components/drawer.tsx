@@ -65,23 +65,23 @@ const ResponsiveDrawer = () => {
             paddingX: "7.1%",
           }}
         >
-          <Link href="/" style={styles.link} onClick={toggleDrawer}>
+          <a href="/" style={styles.link} onClick={toggleDrawer}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Home
             </Typography>
-          </Link>
-          <Link href="/about" style={styles.link} onClick={toggleDrawer}>
+          </a>
+          <a href="/about" style={styles.link} onClick={toggleDrawer}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               About
             </Typography>
-          </Link>
-          <Link
+          </a>
+          <a
             href="/communityandevents"
             style={styles.link}
             onClick={toggleDrawer}
@@ -92,23 +92,23 @@ const ResponsiveDrawer = () => {
             >
               Community & Events
             </Typography>
-          </Link>
-          <Link onClick={toggleDrawer} href="/testimonials" style={styles.link}>
+          </a>
+          <a onClick={toggleDrawer} href="/testimonials" style={styles.link}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Testimonials
             </Typography>
-          </Link>
-          <Link href="/contact" style={styles.link} onClick={toggleDrawer}>
+          </a>
+          <a href="/contact" style={styles.link} onClick={toggleDrawer}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Contact
             </Typography>
-          </Link>
+          </a>
         </Box>
       </Drawer>
     </div>

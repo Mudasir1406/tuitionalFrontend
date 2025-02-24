@@ -58,7 +58,7 @@ const Header: React.FC<IProps> = ({ background }) => {
             alignItems: "center",
           }}
         >
-          <Link
+          <a
             href={"https://tuitionaledu.com/"}
             // target="_blank"
             rel="noopener noreferrer"
@@ -77,7 +77,7 @@ const Header: React.FC<IProps> = ({ background }) => {
                 quality={100}
               />
             </Box>
-          </Link>
+          </a>
           <Box sx={styles.logoMobile}>
             <Image
               src={logoMobile.src}
@@ -92,22 +92,22 @@ const Header: React.FC<IProps> = ({ background }) => {
             />
           </Box>
 
-          <Link href={"/"} style={styles.link}>
+          <a href={"/"} style={styles.link}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Home
             </Typography>
-          </Link>
-          <Link href={"/about"} style={styles.link}>
+          </a>
+          <a href={"/about"} style={styles.link}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               About
             </Typography>
-          </Link>
+          </a>
           {/* <Link href={"/Community & Events"} style={styles.link}> */}
           <Typography
             sx={styles.typography}
@@ -116,22 +116,22 @@ const Header: React.FC<IProps> = ({ background }) => {
             Community & Events
           </Typography>
           {/* </Link> */}
-          <Link href={"/testimonials"} style={styles.link}>
+          <a href={"/testimonials"} style={styles.link}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Testimonials
             </Typography>
-          </Link>
-          <Link href={"/contact"} style={styles.link}>
+          </a>
+          <a href={"/contact"} style={styles.link}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
               Contact
             </Typography>
-          </Link>
+          </a>
           <Button
             variant="outlined"
             sx={styles.outlinedBtn}

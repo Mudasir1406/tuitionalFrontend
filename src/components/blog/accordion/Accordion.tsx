@@ -67,7 +67,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
             );
 
             return (
-              <Link href={`/blog/${queryKey}/${queryValue}`} key={index}>
+              <a href={`/blog/${queryKey}/${queryValue}`} key={index}>
                 <Typography
                   variant="caption"
                   className={`${leagueSpartan.className} ${styles.list}`}
@@ -75,7 +75,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
                 >
                   {item?.name}
                 </Typography>
-              </Link>
+              </a>
             );
           })}
         </ul>

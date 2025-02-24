@@ -53,7 +53,7 @@ function BlogCard({ data }: Props) {
           >
             {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
           </Typography>
-          <Link href={`/blog/${data?.slugData}`}>
+          <a href={`/blog/${data?.slugData}`}>
             <Typography
               className={`${styles.title} ${leagueSpartan.className}`}
               variant="subtitle2"
@@ -62,18 +62,18 @@ function BlogCard({ data }: Props) {
             >
               {data?.heroSection?.header}
             </Typography>
-          </Link>
+          </a>
         </div>
 
         <div className={styles.textDiv_text}>
-          <Link href={`/blog/${data?.slugData}`}>
+          <a href={`/blog/${data?.slugData}`}>
             <div
               className={styles.iconDiv}
               // onClick={() => redirectToExternal(`/blog/${data?.id}`)}
             >
               <NorthEastIcon />
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
