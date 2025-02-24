@@ -21,17 +21,15 @@ const FooterLinks = ({
         const href = findExactSubjectURL(item);
         const href2 = `/${generateSlug(item)}`;
         return (
-          <Link href={exact ? href : href2} key={index}>
+          <a href={exact ? href : href2} key={index}>
             <Typography
-              // onClick={() => router.push(exact ? href : href2)}
-              // onClick={() => redirectToExternal(exact ? href : href2, false)}
               sx={styles.text}
               variant="body2"
               className={leagueSpartan.className}
             >
               {item}
             </Typography>
-          </Link>
+          </a>
         );
       })}
     </>

@@ -18,10 +18,13 @@ const Breadcrumb: React.FC = () => {
 
   const pathSegments = pathname.split("/").filter(Boolean);
 
-    // Filter out "tag" or "category" if they appear right after "blog"
-    const filteredSegments = pathSegments.filter((segment, index) => {
-      return !(pathSegments[index - 1] === "blog" && (segment === "tag" || segment === "category"));
-    });
+  // Filter out "tag" or "category" if they appear right after "blog"
+  const filteredSegments = pathSegments.filter((segment, index) => {
+    return !(
+      pathSegments[index - 1] === "blog" &&
+      (segment === "tag" || segment === "category")
+    );
+  });
 
   // Generate breadcrumb items
   const breadcrumbItems: BreadcrumbItem[] = filteredSegments.map(
@@ -39,7 +42,7 @@ const Breadcrumb: React.FC = () => {
   return (
     <nav className={styles.breadcrumb}>
       {/* <span className={styles.breadcrumbItem}> */}
-      <Link href={`/`}>
+      <a href={`/`}>
         <Typography
           variant="body2"
           component={"p"}
@@ -47,7 +50,7 @@ const Breadcrumb: React.FC = () => {
         >
           Home
         </Typography>
-      </Link>
+      </a>
 
       {/* </span> */}
       {breadcrumbItems.map((item, index) => (
@@ -62,7 +65,7 @@ const Breadcrumb: React.FC = () => {
               {item.label}
             </Typography>
           ) : (
-            <Link href={`${item.href}`}>
+            <a href={`${item.href}`}>
               <Typography
                 variant="body2"
                 component={"p"}
@@ -70,8 +73,7 @@ const Breadcrumb: React.FC = () => {
               >
                 {item.label}
               </Typography>
-            </Link>
-            
+            </a>
           )}
         </div>
       ))}

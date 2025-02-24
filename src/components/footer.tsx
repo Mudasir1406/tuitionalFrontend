@@ -344,7 +344,7 @@ const Footer: React.FC = async () => {
                     About us
                   </Typography>
                   {footerData?.aboutUs.map((item, index) => (
-                    <Link
+                    <a
                       href={`/${item.toLowerCase()}`}
                       style={{
                         textDecoration: "none",
@@ -360,7 +360,7 @@ const Footer: React.FC = async () => {
                       >
                         {item}
                       </Typography>
-                    </Link>
+                    </a>
                   ))}
                 </Box>
               </Box>
@@ -383,7 +383,7 @@ const Footer: React.FC = async () => {
                   {footerData?.aboutUs.map((item, index) => {
                     const url = item.toLowerCase();
                     return (
-                      <Link
+                      <a
                         href={`/${url}`}
                         style={{ textDecoration: "none" }}
                         key={index}
@@ -395,7 +395,7 @@ const Footer: React.FC = async () => {
                         >
                           {item}
                         </Typography>
-                      </Link>
+                      </a>
                     );
                   })}
                 </Box>

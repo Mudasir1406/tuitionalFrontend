@@ -24,7 +24,7 @@ const Tag: React.FC<TagProps> = ({ label, index, link }) => {
   const colorClass = colorClasses[index % colorClasses.length];
 
   return (
-    <Link href={`${link}`}>
+    <a href={`${link}`}>
       <Typography
         className={`${leagueSpartan.className} ${styles.tag} ${colorClass}`}
         component={"p"}
@@ -33,7 +33,7 @@ const Tag: React.FC<TagProps> = ({ label, index, link }) => {
       >
         {label}
       </Typography>
-    </Link>
+    </a>
   );
   // <div className={`${styles.tag} ${colorClass}`}>{label}</div>);
 };

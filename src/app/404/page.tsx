@@ -46,21 +46,18 @@ export default function Custom404() {
             variant="h4"
             component={"span"}
           >
-            <Link
-              href="/"
-              className={`${styles.link} ${leagueSpartan.className}`}
-            >
+            <a href="/" className={`${styles.link} ${leagueSpartan.className}`}>
               {" "}
               Homepage{" "}
-            </Link>{" "}
+            </a>{" "}
             To Restart Your Journey.
           </Typography>
         </Typography>
       </div>
       <div className={styles.logoDiv}>
-        <Link href="/">
+        <a href="/">
           <Image src={logo} alt="logo" className={styles.logo} />
-        </Link>
+        </a>
       </div>
     </div>
   );

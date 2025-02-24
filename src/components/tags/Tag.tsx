@@ -13,7 +13,7 @@ interface TagProps {
 
 const Tag: React.FC<TagProps> = ({ label, link }) => {
   return (
-    <Link href={`${link}`}>
+    <a href={`${link}`}>
       <Typography
         className={`${styles.tag} ${leagueSpartan.className}`}
         component={"p"}
@@ -22,7 +22,7 @@ const Tag: React.FC<TagProps> = ({ label, link }) => {
       >
         {label}
       </Typography>
-    </Link>
+    </a>
   );
 };
 
