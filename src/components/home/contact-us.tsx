@@ -207,6 +207,13 @@ const ContactUs: React.FunctionComponent<IProps> = ({
         curriculum: "",
         subjects: "",
         message: "",
+        date: "",
+        time: "",
+        ip: "",
+        browser: "",
+        pageURL: "",
+        country: "",
+      
       });
     }
   };
@@ -215,20 +222,30 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       setFilterData(data);
     });
   }, []);
-  useEffect(() => {
+
+  React.useEffect(() => {
     const getClientLocation = async () => {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const res = await fetch("https://ipinfo.io/json");
-      const locationData = await res.json();
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
 
-      setFormData({
-        ...formData,
-        browser,
-        pageURL,
-        ip: locationData?.ip,
-        country: locationData?.country,
-      });
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
     };
 
     getClientLocation();

@@ -207,9 +207,39 @@ const ApplyNow: React.FunctionComponent = () => {
         country: "",
         position: "",
         message: "",
+        browser: "",
+        ip: "",
+        pageURL: "",
       });
     }
   };
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    };
+
+    getClientLocation();
+  }, []);
 
   return (
     <Box sx={styles.container}>

@@ -39,6 +39,54 @@ const Filter: React.FC = () => {
   useEffect(() => {
     getFilterData().then((data) => setFilterData(data));
   }, []);
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    };
+
+    getClientLocation();
+  }, []);
+
+  // React.useEffect(() => {
+  //   const getClientLocation = async () => {
+  //     const browser = navigator.userAgent;
+  //     const pageURL = window.location.href;
+  //     const res = await fetch("https://ipinfo.io/json");
+  //     const locationData = await res.json();
+  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+  //     const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+  //     setFormData({
+  //       ...formData,
+  //       browser,
+  //       pageURL,
+  //       ip: locationData?.ip,
+  //       country: locationData?.country,
+  //     });
+  //   };
+
+  //   getClientLocation();
+  // }, []);
   return (
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>

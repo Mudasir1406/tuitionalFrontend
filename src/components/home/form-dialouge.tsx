@@ -44,6 +44,8 @@ export type FormType = {
   ip?: string;
   browser?: string;
   pageURL?: string;
+  time?: string;
+  date?: string;
 };
 
 export type CareersFormType = {
@@ -145,20 +147,48 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
   }, [values]);
 
+  // React.useEffect(() => {
+  //   const getClientLocation = async () => {
+  //     const browser = navigator.userAgent;
+  //     const pageURL = window.location.href;
+  //     const res = await fetch("https://ipinfo.io/json");
+  //     const locationData = await res.json();
+
+  //     setFormData({
+  //       ...formData,
+  //       browser,
+  //       pageURL,
+  //       ip: locationData?.ip,
+  //       country: locationData?.country,
+  //     });
+  //   };
+
+  //   getClientLocation();
+  // }, []);
+
   React.useEffect(() => {
     const getClientLocation = async () => {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const res = await fetch("https://ipinfo.io/json");
-      const locationData = await res.json();
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
 
-      setFormData({
-        ...formData,
-        browser,
-        pageURL,
-        ip: locationData?.ip,
-        country: locationData?.country,
-      });
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
     };
 
     getClientLocation();
@@ -215,6 +245,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
       return;
     }
+    console.log("formData", formData);
     await addFormData("lead", formData);
 
     const formDataObject = new FormData();
@@ -275,6 +306,12 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         curriculum: "",
         subjects: "",
         message: "",
+        time: "",
+        date: "",
+        browser: "",
+        country: "",
+        ip: "",
+        pageURL: "",
       });
     }
   };
@@ -590,7 +627,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               {loading ? (
                 <CircularProgress
                   sx={{ width: "12px", height: "12px", color: "white" }}
-                  size={20}
+                  size={18}
                 />
               ) : (
                 "Submit Now"
