@@ -38,6 +38,8 @@ const GetInTouch: React.FunctionComponent = () => {
     country: "",
     ip: "",
     pageURL: "",
+    time: "",
+    date: "",
   });
   const [errors, setErrors] = useState<Partial<ContactFormType>>({});
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -159,13 +161,13 @@ const GetInTouch: React.FunctionComponent = () => {
       });
       console.log("formData", formData);
       toast.success("Form submitted successfully!");
-        // ✅ Send Success Event to GTM
-        (window as any).dataLayer.push({
-          event: "contact_form_success",
-          formData: formData, // You can include submitted data for analytics
-          formType: "contact Form",
-        });
-    } catch (error:any) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "contact_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "contact Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       (window as any).dataLayer.push({
@@ -185,6 +187,8 @@ const GetInTouch: React.FunctionComponent = () => {
         country: "",
         ip: "",
         pageURL: "",
+        date: "",
+        time: "",
       });
     }
 
@@ -211,20 +215,30 @@ const GetInTouch: React.FunctionComponent = () => {
     const getClientLocation = async () => {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const res = await fetch("https://ipinfo.io/json");
-      const locationData = await res.json();
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
 
-      setFormData({
-        ...formData,
-        browser,
-        pageURL,
-        ip: locationData?.ip,
-        country: locationData?.country,
-      });
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
     };
 
     getClientLocation();
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.background} />
