@@ -71,6 +71,8 @@ export type ContactFormType = {
   ip?: string;
   browser?: string;
   pageURL?: string;
+  date?: string;
+  time?: string;
 };
 const FormDialog: React.FunctionComponent<IProps> = ({
   open,

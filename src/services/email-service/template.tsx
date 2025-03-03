@@ -95,6 +95,14 @@ export const createContactTemplate = (formData: ContactFormType) => `
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
           <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
         </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Date:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.date}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Time:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.time}</td>
+        </tr>
       </table>
     </body>
   </html>
@@ -148,6 +156,14 @@ export const createEmailTemplate = (formData: FormType) => `
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
           <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
+        </tr>
+         <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Date:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.date}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd; padding: 8px;">Time:</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.time}</td>
         </tr>
       </table>
     </body>
