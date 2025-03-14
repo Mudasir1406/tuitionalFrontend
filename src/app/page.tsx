@@ -21,6 +21,7 @@ import { getFaqs } from "@/services/faqs/faqs";
 import { Faqs_Type } from "@/types/grade-subject-level.types";
 import "./globals.css";
 import GetStarted from "@/components/grade-subject-level/get-started";
+import style from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
@@ -124,7 +125,7 @@ const Home: React.FC = async () => {
       />
       <Header />
       <Container sx={styles.contanier}>
-        <Grid container>
+        {/* <Grid container>
           <Grid
             item
             lg={6}
@@ -140,7 +141,19 @@ const Home: React.FC = async () => {
           <Grid item lg={6} md={12} sm={12} xs={12} sx={styles.infoGrid}>
             <Info />
           </Grid>
-        </Grid>
+        </Grid> */}
+        <div className={style.container}>
+          <div className={style["grid-container"]}>
+            <div className={style["hero"]}>
+              {/* <Hero /> */}
+              <Filter />
+            </div>
+            <div className={style["hero-picture"]}>
+              {" "}
+              <Info />
+            </div>
+          </div>
+        </div>
       </Container>
       <Trusted />
       {/* <Container sx={{ maxWidth: { lg: "1450px" } }}> */}{" "}
@@ -175,8 +188,9 @@ const styles = {
     maxWidth: { lg: "1650px" },
     paddingTop: {
       xs: "120px",
-      sm: "150px",
-      md: "200px",
+      sm: "120px",
+      // md: "200px",
+      md: "120px",
       lg: 0,
       xl: 0,
     },

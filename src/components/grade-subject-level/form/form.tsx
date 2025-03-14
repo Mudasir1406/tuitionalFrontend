@@ -23,6 +23,7 @@ import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
   background?: any;
@@ -118,9 +119,9 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       newErrors.curriculum = "Curriculum is required";
     }
 
-    if (!isNotEmpty(formData.subjects)) {
-      newErrors.subjects = "Subjects cannot be empty";
-    }
+    // if (!isNotEmpty(formData.subjects)) {
+    //   newErrors.subjects = "Subjects cannot be empty";
+    // }
 
     if (!isNotEmpty(formData.message)) {
       newErrors.message = "Message cannot be empty";
@@ -133,8 +134,15 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "lead_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "lead Form",
+      });
       return;
     }
+    await addFormData("lead", formData);
 
     const formDataObject = new FormData();
 
@@ -159,6 +167,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -171,10 +180,22 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         text: "",
         html: createEmailTemplate(formData),
       });
+      // console.log("formData", formData);
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "lead_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "lead Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "lead_form_failed",
+        error: error.message,
+        formType: "lead Form",
+      });
     } finally {
       setLoading(false);
       setFormData({
@@ -185,6 +206,12 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         curriculum: "",
         subjects: "",
         message: "",
+        time: "",
+        date: "",
+        country: "",
+        ip: "",
+        browser: "",
+        pageURL: "",
       });
     }
   };
@@ -193,6 +220,35 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       setFilterData(data);
     });
   }, []);
+
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    };
+
+    getClientLocation();
+  }, []);
+
   return (
     <div className={styles.main}>
       <form onSubmit={handleSubmit}>

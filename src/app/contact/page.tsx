@@ -4,7 +4,7 @@ import { Header } from "../../components";
 import Footer from "../../components/footer";
 import LearnTogeather from "../../components/contact/learn-togeather";
 import { Box, Container, Grid } from "@mui/material";
-import GetInTouch from "../../components/contact/get-in-touch";
+import GetInTouch from "../../components/contact/get-in-touch/GetInTouch";
 import Info from "../../components/contact/info";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
@@ -38,7 +38,9 @@ const Contact: React.FC = () => {
       </Box>
       <GetInTouch />
 
-      <Container sx={{ maxWidth: { lg: "1450px" } }}>
+      <Container
+        sx={{ maxWidth: { lg: "1450px", margin: "auto" }, marginTop: "5vh",marginBottom:'3vh' }}
+      >
         <Info />
       </Container>
       <Footer />
@@ -57,6 +59,7 @@ const styles = {
       md: "200px",
       lg: "210px",
     },
+    // height: "47vh",
   },
   background: {
     background: "#D7F0FF",

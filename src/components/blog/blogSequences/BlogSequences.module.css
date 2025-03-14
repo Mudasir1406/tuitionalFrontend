@@ -1,0 +1,135 @@
+.container {
+  padding: 0 5vw;
+}
+.verticalMargin {
+  margin: 7vh 0;
+}
+.bottomMargin {
+  margin-bottom: 7vh;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+.mainLeft {
+  /* display: flex; */
+  flex: 0.2;
+}
+.mainRight {
+  flex: 0.75;
+  /* max-width: 75%; */
+}
+
+.typographyContent img {
+  max-width: 100%; /* Ensures image does not overflow */
+  width: 100%; /* Set a fixed width (adjust as needed) */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevents extra spacing around images */
+  margin: 0 auto; /* Centers the image */
+}
+.imageDiv {
+  position: relative;
+  width: 90%;margin: auto;
+  /* height: 100%; */
+  height: 40vh;
+}
+
+.blogImg {
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+
+@media (max-width: 575px) {
+  .blogImg {
+    height: 20vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+  .container {
+    padding: 0 4vw;
+  }
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .blogImg {
+    height: 30vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .mainLeft {
+    flex: 1;
+  }
+  .mainRight {
+    flex: 1;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .blogImg {
+    height: 35vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 7vh;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .blogImg {
+    height: 70vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 7vh;
+  }
+}

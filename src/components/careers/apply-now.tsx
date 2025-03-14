@@ -24,6 +24,7 @@ import DropDown from "../DropDown/DropDown";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { Height } from "@mui/icons-material";
+import { addFormData } from "@/utils/globalFunction";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -133,8 +134,16 @@ const ApplyNow: React.FunctionComponent = () => {
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "careers_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "careers Form",
+      });
       return;
     }
+    await addFormData("careers", formData);
 
     const formDataObject = new FormData();
 
@@ -157,6 +166,8 @@ const ApplyNow: React.FunctionComponent = () => {
         {
           redirect: "follow",
           method: "POST",
+          mode: "no-cors", // Bypass CORS
+
           body: formDataString,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -172,9 +183,20 @@ const ApplyNow: React.FunctionComponent = () => {
         html: createCareerTemplate(formData),
       });
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "careers_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "careers Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "careers_form_failed",
+        error: error.message,
+        formType: "careers Form",
+      });
     } finally {
       setLoading(false);
       setFormData({
@@ -185,9 +207,39 @@ const ApplyNow: React.FunctionComponent = () => {
         country: "",
         position: "",
         message: "",
+        browser: "",
+        ip: "",
+        pageURL: "",
       });
     }
   };
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    };
+
+    getClientLocation();
+  }, []);
 
   return (
     <Box sx={styles.container}>
@@ -205,7 +257,9 @@ const ApplyNow: React.FunctionComponent = () => {
               },
               height: {
                 lg: "915px",
+                xs: "auto",
               },
+              margin: "auto",
             }}
           >
             <Image
@@ -233,10 +287,14 @@ const ApplyNow: React.FunctionComponent = () => {
               alignItems: "center",
               flexDirection: "column",
               zIndex: 4,
-              marginTop: 20,
+              marginTop: { xs: 5, md: 10 },
             }}
           >
-            <Typography sx={styles.heading} className={leagueSpartan.className}>
+            <Typography
+              sx={styles.heading}
+              variant="h2"
+              className={leagueSpartan.className}
+            >
               Apply Now
             </Typography>
             <Box
@@ -411,7 +469,7 @@ const ApplyNow: React.FunctionComponent = () => {
                     size={20}
                   />
                 ) : (
-                  "Submit Now"
+                  "Apply Now"
                 )}
               </Button>
             </Box>
@@ -434,25 +492,25 @@ export default ApplyNow;
 const styles = {
   heading: {
     display: "flex",
-    fontSize: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "55px",
-    },
-    lineHeight: {
-      xs: "50px",
-      sm: "55px",
-      md: "60px",
-      lg: "65px",
-    },
-    fontWeight: 700,
+    // fontSize: {
+    //   xs: "35px",
+    //   sm: "40px",
+    //   md: "45px",
+    //   lg: "55px",
+    // },
+    // lineHeight: {
+    //   xs: "50px",
+    //   sm: "55px",
+    //   md: "60px",
+    //   lg: "65px",
+    // },
+    // fontWeight: 700,
 
     marginTop: {
-      xs: "60px",
-      sm: "80px",
-      md: "90px",
-      lg: "105px",
+      xs: "0px",
+      sm: "0px",
+      md: "0px",
+      lg: "5px",
     },
     marginBottom: {
       xs: "40px",
@@ -463,7 +521,7 @@ const styles = {
     position: "relative",
     marginLeft: {
       xs: "0px",
-      sm: "55px",
+      // sm: "55px",
       md: "60px",
       lg: "65px",
     },

@@ -1,6 +1,37 @@
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL_TRUSTPILOT } from "./env";
 
+export const generateSlug = (text: string) => {
+  return text
+    .replace(/&/g, "and") // Replace & with "and"
+    .replace(/\s+/g, "-") // Replace spaces with "-"
+    .toLowerCase(); // Convert to lowercase
+};
+
+export const subjectsMap: Record<string, string> = {
+  Mathematics: "/online/math-tutors",
+  "Further Math": "/online/further-maths-tutors",
+  "Additional Mathematics": "/online/additional-maths-tutors",
+  Physics: "/online/physics-tutors",
+  Biology: "/online/biology-tutors",
+  Chemistry: "/online/chemistry-tutors",
+  "Business Studies": "/online/business-studies-tutors",
+  Accounting: "/online/accounting-tutors",
+  Economics: "/online/economics-tutors",
+  History: "/online/history-tutors",
+  Arabic: "/online/arabic-tutors",
+  "GCSE Tuition": `/online/gcse-tutors`,
+  "IGCSE Tuition": "/online/igcse-tutors",
+  "IB Tuition": "/online/ib-tutors-dubai",
+  "Pearson Edexcel Tuition": "/online/pearson-edexcel-tutors",
+  "A Level Tuition": "/online/a-level-tutors",
+};
+
+export const findExactSubjectURL = (item: string) => {
+  // Find an exact match for the subject name in subjectsMap
+  return subjectsMap[item] || "/"; // Default to home if no match is found
+};
+
 export function replaceAltText(url: string, newAlt: string) {
   // Create a new URL object from the given URL
   const urlObj = new URL(url);
@@ -9,7 +40,7 @@ export function replaceAltText(url: string, newAlt: string) {
   urlObj.searchParams.set("alt", newAlt);
 
   // Return the updated URL as a string
-  console.log(urlObj.toString());
+  // console.log(urlObj.toString());
   return urlObj.toString();
 }
 
@@ -39,6 +70,7 @@ export const redirectToTrustpilot = () => {
 // };
 
 export const redirectToExternal = (url: string, newTab: boolean = false) => {
+  console.log("redirectToExternal", url);
   if (!url || typeof window === "undefined") return;
 
   if (newTab) {
@@ -46,6 +78,15 @@ export const redirectToExternal = (url: string, newTab: boolean = false) => {
   } else {
     window.location.href = url;
   }
+};
+
+export const getUrl = (item: string) => {
+  const queryValue = item
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with "-"
+    .replace(/&/g, "and") // Replace "&" with "and"
+    .replace(/[^\w-]/g, ""); // Remove any non-word characters except "-" (optional)
+  return queryValue;
 };
 
 export const scrollToTestimonials = () => {
@@ -69,8 +110,8 @@ export function generateMergedSchema(data: any) {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#webpage`,
-        url: `https://tuitionaledu.com/onine/${data?.slugData}`,
+        "@id": `https://tuitionaledu.com/online/${data?.slugData}/#webpage`,
+        url: `https://tuitionaledu.com/online/${data?.slugData}`,
         name: data?.meta_tags?.title,
         description: data?.meta_tags?.description,
         isPartOf: {
@@ -123,7 +164,7 @@ export function generateMergedSchema(data: any) {
       },
       {
         "@type": "Service",
-        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#service`,
+        "@id": `https://tuitionaledu.com/online/${data?.slugData}/#service`,
         serviceType: data?.meta_tags?.serviceType,
         provider: {
           "@id": "https://tuitionaledu.com/#organization",
@@ -155,7 +196,7 @@ export function generateMergedSchema(data: any) {
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "@id": `https://tuitionaledu.com/onine/${data?.slugData}/#faqpage`,
+        "@id": `https://tuitionaledu.com/online/${data?.slugData}/#faqpage`,
         mainEntity: data?.Faqs?.faqs.map((faq: any) => ({
           "@type": "Question",
           name: faq.question,

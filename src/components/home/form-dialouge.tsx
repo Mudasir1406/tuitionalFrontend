@@ -24,6 +24,7 @@ import "react-phone-number-input/style.css";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
   open: boolean;
@@ -43,6 +44,8 @@ export type FormType = {
   ip?: string;
   browser?: string;
   pageURL?: string;
+  time?: string;
+  date?: string;
 };
 
 export type CareersFormType = {
@@ -53,8 +56,24 @@ export type CareersFormType = {
   country: string;
   position: string;
   message: string;
+  ip?: string;
+  browser?: string;
+  pageURL?: string;
 };
 
+export type ContactFormType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+  country?: string;
+  ip?: string;
+  browser?: string;
+  pageURL?: string;
+  date?: string;
+  time?: string;
+};
 const FormDialog: React.FunctionComponent<IProps> = ({
   open,
   handleClose,
@@ -130,27 +149,48 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
   }, [values]);
 
+  // React.useEffect(() => {
+  //   const getClientLocation = async () => {
+  //     const browser = navigator.userAgent;
+  //     const pageURL = window.location.href;
+  //     const res = await fetch("https://ipinfo.io/json");
+  //     const locationData = await res.json();
+
+  //     setFormData({
+  //       ...formData,
+  //       browser,
+  //       pageURL,
+  //       ip: locationData?.ip,
+  //       country: locationData?.country,
+  //     });
+  //   };
+
+  //   getClientLocation();
+  // }, []);
+
   React.useEffect(() => {
     const getClientLocation = async () => {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const res = await fetch("https://ipinfo.io/json");
-      const locationData = await res.json();
-      console.log(
-        "locationData",
-        locationData,
-        "pageURL",
-        pageURL,
-        "browser",
-        browser
-      );
-      setFormData({
-        ...formData,
-        browser,
-        pageURL,
-        ip: locationData?.ip,
-        country: locationData?.country,
-      });
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          browser,
+          pageURL,
+          date: currentDate,
+          time: currentTime,
+          ip: locationData?.ip,
+          country: locationData?.country,
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
     };
 
     getClientLocation();
@@ -197,8 +237,19 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     if (Object.values(newErrors).some((error) => error)) {
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "lead_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "lead Form",
+      });
+
       return;
     }
+    console.log("formData", formData);
+    await addFormData("lead", formData);
+
     const formDataObject = new FormData();
     Object.entries(formData).map((value) =>
       formDataObject.append(value[0], value[1])
@@ -211,17 +262,18 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
     const formDataString = keyValuePairs.join("&");
     try {
-      // const response = await fetch(
-      //   "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
-      //   {
-      //     redirect: "follow",
-      //     method: "POST",
-      //     body: formDataString,
-      //     headers: {
-      //       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      //     },
-      //   }
-      // );
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzf7Epd4aPQMJyS0FfBnb7kPHmda4fPQ7i2YeY-WHZMGsDhgZ8-jOy6PMR6a6WBgfUu2w/exec",
+        {
+          redirect: "follow",
+          method: "POST",
+          mode: "no-cors",
+          body: formDataString,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+        }
+      );
       // console.log("formData", formData);
       await sendEmail({
         recipientEmail: HELLOTUITIONALEDU,
@@ -230,9 +282,20 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         html: createEmailTemplate(formData),
       });
       toast.success("Form submitted successfully!");
-    } catch (error) {
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "lead_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "lead Form",
+      });
+    } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
+      (window as any).dataLayer.push({
+        event: "lead_form_failed",
+        error: error.message,
+        formType: "lead Form",
+      });
       // alert("Error saving data");
     } finally {
       setLoading(false);
@@ -245,6 +308,12 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         curriculum: "",
         subjects: "",
         message: "",
+        time: "",
+        date: "",
+        browser: "",
+        country: "",
+        ip: "",
+        pageURL: "",
       });
     }
   };
@@ -560,10 +629,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               {loading ? (
                 <CircularProgress
                   sx={{ width: "12px", height: "12px", color: "white" }}
-                  size={20}
+                  size={18}
                 />
               ) : (
-                "Enroll"
+                "Submit Now"
               )}
             </Button>
           </form>
@@ -686,7 +755,7 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    fontSize: "1.5vh",
+    // fontSize: "1.5vh",
     fontWeight: 400,
     "& .MuiOutlinedInputRoot": {
       height: "5.5vh",

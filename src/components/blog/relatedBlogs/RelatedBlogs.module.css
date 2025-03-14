@@ -1,0 +1,32 @@
+.blogContainer {
+  display: grid;
+  /* grid-template-columns: repeat(1, 1fr);  */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 20px;
+  padding: 20px;
+}
+
+.heading{
+  text-align: center;
+}
+/* Medium Screens (Tablets) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .blogContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .blogContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Extra-Large Screens (Wide Desktops) */
+@media (min-width: 1441px) {
+  .blogContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

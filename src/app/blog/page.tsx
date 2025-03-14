@@ -1,14 +1,34 @@
-import { Header } from '@/components'
-import ConduciveEnviroment from '@/components/blog/conducive-enviroment'
-import Embrace from '@/components/blog/embrace'
-import Hero from '@/components/blog/hero'
-import OptionsImageHome from '@/components/blog/options-image-home'
-import RelatedBlogs from '@/components/blog/related-blogs'
-import Footer from '@/components/footer'
-import { Grid } from '@mui/material'
-import React from 'react'
-import students from '../../../public/assets/images/static/young-students-learning-together-group-study.png'
+import { Header } from "@/components";
+import Footer from "@/components/footer";
+import React, { useState } from "react";
 
+import styles from "./blog.module.css";
+import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
+import Hero from "@/components/blog/hero/Hero";
+import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
+import dynamic from "next/dynamic";
+import SearchBar from "@/components/blog/search-bar/SearchBar";
+import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
+import { AllBlogsData } from "@/types/grade-subject-level.types";
+
+const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
+  // Fetch all blogs
+  const data = await getDocumentsByName("blogs");
+
+  // Filter data based on search query (if provided)
+  const filteredData = searchParams?.search
+    ? data.filter(
+        (blog: AllBlogsData) =>
+          blog?.blogContent?.header
+            ?.toLowerCase()
+            .includes(searchParams.search.toLowerCase()) ||
+          blog?.blogContent?.header
+            ?.toLowerCase()
+            .includes(searchParams.search.toLowerCase())
+      )
+    : data;
+
+<<<<<<< HEAD
 const Page = () => {
 
 
@@ -51,33 +71,29 @@ const Page = () => {
   }
 
   
+=======
+>>>>>>> 45aea1c412c532d7c0cf8eeb8d4234058f78f88d
   return (
     <>
       <Header />
-      <Hero />
-      <Grid
-        item
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
-        sx={{
-          backgroundImage: `url(${students.src})`,
-          backgroundPosition: "bottom",
-          backgroundSize: "contain",
-          height: { xs: "20vh", sm: "25vh", md: "30vh", lg: "70vh" },
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-          borderRadius: "2vh",
-        }}
-      >
-      </Grid>
-      <OptionsImageHome />
-      <Embrace />
-      <ConduciveEnviroment />
-      <RelatedBlogs />
+      <div className={styles.container}>
+        <div className={styles["grid-container"]}>
+          <div className={styles["hero"]}>
+            <Hero />
+          </div>
+          <div className={styles["hero-picture"]}></div>
+        </div>
+      </div>
+
+      <div className={styles.verticalMargin}>
+        <SchoolLogosSection />
+      </div>
+
+      <SearchBar searchQuery={searchParams?.search || ""} />
+      <AllBlogs blogs={filteredData} />
+
       <Footer />
     </>
-  )
-}
-export default Page
+  );
+};
+export default Page;

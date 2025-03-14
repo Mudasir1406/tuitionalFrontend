@@ -11,6 +11,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
+import { findExactSubjectURL, generateSlug } from "@/utils/helper";
+import FooterLinks from "./footerLinks/FooterLinks";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
   return (
@@ -105,7 +107,7 @@ const Footer: React.FC = async () => {
                     display: { xs: "flex", sm: "flex" },
 
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                   }}
                 >
                   <Image
@@ -177,7 +179,7 @@ const Footer: React.FC = async () => {
                 >
                   Curriculums
                 </Typography>
-                {footerData?.curriculums.map((item, index) => (
+                {/* {footerData?.curriculums.map((item, index) => (
                   <Typography
                     sx={styles.text}
                     variant="body2"
@@ -186,7 +188,30 @@ const Footer: React.FC = async () => {
                   >
                     {item}
                   </Typography>
-                ))}
+                ))} */}
+                <FooterLinks footerData={footerData?.curriculums} exact />
+                {/* {footerData?.curriculums.slice(0, 10).map((item, index) => {
+                  const href = findExactSubjectURL(item);
+                  return (
+                    <Link
+                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                      key={index}
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit", // Adjust this to inherit the text color
+                      }}
+                    >
+                      <Typography
+                        sx={styles.text}
+                        variant="body2"
+                        key={index}
+                        className={leagueSpartan.className}
+                      >
+                        {item}
+                      </Typography>
+                    </Link>
+                  );
+                })} */}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -211,16 +236,51 @@ const Footer: React.FC = async () => {
                 >
                   Subjects
                 </Typography>
-                {footerData?.subjects.slice(0, 10).map((item, index) => (
-                  <Typography
-                    sx={styles.text}
-                    variant="body2"
+                {/* {footerData?.subjects.slice(0, 10).map((item, index) => (
+                  <Link
+                    href={`/${getFooterUrl( item.toLowerCase())}`}
+                    style={{
+                      textDecoration: "none",
+                      textDecorationColor: "none",
+                    }}
                     key={index}
-                    className={leagueSpartan.className}
                   >
-                    {item}
-                  </Typography>
-                ))}
+                    <Typography
+                      // onClick={() => handleRedirect(item)}
+                      sx={styles.text}
+                      variant="body2"
+                      key={index}
+                      className={leagueSpartan.className}
+                    >
+                      {item}
+                    </Typography>{" "}
+                  </Link>
+                ))} */}
+
+                <FooterLinks footerData={footerData?.subjects} exact />
+
+                {/* {footerData?.subjects.slice(0, 10).map((item, index) => {
+                  const href = findExactSubjectURL(item);
+                  return (
+                    <Link
+                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                      key={index}
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit", // Adjust this to inherit the text color
+                      }}
+                    >
+                      <Typography
+                        sx={styles.text}
+                        variant="body2"
+                        key={index}
+                        className={leagueSpartan.className}
+                      >
+                        {item}
+                      </Typography>
+                    </Link>
+                  );
+                })} */}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -234,7 +294,7 @@ const Footer: React.FC = async () => {
                     Get Help
                   </Typography>
 
-                  {footerData?.getHelp.map((item, index) => (
+                  {/* {footerData?.getHelp.map((item, index) => (
                     <Typography
                       sx={styles.text}
                       variant="body2"
@@ -243,7 +303,31 @@ const Footer: React.FC = async () => {
                     >
                       {item}
                     </Typography>
-                  ))}
+                  ))} */}
+                  <FooterLinks footerData={footerData?.getHelp} exact={false} />
+
+                  {/* {footerData?.getHelp.slice(0, 10).map((item, index) => {
+                    const href = `/${generateSlug(item)}`;
+                    return (
+                      <Link
+                        href={href || "/"} // Fallback to the home page if the subject isn't mapped
+                        key={index}
+                        style={{
+                          textDecoration: "none",
+                          color: "inherit", // Adjust this to inherit the text color
+                        }}
+                      >
+                        <Typography
+                          sx={styles.text}
+                          variant="body2"
+                          key={index}
+                          className={leagueSpartan.className}
+                        >
+                          {item}
+                        </Typography>
+                      </Link>
+                    );
+                  })} */}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography
@@ -260,7 +344,7 @@ const Footer: React.FC = async () => {
                     About us
                   </Typography>
                   {footerData?.aboutUs.map((item, index) => (
-                    <Link
+                    <a
                       href={`/${item.toLowerCase()}`}
                       style={{
                         textDecoration: "none",
@@ -276,7 +360,7 @@ const Footer: React.FC = async () => {
                       >
                         {item}
                       </Typography>
-                    </Link>
+                    </a>
                   ))}
                 </Box>
               </Box>
@@ -299,7 +383,7 @@ const Footer: React.FC = async () => {
                   {footerData?.aboutUs.map((item, index) => {
                     const url = item.toLowerCase();
                     return (
-                      <Link
+                      <a
                         href={`/${url}`}
                         style={{ textDecoration: "none" }}
                         key={index}
@@ -311,7 +395,7 @@ const Footer: React.FC = async () => {
                         >
                           {item}
                         </Typography>
-                      </Link>
+                      </a>
                     );
                   })}
                 </Box>

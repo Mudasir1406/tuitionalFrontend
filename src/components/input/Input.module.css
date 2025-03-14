@@ -49,9 +49,9 @@
   /* height: 20px; */
   /* padding: 16px 12px 8px; */
   /* font-size: 1rem; */
-  font-size: 2.3vh;
+  font-size: 2.667vh;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 4px;
   outline: none;
   transition: border-color 0.3s ease-in-out;
   /* box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08); */
@@ -70,10 +70,10 @@
 @media screen and (max-width: 768px) {
   /* .label {
     font-size: 0.9rem;
-  }
-  .input {
-    font-size: 0.9rem;
   } */
+  .input {
+    font-size: 2.2vh;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -81,7 +81,7 @@
     font-size: 0.8rem;
   } */
   .input {
-    font-size: 1.8vh;
+    font-size: 2.1vh;
     line-height: 2.3vh;
   }
 }

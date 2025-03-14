@@ -18,9 +18,14 @@ const GetStarted = dynamic(
   () => import("@/components/grade-subject-level/get-started"),
   { ssr: true }
 );
+const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), {
+  ssr: true,
+});
 const EducationalCounseling = dynamic(
-  () => import("@/components/curiculume/why-choose"),
-  { ssr: true }
+  () => import("@/components/curiculume/educational-counseling"),
+  {
+    ssr: true,
+  }
 );
 
 const HeroInfo = dynamic(
@@ -86,7 +91,7 @@ type IProps = {
 };
 
 const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
-  console.log("GradeSubjectLevel", data);
+  // console.log("GradeSubjectLevel", data);
 
   const renderSection = (name: string) => {
     // switch (name) {
@@ -113,12 +118,22 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       );
     }
     // case "hero_section_from":
-    else if (name.includes("with_form")) {
+    else if (name.includes("book_demo_cta")) {
+      return (
+        <>
+          {data?.[name as keyof PageData]?.isShow && (
+            <Box sx={styles.verticalMargin}>
+              <SectionsBox />{" "}
+            </Box>
+          )}
+        </>
+      );
+    } else if (name.includes("with_form")) {
       return (
         <>
           {data?.[name as keyof PageData] && (
             <Box sx={styles.heroContanier}>
-              <Box sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
+              <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
                 <Grid container gap={4} sx={styles.heroDiv}>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
                     <Hero data={data?.[name as keyof PageData]} withForm />
@@ -246,23 +261,21 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
           </Box>
         )
       );
-    }
-    // else if (name.includes("education_counseling")) {
-    //   // case "education_counseling":
-    //   return (
-    //     data?.[name as keyof PageData] && (
-    //       <Box sx={styles.verticalMargin}>
-    //         <EducationalCounseling data={data?.[name as keyof PageData]} />
-    //       </Box>
-    //     )
-    //   );
-    // }
-    else if (name.includes("why_igsce")) {
-      // case "why_igsce":
+    } else if (name.includes("education_counseling")) {
+      // case "education_counseling":
       return (
         data?.[name as keyof PageData] && (
           <Box sx={styles.verticalMargin}>
             <EducationalCounseling data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    } else if (name.includes("why_igsce")) {
+      // case "why_igsce":
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <WhyChoose data={data?.[name as keyof PageData]} />
           </Box>
         )
       );

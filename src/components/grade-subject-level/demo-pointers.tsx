@@ -1,17 +1,34 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+"use client";
+
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import tutors from "../../../public/assets/images/static/tutoring.webp";
 import icon from "../../../public/assets/images/svg/blueminusicon.svg";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 
 interface IProps {
   data: PageData["demo_pointers"];
 }
 
 const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
+  const [expandedIndex, setExpandedIndex] = useState<number | false>(0); // Default to first index
+  const handleChange =
+    (index: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpandedIndex(isExpanded ? index : false); // Update the expanded index
+    };
   return (
     <>
       <Box sx={style.contanier}>
@@ -31,7 +48,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
             md={12}
             lg={6}
             sx={{
-              mb: { xs: 2, sm: 2, md: 0 }, // Add margin-bottom for medium and smaller screens
+              mb: { xs: 2, sm: 2, md: 2 }, // Add margin-bottom for medium and smaller screens
             }}
           >
             <Box sx={style.imgDiv}>
@@ -71,7 +88,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                 lg: 2, // Apply spacing for large screens and above
               }}
             >
-              {data?.demoPointersData?.map(
+              {/* {data?.demoPointersData?.map(
                 (box, index: React.Key | null | undefined) => (
                   <Grid item xs={12} key={index}>
                     <Box sx={style.boxes}>
@@ -85,17 +102,31 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                             __html: box.header,
                           }}
                         ></Typography>
-                        <Typography
-                          sx={style.desc}
-                          className={leagueSpartan.className}
-                          component={"p"}
-                          variant="body2"
-                          dangerouslySetInnerHTML={{
-                            __html: box.body,
-                          }}
-                        ></Typography>
+                        {expandedIndex === index && (
+                          <Typography
+                            sx={{
+                              ...style.desc,
+                              animation: "fadeIn 0.3s ease-in-out",
+                            }}
+                            className={leagueSpartan.className}
+                            component={"p"}
+                            variant="body2"
+                            dangerouslySetInnerHTML={{
+                              __html: box.body,
+                            }}
+                          ></Typography>
+                        )}
                       </Box>
-                      <Box sx={{ display: { xs: "block", sm: "block" } }}>
+                      <Box
+                        sx={{
+                          display: {
+                            xs: "block",
+                            sm: "block",
+                            cursor: "pointer",
+                          },
+                        }}
+                        onClick={() => toggleExpand(index)}
+                      >
                         <Image
                           src={icon}
                           alt="icon"
@@ -105,7 +136,72 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
                     </Box>
                   </Grid>
                 )
-              )}
+              )} */}
+              {data?.demoPointersData?.map((box, index) => (
+                <Accordion
+                  key={index}
+                  expanded={expandedIndex === index} // Check if the current index matches expandedIndex
+                  onChange={handleChange(index)}
+                  sx={{
+                    background: "#D3EFFF",
+                    borderRadius: "12px",
+                    boxShadow:
+                      "0px -5px 15px 0px rgba(56, 182, 255, 0.2) inset",
+                    marginBottom: "16px",
+                    minHeight: "72px", // Increase height of accordion
+                    "&:before": { display: "none" }, // Removes default divider
+                    "& .MuiAccordionSummary-root": {
+                      minHeight: "72px", // Ensure the summary matches the accordion height
+                    },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={
+                      <Box
+                        sx={{
+                          background: "#30AFFF", // Set your desired color
+                          borderRadius: "50%",
+                          width: "32px",
+                          height: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {expandedIndex === index ? (
+                          <RemoveOutlinedIcon sx={{ color: "white" }} />
+                        ) : (
+                          <AddOutlinedIcon sx={{ color: "white" }} />
+                        )}
+                      </Box>
+                    }
+                    sx={{
+                      "& .MuiAccordionSummary-content": {
+                        margin: "12px 0",
+                      },
+                    }}
+                  >
+                    <Typography
+                      className={leagueSpartan.className}
+                      component="p"
+                      variant="subtitle2"
+                      dangerouslySetInnerHTML={{ __html: box.header }}
+                    ></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography
+                      sx={{
+                        // color: "#505050",
+                        animation: "fadeIn 0.3s ease-in-out",
+                      }}
+                      className={leagueSpartan.className}
+                      component="p"
+                      variant="body2"
+                      dangerouslySetInnerHTML={{ __html: box.body }}
+                    ></Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
             </Grid>
           </Grid>
         </Grid>
@@ -126,26 +222,15 @@ const style = {
     },
   },
 
-  imgDiv: {
-    //  display: "flex", flexDirection: "column"
-  },
+  imgDiv: {},
   tutorheading: {
-    // fontSize: {
-    //   xs: "3vh",
-    //   sm: "4vh",
-    //   md: "4vh",
-    //   lg: "5vh",
-    // },
     width: {
       xs: "auto",
-      // sm: "66vh",
     },
-    // fontWeight: 600,
     textAlign: { xs: "center", sm: "left", lg: "left" },
   },
   image: {
-    width: "100%",
-    // maxWidth: "43vw",
+    width: "80%",
     height: "100%",
   },
   imageContanier: { textAlign: { xs: "center", sm: "left" } },
@@ -165,20 +250,10 @@ const style = {
   },
   titlebox: {
     marginBottom: 1,
-    // fontSize: {
-    //   xs: "2vh",
-    //   sm: "2.1vh",
-    // },
-    // color: "#2D2D2D",
-    // fontWeight: 600,
   },
   desc: {
     color: "#505050",
-    // fontSize: {
-    //   xs: "1.7vh",
-    //   sm: "1.8vh",
-    // },
-    // fontWeight: 400,
+
     width: "90%",
     textWrap: "pretty",
   },
