@@ -28,51 +28,6 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
       )
     : data;
 
-<<<<<<< HEAD
-const Page = () => {
-
-
-
-  var obj = {
-    heroSection: {
-      title: "Title for hero",
-      tag: "H1",
-      image: "url",
-      imageAlt: "imageAlt",
-      socialShare: true,
-      categories: [
-        "Study Material",
-        "Texting"
-      ]
-    },
-
-    blogContent: {
-      title: "title for blog",
-      tag: "h2",
-      content: "base64 content / html content (quil output)"
-    },
-    postCTA:
-    {
-      show: true,
-    },
-    relatedBlogs: {
-      show: true
-    },
-    tag: {
-      data: [
-        "IGCSE",
-        "GCSE",
-        "IB",
-        "AP",
-        "EDEXCEL"
-      ]
-    }
-
-  }
-
-  
-=======
->>>>>>> 45aea1c412c532d7c0cf8eeb8d4234058f78f88d
   return (
     <>
       <Header />
