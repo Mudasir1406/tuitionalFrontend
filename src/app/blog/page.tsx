@@ -10,6 +10,47 @@ import React from 'react'
 import students from '../../../public/assets/images/static/young-students-learning-together-group-study.png'
 
 const Page = () => {
+
+
+
+  var obj = {
+    heroSection: {
+      title: "Title for hero",
+      tag: "H1",
+      image: "url",
+      imageAlt: "imageAlt",
+      socialShare: true,
+      categories: [
+        "Study Material",
+        "Texting"
+      ]
+    },
+
+    blogContent: {
+      title: "title for blog",
+      tag: "h2",
+      content: "base64 content / html content (quil output)"
+    },
+    postCTA:
+    {
+      show: true,
+    },
+    relatedBlogs: {
+      show: true
+    },
+    tag: {
+      data: [
+        "IGCSE",
+        "GCSE",
+        "IB",
+        "AP",
+        "EDEXCEL"
+      ]
+    }
+
+  }
+
+  
   return (
     <>
       <Header />
