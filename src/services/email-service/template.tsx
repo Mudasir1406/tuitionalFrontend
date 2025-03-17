@@ -11,42 +11,42 @@ export const createCareerTemplate = (formData: CareersFormType) => `
       <table style="width:100%; border-collapse: collapse;">
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">First Name:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.firstName}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.FirstName}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Last Name:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.lastName}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.LastName}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Email:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.email}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.EmailAddress}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Phone:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.phone}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.PhoneNumber}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Country:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.country}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Country}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Position Applied For:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.position}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Position}</td>
         </tr> <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">IP:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.ip}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.IP}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">browser:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.browser}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Browser}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Source Page URL:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.pageURL}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.SourcePageURL}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Message}</td>
         </tr>
        
       </table>
@@ -61,47 +61,47 @@ export const createContactTemplate = (formData: ContactFormType) => `
       <table style="width:100%; border-collapse: collapse;">
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">First Name:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.firstName}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.FirstName}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Last Name:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.lastName}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.LastName}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Email:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.email}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.EmailAddress}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Phone:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.phone}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.PhoneNumber}</td>
         </tr>
           <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Country:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.country}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Country}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">IP:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.ip}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.IP}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">browser:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.browser}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Browser}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Source Page URL:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.pageURL}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.SourcePageURL}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Message}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Date:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.date}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Date}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Time:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.time}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Time}</td>
         </tr>
       </table>
     </body>
@@ -115,27 +115,27 @@ export const createEmailTemplate = (formData: FormType) => `
       <table style="width:100%; border-collapse: collapse;">
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Name:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.name}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.FirstName}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Email:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.email}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.EmailAddress}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Phone:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.phone}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.PhoneNumber}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Grade:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.grade}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Grade}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Curriculum:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.curriculum}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Curriculum}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Subjects:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.subjects}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Subject}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Country:</td>
@@ -147,7 +147,7 @@ export const createEmailTemplate = (formData: FormType) => `
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">browser:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.browser}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Browser}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Source Page URL:</td>

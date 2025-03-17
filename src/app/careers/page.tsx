@@ -36,40 +36,6 @@ const Careers: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* <Container
-        sx={{
-          maxWidth: { lg: "1650px" },
-          p: 0,
-          paddingTop: {
-            xs: "120px",
-            sm: "150px",
-            md: "200px",
-            lg: 0,
-            xl: 0,
-          },
-          height: { xs: "100%", lg: "100vh" },
-          display: "flex",
-          alignItems: "end",
-        }}
-      >
-        <Grid container>
-          <Grid item lg={4} md={12} sm={12} xs={12}>
-            <Hero />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            sm={12}
-            xs={12}
-            sx={style.hero}
-            aria-label="Tuitional's Talented individuals"
-          >
-            <HeroInfo />
-          </Grid>
-        </Grid>
-      </Container> */}
       <Box sx={style.contanier}>
         <Container sx={{ maxWidth: { lg: "1650px" } }}>
           <TeamValues />

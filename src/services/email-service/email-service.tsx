@@ -8,7 +8,6 @@ export const sendEmail = async (
     const response = await axiosInstance.post("/api/utils/send-email", data);
 
     // Return the data as Grade_Type[]
-    console.log(response);
     return response.data as { message: string };
   } catch (error) {
     // Handle the error case and return an empty array

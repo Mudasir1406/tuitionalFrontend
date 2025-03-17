@@ -28,18 +28,19 @@ import lines from "../../../../public/assets/images/static/lines.png";
 import { addFormData } from "@/utils/globalFunction";
 
 const GetInTouch: React.FunctionComponent = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    message: "",
-    browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
-    time: "",
-    date: "",
+  const [formData, setFormData] = useState<ContactFormType>({
+    FirstName: "",
+    LastName: "",
+    EmailAddress: "",
+    PhoneNumber: "",
+    Message: "",
+    Browser: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
+    Time: "",
+    Date: "",
+    sheetName: "General Contact Form",
   });
   const [errors, setErrors] = useState<Partial<ContactFormType>>({});
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -47,29 +48,31 @@ const GetInTouch: React.FunctionComponent = () => {
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
 
-    if (key === "phone" && typeof value === "string") {
+    if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
         console.log("Invalid phone number!");
-        newErrors.phone = isValidPhoneNumber(value)
+        newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "Invalid phone number";
 
         return;
       }
     }
-    if (key === "email" && typeof value === "string") {
-      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    if (key === "EmailAddress" && typeof value === "string") {
+      newErrors.EmailAddress = isValidEmail(value)
+        ? ""
+        : "Invalid email address";
     }
-    if (key === "firstName" && typeof value === "string") {
-      newErrors.firstName = isNotEmpty(value)
+    if (key === "FirstName" && typeof value === "string") {
+      newErrors.FirstName = isNotEmpty(value)
         ? ""
         : "First Name cannot be empty";
     }
-    if (key === "lastName" && typeof value === "string") {
-      newErrors.lastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
+    if (key === "LastName" && typeof value === "string") {
+      newErrors.LastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -84,24 +87,24 @@ const GetInTouch: React.FunctionComponent = () => {
     setLoading(true);
     const newErrors: Partial<ContactFormType> = {};
 
-    if (!isNotEmpty(formData.firstName)) {
-      newErrors.firstName = "First Name cannot be empty";
+    if (!isNotEmpty(formData.FirstName)) {
+      newErrors.FirstName = "First Name cannot be empty";
     }
 
-    if (!isNotEmpty(formData.lastName)) {
-      newErrors.lastName = "Last Name cannot be empty";
+    if (!isNotEmpty(formData.LastName)) {
+      newErrors.LastName = "Last Name cannot be empty";
     }
 
-    if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address";
+    if (!isValidEmail(formData.EmailAddress)) {
+      newErrors.EmailAddress = "Invalid email address";
     }
 
-    if (!isValidPhoneNumber(formData.phone)) {
-      newErrors.phone = "Invalid phone number";
+    if (!isValidPhoneNumber(formData.PhoneNumber)) {
+      newErrors.PhoneNumber = "Invalid phone number";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -141,7 +144,7 @@ const GetInTouch: React.FunctionComponent = () => {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
+        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
         {
           redirect: "follow",
           method: "POST",
@@ -172,43 +175,19 @@ const GetInTouch: React.FunctionComponent = () => {
       toast.error("Form submitted Failed!");
       (window as any).dataLayer.push({
         event: "contact_form_failed",
-        error: error.message,
+        error: error.Message,
         formType: "contact Form",
       });
     } finally {
       setLoading(false);
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-        browser: "",
-        country: "",
-        ip: "",
-        pageURL: "",
-        date: "",
-        time: "",
+        FirstName: "",
+        LastName: "",
+        EmailAddress: "",
+        PhoneNumber: "",
+        Message: "",
       });
     }
-
-    // try {
-    //   const response = await fetch(
-    //     "https://script.google.com/macros/s/AKfycbxC8t_5083m612FzAesqksc8RSinMiq7o32coNB5Rd2fPV9uZOjPxNJGMoekFV9ezVVKg/exec",
-    //     {
-    //       redirect: "follow",
-    //       method: "POST",
-    //       mode: "no-cors", // Bypass CORS
-
-    //       body: formDataString,
-    //       headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-    //       },
-    //     }
-    //   );
-    // } catch (error) {
-    //   console.error("Error saving data:", error);
-    // }
   };
 
   React.useEffect(() => {
@@ -224,12 +203,12 @@ const GetInTouch: React.FunctionComponent = () => {
 
         setFormData((prev) => ({
           ...prev,
-          browser,
-          pageURL,
-          date: currentDate,
-          time: currentTime,
-          ip: locationData?.ip,
-          country: locationData?.country,
+          Browser: browser,
+          SourcePageURL: pageURL,
+          Date: currentDate,
+          Time: currentTime,
+          IP: locationData?.ip,
+          Country: locationData?.country,
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);
@@ -310,20 +289,20 @@ const GetInTouch: React.FunctionComponent = () => {
                 </Typography>
                 <div className={styles.inputInner}>
                   <Input
-                    name="firstName"
-                    value={formData.firstName}
+                    name="FirstName"
+                    value={formData.FirstName}
                     onChange={handleChange}
                     placeholder={"Enter First Name here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.firstName && (
+                  {errors.FirstName && (
                     <Typography
                       className={`${leagueSpartan.className} ${styles.error}`}
                       //   sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.firstName}
+                      {errors.FirstName}
                     </Typography>
                   )}
                 </div>
@@ -338,20 +317,20 @@ const GetInTouch: React.FunctionComponent = () => {
                 </Typography>
                 <div className={styles.inputInner}>
                   <Input
-                    name="lastName"
-                    value={formData.lastName}
+                    name="LastName"
+                    value={formData.LastName}
                     onChange={handleChange}
                     placeholder={"Enter Last Name here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.lastName && (
+                  {errors.LastName && (
                     <Typography
                       className={`${leagueSpartan.className} ${styles.error}`}
                       // sx={}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.lastName}
+                      {errors.LastName}
                     </Typography>
                   )}
                 </div>
@@ -366,20 +345,20 @@ const GetInTouch: React.FunctionComponent = () => {
                 </Typography>
                 <div className={styles.inputInner}>
                   <Input
-                    name="email"
-                    value={formData.email}
+                    name="EmailAddress"
+                    value={formData.EmailAddress}
                     onChange={handleChange}
                     placeholder={"Enter Email here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.email && (
+                  {errors.EmailAddress && (
                     <Typography
                       className={`${leagueSpartan.className} ${styles.error}`}
                       // sx={}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.email}
+                      {errors.EmailAddress}
                     </Typography>
                   )}
                 </div>
@@ -396,18 +375,18 @@ const GetInTouch: React.FunctionComponent = () => {
                 <div className={styles.div}>
                   <PhoneInput
                     defaultCountry="SA"
-                    value={formData?.phone || ""}
-                    onChange={(e) => handleChange("phone", String(e))}
+                    value={formData?.PhoneNumber || ""}
+                    onChange={(e) => handleChange("PhoneNumber", String(e))}
                     inputComponent={CustomInput}
                     className={`${styles.phoneInput}`}
                   />
-                  {errors.phone && (
+                  {errors.PhoneNumber && (
                     <Typography
                       className={`${leagueSpartan.className} ${styles.error}`}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.phone}
+                      {errors.PhoneNumber}
                     </Typography>
                   )}
                 </div>
@@ -426,20 +405,20 @@ const GetInTouch: React.FunctionComponent = () => {
               multiline
               rows={4}
               name="Message"
-              value={formData.message}
-              onChange={(e) => handleChange("message", e.target.value)}
-              placeholder="Enter your message here..."
+              value={formData.Message}
+              onChange={(e) => handleChange("Message", e.target.value)}
+              placeholder="Enter your Message here..."
               className={`${leagueSpartan.className} ${styles.input} `}
               // sx={[styles.input]}
             />{" "}
-            {errors.message && (
+            {errors.Message && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 //   sx={styles.error}
                 component={"p"}
                 variant="caption"
               >
-                {errors.message}
+                {errors.Message}
               </Typography>
             )}
             <Button
