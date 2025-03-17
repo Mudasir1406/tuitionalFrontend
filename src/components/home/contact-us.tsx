@@ -25,8 +25,7 @@ import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { useMediaQuery, useTheme } from "@mui/material";
-import zIndex from "@mui/material/styles/zIndex";
+import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
 
 type IProps = {
@@ -41,17 +40,18 @@ const ContactUs: React.FunctionComponent<IProps> = ({
   const theme = useTheme();
 
   const [formData, setFormData] = React.useState<FormType>({
-    name: "",
-    email: "",
-    phone: "",
-    grade: "",
-    curriculum: "",
-    subjects: "",
+    FirstName: "",
+    EmailAddress: "",
+    PhoneNumber: "",
+    Grade: "",
+    Curriculum: "",
+    Subject: "",
     message: "",
-    browser: "",
+    Browser: "",
     country: "",
     ip: "",
     pageURL: "",
+    sheetName: "Lead Forms",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -60,32 +60,34 @@ const ContactUs: React.FunctionComponent<IProps> = ({
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
 
-    if (key === "phone" && typeof value === "string") {
+    if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
         console.log("Invalid phone number!");
-        newErrors.phone = isValidPhoneNumber(value)
+        newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "Invalid phone number";
 
         return;
       }
     }
-    if (key === "email" && typeof value === "string") {
-      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    if (key === "EmailAddress" && typeof value === "string") {
+      newErrors.EmailAddress = isValidEmail(value)
+        ? ""
+        : "Invalid email address";
     }
-    if (key === "name" && typeof value === "string") {
-      newErrors.name = isNotEmpty(value) ? "" : "Name cannot be empty";
+    if (key === "FirstName" && typeof value === "string") {
+      newErrors.FirstName = isNotEmpty(value) ? "" : "Name cannot be empty";
     }
-    if (key === "grade" && typeof value === "string") {
-      newErrors.grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+    if (key === "Grade" && typeof value === "string") {
+      newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
     }
-    if (key === "curriculum" && typeof value === "string") {
-      newErrors.curriculum = isNotEmpty(value)
+    if (key === "Curriculum" && typeof value === "string") {
+      newErrors.Curriculum = isNotEmpty(value)
         ? ""
         : "Curriculum cannot be empty";
     }
-    if (key === "subjects" && typeof value === "string") {
-      newErrors.subjects = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+    if (key === "Subject" && typeof value === "string") {
+      newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
     if (key === "message" && typeof value === "string") {
       newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
@@ -102,22 +104,22 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     setLoading(true);
     const newErrors: Partial<FormType> = {};
 
-    if (!isNotEmpty(formData.name)) {
-      newErrors.name = "Name cannot be empty";
+    if (!isNotEmpty(formData.FirstName)) {
+      newErrors.FirstName = "Name cannot be empty";
     }
 
-    if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address";
+    if (!isValidEmail(formData.EmailAddress)) {
+      newErrors.EmailAddress = "Invalid email address";
     }
 
-    if (!isValidPhoneNumber(formData.phone)) {
-      newErrors.phone = "Invalid phone number";
+    if (!isValidPhoneNumber(formData.PhoneNumber)) {
+      newErrors.PhoneNumber = "Invalid phone number";
     }
-    if (!isNotEmpty(formData.grade)) {
-      newErrors.grade = "Grade cannot be empty";
+    if (!isNotEmpty(formData.Grade)) {
+      newErrors.Grade = "Grade cannot be empty";
     }
-    if (!isNotEmpty(formData.curriculum)) {
-      newErrors.curriculum = "Curriculum cannot be empty";
+    if (!isNotEmpty(formData.Curriculum)) {
+      newErrors.Curriculum = "Curriculum cannot be empty";
     }
 
     if (!isNotEmpty(formData.message)) {
@@ -143,7 +145,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     }
 
     await addFormData("lead", formData);
-
+    console.log(formData);
     const formDataObject = new FormData();
 
     Object.entries(formData).map((value) =>
@@ -163,7 +165,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
+        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
         {
           redirect: "follow",
           method: "POST",
@@ -200,20 +202,13 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     } finally {
       setLoading(false);
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        grade: "",
-        curriculum: "",
-        subjects: "",
+        FirstName: "",
+        EmailAddress: "",
+        PhoneNumber: "",
+        Grade: "",
+        Curriculum: "",
+        Subject: "",
         message: "",
-        date: "",
-        time: "",
-        ip: "",
-        browser: "",
-        pageURL: "",
-        country: "",
-      
       });
     }
   };
@@ -236,12 +231,12 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 
         setFormData((prev) => ({
           ...prev,
-          browser,
-          pageURL,
-          date: currentDate,
-          time: currentTime,
-          ip: locationData?.ip,
-          country: locationData?.country,
+          Browser: browser,
+          SourcePageURL: pageURL,
+          Date: currentDate,
+          Time: currentTime,
+          IP: locationData?.ip,
+          Country: locationData?.country,
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);
@@ -326,118 +321,118 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Box sx={styles.inputDiv}>
                     <Input
-                      name="name"
-                      value={formData.name}
+                      name="FirstName"
+                      value={formData.FirstName}
                       onChange={handleChange}
                       placeholder={"Enter name here ..."}
                       className={`${styles.input} ${leagueSpartan.className}`}
                     />
-                    {errors.name && (
+                    {errors.FirstName && (
                       <Typography
                         className={`${leagueSpartan.className} `}
                         sx={styles.error}
                         component={"p"}
                         variant="caption"
                       >
-                        {errors.name}
+                        {errors.FirstName}
                       </Typography>
                     )}
                   </Box>
                   <PhoneInput
                     defaultCountry="SA"
-                    value={formData?.phone || ""}
-                    onChange={(e) => handleChange("phone", String(e))}
+                    value={formData?.PhoneNumber || ""}
+                    onChange={(e) => handleChange("PhoneNumber", String(e))}
                     inputComponent={CustomInput}
                     style={styles.phoneInput}
                   />
-                  {errors.phone && (
+                  {errors.PhoneNumber && (
                     <Typography
                       className={`${leagueSpartan.className} `}
                       sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.phone}
+                      {errors.PhoneNumber}
                     </Typography>
                   )}
                   <DropDown
                     placeholder="Select Curriculum"
-                    name="curriculum"
+                    name="Curriculum"
                     data={filterData?.curriculum || []}
                     // marginBottom="1.5vh"
                     // marginTop="1.5vh"
-                    value={formData.curriculum}
+                    value={formData.Curriculum}
                     onChange={handleChange}
                   />
-                  {errors.curriculum && (
+                  {errors.Curriculum && (
                     <Typography
                       className={`${leagueSpartan.className} `}
                       sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.curriculum}
+                      {errors.Curriculum}
                     </Typography>
                   )}
                 </Grid>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Box sx={styles.inputDiv}>
                     <Input
-                      name="email"
-                      value={formData.email}
+                      name="EmailAddress"
+                      value={formData.EmailAddress}
                       onChange={handleChange}
                       placeholder={"Enter email here ..."}
                       className={`${styles.input} ${leagueSpartan.className}`}
                     />
-                    {errors.email && (
+                    {errors.EmailAddress && (
                       <Typography
                         className={`${leagueSpartan.className} `}
                         sx={styles.error}
                         component={"p"}
                         variant="caption"
                       >
-                        {errors.email}
+                        {errors.EmailAddress}
                       </Typography>
                     )}
                   </Box>
                   <DropDown
-                    name="grade"
+                    name="Grade"
                     placeholder="Select Grade"
                     marginBottom="2vh"
                     marginTop="2vh"
                     data={filterData?.grade || []}
                     // multiple
-                    value={formData.grade}
+                    value={formData.Grade}
                     onChange={handleChange}
                   />
-                  {errors.grade && (
+                  {errors.Grade && (
                     <Typography
                       className={`${leagueSpartan.className} `}
                       sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.grade}
+                      {errors.Grade}
                     </Typography>
                   )}
                   <DropDown
-                    name="subjects"
+                    name="Subject"
                     placeholder="Select Subjects"
                     data={filterData?.subject || []}
                     // marginBottom="2vh"
                     // marginTop="2vh"
-                    value={formData.subjects}
+                    value={formData.Subject}
                     onChange={handleChange}
                     multiple
                   />{" "}
-                  {errors.subjects && (
+                  {errors.Subject && (
                     <Typography
                       className={`${leagueSpartan.className} `}
                       sx={styles.error}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.subjects}
+                      {errors.Subject}
                     </Typography>
                   )}
                 </Grid>

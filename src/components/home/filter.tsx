@@ -22,13 +22,14 @@ import { FormType } from "./form-dialouge";
 const Filter: React.FC = () => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [formData, setFormData] = useState<FormType>({
-    name: "",
-    email: "",
-    phone: "",
-    grade: "",
-    curriculum: "",
-    subjects: "",
+    FirstName: "",
+    EmailAddress: "",
+    PhoneNumber: "",
+    Grade: "",
+    Curriculum: "",
+    Subject: "",
     message: "",
+    sheetName: "Lead Forms",
   });
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
@@ -66,27 +67,6 @@ const Filter: React.FC = () => {
 
     getClientLocation();
   }, []);
-
-  // React.useEffect(() => {
-  //   const getClientLocation = async () => {
-  //     const browser = navigator.userAgent;
-  //     const pageURL = window.location.href;
-  //     const res = await fetch("https://ipinfo.io/json");
-  //     const locationData = await res.json();
-  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-  //     const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-
-  //     setFormData({
-  //       ...formData,
-  //       browser,
-  //       pageURL,
-  //       ip: locationData?.ip,
-  //       country: locationData?.country,
-  //     });
-  //   };
-
-  //   getClientLocation();
-  // }, []);
   return (
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
@@ -123,37 +103,28 @@ const Filter: React.FC = () => {
             <DropDown
               placeholder="Select Curriculum"
               data={filterData?.curriculum || []}
-              value={formData.curriculum}
+              value={formData.Curriculum}
               onChange={handleChange}
-              name="curriculum"
-              // onChange={(e) => {
-              //   handleChange("curriculum", e.target.value);
-              // }}
+              name="Curriculum"
             />
           </Grid>
           <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Grade"
               data={filterData?.grade || []}
-              value={formData.grade}
+              value={formData.Grade}
               onChange={handleChange}
-              name="grade"
-              // onChange={(e) => {
-              //   handleChange("grade", e.target.value);
-              // }}
+              name="Grade"
             />
           </Grid>
           <Grid item lg={7} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Subjects"
               data={filterData?.subject || []}
-              value={formData.subjects}
+              value={formData.Subject}
               onChange={handleChange}
-              name="subjects"
+              name="Subject"
               multiple
-              // onChange={(e) => {
-              //   handleChange("subjects", e.target.value);
-              // }}
             />
           </Grid>
           <Grid item lg={5} sm={12} xs={12} md={12}>
@@ -166,9 +137,6 @@ const Filter: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* <Box>
-        <PopularSearches />
-      </Box> */}
     </Box>
   );
 };

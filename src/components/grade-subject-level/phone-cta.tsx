@@ -14,13 +14,14 @@ type IProps = {
 
 const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
   const [formData, setFormData] = useState<FormType>({
-    name: "",
-    email: "",
-    phone: "",
-    grade: "",
-    curriculum: "",
-    subjects: "",
+    FirstName: "",
+    EmailAddress: "",
+    PhoneNumber: "",
+    Grade: "",
+    Curriculum: "",
+    Subject: "",
     message: "",
+    sheetName: "Lead Forms",
   });
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
@@ -55,9 +56,9 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
             placeholder="Mobile Number with Country Code"
             InputProps={style.inputProps}
             sx={style.textField}
-            value={formData.phone}
+            value={formData.PhoneNumber}
             onChange={(e) => {
-              handleChange("phone", e.target.value);
+              handleChange("PhoneNumber", e.target.value);
             }}
           />
           <PopUpButton

@@ -20,21 +20,20 @@ import { createCareerTemplate } from "@/services/email-service/template";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
-import DropDown from "../DropDown/DropDown";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { Height } from "@mui/icons-material";
 import { addFormData } from "@/utils/globalFunction";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    country: "",
-    phone: "",
-    position: "",
-    message: "",
+    FirstName: "",
+    LastName: "",
+    EmailAddress: "",
+    Country: "",
+    PhoneNumber: "",
+    Position: "",
+    Message: "",
+    sheetName: "Careers",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<CareersFormType>>({});
@@ -42,44 +41,45 @@ const ApplyNow: React.FunctionComponent = () => {
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
 
-    if (key === "message" && typeof value === "string") {
+    if (key === "Message" && typeof value === "string") {
       value = value.slice(0, 500);
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
     // Perform validation if the key is "phone"
-    if (key === "phone" && typeof value === "string") {
+    if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
-        newErrors.phone = isValidPhoneNumber(value)
+        newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
-          : "Invalid phone number";
+          : "Invalid PhoneNumber number";
 
         return;
       }
     }
-    if (key === "email" && typeof value === "string") {
-      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
+    if (key === "EmailAddress" && typeof value === "string") {
+      newErrors.EmailAddress = isValidEmail(value)
+        ? ""
+        : "Invalid email address";
     }
-    if (key === "firstName" && typeof value === "string") {
-      newErrors.firstName = isNotEmpty(value)
+    if (key === "FirstName" && typeof value === "string") {
+      newErrors.FirstName = isNotEmpty(value)
         ? ""
         : "First Name cannot be empty";
     }
 
-    if (key === "lastName" && typeof value === "string") {
-      newErrors.lastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
+    if (key === "LastName" && typeof value === "string") {
+      newErrors.LastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
     }
 
-    if (key === "country" && typeof value === "string") {
-      newErrors.country = isNotEmpty(value) ? "" : "Country cannot be empty";
+    if (key === "Country" && typeof value === "string") {
+      newErrors.Country = isNotEmpty(value) ? "" : "Country cannot be empty";
     }
 
-    if (key === "position" && typeof value === "string") {
-      newErrors.position = isNotEmpty(value) ? "" : "Position cannot be empty";
+    if (key === "Position" && typeof value === "string") {
+      newErrors.Position = isNotEmpty(value) ? "" : "Position cannot be empty";
     }
 
-    // if (key === "message" && typeof value === "string") {
-    //   newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    // if (key === "Message" && typeof value === "string") {
+    //   newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     // }
 
     setFormData({
@@ -99,32 +99,32 @@ const ApplyNow: React.FunctionComponent = () => {
 
     const newErrors: Partial<CareersFormType> = {};
 
-    if (!isNotEmpty(formData.firstName)) {
-      newErrors.firstName = "First Name cannot be empty";
+    if (!isNotEmpty(formData.FirstName)) {
+      newErrors.FirstName = "First Name cannot be empty";
     }
 
-    if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address";
+    if (!isValidEmail(formData.EmailAddress)) {
+      newErrors.EmailAddress = "Invalid email address";
     }
 
-    if (!isValidPhoneNumber(formData.phone)) {
-      newErrors.phone = "Invalid phone number";
+    if (!isValidPhoneNumber(formData.PhoneNumber)) {
+      newErrors.PhoneNumber = "Invalid PhoneNumber number";
     }
 
-    if (!isNotEmpty(formData.lastName)) {
-      newErrors.lastName = "Last Name is required";
+    if (!isNotEmpty(formData.LastName)) {
+      newErrors.LastName = "Last Name is required";
     }
 
-    if (!isNotEmpty(formData.country)) {
-      newErrors.country = "Country is required";
+    if (!isNotEmpty(formData.Country)) {
+      newErrors.Country = "Country is required";
     }
 
-    if (!isNotEmpty(formData.position)) {
-      newErrors.position = "Position cannot be empty";
+    if (!isNotEmpty(formData.Position)) {
+      newErrors.Position = "Position cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -162,7 +162,7 @@ const ApplyNow: React.FunctionComponent = () => {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
+        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
         {
           redirect: "follow",
           method: "POST",
@@ -194,22 +194,19 @@ const ApplyNow: React.FunctionComponent = () => {
       toast.error("Form submitted Failed!");
       (window as any).dataLayer.push({
         event: "careers_form_failed",
-        error: error.message,
+        error: error.Message,
         formType: "careers Form",
       });
     } finally {
       setLoading(false);
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        country: "",
-        position: "",
-        message: "",
-        browser: "",
-        ip: "",
-        pageURL: "",
+        FirstName: "",
+        LastName: "",
+        EmailAddress: "",
+        PhoneNumber: "",
+        Country: "",
+        Position: "",
+        Message: "",
       });
     }
   };
@@ -226,12 +223,12 @@ const ApplyNow: React.FunctionComponent = () => {
 
         setFormData((prev) => ({
           ...prev,
-          browser,
-          pageURL,
-          date: currentDate,
-          time: currentTime,
-          ip: locationData?.ip,
-          country: locationData?.country,
+          Browser: browser,
+          SourcePageURL: pageURL,
+          Date: currentDate,
+          Time: currentTime,
+          IP: locationData?.ip,
+          Country: locationData?.country,
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);
@@ -314,20 +311,20 @@ const ApplyNow: React.FunctionComponent = () => {
                   <Input
                     // style={{ width: "93%" }}
                     // style={{ padding: "0 8px", height: "5.7vh" }}
-                    name="firstName"
-                    value={formData.firstName}
+                    name="FirstName"
+                    value={formData.FirstName}
                     onChange={handleChange}
                     placeholder={"Enter First name here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.firstName && (
+                  {errors.FirstName && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} `}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.firstName}
+                      {errors.FirstName}
                     </Typography>
                   )}
 
@@ -335,40 +332,40 @@ const ApplyNow: React.FunctionComponent = () => {
                     <Input
                       // style={{ width: "93%" }}
                       // style={{ padding: "0 8px", height: "5.7vh" }}
-                      name="email"
-                      value={formData.email}
+                      name="EmailAddress"
+                      value={formData.EmailAddress}
                       onChange={handleChange}
                       placeholder={"Enter Email here ..."}
                       className={`${styles.input} ${leagueSpartan.className}`}
                     />
-                    {errors.email && (
+                    {errors.EmailAddress && (
                       <Typography
                         sx={styles.error}
                         className={`${leagueSpartan.className} `}
                         component={"p"}
                         variant="caption"
                       >
-                        {errors.email}
+                        {errors.EmailAddress}
                       </Typography>
                     )}
                   </Box>
                   <Input
                     // style={{ width: "93%" }}
                     // style={{ padding: "0 8px", height: "5.7vh" }}
-                    name="country"
-                    value={formData.country}
+                    name="Country"
+                    value={formData.Country}
                     onChange={handleChange}
                     placeholder={"Enter Country here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.country && (
+                  {errors.Country && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} `}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.country}
+                      {errors.Country}
                     </Typography>
                   )}
                 </Grid>
@@ -377,55 +374,55 @@ const ApplyNow: React.FunctionComponent = () => {
                     // style={{ width: "93%" }}
                     // style={{ padding: "0 8px", height: "5.7vh" }}
                     // style={{ height: "5.7vh" }}
-                    name="lastName"
-                    value={formData.lastName}
+                    name="LastName"
+                    value={formData.LastName}
                     onChange={handleChange}
                     placeholder={"Enter Last name here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.lastName && (
+                  {errors.LastName && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} `}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.lastName}
+                      {errors.LastName}
                     </Typography>
                   )}
                   <PhoneInput
                     style={styles.phoneInput}
                     defaultCountry="SA"
-                    value={formData?.phone || ""}
-                    onChange={(e) => handleChange("phone", String(e))}
+                    value={formData?.PhoneNumber || ""}
+                    onChange={(e) => handleChange("PhoneNumber", String(e))}
                     inputComponent={CustomInput}
                   />
-                  {errors.phone && (
+                  {errors.PhoneNumber && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} ${styles.error}`}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.phone}
+                      {errors.PhoneNumber}
                     </Typography>
                   )}
                   <Input
                     // style={{ width: "93%" }}
-                    name="position"
-                    value={formData.position}
+                    name="Position"
+                    value={formData.Position}
                     onChange={handleChange}
                     placeholder={"Enter Position here ..."}
                     className={`${styles.input} ${leagueSpartan.className}`}
                   />
-                  {errors.position && (
+                  {errors.Position && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} `}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.position}
+                      {errors.Position}
                     </Typography>
                   )}
                 </Grid>
@@ -436,21 +433,21 @@ const ApplyNow: React.FunctionComponent = () => {
                     multiline
                     rows={5}
                     name="Message"
-                    value={formData.message}
-                    onChange={(e) => handleChange("message", e.target.value)}
+                    value={formData.Message}
+                    onChange={(e) => handleChange("Message", e.target.value)}
                     // label="Message*"
-                    placeholder="Enter your message here..."
+                    placeholder="Enter your Message here..."
                     variant="outlined"
                     className={leagueSpartan.className}
                   />
-                  {errors.message && (
+                  {errors.Message && (
                     <Typography
                       sx={styles.error}
                       className={`${leagueSpartan.className} ${styles.error}`}
                       component={"p"}
                       variant="caption"
                     >
-                      {errors.message}
+                      {errors.Message}
                     </Typography>
                   )}
                 </Grid>

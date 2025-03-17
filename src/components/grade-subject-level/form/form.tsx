@@ -31,13 +31,18 @@ type IProps = {
 
 const Form: React.FunctionComponent<IProps> = ({ background }) => {
   const [formData, setFormData] = React.useState<FormType>({
-    name: "",
-    email: "",
-    phone: "",
-    grade: "",
-    curriculum: "",
-    subjects: "",
+    FirstName: "",
+    EmailAddress: "",
+    PhoneNumber: "",
+    Grade: "",
+    Curriculum: "",
+    Subject: "",
     message: "",
+    Browser: "",
+    country: "",
+    ip: "",
+    pageURL: "",
+    sheetName:'Lead Forms'
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -51,203 +56,193 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   // };
 
   const handleChange = (key: string, value: string | string[]) => {
-    let newErrors = { ...errors };
-
-    // Perform validation if the key is "phone"
-    if (key === "phone" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
-        newErrors.phone = isValidPhoneNumber(value)
+      let newErrors = { ...errors };
+  
+      if (key === "PhoneNumber" && typeof value === "string") {
+        if (!isValidPhoneNumber(value)) {
+          console.log("Invalid phone number!");
+          newErrors.PhoneNumber = isValidPhoneNumber(value)
+            ? ""
+            : "Invalid phone number";
+  
+          return;
+        }
+      }
+      if (key === "EmailAddress" && typeof value === "string") {
+        newErrors.EmailAddress = isValidEmail(value) ? "" : "Invalid email address";
+      }
+      if (key === "FirstName" && typeof value === "string") {
+        newErrors.FirstName = isNotEmpty(value) ? "" : "Name cannot be empty";
+      }
+      if (key === "Grade" && typeof value === "string") {
+        newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+      }
+      if (key === "Curriculum" && typeof value === "string") {
+        newErrors.Curriculum = isNotEmpty(value)
           ? ""
-          : "Invalid phone number";
-
+          : "Curriculum cannot be empty";
+      }
+      if (key === "Subject" && typeof value === "string") {
+        newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+      }
+      if (key === "message" && typeof value === "string") {
+        newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+      }
+  
+      setFormData({
+        ...formData,
+        [key]: value,
+      });
+      setErrors(newErrors);
+    };
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const newErrors: Partial<FormType> = {};
+  
+      if (!isNotEmpty(formData.FirstName)) {
+        newErrors.FirstName = "Name cannot be empty";
+      }
+  
+      if (!isValidEmail(formData.EmailAddress)) {
+        newErrors.EmailAddress = "Invalid email address";
+      }
+  
+      if (!isValidPhoneNumber(formData.PhoneNumber)) {
+        newErrors.PhoneNumber = "Invalid phone number";
+      }
+      if (!isNotEmpty(formData.Grade)) {
+        newErrors.Grade = "Grade cannot be empty";
+      }
+      if (!isNotEmpty(formData.Curriculum)) {
+        newErrors.Curriculum = "Curriculum cannot be empty";
+      }
+  
+      if (!isNotEmpty(formData.message)) {
+        newErrors.message = "Message cannot be empty";
+      }
+  
+      // Update errors state
+      setErrors(newErrors);
+  
+      // Step 2: Check if there are any errors
+      if (Object.values(newErrors).some((error) => error)) {
+        setLoading(false); // Stop loading if validation fails
+        toast.error("Please fix the errors in the form before submitting.");
+  
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "lead_form_error",
+          formData: newErrors, // Send errors if needed
+          formType: "lead Form",
+        });
+  
         return;
       }
-    }
-    if (key === "email" && typeof value === "string") {
-      newErrors.email = isValidEmail(value) ? "" : "Invalid email address";
-    }
-    if (key === "name" && typeof value === "string") {
-      newErrors.name = isNotEmpty(value) ? "" : "Name cannot be empty";
-    }
-    if (key === "grade" && typeof value === "string") {
-      newErrors.grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
-    }
-    if (key === "curriculum" && typeof value === "string") {
-      newErrors.curriculum = isNotEmpty(value)
-        ? ""
-        : "Curriculum cannot be empty";
-    }
-    if (key === "subjects" && typeof value === "string") {
-      newErrors.subjects = isNotEmpty(value) ? "" : "Subjects cannot be empty";
-    }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
-    }
-
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
-    setErrors(newErrors);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    // Step 1: Perform Validation
-    const newErrors: Partial<FormType> = {};
-
-    if (!isNotEmpty(formData.name)) {
-      newErrors.name = "Name cannot be empty";
-    }
-
-    if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address";
-    }
-
-    if (!isValidPhoneNumber(formData.phone)) {
-      newErrors.phone = "Invalid phone number";
-    }
-
-    if (!isNotEmpty(formData.grade)) {
-      newErrors.grade = "Grade is required";
-    }
-
-    if (!isNotEmpty(formData.curriculum)) {
-      newErrors.curriculum = "Curriculum is required";
-    }
-
-    // if (!isNotEmpty(formData.subjects)) {
-    //   newErrors.subjects = "Subjects cannot be empty";
-    // }
-
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
-    }
-
-    // Update errors state
-    setErrors(newErrors);
-
-    // Step 2: Check if there are any errors
-    if (Object.values(newErrors).some((error) => error)) {
-      setLoading(false); // Stop loading if validation fails
-      toast.error("Please fix the errors in the form before submitting.");
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: "lead_form_error",
-        formData: newErrors, // Send errors if needed
-        formType: "lead Form",
-      });
-      return;
-    }
-    await addFormData("lead", formData);
-
-    const formDataObject = new FormData();
-
-    Object.entries(formData).map((value) =>
-      formDataObject.append(value[0], value[1])
-    );
-
-    const keyValuePairs: string[] = [];
-    for (const [key, value] of Array.from(formDataObject.entries())) {
-      keyValuePairs.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
+  
+      await addFormData("lead", formData);
+      console.log(formData)
+      const formDataObject = new FormData();
+  
+      Object.entries(formData).map((value) =>
+        formDataObject.append(value[0], value[1])
       );
-    }
-
-    const formDataString = keyValuePairs.join("&");
-
-    // console.log("formDataString", formDataString);
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzsn6xxCCMHvdGpZm4L7oLR2Hc5jnS1OMtQNvVnzyRFB9Md6mzQ2SIiQ7ubSP6K4-dB/exec",
-        {
-          redirect: "follow",
-          method: "POST",
-          mode: "no-cors", // Bypass CORS
-          body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-        }
-      );
-      await sendEmail({
-        recipientEmail: HELLOTUITIONALEDU,
-        subject: "Get Started",
-        text: "",
-        html: createEmailTemplate(formData),
-      });
-      // console.log("formData", formData);
-      toast.success("Form submitted successfully!");
-      // ✅ Send Success Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_success",
-        formData: formData, // You can include submitted data for analytics
-        formType: "lead Form",
-      });
-    } catch (error: any) {
-      console.error("Error saving data:", error);
-      toast.error("Form submitted Failed!");
-      (window as any).dataLayer.push({
-        event: "lead_form_failed",
-        error: error.message,
-        formType: "lead Form",
-      });
-    } finally {
-      setLoading(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        grade: "",
-        curriculum: "",
-        subjects: "",
-        message: "",
-        time: "",
-        date: "",
-        country: "",
-        ip: "",
-        browser: "",
-        pageURL: "",
-      });
-    }
-  };
+  
+      const keyValuePairs: string[] = [];
+      for (const [key, value] of Array.from(formDataObject.entries())) {
+        keyValuePairs.push(
+          `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
+        );
+      }
+  
+      const formDataString = keyValuePairs.join("&");
+  
+      // console.log("formDataString", formDataString);
+  
+      try {
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
+          {
+            redirect: "follow",
+            method: "POST",
+            mode: "no-cors", // Bypass CORS
+  
+            body: formDataString,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            },
+          }
+        );
+        await sendEmail({
+          recipientEmail: HELLOTUITIONALEDU,
+          subject: "Get Started",
+          text: "",
+          html: createEmailTemplate(formData),
+        });
+        toast.success("Form submitted successfully!");
+        // ✅ Send Success Event to GTM
+        (window as any).dataLayer.push({
+          event: "lead_form_success",
+          formData: formData, // You can include submitted data for analytics
+          formType: "lead Form",
+        });
+      } catch (error: any) {
+        console.error("Error saving data:", error);
+        toast.error("Form submitted Failed!");
+        // ✅ Send Error Event to GTM
+        (window as any).dataLayer.push({
+          event: "lead_form_failed",
+          error: error.message,
+          formType: "lead Form",
+        });
+      } finally {
+        setLoading(false);
+        setFormData({
+          FirstName: "",
+          EmailAddress: "",
+          PhoneNumber: "",
+          Grade: "",
+          Curriculum: "",
+          Subject: "",
+          message: "",
+          sheetName:'Lead Forms'
+        
+        });
+      }
+    };
   useEffect(() => {
     getFilterData().then((data) => {
       setFilterData(data);
     });
   }, []);
 
-  React.useEffect(() => {
-    const getClientLocation = async () => {
-      const browser = navigator.userAgent;
-      const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-
-      try {
-        const res = await fetch("https://ipinfo.io/json");
-        const locationData = await res.json();
-
-        setFormData((prev) => ({
-          ...prev,
-          browser,
-          pageURL,
-          date: currentDate,
-          time: currentTime,
-          ip: locationData?.ip,
-          country: locationData?.country,
-        }));
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      }
-    };
-
-    getClientLocation();
-  }, []);
+ React.useEffect(() => {
+     const getClientLocation = async () => {
+       const browser = navigator.userAgent;
+       const pageURL = window.location.href;
+       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+ 
+       try {
+         const res = await fetch("https://ipinfo.io/json");
+         const locationData = await res.json();
+ 
+         setFormData((prev) => ({
+           ...prev,
+           Browser:browser,
+           SourcePageURL:pageURL,
+           Date: currentDate,
+           Time: currentTime,
+           IP: locationData?.ip,
+           Country: locationData?.country,
+         }));
+       } catch (error) {
+         console.error("Error fetching location data:", error);
+       }
+     };
+ 
+     getClientLocation();
+   }, []);
 
   return (
     <div className={styles.main}>
@@ -262,38 +257,38 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         <div className={styles.inputDiv}>
           <div className={styles.inputInner}>
             <Input
-              name="name"
-              value={formData.name}
+              name="FirstName"
+              value={formData.FirstName}
               onChange={handleChange}
               placeholder={"Enter name here ..."}
               className={`${styles.input} ${leagueSpartan.className}`}
             />
-            {errors.name && (
+            {errors.FirstName && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.name}
+                {errors.FirstName}
               </Typography>
             )}
           </div>
 
           <div className={styles.inputInner}>
             <Input
-              name="email"
-              value={formData.email}
+              name="EmailAddress"
+              value={formData.EmailAddress}
               onChange={handleChange}
               placeholder={"Enter email here ..."}
               className={`${styles.input} ${leagueSpartan.className}`}
             />
-            {errors.email && (
+            {errors.EmailAddress && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.email}
+                {errors.EmailAddress}
               </Typography>
             )}
           </div>
@@ -303,38 +298,38 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           <div className={styles.div}>
             <PhoneInput
               defaultCountry="SA"
-              value={formData?.phone || ""}
-              onChange={(e) => handleChange("phone", String(e))}
+              value={formData?.PhoneNumber || ""}
+              onChange={(e) => handleChange("PhoneNumber", String(e))}
               inputComponent={CustomInput}
               className={`${styles.phoneInput}`}
             />
-            {errors.phone && (
+            {errors.PhoneNumber && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.phone}
+                {errors.PhoneNumber}
               </Typography>
             )}
           </div>
           <div className={styles.div}>
             <DropDown
-              name="grade"
+              name="Grade"
               placeholder="Select Grade"
               marginTop="1.5vh"
               data={filterData?.grade || []}
               // multiple
-              value={formData.grade}
+              value={formData.Grade}
               onChange={handleChange}
             />
-            {errors.grade && (
+            {errors.Grade && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.grade}
+                {errors.Grade}
               </Typography>
             )}
           </div>
@@ -343,39 +338,39 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
           <div className={styles.div}>
             <DropDown
               placeholder="Select Curriculum"
-              name="curriculum"
+              name="Curriculum"
               data={filterData?.curriculum || []}
               marginTop="1.5vh"
-              value={formData.curriculum}
+              value={formData.Curriculum}
               onChange={handleChange}
             />
-            {errors.curriculum && (
+            {errors.Curriculum && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.curriculum}
+                {errors.Curriculum}
               </Typography>
             )}
           </div>
           <div className={styles.div}>
             <DropDown
-              name="subjects"
+              name="Subject"
               placeholder="Select Subject"
               data={filterData?.subject || []}
               marginTop="1.5vh"
               multiple
-              value={formData.subjects}
+              value={formData.Subject}
               onChange={handleChange}
             />{" "}
-            {errors.subjects && (
+            {errors.Subject && (
               <Typography
                 className={`${leagueSpartan.className} ${styles.error}`}
                 component={"p"}
                 variant="caption"
               >
-                {errors.subjects}
+                {errors.Subject}
               </Typography>
             )}
           </div>
