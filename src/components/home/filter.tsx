@@ -18,6 +18,7 @@ import {
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";
 import { FormType } from "./form-dialouge";
+import { useSearchParams } from "next/navigation";
 
 const Filter: React.FC = () => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
@@ -31,6 +32,8 @@ const Filter: React.FC = () => {
     message: "",
     sheetName: "Lead Forms",
   });
+  const params = useSearchParams();
+
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
       ...formData,
@@ -59,6 +62,11 @@ const Filter: React.FC = () => {
           time: currentTime,
           ip: locationData?.ip,
           country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);

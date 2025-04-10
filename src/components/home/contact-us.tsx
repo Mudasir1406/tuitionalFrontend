@@ -27,6 +27,7 @@ import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
+import { useSearchParams } from "next/navigation";
 
 type IProps = {
   background?: any;
@@ -56,6 +57,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
+  const params = useSearchParams();
 
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
@@ -237,6 +239,11 @@ const ContactUs: React.FunctionComponent<IProps> = ({
           Time: currentTime,
           IP: locationData?.ip,
           Country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);

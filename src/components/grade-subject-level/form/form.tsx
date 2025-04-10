@@ -24,6 +24,7 @@ import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
+import { useSearchParams } from "next/navigation";
 
 type IProps = {
   background?: any;
@@ -42,11 +43,12 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
     country: "",
     ip: "",
     pageURL: "",
-    sheetName:'Lead Forms'
+    sheetName: "Lead Forms",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
+  const params = useSearchParams();
 
   // const handleChange = (key: string, value: string | string[]) => {
   //   setFormData({
@@ -56,193 +58,199 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   // };
 
   const handleChange = (key: string, value: string | string[]) => {
-      let newErrors = { ...errors };
-  
-      if (key === "PhoneNumber" && typeof value === "string") {
-        if (!isValidPhoneNumber(value)) {
-          console.log("Invalid phone number!");
-          newErrors.PhoneNumber = isValidPhoneNumber(value)
-            ? ""
-            : "Invalid phone number";
-  
-          return;
-        }
-      }
-      if (key === "EmailAddress" && typeof value === "string") {
-        newErrors.EmailAddress = isValidEmail(value) ? "" : "Invalid email address";
-      }
-      if (key === "FirstName" && typeof value === "string") {
-        newErrors.FirstName = isNotEmpty(value) ? "" : "Name cannot be empty";
-      }
-      if (key === "Grade" && typeof value === "string") {
-        newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
-      }
-      if (key === "Curriculum" && typeof value === "string") {
-        newErrors.Curriculum = isNotEmpty(value)
+    let newErrors = { ...errors };
+
+    if (key === "PhoneNumber" && typeof value === "string") {
+      if (!isValidPhoneNumber(value)) {
+        console.log("Invalid phone number!");
+        newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
-          : "Curriculum cannot be empty";
-      }
-      if (key === "Subject" && typeof value === "string") {
-        newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
-      }
-      if (key === "message" && typeof value === "string") {
-        newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
-      }
-  
-      setFormData({
-        ...formData,
-        [key]: value,
-      });
-      setErrors(newErrors);
-    };
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setLoading(true);
-      const newErrors: Partial<FormType> = {};
-  
-      if (!isNotEmpty(formData.FirstName)) {
-        newErrors.FirstName = "Name cannot be empty";
-      }
-  
-      if (!isValidEmail(formData.EmailAddress)) {
-        newErrors.EmailAddress = "Invalid email address";
-      }
-  
-      if (!isValidPhoneNumber(formData.PhoneNumber)) {
-        newErrors.PhoneNumber = "Invalid phone number";
-      }
-      if (!isNotEmpty(formData.Grade)) {
-        newErrors.Grade = "Grade cannot be empty";
-      }
-      if (!isNotEmpty(formData.Curriculum)) {
-        newErrors.Curriculum = "Curriculum cannot be empty";
-      }
-  
-      if (!isNotEmpty(formData.message)) {
-        newErrors.message = "Message cannot be empty";
-      }
-  
-      // Update errors state
-      setErrors(newErrors);
-  
-      // Step 2: Check if there are any errors
-      if (Object.values(newErrors).some((error) => error)) {
-        setLoading(false); // Stop loading if validation fails
-        toast.error("Please fix the errors in the form before submitting.");
-  
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: "lead_form_error",
-          formData: newErrors, // Send errors if needed
-          formType: "lead Form",
-        });
-  
+          : "Invalid phone number";
+
         return;
       }
-  
-      await addFormData("lead", formData);
-      console.log(formData)
-      const formDataObject = new FormData();
-  
-      Object.entries(formData).map((value) =>
-        formDataObject.append(value[0], value[1])
+    }
+    if (key === "EmailAddress" && typeof value === "string") {
+      newErrors.EmailAddress = isValidEmail(value)
+        ? ""
+        : "Invalid email address";
+    }
+    if (key === "FirstName" && typeof value === "string") {
+      newErrors.FirstName = isNotEmpty(value) ? "" : "Name cannot be empty";
+    }
+    if (key === "Grade" && typeof value === "string") {
+      newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+    }
+    if (key === "Curriculum" && typeof value === "string") {
+      newErrors.Curriculum = isNotEmpty(value)
+        ? ""
+        : "Curriculum cannot be empty";
+    }
+    if (key === "Subject" && typeof value === "string") {
+      newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+    }
+    if (key === "message" && typeof value === "string") {
+      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    }
+
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+    setErrors(newErrors);
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const newErrors: Partial<FormType> = {};
+
+    if (!isNotEmpty(formData.FirstName)) {
+      newErrors.FirstName = "Name cannot be empty";
+    }
+
+    if (!isValidEmail(formData.EmailAddress)) {
+      newErrors.EmailAddress = "Invalid email address";
+    }
+
+    if (!isValidPhoneNumber(formData.PhoneNumber)) {
+      newErrors.PhoneNumber = "Invalid phone number";
+    }
+    if (!isNotEmpty(formData.Grade)) {
+      newErrors.Grade = "Grade cannot be empty";
+    }
+    if (!isNotEmpty(formData.Curriculum)) {
+      newErrors.Curriculum = "Curriculum cannot be empty";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "Message cannot be empty";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Step 2: Check if there are any errors
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false); // Stop loading if validation fails
+      toast.error("Please fix the errors in the form before submitting.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "lead_form_error",
+        formData: newErrors, // Send errors if needed
+        formType: "lead Form",
+      });
+
+      return;
+    }
+
+    await addFormData("lead", formData);
+    console.log(formData);
+    const formDataObject = new FormData();
+
+    Object.entries(formData).map((value) =>
+      formDataObject.append(value[0], value[1])
+    );
+
+    const keyValuePairs: string[] = [];
+    for (const [key, value] of Array.from(formDataObject.entries())) {
+      keyValuePairs.push(
+        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
       );
-  
-      const keyValuePairs: string[] = [];
-      for (const [key, value] of Array.from(formDataObject.entries())) {
-        keyValuePairs.push(
-          `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
-        );
-      }
-  
-      const formDataString = keyValuePairs.join("&");
-  
-      // console.log("formDataString", formDataString);
-  
-      try {
-        const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
-          {
-            redirect: "follow",
-            method: "POST",
-            mode: "no-cors", // Bypass CORS
-  
-            body: formDataString,
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-            },
-          }
-        );
-        await sendEmail({
-          recipientEmail: HELLOTUITIONALEDU,
-          subject: "Get Started",
-          text: "",
-          html: createEmailTemplate(formData),
-        });
-        toast.success("Form submitted successfully!");
-        // ✅ Send Success Event to GTM
-        (window as any).dataLayer.push({
-          event: "lead_form_success",
-          formData: formData, // You can include submitted data for analytics
-          formType: "lead Form",
-        });
-      } catch (error: any) {
-        console.error("Error saving data:", error);
-        toast.error("Form submitted Failed!");
-        // ✅ Send Error Event to GTM
-        (window as any).dataLayer.push({
-          event: "lead_form_failed",
-          error: error.message,
-          formType: "lead Form",
-        });
-      } finally {
-        setLoading(false);
-        setFormData({
-          FirstName: "",
-          EmailAddress: "",
-          PhoneNumber: "",
-          Grade: "",
-          Curriculum: "",
-          Subject: "",
-          message: "",
-          sheetName:'Lead Forms'
-        
-        });
-      }
-    };
+    }
+
+    const formDataString = keyValuePairs.join("&");
+
+    // console.log("formDataString", formDataString);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
+        {
+          redirect: "follow",
+          method: "POST",
+          mode: "no-cors", // Bypass CORS
+
+          body: formDataString,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+        }
+      );
+      await sendEmail({
+        recipientEmail: HELLOTUITIONALEDU,
+        subject: "Get Started",
+        text: "",
+        html: createEmailTemplate(formData),
+      });
+      toast.success("Form submitted successfully!");
+      // ✅ Send Success Event to GTM
+      (window as any).dataLayer.push({
+        event: "lead_form_success",
+        formData: formData, // You can include submitted data for analytics
+        formType: "lead Form",
+      });
+    } catch (error: any) {
+      console.error("Error saving data:", error);
+      toast.error("Form submitted Failed!");
+      // ✅ Send Error Event to GTM
+      (window as any).dataLayer.push({
+        event: "lead_form_failed",
+        error: error.message,
+        formType: "lead Form",
+      });
+    } finally {
+      setLoading(false);
+      setFormData({
+        FirstName: "",
+        EmailAddress: "",
+        PhoneNumber: "",
+        Grade: "",
+        Curriculum: "",
+        Subject: "",
+        message: "",
+        sheetName: "Lead Forms",
+      });
+    }
+  };
   useEffect(() => {
     getFilterData().then((data) => {
       setFilterData(data);
     });
   }, []);
 
- React.useEffect(() => {
-     const getClientLocation = async () => {
-       const browser = navigator.userAgent;
-       const pageURL = window.location.href;
-       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
- 
-       try {
-         const res = await fetch("https://ipinfo.io/json");
-         const locationData = await res.json();
- 
-         setFormData((prev) => ({
-           ...prev,
-           Browser:browser,
-           SourcePageURL:pageURL,
-           Date: currentDate,
-           Time: currentTime,
-           IP: locationData?.ip,
-           Country: locationData?.country,
-         }));
-       } catch (error) {
-         console.error("Error fetching location data:", error);
-       }
-     };
- 
-     getClientLocation();
-   }, []);
+  React.useEffect(() => {
+    const getClientLocation = async () => {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const locationData = await res.json();
+
+        setFormData((prev) => ({
+          ...prev,
+          Browser: browser,
+          SourcePageURL: pageURL,
+          Date: currentDate,
+          Time: currentTime,
+          IP: locationData?.ip,
+          Country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
+        }));
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
+    };
+
+    getClientLocation();
+  }, []);
 
   return (
     <div className={styles.main}>
