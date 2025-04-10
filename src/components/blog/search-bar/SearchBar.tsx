@@ -19,13 +19,13 @@ function SearchBar({
   // const handleSearch = () => {
   //   if (search) {
   //     // Update the URL with the search query
-  //     const params = new URLSearchParams();
+  //     const params = new URLSearchParams(window.location.search);
   //     params.set("search", search);
   //     router.push(`?${params.toString()}`);
   //   }
   // };
   const handleSearch = () => {
-    // const params = new URLSearchParams();
+    // const params = new URLSearchParams(window.location.search);
 
     // if (search) {
     //   params.set("search", search);

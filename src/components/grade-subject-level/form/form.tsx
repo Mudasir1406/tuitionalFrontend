@@ -48,7 +48,6 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
-  const params = useSearchParams();
 
   // const handleChange = (key: string, value: string | string[]) => {
   //   setFormData({
@@ -225,6 +224,7 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const params = new URLSearchParams(window.location.search);
 
       try {
         const res = await fetch("https://ipinfo.io/json");
