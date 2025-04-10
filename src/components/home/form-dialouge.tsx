@@ -25,6 +25,7 @@ import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
+import { useSearchParams } from "next/navigation";
 
 type IProps = {
   open: boolean;
@@ -95,7 +96,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
-
+  const params = useSearchParams();
   const handleChange = (key: string, value: string | string[]) => {
     // setFormData({
     //   ...formData,
@@ -157,7 +158,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-
       try {
         const res = await fetch("https://ipinfo.io/json");
         const locationData = await res.json();
@@ -170,6 +170,11 @@ const FormDialog: React.FunctionComponent<IProps> = ({
           Time: currentTime,
           IP: locationData?.ip,
           Country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);

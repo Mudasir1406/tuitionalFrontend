@@ -26,6 +26,7 @@ import Input from "@/components/input/Input";
 import CustomInput from "@/components/custom-input/custom-input";
 import lines from "../../../../public/assets/images/static/lines.png";
 import { addFormData } from "@/utils/globalFunction";
+import { useSearchParams } from "next/navigation";
 
 const GetInTouch: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<ContactFormType>({
@@ -44,6 +45,7 @@ const GetInTouch: React.FunctionComponent = () => {
   });
   const [errors, setErrors] = useState<Partial<ContactFormType>>({});
   const [loading, setLoading] = React.useState<boolean>(false);
+  const params = useSearchParams();
 
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
@@ -209,6 +211,11 @@ const GetInTouch: React.FunctionComponent = () => {
           Time: currentTime,
           IP: locationData?.ip,
           Country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);

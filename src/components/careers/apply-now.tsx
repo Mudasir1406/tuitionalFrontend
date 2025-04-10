@@ -23,6 +23,7 @@ import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
+import { useSearchParams } from "next/navigation";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
@@ -37,6 +38,7 @@ const ApplyNow: React.FunctionComponent = () => {
   });
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<CareersFormType>>({});
+  const params = useSearchParams();
 
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
@@ -229,6 +231,11 @@ const ApplyNow: React.FunctionComponent = () => {
           Time: currentTime,
           IP: locationData?.ip,
           Country: locationData?.country,
+          Medium: params.get("gad_source")
+            ? "google"
+            : params.get("fbclid")
+            ? "facebook"
+            : "",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);
