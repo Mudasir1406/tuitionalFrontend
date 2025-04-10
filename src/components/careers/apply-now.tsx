@@ -38,7 +38,6 @@ const ApplyNow: React.FunctionComponent = () => {
   });
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<CareersFormType>>({});
-  const params = useSearchParams();
 
   const handleChange = (key: string, value: string | string[]) => {
     let newErrors = { ...errors };
@@ -218,7 +217,7 @@ const ApplyNow: React.FunctionComponent = () => {
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-
+      const params = new URLSearchParams(window.location.search);
       try {
         const res = await fetch("https://ipinfo.io/json");
         const locationData = await res.json();

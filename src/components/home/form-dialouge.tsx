@@ -96,7 +96,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
-  const params = useSearchParams();
   const handleChange = (key: string, value: string | string[]) => {
     // setFormData({
     //   ...formData,
@@ -157,7 +156,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const currentTime = new Date().toLocaleTimeString();
+      const params = new URLSearchParams(window.location.search);
+      // Format: HH:MM:SS AM/PM
       try {
         const res = await fetch("https://ipinfo.io/json");
         const locationData = await res.json();
@@ -180,7 +181,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         console.error("Error fetching location data:", error);
       }
     };
-
     getClientLocation();
   }, []);
 

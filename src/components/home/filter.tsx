@@ -32,7 +32,6 @@ const Filter: React.FC = () => {
     message: "",
     sheetName: "Lead Forms",
   });
-  const params = useSearchParams();
 
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
@@ -49,6 +48,7 @@ const Filter: React.FC = () => {
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
       const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const params = new URLSearchParams(window.location.search);
 
       try {
         const res = await fetch("https://ipinfo.io/json");
