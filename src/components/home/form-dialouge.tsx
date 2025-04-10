@@ -172,10 +172,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
           IP: locationData?.ip,
           Country: locationData?.country,
           Medium: params.get("gad_source")
-            ? "google"
+            ? "google Ads"
             : params.get("fbclid")
             ? "facebook"
-            : "",
+            : "SEO",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);

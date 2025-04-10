@@ -212,7 +212,7 @@ const GetInTouch: React.FunctionComponent = () => {
           IP: locationData?.ip,
           Country: locationData?.country,
           Medium: params.get("gad_source")
-            ? "google"
+            ? "google Ads"
             : params.get("fbclid")
             ? "facebook"
             : "SEO",
