@@ -215,7 +215,7 @@ const GetInTouch: React.FunctionComponent = () => {
             ? "google"
             : params.get("fbclid")
             ? "facebook"
-            : "",
+            : "SEO",
         }));
       } catch (error) {
         console.error("Error fetching location data:", error);
