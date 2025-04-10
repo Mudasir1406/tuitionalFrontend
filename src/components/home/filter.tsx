@@ -63,7 +63,7 @@ const Filter: React.FC = () => {
           ip: locationData?.ip,
           country: locationData?.country,
           Medium: params.get("gad_source")
-            ? "google"
+            ? "google Ads"
             : params.get("fbclid")
             ? "facebook"
             : "SEO",
