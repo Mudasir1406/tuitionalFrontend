@@ -15,6 +15,7 @@
 .mainLeft {
   /* display: flex; */
   flex: 0.2;
+  /* min-width: 20%; */
 }
 .mainRight {
   flex: 0.75;
@@ -30,7 +31,8 @@
 }
 .imageDiv {
   position: relative;
-  width: 90%;margin: auto;
+  width: 90%;
+  margin: auto;
   /* height: 100%; */
   height: 40vh;
 }
@@ -39,7 +41,6 @@
   border-radius: 16px;
   object-fit: cover;
 }
-
 
 @media (max-width: 575px) {
   .blogImg {

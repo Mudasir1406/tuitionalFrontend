@@ -128,7 +128,7 @@ const style = {
   },
   boxdesc: {
     // fontSize: { lg: "2.1vh", sm: "2vh" },
-    width: { lg: "70vw" },
+    width: { lg: "100%" },
     marginTop: "2vh",
   },
   TextBox: {

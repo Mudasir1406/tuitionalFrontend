@@ -1,10 +1,9 @@
 import React, { ReactNode } from "react";
+import * as cheerio from "cheerio";
 
 import { Header } from "@/components";
 import dynamic from "next/dynamic";
-import students from "../../../../public/assets/images/static/young-students-learning-together-group-study.png";
-import dumyimg1 from "../../../../public/assets/images/static/Girl_in_circle.png";
-import dumyimg2 from "../../../../public/assets/images/static/young-students-learning-together-group-study.png";
+
 import styles from "./BlogSequences.module.css";
 
 const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), {
@@ -21,6 +20,12 @@ const Breadcrumb = dynamic(
 const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), {
   ssr: true,
 });
+const FrequentlyQuestions = dynamic(
+  () => import("@/components/grade-subject-level/faqs"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   AllBlogsData,
@@ -48,6 +53,27 @@ type IProps = {
 
 const MainSection = ({ children }: any) => {
   return <div className={styles.mainRight}>{children}</div>;
+};
+
+const processHtmlContent = (html: string) => {
+  const $ = cheerio.load(html);
+
+  // Convert data-list attributes to proper list types
+  $("li[data-list]").each(function () {
+    const listType = $(this).attr("data-list");
+    const listTag = listType === "bullet" ? "ul" : "ol";
+
+    // Create new list wrapper if needed
+    if ($(this).parent().is("ol, ul")) {
+      $(this).unwrap();
+    }
+    $(this).wrap(`<${listTag}></${listTag}>`);
+  });
+
+  // Remove Quill UI elements
+  $(".ql-ui").remove();
+
+  return $.html();
 };
 const BlogInnerLaylout = ({
   children,
@@ -111,7 +137,10 @@ const BlogSequences: React.FC<IProps> = ({
       );
     } else if (name.includes("blogContent")) {
       const shouldShowLeftSection = !isLeftSectionRendered;
-      isLeftSectionRendered = true; // Mark LeftSection as rendered
+      isLeftSectionRendered = true;
+
+      const rawContent = data?.[name as keyof PageData]?.content || "";
+      const processedContent = processHtmlContent(rawContent);
 
       return (
         data?.[name as keyof PageData] && (
@@ -126,10 +155,18 @@ const BlogSequences: React.FC<IProps> = ({
               variant={data?.[name as keyof PageData]?.headerTag || "h3"}
               component={"div"}
               dangerouslySetInnerHTML={{
-                __html: data?.[name as keyof PageData]?.content,
+                __html: processedContent,
               }}
             ></Typography>
             {/* </div> */}
+          </BlogInnerLaylout>
+        )
+      );
+    } else if (name.includes("Faqs")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <BlogInnerLaylout onlyChildren>
+            <FrequentlyQuestions data={data?.[name as keyof PageData]} />
           </BlogInnerLaylout>
         )
       );
