@@ -19,8 +19,18 @@ export const metadata: Metadata = {
     "font-display": "swap",
   },
 };
+import { League_Spartan } from "next/font/google";
+
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: false,
+});
+
+export const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["600"],
+  variable: "--font-league-spartan",
+  preload: true, // Add this
 });
 
 export default function RootLayout({
@@ -29,7 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      className={`${leagueSpartan.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel="preconnect"

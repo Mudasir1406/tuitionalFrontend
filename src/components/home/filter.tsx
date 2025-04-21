@@ -1,24 +1,19 @@
 "use client";
-import {
-  Box,
-  Button,
-  Grid,
-  SelectChangeEvent,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import DropDown from "../DropDown/DropDown";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
-import PopularSearches from "./popular-searches";
 import {
   Filter_Data,
   getFilterData,
 } from "../../services/filter-data/filter-data";
-import { leagueSpartan } from "@/app/fonts";
-import PopUpButton from "../pop-up-button";
+// import { leagueSpartan } from "@/app/fonts";
+// import DropDown from "../DropDown/DropDown";
+// import PopUpButton from "../pop-up-button";
+const DropDown = dynamic(() => import("../DropDown/DropDown"));
+const PopUpButton = dynamic(() => import("../pop-up-button"));
 import { FormType } from "./form-dialouge";
-import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 
 const Filter: React.FC = () => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
@@ -76,20 +71,19 @@ const Filter: React.FC = () => {
     getClientLocation();
   }, []);
   return (
-    // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
       <Typography
-        sx={[styles.heading]}
+        sx={styles.heading}
         component={"h1"}
         variant="h1"
-        className={leagueSpartan.className}
+        // className={leagueSpartan.className}
       >
         Online Tutoring{" "}
         <Typography
           sx={styles.expertText}
           component={"span"}
           variant="h1"
-          className={leagueSpartan.className}
+          // className={leagueSpartan.className}
         >
           Platform <br />{" "}
         </Typography>
@@ -97,7 +91,7 @@ const Filter: React.FC = () => {
       </Typography>
       <Typography
         sx={styles.desc}
-        className={leagueSpartan.className}
+        // className={leagueSpartan.className}
         component={"p"}
         variant="body2"
       >
@@ -161,19 +155,6 @@ const styles = {
     maxHeight: "700px",
   },
   heading: {
-    // fontSize: {
-    //   xs: "4vh",
-    //   sm: "5.2vh",
-    //   md: "5.3vh",
-    //   lg: "5.4vh",
-    // },
-    // fontWeight: 400,
-    // lineHeight: {
-    //   xs: "5vh",
-    //   sm: "4.5vh",
-    //   md: "5.5vh",
-    //   lg: "6vh",
-    // },
     width: {
       lg: "90%",
     },
@@ -189,20 +170,7 @@ const styles = {
   expertText: {
     color: "#51B893",
     display: "inline",
-    // fontSize: {
-    //   xs: "4vh",
-    //   sm: "5.2vh",
-    //   md: "5.3vh",
-    //   lg: "5.4vh",
-    // },
 
-    // fontWeight: 600,
-    // lineHeight: {
-    //   xs: "3.5vh",
-    //   sm: "4.5vh",
-    //   md: "5.5vh",
-    //   lg: "8vh",
-    // },
     position: "relative",
     "::before": {
       content: "''",
@@ -241,19 +209,6 @@ const styles = {
     },
   },
   desc: {
-    // fontSize: {
-    //   xs: "2.5vh",
-    //   sm: "2vh",
-    //   md: "2.5vh",
-    //   lg: "2.6vh",
-    // },
-    // fontWeight: 400,
-    // lineHeight: {
-    //   xs: "2.5vh",
-    //   sm: "2.4vh",
-    //   md: "2.8vh",
-    //   lg: "3.4vh",
-    // },
     textAlign: {
       xs: "center",
       lg: "start",
