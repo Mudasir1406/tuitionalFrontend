@@ -1,17 +1,16 @@
 import React from "react";
 import { Header } from "../components";
 import Filter from "../components/home/filter";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Info from "../components/home/info";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
-import faqLine from "../../public/assets/images/static/faq-line.png";
+import faqLine from "../../public/assets/images/static/faq-line.webp";
 import Trusted from "../components/home/trusted";
-// import GetStarted from "../components/home/get-started";
 import OurClient from "../components/home/our-client";
 import Faqs from "../components/home/faqs";
 import Footer from "../components/footer";
 import ContactUs from "../components/home/contact-us";
-import homeImage from "../../public/assets/images/static/girl-with-book.png";
+import homeImage from "../../public/assets/images/static/girl-with-book.webp";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
@@ -35,13 +34,6 @@ export const metadata: Metadata = {
 const Home: React.FC = async () => {
   const data = await getTestimonials();
   const faqs: Faqs_Type[] = await getFaqs();
-
-  const faqSchema = generateFaqSchema({
-    header: "",
-    headerTag: "",
-    faqs: faqs,
-    paragraph: "",
-  });
 
   const homeSchema = {
     "@context": "https://schema.org",
@@ -121,31 +113,12 @@ const Home: React.FC = async () => {
         type="application/ld+json"
         defer
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
-        // dangerouslySetInnerHTML={{ __html: faqSchema }}
       />
       <Header />
       <Container sx={styles.contanier}>
-        {/* <Grid container>
-          <Grid
-            item
-            lg={6}
-            md={12}
-            sm={12}
-            xs={12}
-            paddingRight={{
-              lg: 10,
-            }}
-          >
-            <Filter />
-          </Grid>
-          <Grid item lg={6} md={12} sm={12} xs={12} sx={styles.infoGrid}>
-            <Info />
-          </Grid>
-        </Grid> */}
         <div className={style.container}>
           <div className={style["grid-container"]}>
             <div className={style["hero"]}>
-              {/* <Hero /> */}
               <Filter />
             </div>
             <div className={style["hero-picture"]}>
@@ -156,11 +129,10 @@ const Home: React.FC = async () => {
         </div>
       </Container>
       <Trusted />
-      {/* <Container sx={{ maxWidth: { lg: "1450px" } }}> */}{" "}
+
       <Box sx={styles.verticalMargin}>
         <GetStarted />
       </Box>
-      {/* </Container> */}
       <OurClient data={data} />
       <Box sx={styles.backgroundImage}>
         <Container
