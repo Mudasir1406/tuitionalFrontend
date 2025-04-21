@@ -5,9 +5,8 @@ import { Box, Container } from "@mui/material";
 import Info from "../components/home/info";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
 import faqLine from "../../public/assets/images/static/faq-line.webp";
-import Trusted from "../components/home/trusted";
-import OurClient from "../components/home/our-client";
-import Faqs from "../components/home/faqs";
+import dynamic from "next/dynamic";
+
 import Footer from "../components/footer";
 import ContactUs from "../components/home/contact-us";
 import homeImage from "../../public/assets/images/static/girl-with-book.webp";
@@ -15,12 +14,13 @@ import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
 import Script from "next/script";
-import { generateFaqSchema } from "@/utils/helper";
-import { getFaqs } from "@/services/faqs/faqs";
-import { Faqs_Type } from "@/types/grade-subject-level.types";
+
 import "./globals.css";
 import GetStarted from "@/components/grade-subject-level/get-started";
 import style from "./page.module.css";
+const Trusted = dynamic(() => import("../components/home/trusted"));
+const OurClient = dynamic(() => import("../components/home/our-client"));
+const Faqs = dynamic(() => import("../components/home/faqs"));
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
 
 const Home: React.FC = async () => {
   const data = await getTestimonials();
-  const faqs: Faqs_Type[] = await getFaqs();
 
   const homeSchema = {
     "@context": "https://schema.org",
