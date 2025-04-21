@@ -339,7 +339,7 @@
 /* globals.css */
 :root {
   /* Font Settings */
-  font-family: var(--font-leagueSpartan);
+  /* font-family: var(--font-leagueSpartan); */
 
   --font-primary: var(--font-leagueSpartan), sans-serif;
 
