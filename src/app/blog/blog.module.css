@@ -32,7 +32,7 @@
 
 .hero-picture::before {
   content: "";
-  background-image: url("../../../public/assets/images/static/girl-with-book.png");
+  background-image: url("../../../public/assets/images/static/girl-with-book.webp");
   background-position: bottom;
   background-size: contain;
   background-repeat: no-repeat;
