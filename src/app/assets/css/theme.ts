@@ -10,7 +10,8 @@ export const leagueSpartan = League_Spartan({
 
 const theme = createTheme({
   typography: {
-    fontFamily: `${leagueSpartan.style.fontFamily}`, // Add font family globally
+    // fontFamily: `${leagueSpartan.style.fontFamily}`, // Add font family globally
+    fontFamily: "var(--font-league-spartan), Arial, sans-serif",
 
     // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
     h1: {
@@ -21,7 +22,7 @@ const theme = createTheme({
         // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        fontSize: "3.5vh",
+        fontSize: "4vh",
         lineHeight: "5.5vh",
       },
     },

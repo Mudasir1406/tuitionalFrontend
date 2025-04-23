@@ -46,14 +46,14 @@ const Filter: React.FC = () => {
         sx={[styles.heading]}
         component={"h1"}
         variant="h1"
-        className={leagueSpartan.className}
+        // className={leagueSpartan.className}
       >
         Online Tutoring{" "}
         <Typography
           sx={styles.expertText}
           component={"span"}
           variant="h1"
-          className={leagueSpartan.className}
+          // className={leagueSpartan.className}
         >
           Platform <br />{" "}
         </Typography>

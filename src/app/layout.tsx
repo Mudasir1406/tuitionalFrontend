@@ -3,6 +3,8 @@ import { DrawerProvider } from "@/context/drawer-context";
 import { Metadata } from "next";
 import Metrics from "./metrics";
 import dynamic from "next/dynamic";
+import { leagueSpartan } from "./fonts"; // Import your font config
+
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: false,
 });
@@ -25,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={leagueSpartan.variable}>
       {/* <Script
         id="organization"
         type="application/ld+json"
