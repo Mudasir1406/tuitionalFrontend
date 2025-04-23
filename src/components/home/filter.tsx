@@ -43,20 +43,26 @@ const Filter: React.FC = () => {
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
       <Typography
-        sx={[styles.heading]}
-        component={"h1"}
+        component="h1"
         variant="h1"
-        // className={leagueSpartan.className}
+        sx={{
+          fontFamily: "var(--font-league-spartan) !important",
+          fontSize: { xs: "2rem", md: "3rem" },
+          lineHeight: 1.2,
+          "& > span": {
+            display: "inline-block",
+            background:
+              "linear-gradient(93.06deg, #your-color 0%, #your-color 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          },
+        }}
       >
         Online Tutoring{" "}
-        <Typography
-          sx={styles.expertText}
-          component={"span"}
-          variant="h1"
-          // className={leagueSpartan.className}
-        >
-          Platform <br />{" "}
-        </Typography>
+        <span>
+          Platform
+          <br />
+        </span>
         Customized for 1:1 Online Tutoring Sessions
       </Typography>
       <Typography

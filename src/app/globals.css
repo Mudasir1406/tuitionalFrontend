@@ -470,6 +470,8 @@ h1 {
   font-weight: 700;
   line-height: 7.5vh;
   margin-bottom: 3vh;
+  contain: layout paint style;
+  content-visibility: auto;
 }
 
 h2 {
