@@ -42,7 +42,7 @@ const Filter: React.FC = () => {
   return (
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
-      <Typography
+      {/* <Typography
         sx={[styles.heading]}
         component={"h1"}
         variant="h1"
@@ -56,7 +56,12 @@ const Filter: React.FC = () => {
           Platform <br />{" "}
         </Typography>
         Customized for 1:1 Online Tutoring Sessions
-      </Typography>
+      </Typography> */}
+      <h1 className="hero-heading">
+        Online Tutoring <span className="highlight">Platform</span> Customized
+        for 1:1 Online Tutoring Sessions
+      </h1>
+
       <Typography
         sx={styles.desc}
         className={leagueSpartan.className}
