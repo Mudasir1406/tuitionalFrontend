@@ -11,7 +11,7 @@ import OurClient from "../components/home/our-client";
 import Faqs from "../components/home/faqs";
 import Footer from "../components/footer";
 import ContactUs from "../components/home/contact-us";
-import homeImage from "../../public/assets/images/static/girl-with-book.png";
+import homeImage from "../../public/assets/images/static/girl-with-book.webp";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
