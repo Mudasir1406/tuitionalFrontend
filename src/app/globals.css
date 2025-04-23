@@ -691,3 +691,9 @@ a {
   height: 22px;
   width: auto;
 } */
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: var(--font-league-spartan);
+  }
+}

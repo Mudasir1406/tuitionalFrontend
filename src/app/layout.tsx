@@ -35,6 +35,15 @@ export default function RootLayout({
           __html: JSON.stringify(organizationSchema),
         }}
       /> */}
+
+      <head>
+        <link
+          rel="preload"
+          href={leagueSpartan.variable}
+          as="style"
+          crossOrigin="anonymous"
+        />
+      </head>
       <ThemeProvider theme={theme}>
         <DrawerProvider>
           <body style={{ margin: 0 }}>
