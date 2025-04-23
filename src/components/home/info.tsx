@@ -20,10 +20,10 @@ const Info = () => {
         <Box sx={styles.schoolbox}>
           <SchoolOutlinedIcon sx={{ color: "white" }} />
         </Box>
-        <Typography sx={styles.text} className={leagueSpartan.className}>
+        <Typography sx={styles.text} >
           50000+
         </Typography>
-        <Typography sx={styles.text} className={leagueSpartan.className}>
+        <Typography sx={styles.text} >
           Registered Students
         </Typography>
       </Box>
@@ -32,7 +32,7 @@ const Info = () => {
           <Box sx={styles.absoluteBoxOrange}>
             <VideocamOutlinedIcon sx={{ color: "white" }} />
           </Box>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text}  >
             100+ Live Sessions
           </Typography>
         </Box>
@@ -47,10 +47,10 @@ const Info = () => {
               objectFit: "contain",
             }}
           />
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text} >
             500+{" "}
           </Typography>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text} >
             Tutor Screened
           </Typography>
         </Box>
