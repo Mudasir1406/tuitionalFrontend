@@ -22,8 +22,8 @@ const theme = createTheme({
         // fontSize: "50px",
       },
       "@media (max-width:600px)": {
-        fontSize: "4vh",
-        lineHeight: "5.5vh",
+        fontSize: "3.8vh",
+        lineHeight: "5vh",
       },
     },
     h2: {

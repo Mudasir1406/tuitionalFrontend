@@ -39,13 +39,6 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
-          href="/_next/static/media/ae0a0c671023eecc-s.p.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />{" "}
-        <link
-          rel="preload"
           href={leagueSpartan.variable}
           as="style"
           crossOrigin="anonymous"
