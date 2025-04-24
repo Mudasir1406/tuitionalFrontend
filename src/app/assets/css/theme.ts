@@ -98,11 +98,11 @@ const theme = createTheme({
       },
     },
     subtitle2: {
-      fontSize: "2.9vh",
-      fontWeight: 600,
+      fontSize: "2.75vh",
+      fontWeight: 500,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "2vh",
+        fontSize: "1.9vh",
         lineHeight: "2.8vh",
         textAlign: "left",
       },

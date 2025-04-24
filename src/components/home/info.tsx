@@ -20,10 +20,10 @@ const Info = () => {
         <Box sx={styles.schoolbox}>
           <SchoolOutlinedIcon sx={{ color: "white" }} />
         </Box>
-        <Typography sx={styles.text} >
+        <Typography sx={styles.text} component={"p"} variant="subtitle2">
           50000+
         </Typography>
-        <Typography sx={styles.text} >
+        <Typography sx={styles.text} component={"p"} variant="subtitle2">
           Registered Students
         </Typography>
       </Box>
@@ -32,7 +32,7 @@ const Info = () => {
           <Box sx={styles.absoluteBoxOrange}>
             <VideocamOutlinedIcon sx={{ color: "white" }} />
           </Box>
-          <Typography sx={styles.text}  >
+          <Typography sx={styles.text} component={"p"} variant="subtitle2">
             100+ Live Sessions
           </Typography>
         </Box>
@@ -47,10 +47,10 @@ const Info = () => {
               objectFit: "contain",
             }}
           />
-          <Typography sx={styles.text} >
+          <Typography sx={styles.text} component={"p"} variant="subtitle2">
             500+{" "}
           </Typography>
-          <Typography sx={styles.text} >
+          <Typography sx={styles.text} component={"p"} variant="subtitle2">
             Tutor Screened
           </Typography>
         </Box>
@@ -64,19 +64,19 @@ export default Info;
 const styles = {
   text: {
     color: "black",
-    fontSize: {
-      xs: "1.1dvh", // Responsive font size
-      sm: "1.8dvh",
-      md: "2dvh",
-      lg: "2.2dvh",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "2vh", // Responsive line height
-      sm: "2.2vh",
-      md: "2.4vh",
-      lg: "2.6vh",
-    },
+    // fontSize: {
+    //   xs: "1.1dvh", // Responsive font size
+    //   sm: "1.8dvh",
+    //   md: "2dvh",
+    //   lg: "2.2dvh",
+    // },
+    // fontWeight: 600,
+    // lineHeight: {
+    //   xs: "2vh", // Responsive line height
+    //   sm: "2.2vh",
+    //   md: "2.4vh",
+    //   lg: "2.6vh",
+    // },
     textAlign: "center",
   },
   container: {
