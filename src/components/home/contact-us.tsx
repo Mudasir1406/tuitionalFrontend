@@ -14,7 +14,11 @@ import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
+
 const CustomInput = dynamic(() => import("../custom-input/custom-input"));
 const DropDown = dynamic(() => import("../DropDown/DropDown"));
 const Input = dynamic(() => import("../input/Input"));
