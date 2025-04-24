@@ -1,14 +1,9 @@
 import React from "react";
-import { Header } from "../components";
-import Filter from "../components/home/filter";
 import { Box, Container } from "@mui/material";
-import Info from "../components/home/info";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
 import faqLine from "../../public/assets/images/static/faq-line.webp";
 import dynamic from "next/dynamic";
 
-import Footer from "../components/footer";
-import ContactUs from "../components/home/contact-us";
 import homeImage from "../../public/assets/images/static/girl-with-book.webp";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
@@ -16,8 +11,15 @@ import { SITE_URL } from "@/utils/env";
 import Script from "next/script";
 
 import "./globals.css";
-import GetStarted from "@/components/grade-subject-level/get-started";
 import style from "./page.module.css";
+import { Header } from "../components";
+const Info = dynamic(() => import("../components/home/info"));
+const Filter = dynamic(() => import("../components/home/filter"));
+const Footer = dynamic(() => import("../components/footer"));
+const ContactUs = dynamic(() => import("../components/home/contact-us"));
+const GetStarted = dynamic(
+  () => import("@/components/grade-subject-level/get-started")
+);
 const Trusted = dynamic(() => import("../components/home/trusted"));
 const OurClient = dynamic(() => import("../components/home/our-client"));
 const Faqs = dynamic(() => import("../components/home/faqs"));

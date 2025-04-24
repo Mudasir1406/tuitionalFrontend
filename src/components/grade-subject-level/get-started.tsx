@@ -14,13 +14,10 @@ import "swiper/css/pagination";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-import PopUpButton from "../pop-up-button";
-import {
-  ArrowLeftRounded,
-  ArrowRightAltRounded,
-  ArrowRightRounded,
-  RampRight,
-} from "@mui/icons-material";
+const PopUpButton = dynamic(() => import("../pop-up-button"));
+
+import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
+import dynamic from "next/dynamic";
 const GetStarted = () => {
   const [data, setData] = useState<GetStartedData[]>();
   // let swiperRef: SwiperClass | null = null; // Explicitly type swiperRef
