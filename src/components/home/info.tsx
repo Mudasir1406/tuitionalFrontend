@@ -4,7 +4,6 @@ import React from "react";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
 import homeImage from "../../../public/assets/images/static/girl-with-book.webp";
 
 const Info = () => {

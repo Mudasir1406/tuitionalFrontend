@@ -102,7 +102,7 @@ const theme = createTheme({
       fontWeight: 500,
       lineHeight: "3.333vh",
       "@media (max-width:600px)": {
-        fontSize: "1.9vh",
+        fontSize: "1.1vh",
         lineHeight: "2.8vh",
         textAlign: "left",
       },
