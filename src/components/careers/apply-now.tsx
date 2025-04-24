@@ -17,13 +17,17 @@ import { CareersFormType } from "../home/form-dialouge";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createCareerTemplate } from "@/services/email-service/template";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({
