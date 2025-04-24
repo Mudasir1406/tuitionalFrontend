@@ -65,10 +65,10 @@ const styles = {
   text: {
     color: "black",
     fontSize: {
-      xs: "1.5vh", // Responsive font size
-      sm: "1.8vh",
-      md: "2vh",
-      lg: "2.2vh",
+      xs: "1.1dvh", // Responsive font size
+      sm: "1.8dvh",
+      md: "2dvh",
+      lg: "2.2dvh",
     },
     fontWeight: 600,
     lineHeight: {
