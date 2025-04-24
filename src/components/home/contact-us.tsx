@@ -8,26 +8,27 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import dynamic from "next/dynamic";
 import girl from "../../../public/assets/images/static/contact-us-girl.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
-import CustomInput from "../custom-input/custom-input";
+const CustomInput = dynamic(() => import("../custom-input/custom-input"));
+const DropDown = dynamic(() => import("../DropDown/DropDown"));
+const Input = dynamic(() => import("../input/Input"));
+
 import "react-phone-number-input/style.css";
-import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { FormType } from "./form-dialouge";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
-import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
-import { useSearchParams } from "next/navigation";
 
 type IProps = {
   background?: any;
