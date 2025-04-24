@@ -186,6 +186,7 @@ const theme = createTheme({
           h3: "h3",
           body1: "p",
           body2: "p",
+          subtitle2: "p",
         },
       },
     },
