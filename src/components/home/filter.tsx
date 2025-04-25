@@ -1,23 +1,17 @@
 "use client";
-import {
-  Box,
-  Button,
-  Grid,
-  SelectChangeEvent,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import DropDown from "../DropDown/DropDown";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
-import PopularSearches from "./popular-searches";
 import {
   Filter_Data,
   getFilterData,
 } from "../../services/filter-data/filter-data";
 import { leagueSpartan } from "@/app/fonts";
-import PopUpButton from "../pop-up-button";
 import { FormType } from "./form-dialouge";
+import dynamic from "next/dynamic";
+const DropDown = dynamic(() => import("../DropDown/DropDown"));
+const PopUpButton = dynamic(() => import("../pop-up-button"));
 
 const Filter: React.FC = () => {
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
@@ -42,17 +36,9 @@ const Filter: React.FC = () => {
   return (
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
-      <Typography
-        sx={[styles.heading]}
-        component={"h1"}
-        variant="h1"
-      >
+      <Typography sx={[styles.heading]} component={"h1"} variant="h1">
         Online Tutoring{" "}
-        <Typography
-          sx={styles.expertText}
-          component={"span"}
-          variant="h1"
-        >
+        <Typography sx={styles.expertText} component={"span"} variant="h1">
           Platform <br />{" "}
         </Typography>
         Customized for 1:1 Online Tutoring Sessions
