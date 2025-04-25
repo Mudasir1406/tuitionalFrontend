@@ -30,7 +30,7 @@
   width: 100%;
 }
 
-.hero-picture::before {
+/* .hero-picture::before {
   content: "";
   background-image: url("../../public/assets/images/static/girl-with-book.webp");
 
@@ -41,6 +41,24 @@
   bottom: 0;
   height: 80vh;
   width: 100%;
+} */
+
+.hero-picture {
+  position: relative;
+  /* Keep existing styles */
+}
+
+.image-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80vh; /* Base height */
+  z-index: 0;
+}
+
+.image {
+  object-fit: contain;
+  object-position: bottom;
 }
 
 @media (max-width: 575px) {
@@ -52,11 +70,14 @@
     padding-top: 0vh;
   }
 
-  .hero-picture::before {
+  /* .hero-picture::before {
     height: 350px;
-  }
+  } */
   .grid-container {
     margin: 0;
+  }
+  .image-container {
+    height: 350px;
   }
 }
 
@@ -68,7 +89,10 @@
   .hero {
     padding-top: 7vh;
   }
-  .hero-picture::before {
+  /* .hero-picture::before {
+    height: 50vh;
+  } */
+  .image-container {
     height: 50vh;
   }
 }
@@ -82,7 +106,10 @@
     padding-top: 10vh;
   }
 
-  .hero-picture::before {
+  /* .hero-picture::before {
+    height: 50vh;
+  } */
+  .image-container {
     height: 50vh;
   }
 }
@@ -92,7 +119,10 @@
     max-width: 90vw;
     height: 100%;
   }
-  .hero-picture::before {
+  /* .hero-picture::before {
+    height: 50vh;
+  } */
+  .image-container {
     height: 50vh;
   }
 }
@@ -117,7 +147,7 @@
     justify-content: flex-start;
   }
 
-  .hero-picture::before {
+  .image-container {
     height: 80vh;
   }
 }
