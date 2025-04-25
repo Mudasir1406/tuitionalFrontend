@@ -13,6 +13,7 @@ import Script from "next/script";
 import "./globals.css";
 import style from "./page.module.css";
 import { Header } from "../components";
+import Image from "next/image";
 const Info = dynamic(() => import("../components/home/info"));
 const Filter = dynamic(() => import("../components/home/filter"));
 const Footer = dynamic(() => import("../components/footer"));
@@ -117,13 +118,23 @@ const Home: React.FC = async () => {
       />
       <Header />
       <Container sx={styles.contanier}>
-        <div className={style.container}>
+      <div className={style.container}>
           <div className={style["grid-container"]}>
             <div className={style["hero"]}>
               <Filter />
             </div>
             <div className={style["hero-picture"]}>
-              {" "}
+              <div className={style["image-container"]}>
+                <Image
+                  src="/assets/images/static/girl-with-book.webp"
+                  alt="Student learning with Tuitional"
+                  fill
+                  priority
+                  quality={80}
+                  className={style.image}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
               <Info />
             </div>
           </div>
