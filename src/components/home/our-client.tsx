@@ -648,6 +648,7 @@ const ReviewMobile: React.FC<RProps> = ({ item }) => {
           src={item.imageUrl}
           width={50}
           height={50}
+          loading="lazy"
           alt="user"
           style={{ borderRadius: 25, marginRight: 10 }}
         ></Image>
