@@ -279,6 +279,9 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               height={girl.height}
               alt="girl"
               className="girlGrid"
+              // fill
+              priority
+              quality={80}
               style={{
                 position: "absolute",
               }}
