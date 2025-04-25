@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import dynamic from "next/dynamic";
 import applynow from "../../../public/assets/images/static/applynow.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
@@ -17,7 +18,10 @@ import { CareersFormType } from "../home/form-dialouge";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createCareerTemplate } from "@/services/email-service/template";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import DropDown from "../DropDown/DropDown";

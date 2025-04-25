@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import "react-phone-number-input/style.css";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
@@ -23,6 +26,7 @@ import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import dynamic from "next/dynamic";
 
 type IProps = {
   background?: any;

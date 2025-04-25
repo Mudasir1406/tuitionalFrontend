@@ -13,7 +13,10 @@ import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import CustomInput from "../custom-input/custom-input";
 import "react-phone-number-input/style.css";
 import DropDown from "../DropDown/DropDown";
@@ -25,8 +28,8 @@ import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { useMediaQuery, useTheme } from "@mui/material";
-import zIndex from "@mui/material/styles/zIndex";
+import { useTheme } from "@mui/material";
+import dynamic from "next/dynamic";
 
 type IProps = {
   background?: any;

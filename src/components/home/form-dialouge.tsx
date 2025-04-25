@@ -10,10 +10,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import dynamic from "next/dynamic";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { leagueSpartan } from "@/app/fonts";
 import "../DropDown/DropDown.css";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { isValidPhoneNumber } from "react-phone-number-input";
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";

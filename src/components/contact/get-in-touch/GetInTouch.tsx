@@ -13,9 +13,12 @@ import {
 import girlLaptop from "../../../../public/assets/images/static/girl-using-laptop.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import  { isValidPhoneNumber } from "react-phone-number-input";
+import dynamic from "next/dynamic";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";
 import { HELLOTUITIONALEDU } from "@/utils/env";
