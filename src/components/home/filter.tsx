@@ -36,9 +36,26 @@ const Filter: React.FC = () => {
   return (
     // <Box sx={{ width: "100%", paddingBottom: "10vh", maxHeight: "700px" }}>
     <Box sx={styles.filter}>
-      <Typography sx={[styles.heading]} component={"h1"} variant="h1">
+      {/* <Typography sx={[styles.heading]} component={"h1"} variant="h1">
         Online Tutoring{" "}
         <Typography sx={styles.expertText} component={"span"} variant="h1">
+          Platform <br />{" "}
+        </Typography>
+        Customized for 1:1 Online Tutoring Sessions
+      </Typography> */}
+      <Typography
+        sx={styles.heading}
+        component={"h1"}
+        variant="h1"
+        // className={leagueSpartan.className}
+      >
+        Online Tutoring{" "}
+        <Typography
+          sx={styles.expertText}
+          component={"span"}
+          variant="h1"
+          // className={leagueSpartan.className}
+        >
           Platform <br />{" "}
         </Typography>
         Customized for 1:1 Online Tutoring Sessions
