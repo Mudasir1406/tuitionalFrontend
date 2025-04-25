@@ -1,6 +1,5 @@
-"use client";
 import { leagueSpartan } from "@/app/fonts";
-import { TextField, TextFieldProps } from "@mui/material";
+import { TextField, Typography, TextFieldProps } from "@mui/material";
 import { forwardRef } from "react";
 
 const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -8,7 +7,6 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <TextField
         inputRef={ref}
-        // inputRef={ref}
         value={value}
         // sx={{}}
         onChange={onChange}
@@ -17,16 +15,23 @@ const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
         InputProps={{
           className: leagueSpartan.className,
           sx: {
+            // fontSize: "1.9vh",
+            // fontWeight: 400,
+            // "& .MuiOutlinedInput-notchedOutline": {
+            //   border: "none",
+            // },
             padding: 0,
             height: 0,
           },
         }}
         {...rest}
+        // label={
+        //   <Typography sx={styles.label} className={leagueSpartan.className}>
+        //     Phone
+        //   </Typography>
+        // }
+        // variant="outlined"
         className={leagueSpartan.className}
-        inputProps={{
-          "aria-label": placeholder,
-          ref: null, // Explicitly nullify default ref
-        }}
       />
     );
   }

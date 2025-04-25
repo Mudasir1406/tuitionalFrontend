@@ -19,7 +19,7 @@ const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
 
-const CustomInput = dynamic(() => import("../custom-input/custom-input"));
+// const CustomInput = dynamic(() => import("../custom-input/custom-input"));
 const DropDown = dynamic(() => import("../DropDown/DropDown"));
 const Input = dynamic(() => import("../input/Input"));
 
@@ -33,6 +33,7 @@ import { HELLOTUITIONALEDU } from "@/utils/env";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
+import CustomInput from "../custom-input/custom-input";
 
 type IProps = {
   background?: any;
@@ -279,7 +280,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               height={girl.height}
               alt="girl"
               className="girlGrid"
-              
               style={{
                 position: "absolute",
               }}
