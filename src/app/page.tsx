@@ -1,16 +1,9 @@
 import React from "react";
 import { Header } from "../components";
-import Filter from "../components/home/filter";
 import { Box, Container, Grid } from "@mui/material";
-import Info from "../components/home/info";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
 import faqLine from "../../public/assets/images/static/faq-line.png";
-import Trusted from "../components/home/trusted";
-// import GetStarted from "../components/home/get-started";
-import OurClient from "../components/home/our-client";
-import Faqs from "../components/home/faqs";
-import Footer from "../components/footer";
-import ContactUs from "../components/home/contact-us";
+
 import homeImage from "../../public/assets/images/static/girl-with-book.webp";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
@@ -20,8 +13,18 @@ import { generateFaqSchema } from "@/utils/helper";
 import { getFaqs } from "@/services/faqs/faqs";
 import { Faqs_Type } from "@/types/grade-subject-level.types";
 import "./globals.css";
-import GetStarted from "@/components/grade-subject-level/get-started";
 import style from "./page.module.css";
+import dynamic from "next/dynamic";
+const Info = dynamic(() => import("../components/home/info"));
+const Filter = dynamic(() => import("../components/home/filter"));
+const Footer = dynamic(() => import("../components/footer"));
+const ContactUs = dynamic(() => import("../components/home/contact-us"));
+const GetStarted = dynamic(
+  () => import("@/components/grade-subject-level/get-started")
+);
+const Trusted = dynamic(() => import("../components/home/trusted"));
+const OurClient = dynamic(() => import("../components/home/our-client"));
+const Faqs = dynamic(() => import("../components/home/faqs"));
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
