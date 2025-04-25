@@ -351,13 +351,13 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                       </Typography>
                     )}
                   </Box>
-                  <PhoneInput
+                  {/* <PhoneInput
                     defaultCountry="SA"
                     value={formData?.PhoneNumber || ""}
                     onChange={(e) => handleChange("PhoneNumber", String(e))}
                     inputComponent={CustomInput}
                     style={styles.phoneInput}
-                  />
+                  /> */}
                   {errors.PhoneNumber && (
                     <Typography
                       className={`${leagueSpartan.className} `}
