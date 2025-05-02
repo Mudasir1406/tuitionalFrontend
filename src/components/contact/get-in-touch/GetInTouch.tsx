@@ -17,7 +17,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
-import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
 
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";
@@ -31,6 +31,7 @@ import lines from "../../../../public/assets/images/static/lines.png";
 import { addFormData } from "@/utils/globalFunction";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import useGeoLocation from "@/utils/slugHelper";
 
 const GetInTouch: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<ContactFormType>({

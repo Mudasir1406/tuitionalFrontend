@@ -24,10 +24,11 @@ const PhoneInput = dynamic(() => import("react-phone-number-input"), {
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
-import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import useGeoLocation from "@/utils/slugHelper";
 
 const ApplyNow: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<CareersFormType>({

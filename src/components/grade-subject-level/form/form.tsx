@@ -25,10 +25,11 @@ import { FormType } from "@/components/home/form-dialouge";
 import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
-import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 // import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import useGeoLocation from "@/utils/slugHelper";
 
 type IProps = {
   background?: any;
