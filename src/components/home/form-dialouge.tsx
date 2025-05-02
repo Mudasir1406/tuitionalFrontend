@@ -26,7 +26,7 @@ import toast from "react-hot-toast";
 import "react-phone-number-input/style.css";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
-import useGeoLocation, { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";

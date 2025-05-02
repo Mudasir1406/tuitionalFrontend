@@ -17,7 +17,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
-import useGeoLocation, { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
 
 import toast from "react-hot-toast";
 import { sendEmail } from "@/services/email-service/email-service";

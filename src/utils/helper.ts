@@ -321,7 +321,7 @@ type GeoLocationData = {
   error: string | null;
 };
 
-const useGeoLocation = (): GeoLocationData => {
+export const useGeoLocation = (): GeoLocationData => {
   const [geoData, setGeoData] = useState<GeoLocationData>({
     ip: null,
     country: null,
@@ -371,7 +371,7 @@ const useGeoLocation = (): GeoLocationData => {
           error: null,
         });
       } catch (error) {
-        setGeoData((prev:any) => ({
+        setGeoData((prev: any) => ({
           ...prev,
           isLoading: false,
           error:
@@ -385,5 +385,3 @@ const useGeoLocation = (): GeoLocationData => {
 
   return geoData;
 };
-
-export default useGeoLocation;
