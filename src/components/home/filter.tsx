@@ -8,7 +8,7 @@ const DropDown = dynamic(() => import("../DropDown/DropDown"));
 const PopUpButton = dynamic(() => import("../pop-up-button"));
 import { FormType } from "./form-dialouge";
 import dynamic from "next/dynamic";
-import { useGeoLocation } from "@/utils/helper";
+import useGeoLocation from "@/utils/slugHelper";
 
 interface FilterProps {
   data: Filter_Data; // Replace with your actual type
