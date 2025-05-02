@@ -30,7 +30,7 @@ import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
-import useGeoLocation, { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { isNotEmpty, isValidEmail, useGeoLocation } from "@/utils/helper";
 import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
 import CustomInput from "../custom-input/custom-input";
