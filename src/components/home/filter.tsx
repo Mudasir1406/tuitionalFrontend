@@ -3,20 +3,20 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
-import {
-  Filter_Data,
-  getFilterData,
-} from "../../services/filter-data/filter-data";
-// import { leagueSpartan } from "@/app/fonts";
-// import DropDown from "../DropDown/DropDown";
-// import PopUpButton from "../pop-up-button";
+import { Filter_Data } from "../../services/filter-data/filter-data";
 const DropDown = dynamic(() => import("../DropDown/DropDown"));
 const PopUpButton = dynamic(() => import("../pop-up-button"));
 import { FormType } from "./form-dialouge";
 import dynamic from "next/dynamic";
+import useGeoLocation from "@/utils/helper";
 
-const Filter: React.FC = () => {
-  const [filterData, setFilterData] = useState<Filter_Data | null>(null);
+interface FilterProps {
+  data: Filter_Data; // Replace with your actual type
+}
+
+const Filter: React.FC<FilterProps> = ({ data }) => {
+  const [filterData, setFilterData] = useState<Filter_Data | null>(data);
+
   const [formData, setFormData] = useState<FormType>({
     FirstName: "",
     EmailAddress: "",
@@ -27,49 +27,41 @@ const Filter: React.FC = () => {
     message: "",
     sheetName: "Lead Forms",
   });
-
+  useEffect(() => {
+    setFilterData(data);
+  }, [data]);
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
       ...formData,
       [key]: value,
     });
   };
-  useEffect(() => {
-    getFilterData().then((data) => setFilterData(data));
-  }, []);
-  const getClientLocation = async () => {
-    const browser = navigator.userAgent;
-    const pageURL = window.location.href;
-    const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-    const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-    const params = new URLSearchParams(window.location.search);
+  const geoData = useGeoLocation();
 
-    try {
-      const res = await fetch("https://ipinfo.io/json");
-      const locationData = await res.json();
-
+  React.useEffect(() => {
+    if (!geoData.isLoading && !geoData.error) {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const params = new URLSearchParams(window.location.search);
       setFormData((prev) => ({
         ...prev,
-        browser,
-        pageURL,
-        date: currentDate,
-        time: currentTime,
-        ip: locationData?.ip,
-        country: locationData?.country,
+        IP: geoData.ip || "",
+        Country: geoData.country || "",
+        Browser: browser,
+        SourcePageURL: pageURL,
+        Date: currentDate,
+        Time: currentTime,
         Medium: params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
           ? "facebook"
           : "SEO",
       }));
-    } catch (error) {
-      console.error("Error fetching location data:", error);
     }
-  };
+  }, [geoData]);
 
-  React.useEffect(() => {
-    getClientLocation();
-  }, []);
   return (
     <Box sx={styles.filter}>
       <Typography

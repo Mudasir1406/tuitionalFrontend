@@ -26,7 +26,7 @@ import toast from "react-hot-toast";
 import "react-phone-number-input/style.css";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
-import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import useGeoLocation, { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -155,39 +155,64 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
   }, [values]);
 
+  // React.useEffect(() => {
+  //   const getClientLocation = async () => {
+  //     const browser = navigator.userAgent;
+  //     const pageURL = window.location.href;
+  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
+  //     const currentTime = new Date().toLocaleTimeString();
+  //     const params = new URLSearchParams(window.location.search);
+  //     // Format: HH:MM:SS AM/PM
+  //     try {
+  //       const res = await fetch("https://ipinfo.io/json");
+  //       const locationData = await res.json();
+
+  //       setFormData((prev) => ({
+  //         ...prev,
+  //         Browser: browser,
+  //         SourcePageURL: pageURL,
+  //         Date: currentDate,
+  //         Time: currentTime,
+  //         IP: locationData?.ip,
+  //         Country: locationData?.country,
+  //         Medium: params.get("gad_source")
+  //           ? "google Ads"
+  //           : params.get("fbclid")
+  //           ? "facebook"
+  //           : "SEO",
+  //       }));
+  //     } catch (error) {
+  //       console.error("Error fetching location data:", error);
+  //     }
+  //   };
+  //   getClientLocation();
+  // }, []);
+
+  const geoData = useGeoLocation();
+
   React.useEffect(() => {
-    const getClientLocation = async () => {
+    if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
       const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString();
+      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
       const params = new URLSearchParams(window.location.search);
-      // Format: HH:MM:SS AM/PM
-      try {
-        const res = await fetch("https://ipinfo.io/json");
-        const locationData = await res.json();
-
-        setFormData((prev) => ({
-          ...prev,
-          Browser: browser,
-          SourcePageURL: pageURL,
-          Date: currentDate,
-          Time: currentTime,
-          IP: locationData?.ip,
-          Country: locationData?.country,
-          Medium: params.get("gad_source")
-            ? "google Ads"
-            : params.get("fbclid")
-            ? "facebook"
-            : "SEO",
-        }));
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      }
-    };
-    getClientLocation();
-  }, []);
-
+      setFormData((prev) => ({
+        ...prev,
+        IP: geoData.ip || "",
+        Country: geoData.country || "",
+        Browser: browser,
+        SourcePageURL: pageURL,
+        Date: currentDate,
+        Time: currentTime,
+        Medium: params.get("gad_source")
+          ? "google Ads"
+          : params.get("fbclid")
+          ? "facebook"
+          : "SEO",
+      }));
+    }
+  }, [geoData]);
   const onClickUpload = async () => {
     setLoading(true);
     const newErrors: Partial<FormType> = {};

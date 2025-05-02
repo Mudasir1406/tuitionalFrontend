@@ -14,6 +14,7 @@ import "./globals.css";
 import style from "./page.module.css";
 import { Header } from "../components";
 import Image from "next/image";
+import { getFilterData } from "@/services/filter-data/filter-data";
 const Info = dynamic(() => import("../components/home/info"));
 const Filter = dynamic(() => import("../components/home/filter"));
 const Footer = dynamic(() => import("../components/footer"));
@@ -106,6 +107,7 @@ const homeSchema = {
 };
 const Home: React.FC = async () => {
   const data = await getTestimonials();
+  const filterData = await getFilterData();
 
   return (
     <>
@@ -120,7 +122,7 @@ const Home: React.FC = async () => {
         <div className={style.container}>
           <div className={style["grid-container"]}>
             <div className={style["hero"]}>
-              <Filter />
+              <Filter data={filterData} />
             </div>
             <div className={style["hero-picture"]}>
               <div className={style["image-container"]}>
