@@ -4,7 +4,7 @@ import Script from "next/script";
 
 const MicrosoftClarity = () => {
   return (
-    <Script id="microsoft-clarity-init" strategy="beforeInteractive">
+    <Script id="microsoft-clarity-init" strategy="lazyOnload">
       {`(function(c,l,a,r,i,t,y){       
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";       
