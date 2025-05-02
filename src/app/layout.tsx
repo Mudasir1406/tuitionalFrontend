@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 import { League_Spartan } from "next/font/google";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
-  ssr: false,
+  ssr: true,
 });
 
 export const leagueSpartan = League_Spartan({

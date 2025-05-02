@@ -37,9 +37,9 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
     });
   };
   const geoData = useGeoLocation();
-  useEffect(() => {
-    console.log("formData", formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log("formData", formData);
+  // }, [formData]);
 
   React.useEffect(() => {
     // console.log("geoData", geoData);
