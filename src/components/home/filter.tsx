@@ -37,8 +37,13 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
     });
   };
   const geoData = useGeoLocation();
+  useEffect(() => {
+    console.log("formData", formData);
+  }, [formData]);
 
   React.useEffect(() => {
+    // console.log("geoData", geoData);
+
     if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
