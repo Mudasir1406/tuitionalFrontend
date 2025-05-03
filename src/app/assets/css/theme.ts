@@ -14,28 +14,48 @@ const theme = createTheme({
 
     // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
     h1: {
-      fontSize: "6.88vh",
+      // fontSize: "6.88vh",
+      // fontWeight: 700,
+      // lineHeight: "7.5vh",
+      // "@media (max-width:900px)": {
+      //   // fontSize: "50px",
+      // },
+      // "@media (max-width:600px)": {
+      //   fontSize: "4.9vh",
+      //   lineHeight: "5.5vh",
+      // },
+      fontSize: "3.1rem", // ≈ 50px (if 1rem=16px)
+      lineHeight: 1.2,
       fontWeight: 700,
-      lineHeight: "7.5vh",
-      "@media (max-width:900px)": {
-        // fontSize: "50px",
+      "@media (max-width: 1200px)": {
+        fontSize: "2.5rem", // ≈ 40px
       },
-      "@media (max-width:600px)": {
-        fontSize: "4.9vh",
-        lineHeight: "5.5vh",
+      "@media (max-width: 900px)": {
+        fontSize: "2rem", // ≈ 32px
+      },
+      "@media (max-width: 600px)": {
+        fontSize: "1.75rem", // ≈ 28px
       },
     },
+
     h2: {
-      fontSize: "5.29vh",
       fontWeight: 600,
-      lineHeight: "6.6vh",
-      "@media (max-width:900px)": {
-        // fontSize: "40px",
+      fontSize: "2.7rem", // ≈ 40px
+      "@media (max-width: 900px)": {
+        fontSize: "2rem", // ≈ 32px
       },
-      "@media (max-width:600px)": {
-        fontSize: "3.8vh",
-        lineHeight: "4.6vh",
+      "@media (max-width: 600px)": {
+        fontSize: "1.1rem", // ≈ 24px
       },
+      // fontSize: "5.29vh",
+      // lineHeight: "6.6vh",
+      // "@media (max-width:900px)": {
+      //   // fontSize: "40px",
+      // },
+      // "@media (max-width:600px)": {
+      //   fontSize: "3.8vh",
+      //   lineHeight: "4.6vh",
+      // },
     },
     h3: {
       fontSize: "4.23vh",
@@ -63,11 +83,13 @@ const theme = createTheme({
     },
 
     body1: {
-      fontSize: "2vh",
       fontWeight: 400,
+      // fontSize: "2vh",
+      fontSize: "1rem",
       lineHeight: "2.8vh",
       "@media (max-width:600px)": {
-        fontSize: "1.8vh",
+        // fontSize: "1.8vh",
+        fontSize: "0.875rem", // 14px
         lineHeight: "2.1vh",
       },
     },
