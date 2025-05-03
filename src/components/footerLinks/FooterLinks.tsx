@@ -3,8 +3,8 @@
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { findExactSubjectURL, generateSlug } from "@/utils/helper";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+// import { useRouter } from "next/navigation";
+// import Link from "next/link";
 
 const FooterLinks = ({
   footerData,
@@ -13,7 +13,7 @@ const FooterLinks = ({
   footerData: any;
   exact: boolean;
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <>
