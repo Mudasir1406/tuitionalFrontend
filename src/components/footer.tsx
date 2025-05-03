@@ -1,5 +1,5 @@
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Divider, Grid, Typography } from "@mui/material";
+import React from "react";
 import plan from "../../public/assets/images/static/plan.png";
 import phone from "../../public/assets/images/static/phone-call.png";
 import logo from "../../public/assets/images/static/logo.png";
@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
-import { findExactSubjectURL, generateSlug } from "@/utils/helper";
+// import { findExactSubjectURL, generateSlug } from "@/utils/helper";
 import FooterLinks from "./footerLinks/FooterLinks";
 const Footer: React.FC = async () => {
   const footerData: FooterData = await getFooterData();
