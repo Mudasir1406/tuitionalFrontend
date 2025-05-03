@@ -37,13 +37,8 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
     });
   };
   const geoData = useGeoLocation();
-  // useEffect(() => {
-  //   console.log("formData", formData);
-  // }, [formData]);
 
   React.useEffect(() => {
-    // console.log("geoData", geoData);
-
     if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
@@ -69,29 +64,14 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
 
   return (
     <Box sx={styles.filter}>
-      <Typography
-        sx={styles.heading}
-        component={"h1"}
-        variant="h1"
-        // className={leagueSpartan.className}
-      >
+      <Typography sx={styles.heading} component={"h1"} variant="h1">
         Online Tutoring{" "}
-        <Typography
-          sx={styles.expertText}
-          component={"span"}
-          variant="h1"
-          // className={leagueSpartan.className}
-        >
+        <Typography sx={styles.expertText} component={"span"} variant="h1">
           Platform <br />{" "}
         </Typography>
         Customized for 1:1 Online Tutoring Sessions
       </Typography>
-      <Typography
-        sx={styles.desc}
-        // className={leagueSpartan.className}
-        component={"p"}
-        variant="body2"
-      >
+      <Typography sx={styles.desc} component={"p"} variant="body2">
         Tuitional Is An Online Tutoring Platform Providing Quality Education
         Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
         your learning journey.
@@ -163,12 +143,23 @@ const styles = {
       xs: "4vh",
     },
     color: "#000000",
+    fontSize: {
+      xs: "20px",
+      sm: "24px",
+      md: "28px",
+      lg: "4vh",
+    },
   },
   expertText: {
     color: "#51B893",
     display: "inline",
-
     position: "relative",
+    fontSize: {
+      xs: "20px",
+      sm: "24px",
+      md: "28px",
+      lg: "4vh",
+    },
     "::before": {
       content: "''",
       position: "absolute",
