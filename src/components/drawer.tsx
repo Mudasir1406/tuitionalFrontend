@@ -1,10 +1,8 @@
 "use client";
-
 import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../../public/assets/images/static/logo.png";
 import { useDrawer } from "../context/drawer-context";
-import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 const ResponsiveDrawer = () => {

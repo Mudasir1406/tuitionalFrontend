@@ -8,7 +8,11 @@ import { useDrawer } from "../context/drawer-context";
 import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import FormDialog from "./home/form-dialouge";
+
+import dynamic from "next/dynamic";
+const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
 type IProps = {
   background?: any;
 };
@@ -24,45 +28,13 @@ const Header: React.FC<IProps> = ({ background }) => {
   };
   return (
     <Box sx={[styles.background, background]}>
-      <Box
-        sx={{
-          background:
-            "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: -2,
-          width: "100%",
-          height: {
-            xs: "10vh",
-            sm: "10vh",
-            md: "20vh",
-            lg: "30vh",
-          },
-        }}
-      />
+      <Box sx={styles.circleBox} />
       <Box sx={styles.leftCircle} />
       <Box sx={styles.rightCircle} />
       <AppBar position="sticky" sx={styles.container}>
         <div style={styles.shadow} />
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: {
-              xs: "space-between",
-              sm: "space-between",
-              md: "space-between",
-              lg: "space-evenly",
-            },
-            width: "100%",
-            alignItems: "center",
-          }}
-        >
-          <a
-            href={"https://tuitionaledu.com/"}
-            // target="_blank"
-            rel="noopener noreferrer"
-          >
+        <Toolbar sx={styles.toolBar}>
+          <a href={"https://tuitionaledu.com/"} rel="noopener noreferrer">
             <Box sx={styles.logo}>
               <Image
                 src={logo.src}
@@ -143,39 +115,16 @@ const Header: React.FC<IProps> = ({ background }) => {
             variant="contained"
             sx={styles.containedBtn}
             className={leagueSpartan.className}
-            onClick={() => handleClick()}
+            onClick={handleClick}
           >
             Book Demo Classes
           </Button>
-          <MenuRoundedIcon
-            onClick={toggleDrawer}
-            sx={{
-              color: "#38B6FF",
-              height: "4vh",
-              width: "4vh",
-              display: {
-                xs: "flex",
-                sm: "flex",
-                md: "flex",
-                lg: "none",
-              },
-              marginRight: "1vw",
-            }}
-          />
+          <MenuRoundedIcon onClick={toggleDrawer} sx={styles.menu} />
         </Toolbar>
       </AppBar>
-      <FormDialog open={open} handleClose={handleClose} />
+      {open && <FormDialog open={open} handleClose={handleClose} />}
 
-      <Box
-        sx={{
-          position: "fixed", // Use fixed positioning to keep it in view
-          bottom: 0,
-          right: 0, // Change left to right for bottom-right positioning
-          padding: 5, // Optional: Add some padding for spacing from edges
-          zIndex: 1000, // Ensures it stays on top of other elements
-          animation: "rotateAnimation 2s ease-in-out infinite",
-        }}
-      >
+      <Box sx={styles.whatsapp}>
         <Link
           href={"https://wa.me/97144396296"}
           target="_blank"
@@ -214,6 +163,14 @@ const styles = {
     alignItems: "center",
     marginLeft: "5vw",
   },
+  whatsapp: {
+    position: "fixed", // Use fixed positioning to keep it in view
+    bottom: 0,
+    right: 0, // Change left to right for bottom-right positioning
+    padding: 5, // Optional: Add some padding for spacing from edges
+    zIndex: 1000, // Ensures it stays on top of other elements
+    animation: "rotateAnimation 2s ease-in-out infinite",
+  },
   logo: {
     display: {
       xs: "none",
@@ -224,6 +181,18 @@ const styles = {
     alignItems: "flex-start",
     // width: "25%",
     marginLeft: "-50px",
+  },
+  menu: {
+    color: "#38B6FF",
+    height: "4vh",
+    width: "4vh",
+    display: {
+      xs: "flex",
+      sm: "flex",
+      md: "flex",
+      lg: "none",
+    },
+    marginRight: "1vw",
   },
   logoMobile: {
     display: {
@@ -378,4 +347,29 @@ const styles = {
     borderRadius: "inherit",
   },
   link: { textDecoration: "none" },
+  circleBox: {
+    background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: -2,
+    width: "100%",
+    height: {
+      xs: "10vh",
+      sm: "10vh",
+      md: "20vh",
+      lg: "30vh",
+    },
+  },
+  toolBar: {
+    display: "flex",
+    justifyContent: {
+      xs: "space-between",
+      sm: "space-between",
+      md: "space-between",
+      lg: "space-evenly",
+    },
+    width: "100%",
+    alignItems: "center",
+  },
 };

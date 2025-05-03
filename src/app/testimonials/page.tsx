@@ -17,6 +17,7 @@ import { SITE_URL } from "@/utils/env";
 import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
 import OurClient from "@/components/home/our-client";
 import styles from "./testimonials.module.css";
+import { getFilterData } from "@/services/filter-data/filter-data";
 export const metadata: Metadata = {
   title: "Testimonials - Hear What Our Students Have to Say",
   description: `Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience.`,
@@ -28,44 +29,10 @@ export const metadata: Metadata = {
 const Testimonials: React.FC = async () => {
   const data = await getTestimonials();
   const wpReviews = await getWPReviews();
-
+  const filterData = await getFilterData();
   return (
     <>
       <Header />
-      {/* <Container
-        sx={{
-          maxWidth: { xs: "100%", sm: "100%", md: "100%", lg: "1650px" },
-          p: 0,
-          padding: 0,
-          paddingTop: {
-            xs: "120px",
-            sm: "150px",
-            md: "200px",
-            lg: 0,
-            xl: 0,
-          },
-          height: { xs: "100%", lg: "100vh" },
-          display: "flex",
-          alignItems: "end",
-        }}
-      >
-        <Grid container sx={{ p: 0, padding: 0 }}>
-          <Grid item lg={5} md={12} sm={12} xs={12}>
-            <Hero />
-          </Grid>
-          <Grid
-            item
-            lg={7}
-            md={12}
-            sm={12}
-            xs={12}
-            sx={style.heroPicture}
-            aria-label="Tuitional Testimonials"
-          >
-            <HeroInfo />
-          </Grid>
-        </Grid>
-      </Container> */}
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
@@ -94,7 +61,10 @@ const Testimonials: React.FC = async () => {
         </Container>
       </Box>
       <Box>
-        <ContactUs background={{ background: "#DAF2FF" }} />
+        <ContactUs
+          background={{ background: "#DAF2FF" }}
+          filterData={filterData}
+        />
       </Box>
       <Footer />
     </>
