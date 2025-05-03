@@ -18,7 +18,7 @@ const Info = () => {
           alt="1-on-1 Online tutoring platform"
         />
         <Box sx={styles.schoolbox}>
-          <SchoolOutlinedIcon sx={{ color: "white" }} />
+          <SchoolOutlinedIcon sx={styles.icon} />
         </Box>
         <Typography sx={styles.text} className={leagueSpartan.className}>
           50000+
@@ -30,7 +30,7 @@ const Info = () => {
       <Box sx={styles.liveSessions}>
         <Box sx={styles.singleBox}>
           <Box sx={styles.absoluteBoxOrange}>
-            <VideocamOutlinedIcon sx={{ color: "white" }} />
+            <VideocamOutlinedIcon sx={styles.icon} />
           </Box>
           <Typography sx={styles.text} className={leagueSpartan.className}>
             100+ Live Sessions
@@ -62,6 +62,7 @@ const Info = () => {
 export default Info;
 
 const styles = {
+  icon: { color: "white" },
   text: {
     color: "black",
     fontSize: {

@@ -81,21 +81,15 @@ const BenifitsSection = dynamic(
   }
 );
 
-import {
-  Component_Sequence_Type,
-  PageData,
-  tutor_section,
-} from "@/types/grade-subject-level.types";
+import { PageData } from "@/types/grade-subject-level.types";
+import { getStartedData } from "@/services/get-started/get-started";
 type IProps = {
   data: PageData;
 };
 
-const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
-  // console.log("GradeSubjectLevel", data);
-
+const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
+  const getStarted = await getStartedData();
   const renderSection = (name: string) => {
-    // switch (name) {
-    //   case "hero_section":
     if (name.includes("hero_section")) {
       return (
         <>
@@ -325,7 +319,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = ({ data }) => {
       return (
         data?.[name as keyof PageData].isShow && (
           <Box sx={styles.verticalMargin}>
-            <GetStarted />
+            <GetStarted data={getStarted} />
           </Box>
         )
       );

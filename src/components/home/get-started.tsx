@@ -3,10 +3,7 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import {
-  GetStartedData,
-  getStartedData,
-} from "../../services/get-started/get-started";
+import { GetStartedData } from "../../services/get-started/get-started";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -14,16 +11,12 @@ import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import PopUpButton from "../pop-up-button";
-import { ForkLeft } from "@mui/icons-material";
 
-const GetStarted = () => {
-  const [data, setData] = useState<GetStartedData[]>([]);
+type IProps = {
+  data: GetStartedData[];
+};
 
-  useEffect(() => {
-    getStartedData().then((d) => {
-      setData(d);
-    });
-  }, []);
+const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box>
       <Typography

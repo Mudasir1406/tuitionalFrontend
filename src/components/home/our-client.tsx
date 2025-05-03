@@ -1,15 +1,6 @@
 "use client";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  LinearProgress,
-  Typography,
-  linearProgressClasses,
-  styled,
-} from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Box, Button, Divider, Typography } from "@mui/material";
+import React, { useRef } from "react";
 import linesInvertWhite from "../../../public/assets/images/static/lines-invert-white.png";
 import { SwiperSlide, Swiper, SwiperRef } from "swiper/react";
 import { Autoplay, Pagination, EffectCards } from "swiper/modules";
@@ -27,32 +18,16 @@ type IProps = {
 
 const OurClient: React.FC<IProps> = ({ data }) => {
   const swiper = useRef<SwiperRef | null>(null);
-
+  const swiperPrev = () => {
+    swiper.current?.swiper.slidePrev();
+  };
+  const swiperNext = () => {
+    swiper.current?.swiper.slideNext();
+  };
   return (
     <Box sx={styles.constanier}>
-      <Box
-        sx={{
-          width: "100%",
-          position: "relative",
-          display: {
-            xs: "flex",
-            sm: "flex",
-            md: "flex",
-            lg: "none",
-          },
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Box
-          sx={{
-            marginLeft: { xs: 0, lg: 10 },
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+      <Box sx={styles.inner}>
+        <Box sx={styles.headingContanier}>
           <Typography
             sx={styles.heading}
             className={leagueSpartan.className}
@@ -78,31 +53,12 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             Read More
           </Button>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: {
-              xs: 8,
-              sm: 15,
-              md: 15,
-              lg: 15,
-            },
-          }}
-        >
+        <Box sx={styles.swiperContanier}>
           <Swiper
             ref={swiper}
             centeredSlides={true}
             grabCursor
-            style={{
-              height: "100%",
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={styles.swiper}
             loop={true}
             autoplay={{
               delay: 2500,
@@ -117,49 +73,23 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             }}
           >
             {data.map((item, index) => (
-              <SwiperSlide
-                key={index}
-                style={{
-                  display: "flex",
-                  borderRadius: 10,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <SwiperSlide key={index} style={styles.slide}>
                 <ReviewMobile item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
         </Box>
         <Box sx={{ display: "flex", marginTop: 5 }}>
-          <Box
-            sx={styles.nextButton}
-            onClick={() => swiper.current?.swiper.slidePrev()}
-          >
+          <Box sx={styles.nextButton} onClick={swiperPrev}>
             <WestIcon />
           </Box>
-          <Box
-            sx={styles.nextButton}
-            onClick={() => swiper.current?.swiper.slideNext()}
-          >
+          <Box sx={styles.nextButton} onClick={swiperNext}>
             <EastIcon />
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          position: "relative",
-          display: {
-            xs: "none",
-            sm: "none",
-            md: "none",
-            lg: "flex",
-          },
-          alignItems: "center",
-        }}
-      >
-        <Box sx={{ width: "20%", marginLeft: 20 }}>
+      <Box sx={styles.ourStudent}>
+        <Box sx={styles.ourStudentInner}>
           <Typography
             sx={styles.heading}
             variant="h2"
@@ -189,14 +119,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           ref={swiper}
           centeredSlides={true}
           grabCursor
-          // onSlideChange={() => handleProgress()}
-          //   onSwiper={(swiper: any) => console.log(swiper)}
-          style={{
-            height: "100%",
-            marginTop: 10,
-            display: "flex",
-            width: "70%",
-          }}
+          style={styles.swiperMobile}
           loop={true}
           autoplay={{
             delay: 2500,
@@ -236,7 +159,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           orientation="vertical"
           variant="middle"
           flexItem
-          sx={{ backgroundColor: "white" }}
+          sx={styles.dvider}
         />
         <Box>
           <Typography sx={styles.numbers} className={leagueSpartan.className}>
@@ -253,7 +176,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           orientation="vertical"
           variant="middle"
           flexItem
-          sx={{ backgroundColor: "white" }}
+          sx={styles.dvider}
         />
         <Box>
           <Typography sx={styles.numbers} className={leagueSpartan.className}>
@@ -270,29 +193,17 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           orientation="vertical"
           variant="middle"
           flexItem
-          sx={{ backgroundColor: "white" }}
+          sx={styles.dvider}
         />
         <Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={styles.ratingContanierMobile}>
             <Typography sx={styles.numbers} className={leagueSpartan.className}>
               4.8
             </Typography>
             <Box sx={{ marginLeft: 4 }}>
-              <StarPurple500OutlinedIcon
-                sx={{ height: 40, width: 40, color: "white" }}
-              />
-              <StarPurple500OutlinedIcon
-                sx={{ height: 40, width: 40, color: "white" }}
-              />
-              <StarPurple500OutlinedIcon
-                sx={{ height: 40, width: 40, color: "white" }}
-              />
-              <StarPurple500OutlinedIcon
-                sx={{ height: 40, width: 40, color: "white" }}
-              />
-              <StarPurple500OutlinedIcon
-                sx={{ height: 40, width: 40, color: "white" }}
-              />
+              {[0, 0, 0, 0, 0].map((i, index) => (
+                <StarPurple500OutlinedIcon sx={styles.star} key={index} />
+              ))}
             </Box>
           </Box>
           <Typography
@@ -335,6 +246,67 @@ const styles = {
       lg: "column",
     },
   },
+  dvider: { backgroundColor: "white" },
+  slide: {
+    display: "flex",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  swiperContanier: {
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: {
+      xs: 8,
+      sm: 15,
+      md: 15,
+      lg: 15,
+    },
+  },
+  ratingContanierMobile: { display: "flex", alignItems: "center" },
+  ourStudentInner: { width: "20%", marginLeft: 20 },
+  ourStudent: {
+    width: "100%",
+    position: "relative",
+    display: {
+      xs: "none",
+      sm: "none",
+      md: "none",
+      lg: "flex",
+    },
+    alignItems: "center",
+  },
+  swiper: {
+    height: "100%",
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  headingContanier: {
+    marginLeft: { xs: 0, lg: 10 },
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  inner: {
+    width: "100%",
+    position: "relative",
+    display: {
+      xs: "flex",
+      sm: "flex",
+      md: "flex",
+      lg: "none",
+    },
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  star: {
+    color: "white",
+  },
   reviewContanier: {
     paddingX: {
       xs: "28px",
@@ -352,6 +324,12 @@ const styles = {
     my: "auto",
     backgroundColor: "white",
     borderRadius: 10,
+  },
+  swiperMobile: {
+    height: "100%",
+    marginTop: 10,
+    display: "flex",
+    width: "70%",
   },
   heading: {
     // fontSize: {

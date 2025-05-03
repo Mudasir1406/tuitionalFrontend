@@ -17,15 +17,15 @@ import Offer from "@/components/curiculume/offer";
 import FeaturesOfTuitionals from "@/components/curiculume/features-of-tuitionals";
 import TutorsDifferent from "@/components/curiculume/tutors-different";
 import Pricing from "@/components/curiculume/pricing";
-import EducationalCounseling from "@/components/curiculume/educational-counseling";
 import StudentSays from "@/components/curiculume/students-says";
-import PopularIgcseSubjects from "@/components/curiculume/popular-igcse-subjects";
 import TuitionalCompetitors from "@/components/curiculume/tuitional-competitors";
 import GetStarted from "@/components/home/get-started";
 import FrequentlyQuestions from "@/components/curiculume/frequently-questions";
 import JoinUs from "@/components/curiculume/join-us";
 import Footer from "@/components/footer";
-const Home: React.FC = () => {
+import { getStartedData } from "@/services/get-started/get-started";
+const Home: React.FC = async () => {
+  const getStarted = await getStartedData();
   return (
     <>
       <Header />
@@ -142,7 +142,7 @@ const Home: React.FC = () => {
         <TuitionalCompetitors />
       </Grid>
       <Grid sx={{ marginX: "3vh" }}>
-        <GetStarted />
+        <GetStarted data={getStarted} />
       </Grid>
       <Grid>
         <FrequentlyQuestions />

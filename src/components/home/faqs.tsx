@@ -1,19 +1,8 @@
 import * as React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-// import faqLine from "../../../public/assets/images/static/faq-line.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Faqs_Type, getFaqs } from "../../services/faqs/faqs";
-import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import Questions from "./questions";
 
@@ -34,28 +23,6 @@ const Faqs: React.FC = async () => {
       {faqs?.map((item, index) => (
         <Questions key={index} question={item.question} answer={item.answer} />
       ))}
-      {/* <Box sx={styles.marginBottom}> */}
-      {/* <Button
-          variant="contained"
-          sx={styles.containedButton}
-          className={leagueSpartan.className}
-        >
-          View More
-        </Button> */}
-      {/* </Box> */}
-      {/* <Image
-        src={faqLine.src}
-        width={faqLine.width}
-        height={faqLine.height}
-        alt="faqline"
-        style={{
-          position: "absolute",
-          left: "-14%",
-          bottom: 0,
-          zIndex: -1,
-          width: "100vw",
-        }}
-      ></Image> */}
     </Box>
   );
 };

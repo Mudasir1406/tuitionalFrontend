@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -18,20 +18,16 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
-
-// const CustomInput = dynamic(() => import("../custom-input/custom-input"));
 const DropDown = dynamic(() => import("../DropDown/DropDown"));
 const Input = dynamic(() => import("../input/Input"));
-
 import "react-phone-number-input/style.css";
-import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
+import { Filter_Data } from "@/services/filter-data/filter-data";
 import { FormType } from "./form-dialouge";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { useTheme } from "@mui/material";
 import { addFormData } from "@/utils/globalFunction";
 import CustomInput from "../custom-input/custom-input";
 import useGeoLocation from "@/utils/slugHelper";
@@ -39,14 +35,14 @@ import useGeoLocation from "@/utils/slugHelper";
 type IProps = {
   background?: any;
   padding?: any;
+  filterData: Filter_Data | null;
 };
 
 const ContactUs: React.FunctionComponent<IProps> = ({
   background,
   padding,
+  filterData,
 }) => {
-  const theme = useTheme();
-
   const [formData, setFormData] = React.useState<FormType>({
     FirstName: "",
     EmailAddress: "",
@@ -61,7 +57,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     pageURL: "",
     sheetName: "Lead Forms",
   });
-  const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
 
@@ -153,7 +148,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     }
 
     await addFormData("lead", formData);
-    console.log(formData);
+
     const formDataObject = new FormData();
 
     Object.entries(formData).map((value) =>
@@ -220,45 +215,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       });
     }
   };
-  useEffect(() => {
-    getFilterData().then((data) => {
-      setFilterData(data);
-    });
-  }, []);
-
-  // React.useEffect(() => {
-  //   const getClientLocation = async () => {
-  //     const browser = navigator.userAgent;
-  //     const pageURL = window.location.href;
-  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-  //     const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-  //     const params = new URLSearchParams(window.location.search);
-
-  //     try {
-  //       const res = await fetch("https://ipinfo.io/json");
-  //       const locationData = await res.json();
-
-  //       setFormData((prev) => ({
-  //         ...prev,
-  //         Browser: browser,
-  //         SourcePageURL: pageURL,
-  //         Date: currentDate,
-  //         Time: currentTime,
-  //         IP: locationData?.ip,
-  //         Country: locationData?.country,
-  //         Medium: params.get("gad_source")
-  //           ? "google Ads"
-  //           : params.get("fbclid")
-  //           ? "facebook"
-  //           : "SEO",
-  //       }));
-  //     } catch (error) {
-  //       console.error("Error fetching location data:", error);
-  //     }
-  //   };
-
-  //   getClientLocation();
-  // }, []);
 
   const geoData = useGeoLocation();
 
@@ -290,17 +246,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       <Box sx={[styles.background, background, padding && padding]} />
       <Grid container>
         <Grid item lg={5} md={12} sm={12} xs={12}>
-          <Box
-            sx={{
-              position: "relative",
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "none",
-                lg: "flex",
-              },
-            }}
-          >
+          <Box sx={styles.girlImage}>
             <Image
               src={girl.src}
               width={girl.width}
@@ -532,6 +478,15 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 export default ContactUs;
 
 const styles = {
+  girlImage: {
+    position: "relative",
+    display: {
+      xs: "none",
+      sm: "none",
+      md: "none",
+      lg: "flex",
+    },
+  },
   heading: {
     display: "flex",
     // fontSize: {

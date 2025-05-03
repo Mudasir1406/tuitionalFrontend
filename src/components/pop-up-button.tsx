@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import FormDialog, { FormType } from "./home/form-dialouge";
+import { FormType } from "./home/form-dialouge";
 import { leagueSpartan } from "@/app/fonts";
 import { Button, SxProps, Theme } from "@mui/material";
-
+import dynamic from "next/dynamic";
+const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
 type IProps = {
   href: string;
   text: string;
@@ -33,7 +36,6 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
       <Button
         sx={sx}
         className={leagueSpartan.className}
-        // variant="contained"
         href={href !== "popup" ? href : undefined} // Only set href if not "popup"
         onClick={(e) => {
           if (href === "popup") {
@@ -44,7 +46,9 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
       >
         {text}
       </Button>
-      <FormDialog open={open} handleClose={handleClose} values={values} />
+      {open && (
+        <FormDialog open={open} handleClose={handleClose} values={values} />
+      )}
     </>
   );
 };

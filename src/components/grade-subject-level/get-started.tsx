@@ -18,16 +18,14 @@ const PopUpButton = dynamic(() => import("../pop-up-button"));
 
 import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
 import dynamic from "next/dynamic";
-const GetStarted = () => {
-  const [data, setData] = useState<GetStartedData[]>();
-  // let swiperRef: SwiperClass | null = null; // Explicitly type swiperRef
+
+type IProps = {
+  data: GetStartedData[];
+};
+
+const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
-  useEffect(() => {
-    getStartedData().then((res) => {
-      setData(res);
-    });
-  }, []);
   return (
     <Box>
       <Typography

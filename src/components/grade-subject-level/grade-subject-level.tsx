@@ -48,13 +48,14 @@ import {
   PageData,
 } from "@/types/grade-subject-level.types";
 import Form from "./form/form";
+import { getStartedData } from "@/services/get-started/get-started";
 type IProps = {
   data: PageData;
   sequence: Component_Sequence_Type;
 };
 
-const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
-  // console.log("GradeSubjectLevel", data, "sequence", sequence);
+const GradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
+  const getStarted = await getStartedData();
   const renderSection = (name: string) => {
     switch (name) {
       case "Hero Section":
@@ -156,7 +157,7 @@ const GradeSubjectLevel: React.FC<IProps> = ({ data, sequence }) => {
       case "get started":
         return (
           <Box sx={styles.verticalMargin}>
-            <GetStarted />
+            <GetStarted data={getStarted} />
           </Box>
         );
       // case "video section":
