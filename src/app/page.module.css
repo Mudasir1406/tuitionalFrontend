@@ -60,7 +60,7 @@
   object-fit: contain;
   object-position: bottom;
 }
-
+ 
 @media (max-width: 575px) {
   .container {
     /* max-width: 90vw; */
@@ -70,14 +70,14 @@
     padding-top: 0vh;
   }
 
-  /* .hero-picture::before {
-    height: 350px;
-  } */
+  .hero-picture {
+    margin-top: 3vh;
+  }
   .grid-container {
     margin: 0;
   }
   .image-container {
-    height: 350px;
+    height: 90%;
   }
 }
 

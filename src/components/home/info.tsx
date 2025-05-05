@@ -86,8 +86,8 @@ const styles = {
     justifyContent: "space-between",
     width: "100%",
     height: {
-      xs: "50vh",
-      sm: "60vh",
+      xs: "25vh",
+      sm: "40vh",
       md: "70vh",
       lg: "80vh",
     },
