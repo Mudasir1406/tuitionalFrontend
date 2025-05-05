@@ -36,18 +36,6 @@ const styles = {
     dispaly: "flex",
     alignItems: "center",
     justifyContent: "center",
-
-    // "::before": {
-    //   content: "''",
-    //   backgroundImage: `url(${faqLine})`,
-    //   position: "absolute",
-    //   bottom: -90,
-    //   backgroundRepeat: "no-repeat",
-    //   width: "1920px",
-    //   height: "281px",
-    //   left: -200,
-    //   backgroundSize: "cover",
-    // },
   },
   headingContanier: {
     display: "flex",
@@ -58,25 +46,6 @@ const styles = {
   },
   heading: {
     display: "flex",
-    // fontSize: {
-    //   xs: "4vh",
-    //   sm: "4vh",
-    //   md: "4.5vh",
-    //   lg: "5.5vh",
-    // },
-    // lineHeight: {
-    //   xs: "5vh",
-    //   sm: "5.5vh",
-    //   md: "6vh",
-    //   lg: "6.5vh",
-    // },
-    // fontWeight: 600,
-    // marginTop: {
-    //   xs: "4vh",
-    //   sm: "5vh",
-    //   md: "9vh",
-    //   lg: "10vh",
-    // },
     marginBottom: "20px",
     position: "relative",
     textAlign: "center",
@@ -86,7 +55,6 @@ const styles = {
     "::before": {
       content: "''",
       position: "absolute",
-      // zIndex: 10,
       backgroundImage: {
         xs: `url(${linesMobile.src})`,
         sm: `url(${linesInvert.src})`,

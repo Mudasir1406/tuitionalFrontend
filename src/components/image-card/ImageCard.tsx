@@ -1,22 +1,21 @@
 import Image from "next/image";
 import styles from "./ImageCard.module.css";
 import { CardProps } from "../grade-subject-level/tutor-section/TutorSection";
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import { useState } from "react";
 import Tag from "../tag/Tag";
 import dummyImg from "../../../public/assets/images/static/blogimg3.png";
 import PopUpButton from "../pop-up-button";
-import TutorModal from "../home/tutor-modal";
-
+import dynamic from "next/dynamic";
+const TutorModal = dynamic(() => import("../home/tutor-modal"), { ssr: false });
 interface props {
   data: CardProps;
 }
 
 const ImageCard = ({ data }: props) => {
   const [tutorModal, setTutorModal] = useState<boolean>(false);
-  const [showFull, setShowFull] = useState(false);
 
   const handleCloseTutorModal = () => {
     setTutorModal(false);
@@ -26,15 +25,12 @@ const ImageCard = ({ data }: props) => {
   };
 
   const toggleShowMore = () => {
-    // setShowFull((prev) => !prev);
     handleOpenTutorModal();
   };
 
   const maxLength = 90;
 
   return (
-    // <div className={styles.cardContainer}>
-    //   {cardsData.map((card, index) => (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image
@@ -93,27 +89,15 @@ const ImageCard = ({ data }: props) => {
             {data?.["Success rate"]}
           </Typography>
         </div>
-        {/* <Button
-          variant="contained"
-          className={`${leagueSpartan.className} ${styles.containedButton}`}
-          type="submit"
-        >
-          {loading ? (
-            <CircularProgress
-              sx={{ width: "12px", height: "12px", color: "white" }}
-              size={20}
-            />
-          ) : (
-            "Book A Trial Today"
-          )}
-        </Button> */}
         <PopUpButton text="Book A Demo" href="popup" sx={style.contactButton} />
 
-        <TutorModal
-          handleClose={handleCloseTutorModal}
-          open={tutorModal}
-          data={data}
-        />
+        {tutorModal && (
+          <TutorModal
+            handleClose={handleCloseTutorModal}
+            open={tutorModal}
+            data={data}
+          />
+        )}
       </div>
     </div>
     //   ))}

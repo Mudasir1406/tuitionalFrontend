@@ -34,8 +34,6 @@ const TutorModal: React.FunctionComponent<IProps> = ({
   handleClose,
   data,
 }) => {
-  const [loading, setLoading] = React.useState<boolean>(false);
-
   return (
     <Dialog
       open={open}
@@ -43,20 +41,7 @@ const TutorModal: React.FunctionComponent<IProps> = ({
       onClose={handleClose}
       className="pricing-dialog"
       maxWidth={false}
-      sx={{
-        "& .MuiPaper-root": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-        },
-        "& .MuiPaper-elevation": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-        },
-        "& .MuiPaper-rounded": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-        },
-      }}
+      sx={styles.dialog}
     >
       <DialogContent sx={styles.contanier}>
         <Box sx={styles.header}>
@@ -66,21 +51,16 @@ const TutorModal: React.FunctionComponent<IProps> = ({
           >
             {`${data?.["First Name"]} ${data?.["Last Name"]} `}
           </Typography>
-          <ClearRoundedIcon
-            sx={{ width: "30px", height: "30px", cursor: "pointer" }}
-            onClick={handleClose}
-          />
+          <ClearRoundedIcon sx={styles.clear} onClick={handleClose} />
         </Box>
         <Divider />
         <Box sx={styles.mainDiv}>
-          {/* <div className={styles.card}> */}
           <Box sx={styles.imageWrapper}>
             <Image
               src={data?.profileImageUrl ? data?.profileImageUrl : dummyImg}
               alt={`${data?.["First Name"]}'s profile`}
               layout="fill"
               objectFit="contain"
-              // style={styles.image}
             />
           </Box>
           <Box sx={styles.cardTextDiv}>
@@ -109,45 +89,14 @@ const TutorModal: React.FunctionComponent<IProps> = ({
               {data.university}{" "}
             </Typography>
 
-            {/* <Typography
-              className={`${leagueSpartan.className} `}
-              component={"p"}
-              variant="body2"
-            >
-              {data.Description}{" "}
-            </Typography> */}
             <Typography
-              // sx={style.guidence}
               variant={"body2"}
               className={leagueSpartan.className}
-              // component={data.headerTag as keyof JSX.IntrinsicElements}
               dangerouslySetInnerHTML={{
                 __html: data?.Description,
               }}
             ></Typography>
 
-            {/* <Typography
-                className={`${leagueSpartan.className} ${styles.title}`}
-                component={"p"}
-                variant="body2"
-              >
-                {showFull || data?.Description?.length <= maxLength
-                  ? data?.Description
-                  : `${data?.Description?.substring(0, maxLength)} `}
-                {data?.Description?.length > maxLength && (
-                  <span
-                    className={styles.showMore}
-                    onClick={toggleShowMore}
-                    style={{
-                      color: "#38b6ff",
-                      cursor: "pointer",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    {showFull ? "Show Less" : "..."}
-                  </span>
-                )}
-              </Typography> */}
             <Box sx={styles.rating}>
               <Image src={greenstars} alt="img" style={styles.stars} />
               <Typography
@@ -176,6 +125,21 @@ const TutorModal: React.FunctionComponent<IProps> = ({
 export default TutorModal;
 
 const styles = {
+  clear: { width: "30px", height: "30px", cursor: "pointer" },
+  dialog: {
+    "& .MuiPaper-root": {
+      backgroundColor: "transparent",
+      boxShadow: "none",
+    },
+    "& .MuiPaper-elevation": {
+      backgroundColor: "transparent",
+      boxShadow: "none",
+    },
+    "& .MuiPaper-rounded": {
+      backgroundColor: "transparent",
+      boxShadow: "none",
+    },
+  },
   contanier: {
     boxShadow:
       "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",

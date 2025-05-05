@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import diamond from "../../../public/assets/images/static/diamond 1.png";
 import {
   Searches_Type,

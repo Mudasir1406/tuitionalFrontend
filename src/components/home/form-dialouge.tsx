@@ -6,7 +6,6 @@ import {
   Box,
   CircularProgress,
   Divider,
-  Grid,
   TextField,
   Typography,
 } from "@mui/material";
@@ -20,17 +19,14 @@ const PhoneInput = dynamic(() => import("react-phone-number-input"), {
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
-import { sendEmail } from "@/services/email-service/email-service";
-import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import "react-phone-number-input/style.css";
-import { HELLOTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
-import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
+import { sendForm } from "@/services/contact-form/contact-form";
 
 type IProps = {
   open: boolean;
@@ -102,11 +98,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
   const handleChange = (key: string, value: string | string[]) => {
-    // setFormData({
-    //   ...formData,
-    //   [key]: value,
-    // });
-
     let newErrors = { ...errors };
 
     // Perform validation if the key is "phone"
@@ -155,39 +146,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setFormData(values);
     }
   }, [values]);
-
-  // React.useEffect(() => {
-  //   const getClientLocation = async () => {
-  //     const browser = navigator.userAgent;
-  //     const pageURL = window.location.href;
-  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-  //     const currentTime = new Date().toLocaleTimeString();
-  //     const params = new URLSearchParams(window.location.search);
-  //     // Format: HH:MM:SS AM/PM
-  //     try {
-  //       const res = await fetch("https://ipinfo.io/json");
-  //       const locationData = await res.json();
-
-  //       setFormData((prev) => ({
-  //         ...prev,
-  //         Browser: browser,
-  //         SourcePageURL: pageURL,
-  //         Date: currentDate,
-  //         Time: currentTime,
-  //         IP: locationData?.ip,
-  //         Country: locationData?.country,
-  //         Medium: params.get("gad_source")
-  //           ? "google Ads"
-  //           : params.get("fbclid")
-  //           ? "facebook"
-  //           : "SEO",
-  //       }));
-  //     } catch (error) {
-  //       console.error("Error fetching location data:", error);
-  //     }
-  //   };
-  //   getClientLocation();
-  // }, []);
 
   const geoData = useGeoLocation();
 
@@ -259,44 +217,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     }
 
     await addFormData("lead", formData);
-    console.log(formData);
-    const formDataObject = new FormData();
-
-    Object.entries(formData).map((value) =>
-      formDataObject.append(value[0], value[1])
-    );
-
-    const keyValuePairs: string[] = [];
-    for (const [key, value] of Array.from(formDataObject.entries())) {
-      keyValuePairs.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
-      );
-    }
-
-    const formDataString = keyValuePairs.join("&");
-
-    // console.log("formDataString", formDataString);
 
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
-        {
-          redirect: "follow",
-          method: "POST",
-          mode: "no-cors", // Bypass CORS
-
-          body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-        }
-      );
-      await sendEmail({
-        recipientEmail: HELLOTUITIONALEDU,
-        subject: "Get Started",
-        text: "",
-        html: createEmailTemplate(formData),
-      });
+      await sendForm(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({
@@ -414,14 +337,15 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
             <Box sx={styles.inputDiv}>
               <div style={styles.div}>
-                <PhoneInput
-                  defaultCountry="SA"
-                  value={formData?.PhoneNumber || ""}
-                  onChange={(e) => handleChange("PhoneNumber", String(e))}
-                  inputComponent={CustomInput}
-                  // className={`${styles.phoneInput}`}
-                  style={styles.phoneInput}
-                />
+                {formData.EmailAddress && (
+                  <PhoneInput
+                    defaultCountry="SA"
+                    value={formData?.PhoneNumber || ""}
+                    onChange={(e) => handleChange("PhoneNumber", String(e))}
+                    inputComponent={CustomInput}
+                    style={styles.phoneInput}
+                  />
+                )}
 
                 {errors.PhoneNumber && (
                   <Typography

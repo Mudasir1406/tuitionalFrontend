@@ -21,21 +21,15 @@ const Questions: React.FunctionComponent<IProps> = ({ question, answer }) => {
     <Box>
       <Accordion
         onChange={(e, expanded) => setExpanded(expanded)}
-        sx={{
-          backgroundColor: "white",
-          boxShadow: "1px 5px 20px 0px rgba(56, 182, 255, 0.2)",
-          borderRadius: "15px",
-          marginTop: "2vh",
-          paddingY: "2vh",
-        }}
+        sx={styles.acc}
         defaultExpanded={false}
       >
         <AccordionSummary
           expandIcon={
             expanded ? (
-              <RemoveOutlinedIcon sx={{ color: "black" }} />
+              <RemoveOutlinedIcon sx={styles.icon} />
             ) : (
-              <AddOutlinedIcon sx={{ color: "black" }} />
+              <AddOutlinedIcon sx={styles.icon} />
             )
           }
           aria-controls="panel1-content"
@@ -45,15 +39,8 @@ const Questions: React.FunctionComponent<IProps> = ({ question, answer }) => {
         >
           {question}
         </AccordionSummary>
-        <Divider
-          sx={{
-            width: "95%",
-            alignSelf: "center",
-            display: "flex",
-            marginLeft: "2.5%",
-          }}
-        />
-        <AccordionDetails sx={{ marginLeft: "1.5%", marginY: "20px" }}>
+        <Divider sx={styles.divider} />
+        <AccordionDetails sx={styles.detail}>
           <Typography
             sx={styles.answerText}
             className={leagueSpartan.className}
@@ -76,18 +63,6 @@ const styles = {
     dispaly: "flex",
     alignItems: "center",
     justifyContent: "center",
-
-    // "::before": {
-    //   content: "''",
-    //   backgroundImage: `url(${faqLine})`,
-    //   position: "absolute",
-    //   bottom: -90,
-    //   backgroundRepeat: "no-repeat",
-    //   width: "1920px",
-    //   height: "281px",
-    //   left: -200,
-    //   backgroundSize: "cover",
-    // },
   },
 
   questionText: {
@@ -108,6 +83,21 @@ const styles = {
     marginX: "10px",
     color: "#000000",
   },
+  acc: {
+    backgroundColor: "white",
+    boxShadow: "1px 5px 20px 0px rgba(56, 182, 255, 0.2)",
+    borderRadius: "15px",
+    marginTop: "2vh",
+    paddingY: "2vh",
+  },
+  icon: { color: "black" },
+  divider: {
+    width: "95%",
+    alignSelf: "center",
+    display: "flex",
+    marginLeft: "2.5%",
+  },
+  detail: { marginLeft: "1.5%", marginY: "20px" },
   answerText: {
     display: "flex",
     // fontSize: {

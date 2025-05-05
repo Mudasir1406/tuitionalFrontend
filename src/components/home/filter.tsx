@@ -15,8 +15,6 @@ interface FilterProps {
 }
 
 const Filter: React.FC<FilterProps> = ({ data }) => {
-  const [filterData, setFilterData] = useState<Filter_Data | null>(data);
-
   const [formData, setFormData] = useState<FormType>({
     FirstName: "",
     EmailAddress: "",
@@ -27,9 +25,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
     message: "",
     sheetName: "Lead Forms",
   });
-  useEffect(() => {
-    setFilterData(data);
-  }, [data]);
+
   const handleChange = (key: string, value: string | string[]) => {
     setFormData({
       ...formData,
@@ -81,7 +77,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
           <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Curriculum"
-              data={filterData?.curriculum || []}
+              data={data?.curriculum || []}
               value={formData.Curriculum}
               onChange={handleChange}
               name="Curriculum"
@@ -90,7 +86,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
           <Grid item lg={6} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Grade"
-              data={filterData?.grade || []}
+              data={data?.grade || []}
               value={formData.Grade}
               onChange={handleChange}
               name="Grade"
@@ -99,7 +95,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
           <Grid item lg={7} sm={12} xs={12} md={12}>
             <DropDown
               placeholder="Select Subjects"
-              data={filterData?.subject || []}
+              data={data?.subject || []}
               value={formData.Subject}
               onChange={handleChange}
               name="Subject"

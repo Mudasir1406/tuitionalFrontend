@@ -15,7 +15,25 @@ import PopUpButton from "../pop-up-button";
 type IProps = {
   data: GetStartedData[];
 };
+const breakPoints = {
+  320: {
+    slidesPerView: 1,
+    spaceBetween: 10,
+  },
+  520: {
+    slidesPerView: 1,
+    spaceBetween: 10,
+  },
+  700: {
+    slidesPerView: 2,
+    spaceBetween: 10,
+  },
 
+  1040: {
+    slidesPerView: 3,
+    spaceBetween: 10,
+  },
+};
 const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <Box>
@@ -27,12 +45,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
       >
         How to Get Started
       </Typography>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-          flexDirection: "row",
-        }}
-      >
+      <Box sx={styles.getStarted}>
         <Grid container>
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
@@ -41,35 +54,12 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           ))}
         </Grid>
       </Box>
-      <Box
-        sx={{
-          display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
-          flexDirection: "row",
-        }}
-      >
+      <Box sx={styles.swiperContanier}>
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
           centeredSlides={true}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            520: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            700: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-
-            1040: {
-              slidesPerView: 3,
-              spaceBetween: 10,
-            },
-          }}
+          breakpoints={breakPoints}
           breakpointsBase="window"
           loop
           modules={[Pagination, Autoplay]}
@@ -82,14 +72,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           style={{ width: "100%" }}
         >
           {data?.map((item, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <SwiperSlide key={index} style={styles.slide}>
               <GetStartedBox {...item} />
             </SwiperSlide>
           ))}
@@ -102,6 +85,15 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
 export default GetStarted;
 
 const styles = {
+  swiperContanier: {
+    display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
+    flexDirection: "row",
+  },
+  slide: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   heading: {
     textAlign: "center",
     marginBottom: "20px",
@@ -186,6 +178,10 @@ const styles = {
       // lineHeight: "18.4px",
       textAlign: "center",
     },
+  },
+  getStarted: {
+    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
+    flexDirection: "row",
   },
   contanier: {
     height: { xs: "565px", lg: "600px", xl: "auto" },

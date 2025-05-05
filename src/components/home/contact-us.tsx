@@ -31,6 +31,7 @@ import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import CustomInput from "../custom-input/custom-input";
 import useGeoLocation from "@/utils/slugHelper";
+import { sendForm } from "@/services/contact-form/contact-form";
 
 type IProps = {
   background?: any;
@@ -149,43 +150,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
 
     await addFormData("lead", formData);
 
-    const formDataObject = new FormData();
-
-    Object.entries(formData).map((value) =>
-      formDataObject.append(value[0], value[1])
-    );
-
-    const keyValuePairs: string[] = [];
-    for (const [key, value] of Array.from(formDataObject.entries())) {
-      keyValuePairs.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
-      );
-    }
-
-    const formDataString = keyValuePairs.join("&");
-
-    // console.log("formDataString", formDataString);
-
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
-        {
-          redirect: "follow",
-          method: "POST",
-          mode: "no-cors", // Bypass CORS
-
-          body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-        }
-      );
-      await sendEmail({
-        recipientEmail: HELLOTUITIONALEDU,
-        subject: "Get Started",
-        text: "",
-        html: createEmailTemplate(formData),
-      });
+      await sendForm(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({
@@ -260,19 +226,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
           </Box>
         </Grid>
         <Grid item lg={7} md={12} sm={12} xs={12}>
-          <Box
-            sx={{
-              display: {
-                xs: "flex",
-                sm: "flex",
-                md: "flex",
-                lg: "block",
-              },
-              alignItems: "center",
-              flexDirection: "column",
-              zIndex: 4,
-            }}
-          >
+          <Box sx={styles.inner}>
             <Typography
               sx={styles.heading}
               className={leagueSpartan.className}
@@ -613,6 +567,17 @@ const styles = {
   },
   inputDiv: {
     marginY: "2vh",
+  },
+  inner: {
+    display: {
+      xs: "flex",
+      sm: "flex",
+      md: "flex",
+      lg: "block",
+    },
+    alignItems: "center",
+    flexDirection: "column",
+    zIndex: 4,
   },
   contactForm: {
     boxShadow:
