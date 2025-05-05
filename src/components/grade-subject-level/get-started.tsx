@@ -167,19 +167,7 @@ const styles = {
   },
   heading: {
     textAlign: "center",
-    // fontSize: {
-    //   xs: "30px",
-    //   sm: "40px",
-    //   md: "45px",
-    //   lg: "55px",
-    // },
-    // lineHeight: {
-    //   xs: "50px",
-    //   sm: "55px",
-    //   md: "60px",
-    //   lg: "65px",
-    // },
-    // fontWeight: 600,
+
     marginTop: {
       xs: "70px",
       sm: "80px",
@@ -240,13 +228,6 @@ const styles = {
     margin: "2vh 0",
     backgroundColor: "#38B6FF",
 
-    // fontSize: {
-    //   xs: "25px",
-    //   sm: "25px",
-    //   md: "25px",
-    //   lg: "25px",
-    // },
-    // fontWeight: 700,
     lineHeight: "18.4px",
     textAlign: "center",
     width: "249px",
@@ -263,13 +244,7 @@ const styles = {
       letterSpacing: "-2%",
 
       borderRadius: "10px",
-      // fontSize: {
-      //   xs: "25px",
-      //   sm: "25px",
-      //   md: "25px",
-      //   lg: "25px",
-      // },
-      // fontWeight: 700,
+
       lineHeight: "18.4px",
       textAlign: "center",
     },
@@ -291,20 +266,24 @@ const styles = {
     flexDirection: "column",
   },
   boxHeading: {
-    // fontSize: "28px",
-    // fontWeight: 600,
-    // lineHeight: "34px",
     textAlign: "center",
-    // height: "100px",
     margin: "2vh 0",
   },
   boxDesc: {
-    // fontSize: "22px",
-    // fontWeight: 400,
-    // lineHeight: "32px",
     textAlign: "center",
     // height: "150px",
     margin: "2vh 0",
+  },
+  imageBox: {
+    width: 300,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: {
+      xs: 150,
+      sm: 250,
+      md: 250,
+    },
   },
 };
 
@@ -323,7 +302,7 @@ const GetStartedBox: React.FC<Props> = ({
 }) => {
   return (
     <Box sx={styles.contanier}>
-      <Box
+      {/* <Box
         sx={{
           height: "auto",
           width: 300,
@@ -339,6 +318,19 @@ const GetStartedBox: React.FC<Props> = ({
           height={300}
           style={{ width: "100%", height: "250px", objectFit: "contain" }}
         ></Image>
+      </Box> */}
+      <Box sx={styles.imageBox}>
+        <Image
+          src={image}
+          alt=""
+          width={300}
+          height={300}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
       </Box>
       <Typography
         sx={styles.boxHeading}

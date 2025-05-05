@@ -122,14 +122,17 @@
 @media screen and (max-width: 800px) and (min-width: 400px) {
   .girlContact {
     width: 400px; /* Set a width of 700px */
-    height: 450.4px;
+    height: 220.4px;
+    object-fit: contain;
+
     /* Set a height of 700px */
   }
 }
 @media screen and (max-width: 400px) {
   .girlContact {
-    width: 320px; /* Set a width of 700px */
-    height: 383px;
+    width: 100%; /* Set a width of 700px */
+    height: 200px;
+    object-fit: contain;
     /* Set a height of 700px */
   }
 }
