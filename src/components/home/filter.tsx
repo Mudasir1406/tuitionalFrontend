@@ -142,7 +142,7 @@ const styles = {
     },
     color: "#000000",
     fontSize: {
-      xs: "17px",
+      xs: "24px",
       sm: "24px",
       md: "28px",
       lg: "3.1rem",
@@ -153,7 +153,7 @@ const styles = {
     display: "inline",
     position: "relative",
     fontSize: {
-      xs: "20px",
+      xs: "24px",
       sm: "24px",
       md: "28px",
       lg: "3.1rem",
