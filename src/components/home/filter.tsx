@@ -209,6 +209,12 @@ const styles = {
       md: "4vh",
     },
     color: "#000000",
+    fontSize: {
+      xs: "13px",
+      sm: "15px",
+      md: "16px",
+      // lg: "3.1rem",
+    },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
