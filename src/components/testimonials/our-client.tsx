@@ -50,6 +50,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
       setProgress(newProgress);
     }
   };
+  const duplicatedData = data?.length < 3 ? [...data, ...data, ...data] : data;
 
   return (
     <Box sx={styles.constanier}>
@@ -128,7 +129,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
               alignItems: "center",
               justifyContent: "center",
             }}
-            loop={true}
+            loop={duplicatedData?.length >= 3} // Check the length of the potentially duplicated data
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
@@ -141,7 +142,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
               perSlideRotate: 1,
             }}
           >
-            {data.map((item, index) => (
+            {duplicatedData?.map((item, index) => (
               <SwiperSlide
                 key={index}
                 style={{
@@ -240,7 +241,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
               width: "100%",
               marginLeft: "2%",
             }}
-            loop={true}
+            loop={data?.length >= 3}
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,

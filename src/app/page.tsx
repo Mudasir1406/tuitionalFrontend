@@ -134,6 +134,8 @@ const Home: React.FC = async () => {
                   priority
                   quality={80}
                   className={style.image}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                   // sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
