@@ -60,7 +60,7 @@
   object-fit: contain;
   object-position: bottom;
 }
- 
+
 @media (max-width: 575px) {
   .container {
     /* max-width: 90vw; */
@@ -72,13 +72,13 @@
 
   .hero-picture {
     margin-top: 3vh;
-    
   }
   .grid-container {
     margin: 0;
   }
   .image-container {
     height: 90%;
+    display: none;
   }
 }
 
