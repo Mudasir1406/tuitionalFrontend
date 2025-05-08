@@ -86,8 +86,10 @@ const styles = {
     justifyContent: "space-between",
     width: "100%",
     height: {
-      xs: "25vh",
-      sm: "40vh",
+      // xs: "25vh",
+      // sm: "40vh",
+      xs: "15rem", // Approximate conversion of 25vh (assuming a root font size of 16px)
+      sm: "24rem",
       md: "70vh",
       lg: "80vh",
     },
