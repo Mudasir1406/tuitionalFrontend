@@ -213,7 +213,7 @@ const styles = {
       xs: "13px",
       sm: "15px",
       md: "16px",
-      // lg: "3.1rem",
+      lg: "1.6rem",
     },
   },
   containedBtn: {
