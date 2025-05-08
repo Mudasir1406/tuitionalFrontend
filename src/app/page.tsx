@@ -132,16 +132,11 @@ const Home: React.FC = async () => {
                   alt="Student learning with Tuitional"
                   fill
                   priority
-                  quality={60} // Lower quality for mobile
+                  quality={70}
                   className={style.image}
-                  sizes="100vw" // Full viewport width on mobile
-                  placeholder="blur"
-                  // fill
-                  // priority
-                  // quality={80}
-                  // className={style.image}
-                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  // placeholder="blur"
+                  loading="eager"
                   // sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
