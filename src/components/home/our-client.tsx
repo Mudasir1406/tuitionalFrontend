@@ -24,6 +24,8 @@ const OurClient: React.FC<IProps> = ({ data }) => {
   const swiperNext = () => {
     swiper.current?.swiper.slideNext();
   };
+  const duplicatedData = data?.length < 3 ? [...data, ...data, ...data] : data;
+
   return (
     <Box sx={styles.constanier}>
       <Box sx={styles.inner}>
@@ -59,7 +61,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             centeredSlides={true}
             grabCursor
             style={styles.swiper}
-            loop={true}
+            loop={duplicatedData?.length >= 3} // Check the length of the potentially duplicated data
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
@@ -72,7 +74,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
               perSlideRotate: 1,
             }}
           >
-            {data.map((item, index) => (
+            {duplicatedData?.map((item, index) => (
               <SwiperSlide key={index} style={styles.slide}>
                 <ReviewMobile item={item} />
               </SwiperSlide>
@@ -120,7 +122,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           centeredSlides={true}
           grabCursor
           style={styles.swiperMobile}
-          loop={true}
+          loop={data?.length >= 3}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,

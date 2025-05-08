@@ -1,12 +1,9 @@
 "use client";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useRef } from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import {
-  GetStartedData,
-  getStartedData,
-} from "../../services/get-started/get-started";
+import { GetStartedData } from "../../services/get-started/get-started";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -77,7 +74,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           spaceBetween={20}
           slidesPerView={1}
           centeredSlides={true}
-          loop
+          loop={data?.length >= 3}
           autoplay={{
             delay: 5000,
           }}
@@ -302,23 +299,6 @@ const GetStartedBox: React.FC<Props> = ({
 }) => {
   return (
     <Box sx={styles.contanier}>
-      {/* <Box
-        sx={{
-          height: "auto",
-          width: 300,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Image
-          src={image}
-          alt=""
-          width={300}
-          height={300}
-          style={{ width: "100%", height: "250px", objectFit: "contain" }}
-        ></Image>
-      </Box> */}
       <Box sx={styles.imageBox}>
         <Image
           src={image}

@@ -61,7 +61,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           centeredSlides={true}
           breakpoints={breakPoints}
           breakpointsBase="window"
-          loop
+          loop={data?.length >= 3}
           modules={[Pagination, Autoplay]}
           autoplay={{
             delay: 3000,

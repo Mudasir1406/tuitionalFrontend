@@ -1,6 +1,6 @@
 "use client";
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
 import { Filter_Data } from "../../services/filter-data/filter-data";
@@ -136,14 +136,16 @@ const styles = {
       lg: "start",
     },
     marginTop: {
-      xs: "4vh",
+      xs: "2vh",
+      sm: "3vh",
+      md: "4vh",
     },
     color: "#000000",
     fontSize: {
       xs: "20px",
       sm: "24px",
       md: "28px",
-      lg: "4vh",
+      lg: "3.1rem",
     },
   },
   expertText: {
@@ -154,7 +156,7 @@ const styles = {
       xs: "20px",
       sm: "24px",
       md: "28px",
-      lg: "4vh",
+      lg: "3.1rem",
     },
     "::before": {
       content: "''",
@@ -202,7 +204,9 @@ const styles = {
       lg: "0vh",
     },
     marginTop: {
-      xs: "4vh",
+      xs: "2vh",
+      sm: "3vh",
+      md: "4vh",
     },
     color: "#000000",
   },

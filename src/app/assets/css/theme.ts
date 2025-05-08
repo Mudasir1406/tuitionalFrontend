@@ -103,8 +103,8 @@ const theme = createTheme({
         // fontSize: "16px",
       },
       "@media (max-width:600px)": {
-        fontSize: "2.1vh",
-        lineHeight: "2.5vh",
+        fontSize: "0.9rem", // ≈ 28px
+        lineHeight: "1.1rem",
         // textAlign: "left",
       },
     },
