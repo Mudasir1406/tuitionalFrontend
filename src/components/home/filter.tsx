@@ -142,7 +142,7 @@ const styles = {
     },
     color: "#000000",
     fontSize: {
-      xs: "20px",
+      xs: "17px",
       sm: "24px",
       md: "28px",
       lg: "3.1rem",
