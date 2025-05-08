@@ -128,13 +128,19 @@ const Home: React.FC = async () => {
             <div className={style["hero-picture"]}>
               <div className={style["image-container"]}>
                 <Image
-                  src="/assets/images/static/girl-with-book.webp"
+                  src={homeImage}
                   alt="Student learning with Tuitional"
                   fill
                   priority
-                  quality={80}
+                  quality={60} // Lower quality for mobile
                   className={style.image}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="100vw" // Full viewport width on mobile
+                  placeholder="blur"
+                  // fill
+                  // priority
+                  // quality={80}
+                  // className={style.image}
+                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                   // sizes="(max-width: 768px) 100vw, 50vw"
                 />
