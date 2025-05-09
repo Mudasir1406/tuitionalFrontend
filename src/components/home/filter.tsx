@@ -60,7 +60,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
 
   return (
     <Box sx={styles.filter}>
-      <Typography sx={styles.heading} component={"h1"} variant="h1">
+      {/* <Typography sx={styles.heading} component={"h1"} variant="h1">
         Online Tutoring{" "}
         <Typography sx={styles.expertText} component={"span"} variant="h1">
           Platform <br />{" "}
@@ -71,6 +71,13 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
         Tuitional Is An Online Tutoring Platform Providing Quality Education
         Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
         your learning journey.
+      </Typography> */}
+      <Typography variant="h1" sx={styles.heading}>
+        Online Tutoring{" "}
+        <span style={{ color: "#51B893", fontSize: "inherit", fontWeight: "bold" }}>
+          Platform <br />
+        </span>
+        Customized for 1:1 Online Tutoring Sessions
       </Typography>
       <Box sx={styles.filterBox}>
         <Grid container spacing={2}>
@@ -165,6 +172,10 @@ const styles = {
       right: {
         md: 0,
         lg: -45,
+      },
+      display: {
+        xs: "none",
+        lg: "block",
       },
       top: {
         xs: -20.5,
