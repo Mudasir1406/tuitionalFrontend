@@ -127,18 +127,18 @@ const Home: React.FC = async () => {
             </div>
             <div className={style["hero-picture"]}>
               <div className={style["image-container"]}>
-                <Image
+                {/* <Image
                   src={homeImage}
                   alt="Student learning with Tuitional"
                   fill
                   priority
-                  quality={90}
+                  quality={85}
                   className={style.image}
-                  sizes="(max-width: 450px) 300px, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 575px) 240px, (max-width: 768px) 400px, (max-width: 1200px) 600px, 640px"
                   // placeholder="blur"
                   loading="eager"
                   // sizes="(max-width: 768px) 100vw, 50vw"
-                />
+                /> */}
               </div>
               <Info />
             </div>

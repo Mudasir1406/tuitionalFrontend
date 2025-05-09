@@ -213,7 +213,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       <Grid container>
         <Grid item lg={5} md={12} sm={12} xs={12}>
           <Box sx={styles.girlImage}>
-            <Image
+            {/* <Image
               src={girl.src}
               width={girl.width}
               height={girl.height}
@@ -222,7 +222,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               style={{
                 position: "absolute",
               }}
-            ></Image>
+            ></Image> */}
           </Box>
         </Grid>
         <Grid item lg={7} md={12} sm={12} xs={12}>
@@ -418,13 +418,13 @@ const ContactUs: React.FunctionComponent<IProps> = ({
           </Box>
         </Grid>
       </Grid>
-      <Image
+      {/* <Image
         src={girl.src}
         width={girl.width}
         height={girl.height}
         alt="girl"
         className="girlContact"
-      ></Image>
+      ></Image> */}
     </Box>
   );
 };
