@@ -300,7 +300,7 @@ const GetStartedBox: React.FC<Props> = ({
   return (
     <Box sx={styles.contanier}>
       <Box sx={styles.imageBox}>
-        {/* <Image
+        <Image
           src={image}
           alt=""
           width={300}
@@ -310,7 +310,7 @@ const GetStartedBox: React.FC<Props> = ({
             height: "100%",
             objectFit: "contain",
           }}
-        /> */}
+        />
       </Box>
       <Typography
         sx={styles.boxHeading}
