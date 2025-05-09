@@ -134,7 +134,7 @@ const Home: React.FC = async () => {
                   priority
                   quality={70}
                   className={style.image}
-                  sizes="(max-width: 300px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 450px) 300px, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   // placeholder="blur"
                   loading="eager"
                   // sizes="(max-width: 768px) 100vw, 50vw"
