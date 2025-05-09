@@ -624,14 +624,14 @@ const ReviewMobile: React.FC<RProps> = ({ item }) => {
       </Box>
       <Typography sx={styles.reviewText}>{item.message}</Typography>
       <Box sx={styles.userContanier}>
-        {/* <Image
+        <Image
           src={item.imageUrl}
           width={50}
           height={50}
           loading="lazy"
           alt="user"
           style={{ borderRadius: 25, marginRight: 10 }}
-        ></Image> */}
+        ></Image>
         <Box>
           <Typography sx={styles.username} variant="h5">
             {item.userName}
