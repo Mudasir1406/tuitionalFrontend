@@ -76,13 +76,13 @@ const styles = {
 
       backgroundRepeat: "no-repeat",
       top: {
-        xs: -12,
+        xs: -20,
         sm: -35,
         md: -35,
         lg: -35,
       },
       left: {
-        xs: "12%",
+        xs: "-6%",
         sm: "-6%",
         md: "-6%",
         lg: "-6%",

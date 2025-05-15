@@ -52,15 +52,15 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80vh; /* Base height */
+  height: 80vh;
   z-index: 0;
 }
 
 .image {
   object-fit: contain;
-  object-position: bottom;
+  object-position: center;
 }
- 
+
 @media (max-width: 575px) {
   .container {
     /* max-width: 90vw; */
@@ -72,12 +72,13 @@
 
   .hero-picture {
     margin-top: 3vh;
+    height: 89vw;
   }
   .grid-container {
     margin: 0;
   }
   .image-container {
-    height: 90%;
+    height: 100%;
   }
 }
 
@@ -89,9 +90,9 @@
   .hero {
     padding-top: 7vh;
   }
-  /* .hero-picture::before {
-    height: 50vh;
-  } */
+  .hero-picture {
+    height: 600px;
+  }
   .image-container {
     height: 50vh;
   }
@@ -106,9 +107,9 @@
     padding-top: 10vh;
   }
 
-  /* .hero-picture::before {
-    height: 50vh;
-  } */
+  .hero-picture::before {
+    height: 89vw;
+  }
   .image-container {
     height: 50vh;
   }
