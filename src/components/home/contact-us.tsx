@@ -23,10 +23,7 @@ const Input = dynamic(() => import("../input/Input"));
 import "react-phone-number-input/style.css";
 import { Filter_Data } from "@/services/filter-data/filter-data";
 import { FormType } from "./form-dialouge";
-import { sendEmail } from "@/services/email-service/email-service";
-import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
-import { HELLOTUITIONALEDU } from "@/utils/env";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import CustomInput from "../custom-input/custom-input";
@@ -501,13 +498,13 @@ const styles = {
       },
       backgroundRepeat: "no-repeat",
       top: {
-        xs: -12,
+        xs: -20,
         sm: -35,
         md: -35,
         lg: -35,
       },
       left: {
-        xs: "-5%",
+        xs: "-14%",
         sm: "-8%",
         md: "-6%",
         lg: "-4%",
