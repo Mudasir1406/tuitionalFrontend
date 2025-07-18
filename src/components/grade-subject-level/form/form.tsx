@@ -14,13 +14,15 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
+
 import "react-phone-number-input/style.css";
+import styles from "./style.module.css";
+
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendEmail } from "@/services/email-service/email-service";
 import { createEmailTemplate } from "@/services/email-service/template";
 import toast from "react-hot-toast";
 import { HELLOTUITIONALEDU } from "@/utils/env";
-import styles from "./style.module.css";
 import { FormType } from "@/components/home/form-dialouge";
 import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
@@ -404,7 +406,6 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
         <Button
           variant="contained"
           className={`${leagueSpartan.className} ${styles.containedButton}`}
-          // sx={styles.containedButton}
           type="submit"
           // onClick={handleSubmit}
         >
