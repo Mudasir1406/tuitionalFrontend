@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   },
 };
 import { League_Spartan } from "next/font/google";
+import PageViewTracker from "@/components/page-view-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
@@ -65,6 +66,7 @@ export default function RootLayout({
         <ThemeProvider theme={theme}>
           <DrawerProvider>
             <DynamicModel />
+            <PageViewTracker />
             {children}
             <Metrics />
             <Toaster />
