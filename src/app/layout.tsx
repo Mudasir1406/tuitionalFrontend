@@ -63,6 +63,15 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         <ThemeProvider theme={theme}>
           <DrawerProvider>
             <DynamicModel />
