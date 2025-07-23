@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 };
 import { League_Spartan } from "next/font/google";
 import PageViewTracker from "@/components/page-view-tracker";
+import PixelTracker from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
@@ -52,17 +53,23 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-      </head>
-
-      <body style={{ margin: 0 }}>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                         
+              n.callMethod.apply(n,arguments):n.queue.push   
+              (arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!
+              0;n.version='2.0';n.queue=[];t=b.createElement(e);
+              t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,
+              'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1950457082424995');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
         <noscript>
           <img
             height="1"
@@ -72,6 +79,19 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+      </head>
+
+      <body style={{ margin: 0 }}>
+        <PixelTracker />
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         <ThemeProvider theme={theme}>
           <DrawerProvider>
             <DynamicModel />
