@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 import { League_Spartan } from "next/font/google";
 import PageViewTracker from "@/components/page-view-tracker";
 import PixelTracker from "./metrics/pixel-tracker";
+import FbPixelPageView from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
@@ -57,7 +58,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        {/* <script
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -73,8 +74,8 @@ export default function RootLayout({
               fbq('track', 'PageView');
             `,
           }}
-        /> */}
-        {/* <noscript>
+        />
+        <noscript>
           <img
             height="1"
             width="1"
@@ -82,11 +83,11 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
             alt=""
           />
-        </noscript> */}
+        </noscript>
       </head>
 
       <body style={{ margin: 0 }}>
-        {/* <PixelTracker /> */}
+        <PixelTracker />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
@@ -99,7 +100,7 @@ export default function RootLayout({
         <ThemeProvider theme={theme}>
           <DrawerProvider>
             <DynamicModel />
-            <PageViewTracker />
+            <FbPixelPageView />
             {children}
             <Metrics />
             <Toaster />
