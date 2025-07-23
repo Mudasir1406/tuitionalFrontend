@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "Tuitional",
   description: "",
   applicationName: "Tuitional Website",
-  // verification: {
-  //   google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
-  // },
+  verification: {
+    google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
+  },
   other: {
     "font-display": "swap",
   },
@@ -47,13 +47,17 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta
+          name="facebook-domain-verification"
+          content="nsi12pa24pgn3gdkbjbbw85ktpjzux"
+        />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -69,8 +73,8 @@ export default function RootLayout({
               fbq('track', 'PageView');
             `,
           }}
-        />
-        <noscript>
+        /> */}
+        {/* <noscript>
           <img
             height="1"
             width="1"
@@ -78,11 +82,11 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
             alt=""
           />
-        </noscript>
+        </noscript> */}
       </head>
 
       <body style={{ margin: 0 }}>
-        <PixelTracker />
+        {/* <PixelTracker /> */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
