@@ -5,11 +5,14 @@ import logo from "../../public/assets/images/static/logo.png";
 import logoMobile from "../../public/assets/images/static/logoMobile.png";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { useDrawer } from "../context/drawer-context";
+import { useI18n } from "@/context/language-context";
 import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 
 import dynamic from "next/dynamic";
+import RouteLanguageSwitcher from "./route-language-switcher";
+
 const FormDialog = dynamic(() => import("./home/form-dialouge"), {
   ssr: false,
 });
@@ -18,6 +21,7 @@ type IProps = {
 };
 const Header: React.FC<IProps> = ({ background }) => {
   const { toggleDrawer } = useDrawer();
+  const { t, isRTL } = useI18n();
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -29,97 +33,113 @@ const Header: React.FC<IProps> = ({ background }) => {
   return (
     <Box sx={[styles.background, background]}>
       <Box sx={styles.circleBox} />
-      <Box sx={styles.leftCircle} />
-      <Box sx={styles.rightCircle} />
-      <AppBar position="sticky" sx={styles.container}>
+      <Box sx={[styles.leftCircle, isRTL && styles.leftCircleRTL]} />
+      <Box sx={[styles.rightCircle, isRTL && styles.rightCircleRTL]} />
+      <AppBar
+        position="sticky"
+        sx={[styles.container, isRTL && styles.containerRTL]}
+      >
         <div style={styles.shadow} />
-        <Toolbar sx={styles.toolBar}>
-          <a href={"https://tuitionaledu.com/"} rel="noopener noreferrer">
-            <Box sx={styles.logo}>
+        <Toolbar sx={[styles.toolBar, isRTL && styles.toolBarRTL]}>
+          {/* Logo Section */}
+          <Box sx={[styles.logoSection, isRTL && styles.logoSectionRTL]}>
+            <a href={"https://tuitionaledu.com/"} rel="noopener noreferrer">
+              <Box sx={[styles.logo, isRTL && styles.logoRTL]}>
+                <Image
+                  src={logo.src}
+                  alt="Logo"
+                  style={{
+                    width: 200,
+                    height: 49,
+                    objectFit: "contain",
+                  }}
+                  width={logo.width}
+                  height={logo.height}
+                  quality={100}
+                />
+              </Box>
+            </a>
+            <Box sx={[styles.logoMobile, isRTL && styles.logoMobileRTL]}>
               <Image
-                src={logo.src}
+                src={logoMobile.src}
                 alt="Logo"
+                width={logoMobile.width}
+                height={logoMobile.height}
                 style={{
-                  width: 250,
+                  width: 203,
                   height: 49,
-                  objectFit: "contain",
+                  objectFit: "none",
                 }}
-                width={logo.width}
-                height={logo.height}
-                quality={100}
               />
             </Box>
-          </a>
-          <Box sx={styles.logoMobile}>
-            <Image
-              src={logoMobile.src}
-              alt="Logo"
-              width={logoMobile.width}
-              height={logoMobile.height}
-              style={{
-                width: 203,
-                height: 49,
-                objectFit: "none",
-              }}
-            />
           </Box>
 
-          <a href={"/"} style={styles.link}>
+          {/* Navigation Section */}
+          <Box sx={[styles.navSection, isRTL && styles.navSectionRTL]}>
+            <a href={"/"} style={styles.link}>
+              <Typography
+                sx={styles.typography}
+                className={leagueSpartan.className}
+              >
+                {t("nav.home")}
+              </Typography>
+            </a>
+            <a href={"/about"} style={styles.link}>
+              <Typography
+                sx={styles.typography}
+                className={leagueSpartan.className}
+              >
+                {t("nav.about")}
+              </Typography>
+            </a>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              Home
+              {t("nav.community")}
             </Typography>
-          </a>
-          <a href={"/about"} style={styles.link}>
-            <Typography
-              sx={styles.typography}
+            <a href={"/testimonials"} style={styles.link}>
+              <Typography
+                sx={styles.typography}
+                className={leagueSpartan.className}
+              >
+                {t("nav.testimonials")}
+              </Typography>
+            </a>
+            <a href={"/contact"} style={styles.link}>
+              <Typography
+                sx={styles.typography}
+                className={leagueSpartan.className}
+              >
+                {t("nav.contact")}
+              </Typography>
+            </a>
+          </Box>
+
+          {/* Buttons Section */}
+          <Box sx={[styles.buttonsSection, isRTL && styles.buttonsSectionRTL]}>
+            <Button
+              variant="outlined"
+              sx={styles.outlinedBtn}
               className={leagueSpartan.className}
             >
-              About
-            </Typography>
-          </a>
-          {/* <Link href={"/Community & Events"} style={styles.link}> */}
-          <Typography
-            sx={styles.typography}
-            className={leagueSpartan.className}
-          >
-            Community & Events
-          </Typography>
-          {/* </Link> */}
-          <a href={"/testimonials"} style={styles.link}>
-            <Typography
-              sx={styles.typography}
+              {t("buttons.ai_digital_sat")}
+            </Button>
+            <Button
+              variant="contained"
+              sx={styles.containedBtn}
               className={leagueSpartan.className}
+              onClick={handleClick}
             >
-              Testimonials
-            </Typography>
-          </a>
-          <a href={"/contact"} style={styles.link}>
-            <Typography
-              sx={styles.typography}
-              className={leagueSpartan.className}
-            >
-              Contact
-            </Typography>
-          </a>
-          <Button
-            variant="outlined"
-            sx={styles.outlinedBtn}
-            className={leagueSpartan.className}
-          >
-            AI Digital SAT
-          </Button>
-          <Button
-            variant="contained"
-            sx={styles.containedBtn}
-            className={leagueSpartan.className}
-            onClick={handleClick}
-          >
-            Book Demo Classes
-          </Button>
-          <MenuRoundedIcon onClick={toggleDrawer} sx={styles.menu} />
+              {t("buttons.book_demo")}
+            </Button>
+            <RouteLanguageSwitcher />
+          </Box>
+
+          <MenuRoundedIcon
+            onClick={toggleDrawer}
+            sx={[styles.menu, isRTL && styles.menuRTL]}
+          />
         </Toolbar>
       </AppBar>
       {open && <FormDialog open={open} handleClose={handleClose} />}
@@ -180,7 +200,7 @@ const styles = {
     },
     alignItems: "flex-start",
     // width: "25%",
-    marginLeft: "-50px",
+    marginLeft: "-10px", // Minimal negative margin to prevent stepping out
   },
   menu: {
     color: "#38B6FF",
@@ -200,7 +220,7 @@ const styles = {
       lg: "none",
     },
     alignItems: "flex-start",
-    marginLeft: "-30px",
+    marginLeft: "-15px", // Reduced negative margin to match RTL
     cursor: "pointer",
   },
   image: {
@@ -255,20 +275,26 @@ const styles = {
     color: "#51B893",
     borderColor: "#51B893",
     paddingY: "1.2vh",
-    marginLeft: "6vw",
+    paddingX: "1.5vw",
     fontSize: "1.5vh",
     fontWeight: 700,
     lineHeight: "1.84vh",
     textAlign: "center",
+    minWidth: "fit-content",
+    whiteSpace: "nowrap",
+    transition: "none",
     ":hover": {
       color: "#51B893",
       borderColor: "#51B893",
       paddingY: "1.2vh",
-      marginLeft: "6vw",
+      paddingX: "1.5vw",
       fontSize: "1.5vh",
       fontWeight: 700,
       lineHeight: "1.84vh",
       textAlign: "center",
+      minWidth: "fit-content",
+      whiteSpace: "nowrap",
+      transition: "none",
     },
     display: {
       xs: "none",
@@ -367,9 +393,79 @@ const styles = {
       xs: "space-between",
       sm: "space-between",
       md: "space-between",
-      lg: "space-evenly",
+      lg: "space-between",
     },
-    width: "100%",
+    width: { xs: "100%", lg: "95%" },
+    // marginX: "8vw",
     alignItems: "center",
+  },
+  // RTL-specific styles
+  containerRTL: {
+    marginLeft: "5vw",
+    marginRight: "5vw",
+  },
+  toolBarRTL: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    direction: "ltr", // Keep toolbar in LTR to maintain proper order
+  },
+  logoRTL: {
+    marginLeft: "-10px", // Match the English logo margin
+    marginRight: "0px",
+  },
+  logoMobileRTL: {
+    marginLeft: "-15px", // Reduced negative margin for mobile
+    marginRight: "0px",
+  },
+  menuRTL: {
+    marginRight: "0vw",
+    marginLeft: "1vw",
+  },
+  leftCircleRTL: {
+    left: "auto",
+    right: {
+      xs: "1.2vw",
+      sm: "2.5vw",
+      md: "5vw",
+      lg: "4.5vw",
+    },
+    animation: "none", // Disable animation in RTL to prevent overflow
+  },
+  rightCircleRTL: {
+    right: "auto",
+    left: "3.5vw",
+    animation: "none", // Disable animation in RTL to prevent overflow
+  },
+  // New section-based styles
+  logoSection: {
+    display: "flex",
+    alignItems: "center",
+    marginRight: "1.5vw", // Space between logo and navigation (English)
+  },
+  logoSectionRTL: {
+    marginRight: "2vw", // More space for Arabic
+  },
+  navSection: {
+    display: {
+      xs: "none",
+      lg: "flex",
+    },
+    alignItems: "center",
+    gap: "2vw", // Space between nav items
+  },
+  navSectionRTL: {
+    justifyContent: "flex-start", // Align nav items to start in RTL
+  },
+  buttonsSection: {
+    display: {
+      xs: "none",
+      lg: "flex",
+    },
+    alignItems: "center",
+    gap: "0.8vw", // Tight spacing between buttons
+    marginLeft: "1.5vw", // Space between nav and buttons
+  },
+  buttonsSectionRTL: {
+    marginLeft: "1.5vw", // Keep same spacing for Arabic
   },
 };

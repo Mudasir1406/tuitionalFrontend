@@ -9,8 +9,10 @@ export const generateSlug = (text: string) => {
 };
 
 export const subjectsMap: Record<string, string> = {
+  // English subjects (exact Firebase data)
   Mathematics: "/online/math-tutors",
   "Further Math": "/online/further-maths-tutors",
+  "Further Mathematics": "/online/further-maths-tutors",
   "Additional Mathematics": "/online/additional-maths-tutors",
   Physics: "/online/physics-tutors",
   Biology: "/online/biology-tutors",
@@ -20,17 +22,156 @@ export const subjectsMap: Record<string, string> = {
   Economics: "/online/economics-tutors",
   History: "/online/history-tutors",
   Arabic: "/online/arabic-tutors",
-  "GCSE Tuition": `/online/gcse-tutors`,
+
+  // Curriculum subjects (both subjects and curriculums sections)
+  "GCSE Tuition": "/online/gcse-tutors",
   "IGCSE Tuition": "/online/igcse-tutors",
   "IB Tuition": "/online/ib-tutors-dubai",
   "Pearson Edexcel Tuition": "/online/pearson-edexcel-tutors",
   "A Level Tuition": "/online/a-level-tutors",
   "O Level Tuition": "/online/o-level-tutors",
+
+  // Alternative variations
+  GCSE: "/online/gcse-tutors",
+  IGCSE: "/online/igcse-tutors",
+  IB: "/online/ib-tutors-dubai",
+  "A Level": "/online/a-level-tutors",
+  "O Level": "/online/o-level-tutors",
+  "Pearson Edexcel": "/online/pearson-edexcel-tutors",
+
+  // Common alternative spellings
+  Math: "/online/math-tutors",
+  Maths: "/online/math-tutors",
+  "Further Maths": "/online/further-maths-tutors",
+  "Additional Math": "/online/additional-maths-tutors",
+  "Additional Maths": "/online/additional-maths-tutors",
+  Business: "/online/business-studies-tutors",
+
+  // Arabic subjects - using actual Firebase data format
+  الرياضيات: "/online/math-tutors",
+  الفيزياء: "/online/physics-tutors",
+  "علم الأحياء": "/online/biology-tutors",
+  الاقتصاد: "/online/economics-tutors",
+  محاسبة: "/online/accounting-tutors",
+  "دراسات الأعمال": "/online/business-studies-tutors",
+  تاريخ: "/online/history-tutors",
+  "اللغة العربية": "/online/arabic-tutors",
+  العربية: "/online/arabic-tutors",
+  "الرياضيات الإضافية": "/online/additional-maths-tutors",
+  "الدراسات التجارية": "/online/business-studies-tutors",
+  "مزيد من الرياضيات": "/online/further-maths-tutors",
+  كيمياء: "/online/chemistry-tutors",
+
+  // Arabic curriculum names
+  "تعليم GCSE": "/online/gcse-tutors",
+  "تعليم IGCSE": "/online/igcse-tutors",
+  "تعليم IB": "/online/ib-tutors-dubai",
+  "تعليم المستوى المتقدم": "/online/a-level-tutors",
+  "تعليم المستوى العادي": "/online/o-level-tutors",
+  "بيرسون إدكسل": "/online/pearson-edexcel-tutors",
+  
+  // Firebase actual data format (using "تدريس" instead of "تعليم")
+  "GCSE تدريس": "/online/gcse-tutors",
+  "IGCSE تدريس": "/online/igcse-tutors",
+  "IB تدريس": "/online/ib-tutors-dubai",
+  "Pearson Edexcel تدريس": "/online/pearson-edexcel-tutors",
+  "A Level تدريس": "/online/a-level-tutors",
+  "O Level تدريس": "/online/o-level-tutors",
+};
+
+// Mapping for Get Help section
+export const getHelpMap: Record<string, string> = {
+  // English variations
+  "Contact Us": "/contact",
+  Contact: "/contact",
+  "Book a Demo": "/contact",
+  "Book Demo": "/contact",
+  Demo: "/contact",
+  FAQ: "/faq",
+  FAQs: "/faq",
+  "Frequently Asked Questions": "/faq",
+  Support: "/support",
+  Help: "/help",
+  "Help Center": "/help",
+  "Customer Support": "/support",
+  "Get Help": "/help",
+  "Need Help": "/help",
+
+  // Arabic variations
+  "اتصل بنا": "/contact",
+  "تواصل معنا": "/contact",
+  "احجز عرض تجريبي": "/contact",
+  "احجز تجربة مجانية": "/contact",
+  "احجز درس تجريبي": "/contact",
+  "الأسئلة الشائعة": "/faq",
+  "أسئلة شائعة": "/faq",
+  الدعم: "/support",
+  "الدعم الفني": "/support",
+  "مركز المساعدة": "/help",
+  المساعدة: "/help",
+  "احصل على المساعدة": "/help",
+  
+  // Firebase actual data
+  "سمات": "/", // Features -> redirect to home page
+  "سياسة الخصوصية": "/privacy-policy",
+  "الشروط والأحكام": "/terms-and-conditions",
+};
+
+// Mapping for About Us section
+export const aboutUsMap: Record<string, string> = {
+  // English variations
+  "About Us": "/about",
+  About: "/about",
+  "Our Story": "/about",
+  "Our Team": "/about",
+  Team: "/about",
+  Company: "/about", // Company -> /about for English
+  Careers: "/careers",
+  Jobs: "/careers",
+  "Work With Us": "/careers",
+  "Privacy Policy": "/privacy-policy",
+  Privacy: "/privacy-policy",
+  "Terms & Conditions": "/terms-and-conditions",
+  "Terms of Service": "/terms-and-conditions",
+  Terms: "/terms-and-conditions",
+
+  // Arabic variations
+  "من نحن": "/about",
+  "عن الشركة": "/about",
+  عنا: "/about",
+  فريقنا: "/about",
+  الفريق: "/about",
+  "فريق العمل": "/about",
+  الوظائف: "/careers",
+  وظائف: "/careers",
+  التوظيف: "/careers",
+  "انضم إلى فريقنا": "/careers",
+  "سياسة الخصوصية": "/privacy-policy",
+  الخصوصية: "/privacy-policy",
+  "الشروط والأحكام": "/terms-and-conditions",
+  "شروط الخدمة": "/terms-and-conditions",
+  الشروط: "/terms-and-conditions",
+  
+  // Firebase actual data
+  "شركة": "/about", // Company
 };
 
 export const findExactSubjectURL = (item: string) => {
-  // Find an exact match for the subject name in subjectsMap
-  return subjectsMap[item] || "/"; // Default to home if no match is found
+  // Clean the item by trimming whitespace and newlines
+  const cleanItem = item.trim();
+  return subjectsMap[cleanItem] || "/";
+};
+
+export const findGetHelpURL = (item: string) => {
+  // Clean the item by trimming whitespace and newlines
+  const cleanItem = item.trim();
+  return getHelpMap[cleanItem] || `/${generateSlug(cleanItem)}`;
+};
+
+export const findAboutUsURL = (item: string) => {
+  // Clean the item by trimming whitespace and newlines
+  const cleanItem = item.trim();
+  return aboutUsMap[cleanItem] || `/${generateSlug(cleanItem)}`;
 };
 
 export function replaceAltText(url: string, newAlt: string) {

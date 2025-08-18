@@ -4,7 +4,12 @@ import { FormType } from "./home/form-dialouge";
 import { leagueSpartan } from "@/app/fonts";
 import { Button, SxProps, Theme } from "@mui/material";
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
+
 const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
+const ArFormDialog = dynamic(() => import("./home/ar-form-dialouge"), {
   ssr: false,
 });
 type IProps = {
@@ -22,6 +27,15 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
   values,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  
+  // Always determine Arabic status consistently
+  const isArabic = pathname.startsWith('/ar');
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -46,8 +60,12 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
       >
         {text}
       </Button>
-      {open && (
-        <FormDialog open={open} handleClose={handleClose} values={values} />
+      {open && mounted && (
+        isArabic ? (
+          <ArFormDialog open={open} handleClose={handleClose} values={values} />
+        ) : (
+          <FormDialog open={open} handleClose={handleClose} values={values} />
+        )
       )}
     </>
   );

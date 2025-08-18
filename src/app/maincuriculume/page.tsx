@@ -16,7 +16,7 @@ import NeedExpertGuidence from "@/components/maincuriculume/need-expert-guidence
 import Benifit from "@/components/maincuriculume/benifits";
 import StudentsSay from "@/components/maincuriculume/students-say";
 import JoinUs from "@/components/maincuriculume/joinus";
-import Footer from "@/components/footer";
+import Footer from "@/components/footer-wrapper";
 import DetailedCurriculum from "@/components/maincuriculume/detailed-curriculum";
 
 const Grade: React.FC = () => {

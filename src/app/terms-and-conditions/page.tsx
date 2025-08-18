@@ -1,11 +1,20 @@
+"use client";
 import React from "react";
+import { useI18n } from "@/context/language-context";
+import HtmlWrapper from "@/components/html-wrapper";
 
-function page() {
+function Page() {
+  const { t, isRTL } = useI18n();
+  
   return (
-    <>
-      <meta charSet="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Terms of Service - Tuitional Education</title>
+    <HtmlWrapper>
+      <head>
+        <title>{t('terms.title')}</title>
+        <meta name="description" content={t('terms.title')} />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -39,98 +48,75 @@ function page() {
         }}
       />
       <div className="container">
-        <h1>Terms of Service for Tuitional Education</h1>
+        <h1>{t('terms.heading')}</h1>
         <p>
-          <strong>Effective Date:</strong>1/1/2025
+          <strong>{t('terms.effective_date')}</strong>
         </p>
         <p>
-          Welcome to Tuitional Education (&apos;we,&apos; &apos;our,&apos; or
-          &apos;us&apos;). By accessing or using our services, you agree to
-          comply with and be bound by the following Terms of Service
-          (&apos;Terms&apos;). If you do not agree with these Terms, please do
-          not use our services.
+          {t('terms.intro')}
         </p>
-        <h2>1. Use of Services</h2>
+        <h2>{t('terms.use_services')}</h2>
         <p>
-          Our services, including the integration with Google Meet for
-          generating class meeting links, are intended solely for educational
-          purposes. You agree to use our platform responsibly and in compliance
-          with all applicable laws and regulations.
+          {t('terms.use_services_desc')}
         </p>
-        <h2>2. Account Responsibilities</h2>
+        <h2>{t('terms.account_resp')}</h2>
         <ul>
           <li>
-            You are responsible for maintaining the confidentiality of your
-            account credentials and ensuring the security of your account.
+            {t('terms.account_confidentiality')}
           </li>
           <li>
-            You agree to notify us immediately of any unauthorized use of your
-            account or breach of security.
+            {t('terms.notify_unauthorized')}
           </li>
         </ul>
-        <h2>3. Prohibited Activities</h2>
-        <p>When using our services, you agree not to:</p>
+        <h2>{t('terms.prohibited')}</h2>
+        <p>{t('terms.prohibited_desc')}</p>
         <ul>
           <li>
-            Engage in any activity that disrupts or interferes with the
-            functionality of our platform.
+            {t('terms.disrupt_platform')}
           </li>
           <li>
-            Misuse our services for unauthorized purposes, including but not
-            limited to spamming, hacking, or distributing harmful content.
+            {t('terms.misuse_services')}
           </li>
-          <li>Infringe on the intellectual property rights of others.</li>
+          <li>{t('terms.infringe_ip')}</li>
         </ul>
-        <h2>4. Intellectual Property</h2>
+        <h2>{t('terms.ip')}</h2>
         <p>
-          All content, trademarks, logos, and intellectual property associated
-          with Tuitional Education are the property of Tuitional Education or
-          its licensors. You may not use, reproduce, or distribute our content
-          without prior written consent.
+          {t('terms.ip_desc')}
         </p>
-        <h2>5. Service Modifications</h2>
+        <h2>{t('terms.modifications')}</h2>
         <p>
-          We reserve the right to modify, suspend, or discontinue any aspect of
-          our services at any time without prior notice. We are not liable for
-          any inconvenience or loss caused by such changes.
+          {t('terms.modifications_desc')}
         </p>
-        <h2>6. Limitation of Liability</h2>
+        <h2>{t('terms.liability')}</h2>
         <p>
-          To the maximum extent permitted by law, Tuitional Education is not
-          liable for any direct, indirect, incidental, or consequential damages
-          resulting from your use of our services.
+          {t('terms.liability_desc')}
         </p>
-        <h2>7. Termination</h2>
+        <h2>{t('terms.termination')}</h2>
         <p>
-          We reserve the right to terminate or suspend your account at our sole
-          discretion if you violate these Terms or engage in activities harmful
-          to our platform or users.
+          {t('terms.termination_desc')}
         </p>
-        <h2>8. Governing Law</h2>
+        <h2>{t('terms.governing')}</h2>
         <p>
-          These Terms are governed by the laws of [Insert Jurisdiction]. Any
-          disputes arising from these Terms will be subject to the exclusive
-          jurisdiction of the courts in [Insert Jurisdiction].
+          {t('terms.governing_desc')}
         </p>
-        <h2>9. Changes to Terms</h2>
+        <h2>{t('terms.changes')}</h2>
         <p>
-          We may update these Terms from time to time. We will notify you of
-          significant changes through our platform or via email. Your continued
-          use of our services constitutes acceptance of the updated Terms.
+          {t('terms.changes_desc')}
         </p>
-        <h2>10. Contact Us</h2>
-        <p>If you have any questions about these Terms, please contact us:</p>
+        <h2>{t('terms.contact')}</h2>
+        <p>{t('terms.contact_desc')}</p>
         <ul>
           <li>
-            <strong>Email:</strong> hello@tuitionaledu.com
+            <strong>Email:</strong> {t('terms.contact_email')}
           </li>
           <li>
-            <strong>Phone:</strong> +971 564900376
+            <strong>Phone:</strong> {t('terms.contact_phone')}
           </li>
         </ul>
       </div>
-    </>
+      </body>
+    </HtmlWrapper>
   );
 }
 
-export default page;
+export default Page;

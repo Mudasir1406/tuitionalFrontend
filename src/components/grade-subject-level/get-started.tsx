@@ -11,10 +11,10 @@ import "swiper/css/pagination";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-const PopUpButton = dynamic(() => import("../pop-up-button"));
-
 import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
 import dynamic from "next/dynamic";
+
+const PopUpButton = dynamic(() => import("../pop-up-button"));
 
 type IProps = {
   data: GetStartedData[];

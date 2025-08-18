@@ -18,8 +18,21 @@ type IProps = {
 
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
+  const [isGreaterThanLarge, setIsGreaterThanLarge] = React.useState(false);
 
-  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("lg")); // Greater than `lg`
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
+      setIsGreaterThanLarge(mediaQuery.matches);
+      
+      const handleChange = (e: MediaQueryListEvent) => {
+        setIsGreaterThanLarge(e.matches);
+      };
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, [theme]);
 
   return (
     <Box>

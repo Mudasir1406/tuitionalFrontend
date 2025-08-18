@@ -15,10 +15,37 @@ function GridView({ cardsData }: props) {
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Client-side media query setup
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const lgQuery = window.matchMedia(theme.breakpoints.up("lg"));
+      const mdQuery = window.matchMedia(theme.breakpoints.between("md", "lg"));
+      const smQuery = window.matchMedia(theme.breakpoints.down("sm"));
+      
+      setIsLargeScreen(lgQuery.matches);
+      setIsMediumScreen(mdQuery.matches);
+      setIsSmallScreen(smQuery.matches);
+      
+      const handleLgChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
+      const handleMdChange = (e: MediaQueryListEvent) => setIsMediumScreen(e.matches);
+      const handleSmChange = (e: MediaQueryListEvent) => setIsSmallScreen(e.matches);
+      
+      lgQuery.addEventListener('change', handleLgChange);
+      mdQuery.addEventListener('change', handleMdChange);
+      smQuery.addEventListener('change', handleSmChange);
+      
+      return () => {
+        lgQuery.removeEventListener('change', handleLgChange);
+        mdQuery.removeEventListener('change', handleMdChange);
+        smQuery.removeEventListener('change', handleSmChange);
+      };
+    }
+  }, [theme]);
 
   // Determine the number of visible cards based on the screen size
   const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;

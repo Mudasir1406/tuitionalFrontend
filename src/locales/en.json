@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "community": "Community & Events",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "ai_digital_sat": "AI Digital SAT",
+    "book_demo": "Book Demo Classes"
+  },
+  "footer": {
+    "admission_text": "Admissions are Open for the Next Year Batch",
+    "enroll_now": "Enroll Now!",
+    "description": "Tuitional is an Online Ed-Tech Platform. We do live tutoring classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all boards like Cambridge, Pearson Edexcel",
+    "sections": {
+      "curriculums": "Curriculums",
+      "subjects": "Subjects", 
+      "get_help": "Get Help",
+      "about_us": "About us"
+    },
+    "copyright": "All Rights Reserved ©2025 Tuitional"
+  },
+  "privacy": {
+    "title": "Privacy Policy - Tuitional Education",
+    "description": "Privacy policy for Tuitional Education platform.",
+    "heading": "Privacy Policy for Tuitional Education",
+    "effective_date": "Effective Date: 1/1/2025",
+    "intro": "Tuitional Education (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard the information you provide to us when you use our services.",
+    "contact_email": "hello@tuitionaledu.com",
+    "contact_phone": "+971 564900376"
+  },
+  "terms": {
+    "title": "Terms of Service - Tuitional Education", 
+    "heading": "Terms of Service for Tuitional Education",
+    "effective_date": "Effective Date: 1/1/2025",
+    "intro": "Welcome to Tuitional Education. By accessing or using our services, you agree to comply with and be bound by the following Terms of Service.",
+    "contact_email": "hello@tuitionaledu.com",
+    "contact_phone": "+971 564900376"
+  }
+}

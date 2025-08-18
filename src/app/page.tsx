@@ -18,7 +18,7 @@ import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
 const Info = dynamic(() => import("../components/home/info"));
 const Filter = dynamic(() => import("../components/home/filter"));
-const Footer = dynamic(() => import("../components/footer"));
+const ServerFooter = dynamic(() => import("../components/server-footer"));
 const ContactUs = dynamic(() => import("../components/home/contact-us"));
 const GetStarted = dynamic(
   () => import("@/components/grade-subject-level/get-started")
@@ -162,7 +162,7 @@ const Home: React.FC = async () => {
       <Box sx={styles.verticalMargin}>
         <ContactUs filterData={filterData} />
       </Box>
-      <Footer />
+      <ServerFooter />
     </>
   );
 };

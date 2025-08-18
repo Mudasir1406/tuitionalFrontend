@@ -3,6 +3,8 @@ import dynamic from "next/dynamic";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 import { DrawerProvider } from "@/context/drawer-context";
+import { I18nProvider } from "@/context/language-context";
+import HtmlWrapper from "@/components/html-wrapper";
 import Metrics from "./metrics";
 import Script from "next/script";
 import theme from "./assets/css/theme";
@@ -19,18 +21,10 @@ export const metadata: Metadata = {
     "font-display": "swap",
   },
 };
-import { League_Spartan } from "next/font/google";
+import { leagueSpartan } from "./fonts";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
-});
-
-export const leagueSpartan = League_Spartan({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600"],
-  variable: "--font-league-spartan",
-  preload: true, // Add this
 });
 
 export default function RootLayout({
@@ -63,12 +57,16 @@ export default function RootLayout({
           />
         </noscript>
         <ThemeProvider theme={theme}>
-          <DrawerProvider>
-            <DynamicModel />
-            {children}
-            <Metrics />
-            <Toaster />
-          </DrawerProvider>
+          <I18nProvider>
+            <HtmlWrapper className={leagueSpartan.variable}>
+              <DrawerProvider>
+                <DynamicModel />
+                {children}
+                <Metrics />
+                <Toaster />
+              </DrawerProvider>
+            </HtmlWrapper>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,5 +1,5 @@
 import { Header } from "@/components";
-import Footer from "@/components/footer";
+import Footer from "@/components/footer-wrapper";
 import React, { useState } from "react";
 
 import styles from "./blog.module.css";

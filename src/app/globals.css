@@ -1,5 +1,51 @@
+/* Import Arabic font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
+
 .App {
   overflow-x: hidden;
+}
+
+/* Fix horizontal scrollbar in all modes */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* RTL Support */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Prevent horizontal scroll in RTL */
+html[dir="rtl"], 
+html[dir="rtl"] body {
+  overflow-x: hidden;
+}
+
+/* Arabic font support */
+html[dir="rtl"] * {
+  font-family: 'Noto Sans Arabic', 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* RTL adjustments for common elements */
+html[dir="rtl"] .MuiToolbar-root {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .MuiButton-root {
+  text-align: center;
+}
+
+/* Fix container positioning in RTL */
+html[dir="rtl"] .MuiContainer-root {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 1650px) {

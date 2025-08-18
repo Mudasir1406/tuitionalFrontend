@@ -10,7 +10,7 @@ import Link from "next/link";
 
 type IProps = { data: PageData["link_list"] };
 
-async function LinkListViewSection({ data }: IProps) {
+function LinkListViewSection({ data }: IProps) {
   return (
     <div className={styles.main}>
       <Typography
