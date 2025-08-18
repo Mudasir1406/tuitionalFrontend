@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components";
 import { Box, Container, Grid } from "@mui/material";
-import Footer from "../../components/footer";
+import Footer from "../../components/footer-wrapper";
 import ContactUs from "../../components/home/contact-us";
 import Hero from "../../components/testimonials/hero";
 import HeroInfo from "../../components/testimonials/hero-info";

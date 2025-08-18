@@ -22,7 +22,7 @@ import TuitionalCompetitors from "@/components/curiculume/tuitional-competitors"
 import GetStarted from "@/components/home/get-started";
 import FrequentlyQuestions from "@/components/curiculume/frequently-questions";
 import JoinUs from "@/components/curiculume/join-us";
-import Footer from "@/components/footer";
+import Footer from "@/components/footer-wrapper";
 import { getStartedData } from "@/services/get-started/get-started";
 const Home: React.FC = async () => {
   const getStarted = await getStartedData();

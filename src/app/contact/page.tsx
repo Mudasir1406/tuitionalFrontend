@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components";
 
-import Footer from "../../components/footer";
+import Footer from "../../components/footer-wrapper";
 import LearnTogeather from "../../components/contact/learn-togeather";
 import { Box, Container, Grid } from "@mui/material";
 import GetInTouch from "../../components/contact/get-in-touch/GetInTouch";

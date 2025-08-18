@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
 import { Filter_Data } from "../../services/filter-data/filter-data";
-const DropDown = dynamic(() => import("../DropDown/DropDown"));
-const PopUpButton = dynamic(() => import("../pop-up-button"));
 import { FormType } from "./form-dialouge";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
 
+const DropDown = dynamic(() => import("../DropDown/DropDown"));
+const PopUpButton = dynamic(() => import("../pop-up-button"));
 interface FilterProps {
   data: Filter_Data; // Replace with your actual type
 }
@@ -35,25 +35,27 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
   const geoData = useGeoLocation();
 
   React.useEffect(() => {
-    if (!geoData.isLoading && !geoData.error) {
-      const browser = navigator.userAgent;
-      const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-      const params = new URLSearchParams(window.location.search);
+    if (!geoData.isLoading && !geoData.error && geoData.browser) {
+      // Client-side only UTM parameter detection
+      let medium = "SEO";
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        medium = params.get("gad_source")
+          ? "google Ads"
+          : params.get("fbclid")
+          ? "facebook"
+          : "SEO";
+      }
+      
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
         Country: geoData.country || "",
-        Browser: browser,
-        SourcePageURL: pageURL,
-        Date: currentDate,
-        Time: currentTime,
-        Medium: params.get("gad_source")
-          ? "google Ads"
-          : params.get("fbclid")
-          ? "facebook"
-          : "SEO",
+        Browser: geoData.browser || "",
+        SourcePageURL: geoData.pageURL || "",
+        Date: geoData.date || "",
+        Time: geoData.time || "",
+        Medium: medium,
       }));
     }
   }, [geoData]);
@@ -258,5 +260,21 @@ const styles = {
     maxHeight: "70vh",
     animation: "rotateAnimation 1s ease-in-out infinite",
     transformOrigin: "center",
+  },
+  // RTL styles
+  filterRTL: {
+    direction: "rtl",
+  },
+  headingRTL: {
+    textAlign: {
+      xs: "center",
+      lg: "start",
+    },
+  },
+  descRTL: {
+    textAlign: {
+      xs: "center", 
+      lg: "start",
+    },
   },
 };

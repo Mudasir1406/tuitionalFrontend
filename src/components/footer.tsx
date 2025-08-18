@@ -1,3 +1,4 @@
+"use client";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import plan from "../../public/assets/images/static/plan.png";
@@ -11,10 +12,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
-// import { findExactSubjectURL, generateSlug } from "@/utils/helper";
+import { useI18n } from "@/context/language-context";
 import FooterLinks from "./footerLinks/FooterLinks";
-const Footer: React.FC = async () => {
-  const footerData: FooterData = await getFooterData();
+import { findAboutUsURL } from "@/utils/helper";
+
+interface FooterProps {
+  footerData: FooterData | null;
+}
+
+const Footer: React.FC<FooterProps> = ({ footerData }) => {
+  const { t } = useI18n();
   return (
     <footer>
       <Box sx={styles.background}>
@@ -54,7 +61,7 @@ const Footer: React.FC = async () => {
                   sx={styles.admissionText}
                   className={leagueSpartan.className}
                 >
-                  Admissions are Open for the Next Year Batch
+                  {t('footer.admission_text')}
                 </Typography>
               </Grid>
               <Grid item lg={3}>
@@ -76,7 +83,7 @@ const Footer: React.FC = async () => {
               </Grid>
               <Grid item lg={2.5}>
                 <PopUpButton
-                  text="Enroll Now!"
+                  text={t('footer.enroll_now')}
                   href="popup"
                   sx={styles.contactButton}
                 />
@@ -123,50 +130,54 @@ const Footer: React.FC = async () => {
                   className={leagueSpartan.className}
                   variant="body2"
                 >
-                  Tuitional is an Online Ed-Tech Platform. We do live tutoring
-                  classes for Grades 4-8, IGCSE, GCSE, & A-Levels etc for all
-                  boards like Cambridge, Pearson Edexcel
+                  {t('footer.description')}
                 </Typography>
                 <Box sx={styles.socialBox}>
-                  <Link
-                    target="_blank"
-                    href={footerData?.link.facebook}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={facebook.src}
-                      style={styles.social}
-                      alt="facebook"
-                      width={facebook.width}
-                      height={facebook.height}
-                    ></Image>
-                  </Link>
-                  <Link
-                    target="_blank"
-                    href={footerData?.link.insta}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={insta}
-                      style={styles.social}
-                      alt="insta"
-                      width={insta.width}
-                      height={insta.height}
-                    ></Image>
-                  </Link>
-                  <Link
-                    target="_blank"
-                    href={footerData?.link.linkdin}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={linkdin}
-                      style={styles.social}
-                      alt="linkdin"
-                      width={linkdin.width}
-                      height={linkdin.height}
-                    ></Image>
-                  </Link>
+                  {footerData?.link?.facebook && (
+                    <Link
+                      target="_blank"
+                      href={footerData.link.facebook}
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={facebook.src}
+                        style={styles.social}
+                        alt="facebook"
+                        width={facebook.width}
+                        height={facebook.height}
+                      ></Image>
+                    </Link>
+                  )}
+                  {footerData?.link?.insta && (
+                    <Link
+                      target="_blank"
+                      href={footerData.link.insta}
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={insta}
+                        style={styles.social}
+                        alt="insta"
+                        width={insta.width}
+                        height={insta.height}
+                      ></Image>
+                    </Link>
+                  )}
+                  {footerData?.link?.linkdin && (
+                    <Link
+                      target="_blank"
+                      href={footerData.link.linkdin}
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={linkdin}
+                        style={styles.social}
+                        alt="linkdin"
+                        width={linkdin.width}
+                        height={linkdin.height}
+                      ></Image>
+                    </Link>
+                  )}
                 </Box>
               </Box>
             </Grid>
@@ -177,7 +188,7 @@ const Footer: React.FC = async () => {
                   variant="subtitle2"
                   className={leagueSpartan.className}
                 >
-                  Curriculums
+                  {t('footer.sections.curriculums')}
                 </Typography>
                 {/* {footerData?.curriculums.map((item, index) => (
                   <Typography
@@ -189,7 +200,9 @@ const Footer: React.FC = async () => {
                     {item}
                   </Typography>
                 ))} */}
-                <FooterLinks footerData={footerData?.curriculums} exact />
+                {Array.isArray(footerData?.curriculums) && footerData.curriculums.length > 0 && (
+                  <FooterLinks footerData={footerData.curriculums} exact />
+                )}
                 {/* {footerData?.curriculums.slice(0, 10).map((item, index) => {
                   const href = findExactSubjectURL(item);
                   return (
@@ -234,7 +247,7 @@ const Footer: React.FC = async () => {
                   variant="subtitle2"
                   className={leagueSpartan.className}
                 >
-                  Subjects
+                  {t('footer.sections.subjects')}
                 </Typography>
                 {/* {footerData?.subjects.slice(0, 10).map((item, index) => (
                   <Link
@@ -257,7 +270,9 @@ const Footer: React.FC = async () => {
                   </Link>
                 ))} */}
 
-                <FooterLinks footerData={footerData?.subjects} exact />
+                {Array.isArray(footerData?.subjects) && footerData.subjects.length > 0 && (
+                  <FooterLinks footerData={footerData.subjects} exact />
+                )}
 
                 {/* {footerData?.subjects.slice(0, 10).map((item, index) => {
                   const href = findExactSubjectURL(item);
@@ -291,7 +306,7 @@ const Footer: React.FC = async () => {
                     variant="subtitle2"
                     className={leagueSpartan.className}
                   >
-                    Get Help
+                    {t('footer.sections.get_help')}
                   </Typography>
 
                   {/* {footerData?.getHelp.map((item, index) => (
@@ -304,7 +319,9 @@ const Footer: React.FC = async () => {
                       {item}
                     </Typography>
                   ))} */}
-                  <FooterLinks footerData={footerData?.getHelp} exact={false} />
+                  {Array.isArray(footerData?.getHelp) && footerData.getHelp.length > 0 && (
+                    <FooterLinks footerData={footerData.getHelp} exact={false} />
+                  )}
 
                   {/* {footerData?.getHelp.slice(0, 10).map((item, index) => {
                     const href = `/${generateSlug(item)}`;
@@ -336,32 +353,37 @@ const Footer: React.FC = async () => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "left",
+                        textAlign: "start",
                         marginTop: "20px",
                       },
                     ]}
                   >
-                    About us
+                    {t('footer.sections.about_us')}
                   </Typography>
-                  {footerData?.aboutUs.map((item, index) => (
-                    <a
-                      href={`/${item.toLowerCase()}`}
-                      style={{
-                        textDecoration: "none",
-                        textDecorationColor: "none",
-                      }}
-                      key={index}
-                    >
-                      <Typography
-                        sx={styles.text}
-                        variant="body2"
+                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
+                    if (!item || typeof item !== 'string' || item.trim() === '') {
+                      return null;
+                    }
+                    const url = findAboutUsURL(item);
+                    return (
+                      <a
+                        href={url}
+                        style={{
+                          textDecoration: "none",
+                          textDecorationColor: "none",
+                        }}
                         key={index}
-                        className={leagueSpartan.className}
                       >
-                        {item}
-                      </Typography>
-                    </a>
-                  ))}
+                        <Typography
+                          sx={styles.text}
+                          variant="body2"
+                          className={leagueSpartan.className}
+                        >
+                          {item}
+                        </Typography>
+                      </a>
+                    );
+                  })}
                 </Box>
               </Box>
             </Grid>
@@ -373,18 +395,21 @@ const Footer: React.FC = async () => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "left",
+                        textAlign: "start",
                         marginTop: "20px",
                       },
                     ]}
                   >
-                    About us
+                    {t('footer.sections.about_us')}
                   </Typography>
-                  {footerData?.aboutUs.map((item, index) => {
-                    const url = item.toLowerCase();
+                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
+                    if (!item || typeof item !== 'string' || item.trim() === '') {
+                      return null;
+                    }
+                    const url = findAboutUsURL(item);
                     return (
                       <a
-                        href={`/${url}`}
+                        href={url}
                         style={{ textDecoration: "none" }}
                         key={index}
                       >
@@ -408,7 +433,7 @@ const Footer: React.FC = async () => {
             variant="subtitle2"
             className={leagueSpartan.className}
           >
-            All Rights Reserved ©2024 Tuitional
+            {t('footer.copyright')}
           </Typography>
         </Box>
       </Box>

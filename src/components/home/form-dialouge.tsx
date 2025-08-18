@@ -13,9 +13,6 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { leagueSpartan } from "@/app/fonts";
 import "../DropDown/DropDown.css";
 import { isValidPhoneNumber } from "react-phone-number-input";
-const PhoneInput = dynamic(() => import("react-phone-number-input"), {
-  ssr: false,
-});
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
@@ -27,6 +24,10 @@ import { addFormData } from "@/utils/globalFunction";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
 import { sendForm } from "@/services/contact-form/contact-form";
+
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 
 type IProps = {
   open: boolean;
@@ -206,12 +207,14 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
 
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: "lead_form_error",
-        formData: newErrors, // Send errors if needed
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "lead_form_error",
+          formData: newErrors, // Send errors if needed
+          formType: "lead Form",
+        });
+      }
 
       return;
     }
@@ -222,20 +225,24 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       await sendForm(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_success",
-        formData: formData, // You can include submitted data for analytics
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_success",
+          formData: formData, // You can include submitted data for analytics
+          formType: "lead Form",
+        });
+      }
     } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       // ✅ Send Error Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_failed",
-        error: error.message,
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_failed",
+          error: error.message,
+          formType: "lead Form",
+        });
+      }
     } finally {
       setLoading(false);
       setFormData({

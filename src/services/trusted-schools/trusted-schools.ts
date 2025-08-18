@@ -15,6 +15,6 @@ export const getTrustedSchools = async (): Promise<Trusted_Schools_Type> => {
 };
 
 export type Trusted_Schools_Type = {
-  images: StaticImageData[];
+  images: (StaticImageData | string)[];
   id: string;
 };

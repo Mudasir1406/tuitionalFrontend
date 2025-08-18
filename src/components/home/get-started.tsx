@@ -233,8 +233,21 @@ const GetStartedBox: React.FC<Props> = ({
   ButtonText,
 }) => {
   const theme = useTheme();
+  const [isLargeOrAbove, setIsLargeOrAbove] = React.useState(false);
 
-  const isLargeOrAbove = useMediaQuery(theme.breakpoints.up("lg"));
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
+      setIsLargeOrAbove(mediaQuery.matches);
+      
+      const handleChange = (e: MediaQueryListEvent) => {
+        setIsLargeOrAbove(e.matches);
+      };
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, [theme]);
 
   return (
     <Box sx={styles.contanier}>
