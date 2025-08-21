@@ -14,6 +14,8 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
   const [videoData, setVideoData] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -42,6 +44,31 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
     setCurrentIndex(index);
   };
 
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && currentIndex < videoData.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
   const visibleItems = isMobile ? 1 : 4;
   const totalSlides = Math.ceil(videoData.length / visibleItems);
 
@@ -66,7 +93,12 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
 
       {isMobile ? (
         // Mobile: Horizontal scrolling layout
-        <Box className={styles.mobileContainer}>
+        <Box 
+          className={styles.mobileContainer}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <Box
             className={styles.mobileCarousel}
             sx={{
