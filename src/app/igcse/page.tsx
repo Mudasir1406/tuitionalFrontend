@@ -7,7 +7,7 @@ import SectionsBox from "@/components/grade-subject-level/sectionsbox";
 import Faqs from "@/components/home/faqs";
 
 // Dynamic imports for all components
-const HeaderV2 = dynamic(() => import("@/components/header-v2"), { ssr: true });
+const HeaderV3 = dynamic(() => import("@/components/header-v3"), { ssr: true });
 const HeroV2 = dynamic(
   () => import("@/components/grade-subject-level/heroV2"),
   {
@@ -46,8 +46,8 @@ const BlogCta = dynamic(
   () => import("@/components/grade-subject-level/blog-cta"),
   { ssr: true }
 );
-const GetStarted = dynamic(
-  () => import("@/components/grade-subject-level/get-started"),
+const GetStartedV2 = dynamic(
+  () => import("@/components/grade-subject-level/get-started-v2"),
   { ssr: true }
 );
 const FrequentlyQuestions = dynamic(
@@ -137,7 +137,7 @@ const IgcsePage = async () => {
 
   return (
     <Box sx={{ overflowX: "hidden", width: "100%", minHeight: "100vh" }}>
-      <HeaderV2 />
+      <HeaderV3 />
       <CountdownTimer />
 
       {/* Hero Section with Form */}
@@ -194,7 +194,7 @@ const IgcsePage = async () => {
 
       {/* Get Started Section */}
       <Box sx={styles.verticalMargin}>
-        <GetStarted data={getStarted} />
+        <GetStartedV2 />
       </Box>
 
       {/* FAQs Section */}
@@ -211,7 +211,7 @@ const IgcsePage = async () => {
 export default IgcsePage;
 
 const styles = {
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
+  verticalMargin: { marginY: { xs: "5vh", md: "6vh" } },
   heroContanier: {
     paddingTop: {
       xs: "120px",

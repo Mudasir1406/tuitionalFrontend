@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Typography, IconButton, Grid } from "@mui/material";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Box, Typography, Grid } from "@mui/material";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./TrustpilotCarousel.module.css";
@@ -92,19 +90,6 @@ const TrustpilotCarousel: React.FC = () => {
     return () => clearInterval(interval);
   }, [isAutoScrolling, reviews.length]);
 
-  const handlePrevious = () => {
-    setIsAutoScrolling(false);
-    setCurrentIndex(currentIndex === 0 ? reviews.length - 1 : currentIndex - 1);
-    // Resume auto-scrolling after 10 seconds of inactivity
-    setTimeout(() => setIsAutoScrolling(true), 10000);
-  };
-
-  const handleNext = () => {
-    setIsAutoScrolling(false);
-    setCurrentIndex(currentIndex === reviews.length - 1 ? 0 : currentIndex + 1);
-    // Resume auto-scrolling after 10 seconds of inactivity
-    setTimeout(() => setIsAutoScrolling(true), 10000);
-  };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -163,15 +148,6 @@ const TrustpilotCarousel: React.FC = () => {
 
       {/* Carousel */}
       <Box className={styles.carouselWrapper}>
-        {/* Left Arrow */}
-        <IconButton
-          className={`${styles.navButton} ${styles.leftButton}`}
-          onClick={handlePrevious}
-          aria-label="Previous reviews"
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-
         {/* Reviews Container */}
         <Box className={styles.reviewsContainer}>
           <Grid container spacing={2} className={styles.reviewsGrid}>
@@ -238,15 +214,6 @@ const TrustpilotCarousel: React.FC = () => {
             ))}
           </Grid>
         </Box>
-
-        {/* Right Arrow */}
-        <IconButton
-          className={`${styles.navButton} ${styles.rightButton}`}
-          onClick={handleNext}
-          aria-label="Next reviews"
-        >
-          <ArrowForwardIosIcon />
-        </IconButton>
       </Box>
 
       {/* Dots Indicator */}
