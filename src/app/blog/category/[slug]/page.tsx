@@ -33,9 +33,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   const filteredData = slug
     ? data.filter((blog: AllBlogsData) =>
-        blog?.heroSection?.category?.some(
-          (tag: { name: string; id: string }) => {
-            const normalizedTagName = tag.name
+        blog?.heroSection?.category?.data?.some(
+          (tag: { id: string; name: { ar: string; en: string } }) => {
+            const normalizedTagName = tag.name.en
               ?.toLowerCase()
               .replace(/[-\s]+/g, " ");
             const normalizedSlug = slug.toLowerCase().replace(/[-\s]+/g, " ");
