@@ -8,11 +8,25 @@ import Faqs from "@/components/home/faqs";
 
 // Dynamic imports for all components
 const HeaderV2 = dynamic(() => import("@/components/header-v2"), { ssr: true });
-const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), { ssr: true });
-const Form = dynamic(() => import("@/components/grade-subject-level/form/form"), { ssr: true });
-const CountdownTimer = dynamic(() => import("@/components/countdown/CountdownTimer"), { ssr: false });
+const HeroV2 = dynamic(
+  () => import("@/components/grade-subject-level/heroV2"),
+  {
+    ssr: true,
+  }
+);
+const Form = dynamic(
+  () => import("@/components/grade-subject-level/form/form"),
+  { ssr: true }
+);
+const CountdownTimer = dynamic(
+  () => import("@/components/countdown/CountdownTimer"),
+  { ssr: false }
+);
 const SchoolLogosSection = dynamic(
-  () => import("@/components/grade-subject-level/school-logos-section/SchoolLogosSection"),
+  () =>
+    import(
+      "@/components/grade-subject-level/school-logos-section/SchoolLogosSection"
+    ),
   { ssr: true }
 );
 const TutorSectionV2 = dynamic(
@@ -20,7 +34,8 @@ const TutorSectionV2 = dynamic(
   { ssr: true }
 );
 const BenifitsSection = dynamic(
-  () => import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
+  () =>
+    import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
   { ssr: true }
 );
 const StudentSays = dynamic(
@@ -52,9 +67,10 @@ const IgcsePage = async () => {
   const heroData = {
     header: "Expert IGCSE Tutoring - Achieve Your Best Grades",
     headerTag: "h1",
-    paragraph: "1:1 Live Tutors, Past-Paper Strategy, Proven Results. Join 10,000+ Students Today.",
+    paragraph:
+      "1:1 Live Tutors, Past-Paper Strategy, Proven Results. Join 10,000+ Students Today.",
     image: "/assets/images/hero/igcse-hero.jpg",
-    imageAltText: " "
+    imageAltText: " ",
   };
 
   // Data for tutor section - will fetch from tutors_data collection
@@ -62,11 +78,12 @@ const IgcsePage = async () => {
     isShow: true,
     header: "Meet Some Of Our Expert IGCSE Tutors",
     headerTag: "h2",
-    paragraph: "Learn from qualified teachers with years of IGCSE teaching experience",
+    paragraph:
+      "Learn from qualified teachers with years of IGCSE teaching experience",
     curriculum: "IGCSE", // This will be used to filter tutors from tutors_data collection
     subject: "", // Empty string will fetch all IGCSE tutors
     view: "Grid View", // Set display format
-    sequenceNumber: 1
+    sequenceNumber: 1,
   };
 
   // Data for benefits section - matches the expected igcse_tutoring_program structure
@@ -74,9 +91,10 @@ const IgcsePage = async () => {
     isShow: true,
     section: "Why Choose Our IGCSE Program",
     sectionTag: "h2",
-    paragraph: "Discover the advantages of our comprehensive IGCSE tutoring program",
+    paragraph:
+      "Discover the advantages of our comprehensive IGCSE tutoring program",
     buttonText: "Get Started",
-    link: "/contact"
+    link: "/contact",
   };
 
   // Data for student testimonials
@@ -84,7 +102,7 @@ const IgcsePage = async () => {
     isShow: true,
     header: "What Our IGCSE Students Say",
     headerTag: "h2",
-    paragraph: "Hear from students who achieved their goals with our help"
+    paragraph: "Hear from students who achieved their goals with our help",
   };
 
   // Data for FAQs
@@ -92,43 +110,40 @@ const IgcsePage = async () => {
     isShow: true,
     header: "Frequently Asked Questions",
     headerTag: "h2",
-    paragraph: "Find answers to common questions about our IGCSE tutoring program",
+    paragraph:
+      "Find answers to common questions about our IGCSE tutoring program",
     faq: [
       {
         question: "What IGCSE subjects do you offer tutoring for?",
-        answer: "We offer tutoring for all major IGCSE subjects including Mathematics, English, Sciences, and more."
+        answer:
+          "We offer tutoring for all major IGCSE subjects including Mathematics, English, Sciences, and more.",
       },
       {
         question: "How are the tutoring sessions conducted?",
-        answer: "All sessions are conducted online through our interactive platform with experienced IGCSE teachers."
+        answer:
+          "All sessions are conducted online through our interactive platform with experienced IGCSE teachers.",
       },
       {
         question: "What is the duration of each tutoring session?",
-        answer: "Standard sessions are 60 minutes long, but we can adjust based on your needs and preferences."
-      }
-    ]
+        answer:
+          "Standard sessions are 60 minutes long, but we can adjust based on your needs and preferences.",
+      },
+    ],
   };
 
   return (
     <>
       <CountdownTimer />
       <HeaderV2 />
-      
+
       {/* Hero Section with Form */}
       <Box sx={styles.heroContanier}>
         <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
           <Grid container gap={4} sx={styles.heroDiv}>
             <Grid item lg={6} md={12} sm={12} xs={12}>
-              <Hero data={heroData} withForm />
+              <HeroV2 data={heroData} withForm />
             </Grid>
-            <Grid
-              item
-              lg={5}
-              md={12}
-              sm={12}
-              xs={12}
-              sx={{ margin: "24px 0" }}
-            >
+            <Grid item lg={5} md={12} sm={12} xs={12} sx={{ margin: "24px 0" }}>
               <Form />
             </Grid>
           </Grid>
@@ -163,7 +178,6 @@ const IgcsePage = async () => {
       {/* Blog CTA Section */}
       <Box sx={styles.verticalMargin}>
         <SectionsBox />
-        
       </Box>
 
       {/* Get Started Section */}
@@ -174,8 +188,7 @@ const IgcsePage = async () => {
       {/* FAQs Section */}
       <Box sx={styles.verticalMargin}>
         {/* <FrequentlyQuestions data={faqsData} /> */}
-                  <Faqs />
-
+        <Faqs />
       </Box>
 
       {/* <ServerFooter /> */}
