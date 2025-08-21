@@ -18,6 +18,8 @@ interface Review {
 const TrustpilotCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   // Hardcoded reviews data
   const reviews: Review[] = [
@@ -128,6 +130,37 @@ const TrustpilotCarousel: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [currentIndex]);
 
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    // Stop auto-scrolling temporarily when user swipes
+    if (isLeftSwipe || isRightSwipe) {
+      setIsAutoScrolling(false);
+      setTimeout(() => setIsAutoScrolling(true), 8000);
+    }
+
+    if (isLeftSwipe && currentIndex < reviews.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
   return (
     <Box className={styles.carouselContainer}>
       {/* Header */}
@@ -147,16 +180,21 @@ const TrustpilotCarousel: React.FC = () => {
       </Box>
 
       {/* Carousel */}
-      <Box className={styles.carouselWrapper}>
+      <Box 
+        className={styles.carouselWrapper}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Reviews Container */}
         <Box className={styles.reviewsContainer}>
           <Grid container spacing={2} className={styles.reviewsGrid}>
-            {visibleReviews.map((review) => (
+            {visibleReviews.map((review, index) => (
               <Grid
                 item
                 xs={12}
                 md={4}
-                key={review.id}
+                key={`${review.id}-${currentIndex}-${index}`}
                 className={styles.reviewGridItem}
               >
                 <Box className={styles.reviewCard}>
