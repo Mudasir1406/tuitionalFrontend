@@ -1,11 +1,13 @@
 export interface tutor_section {
   headerTag: string;
-  sequenceNumber: number;
+  sequenceNumber?: number;
   subject: string;
   curriculum: string;
   header: string;
   view: string;
-  grade: string;
+  grade?: string;
+  isShow?: boolean;
+  paragraph?: string;
 }
 
 export type AllBlogsData = {
@@ -15,7 +17,9 @@ export type AllBlogsData = {
     image: string;
     imageAltText: string;
     socialShare: boolean;
-    category: { name: string; id: string }[];
+    category: {
+      data: { id: string; name: { ar: string; en: string } }[];
+    };
     sequenceNumber: number;
   };
   timestamp: { seconds: number; nanoseconds: number };
