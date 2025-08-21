@@ -84,11 +84,11 @@ const styles = {
   logoImage: {
     width: "auto",
     height: "45px",
-    objectFit: "contain",
+    objectFit: "contain" as const,
   },
   logoMobileImage: {
     width: "auto", 
     height: "40px",
-    objectFit: "contain",
+    objectFit: "contain" as const,
   },
 };
