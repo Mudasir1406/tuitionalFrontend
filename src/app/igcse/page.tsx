@@ -38,8 +38,8 @@ const BenifitsSection = dynamic(
     import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
   { ssr: true }
 );
-const StudentSays = dynamic(
-  () => import("@/components/grade-subject-level/students-says"),
+const StudentSaysV2 = dynamic(
+  () => import("@/components/grade-subject-level/students-says-v2"),
   { ssr: true }
 );
 const BlogCta = dynamic(
@@ -52,6 +52,10 @@ const GetStarted = dynamic(
 );
 const FrequentlyQuestions = dynamic(
   () => import("@/components/grade-subject-level/faqs"),
+  { ssr: true }
+);
+const PopularIgcseSubjectsV2 = dynamic(
+  () => import("@/components/curiculume/popular-igcse-subjects-v2"),
   { ssr: true }
 );
 const TrustpilotCarousel = dynamic(
@@ -82,7 +86,7 @@ const IgcsePage = async () => {
       "Learn from qualified teachers with years of IGCSE teaching experience",
     curriculum: "IGCSE", // This will be used to filter tutors from tutors_data collection
     subject: "", // Empty string will fetch all IGCSE tutors
-    view: "Grid View", // Set display format
+    view: "Horizontal Carousel", // Set display format to use new horizontal carousel
     sequenceNumber: 1,
   };
 
@@ -132,18 +136,18 @@ const IgcsePage = async () => {
   };
 
   return (
-    <>
-      <CountdownTimer />
+    <Box sx={{ overflowX: "hidden", width: "100%", minHeight: "100vh" }}>
       <HeaderV2 />
+      <CountdownTimer />
 
       {/* Hero Section with Form */}
       <Box sx={styles.heroContanier}>
         <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
-          <Grid container gap={4} sx={styles.heroDiv}>
+          <Grid container spacing={2} sx={styles.heroDiv}>
             <Grid item lg={6} md={12} sm={12} xs={12}>
               <HeroV2 data={heroData} withForm />
             </Grid>
-            <Grid item lg={5} md={12} sm={12} xs={12} sx={{ margin: "24px 0" }}>
+            <Grid item lg={6} md={12} sm={12} xs={12} sx={{ margin: { xs: "24px 0", lg: "0" } }}>
               <Form />
             </Grid>
           </Grid>
@@ -165,6 +169,14 @@ const IgcsePage = async () => {
         <BenifitsSection data={benefitsSectionData} />
       </Box>
 
+      {/* Popular IGCSE Subjects */}
+      <Box sx={styles.verticalMargin}>
+        <PopularIgcseSubjectsV2 
+          title="Popular IGCSE Subjects We Cover"
+          headerTag="h2"
+        />
+      </Box>
+
       {/* Trustpilot Reviews Carousel */}
       <Box sx={styles.verticalMargin}>
         <TrustpilotCarousel />
@@ -172,7 +184,7 @@ const IgcsePage = async () => {
 
       {/* Student Says Section */}
       <Box sx={styles.verticalMargin}>
-        <StudentSays data={studentSaysData} />
+        <StudentSaysV2 data={studentSaysData} />
       </Box>
 
       {/* Blog CTA Section */}
@@ -192,7 +204,7 @@ const IgcsePage = async () => {
       </Box>
 
       {/* <ServerFooter /> */}
-    </>
+    </Box>
   );
 };
 
@@ -208,14 +220,17 @@ const styles = {
       lg: 0,
       xl: 0,
     },
-    height: { xs: "100%", lg: "100vh" },
+    height: { xs: "auto", lg: "100vh" },
     display: "flex",
     alignItems: "center",
     position: "relative",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
+    paddingX: { xs: "3vw", sm: "3vw", lg: "0" },
+    maxWidth: "100%",
+    overflow: "hidden",
   },
   heroDiv: {
     alignItems: "center",
     padding: "100 0",
+    maxWidth: "100%",
   },
 };

@@ -11,6 +11,7 @@ import img3 from "../../../../public/assets/images/static/blogimg3.png";
 
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
+import HorizontalTutorCarousel from "./horizontal-carousel/HorizontalTutorCarousel";
 import { tutor_section } from "@/types/grade-subject-level.types";
 
 type IProps = {
@@ -115,22 +116,31 @@ const TutorSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
 
   return (
     <div className={styles.main}>
-      <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-        component={data?.headerTag ? data.headerTag : ("h3" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.header,
-        }}
-      ></Typography>
+      {data?.view === "Horizontal Carousel" ? (
+        <HorizontalTutorCarousel 
+          tutors={val} 
+          title={data?.header || "Meet Some Of Our Expert IGCSE Tutors"} 
+        />
+      ) : (
+        <>
+          <Typography
+            className={`${leagueSpartan.className} ${styles.title}`}
+            variant={data?.headerTag ? data.headerTag : ("h3" as any)}
+            component={data?.headerTag ? data.headerTag : ("h3" as any)}
+            dangerouslySetInnerHTML={{
+              __html: data?.header,
+            }}
+          ></Typography>
 
-      <div className={styles.mt1}>
-        {data?.view === "Row View" ? (
-          <ListView data={val} />
-        ) : (
-          <GridView cardsData={val} />
-        )}
-      </div>
+          <div className={styles.mt1}>
+            {data?.view === "Row View" ? (
+              <ListView data={val} />
+            ) : (
+              <GridView cardsData={val} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
