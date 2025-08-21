@@ -47,8 +47,8 @@ import Image from "next/image";
 type IProps = {
   data: PageData;
   allBlogs: AllBlogsData[] | null | undefined;
-  allTags: { name: string; id: string }[];
-  allCategories: { name: string; id: string }[];
+  allTags: { name: { en: string; ar: string }; id: string }[];
+  allCategories: { name: { en: string; ar: string }; id: string }[];
 };
 
 const MainSection = ({ children }: any) => {

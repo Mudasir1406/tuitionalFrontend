@@ -43,7 +43,7 @@ const dumyData = {
   },
 };
 export type TagItem = {
-  data: { name: string; id: string }[]; // Change this type based on the actual structure
+  data: { name: { en: string; ar: string }; id: string }[];
 };
 const Page = async ({ params }: { params: { slug: string } }) => {
   const [data, sequence, allBlogs, allTags, allCategories]: [
@@ -53,9 +53,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     TagItem[],
     TagItem[]
   ] = await Promise.all([
-    getBlogData(params.slug),
+    getBlogData(params.slug, "en"),
     getPageSequence(),
-    getDocumentsByName("blogs"),
+    getDocumentsByName("blogs-v1-en"),
     getDocumentsByName("tags"),
     getDocumentsByName("categories"),
   ]);

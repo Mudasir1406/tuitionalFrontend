@@ -4,6 +4,7 @@ import styles from "./Accordion.module.css";
 import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export interface AccordionProps {
   title: string;
@@ -12,21 +13,12 @@ export interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isArabicRoute = pathname.startsWith('/ar');
+  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
-  };
-  const handleRedirect = (item: string) => {
-    const queryKey = encodeURIComponent(
-      title.toLowerCase().replace(/\s+/g, "-")
-    );
-    const queryValue = encodeURIComponent(
-      item.toLowerCase().replace(/\s+/g, "-")
-    );
-
-    // Build the URL
-    const newUrl = `/blog/${queryKey}/${queryValue}`;
-    window.location.href = newUrl; // Redirect to the new URL
   };
   return (
     <div className={`${styles.accordion} ${isOpen ? styles.open : ""}`}>
@@ -44,30 +36,11 @@ const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
       </div>
       {isOpen && (
         <ul className={styles.items}>
-          {/* {items?.map((item, index) => (
-            <Link href={} key={index}>
-              <Typography
-                // sx={style.guidence}
-                variant={"caption"}
-                className={`${leagueSpartan.className} ${styles.list}`}
-                component={"li"}
-                onClick={() => handleRedirect(item.name)} // Handle click and redirect
-                key={index}
-              >
-                {item?.name}
-              </Typography>
-            </Link>
-          ))} */}
           {items?.map((item, index) => {
-            const queryKey = encodeURIComponent(
-              title.toLowerCase().replace(/\s+/g, "-")
-            );
-            const queryValue = encodeURIComponent(
-              item.name.toLowerCase().replace(/\s+/g, "-")
-            );
+            const queryKey = title.toLowerCase() === 'category' || title.toLowerCase() === 'التصنيفات' ? 'category' : 'tag';
 
             return (
-              <a href={`/blog/${queryKey}/${queryValue}`} key={index}>
+              <a href={`${blogBaseUrl}/${queryKey}/${item.id}`} key={index}>
                 <Typography
                   variant="caption"
                   className={`${leagueSpartan.className} ${styles.list}`}

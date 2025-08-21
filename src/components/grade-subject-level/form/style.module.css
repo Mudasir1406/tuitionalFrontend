@@ -18,6 +18,23 @@
   margin-left: 6px;
 }
 
+/* RTL styles for Arabic form */
+.rtl .error {
+  margin-left: 0;
+  margin-right: 6px;
+  text-align: right;
+}
+
+.rtl .title {
+  text-align: center;
+}
+
+.rtl input,
+.rtl textarea {
+  text-align: right;
+  direction: rtl;
+}
+
 .inputDiv {
   display: flex;
   column-gap: 24px;

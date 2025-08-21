@@ -13,8 +13,8 @@ const Accordion = dynamic(() => import("../accordion/Accordion"), {
 });
 
 interface Props {
-  categories?: { name: string; id: string }[];
-  tags: { name: string; id: string }[];
+  categories?: { name: { en: string; ar: string }; id: string }[];
+  tags: { name: { en: string; ar: string }; id: string }[];
 }
 
 function LeftSection({ categories, tags }: Props) {
@@ -23,14 +23,25 @@ function LeftSection({ categories, tags }: Props) {
   const [formData, setFormData] = useState({
     search: "",
   });
+  // Convert bilingual data to English display format
+  const englishCategories = categories?.map(cat => ({
+    name: cat.name.en,
+    id: cat.id
+  }));
+
+  const englishTags = tags?.map(tag => ({
+    name: tag.name.en, 
+    id: tag.id
+  }));
+
   const accordionData = [
     {
       title: "Category",
-      items: categories,
+      items: englishCategories,
     },
     {
       title: "Tag",
-      items: tags,
+      items: englishTags,
     },
   ];
 

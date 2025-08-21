@@ -1,4 +1,4 @@
-import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
+import { getBlogData } from "@/services/grade-subject-level/grade-subject-level";
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL } from "@/utils/env";
 import {  generateMergedSchema } from "@/utils/helper";
@@ -10,7 +10,7 @@ import React, { ReactNode } from "react";
 const fetchData = async (
   slug: string
 ): Promise<PageData | undefined | null> => {
-  return await getPageData(slug);
+  return await getBlogData(slug, "en");
 };
 
 export const generateMetadata = async ({

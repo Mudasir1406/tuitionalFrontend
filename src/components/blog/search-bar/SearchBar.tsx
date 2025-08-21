@@ -15,6 +15,9 @@ function SearchBar({
 }) {
   const [search, setSearch] = useState(searchQuery);
   const router = useRouter();
+  const pathname = usePathname();
+  const isArabicRoute = pathname.startsWith('/ar');
+  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
 
   // const handleSearch = () => {
   //   if (search) {
@@ -35,7 +38,7 @@ function SearchBar({
     // router.push(`/${params.toString()}`);
     const params = new URLSearchParams(window.location.search);
     params.set("search", search);
-    const newUrl = `/blog?${params.toString()}`;
+    const newUrl = `${blogBaseUrl}?${params.toString()}`;
     router.replace(newUrl);
   };
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {

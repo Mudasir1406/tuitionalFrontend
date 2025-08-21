@@ -28,6 +28,8 @@ interface Props {
 function BlogCard({ data }: Props) {
   console.log("blogCard Image", data?.heroSection?.image);
   const pathname = usePathname();
+  const isArabicRoute = pathname.startsWith('/ar');
+  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
   return (
     <div className={styles.card}>
       {/* <Image
@@ -53,7 +55,7 @@ function BlogCard({ data }: Props) {
           >
             {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
           </Typography>
-          <a href={`/blog/${data?.slugData}`}>
+          <a href={`${blogBaseUrl}/${data?.slugData}`}>
             <Typography
               className={`${styles.title} ${leagueSpartan.className}`}
               variant="subtitle2"
@@ -66,7 +68,7 @@ function BlogCard({ data }: Props) {
         </div>
 
         <div className={styles.textDiv_text}>
-          <a href={`/blog/${data?.slugData}`}>
+          <a href={`${blogBaseUrl}/${data?.slugData}`}>
             <div
               className={styles.iconDiv}
               // onClick={() => redirectToExternal(`/blog/${data?.id}`)}
