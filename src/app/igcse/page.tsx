@@ -142,12 +142,26 @@ const IgcsePage = async () => {
 
       {/* Hero Section with Form */}
       <Box sx={styles.heroContanier}>
-        <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
+        <Box
+          sx={{
+            marginTop: { md: "2vh", lg: "18vh" },
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Grid container spacing={2} sx={styles.heroDiv}>
             <Grid item lg={6} md={12} sm={12} xs={12}>
               <HeroV2 data={heroData} withForm />
             </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12} sx={{ margin: { xs: "24px 0", lg: "0" } }}>
+            <Grid
+              item
+              lg={6}
+              md={12}
+              sm={12}
+              xs={12}
+              sx={{ margin: { xs: "24px 0", lg: "0" } }}
+            >
               <Form />
             </Grid>
           </Grid>
@@ -171,7 +185,7 @@ const IgcsePage = async () => {
 
       {/* Popular IGCSE Subjects */}
       <Box sx={styles.verticalMargin}>
-        <PopularIgcseSubjectsV2 
+        <PopularIgcseSubjectsV2
           title="Popular IGCSE Subjects We Cover"
           headerTag="h2"
         />
@@ -232,5 +246,6 @@ const styles = {
     alignItems: "center",
     padding: "100 0",
     maxWidth: "100%",
+    display: "flex",
   },
 };
