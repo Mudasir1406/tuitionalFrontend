@@ -214,7 +214,7 @@ const styles = {
   verticalMargin: { marginY: { xs: "5vh", md: "6vh" } },
   heroContanier: {
     paddingTop: {
-      xs: "120px",
+      xs: "96px",
       sm: "120px",
       md: "120px",
       lg: 0,

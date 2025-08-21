@@ -36,6 +36,8 @@ const GetStartedV2: React.FunctionComponent = () => {
     }
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -50,6 +52,31 @@ const GetStartedV2: React.FunctionComponent = () => {
 
   const handleDotClick = (index: number) => {
     setCurrentIndex(index);
+  };
+
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Clear the end coordinate
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && currentIndex < data.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   return (
@@ -103,7 +130,12 @@ const GetStartedV2: React.FunctionComponent = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={styles.carouselContainer}>
+        <Box 
+          sx={styles.carouselContainer}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {data?.map((item, index) => (
             <Box
               key={index}
