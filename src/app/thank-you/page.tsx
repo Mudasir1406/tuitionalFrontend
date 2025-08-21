@@ -30,7 +30,7 @@ const ThankYouPage = () => {
           sx={styles.headline}
           className={leagueSpartan.className}
         >
-          ✅ You're All Set! Thanks for Registering.
+          ✅ You&apos;re All Set! Thanks for Registering.
         </Typography>
 
         {/* Sub-Headline */}
