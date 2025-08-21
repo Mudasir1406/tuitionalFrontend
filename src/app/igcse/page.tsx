@@ -39,7 +39,6 @@ const FrequentlyQuestions = dynamic(
   () => import("@/components/grade-subject-level/faqs"),
   { ssr: true }
 );
-const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
 const TrustpilotCarousel = dynamic(
   () => import("@/components/trustpilot-carousel/TrustpilotCarousel"),
   { ssr: false }

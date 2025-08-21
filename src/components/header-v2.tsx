@@ -5,13 +5,11 @@ import logo from "../../public/assets/images/static/logo.png";
 import logoMobile from "../../public/assets/images/static/logoMobile.png";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { useDrawer } from "../context/drawer-context";
-import { useI18n } from "@/context/language-context";
 import Link from "next/link";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 
 import dynamic from "next/dynamic";
-import RouteLanguageSwitcher from "./route-language-switcher";
 
 const FormDialog = dynamic(() => import("./home/form-dialouge"), {
   ssr: false,
@@ -21,8 +19,22 @@ type IProps = {
 };
 const HeaderV2: React.FC<IProps> = ({ background }) => {
   const { toggleDrawer } = useDrawer();
-  const { t, isRTL } = useI18n();
   const [open, setOpen] = useState<boolean>(false);
+  
+  // For main branch - English only, no RTL
+  const t = (key: string) => {
+    const translations: { [key: string]: string } = {
+      "nav.home": "Home",
+      "nav.about": "About",
+      "nav.community": "Community",
+      "nav.testimonials": "Testimonials",
+      "nav.contact": "Contact",
+      "buttons.ai_digital_sat": "AI Digital SAT",
+      "buttons.book_demo": "Book Demo"
+    };
+    return translations[key] || key;
+  };
+  const isRTL = false;
 
   const handleClose = () => {
     setOpen(false);
