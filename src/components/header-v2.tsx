@@ -78,7 +78,7 @@ const HeaderV2: React.FC<IProps> = ({ background }) => {
                 width={logoMobile.width}
                 height={logoMobile.height}
                 style={{
-                  width: 203,
+                  width: 160,
                   height: 49,
                   objectFit: "none",
                 }}
@@ -259,7 +259,7 @@ const styles = {
     boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
     backgroundColor: "#38B6FF",
     paddingY: "1.5vh",
-    fontSize: "1.5vh",
+    fontSize: "2.5vh",
     fontWeight: 700,
     lineHeight: "1.84vh",
     textAlign: "center",
@@ -269,7 +269,7 @@ const styles = {
       boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
       backgroundColor: "#38B6FF",
       paddingY: "1.5vh",
-      fontSize: "1.5vh",
+      // fontSize: "1.5vh",
       fontWeight: 700,
       lineHeight: "1.84vh",
       textAlign: "center",
