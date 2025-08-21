@@ -15,7 +15,9 @@ import moment from "moment";
 
 interface Props {
   data: {
-    category: { name: string; id: string }[];
+    category: {
+      data: { id: string; name: { ar: string; en: string } }[];
+    };
     date: string;
     headerTag: any;
     header: string;
@@ -57,7 +59,7 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
             variant="body2"
             component={"p"}
           >
-            {`${data?.category?.[0]?.name} | ${moment(timestamp * 1000).format(
+            {`${data?.category?.data?.[0]?.name?.en} | ${moment(timestamp * 1000).format(
               "MMMM DD,YYYY"
             )}
               `}

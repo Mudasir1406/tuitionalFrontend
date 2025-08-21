@@ -12,8 +12,8 @@ import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 
 const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
-  // Fetch all blogs
-  const data = await getDocumentsByName("blogs");
+  // Fetch English blogs
+  const data = await getDocumentsByName("blogs-v1-en");
 
   // Filter data based on search query (if provided)
   const filteredData = searchParams?.search

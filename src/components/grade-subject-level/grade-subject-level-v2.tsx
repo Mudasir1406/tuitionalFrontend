@@ -32,7 +32,7 @@ const HeroInfo = dynamic(
   () => import("@/components/grade-subject-level/hero-info"),
   { ssr: true }
 );
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
+const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
 
 const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
 const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
@@ -336,7 +336,7 @@ const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
         <div key={key}>{renderSection(key.trim())}</div>
       ))}
 
-      <Footer />
+      <ServerFooter />
     </>
   );
 };

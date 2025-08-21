@@ -1,6 +1,6 @@
 import { Header } from "@/components";
 import Footer from "@/components/footer-wrapper";
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./blog.module.css";
 import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
@@ -20,34 +20,20 @@ const SearchBar = dynamic(
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
-  const data = await getDocumentsByName("blogs");
-  console.log("getDocumentsByName", data);
+  
+  // Fetch English blogs and categories
+  const [data, categories] = await Promise.all([
+    getDocumentsByName("blogs-v1-en"),
+    getDocumentsByName("categories")
+  ]);
 
-  // const filteredData = slug
-  //   ? data.filter((blog: AllBlogsData) =>
-  //       blog?.heroSection?.category?.some((tag: { name: string; id: string }) =>
-  //         tag.name?.toLowerCase().includes(slug.toLowerCase())
-  //       )
-  //     )
-  //   : data;
+  // Find the category
+  const category = categories?.[0]?.data?.find((cat: any) => cat.id === slug);
 
-  const filteredData = slug
-    ? data.filter((blog: AllBlogsData) =>
-        blog?.heroSection?.category?.some(
-          (tag: { name: string; id: string }) => {
-            const normalizedTagName = tag.name
-              ?.toLowerCase()
-              .replace(/[-\s]+/g, " ");
-            const normalizedSlug = slug.toLowerCase().replace(/[-\s]+/g, " ");
-            return normalizedTagName.includes(normalizedSlug);
-          }
-
-          // tag.name
-          //   ?.toLowerCase()
-          //   .includes(slug.replace(/-/g, " ").toLowerCase())
-        )
-      )
-    : data;
+  // Filter blogs by category
+  const filteredData = data?.filter((blog: AllBlogsData) =>
+    blog?.heroSection?.category?.data?.some((cat: any) => cat.id === category?.id)
+  ) || [];
 
   return (
     <>
@@ -55,11 +41,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
-            <Hero
-              slug={slug
-                .replace(/-/g, " ")
-                .replace(/\b\w/g, (char) => char.toUpperCase())}
-            />{" "}
+            <Hero slug={category?.name?.en || "Category"} />{" "}
           </div>
           <div className={styles["hero-picture"]}></div>
         </div>
