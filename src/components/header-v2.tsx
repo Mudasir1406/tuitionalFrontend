@@ -148,10 +148,10 @@ const HeaderV2: React.FC<IProps> = ({ background }) => {
             {/* <RouteLanguageSwitcher /> */}
           </Box>
 
-          <MenuRoundedIcon
+          {/* <MenuRoundedIcon
             onClick={toggleDrawer}
             sx={[styles.menu, isRTL && styles.menuRTL]}
-          />
+          /> */}
         </Toolbar>
       </AppBar>
       {open && <FormDialog open={open} handleClose={handleClose} />}

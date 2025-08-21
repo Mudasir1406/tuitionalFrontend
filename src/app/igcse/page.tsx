@@ -52,15 +52,15 @@ const IgcsePage = async () => {
   const heroData = {
     header: "Expert IGCSE Tutoring - Achieve Your Best Grades",
     headerTag: "h1",
-    paragraph: "Get personalized 1-on-1 IGCSE tutoring from qualified teachers. Boost your grades with our proven teaching methods and comprehensive exam preparation.",
+    paragraph: "1:1 Live Tutors, Past-Paper Strategy, Proven Results. Join 10,000+ Students Today.",
     image: "/assets/images/hero/igcse-hero.jpg",
-    imageAltText: "IGCSE Online Tutoring"
+    imageAltText: " "
   };
 
   // Data for tutor section - will fetch from tutors_data collection
   const tutorSectionData = {
     isShow: true,
-    header: "Meet Our Expert IGCSE Tutors",
+    header: "Meet Some Of Our Expert IGCSE Tutors",
     headerTag: "h2",
     paragraph: "Learn from qualified teachers with years of IGCSE teaching experience",
     curriculum: "IGCSE", // This will be used to filter tutors from tutors_data collection
