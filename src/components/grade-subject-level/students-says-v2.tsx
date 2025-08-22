@@ -16,14 +16,17 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchVideoData = async () => {
       try {
         const videos = await getVideoReviews();
         setVideoData(videos);
+        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch video reviews:", error);
+        setIsLoading(false);
       }
     };
 
@@ -91,7 +94,11 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
         }}
       />
 
-      {isMobile ? (
+      {isLoading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+          <Typography>Loading videos...</Typography>
+        </Box>
+      ) : isMobile ? (
         // Mobile: Horizontal scrolling layout
         <Box 
           className={styles.mobileContainer}
