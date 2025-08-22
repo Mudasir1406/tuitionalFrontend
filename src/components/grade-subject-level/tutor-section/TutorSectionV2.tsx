@@ -5,8 +5,6 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./style.module.css";
 
-
-
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
 import HorizontalTutorCarousel from "./horizontal-carousel/HorizontalTutorCarousel";
@@ -41,17 +39,6 @@ const hardcodedTutors: CardProps[] = [
     profileImageUrl: "/assets/images/tutors/tutor1.png",
   },
   {
-    "First Name": "Ms",
-    "Last Name": "Mehar",
-    university: "Oxford University",
-    Subjects: ["English Literature", "History", "Geography"],
-    Curiculum: ["IGCSE", "A-Level"],
-    Description:
-      "Passionate educator with expertise in humanities subjects. Known for making complex topics accessible and engaging for students.",
-    "Success rate": 92,
-    profileImageUrl: "/assets/images/tutors/tutor2.png",
-  },
-  {
     "First Name": "Mr",
     "Last Name": "Essam",
     university: "Imperial College London",
@@ -61,6 +48,17 @@ const hardcodedTutors: CardProps[] = [
       "Science specialist with a focus on practical learning. Helps students understand complex scientific concepts through real-world applications.",
     "Success rate": 98,
     profileImageUrl: "/assets/images/tutors/tutor3.png",
+  },
+  {
+    "First Name": "Ms",
+    "Last Name": "Mehar",
+    university: "Oxford University",
+    Subjects: ["English Literature", "History", "Geography"],
+    Curiculum: ["IGCSE", "A-Level"],
+    Description:
+      "Passionate educator with expertise in humanities subjects. Known for making complex topics accessible and engaging for students.",
+    "Success rate": 92,
+    profileImageUrl: "/assets/images/tutors/tutor2.png",
   },
   {
     "First Name": "Mr",
