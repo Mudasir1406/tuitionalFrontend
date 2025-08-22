@@ -6,7 +6,7 @@ import { leagueSpartan } from "@/app/fonts";
 // Critical above-the-fold components - load immediately  
 import HeaderV3 from "@/components/header-v3";
 import HeroV2 from "@/components/grade-subject-level/heroV2";
-import Form from "@/components/grade-subject-level/form/form";
+import FormV2 from "@/components/grade-subject-level/form/formV2";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 
 // Progressive loading - only load when needed
@@ -156,7 +156,7 @@ const IgcsePage = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={6}>
               <Box sx={styles.formWrapper}>
-                <Form />
+                <FormV2 />
               </Box>
             </Grid>
           </Grid>
