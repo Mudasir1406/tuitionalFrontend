@@ -141,11 +141,11 @@
   and (-webkit-device-pixel-ratio: 3) {
   
   .mobileContainer {
-    padding: 0 5%;
+    padding: 0 8%;
   }
   
   .mobileVideoItem {
-    padding: 0 8px;
+    padding: 0 12px;
     box-sizing: border-box;
   }
   
