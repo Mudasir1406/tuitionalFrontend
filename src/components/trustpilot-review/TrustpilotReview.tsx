@@ -82,7 +82,7 @@ const TrustpilotReview: React.FC = () => {
             variant="h4" 
             className={`${leagueSpartan.className} ${styles.headline}`}
           >
-            We're the{" "}
+            We&apos;re the{" "}
             <span className={styles.highlighted}>highest-rated</span>{" "}
             tutoring service
           </Typography>
@@ -135,7 +135,7 @@ const TrustpilotReview: React.FC = () => {
                   variant="body2" 
                   className={`${leagueSpartan.className} ${styles.reviewTextContent}`}
                 >
-                  "{currentReview.text}"
+                  &ldquo;{currentReview.text}&rdquo;
                 </Typography>
                 
                 <Typography 
