@@ -3,18 +3,11 @@ import React from "react";
 import plan from "../../public/assets/images/static/plan.png";
 import phone from "../../public/assets/images/static/phone-call.png";
 import logo from "../../public/assets/images/static/logo.png";
-import { FooterData, getFooterData } from "../services/footer/footer";
-import insta from "../../public/assets/images/svg/Instagram_black.svg";
-import facebook from "../../public/assets/images/svg/Facebook_black.svg";
-import linkdin from "../../public/assets/images/svg/LinkedIN_black.svg";
-import Link from "next/link";
+
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
-import PopUpButton from "./pop-up-button";
-// import { findExactSubjectURL, generateSlug } from "@/utils/helper";
-import FooterLinks from "./footerLinks/FooterLinks";
+import PopUpButtonV2 from "./pop-up-buttonV2";
 const FooterV2: React.FC = async () => {
-  const footerData: FooterData = await getFooterData();
   return (
     <footer>
       <Box sx={styles.background}>
@@ -95,7 +88,7 @@ const FooterV2: React.FC = async () => {
                     marginTop: { xs: "15px", md: "0" },
                   }}
                 >
-                  <PopUpButton
+                  <PopUpButtonV2
                     text="Book a Free Trial"
                     href="popup"
                     sx={styles.contactButton}
