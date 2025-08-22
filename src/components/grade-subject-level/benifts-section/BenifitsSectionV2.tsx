@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Typography } from "@mui/material";
 
 import { leagueSpartan } from "@/app/fonts";
@@ -19,14 +19,13 @@ import {
   SupervisorAccount,
 } from "@mui/icons-material";
 import { PageData } from "@/types/grade-subject-level.types";
-import PopUpButton from "@/components/pop-up-button";
+import PopUpButtonV2 from "@/components/pop-up-buttonV2";
 
 type IProps = {
   data: PageData["igcse_tutoring_program"];
 };
 
-const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
-  // console.log("BenifitsSection", data);
+const BenifitsSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <div className={styles.main}>
       {/* <Typography
@@ -161,9 +160,43 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
           </Typography>
         </div>
       </div>
-     
+      <Box sx={style.buttonContainer}>
+        <PopUpButtonV2 sx={style.containedBtn} text="Book a Demo" href="popup" />
+      </Box>
     </div>
   );
 };
 
-export default BenifitsSection;
+const style = {
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "36px",
+  },
+  containedBtn: {
+    boxShadow: "1px 4px 24px 0px #38B6FFB2",
+    backgroundColor: "white",
+    color: "#38B6FF",
+
+    paddingY: {
+      xs: "1vh",
+      lg: "10px",
+    },
+    textTransform: "none",
+    borderRadius: "10px",
+    width: {
+      xs: "50%",
+      sm: "40%",
+      md: "30%",
+      lg: "30%",
+    },
+    transition: "all .5s ease-in-out",
+    ":hover": {
+      backgroundColor: "white",
+      transform: "scale(1.05)",
+
+      boxShadow: "1px 4px 24px 0px #38B6FFB2",
+    },
+  },
+};
+export default BenifitsSectionV2;

@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
 
-// Critical above-the-fold components - load immediately  
+// Critical above-the-fold components - load immediately
 import HeaderV3 from "@/components/header-v3";
 import HeroV2 from "@/components/grade-subject-level/heroV2";
 import FormV2 from "@/components/grade-subject-level/form/formV2";
@@ -12,9 +12,9 @@ import SchoolLogosSection from "@/components/grade-subject-level/school-logos-se
 // Progressive loading - only load when needed
 const CountdownTimer = dynamic(
   () => import("@/components/countdown/CountdownTimer"),
-  { 
+  {
     ssr: false,
-    loading: () => null // No loading state to prevent layout shifts
+    loading: () => null, // No loading state to prevent layout shifts
   }
 );
 
@@ -25,8 +25,11 @@ const TutorSectionV2 = dynamic(
   { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
-const BenifitsSection = dynamic(
-  () => import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
+const BenifitsSectionV2 = dynamic(
+  () =>
+    import(
+      "@/components/grade-subject-level/benifts-section/BenifitsSectionV2"
+    ),
   { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> }
 );
 
@@ -45,8 +48,8 @@ const StudentSaysV2 = dynamic(
   { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
 );
 
-const SectionsBox = dynamic(
-  () => import("@/components/grade-subject-level/sectionsbox"),
+const SectionsBoxV2 = dynamic(
+  () => import("@/components/grade-subject-level/sectionsboxV2"),
   { ssr: false, loading: () => <Box sx={{ height: "200px" }} /> }
 );
 
@@ -55,20 +58,20 @@ const GetStartedV2 = dynamic(
   { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
-const Faqs = dynamic(
-  () => import("@/components/home/faqs"),
-  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
-);
+const Faqs = dynamic(() => import("@/components/home/faqs"), {
+  ssr: false,
+  loading: () => <Box sx={{ height: "300px" }} />,
+});
 
 const IgcsePage = () => {
   // Remove blocking data fetches - components will fetch their own data
 
   // Hardcoded hero section data
   const heroData = {
-    header: "Expert IGCSE Tutoring - Achieve Your Best Grades",
+    header: "Guaranteed A* Grades: The #1 IGCSE Tutors Are Here to Help.",
     headerTag: "h1",
     paragraph:
-      "1:1 Live Tutors, Past-Paper Strategy, Proven Results. Join 10,000+ Students Today.",
+      " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
   };
@@ -132,14 +135,14 @@ const IgcsePage = () => {
   };
 
   return (
-    <Box 
+    <Box
       className={leagueSpartan.className}
-      sx={{ 
-        overflowX: "hidden", 
-        width: "100%", 
+      sx={{
+        overflowX: "hidden",
+        width: "100%",
         minHeight: "100vh",
         WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale"
+        MozOsxFontSmoothing: "grayscale",
       }}
     >
       <HeaderV3 />
@@ -175,7 +178,7 @@ const IgcsePage = () => {
 
       {/* Benefits Section */}
       <Box sx={styles.verticalMargin}>
-        <BenifitsSection data={benefitsSectionData} />
+        <BenifitsSectionV2 data={benefitsSectionData} />
       </Box>
 
       {/* Popular IGCSE Subjects */}
@@ -198,7 +201,7 @@ const IgcsePage = () => {
 
       {/* Blog CTA Section */}
       <Box sx={styles.verticalMargin}>
-        <SectionsBox />
+        <SectionsBoxV2 />
       </Box>
 
       {/* Get Started Section */}
@@ -219,8 +222,8 @@ const IgcsePage = () => {
 export default IgcsePage;
 
 const styles = {
-  verticalMargin: { 
-    my: 3 // Simplified margin
+  verticalMargin: {
+    my: 3, // Simplified margin
   },
   heroContainer: {
     pt: { xs: 3, lg: 4 }, // Reduced padding - header/countdown now in normal flow
