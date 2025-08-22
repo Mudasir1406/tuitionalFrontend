@@ -110,6 +110,41 @@
   }
 }
 
+/* iPhone Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .mobileContainer {
+      width: 90%;
+      margin: 0 auto;
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+    
+    .mobileVideoItem {
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    
+    .mobileVideoItem:first-child {
+      padding-left: 0;
+    }
+    
+    .mobileVideoItem:last-child {
+      padding-right: 0;
+    }
+    
+    .mobileCard {
+      max-width: calc(100% - 20px);
+      margin: 0 auto;
+    }
+    
+    .mobileCardMedia {
+      max-width: calc(100% - 20px);
+      margin: 0 auto;
+    }
+  }
+}
+
 /* iPhone specific fixes */
 @media only screen 
   and (device-width: 375px) 
