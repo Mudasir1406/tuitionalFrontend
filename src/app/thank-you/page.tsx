@@ -39,7 +39,7 @@ const ThankYouPage = () => {
           sx={styles.subHeadline}
           className={leagueSpartan.className}
         >
-          Our team will contact you shortly to confirm your free trial session. 🎉
+          Our team will contact you shortly. 🎉
         </Typography>
 
         {/* Optional Add-On */}
@@ -63,15 +63,7 @@ const ThankYouPage = () => {
             </Button>
           </Link>
           
-          <Link href="/" style={styles.linkStyle}>
-            <Button
-              variant="outlined"
-              sx={styles.secondaryButton}
-              className={leagueSpartan.className}
-            >
-              Back to Home
-            </Button>
-          </Link>
+         
         </Box>
       </Box>
     </Box>
