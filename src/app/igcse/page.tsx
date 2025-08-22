@@ -114,7 +114,7 @@ const IgcsePage = () => {
   // Data for student testimonials
   const studentSaysData = {
     isShow: true,
-    header: "What Our IGCSE Students Say",
+    header: "Video Testimonials from Our IGCSE Students",
     headerTag: "h2",
     paragraph: "Hear from students who achieved their goals with our help",
   };
