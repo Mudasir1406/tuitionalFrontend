@@ -222,7 +222,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
                 xs: "center",
                 lg: "start",
               },
-              marginTop: "4vh",
+              marginTop: { xs: "1vh", md: "4vh" },
 
               gap: "1rem",
             }}
