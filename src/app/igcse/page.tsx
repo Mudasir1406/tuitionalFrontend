@@ -68,13 +68,7 @@ const Faqs = dynamic(() => import("@/components/home/faqs"), {
   loading: () => <Box sx={{ height: "300px" }} />,
 });
 
-const TrustpilotReview = dynamic(
-  () => import("@/components/trustpilot-review/TrustpilotReview"),
-  {
-    ssr: false,
-    loading: () => <Box sx={{ height: "400px" }} />,
-  }
-);
+
 
 const FooterV2 = dynamic(() => import("@/components/footerV2"), {
   ssr: true,
