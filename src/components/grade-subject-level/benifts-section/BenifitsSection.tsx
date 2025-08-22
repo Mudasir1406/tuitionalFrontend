@@ -66,7 +66,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <Mic sx={{ color: "#009BF5", width: "35px", height: "30px" }} />
+            <Mic sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -78,9 +78,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <CalendarMonth
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <CalendarMonth sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -92,9 +90,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <BookSharp
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <BookSharp sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -106,9 +102,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <BarChart
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <BarChart sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -120,9 +114,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <ScheduleOutlined
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <ScheduleOutlined sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -134,9 +126,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <Insights
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <Insights sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -148,9 +138,7 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
         <div className={styles.smallCard}>
           <div className={styles.iconDiv}>
-            <SupervisorAccount
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
+            <SupervisorAccount sx={style.icon} />
           </div>
           <Typography
             className={`${leagueSpartan.className}`}
@@ -162,7 +150,12 @@ const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
         </div>
       </div>
       <Box sx={style.buttonContainer}>
-        <PopUpButton sx={style.containedBtn} text="Book a Demo" href="popup" />
+        <PopUpButton
+          sx={style.containedBtn}
+          text="Book a Demo"
+          href="popup"
+          userFormV1={true}
+        />
       </Box>
     </div>
   );
@@ -199,5 +192,6 @@ const style = {
       boxShadow: "1px 4px 24px 0px #38B6FFB2",
     },
   },
+  icon: { color: "#009BF5", width: "35px", height: "30px" },
 };
 export default BenifitsSection;

@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
 
-// Critical above-the-fold components - load immediately  
+// Critical above-the-fold components - load immediately
 import HeaderV3 from "@/components/header-v3";
 import HeroV2 from "@/components/grade-subject-level/heroV2";
 import FormV2 from "@/components/grade-subject-level/form/formV2";
@@ -12,9 +12,9 @@ import SchoolLogosSection from "@/components/grade-subject-level/school-logos-se
 // Progressive loading - only load when needed
 const CountdownTimer = dynamic(
   () => import("@/components/countdown/CountdownTimer"),
-  { 
+  {
     ssr: false,
-    loading: () => null // No loading state to prevent layout shifts
+    loading: () => null, // No loading state to prevent layout shifts
   }
 );
 
@@ -26,7 +26,8 @@ const TutorSectionV2 = dynamic(
 );
 
 const BenifitsSection = dynamic(
-  () => import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
+  () =>
+    import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
   { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> }
 );
 
@@ -55,10 +56,10 @@ const GetStartedV2 = dynamic(
   { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
-const Faqs = dynamic(
-  () => import("@/components/home/faqs"),
-  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
-);
+const Faqs = dynamic(() => import("@/components/home/faqs"), {
+  ssr: false,
+  loading: () => <Box sx={{ height: "300px" }} />,
+});
 
 const IgcsePage = () => {
   // Remove blocking data fetches - components will fetch their own data
@@ -132,14 +133,14 @@ const IgcsePage = () => {
   };
 
   return (
-    <Box 
+    <Box
       className={leagueSpartan.className}
-      sx={{ 
-        overflowX: "hidden", 
-        width: "100%", 
+      sx={{
+        overflowX: "hidden",
+        width: "100%",
         minHeight: "100vh",
         WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale"
+        MozOsxFontSmoothing: "grayscale",
       }}
     >
       <HeaderV3 />
@@ -207,7 +208,8 @@ const IgcsePage = () => {
       </Box>
 
       {/* FAQs Section */}
-      <Box sx={styles.verticalMargin}>
+
+      <Box sx={{ ...styles.verticalMargin, mx: 10 }}>
         <Faqs />
       </Box>
 
@@ -219,8 +221,8 @@ const IgcsePage = () => {
 export default IgcsePage;
 
 const styles = {
-  verticalMargin: { 
-    my: 3 // Simplified margin
+  verticalMargin: {
+    my: 3, // Simplified margin
   },
   heroContainer: {
     pt: { xs: 3, lg: 4 }, // Reduced padding - header/countdown now in normal flow
