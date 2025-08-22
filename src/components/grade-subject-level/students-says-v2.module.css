@@ -110,6 +110,54 @@
   }
 }
 
+/* iPhone specific fixes */
+@media only screen 
+  and (device-width: 375px) 
+  and (device-height: 667px) 
+  and (-webkit-device-pixel-ratio: 2),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 736px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 375px) 
+  and (device-height: 812px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px) 
+  and (-webkit-device-pixel-ratio: 2),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 390px) 
+  and (device-height: 844px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 428px) 
+  and (device-height: 926px) 
+  and (-webkit-device-pixel-ratio: 3) {
+  
+  .mobileContainer {
+    padding: 0 5%;
+  }
+  
+  .mobileVideoItem {
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+  
+  .mobileVideoItem:first-child {
+    padding-left: 0;
+  }
+  
+  .mobileVideoItem:last-child {
+    padding-right: 0;
+  }
+}
+
 @media (min-width: 769px) {
   .mobileContainer {
     display: none;

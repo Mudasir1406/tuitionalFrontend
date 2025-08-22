@@ -32,7 +32,12 @@ const FooterV2: React.FC = async () => {
               spacing={2}
             >
               <Grid item lg={1} md={1} sm={12} xs={12}>
-                <Box sx={styles.imageContanier}>
+                <Box
+                  sx={{
+                    ...styles.imageContanier,
+                    margin: { xs: "0 auto", md: "0" },
+                  }}
+                >
                   <Image
                     src={plan.src}
                     width={plan.width}
@@ -54,11 +59,19 @@ const FooterV2: React.FC = async () => {
                   sx={styles.admissionText}
                   className={leagueSpartan.className}
                 >
-                  Registered in UAE • Established Since 2020 • Headquarters: Sharjah
+                  Registered in UAE • Established Since 2020 • Headquarters:
+                  Sharjah
                 </Typography>
               </Grid>
               <Grid item lg={3} md={3} sm={12} xs={12}>
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: { xs: "center", md: "flex-start" } }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: { xs: "center", md: "flex-start" },
+                    marginTop: { xs: "10px", md: "0" },
+                  }}
+                >
                   <Image
                     src={phone.src}
                     width={phone.width}
@@ -75,11 +88,19 @@ const FooterV2: React.FC = async () => {
                 </Box>
               </Grid>
               <Grid item lg={2.5} md={2.5} sm={12} xs={12}>
-                <PopUpButton
-                  text="Book a Free Trial"
-                  href="popup"
-                  sx={styles.contactButton}
-                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: { xs: "center", md: "flex-start" },
+                    marginTop: { xs: "15px", md: "0" },
+                  }}
+                >
+                  <PopUpButton
+                    text="Book a Free Trial"
+                    href="popup"
+                    sx={styles.contactButton}
+                  />
+                </Box>
               </Grid>
             </Grid>
           </Box>
@@ -122,9 +143,9 @@ const FooterV2: React.FC = async () => {
                   className={leagueSpartan.className}
                   variant="body2"
                 >
-                  Tuitional is a UAE-based Online Ed-Tech Platform established in 2020. 
-                  We provide live tutoring classes for Grades 4-8, IGCSE, GCSE, & A-Levels 
-                  for Cambridge, Pearson Edexcel boards.
+                  Tuitional is a UAE-based Online Ed-Tech Platform established
+                  in 2020. We provide live tutoring classes for Grades 4-8,
+                  IGCSE, GCSE, & A-Levels for Cambridge, Pearson Edexcel boards.
                 </Typography>
                 <Box sx={styles.credibilityBox}>
                   <Typography
@@ -152,21 +173,51 @@ const FooterV2: React.FC = async () => {
               </Box>
             </Grid>
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Box sx={styles.gridContent}>
+              <Box
+                sx={{
+                  ...styles.gridContent,
+                  alignItems: { xs: "center", md: "flex-start" },
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
                 <Typography
-                  sx={styles.heading}
+                  sx={{
+                    ...styles.heading,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
                   variant="subtitle2"
                   className={leagueSpartan.className}
                 >
                   Contact Info
                 </Typography>
-                <Typography sx={styles.text} variant="body2" className={leagueSpartan.className}>
+                <Typography
+                  sx={{
+                    ...styles.text,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                  variant="body2"
+                  className={leagueSpartan.className}
+                >
                   📍 Sharjah, UAE
                 </Typography>
-                <Typography sx={styles.text} variant="body2" className={leagueSpartan.className}>
+                <Typography
+                  sx={{
+                    ...styles.text,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                  variant="body2"
+                  className={leagueSpartan.className}
+                >
                   📞 +971 56 490 0376
                 </Typography>
-                <Typography sx={styles.text} variant="body2" className={leagueSpartan.className}>
+                <Typography
+                  sx={{
+                    ...styles.text,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                  variant="body2"
+                  className={leagueSpartan.className}
+                >
                   ✉️ info@tuitional.com
                 </Typography>
               </Box>
@@ -425,6 +476,7 @@ const styles = {
     zIndex: 100,
   },
   credibilityBox: {
+    textAlign: { xs: "center", md: "left" },
     marginTop: {
       xs: "20px",
       lg: "30px",
