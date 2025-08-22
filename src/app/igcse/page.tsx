@@ -80,7 +80,7 @@ const IgcsePage = () => {
 
   // Hardcoded hero section data
   const heroData = {
-    header: "Guaranteed A* Grades: The #1 IGCSE Tutors Are Here to Help.",
+    header: "<span style='color: #38B6FF; font-size: inherit; font-weight: inherit; line-height: inherit;'>Guaranteed A* Grades!</span><br/>The #1 IGCSE Tutors Are Here to Help.",
     headerTag: "h1",
     paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
