@@ -4,6 +4,9 @@ import { FormType } from "./home/form-dialouge";
 import { leagueSpartan } from "@/app/fonts";
 import { Button, SxProps, Theme } from "@mui/material";
 import dynamic from "next/dynamic";
+const FormDialogV1 = dynamic(() => import("./home/form-dialouge-v1"), {
+  ssr: false,
+});
 const FormDialog = dynamic(() => import("./home/form-dialouge"), {
   ssr: false,
 });
@@ -13,6 +16,7 @@ type IProps = {
   backgroundColor?: string;
   sx?: SxProps<Theme> | undefined;
   values?: FormType;
+  userFormV1?: boolean;
 };
 
 const PopUpButton: React.FunctionComponent<IProps> = ({
@@ -20,6 +24,7 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
   text,
   sx,
   values,
+  userFormV1 = false,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -46,7 +51,9 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
       >
         {text}
       </Button>
-      {open && (
+      {open && userFormV1 ? (
+        <FormDialogV1 open={open} handleClose={handleClose} values={values} />
+      ) : (
         <FormDialog open={open} handleClose={handleClose} values={values} />
       )}
     </>

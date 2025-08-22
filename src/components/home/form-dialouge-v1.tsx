@@ -79,7 +79,7 @@ export type ContactFormType = {
   Time?: string;
   sheetName?: string;
 };
-const FormDialog: React.FunctionComponent<IProps> = ({
+const FormDialogV1: React.FunctionComponent<IProps> = ({
   open,
   handleClose,
   values,
@@ -301,7 +301,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   name="FirstName"
                   value={formData.FirstName}
                   onChange={handleChange}
-                  placeholder={"Enter name here ..."}
+                  placeholder={"Name"}
                   className={`${styles.input} ${leagueSpartan.className}`}
                 />
                 {errors.FirstName && (
@@ -321,7 +321,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   name="EmailAddress"
                   value={formData.EmailAddress}
                   onChange={handleChange}
-                  placeholder={"Enter email here ..."}
+                  placeholder={"Email"}
                   className={`${styles.input} ${leagueSpartan.className} `}
                 />
                 {errors.EmailAddress && (
@@ -363,8 +363,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               <div style={styles.div}>
                 <DropDown
                   name="Grade"
-                  placeholder="Select Grade"
-                  marginTop="1.5vh"
+                  placeholder="Grade"
+                  //   marginTop="1.5vh"
                   data={filterData?.grade || []}
                   // multiple
                   value={formData.Grade}
@@ -383,9 +383,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
               </div>
             </Box>
             <Box sx={styles.inputDiv}>
-              <div style={styles.div}>
+              {/* <div style={styles.div}>
                 <DropDown
-                  placeholder="Select Curriculum"
+                  placeholder="Curriculum"
                   name="Curriculum"
                   data={filterData?.curriculum || []}
                   marginTop="1.5vh"
@@ -402,11 +402,11 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                     {errors.Curriculum}
                   </Typography>
                 )}
-              </div>
+              </div> */}
               <div style={styles.div}>
                 <DropDown
                   name="Subject"
-                  placeholder="Select Subjects"
+                  placeholder="Subjects"
                   data={filterData?.subject || []}
                   marginTop="1.5vh"
                   multiple
@@ -436,7 +436,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                 onChange={(e) => handleChange("message", e.target.value)}
                 // label="Message*"
                 variant="outlined"
-                placeholder="Enter your message here..."
+                placeholder="Message"
                 className={leagueSpartan.className}
               />
               {errors.message && (
@@ -473,7 +473,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
   );
 };
 
-export default FormDialog;
+export default FormDialogV1;
 
 const styles = {
   contanier: {
@@ -640,7 +640,7 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "1.5vh",
+    // marginTop: "1.5vh",
     // marginBottom: "1.5vh",
     outline: "none",
     ":focusVisible": {
