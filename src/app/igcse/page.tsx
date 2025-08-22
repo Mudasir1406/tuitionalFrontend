@@ -223,7 +223,7 @@ const styles = {
     my: 3 // Simplified margin
   },
   heroContainer: {
-    pt: { xs: 12, lg: 9 }, // Simplified padding
+    pt: { xs: 3, lg: 4 }, // Reduced padding - header/countdown now in normal flow
     minHeight: { xs: "auto", lg: "90vh" },
     display: "flex",
     alignItems: "center",
@@ -242,6 +242,6 @@ const styles = {
     flexDirection: "column",
   },
   formWrapper: {
-    pt: { xs: 3, lg: 0 },
+    pt: { xs: 0, lg: 0 },
   },
 };
