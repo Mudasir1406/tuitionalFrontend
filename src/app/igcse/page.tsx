@@ -1,71 +1,67 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
-import { getStartedData } from "@/services/get-started/get-started";
-import { getVideoReviews } from "@/services/video-reviews/video-reviews";
-import SectionsBox from "@/components/grade-subject-level/sectionsbox";
-import Faqs from "@/components/home/faqs";
+import { leagueSpartan } from "@/app/fonts";
 
-// Dynamic imports for all components
-const HeaderV3 = dynamic(() => import("@/components/header-v3"), { ssr: true });
-const HeroV2 = dynamic(
-  () => import("@/components/grade-subject-level/heroV2"),
-  {
-    ssr: true,
-  }
-);
-const Form = dynamic(
-  () => import("@/components/grade-subject-level/form/form"),
-  { ssr: true }
-);
+// Critical above-the-fold components - load immediately  
+import HeaderV3 from "@/components/header-v3";
+import HeroV2 from "@/components/grade-subject-level/heroV2";
+import Form from "@/components/grade-subject-level/form/form";
+import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
+
+// Progressive loading - only load when needed
 const CountdownTimer = dynamic(
   () => import("@/components/countdown/CountdownTimer"),
-  { ssr: false }
-);
-const SchoolLogosSection = dynamic(
-  () =>
-    import(
-      "@/components/grade-subject-level/school-logos-section/SchoolLogosSection"
-    ),
-  { ssr: true }
-);
-const TutorSectionV2 = dynamic(
-  () => import("@/components/grade-subject-level/tutor-section/TutorSectionV2"),
-  { ssr: true }
-);
-const BenifitsSection = dynamic(
-  () =>
-    import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
-  { ssr: true }
-);
-const StudentSaysV2 = dynamic(
-  () => import("@/components/grade-subject-level/students-says-v2"),
-  { ssr: true }
-);
-const BlogCta = dynamic(
-  () => import("@/components/grade-subject-level/blog-cta"),
-  { ssr: true }
-);
-const GetStartedV2 = dynamic(
-  () => import("@/components/grade-subject-level/get-started-v2"),
-  { ssr: true }
-);
-const FrequentlyQuestions = dynamic(
-  () => import("@/components/grade-subject-level/faqs"),
-  { ssr: true }
-);
-const PopularIgcseSubjectsV2 = dynamic(
-  () => import("@/components/curiculume/popular-igcse-subjects-v2"),
-  { ssr: true }
-);
-const TrustpilotCarousel = dynamic(
-  () => import("@/components/trustpilot-carousel/TrustpilotCarousel"),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => null // No loading state to prevent layout shifts
+  }
 );
 
-const IgcsePage = async () => {
-  const getStarted = await getStartedData();
-  const videoReviews = await getVideoReviews();
+// Individual components for lazy loading - Enable SSR for better performance
+
+const TutorSectionV2 = dynamic(
+  () => import("@/components/grade-subject-level/tutor-section/TutorSectionV2"),
+  { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> }
+);
+
+const BenifitsSection = dynamic(
+  () => import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
+  { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> }
+);
+
+const PopularIgcseSubjectsV2 = dynamic(
+  () => import("@/components/curiculume/popular-igcse-subjects-v2"),
+  { ssr: true, loading: () => <Box sx={{ height: "350px" }} /> }
+);
+
+const TrustpilotCarousel = dynamic(
+  () => import("@/components/trustpilot-carousel/TrustpilotCarousel"),
+  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
+);
+
+const StudentSaysV2 = dynamic(
+  () => import("@/components/grade-subject-level/students-says-v2"),
+  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
+);
+
+const SectionsBox = dynamic(
+  () => import("@/components/grade-subject-level/sectionsbox"),
+  { ssr: false, loading: () => <Box sx={{ height: "200px" }} /> }
+);
+
+const GetStartedV2 = dynamic(
+  () => import("@/components/grade-subject-level/get-started-v2"),
+  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
+);
+
+const Faqs = dynamic(
+  () => import("@/components/home/faqs"),
+  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
+);
+
+const IgcsePage = () => {
+  // Remove blocking data fetches - components will fetch their own data
 
   // Hardcoded hero section data
   const heroData = {
@@ -136,33 +132,32 @@ const IgcsePage = async () => {
   };
 
   return (
-    <Box sx={{ overflowX: "hidden", width: "100%", minHeight: "100vh" }}>
+    <Box 
+      className={leagueSpartan.className}
+      sx={{ 
+        overflowX: "hidden", 
+        width: "100%", 
+        minHeight: "100vh",
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale"
+      }}
+    >
       <HeaderV3 />
       <CountdownTimer />
 
       {/* Hero Section with Form */}
-      <Box sx={styles.heroContanier}>
-        <Box
-          sx={{
-            marginTop: { md: "2vh", lg: "18vh" },
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Grid container spacing={2} sx={styles.heroDiv}>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <HeroV2 data={heroData} withForm />
+      <Box sx={styles.heroContainer}>
+        <Box sx={styles.heroWrapper}>
+          <Grid container spacing={3} sx={styles.heroGrid}>
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+              <Box sx={styles.heroContent}>
+                <HeroV2 data={heroData} withForm />
+              </Box>
             </Grid>
-            <Grid
-              item
-              lg={6}
-              md={12}
-              sm={12}
-              xs={12}
-              sx={{ margin: { xs: "24px 0", lg: "0" } }}
-            >
-              <Form />
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+              <Box sx={styles.formWrapper}>
+                <Form />
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -213,7 +208,6 @@ const IgcsePage = async () => {
 
       {/* FAQs Section */}
       <Box sx={styles.verticalMargin}>
-        {/* <FrequentlyQuestions data={faqsData} /> */}
         <Faqs />
       </Box>
 
@@ -225,27 +219,29 @@ const IgcsePage = async () => {
 export default IgcsePage;
 
 const styles = {
-  verticalMargin: { marginY: { xs: "5vh", md: "6vh" } },
-  heroContanier: {
-    paddingTop: {
-      xs: "96px",
-      sm: "120px",
-      md: "120px",
-      lg: 0,
-      xl: 0,
-    },
-    height: { xs: "auto", lg: "100vh" },
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    paddingX: { xs: "3vw", sm: "3vw", lg: "0" },
-    maxWidth: "100%",
-    overflow: "hidden",
+  verticalMargin: { 
+    my: 3 // Simplified margin
   },
-  heroDiv: {
-    alignItems: "center",
-    padding: "100 0",
-    maxWidth: "100%",
+  heroContainer: {
+    pt: { xs: 12, lg: 9 }, // Simplified padding
+    minHeight: { xs: "auto", lg: "90vh" },
     display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    px: { xs: 2, lg: 6 }, // Simplified padding
+  },
+  heroWrapper: {
+    width: "100%",
+    maxWidth: 1400,
+  },
+  heroGrid: {
+    alignItems: "center",
+  },
+  heroContent: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  formWrapper: {
+    pt: { xs: 3, lg: 0 },
   },
 };

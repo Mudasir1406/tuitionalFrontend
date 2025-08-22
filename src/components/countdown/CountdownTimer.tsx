@@ -29,32 +29,25 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     minutes: 0,
     seconds: 0,
   });
-  const [countdownData, setCountdownData] = useState<CountdownData | null>(
-    null
-  );
-  const [isLoading, setIsLoading] = useState(true);
+  const [countdownData, setCountdownData] = useState<CountdownData | null>({
+    targetDate: new Date(Date.now() + targetDays * 24 * 60 * 60 * 1000).toISOString(),
+    title: title,
+    isActive: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    // Fetch countdown data from database
+    // Fetch countdown data from database in background
     const fetchCountdownData = async () => {
       try {
         const data = await getCountdownData();
         setCountdownData(data);
       } catch (error) {
         console.error("Failed to fetch countdown data:", error);
-        // Use fallback data if database fails
-        const fallbackDate = new Date();
-        fallbackDate.setDate(fallbackDate.getDate() + targetDays);
-        setCountdownData({
-          targetDate: fallbackDate.toISOString(),
-          title: title,
-          isActive: true,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        });
-      } finally {
-        setIsLoading(false);
+        // Keep fallback data if database fails
       }
     };
 
@@ -95,19 +88,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     return () => clearInterval(timer);
   }, [countdownData]);
 
-  // Scroll detection for sticky behavior
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if user has scrolled past the header (70px)
-      const headerHeight = 70;
-
-      const scrollPosition = window.scrollY;
-      setIsSticky(scrollPosition > headerHeight);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Remove scroll detection - countdown will be sticky by default
+  // Header scrolls away naturally, countdown stays at top
 
   const formatNumber = (num: number): string => {
     return num.toString().padStart(2, "0");
@@ -119,7 +101,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }
 
   return (
-    <Box sx={isSticky ? styles.stickyContainer : styles.belowHeaderContainer}>
+    <Box sx={styles.stickyContainer}>
       <Box sx={styles.countdownBox}>
         <Typography
           variant="body2"
@@ -212,17 +194,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 export default CountdownTimer;
 
 const styles = {
-  belowHeaderContainer: {
-    position: "fixed",
-    top: "70px", // Right after header height
-    left: "0",
-    right: "0",
-    zIndex: 1000,
-    width: "100%",
-    padding: "0",
-  },
   stickyContainer: {
-    position: "fixed",
+    position: "sticky",
     top: 0,
     left: "0",
     right: "0",
