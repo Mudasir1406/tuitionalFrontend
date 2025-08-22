@@ -25,6 +25,11 @@ const TutorSectionV2 = dynamic(
   { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
+const FormV2Dialog = dynamic(
+  () => import("@/components/grade-subject-level/form/formV2Dialog"),
+  { ssr: false, loading: () => null }
+);
+
 const BenifitsSectionV2 = dynamic(
   () =>
     import(
@@ -63,6 +68,19 @@ const Faqs = dynamic(() => import("@/components/home/faqs"), {
   loading: () => <Box sx={{ height: "300px" }} />,
 });
 
+const TrustpilotReview = dynamic(
+  () => import("@/components/trustpilot-review/TrustpilotReview"),
+  {
+    ssr: false,
+    loading: () => <Box sx={{ height: "400px" }} />,
+  }
+);
+
+const FooterV2 = dynamic(() => import("@/components/footerV2"), {
+  ssr: true,
+  loading: () => <Box sx={{ height: "500px" }} />,
+});
+
 const IgcsePage = () => {
   // Remove blocking data fetches - components will fetch their own data
 
@@ -70,8 +88,7 @@ const IgcsePage = () => {
   const heroData = {
     header: "Guaranteed A* Grades: The #1 IGCSE Tutors Are Here to Help.",
     headerTag: "h1",
-    paragraph:
-      " ",
+    paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
   };
@@ -175,7 +192,14 @@ const IgcsePage = () => {
       <Box sx={styles.verticalMargin}>
         <TutorSectionV2 data={tutorSectionData} />
       </Box>
+      <Box sx={styles.verticalMargin}>
+        <SectionsBoxV2 />
+      </Box>
 
+      {/* Trustpilot Reviews Carousel */}
+      <Box sx={styles.verticalMargin}>
+        <TrustpilotCarousel />
+      </Box>
       {/* Benefits Section */}
       <Box sx={styles.verticalMargin}>
         <BenifitsSectionV2 data={benefitsSectionData} />
@@ -187,11 +211,6 @@ const IgcsePage = () => {
           title="Popular IGCSE Subjects We Cover"
           headerTag="h2"
         />
-      </Box>
-
-      {/* Trustpilot Reviews Carousel */}
-      <Box sx={styles.verticalMargin}>
-        <TrustpilotCarousel />
       </Box>
 
       {/* Student Says Section */}
@@ -214,7 +233,8 @@ const IgcsePage = () => {
         <Faqs />
       </Box>
 
-      {/* <ServerFooter /> */}
+      {/* Footer */}
+      <FooterV2 />
     </Box>
   );
 };

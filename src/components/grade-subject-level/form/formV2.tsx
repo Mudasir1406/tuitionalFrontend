@@ -193,7 +193,13 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
     }).catch(error => {
       console.error("Filter data loading failed:", error);
       // Use fallback empty arrays so form still works
-      setFilterData({ grade: [], curriculum: [], subject: [] });
+      setFilterData({ 
+        grade: [], 
+        curriculum: [], 
+        subject: [], 
+        type: [], 
+        id: "" 
+      });
     });
   }, []);
 
