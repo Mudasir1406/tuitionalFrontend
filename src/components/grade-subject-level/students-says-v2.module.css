@@ -114,14 +114,21 @@
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
     .mobileContainer {
-      width: 90%;
-      margin: 0 auto;
-      padding: 0 5%;
+      width: 100dvw;
+      margin-left: calc(-50dvw + 50%);
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    .mobileCarousel {
+      width: 100%;
+      padding: 0 5dvw;
       box-sizing: border-box;
     }
     
     .mobileVideoItem {
-      padding: 0 10px;
+      min-width: 100%;
+      padding: 0 2dvw;
       box-sizing: border-box;
     }
     
@@ -134,12 +141,14 @@
     }
     
     .mobileCard {
-      max-width: calc(100% - 20px);
+      width: 100%;
+      max-width: 90dvw;
       margin: 0 auto;
     }
     
     .mobileCardMedia {
-      max-width: calc(100% - 20px);
+      width: 100%;
+      max-width: 90dvw;
       margin: 0 auto;
     }
   }
