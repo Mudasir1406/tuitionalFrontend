@@ -1,5 +1,5 @@
 'use client';
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { leagueSpartan } from "@/app/fonts";
 
@@ -13,26 +13,38 @@ interface IProps {
   headerTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
-// Hardcoded IGCSE subjects data with chalky/very light colors
+// Hardcoded IGCSE subjects data 
 const hardcodedSubjects: Subject[] = [
-  { name: "Mathematics", color: "#FFF5F5" },
-  { name: "English Language", color: "#F0FFFF" },
-  { name: "Physics", color: "#F0F8FF" },
-  { name: "Chemistry", color: "#F5FFFA" },
-  { name: "Biology", color: "#FFFFFE" },
-  { name: "Economics", color: "#FAF0E6" },
-  { name: "Business Studies", color: "#F0FFF0" },
-  { name: "Computer Science", color: "#FFFFF0" },
-  { name: "Geography", color: "#F8F8FF" },
-  { name: "History", color: "#FFF8DC" },
-  { name: "Art & Design", color: "#F0FFFF" },
-  { name: "French", color: "#FFF0F5" }
+  { name: "Mathematics", color: "" },
+  { name: "English Language", color: "" },
+  { name: "Physics", color: "" },
+  { name: "Chemistry", color: "" },
+  { name: "Biology", color: "" },
+  { name: "Economics", color: "" },
+  { name: "Business Studies", color: "" },
+  { name: "Computer Science", color: "" },
+  { name: "Geography", color: "" },
+  { name: "History", color: "" },
+  { name: "Art & Design", color: "" },
+  { name: "French", color: "" }
 ];
+
+// Color logic for mobile: left cards (#e7f1f7), right cards (#c9ebff)
+const getCardColor = (index: number, isMobile: boolean) => {
+  if (!isMobile) {
+    // Desktop: alternating colors
+    return index % 2 === 0 ? "#e7f1f7" : "#c9ebff";
+  }
+  // Mobile: left column (#e7f1f7), right column (#c9ebff)
+  return index % 2 === 0 ? "#e7f1f7" : "#c9ebff";
+};
 
 const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({ 
   title = "Popular IGCSE Subjects",
   headerTag = "h2"
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box sx={{ paddingX: "5vw" }}>
@@ -49,28 +61,31 @@ const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({
 
       <Box>
         <Grid container spacing={2} justifyContent="center">
-          {hardcodedSubjects.map((item, index) => (
-            <Grid item xs={6} sm={6} md={3} lg={3} xl={2} key={index}>
-              <Box sx={{
-                ...style.cardsBoxes,
-                background: item.color,
-                ":hover": {
-                  ...style.cardsBoxes[":hover"],
-                  background: item.color,
-                  opacity: 0.8,
-                }
-              }}>
-                <Typography
-                  sx={style.subjects}
-                  className={leagueSpartan.className}
-                  variant="caption"
-                  component={"p"}
-                >
-                  {item.name}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
+          {hardcodedSubjects.map((item, index) => {
+            const cardColor = getCardColor(index, isMobile);
+            return (
+              <Grid item xs={6} sm={6} md={3} lg={3} xl={2} key={index}>
+                <Box sx={{
+                  ...style.cardsBoxes,
+                  background: cardColor,
+                  ":hover": {
+                    ...style.cardsBoxes[":hover"],
+                    background: cardColor,
+                    opacity: 0.8,
+                  }
+                }}>
+                  <Typography
+                    sx={style.subjects}
+                    className={leagueSpartan.className}
+                    variant="caption"
+                    component={"p"}
+                  >
+                    {item.name}
+                  </Typography>
+                </Box>
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
     </Box>
