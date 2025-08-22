@@ -17,3 +17,20 @@ export const addFormData = async (
     throw error;
   }
 };
+
+export const addFormDatav2 = async (
+  formType: "lead-ppc",
+  formData: any
+) => {
+  try {
+    const docRef = await addDoc(
+      collection(db, `tuitional-forms/${formType}/form`),
+      formData
+    );
+    console.log("Document written with ID: ", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    throw error;
+  }
+};

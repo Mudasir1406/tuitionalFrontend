@@ -26,11 +26,11 @@ import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { addFormData } from "@/utils/globalFunction";
+import { addFormData, addFormDatav2 } from "@/utils/globalFunction";
 // import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
-import { sendForm } from "@/services/contact-form/contact-form";
+import { sendForm, sendFormV2 } from "@/services/contact-form/contact-form";
 
 type IProps = {
   background?: any;
@@ -49,7 +49,7 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
     country: "",
     ip: "",
     pageURL: "",
-    sheetName: "Lead Forms",
+    sheetName: "PPC Leads",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -135,10 +135,10 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
       return;
     }
 
-    await addFormData("lead", formData);
+    await addFormDatav2("lead-ppc", formData);
 
     try {
-      await sendForm(formData);
+      await sendFormV2(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({
@@ -165,7 +165,7 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
         Curriculum: "",
         Subject: "",
         message: "",
-        sheetName: "Lead Forms",
+        sheetName: "PPC Leads",
       });
     }
   };
