@@ -9,7 +9,7 @@ import girl3 from "../../../public/assets/images/static/girl3.png";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-const PopUpButton = dynamic(() => import("../pop-up-button"));
+const PopUpButtonV2 = dynamic(() => import("../pop-up-buttonV2"));
 
 import dynamic from "next/dynamic";
 
@@ -174,7 +174,7 @@ const GetStartedV2: React.FunctionComponent = () => {
                 >
                   {item.description}
                 </Typography>
-                <PopUpButton sx={styles.containedBtn} href="popup" text={item.ButtonText} />
+                <PopUpButtonV2 sx={styles.containedBtn} href="popup" text={item.ButtonText} />
               </Box>
             </Box>
           ))}
@@ -420,7 +420,7 @@ const GetStartedBox: React.FC<Props> = ({
       >
         {description}
       </Typography>
-      <PopUpButton sx={styles.containedBtn} href="popup" text={ButtonText} />
+      <PopUpButtonV2 sx={styles.containedBtn} href="popup" text={ButtonText} />
     </Box>
   );
 };

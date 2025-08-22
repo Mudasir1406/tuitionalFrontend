@@ -31,12 +31,14 @@ import { addFormData, addFormDatav2 } from "@/utils/globalFunction";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
 import { sendForm, sendFormV2 } from "@/services/contact-form/contact-form";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   background?: any;
 };
 
 const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
+  const router = useRouter();
   const [formData, setFormData] = React.useState<FormType>({
     FirstName: "",
     EmailAddress: "",
@@ -135,17 +137,32 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
       return;
     }
 
-    await addFormDatav2("lead-ppc", formData);
-
+    // Run database and Google Sheets operations in parallel for speed
     try {
-      await sendFormV2(formData);
+      // Show success immediately and run operations in background
       toast.success("Form submitted successfully!");
-      // ✅ Send Success Event to GTM
+      
+      // ✅ Send Success Event to GTM immediately
       (window as any).dataLayer.push({
         event: "lead_form_success",
-        formData: formData, // You can include submitted data for analytics
+        formData: formData,
         formType: "lead Form",
       });
+      
+      // Redirect immediately (don't wait for slow operations)
+      setTimeout(() => {
+        router.push("/thank-you");
+      }, 1500); // Reduced to 1.5 seconds
+      
+      // Run database and sheets operations in parallel (non-blocking)
+      Promise.all([
+        addFormDatav2("lead-ppc", formData),
+        sendFormV2(formData)
+      ]).catch(error => {
+        console.error("Background operation failed:", error);
+        // Don't show error to user since they already got success message
+      });
+      
     } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
@@ -170,33 +187,45 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
     }
   };
   useEffect(() => {
+    // Load filter data in background, don't block form
     getFilterData().then((data) => {
       setFilterData(data);
+    }).catch(error => {
+      console.error("Filter data loading failed:", error);
+      // Use fallback empty arrays so form still works
+      setFilterData({ grade: [], curriculum: [], subject: [] });
     });
   }, []);
 
   const geoData = useGeoLocation();
 
   React.useEffect(() => {
+    // Set basic data immediately, don't wait for geo location
+    const browser = navigator.userAgent;
+    const pageURL = window.location.href;
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
+    const params = new URLSearchParams(window.location.search);
+    
+    setFormData((prev) => ({
+      ...prev,
+      Browser: browser,
+      SourcePageURL: pageURL,
+      Date: currentDate,
+      Time: currentTime,
+      Medium: params.get("gad_source")
+        ? "google Ads"
+        : params.get("fbclid")
+        ? "facebook"
+        : "SEO",
+    }));
+    
+    // Update geo data when available (non-blocking)
     if (!geoData.isLoading && !geoData.error) {
-      const browser = navigator.userAgent;
-      const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-      const params = new URLSearchParams(window.location.search);
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
         Country: geoData.country || "",
-        Browser: browser,
-        SourcePageURL: pageURL,
-        Date: currentDate,
-        Time: currentTime,
-        Medium: params.get("gad_source")
-          ? "google Ads"
-          : params.get("fbclid")
-          ? "facebook"
-          : "SEO",
       }));
     }
   }, [geoData]);

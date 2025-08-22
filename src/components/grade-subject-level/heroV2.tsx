@@ -5,6 +5,7 @@ import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
 import CircleIcon from "@mui/icons-material/Circle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { PageData } from "@/types/grade-subject-level.types";
 
 type IProps = {
@@ -207,81 +208,133 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
             },
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "row",
-                lg: "row",
-              },
-              alignItems: {
-                xs: "center",
-                lg: "flex-start",
-              },
-              justifyContent: {
-                xs: "center",
-                lg: "start",
-              },
-              marginTop: { xs: "1vh", md: "4vh" },
-
-              gap: "1rem",
-            }}
-          >
+          {withForm ? (
+            // IGCSE Bullet Points with Check Icons
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  marginTop: { xs: "2vh", md: "3vh" },
+                  marginBottom: "2vh",
+                }}
+              >
+                {[
+                  "1:1 Live Tutors",
+                  "Qualified, Vetted Tutors", 
+                  "Interactive Learning",
+                  "Flexible Scheduling",
+                  "Parent & Student Portal"
+                ].map((feature, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: {
+                        xs: "center",
+                        lg: "flex-start",
+                      },
+                    }}
+                  >
+                    <CheckCircleIcon
+                      sx={{
+                        color: "#22C55E",
+                        fontSize: "1.2rem",
+                        marginRight: "8px",
+                      }}
+                    />
+                    <Typography
+                      variant="body2"
+                      className={leagueSpartan.className}
+                      component="span"
+                      sx={{
+                        fontWeight: 500,
+                        color: "#374151",
+                      }}
+                    >
+                      {feature}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+              
+              {/* Bottom tagline */}
+             
+            </Box>
+          ) : (
+            // Original Trustpilot section for other pages
             <Box
               sx={{
                 display: "flex",
-                alignItems: "center",
+                flexDirection: {
+                  xs: "row",
+                  lg: "row",
+                },
+                alignItems: {
+                  xs: "center",
+                  lg: "flex-start",
+                },
+                justifyContent: {
+                  xs: "center",
+                  lg: "start",
+                },
+                marginTop: { xs: "1vh", md: "4vh" },
+                gap: "1rem",
               }}
             >
-              <Image
-                src={greenstar}
-                alt="img"
-                style={{ height: "3vh", width: "3vh" }}
-              />
-              <Typography
+              <Box
                 sx={{
-                  //   fontSize: "2.3vh",
-                  padding: ".7vh 0 0 1vh",
-                  //   fontWeight: 600,
+                  display: "flex",
+                  alignItems: "center",
                 }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle2"
               >
-                Trustpilot
-              </Typography>
-            </Box>
+                <Image
+                  src={greenstar}
+                  alt="img"
+                  style={{ height: "3vh", width: "3vh" }}
+                />
+                <Typography
+                  sx={{
+                    padding: ".7vh 0 0 1vh",
+                  }}
+                  className={leagueSpartan.className}
+                  component={"p"}
+                  variant="subtitle2"
+                >
+                  Trustpilot
+                </Typography>
+              </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                // gap: "1rem",
-              }}
-            >
-              <Typography
+              <Box
                 sx={{
-                  // fontSize: { lg: "2vh", xs: "1.7vh" },
-                  // fontWeight: 400,
-                  padding: "1vh 0 0 0",
+                  display: "flex",
+                  alignItems: "center",
                 }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="caption"
               >
-                Excellent (4.7/5)
-              </Typography>
-              <Image
-                src={greenstars}
-                alt="img"
-                style={{
-                  height: "3vh",
-                  width: "14vh",
-                  padding: ".7vh 0 0 2vh",
-                }}
-              />
+                <Typography
+                  sx={{
+                    padding: "1vh 0 0 0",
+                  }}
+                  className={leagueSpartan.className}
+                  component={"p"}
+                  variant="caption"
+                >
+                  Excellent (4.7/5)
+                </Typography>
+                <Image
+                  src={greenstars}
+                  alt="img"
+                  style={{
+                    height: "3vh",
+                    width: "14vh",
+                    padding: ".7vh 0 0 2vh",
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
+          )}
         </Box>
       </Box>
     </>
@@ -296,6 +349,7 @@ const styles = {
       // lg: "35vw",
       sm: "100%",
     },
+    letterSpacing: "-0.5px", // Reduced letter spacing
     textAlign: {
       xs: "center",
       sm: "center",
