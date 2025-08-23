@@ -37,7 +37,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     updatedAt: new Date().toISOString(),
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
 
   useEffect(() => {
     // Fetch countdown data from database in background
@@ -88,8 +88,23 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     return () => clearInterval(timer);
   }, [countdownData]);
 
-  // Remove scroll detection - countdown will be sticky by default
-  // Header scrolls away naturally, countdown stays at top
+  // Scroll detection to change to fixed positioning
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const headerHeight = 70; // Approximate header height
+      
+      // Switch to fixed when scrolled past header
+      if (scrollPosition > headerHeight) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const formatNumber = (num: number): string => {
     return num.toString().padStart(2, "0");
@@ -101,7 +116,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }
 
   return (
-    <Box sx={styles.stickyContainer}>
+    <Box sx={{
+      ...styles.stickyContainer,
+      position: isFixed ? "fixed" : "sticky",
+    }}>
       <Box sx={styles.countdownBox}>
         <Typography
           variant="body2"
@@ -195,13 +213,12 @@ export default CountdownTimer;
 
 const styles = {
   stickyContainer: {
-    position: "sticky",
     top: 0,
-    left: "0",
-    right: "0",
+    left: 0,
+    right: 0,
     zIndex: 1000,
     width: "100%",
-    padding: "0",
+    padding: 0,
   },
   countdownBox: {
     background: "#006dac",
