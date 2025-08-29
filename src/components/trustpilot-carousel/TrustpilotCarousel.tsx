@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid } from "@mui/material";
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./TrustpilotCarousel.module.css";
 
@@ -14,8 +14,11 @@ interface Review {
   timePosted: string;
   isVerified: boolean;
 }
-
-const TrustpilotCarousel: React.FC = () => {
+type IProps = {
+  title?: string;
+  text?: string;
+};
+const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
@@ -30,7 +33,7 @@ const TrustpilotCarousel: React.FC = () => {
       text: "My teacher explains the lessons in a really good way because it makes everything understandable and easy to remember",
       rating: 5,
       timePosted: "August 22, 2025",
-      isVerified: true
+      isVerified: true,
     },
     {
       id: 2,
@@ -39,7 +42,7 @@ const TrustpilotCarousel: React.FC = () => {
       text: "My experience with tuitional was great, i went from a D to an A! i highly recommend",
       rating: 5,
       timePosted: "August 14, 2025",
-      isVerified: true
+      isVerified: true,
     },
     {
       id: 3,
@@ -48,7 +51,7 @@ const TrustpilotCarousel: React.FC = () => {
       text: "Praised helpful teachers and admin team. Great for board exam preparation, though there were some technical issues with the LMS website.",
       rating: 4,
       timePosted: "August 11, 2025",
-      isVerified: true
+      isVerified: true,
     },
     {
       id: 4,
@@ -57,7 +60,7 @@ const TrustpilotCarousel: React.FC = () => {
       text: "Highlighted interactive sessions and excellent IGCSE exam preparation. The teaching quality was great with occasional minor issues with timing.",
       rating: 4,
       timePosted: "August 6, 2025",
-      isVerified: true
+      isVerified: true,
     },
     {
       id: 5,
@@ -66,7 +69,7 @@ const TrustpilotCarousel: React.FC = () => {
       text: "Enjoyed classes that helped him understand more than school, praised friendly tutors who made learning enjoyable and effective.",
       rating: 5,
       timePosted: "February 11, 2025",
-      isVerified: true
+      isVerified: true,
     },
     {
       id: 6,
@@ -75,8 +78,8 @@ const TrustpilotCarousel: React.FC = () => {
       text: "The personalized approach and expert tutors made all the difference. Highly recommend for any IGCSE student struggling with their subjects.",
       rating: 5,
       timePosted: "January 15, 2025",
-      isVerified: true
-    }
+      isVerified: true,
+    },
   ];
 
   // Auto-scroll functionality
@@ -84,7 +87,7 @@ const TrustpilotCarousel: React.FC = () => {
     if (!isAutoScrolling) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000);
@@ -92,12 +95,13 @@ const TrustpilotCarousel: React.FC = () => {
     return () => clearInterval(interval);
   }, [isAutoScrolling, reviews.length]);
 
-
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <span
         key={index}
-        className={`${styles.star} ${index < rating ? styles.starFilled : styles.starEmpty}`}
+        className={`${styles.star} ${
+          index < rating ? styles.starFilled : styles.starEmpty
+        }`}
       >
         ★
       </span>
@@ -107,14 +111,15 @@ const TrustpilotCarousel: React.FC = () => {
   const getVisibleReviews = () => {
     // For mobile: show 1 review
     // For desktop: show 3 reviews
-    const reviewsToShow = (typeof window !== 'undefined' && window.innerWidth < 768) ? 1 : 3;
+    const reviewsToShow =
+      typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3;
     const visibleReviews = [];
-    
+
     for (let i = 0; i < reviewsToShow; i++) {
       const reviewIndex = (currentIndex + i) % reviews.length;
       visibleReviews.push(reviews[reviewIndex]);
     }
-    
+
     return visibleReviews;
   };
 
@@ -126,8 +131,8 @@ const TrustpilotCarousel: React.FC = () => {
     };
 
     handleResize(); // Set initial visible reviews
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [currentIndex]);
 
   // Touch handlers for swipe functionality
@@ -142,7 +147,7 @@ const TrustpilotCarousel: React.FC = () => {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -169,18 +174,18 @@ const TrustpilotCarousel: React.FC = () => {
           variant="h4"
           className={`${leagueSpartan.className} ${styles.title}`}
         >
-          What Our Students Say
+          {title ? title : "What Our Students Say"}
         </Typography>
         <Typography
           variant="body1"
           className={`${leagueSpartan.className} ${styles.subtitle}`}
         >
-          Real reviews from real IGCSE students and parents
+         {text&& text} 
         </Typography>
       </Box>
 
       {/* Carousel */}
-      <Box 
+      <Box
         className={styles.carouselWrapper}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
