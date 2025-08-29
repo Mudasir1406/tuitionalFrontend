@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import dynamic from "next/dynamic";
-import { Metadata } from "next/metadata";
+import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
 import styles from "./rtl-online.module.css";
 
