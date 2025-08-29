@@ -11,9 +11,10 @@ import { PageData } from "@/types/grade-subject-level.types";
 type IProps = {
   data: PageData["hero_section"];
   withForm?: boolean;
+  bulletPoints: string[];
 };
 
-const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
+const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
   // console.log("heroComp", data);
   return (
     <>
@@ -56,8 +57,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
               // lg: "70vh",
             },
           }}
-        >
-        </Box>
+        ></Box>
 
         <Box
           sx={{
@@ -79,13 +79,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
                   marginBottom: "2vh",
                 }}
               >
-                {[
-                  "1:1 Live Tutors",
-                  "Qualified, Vetted Tutors", 
-                  "Interactive Learning",
-                  "Flexible Scheduling",
-                  "Parent & Student Portal"
-                ].map((feature, index) => (
+                {bulletPoints?.map((feature, index) => (
                   <Box
                     key={index}
                     sx={{
@@ -118,9 +112,8 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
                   </Box>
                 ))}
               </Box>
-              
+
               {/* Bottom tagline */}
-             
             </Box>
           ) : (
             // Original Trustpilot section for other pages

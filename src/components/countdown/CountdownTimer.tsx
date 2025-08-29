@@ -5,6 +5,7 @@ import { leagueSpartan } from "@/app/fonts";
 import {
   getCountdownData,
   CountdownData,
+  PageType,
 } from "@/services/countdown/countdown";
 
 interface TimeLeft {
@@ -40,10 +41,22 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   const [isFixed, setIsFixed] = useState(false);
 
   useEffect(() => {
+    // Detect page type from current URL
+    const detectPageType = (): PageType => {
+      if (typeof window !== 'undefined') {
+        const path = window.location.pathname.toLowerCase();
+        if (path.includes('/igcse')) return 'igcse';
+        if (path.includes('/gcse')) return 'gcse';
+        if (path.includes('/a-level')) return 'a-level';
+      }
+      return 'igcse'; // default fallback
+    };
+
     // Fetch countdown data from database in background
     const fetchCountdownData = async () => {
       try {
-        const data = await getCountdownData();
+        const pageType = detectPageType();
+        const data = await getCountdownData(pageType);
         setCountdownData(data);
       } catch (error) {
         console.error("Failed to fetch countdown data:", error);

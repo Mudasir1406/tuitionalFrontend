@@ -1,6 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Card, CardMedia, Typography, Grid, IconButton } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardMedia,
+  Typography,
+  Grid,
+  IconButton,
+} from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { getVideoReviews } from "@/services/video-reviews/video-reviews";
@@ -8,9 +15,10 @@ import styles from "./students-says-v2.module.css";
 
 interface StudentSaysV2Props {
   data: PageData["what_our_student_says"];
+  title?: string;
 }
 
-const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
+const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data, title }) => {
   const [videoData, setVideoData] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -39,8 +47,8 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleDotClick = (index: number) => {
@@ -59,7 +67,7 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -82,7 +90,7 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
         className={`${leagueSpartan.className} ${styles.heading}`}
         component={data?.headerTag as keyof JSX.IntrinsicElements}
         dangerouslySetInnerHTML={{
-          __html: data?.header,
+          __html: title ? title : data?.header,
         }}
       />
       <Typography
@@ -95,12 +103,14 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
       />
 
       {isLoading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+        <Box
+          sx={{ display: "flex", justifyContent: "center", padding: "2rem" }}
+        >
           <Typography>Loading videos...</Typography>
         </Box>
       ) : isMobile ? (
         // Mobile: Horizontal scrolling layout
-        <Box 
+        <Box
           className={styles.mobileContainer}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -126,14 +136,16 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data }) => {
               </Box>
             ))}
           </Box>
-          
+
           {/* Dot indicators for mobile */}
           {videoData.length > 1 && (
             <Box className={styles.dotContainer}>
               {videoData.map((_, index) => (
                 <Box
                   key={index}
-                  className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
+                  className={`${styles.dot} ${
+                    index === currentIndex ? styles.dotActive : ""
+                  }`}
                   onClick={() => handleDotClick(index)}
                 />
               ))}
