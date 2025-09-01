@@ -1,0 +1,91 @@
+.blogs {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.blogsRTL {
+  direction: rtl;
+}
+
+.blogContainer {
+  display: grid;
+  /* grid-template-columns: repeat(1, 1fr);  */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 24px;
+  padding: 20px;
+}
+
+.blogContainerRTL {
+  direction: rtl;
+}
+
+.loadMoreButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.fadeEffect {
+  position: absolute;
+  bottom: 2vh; /* Adjust depending on the "More" button's position */
+  left: 0;
+  right: 0;
+  height: 75vh; /* Adjust height of the fade effect */
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    white
+  ); /* Adjust gradient to match your background */
+  pointer-events: none; /* Ensures it doesn't block clicks */
+  z-index: 10;
+}
+
+.containedButton {
+  display: flex;
+  align-self: center;
+  box-shadow: 6px 6px 6px 0px rgba(56, 182, 255, 0.1);
+  background-color: #38b6ff;
+  text-transform: none;
+  line-height: 18.4px;
+  text-align: center;
+
+  border-radius: 10px;
+  width: 160px;
+  padding: 18px;
+  margin: 20px auto;
+  transition: all 0.5s ease-in-out;
+  z-index: 11;
+}
+
+.containedButton:hover {
+  background-color: #38b6ff;
+  transform: scale(1.02);
+  box-shadow: 6px 6px 6px 0px #38b6ff75;
+}
+
+/* Medium Screens (Tablets) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .blogContainer {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .blogContainer {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+  }
+}
+
+/* Extra-Large Screens (Wide Desktops) */
+@media (min-width: 1441px) {
+  .blogContainer {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 4 columns for extra-large screens */
+  }
+}
