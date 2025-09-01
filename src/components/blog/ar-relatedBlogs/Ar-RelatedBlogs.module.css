@@ -1,0 +1,54 @@
+.container {
+  margin: 4rem 0;
+  padding: 2rem;
+}
+
+.containerRTL {
+  direction: rtl;
+  text-align: right;
+}
+
+.title {
+  color: #38b6ff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.titleRTL {
+  text-align: center;
+}
+
+.blogsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.blogsGridRTL {
+  direction: rtl;
+}
+
+.blogCard {
+  transition: transform 0.2s ease;
+}
+
+.blogCard:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 2rem 0;
+  }
+
+  .blogsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+}

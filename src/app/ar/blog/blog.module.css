@@ -1,0 +1,138 @@
+.container {
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: auto;
+}
+
+/* RTL specific container styles */
+.containerRTL {
+  direction: rtl;
+  justify-content: flex-start;
+}
+
+.grid-container {
+  height: 100%;
+  align-items: center;
+  margin: 0 28px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+  width: 100%;
+  grid-template-areas:
+    "hero"
+    "hero-info";
+}
+
+.hero-picture {
+  grid-area: hero-info;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  width: 100%;
+}
+
+/* RTL hero-picture adjustment */
+.containerRTL .hero-picture {
+  justify-content: flex-start;
+}
+
+.hero-picture::before {
+  content: "";
+  background-image: url("../../../../public/assets/images/static/girl-with-book.webp");
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  height: 80vh;
+  /* height: 400px; */
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .hero {
+    padding-top: 0vh;
+  }
+
+  .hero-picture::before {
+    height: 350px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero {
+    padding-top: 7vh;
+  }
+  .hero-picture::before {
+    height: 50vh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero {
+    padding-top: 6vh;
+  }
+
+  .hero-picture::before {
+    height: 50vh;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 90vw;
+  }
+  .hero-picture::before {
+    height: 50vh;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 90vw;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "hero hero-info";
+  }
+
+  /* RTL desktop grid adjustment */
+  .containerRTL .grid-container {
+    grid-template-areas: "hero-info hero";
+  }
+
+  .hero {
+    padding-top: 0;
+  }
+
+  .hero-picture {
+    background: none;
+    justify-content: flex-start;
+  }
+
+  /* RTL desktop hero-picture adjustment */
+  .containerRTL .hero-picture {
+    justify-content: flex-end;
+  }
+
+  .hero-picture::before {
+    height: 80vh;
+  }
+}
+
+.verticalMargin {
+  margin: 7vh 0;
+}
+
+@media (max-width: 991px) {
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+}

@@ -1,0 +1,385 @@
+.container {
+  padding: 0 5vw;
+}
+
+.containerRTL {
+  direction: rtl;
+}
+
+.blogSequencesRTL {
+  direction: rtl;
+}
+
+.blogContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.blogContainerRTL {
+  direction: rtl;
+}
+
+.componentWrapper {
+  margin-bottom: 2rem;
+}
+
+.componentWrapperRTL {
+  direction: rtl;
+}
+
+.blogContent {
+  margin: 2rem 0;
+}
+
+.blogContentRTL {
+  text-align: right;
+  direction: rtl;
+}
+
+.blogTitle {
+  margin-bottom: 1.5rem;
+  color: #38b6ff;
+}
+
+.blogTitleRTL {
+  text-align: right;
+}
+
+.content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.contentRTL {
+  text-align: right;
+  direction: rtl;
+}
+
+.contentRTL h1,
+.contentRTL h2,
+.contentRTL h3,
+.contentRTL h4,
+.contentRTL h5,
+.contentRTL h6 {
+  text-align: right;
+}
+
+.contentRTL p {
+  text-align: right;
+}
+
+.contentRTL ul,
+.contentRTL ol {
+  text-align: right;
+}
+
+.contentRTL li {
+  text-align: right;
+}
+
+.blogImage {
+  width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainRTL {
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+
+.mainLeft {
+  /* display: flex; */
+  flex: 0.2;
+  /* min-width: 20%; */
+}
+
+.mainLeftRTL {
+  order: 2;
+}
+
+.mainRight {
+  flex: 0.75;
+  /* max-width: 75%; */
+}
+
+.mainRightRTL {
+  direction: rtl;
+  text-align: right;
+  order: 1;
+}
+
+.typographyContent img {
+  max-width: 100%; /* Ensures image does not overflow */
+  width: 100%; /* Set a fixed width (adjust as needed) */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevents extra spacing around images */
+  margin: 0 auto; /* Centers the image */
+}
+
+.typographyContentRTL {
+  direction: rtl;
+  text-align: right;
+}
+
+.typographyContentRTL h1,
+.typographyContentRTL h2,
+.typographyContentRTL h3,
+.typographyContentRTL h4,
+.typographyContentRTL h5,
+.typographyContentRTL h6 {
+  text-align: right;
+}
+
+.typographyContentRTL p {
+  text-align: right;
+}
+
+.typographyContentRTL ul,
+.typographyContentRTL ol {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.typographyContentRTL li {
+  text-align: right;
+}
+
+.imageDiv {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  /* height: 100%; */
+  height: 40vh;
+}
+
+.verticalMargin {
+  margin: 7vh 0;
+}
+.bottomMargin {
+  margin-bottom: 7vh;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainRTL {
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+
+.mainLeft {
+  /* display: flex; */
+  flex: 0.2;
+  /* min-width: 20%; */
+}
+
+.mainLeftRTL {
+  order: 2;
+}
+
+.mainRight {
+  flex: 0.75;
+  /* max-width: 75%; */
+}
+
+.mainRightRTL {
+  direction: rtl;
+  text-align: right;
+  order: 1;
+}
+
+.typographyContent img {
+  max-width: 100%; /* Ensures image does not overflow */
+  width: 100%; /* Set a fixed width (adjust as needed) */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevents extra spacing around images */
+  margin: 0 auto; /* Centers the image */
+}
+
+.typographyContentRTL {
+  direction: rtl;
+  text-align: right;
+}
+
+.typographyContentRTL h1,
+.typographyContentRTL h2,
+.typographyContentRTL h3,
+.typographyContentRTL h4,
+.typographyContentRTL h5,
+.typographyContentRTL h6 {
+  text-align: right;
+}
+
+.typographyContentRTL p {
+  text-align: right;
+}
+
+.typographyContentRTL ul,
+.typographyContentRTL ol {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.typographyContentRTL li {
+  text-align: right;
+}
+
+.imageDiv {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  /* height: 100%; */
+  height: 40vh;
+}
+
+.blogImg {
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+@media (max-width: 575px) {
+  .blogImg {
+    height: 20vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+  .container {
+    padding: 0 4vw;
+  }
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .mainRTL {
+    flex-direction: column-reverse;
+  }
+  
+  .mainLeft {
+    flex: 1;
+  }
+  
+  .mainLeftRTL {
+    order: unset;
+  }
+  
+  .mainRight {
+    flex: 1;
+  }
+  
+  .mainRightRTL {
+    order: unset;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .mainRTL {
+    flex-direction: column-reverse;
+  }
+  
+  .mainLeft {
+    flex: 1;
+  }
+  
+  .mainLeftRTL {
+    order: unset;
+  }
+  
+  .mainRight {
+    flex: 1;
+  }
+  
+  .mainRightRTL {
+    order: unset;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .blogImg {
+    height: 30vh;
+  }
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 5vh;
+  }
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .mainRTL {
+    flex-direction: column-reverse;
+  }
+  
+  .mainLeft {
+    flex: 1;
+  }
+  
+  .mainLeftRTL {
+    order: unset;
+  }
+  
+  .mainRight {
+    flex: 1;
+  }
+  
+  .mainRightRTL {
+    order: unset;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .blogImg {
+    height: 35vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 7vh;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .blogImg {
+    height: 70vh;
+  }
+  .verticalMargin {
+    margin: 7vh 0;
+  }
+  .bottomMargin {
+    margin-bottom: 7vh;
+  }
+}
