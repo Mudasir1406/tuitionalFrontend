@@ -49,7 +49,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         <Grid container>
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
-              <GetStartedBox {...item} />
+              <GetStartedBox {...item as any} />
             </Grid>
           ))}
         </Grid>
@@ -73,7 +73,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index} style={styles.slide}>
-              <GetStartedBox {...item} />
+              <GetStartedBox {...item as any} />
             </SwiperSlide>
           ))}
         </Swiper>
