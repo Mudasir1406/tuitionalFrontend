@@ -5,7 +5,11 @@ import { useI18n } from "@/context/language-context";
 import { leagueSpartan } from "@/app/fonts";
 
 const LanguageSwitcher: React.FC = () => {
-  const { locale, toggleLanguage, isRTL } = useI18n();
+  const { locale, setLocale, isRTL } = useI18n();
+
+  const toggleLanguage = () => {
+    setLocale(locale === 'en' ? 'ar' : 'en');
+  };
 
   return (
     <Box sx={styles.container}>
