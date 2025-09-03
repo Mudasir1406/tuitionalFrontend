@@ -2,9 +2,9 @@
 import React from "react";
 import { Box } from "@mui/material";
 import dynamic from "next/dynamic";
-import { Metadata } from "next/metadata";
 import { SITE_URL } from "@/utils/env";
 import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
+import { Metadata } from "next";
 
 // Dynamic imports for optimization
 const Header = dynamic(() => import("@/components").then(mod => ({ default: mod.Header })), { ssr: true });
