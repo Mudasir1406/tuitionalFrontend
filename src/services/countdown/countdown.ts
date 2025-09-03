@@ -9,22 +9,53 @@ export interface CountdownData {
   updatedAt: string;
 }
 
+export type PageType = 'igcse' | 'gcse' | 'a-level';
+
+interface PageConfig {
+  title: string;
+  docId: string;
+}
+
+const PAGE_CONFIGS: Record<PageType, PageConfig> = {
+  'igcse': {
+    title: '🚀 IGCSE Early Bird Offer - Limited Time!',
+    docId: 'igcse-offer'
+  },
+  'gcse': {
+    title: '🚀 GCSE Early Bird Offer - Limited Time!',
+    docId: 'gcse-offer'
+  },
+  'a-level': {
+    title: '🚀 A-Level Early Bird Offer - Limited Time!',
+    docId: 'a-level-offer'
+  }
+};
+
 const handleFirestoreError = (error: FirestoreError) => {
   console.error("Firestore Error:", error.code, error.message);
   throw new Error(`Database error: ${error.message}`);
 };
 
+const getPageConfig = (pageType: PageType): PageConfig => {
+  return PAGE_CONFIGS[pageType];
+};
+
 // Fetch countdown data from Firebase
-export const getCountdownData = async (): Promise<CountdownData | null> => {
+export const getCountdownData = async (pageType: PageType = 'igcse'): Promise<CountdownData | null> => {
   try {
-    const docRef = doc(db, "countdown", "igcse-offer");
+    const config = getPageConfig(pageType);
+    const docRef = doc(db, "countdown", config.docId);
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      return docSnap.data() as CountdownData;
+      const data = docSnap.data() as CountdownData;
+      return {
+        ...data,
+        title: config.title
+      };
     } else {
       // If no countdown exists, create a default one (20 days from now)
-      const defaultCountdown = await createDefaultCountdown();
+      const defaultCountdown = await createDefaultCountdown(pageType);
       return defaultCountdown;
     }
   } catch (error) {
@@ -34,20 +65,21 @@ export const getCountdownData = async (): Promise<CountdownData | null> => {
 };
 
 // Create a default countdown (20 days from now)
-const createDefaultCountdown = async (): Promise<CountdownData> => {
+const createDefaultCountdown = async (pageType: PageType = 'igcse'): Promise<CountdownData> => {
   const now = new Date();
   const targetDate = new Date(now.getTime() + (20 * 24 * 60 * 60 * 1000)); // 20 days from now
+  const config = getPageConfig(pageType);
   
   const countdownData: CountdownData = {
     targetDate: targetDate.toISOString(),
-    title: "🚀 IGCSE Early Bird Offer - Limited Time!",
+    title: config.title,
     isActive: true,
     createdAt: now.toISOString(),
     updatedAt: now.toISOString()
   };
 
   try {
-    const docRef = doc(db, "countdown", "igcse-offer");
+    const docRef = doc(db, "countdown", config.docId);
     await setDoc(docRef, countdownData);
     return countdownData;
   } catch (error) {
@@ -57,9 +89,10 @@ const createDefaultCountdown = async (): Promise<CountdownData> => {
 };
 
 // Update countdown data (admin function)
-export const updateCountdownData = async (data: Partial<CountdownData>): Promise<void> => {
+export const updateCountdownData = async (data: Partial<CountdownData>, pageType: PageType = 'igcse'): Promise<void> => {
   try {
-    const docRef = doc(db, "countdown", "igcse-offer");
+    const config = getPageConfig(pageType);
+    const docRef = doc(db, "countdown", config.docId);
     const updateData = {
       ...data,
       updatedAt: new Date().toISOString()

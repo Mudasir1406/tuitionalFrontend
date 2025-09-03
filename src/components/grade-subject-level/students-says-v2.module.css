@@ -1,0 +1,216 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 5vw;
+  width: auto;
+  margin: 0 2vh;
+}
+
+.heading {
+  text-align: start;
+}
+
+.desc {
+  color: #2D2D2D;
+  width: 139vh;
+  text-align: center;
+  padding: 1vh 0 3vh 0;
+}
+
+/* Desktop Grid Styles */
+.card {
+  width: 100%;
+  height: 48vh;
+  border-radius: 20px;
+}
+
+.cardMedia {
+  width: 100%;
+  height: 48vh;
+  border-radius: 20px;
+}
+
+/* Mobile Carousel Styles */
+.mobileContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.mobileCarousel {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+}
+
+.mobileVideoItem {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.mobileCard {
+  width: 100%;
+  height: 165px;
+  border-radius: 20px;
+}
+
+.mobileCardMedia {
+  width: 100%;
+  height: 165px;
+  border-radius: 20px;
+}
+
+/* Dot Indicators */
+.dotContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  background-color: #38B6FF;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background-color: #38B6FF;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 3vw;
+    margin: 0;
+    /* width: 100%;  */
+  }
+  
+  .heading {
+    text-align: center;
+  }
+  
+  .desc {
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0 4vh 0;
+  }
+}
+
+/* iPhone Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .mobileContainer {
+      width: 100dvw;
+      margin-left: calc(-50dvw + 50%);
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    .mobileCarousel {
+      width: 100%;
+      padding: 0 5dvw;
+      box-sizing: border-box;
+    }
+    
+    .mobileVideoItem {
+      min-width: 100%;
+      padding: 0 2dvw;
+      box-sizing: border-box;
+    }
+    
+    .mobileVideoItem:first-child {
+      padding-left: 0;
+    }
+    
+    .mobileVideoItem:last-child {
+      padding-right: 0;
+    }
+    
+    .mobileCard {
+      width: 100%;
+      max-width: 90dvw;
+      margin: 0 auto;
+    }
+    
+    .mobileCardMedia {
+      width: 100%;
+      max-width: 90dvw;
+      margin: 0 auto;
+    }
+  }
+}
+
+/* iPhone specific fixes */
+@media only screen 
+  and (device-width: 375px) 
+  and (device-height: 667px) 
+  and (-webkit-device-pixel-ratio: 2),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 736px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 375px) 
+  and (device-height: 812px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px) 
+  and (-webkit-device-pixel-ratio: 2),
+  only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 390px) 
+  and (device-height: 844px) 
+  and (-webkit-device-pixel-ratio: 3),
+  only screen 
+  and (device-width: 428px) 
+  and (device-height: 926px) 
+  and (-webkit-device-pixel-ratio: 3) {
+  
+  .mobileContainer {
+    padding: 0 8%;
+  }
+  
+  .mobileVideoItem {
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+  
+  .mobileVideoItem:first-child {
+    padding-left: 0;
+  }
+  
+  .mobileVideoItem:last-child {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .card,
+  .cardMedia {
+    display: none;
+  }
+}

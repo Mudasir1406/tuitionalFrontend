@@ -1,0 +1,250 @@
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 3rem; */
+}
+
+.title {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #333;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.carouselContainer {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 1rem 0;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem;
+  min-width: max-content;
+}
+
+.tutorCard {
+  min-width: 220px;
+  max-width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
+  height: 280px;
+}
+
+.tutorCard:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.cardContent {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countryFlag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.avatar {
+  margin-bottom: 1rem !important;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px !important;
+  width: 100% !important;
+  height: 145px;
+}
+
+.nameRatingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.tutorName {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #333;
+  line-height: 1.2 !important;
+  text-align: left;
+  margin: 0 !important;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.icon {
+  color: #38b6ff;
+  font-size: 1rem !important;
+  min-width: 18px;
+}
+
+.statText {
+  color: #555 !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+}
+
+.ratingIcon {
+  color: #ffc107;
+  font-size: 1rem !important;
+}
+
+.ratingText {
+  color: #666;
+  font-weight: 600;
+  font-size: 0.85rem !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .tutorCard {
+    min-width: 200px;
+    max-width: 200px;
+    height: 260px;
+  }
+
+  .carouselTrack {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tutorCard {
+    min-width: 240px;
+    max-width: 240px;
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 2rem !important;
+  }
+
+  .avatar {
+    width: 100% !important;
+    height: 100px !important;
+  }
+
+  .tutorName {
+    font-size: 1.2rem !important;
+  }
+
+  .carouselTrack {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tutorCard {
+    min-width: 220px;
+    max-width: 220px;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem !important;
+  }
+
+  .avatar {
+    width: 100% !important;
+    height: 90px !important;
+  }
+
+  .tutorName {
+    font-size: 1.1rem !important;
+  }
+
+  .statText {
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+
+  .tutorCard {
+    min-width: 200px;
+    max-width: 200px;
+    padding: 0.875rem;
+    height: auto;
+  }
+
+  .avatar {
+    width: 100% !important;
+    height: 145px !important;
+  }
+
+  .tutorName {
+    font-size: 1rem !important;
+  }
+
+  .statItem {
+    margin-bottom: 0.5rem;
+  }
+
+  .statText {
+    font-size: 0.8rem !important;
+  }
+
+  .icon {
+    font-size: 1rem !important;
+  }
+}

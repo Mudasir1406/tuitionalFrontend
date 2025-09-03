@@ -1,6 +1,6 @@
 .main {
   /* border-radius: 16px; */
-  padding: 0 24px 10vh 24px;
+  padding: 0 24px 6vh 24px;
   /* padding-bottom: 10vh; */
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@
   background-color: white;
   padding: 16px;
   height: 140px;
-  
+
   /* box-shadow: inset 0px 6px 8px rgba(0, 0, 0, 0.05),
     inset -4px -4px 10px rgba(0, 0, 0, 0.15); */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -64,6 +64,9 @@
   .cards {
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
+  }
+  .smallCard {
+    height: 100px;
   }
   .main {
     /* padding: 5vh 24px; */

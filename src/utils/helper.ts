@@ -449,3 +449,14 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isNotEmpty = (value: any): boolean =>
   typeof value === "string" && value.trim() !== "";
+
+export async function hashSHA256(str: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str.trim().toLowerCase());
+  const hashBuffer = await window.crypto.subtle.digest("SHA-256", data);
+
+  // Convert buffer to hex string
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
