@@ -42,7 +42,6 @@ export const getDocumentsByName = async (collectionName: string) => {
       id: doc.id, // Document ID
       ...doc.data(), // Spread the document data
     }));
-    // console.log("Snapshot: query", documents);
     return documents;
   } catch (error) {
     console.error("Error getting documents: ", error);
@@ -73,19 +72,16 @@ export const getBlogData = async (slug: string, locale: string = "en"): Promise<
 
   try {
     const collectionName = locale === "ar" ? "blogs-v1-ar" : "blogs-v1-en";
-    console.log(`Fetching blog data for slug: ${slug} from collection: ${collectionName}`);
     const docRef = doc(db, collectionName, slug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const data = docSnap.data() as PageData;
-      console.log(`Found document in ${collectionName}:`, Object.keys(data));
       return data;
     } else {
       console.error("No such document for slug:", slug, "in collection:", collectionName);
       return null;
     }
   } catch (error) {
-    console.error("Error fetching blog data:", error);
     handleFirestoreError(error as FirestoreError);
     return null;
   }
@@ -171,7 +167,6 @@ export const getTutorsByFilter = async (
   const results: GroupDocument[] = Array.from(resultSet).map((item) =>
     JSON.parse(item)
   );
-  // console.log("Results for Tutors : ", results);
   return results;
 };
 

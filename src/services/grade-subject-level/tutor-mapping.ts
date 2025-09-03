@@ -97,7 +97,6 @@ export const getTutorsByFilterWithMapping = async (
   const mappedCurriculum = mapCurriculumToEnglish(curriculum);
   const mappedSubject = mapSubjectToEnglish(subject);
   
-  console.log(`Mapping: ${curriculum} -> ${mappedCurriculum}, ${subject} -> ${mappedSubject}`);
   
   // Call original function with mapped English values
   return getTutorsByFilter(mappedCurriculum, mappedSubject);

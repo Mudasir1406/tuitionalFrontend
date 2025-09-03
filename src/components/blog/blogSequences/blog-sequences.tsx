@@ -105,8 +105,6 @@ const BlogSequences: React.FC<IProps> = ({
 }) => {
   let isLeftSectionRendered = false; // Flag to track LeftSection rendering
 
-  console.log("GradeSubjectLevel", data);
-  // console.log("BlogSequences", allTags);
 
   const renderSection = (name: string) => {
     if (name.includes("heroSection")) {

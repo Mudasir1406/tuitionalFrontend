@@ -26,8 +26,6 @@ export type CardProps = {
 
 const ArTutorSection: React.FunctionComponent<IProps> = async ({ data }) => {
   const val = await getTutorsByFilterWithMapping(data.curriculum, data.subject);
-  // console.log("tutor data", data);
-  // console.log("tutor val", val);
 
   return (
     <div className={styles.main} style={{ direction: "rtl" }}>

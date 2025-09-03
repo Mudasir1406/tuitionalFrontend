@@ -62,7 +62,6 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
 
     if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
         newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "Invalid phone number";

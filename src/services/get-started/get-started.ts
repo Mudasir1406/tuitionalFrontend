@@ -26,7 +26,6 @@ export const getStartedData = async (
       });
     }
   });
-  console.log("getStarted", getStarted);
   return getStarted;
 };
 

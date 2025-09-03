@@ -29,7 +29,6 @@ interface Props {
 }
 
 const Hero = ({ data, timestamp, showSocial }: Props) => {
-  // console.log("timestamp", data);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 

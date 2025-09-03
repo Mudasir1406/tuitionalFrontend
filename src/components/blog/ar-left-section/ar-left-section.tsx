@@ -18,7 +18,6 @@ interface Props {
 }
 
 function ArLeftSection({ categories, tags }: Props) {
-  console.log("ArLeftSection", categories, "tags", tags);
   const router = useRouter();
   const [formData, setFormData] = useState({
     search: "",

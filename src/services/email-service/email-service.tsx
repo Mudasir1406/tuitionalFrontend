@@ -11,7 +11,6 @@ export const sendEmail = async (
     return response.data as { message: string };
   } catch (error) {
     // Handle the error case and return an empty array
-    console.log(error);
     return { message: "Somthing went wrong." } as { message: string };
   }
 };

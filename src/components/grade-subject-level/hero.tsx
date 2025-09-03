@@ -13,7 +13,6 @@ type IProps = {
 };
 
 const Hero: React.FC<IProps> = ({ data, withForm }) => {
-  // console.log("heroComp", data);
   return (
     <>
       <Box

@@ -106,12 +106,9 @@ const ArBlogSequences: React.FC<IProps> = ({
 }) => {
   let isLeftSectionRendered = false; // Flag to track LeftSection rendering
 
-  console.log("ArBlogSequences", data);
 
   const renderSection = (name: string) => {
     if (name.includes("heroSection")) {
-      // console.log("ArBlogSequences heroSection data:", data?.[name as keyof PageData]);
-      // console.log("ArBlogSequences socialShare value:", data?.[name as keyof PageData]?.socialShare);
       
       return (
         <>

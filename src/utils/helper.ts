@@ -182,7 +182,6 @@ export function replaceAltText(url: string, newAlt: string) {
   urlObj.searchParams.set("alt", newAlt);
 
   // Return the updated URL as a string
-  // console.log(urlObj.toString());
   return urlObj.toString();
 }
 
@@ -212,7 +211,6 @@ export const redirectToTrustpilot = () => {
 // };
 
 export const redirectToExternal = (url: string, newTab: boolean = false) => {
-  console.log("redirectToExternal", url);
   if (!url || typeof window === "undefined") return;
 
   if (newTab) {
@@ -246,7 +244,6 @@ export const scrollToApplyForm = () => {
 };
 
 export function generateMergedSchema(data: any) {
-  // console.log("generateMergedSchema", data);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
