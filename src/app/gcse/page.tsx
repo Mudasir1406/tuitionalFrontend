@@ -8,6 +8,7 @@ import HeaderV3 from "@/components/header-v3";
 import HeroV2 from "@/components/grade-subject-level/heroV2";
 import FormV2 from "@/components/grade-subject-level/form/formV2";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
+import FrequentlyQuestions from "@/components/grade-subject-level/faqs";
 
 // Progressive loading - only load when needed
 const CountdownTimer = dynamic(
@@ -63,45 +64,37 @@ const GetStartedV2 = dynamic(
   { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
-const Faqs = dynamic(() => import("@/components/home/faqs"), {
-  ssr: false,
-  loading: () => <Box sx={{ height: "300px" }} />,
-});
+// const Faqs = dynamic(() => import("@/components/home/faqs"), {
+//   ssr: false,
+//   loading: () => <Box sx={{ height: "300px" }} />,
+// });
 
 const FooterV2 = dynamic(() => import("@/components/footerV2"), {
   ssr: true,
   loading: () => <Box sx={{ height: "500px" }} />,
 });
 
-const IgcsePage = () => {
+const GcsePage = () => {
   // Remove blocking data fetches - components will fetch their own data
 
   // Hardcoded hero section data
   const heroData = {
     header:
-      "<span style='color: #38B6FF; font-size: inherit; font-weight: inherit; line-height: inherit;'>Guaranteed A* Grades!</span><br/>The #1 IGCSE Tutors Are Here to Help.",
+      "<span style='color: #38B6FF; font-size: inherit; font-weight: inherit; line-height: inherit;'>Achieve Outstanding GCSE Results!</span><br/>Top-Rated GCSE Tutors Are Here to Help.",
     headerTag: "h1",
     paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
   };
 
-  const heroBulletPoints = [
-    "1:1 Live Tutors",
-    "Qualified, Vetted Tutors",
-    "Interactive Learning",
-    "Flexible Scheduling",
-    "Parent & Student Portal",
-  ];
-
   // Data for tutor section - will fetch from tutors_data collection
   const tutorSectionData = {
     isShow: true,
-    header: "Meet Some Of Our Expert IGCSE Tutors",
+    header: "Meet Our Expert GCSE Tutors",
     headerTag: "h2",
     paragraph:
-      "Learn from qualified teachers with years of IGCSE teaching experience",
-    curriculum: "IGCSE", // This will be used to filter tutors from tutors_data collection
+      "Learn from qualified teachers with years of GCSE teaching experience",
+    curriculum: "GCSE", // This will be used to filter tutors from tutors_data collection
     subject: "", // Empty string will fetch all IGCSE tutors
     view: "Horizontal Carousel", // Set display format to use new horizontal carousel
     sequenceNumber: 1,
@@ -110,10 +103,10 @@ const IgcsePage = () => {
   // Data for benefits section - matches the expected igcse_tutoring_program structure
   const benefitsSectionData = {
     isShow: true,
-    section: "Why Choose Our IGCSE Program",
+    section: "Why Choose Our GCSE Program",
     sectionTag: "h2",
     paragraph:
-      "Discover the advantages of our comprehensive IGCSE tutoring program",
+      "Discover the advantages of our comprehensive GCSE tutoring program",
     buttonText: "Get Started",
     link: "/contact",
   };
@@ -121,37 +114,52 @@ const IgcsePage = () => {
   // Data for student testimonials
   const studentSaysData = {
     isShow: true,
-    header: "Video Testimonials from Our IGCSE Students",
+    header: "Video Testimonials from Our GCSE Students",
     headerTag: "h2",
     paragraph: "Hear from students who achieved their goals with our help",
   };
-
-  // Data for FAQs
+  const heroBulletPoints = [
+    "Guaranteed Grade Improvements",
+    "Qualified, Vetted GCSE Specialists",
+    "Flexible Online Options",
+    "Proven Track Record - 98% Success Rate",
+    "Flexible Scheduling",
+    "Parent & Student Portal",
+  ];
   const faqsData = {
-    isShow: true,
     header: "Frequently Asked Questions",
     headerTag: "h2",
-    paragraph:
-      "Find answers to common questions about our IGCSE tutoring program",
-    faq: [
+    paragraph: "Everything you need to know about our GCSE tutoring",
+    faqs: [
       {
-        question: "What IGCSE subjects do you offer tutoring for?",
+        question: "How can I get started with GCSE online tutoring sessions?",
         answer:
-          "We offer tutoring for all major IGCSE subjects including Mathematics, English, Sciences, and more.",
+          "Getting started is simple! Book a free consultation call where we assess your current GCSE performance, identify areas for improvement, and match you with the perfect specialist tutor for your subjects.",
       },
       {
-        question: "How are the tutoring sessions conducted?",
+        question: "What is GCSE tutoring, and what services do you offer?",
         answer:
-          "All sessions are conducted online through our interactive platform with experienced IGCSE teachers.",
+          "Our GCSE tutoring provides personalized 1-on-1 support across all major GCSE subjects. We offer online sessions, in-person tutoring, group classes, revision bootcamps, and comprehensive exam preparation with mock tests and detailed feedback.",
       },
       {
-        question: "What is the duration of each tutoring session?",
+        question:
+          "What is the success rate of students enrolled with GCSE online tutoring sessions?",
         answer:
-          "Standard sessions are 60 minutes long, but we can adjust based on your needs and preferences.",
+          "94% of our GCSE students improve by at least 2 grades, with 87% achieving their target grades or higher. Last year, over 200 students achieved Grades 8-9 across various subjects with our support.",
+      },
+      {
+        question: "How does online learning with GCSE work?",
+        answer:
+          "Our online GCSE sessions use interactive virtual classrooms with digital whiteboards, screen sharing, and real-time collaboration tools. Students can access recorded sessions, practice materials, and track progress through our dedicated student portal.",
+      },
+      {
+        question:
+          "Are your online sessions affordable for students and parents?",
+        answer:
+          "We offer competitive pricing with flexible payment plans. Packages start from £25 per hour, with discounts available for multiple subjects and longer commitments. We believe quality GCSE support should be accessible to all families.",
       },
     ],
   };
-
   return (
     <Box
       className={leagueSpartan.className}
@@ -203,7 +211,10 @@ const IgcsePage = () => {
 
       {/* Trustpilot Reviews Carousel */}
       <Box sx={styles.verticalMargin}>
-        <TrustpilotCarousel text="Real reviews from real IGCSE students and parents" />
+        <TrustpilotCarousel
+          title={"What Our GCSE Students Say"}
+          text="Real reviews from real GCSE students and parents"
+        />
       </Box>
       {/* Benefits Section */}
       <Box sx={styles.verticalMargin}>
@@ -213,14 +224,17 @@ const IgcsePage = () => {
       {/* Popular IGCSE Subjects */}
       <Box sx={styles.verticalMargin}>
         <PopularIgcseSubjectsV2
-          title="Popular IGCSE Subjects We Cover"
+          title="Popular GCSE Subjects We Cover"
           headerTag="h2"
         />
       </Box>
 
       {/* Student Says Section */}
       <Box sx={styles.verticalMargin}>
-        <StudentSaysV2 data={studentSaysData} />
+        <StudentSaysV2
+          data={studentSaysData}
+          title="Video Testimonials from Our GCSE Students"
+        />
       </Box>
 
       {/* Blog CTA Section */}
@@ -235,7 +249,7 @@ const IgcsePage = () => {
 
       {/* FAQs Section */}
       <Box sx={styles.verticalMargin}>
-        <Faqs />
+        <FrequentlyQuestions data={faqsData} />
       </Box>
 
       {/* Footer */}
@@ -244,7 +258,7 @@ const IgcsePage = () => {
   );
 };
 
-export default IgcsePage;
+export default GcsePage;
 
 const styles = {
   verticalMargin: {
