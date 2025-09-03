@@ -178,7 +178,7 @@ const ArBlogSequences: React.FC<IProps> = ({
           <ArBlogInnerLayout onlyChildren>
             <ArTagsAndSocial
               tags={data?.[name as keyof PageData]?.data || allTags}
-              categories={allCategories}
+              showSocial={data?.postCTA?.isShow}
             />
           </ArBlogInnerLayout>
         )

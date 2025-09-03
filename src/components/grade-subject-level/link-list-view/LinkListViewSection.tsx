@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import { PageData } from "@/types/grade-subject-level.types";
 import { ArrowCircleRight } from "@mui/icons-material";
-import Link from "next/link";
 
 type IProps = { data: PageData["link_list"] };
 

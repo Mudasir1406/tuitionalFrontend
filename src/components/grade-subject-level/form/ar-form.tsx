@@ -27,6 +27,7 @@ import { FormType } from "@/components/home/form-dialouge";
 import CustomInput from "@/components/custom-input/custom-input";
 import Input from "@/components/input/Input";
 import DropDown from "@/components/DropDown/DropDown";
+import TranslatableDropDown from "@/components/DropDown/TranslatableDropDown";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
 import dynamic from "next/dynamic";
@@ -50,7 +51,7 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
     country: "",
     ip: "",
     pageURL: "",
-    sheetName: "Lead Forms AR",
+    sheetName: "Lead Forms",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -65,6 +66,7 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
         newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "رقم هاتف غير صحيح";
+
         return;
       }
     }
@@ -77,7 +79,7 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
       newErrors.FirstName = isNotEmpty(value) ? "" : "لا يمكن أن يكون الاسم فارغاً";
     }
     if (key === "Grade" && typeof value === "string") {
-      newErrors.Grade = isNotEmpty(value) ? "" : "لا يمكن أن يكون الصف فارغاً";
+      newErrors.Grade = isNotEmpty(value) ? "" : "لا يمكن أن تكون المرحلة فارغة";
     }
     if (key === "Curriculum" && typeof value === "string") {
       newErrors.Curriculum = isNotEmpty(value)
@@ -85,7 +87,7 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
         : "لا يمكن أن يكون المنهج فارغاً";
     }
     if (key === "Subject" && typeof value === "string") {
-      newErrors.Subject = isNotEmpty(value) ? "" : "لا يمكن أن تكون المادة فارغة";
+      newErrors.Subject = isNotEmpty(value) ? "" : "المواد لا يمكن أن تكون فارغة";
     }
     if (key === "message" && typeof value === "string") {
       newErrors.message = isNotEmpty(value) ? "" : "لا يمكن أن تكون الرسالة فارغة";
@@ -95,73 +97,17 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
       ...formData,
       [key]: value,
     });
-
     setErrors(newErrors);
   };
 
-  const location = useGeoLocation();
-
-  useEffect(() => {
-    const getFilter = async () => {
-      const data = await getFilterData();
-      setFilterData(data);
-    };
-    getFilter();
-  }, []);
-
-  useEffect(() => {
-    if (location?.country && location?.ipAddress) {
-      setFormData((prev) => ({
-        ...prev,
-        country: location.country,
-        ip: location.ipAddress,
-        pageURL: window.location.href,
-        Browser: navigator.userAgent,
-      }));
-    }
-  }, [location]);
-
-  const isFormValid = (): boolean => {
-    const requiredFields: (keyof FormType)[] = [
-      "FirstName",
-      "EmailAddress", 
-      "PhoneNumber",
-      "Grade",
-      "Curriculum",
-      "Subject",
-      "message",
-    ];
-
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
     const newErrors: Partial<FormType> = {};
 
-    requiredFields.forEach((field) => {
-      const value = formData[field];
-      if (!value || (typeof value === "string" && value.trim() === "")) {
-        switch (field) {
-          case "FirstName":
-            newErrors[field] = "لا يمكن أن يكون الاسم فارغاً";
-            break;
-          case "EmailAddress":
-            newErrors[field] = "لا يمكن أن يكون البريد الإلكتروني فارغاً";
-            break;
-          case "PhoneNumber":
-            newErrors[field] = "لا يمكن أن يكون رقم الهاتف فارغاً";
-            break;
-          case "Grade":
-            newErrors[field] = "لا يمكن أن يكون الصف فارغاً";
-            break;
-          case "Curriculum":
-            newErrors[field] = "لا يمكن أن يكون المنهج فارغاً";
-            break;
-          case "Subject":
-            newErrors[field] = "لا يمكن أن تكون المادة فارغة";
-            break;
-          case "message":
-            newErrors[field] = "لا يمكن أن تكون الرسالة فارغة";
-            break;
-        }
-      }
-    });
+    if (!isNotEmpty(formData.FirstName)) {
+      newErrors.FirstName = "لا يمكن أن يكون الاسم فارغاً";
+    }
 
     if (!isValidEmail(formData.EmailAddress)) {
       newErrors.EmailAddress = "عنوان بريد إلكتروني غير صحيح";
@@ -170,173 +116,268 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
     if (!isValidPhoneNumber(formData.PhoneNumber)) {
       newErrors.PhoneNumber = "رقم هاتف غير صحيح";
     }
+    if (!isNotEmpty(formData.Grade)) {
+      newErrors.Grade = "لا يمكن أن تكون المرحلة فارغة";
+    }
+    if (!isNotEmpty(formData.Curriculum)) {
+      newErrors.Curriculum = "لا يمكن أن يكون المنهج فارغاً";
+    }
+
+    if (!isNotEmpty(formData.message)) {
+      newErrors.message = "لا يمكن أن تكون الرسالة فارغة";
+    }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!isFormValid()) {
-      toast.error("يرجى ملء جميع الحقول المطلوبة بشكل صحيح");
+    if (Object.values(newErrors).some((error) => error)) {
+      setLoading(false);
+      toast.error("يرجى إصلاح الأخطاء في النموذج قبل الإرسال.");
+
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: "lead_form_error",
+        formData: newErrors,
+        formType: "lead Form",
+      });
+
       return;
     }
 
-    setLoading(true);
-    
+    await addFormData("lead", formData);
+
     try {
-      const response = await sendForm(formData);
-      if (response.success) {
-        toast.success("تم إرسال النموذج بنجاح! سنتواصل معك قريباً");
-        setFormData({
-          FirstName: "",
-          EmailAddress: "",
-          PhoneNumber: "",
-          Grade: "",
-          Curriculum: "",
-          Subject: "",
-          message: "",
-          Browser: "",
-          country: location?.country || "",
-          ip: location?.ipAddress || "",
-          pageURL: window.location.href,
-          sheetName: "Lead Forms AR",
-        });
-      } else {
-        toast.error("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى");
+      await sendForm(formData);
+      toast.success("تم إرسال النموذج بنجاح!");
+      (window as any).dataLayer.push({
+        event: "lead_form_success",
+        formData: formData,
+        formType: "lead Form",
+      });
+    } catch (error: any) {
+      console.error("خطأ في حفظ البيانات:", error);
+      toast.error("فشل في إرسال النموذج!");
+      (window as any).dataLayer.push({
+        event: "lead_form_failed",
+        error: error.message,
+        formType: "lead Form",
+      });
     } finally {
       setLoading(false);
+      setFormData({
+        FirstName: "",
+        EmailAddress: "",
+        PhoneNumber: "",
+        Grade: "",
+        Curriculum: "",
+        Subject: "",
+        message: "",
+        sheetName: "Lead Forms",
+      });
     }
   };
 
+  useEffect(() => {
+    getFilterData().then((data) => {
+      setFilterData(data);
+    });
+  }, []);
+
+  const geoData = useGeoLocation();
+
+  React.useEffect(() => {
+    if (!geoData.isLoading && !geoData.error) {
+      const browser = navigator.userAgent;
+      const pageURL = window.location.href;
+      const currentDate = new Date().toLocaleDateString();
+      const currentTime = new Date().toLocaleTimeString();
+      const params = new URLSearchParams(window.location.search);
+      setFormData((prev) => ({
+        ...prev,
+        IP: geoData.ip || "",
+        Country: geoData.country || "",
+        Browser: browser,
+        SourcePageURL: pageURL,
+        Date: currentDate,
+        Time: currentTime,
+        Medium: params.get("gad_source")
+          ? "google Ads"
+          : params.get("fbclid")
+          ? "facebook"
+          : "SEO",
+      }));
+    }
+  }, [geoData]);
+
   return (
-    <Box sx={[styles.boxSection, background]} className={styles.rtlContainer}>
-      <Typography
-        className={leagueSpartan.className}
-        sx={styles.headerText}
-        variant="h4"
-        component="h2"
-      >
-        احجز جلسة تجريبية مجانية
-      </Typography>
-      
-      <Box component="form" onSubmit={handleSubmit} sx={styles.formContainer}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+    <div className={styles.main}>
+      <form onSubmit={handleSubmit}>
+        <Typography
+          className={`${leagueSpartan.className} ${styles.title}`}
+          component={"h5"}
+          variant="subtitle1"
+        >
+          احصل على خصم 10% إذا سجلت اليوم!
+        </Typography>
+        <div className={styles.inputDiv}>
+          <div className={styles.inputInner}>
             <Input
-              name="name"
-              placeholder="الاسم الكامل*"
+              name="FirstName"
               value={formData.FirstName}
-              onChange={(e) => handleChange("FirstName", e.target.value)}
-              error={!!errors.FirstName}
-              helperText={errors.FirstName}
-              dir="rtl"
+              onChange={handleChange}
+              placeholder={"أدخل الاسم هنا..."}
+              className={`${styles.input} ${leagueSpartan.className}`}
             />
-          </Grid>
-          
-          <Grid item xs={12}>
+            {errors.FirstName && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.FirstName}
+              </Typography>
+            )}
+          </div>
+
+          <div className={styles.inputInner}>
             <Input
-              name="email"
-              type="email"
-              placeholder="البريد الإلكتروني*"
+              name="EmailAddress"
               value={formData.EmailAddress}
-              onChange={(e) => handleChange("EmailAddress", e.target.value)}
-              error={!!errors.EmailAddress}
-              helperText={errors.EmailAddress}
-              dir="rtl"
+              onChange={handleChange}
+              placeholder={"أدخل البريد الإلكتروني هنا..."}
+              className={`${styles.input} ${leagueSpartan.className}`}
             />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <Box sx={styles.phoneInputContainer}>
-              <PhoneInput
-                international
-                countryCallingCodeEditable={false}
-                defaultCountry="AE"
-                placeholder="رقم الهاتف*"
-                value={formData.PhoneNumber}
-                onChange={(value) => handleChange("PhoneNumber", value || "")}
-                className={`${styles.phoneInput} ${styles.rtlPhone}`}
-                dir="rtl"
-              />
-              {errors.PhoneNumber && (
-                <Typography color="error" variant="caption">
-                  {errors.PhoneNumber}
-                </Typography>
-              )}
-            </Box>
-          </Grid>
-          
-          <Grid item xs={12}>
+            {errors.EmailAddress && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.EmailAddress}
+              </Typography>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.inputDiv}>
+          <div className={styles.div}>
+            <PhoneInput
+              defaultCountry="SA"
+              value={formData?.PhoneNumber || ""}
+              onChange={(e) => handleChange("PhoneNumber", String(e))}
+              inputComponent={CustomInput}
+              className={`${styles.phoneInput}`}
+            />
+            {errors.PhoneNumber && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.PhoneNumber}
+              </Typography>
+            )}
+          </div>
+          <div className={styles.div}>
             <DropDown
-              placeholder="اختر الصف*"
-              options={filterData?.grades || []}
+              name="Grade"
+              placeholder="اختر المرحلة"
+              marginTop="1.5vh"
+              data={filterData?.grade || []}
               value={formData.Grade}
-              onChange={(value) => handleChange("Grade", value)}
-              error={!!errors.Grade}
-              helperText={errors.Grade}
+              onChange={handleChange}
             />
-          </Grid>
-          
-          <Grid item xs={12}>
+            {errors.Grade && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.Grade}
+              </Typography>
+            )}
+          </div>
+        </div>
+        <div className={styles.inputDiv}>
+          <div className={styles.div}>
             <DropDown
-              placeholder="اختر المنهج*"
-              options={filterData?.curriculums || []}
+              placeholder="اختر المنهج"
+              name="Curriculum"
+              data={filterData?.curriculum || []}
+              marginTop="1.5vh"
               value={formData.Curriculum}
-              onChange={(value) => handleChange("Curriculum", value)}
-              error={!!errors.Curriculum}
-              helperText={errors.Curriculum}
+              onChange={handleChange}
             />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <DropDown
-              placeholder="اختر المادة*"
-              options={filterData?.subjects || []}
+            {errors.Curriculum && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.Curriculum}
+              </Typography>
+            )}
+          </div>
+          <div className={styles.div}>
+            <TranslatableDropDown
+              name="Subject"
+              placeholder="اختر المواد"
+              data={filterData?.subject || []}
+              marginTop="1.5vh"
+              multiple
               value={formData.Subject}
-              onChange={(value) => handleChange("Subject", value)}
-              error={!!errors.Subject}
-              helperText={errors.Subject}
+              onChange={handleChange}
+              locale="ar"
+              isSubjectField={true}
             />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              multiline
-              rows={4}
-              placeholder="رسالتك (اختياري)"
-              value={formData.message}
-              onChange={(e) => handleChange("message", e.target.value)}
-              error={!!errors.message}
-              helperText={errors.message}
-              sx={styles.messageField}
-              inputProps={{ dir: "rtl" }}
-            />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              fullWidth
-              disabled={loading}
-              sx={styles.submitButton}
+            {errors.Subject && (
+              <Typography
+                className={`${leagueSpartan.className} ${styles.error}`}
+                component={"p"}
+                variant="caption"
+              >
+                {errors.Subject}
+              </Typography>
+            )}
+          </div>
+        </div>
+        <div>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            name="Message"
+            value={formData.message}
+            onChange={(e) => handleChange("message", e.target.value)}
+            placeholder="أدخل رسالتك هنا..."
+            className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
+          />
+          {errors.message && (
+            <Typography
+              className={`${leagueSpartan.className} ${styles.error}`}
+              component={"p"}
+              variant="caption"
             >
-              {loading ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                "إرسال الآن"
-              )}
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+              {errors.message}
+            </Typography>
+          )}
+        </div>
+
+        <Button
+          variant="contained"
+          className={`${leagueSpartan.className} ${styles.containedButton}`}
+          type="submit"
+        >
+          {loading ? (
+            <CircularProgress
+              sx={{ width: "12px", height: "12px", color: "white" }}
+              size={20}
+            />
+          ) : (
+            "إرسال الآن"
+          )}
+        </Button>
+      </form>
+    </div>
   );
 };
 

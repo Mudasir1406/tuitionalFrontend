@@ -3,6 +3,7 @@
 }
 
 .containerRTL {
+  padding: 0 5vw;
   direction: rtl;
 }
 

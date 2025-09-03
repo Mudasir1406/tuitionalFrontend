@@ -20,16 +20,16 @@ const PopularSubjects = dynamic(() => import("@/components/curiculume/popular-ig
 const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
 const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
-const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), { ssr: true });
+const ArTutorSection = dynamic(() => import("./tutor-section/ArTutorSection"), { ssr: true });
 const SchoolLogosSection = dynamic(() => import("./school-logos-section/SchoolLogosSection"), { ssr: true });
 const TutorSectionV2 = dynamic(() => import("./tutor-section/TutorSectionV2"), { ssr: true });
-const BenifitsSection = dynamic(() => import("./benifts-section/BenifitsSection"), { ssr: true });
+const ArBenifitsSection = dynamic(() => import("./benifts-section/ArBenifitsSection"), { ssr: true });
 const BenifitsOfStudyingSection = dynamic(() => import("./benifts-of-studying-section/BenifitsOfStudyingSection"), { ssr: true });
 const TutoringProgramSection = dynamic(() => import("./tutoring-program-section/TutoringProgramSection"), { ssr: true });
 const LinkListViewSection = dynamic(() => import("./link-list-view/LinkListViewSection"), { ssr: true });
 
 import { PageData } from "@/types/grade-subject-level.types";
-import Form from "./form/form";
+import ArForm from "./form/ar-form";
 import { getStartedData } from "@/services/get-started/get-started";
 
 type IProps = {
@@ -39,177 +39,222 @@ type IProps = {
 const ArGradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
   const getStarted = await getStartedData('ar');
 
-  const renderComponent = (key: string, value: any) => {
-    switch (key) {
-      case "hero_section":
-        return (
-          value && (
-            <>
-              <Box sx={styles.heroContanier}>
-                <Grid container>
+  const renderSection = (name: string) => {
+    if (name.includes("hero_section")) {
+      return (
+        <>
+          {data?.[name as keyof PageData] && (
+            <Box sx={styles.heroContanier}>
+              <Grid container sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
+                <Grid item lg={6} md={12} sm={12} xs={12}>
+                  <Hero data={data?.[name as keyof PageData]} />
+                </Grid>
+                <HeroInfo
+                  image={data?.[name as keyof PageData]?.image}
+                  imageAltText={data?.[name as keyof PageData]?.imageAltText}
+                />
+              </Grid>
+            </Box>
+          )}
+        </>
+      );
+    }
+    else if (name.includes("book_demo_cta")) {
+      return (
+        <>
+          {data?.[name as keyof PageData]?.isShow && (
+            <Box sx={styles.verticalMargin}>
+              <ArSectionsBox />
+            </Box>
+          )}
+        </>
+      );
+    } else if (name.includes("with_form")) {
+      return (
+        <>
+          {data?.[name as keyof PageData] && (
+            <Box sx={styles.heroContanier}>
+              <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
+                <Grid container gap={4} sx={styles.heroDiv}>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <Hero data={value} />
+                    <Hero data={data?.[name as keyof PageData]} withForm />
                   </Grid>
-                  <HeroInfo image={value?.image} imageAltText={value?.imageAltText} />
+                  <Grid
+                    item
+                    lg={5}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    sx={{ margin: "24px 0" }}
+                  >
+                    <ArForm />
+                  </Grid>
                 </Grid>
               </Box>
-              <ArSectionsBox />
-            </>
-          )
-        );
-      case "main_content":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <MainContent data={value} />
             </Box>
-          )
-        );
-      case "phone_cta":
-        return (
-          value && (
+          )}
+        </>
+      );
+    } else if (name.includes("igcse_in_dubai")) {
+      return (
+        <>
+          <Box sx={styles.verticalMargin}>
+            <BenifitsOfStudyingSection data={data?.[name as keyof PageData]} />
+          </Box>
+        </>
+      );
+    }
+    else if (name.includes("link_list")) {
+      return (
+        <>
+          <Box sx={styles.verticalMargin}>
+            <LinkListViewSection data={data?.[name as keyof PageData]} />
+          </Box>
+        </>
+      );
+    }
+    else if (name.includes("igcse_tutoring_program")) {
+      return (
+        <>
+          {data?.[name as keyof PageData]?.isShow && (
+            <ArBenifitsSection data={data?.[name as keyof PageData]} />
+          )}
+        </>
+      );
+    }
+    else if (name.includes("school_logos")) {
+      return (
+        <Box sx={styles.verticalMargin}>
+          <SchoolLogosSection />
+        </Box>
+      );
+    }
+    else if (name.includes("tutor_section")) {
+      return (
+        <>
+          <Box sx={styles.verticalMargin}>
+            <ArTutorSection data={data?.[name as keyof PageData]} />
+          </Box>
+        </>
+      );
+    }
+    else if (name.includes("tutor_program")) {
+      return (
+        <Box sx={styles.verticalMargin}>
+          <TutoringProgramSection data={data?.[name as keyof PageData]} />
+        </Box>
+      );
+    }
+    else if (name.includes("main_content")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <MainContent data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("phone_cta")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <>
             <Box sx={styles.phoneContanier}>
               <Box sx={styles.phoneBackground} />
-              <PhoneCta data={value} />
+              <PhoneCta data={data?.[name as keyof PageData]} />
             </Box>
-          )
-        );
-      case "demo_pointers":
-        return (
-          value?.demoPointersData?.length > 0 && (
-            <Box sx={styles.verticalMargin}>
-              <DemoPointers data={value} />
-            </Box>
-          )
-        );
-      case "popular_subjects":
-        return (
-          value?.subjects?.length > 0 && (
-            <Box sx={styles.verticalMargin}>
-              <PopularSubjects data={value} />
-            </Box>
-          )
-        );
-      case "education_counseling":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <EducationalCounseling data={value} />
-            </Box>
-          )
-        );
-      case "what_our_student_says":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <StudentSays data={value} />
-            </Box>
-          )
-        );
-      case "blog_CTA":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <BlogCta data={value} />
-            </Box>
-          )
-        );
-      case "Faqs":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <FrequentlyQuestions data={value} />
-            </Box>
-          )
-        );
-      case "offer":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <Offer data={value} />
-            </Box>
-          )
-        );
-      case "why_choose":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <WhyChoose data={value} />
-            </Box>
-          )
-        );
-      case "tutor_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <TutorSection data={value} />
-            </Box>
-          )
-        );
-      case "school_logos_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <SchoolLogosSection data={value} />
-            </Box>
-          )
-        );
-      case "tutor_section_v2":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <TutorSectionV2 data={value} />
-            </Box>
-          )
-        );
-      case "benifits_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <BenifitsSection data={value} />
-            </Box>
-          )
-        );
-      case "benifits_of_studying_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <BenifitsOfStudyingSection data={value} />
-            </Box>
-          )
-        );
-      case "tutoring_program_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <TutoringProgramSection data={value} />
-            </Box>
-          )
-        );
-      case "link_list_view_section":
-        return (
-          value && (
-            <Box sx={styles.verticalMargin}>
-              <LinkListViewSection data={value} />
-            </Box>
-          )
-        );
-      default:
-        return null;
+          </>
+        )
+      );
+    }
+    else if (name.includes("demo_pointers")) {
+      return (
+        data?.[name as keyof PageData]?.demoPointersData.length > 0 && (
+          <Box sx={styles.verticalMargin}>
+            <DemoPointers data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("popular_subjects")) {
+      return (
+        data?.[name as keyof PageData]?.subjects.length > 0 && (
+          <Box sx={styles.verticalMargin}>
+            <PopularSubjects data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    } else if (name.includes("education_counseling")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <EducationalCounseling data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    } else if (name.includes("why_igsce")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <WhyChoose data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("what_our_student_says")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <StudentSays data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("blog_CTA")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <BlogCta data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("Faqs")) {
+      return (
+        data?.[name as keyof PageData] && (
+          <Box sx={styles.verticalMargin}>
+            <FrequentlyQuestions data={data?.[name as keyof PageData]} />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("what_we_offer")) {
+      return (
+        data?.[name as keyof PageData].isShow && (
+          <Box sx={styles.verticalMargin}>
+            <Offer />
+          </Box>
+        )
+      );
+    }
+    else if (name.includes("get_started")) {
+      return (
+        data?.[name as keyof PageData].isShow && (
+          <Box sx={styles.verticalMargin}>
+            <GetStarted data={getStarted} />
+          </Box>
+        )
+      );
     }
   };
 
   return (
     <Box sx={styles.rtlContainer}>
       <ArHeader />
+
       {Object.entries(data).map(([key, value]) => (
-        <div key={key}>
-          {renderComponent(key, value)}
-        </div>
+        <div key={key}>{renderSection(key.trim())}</div>
       ))}
-      <Box sx={styles.verticalMargin}>
-        <GetStarted data={getStarted} />
-      </Box>
+
       <ArServerFooter />
     </Box>
   );
@@ -221,38 +266,34 @@ const styles = {
   rtlContainer: {
     direction: "rtl",
   },
-  verticalMargin: { 
-    marginY: { xs: "5vh", md: "7vh" } 
-  },
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
   heroContanier: {
     paddingTop: {
       xs: "120px",
       sm: "120px",
-      md: "120px", 
+      md: "120px",
       lg: 0,
       xl: 0,
     },
     height: { xs: "100%", lg: "100vh" },
+
     display: "flex",
     alignItems: "center",
     position: "relative",
     marginX: { xs: "3vw", sm: "3vw", lg: "0" },
   },
-  phoneContanier: {
-    position: "relative",
-    height: { xs: "100%", lg: "100vh" },
-    display: "flex", 
+
+  heroDiv: {
     alignItems: "center",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
+    padding: "100 0",
   },
+  phoneContanier: { position: "relative", paddingBottom: "5vh" },
   phoneBackground: {
+    height: "100%",
+    width: "100%",
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "linear-gradient(135deg, #E7F6FF 0%, #F0F9FF 100%)",
-    borderRadius: "20px",
     zIndex: -1,
+    background:
+      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
   },
 };
