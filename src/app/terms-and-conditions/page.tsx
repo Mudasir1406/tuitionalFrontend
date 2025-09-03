@@ -2,12 +2,13 @@
 import React from "react";
 import { useI18n } from "@/context/language-context";
 import HtmlWrapper from "@/components/html-wrapper";
+import { leagueSpartan } from "../fonts";
 
 function Page() {
   const { t, isRTL } = useI18n();
   
   return (
-    <HtmlWrapper>
+            <HtmlWrapper className={leagueSpartan.variable}>
       <head>
         <title>{t('terms.title')}</title>
         <meta name="description" content={t('terms.title')} />

@@ -1,19 +1,20 @@
 "use client";
 import { useI18n } from "@/context/language-context";
 import HtmlWrapper from "@/components/html-wrapper";
+import { leagueSpartan } from "../fonts";
 
 function PrivacyPolicy() {
   const { t, isRTL } = useI18n();
-  
+
   return (
-    <HtmlWrapper>
+            <HtmlWrapper className={leagueSpartan.variable}>
       <head>
-        <title>{t('privacy.title')}</title>
-        <meta name="description" content={t('privacy.description')} />
+        <title>{t("privacy.title")}</title>
+        <meta name="description" content={t("privacy.description")} />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+      <body style={{ direction: isRTL ? "rtl" : "ltr" }}>
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -47,124 +48,106 @@ function PrivacyPolicy() {
           }}
         />
         <div className="container">
-          <h1>{t('privacy.heading')}</h1>
+          <h1>{t("privacy.heading")}</h1>
           <p>
-            <strong>{t('privacy.effective_date')}</strong>
+            <strong>{t("privacy.effective_date")}</strong>
           </p>
-          <p>
-            {t('privacy.intro')}
-          </p>
-          <h2>{t('privacy.info_collect')}</h2>
-          <h3>{t('privacy.personal_info')}</h3>
-          <p>
-            {t('privacy.personal_desc')}
-          </p>
+          <p>{t("privacy.intro")}</p>
+          <h2>{t("privacy.info_collect")}</h2>
+          <h3>{t("privacy.personal_info")}</h3>
+          <p>{t("privacy.personal_desc")}</p>
           <ul>
             <li>
-              <strong>{t('privacy.name')}</strong>
+              <strong>{t("privacy.name")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.email')}</strong>
+              <strong>{t("privacy.email")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.google_account')}</strong>
+              <strong>{t("privacy.google_account")}</strong>
             </li>
           </ul>
-          <h3>{t('privacy.usage_data')}</h3>
-          <p>
-            {t('privacy.usage_desc')}
-          </p>
+          <h3>{t("privacy.usage_data")}</h3>
+          <p>{t("privacy.usage_desc")}</p>
           <ul>
-            <li>{t('privacy.meeting_timestamps')}</li>
-            <li>{t('privacy.participation')}</li>
-            <li>{t('privacy.session_analytics')}</li>
+            <li>{t("privacy.meeting_timestamps")}</li>
+            <li>{t("privacy.participation")}</li>
+            <li>{t("privacy.session_analytics")}</li>
           </ul>
-          <h2>{t('privacy.how_use')}</h2>
+          <h2>{t("privacy.how_use")}</h2>
           <ul>
             <li>
-              <strong>{t('privacy.class_links')}</strong>
+              <strong>{t("privacy.class_links")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.data_analytics')}</strong>
+              <strong>{t("privacy.data_analytics")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.communication')}</strong>
+              <strong>{t("privacy.communication")}</strong>
             </li>
           </ul>
-          <h2>{t('privacy.sharing')}</h2>
-          <p>
-            {t('privacy.sharing_desc')}
-          </p>
+          <h2>{t("privacy.sharing")}</h2>
+          <p>{t("privacy.sharing_desc")}</p>
           <ul>
             <li>
-              <strong>{t('privacy.service_providers')}</strong>
+              <strong>{t("privacy.service_providers")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.legal_requirements')}</strong>
+              <strong>{t("privacy.legal_requirements")}</strong>
             </li>
           </ul>
-          <h2>{t('privacy.security')}</h2>
-          <p>
-            {t('privacy.security_desc')}
-          </p>
+          <h2>{t("privacy.security")}</h2>
+          <p>{t("privacy.security_desc")}</p>
           <ul>
-            <li>{t('privacy.encrypted_transfer')}</li>
-            <li>{t('privacy.secure_storage')}</li>
-            <li>{t('privacy.access_control')}</li>
+            <li>{t("privacy.encrypted_transfer")}</li>
+            <li>{t("privacy.secure_storage")}</li>
+            <li>{t("privacy.access_control")}</li>
           </ul>
-          <h2>{t('privacy.consent')}</h2>
-          <p>
-            {t('privacy.consent_desc')}
-          </p>
-          <h2>{t('privacy.rights')}</h2>
-          <p>{t('privacy.rights_desc')}</p>
+          <h2>{t("privacy.consent")}</h2>
+          <p>{t("privacy.consent_desc")}</p>
+          <h2>{t("privacy.rights")}</h2>
+          <p>{t("privacy.rights_desc")}</p>
           <ul>
             <li>
-              <strong>{t('privacy.access')}</strong>
+              <strong>{t("privacy.access")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.correction')}</strong>
+              <strong>{t("privacy.correction")}</strong>
             </li>
             <li>
-              <strong>{t('privacy.deletion')}</strong>
+              <strong>{t("privacy.deletion")}</strong>
             </li>
           </ul>
-          <p>{t('privacy.exercise_rights')}</p>
+          <p>{t("privacy.exercise_rights")}</p>
           <ul>
             <li>
-              <strong>Email:</strong> {t('privacy.contact_email')}
+              <strong>Email:</strong> {t("privacy.contact_email")}
             </li>
             <li>
-              <strong>Phone:</strong> {t('privacy.contact_phone')}
+              <strong>Phone:</strong> {t("privacy.contact_phone")}
             </li>
           </ul>
-          <h2>{t('privacy.third_party')}</h2>
-          <p>
-            {t('privacy.third_party_desc')}
-          </p>
+          <h2>{t("privacy.third_party")}</h2>
+          <p>{t("privacy.third_party_desc")}</p>
           <p>
             <a
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t('privacy.google_privacy')}
+              {t("privacy.google_privacy")}
             </a>
           </p>
-          <h2>{t('privacy.changes')}</h2>
-          <p>
-            {t('privacy.changes_desc')}
-          </p>
-          <h2>{t('privacy.contact')}</h2>
-          <p>
-            {t('privacy.contact_desc')}
-          </p>
+          <h2>{t("privacy.changes")}</h2>
+          <p>{t("privacy.changes_desc")}</p>
+          <h2>{t("privacy.contact")}</h2>
+          <p>{t("privacy.contact_desc")}</p>
           <ul>
             <li>
-              <strong>Email:</strong> {t('privacy.contact_email')}
+              <strong>Email:</strong> {t("privacy.contact_email")}
             </li>
             <li>
-              <strong>Phone:</strong> {t('privacy.contact_phone')}
+              <strong>Phone:</strong> {t("privacy.contact_phone")}
             </li>
           </ul>
         </div>
