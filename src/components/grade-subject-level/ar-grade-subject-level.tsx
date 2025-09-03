@@ -5,27 +5,26 @@ import dynamic from "next/dynamic";
 
 // Arabic dynamic imports for optimization
 const ArHeader = dynamic(() => import("@/components/ar-header"), { ssr: true });
-const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), { ssr: true });
+const ArHero = dynamic(() => import("@/components/grade-subject-level/ar-hero"), { ssr: true });
 const ArSectionsBox = dynamic(() => import("@/components/grade-subject-level/ar-sectionsbox"), { ssr: true });
-const Offer = dynamic(() => import("@/components/curiculume/offer"), { ssr: true });
-const GetStarted = dynamic(() => import("@/components/grade-subject-level/get-started"), { ssr: true });
-const EducationalCounseling = dynamic(() => import("@/components/curiculume/educational-counseling"), { ssr: true });
-const HeroInfo = dynamic(() => import("@/components/grade-subject-level/hero-info"), { ssr: true });
+const ArOffer = dynamic(() => import("@/components/curiculume/ar-offer"), { ssr: true });
+const ArGetStarted = dynamic(() => import("@/components/grade-subject-level/ar-get-started"), { ssr: true });
+const ArEducationalCounseling = dynamic(() => import("@/components/curiculume/ar-educational-counseling"), { ssr: true });
+const ArHeroInfo = dynamic(() => import("@/components/grade-subject-level/ar-hero-info"), { ssr: true });
 const ArServerFooter = dynamic(() => import("@/components/ar-server-footer"), { ssr: true });
-const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
+const ArPhoneCta = dynamic(() => import("./ar-phone-cta"), { ssr: true });
 const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
 const MainContent = dynamic(() => import("./main-content"), { ssr: true });
 const PopularSubjects = dynamic(() => import("@/components/curiculume/popular-igcse-subjects"), { ssr: true });
 const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
 const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
-const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), { ssr: true });
+const ArTutorSection = dynamic(() => import("./tutor-section/ArTutorSection"), { ssr: true });
 
 import {
   Component_Sequence_Type,
   PageData,
 } from "@/types/grade-subject-level.types";
-import Form from "./form/form";
 import { getStartedData } from "@/services/get-started/get-started";
 
 type IProps = {
@@ -45,9 +44,9 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
               <Box sx={styles.heroContanier}>
                 <Grid container>
                   <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <Hero data={data?.hero_section} />
+                    <ArHero data={data?.hero_section} />
                   </Grid>
-                  <HeroInfo
+                  <ArHeroInfo
                     image={data?.hero_section?.image}
                     imageAltText={data?.hero_section?.imageAltText}
                   />
@@ -70,7 +69,7 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
           data.phone_cta && (
             <Box sx={styles.phoneContanier}>
               <Box sx={styles.phoneBackground} />
-              <PhoneCta data={data?.phone_cta} />
+              <ArPhoneCta data={data?.phone_cta} />
             </Box>
           )
         );
@@ -94,7 +93,7 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
         return (
           data.education_counseling && (
             <Box sx={styles.verticalMargin}>
-              <EducationalCounseling data={data?.education_counseling} />
+              <ArEducationalCounseling data={data?.education_counseling} />
             </Box>
           )
         );
@@ -122,17 +121,23 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
             </Box>
           )
         );
-      case "Get Started":
+      case "get started":
         return (
           <Box sx={styles.verticalMargin}>
-            <GetStarted data={getStarted} />
+            <ArGetStarted data={getStarted} />
           </Box>
         );
-      case "Offer":
+      case "what we offer":
         return (
-          data.offer && (
+          <Box sx={styles.verticalMargin}>
+            <ArOffer />
+          </Box>
+        );
+      case "tutor section":
+        return (
+          data.tutor_section && (
             <Box sx={styles.verticalMargin}>
-              <Offer data={data?.offer} />
+              <ArTutorSection data={data?.tutor_section} />
             </Box>
           )
         );
@@ -158,40 +163,30 @@ export default ArGradeSubjectLevel;
 
 const styles = {
   rtlContainer: {
-    direction: "rtl",
+    direction: "rtl" as const,
   },
-  verticalMargin: { 
-    marginY: { xs: "5vh", md: "7vh" } 
-  },
+  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
   heroContanier: {
     paddingTop: {
       xs: "120px",
-      sm: "120px", 
-      md: "120px",
+      sm: "150px",
+      md: "200px",
       lg: 0,
       xl: 0,
     },
     height: { xs: "100%", lg: "100vh" },
     display: "flex",
-    alignItems: "center",
+    alignItems: "end",
     position: "relative",
     marginX: { xs: "3vw", sm: "3vw", lg: "0" },
   },
-  phoneContanier: {
-    position: "relative",
-    height: { xs: "100%", lg: "100vh" },
-    display: "flex",
-    alignItems: "center",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
-  },
+  phoneContanier: { position: "relative", paddingBottom: "5vh" },
   phoneBackground: {
+    height: "100%",
+    width: "100%",
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "linear-gradient(135deg, #E7F6FF 0%, #F0F9FF 100%)",
-    borderRadius: "20px",
     zIndex: -1,
+    background:
+      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
   },
 };

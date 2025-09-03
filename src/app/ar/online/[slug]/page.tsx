@@ -22,7 +22,7 @@ const ArOnlineSlugPage = async ({ params }: PageProps) => {
     Component_Sequence_Type | undefined | null
   ] = await Promise.all([
     getPageData(params.slug, "ar"), // Pass Arabic locale
-    getPageSequence()
+    getPageSequence(),
   ]);
 
   // Helper function to sort components by sequence number (for V2 layout)
@@ -46,9 +46,11 @@ const ArOnlineSlugPage = async ({ params }: PageProps) => {
   }
 
   // Use V2 layout if variant is "new", otherwise use V1
-  if (data?.variant === "new") {
+  if (data?.variant === "جديد" || data?.variant === "new") {
     return (
-      <ArGradeSubjectLevelV2 data={sortJsonObjectBySequenceNumber(data) as any} />
+      <ArGradeSubjectLevelV2
+        data={sortJsonObjectBySequenceNumber(data) as any}
+      />
     );
   }
 

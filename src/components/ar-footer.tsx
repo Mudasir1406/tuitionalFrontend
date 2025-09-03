@@ -127,7 +127,9 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                   className={leagueSpartan.className}
                   variant="body2"
                 >
-                  تيوشنال هي منصة تعليمية إلكترونية. نقدم دروس تدريس مباشرة للصفوف 4-8، وشهادات IGCSE و GCSE و A-Levels وغيرها لجميع المناهج مثل كامبريدج وبيرسون إدكسل
+                  تيوشنال هي منصة تعليمية إلكترونية. نقدم دروس تدريس مباشرة
+                  للصفوف 4-8، وشهادات IGCSE و GCSE و A-Levels وغيرها لجميع
+                  المناهج مثل كامبريدج وبيرسون إدكسل
                 </Typography>
                 <Box sx={styles.socialBox}>
                   {footerData?.link?.facebook && (
@@ -187,9 +189,10 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                 >
                   المناهج الدراسية
                 </Typography>
-                {Array.isArray(footerData?.curriculums) && footerData.curriculums.length > 0 && (
-                  <FooterLinks footerData={footerData.curriculums} exact />
-                )}
+                {Array.isArray(footerData?.curriculums) &&
+                  footerData.curriculums.length > 0 && (
+                    <FooterLinks footerData={footerData.curriculums} exact />
+                  )}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -214,9 +217,10 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                 >
                   المواد الدراسية
                 </Typography>
-                {Array.isArray(footerData?.subjects) && footerData.subjects.length > 0 && (
-                  <FooterLinks footerData={footerData.subjects} exact />
-                )}
+                {Array.isArray(footerData?.subjects) &&
+                  footerData.subjects.length > 0 && (
+                    <FooterLinks footerData={footerData.subjects} exact />
+                  )}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
@@ -229,9 +233,13 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                   >
                     احصل على المساعدة
                   </Typography>
-                  {Array.isArray(footerData?.getHelp) && footerData.getHelp.length > 0 && (
-                    <FooterLinks footerData={footerData.getHelp} exact={false} />
-                  )}
+                  {Array.isArray(footerData?.getHelp) &&
+                    footerData.getHelp.length > 0 && (
+                      <FooterLinks
+                        footerData={footerData.getHelp}
+                        exact={false}
+                      />
+                    )}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography
@@ -240,37 +248,42 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "start",
+                        textAlign: "end",
                         marginTop: "20px",
                       },
                     ]}
                   >
                     من نحن
                   </Typography>
-                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
-                    if (!item || typeof item !== 'string' || item.trim() === '') {
-                      return null;
-                    }
-                    const url = findAboutUsURL(item);
-                    return (
-                      <a
-                        href={url}
-                        style={{
-                          textDecoration: "none",
-                          textDecorationColor: "none",
-                        }}
-                        key={index}
-                      >
-                        <Typography
-                          sx={styles.text}
-                          variant="body2"
-                          className={leagueSpartan.className}
+                  {Array.isArray(footerData?.aboutUs) &&
+                    footerData.aboutUs.map((item, index) => {
+                      if (
+                        !item ||
+                        typeof item !== "string" ||
+                        item.trim() === ""
+                      ) {
+                        return null;
+                      }
+                      const url = findAboutUsURL(item);
+                      return (
+                        <a
+                          href={url}
+                          style={{
+                            textDecoration: "none",
+                            textDecorationColor: "none",
+                          }}
+                          key={index}
                         >
-                          {item}
-                        </Typography>
-                      </a>
-                    );
-                  })}
+                          <Typography
+                            sx={styles.text}
+                            variant="body2"
+                            className={leagueSpartan.className}
+                          >
+                            {item}
+                          </Typography>
+                        </a>
+                      );
+                    })}
                 </Box>
               </Box>
             </Grid>
@@ -282,34 +295,39 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "right",
+                        textAlign: "end",
                         marginTop: "20px",
                       },
                     ]}
                   >
                     من نحن
                   </Typography>
-                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
-                    if (!item || typeof item !== 'string' || item.trim() === '') {
-                      return null;
-                    }
-                    const url = findAboutUsURL(item);
-                    return (
-                      <a
-                        href={url}
-                        style={{ textDecoration: "none" }}
-                        key={index}
-                      >
-                        <Typography
-                          sx={styles.text}
-                          variant="body2"
-                          className={leagueSpartan.className}
+                  {Array.isArray(footerData?.aboutUs) &&
+                    footerData.aboutUs.map((item, index) => {
+                      if (
+                        !item ||
+                        typeof item !== "string" ||
+                        item.trim() === ""
+                      ) {
+                        return null;
+                      }
+                      const url = findAboutUsURL(item);
+                      return (
+                        <a
+                          href={url}
+                          style={{ textDecoration: "none" }}
+                          key={index}
                         >
-                          {item}
-                        </Typography>
-                      </a>
-                    );
-                  })}
+                          <Typography
+                            sx={styles.text}
+                            variant="body2"
+                            className={leagueSpartan.className}
+                          >
+                            {item}
+                          </Typography>
+                        </a>
+                      );
+                    })}
                 </Box>
               </Box>
             </Grid>

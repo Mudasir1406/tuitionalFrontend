@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 interface Props {
   tags: { name: { en: string; ar: string }; id: string }[];
   showSocial: boolean;
+  
 }
 function ArTagsAndSocial({ tags, showSocial }: Props) {
   // console.log("showSocial", showSocial);

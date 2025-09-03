@@ -1,0 +1,178 @@
+import { Box, Button, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import counsling from "../../../public/assets/images/static/Guidence.png";
+import { PageData } from "@/types/grade-subject-level.types";
+import { leagueSpartan } from "@/app/fonts";
+import PopUpButton from "../pop-up-button";
+
+const ArEducationalCounseling: React.FunctionComponent<{
+  data: PageData["education_counseling"];
+}> = ({ data }) => {
+  return (
+    <div>
+      <Box sx={{ paddingX: "5vw", direction: "rtl" }}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={12} md={12} lg={6}>
+            <Box>
+              <Typography
+                sx={style.counseling}
+                className={leagueSpartan.className}
+                component={"p"}
+                variant="subtitle2"
+              >
+                الإرشاد التعليمي
+              </Typography>
+
+              <Typography
+                sx={style.guidence}
+                variant={data.headerTag as any}
+                className={leagueSpartan.className}
+                component={data.headerTag as keyof JSX.IntrinsicElements}
+                dangerouslySetInnerHTML={{
+                  __html: data?.header,
+                }}
+              ></Typography>
+              <Typography
+                sx={style.desc}
+                className={leagueSpartan.className}
+                component={"p"}
+                variant="body2"
+                dangerouslySetInnerHTML={{
+                  __html: data?.paragraph,
+                }}
+              ></Typography>
+              <Box sx={style.btnDiv}>
+                <div style={style.buttonDiv}>
+                  <PopUpButton
+                    sx={style.containedBtn}
+                    text="سجل الآن"
+                    href="popup"
+                  />
+                </div>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={6} alignItems="end">
+            <Box>
+              <Image
+                src={counsling}
+                alt="Counseling Image"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
+  );
+};
+export default ArEducationalCounseling;
+
+const style = {
+  counseling: {
+    background: "#B8E1F9",
+    borderRadius: "5vh",
+    width: {
+      xs: "53%",
+      sm: "28vh",
+      md: "30vh",
+      lg: "22vh",
+    },
+    fontSize: {
+      xs: "2vh",
+      sm: "2.5vh",
+      md: "2.2vh",
+      lg: "2vh",
+    },
+    paddingX: {
+      xs: "3vh",
+      sm: "3.6vw",
+    },
+    paddingY: {
+      xs: "2vh",
+      sm: "1.5vh",
+    },
+    color: "#1F90D1",
+    textAlign: "center" as const,
+  },
+  btnDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    maxWidth: { xs: "100%", md: "90%" },
+    marginLeft: "auto",
+  },
+  tagsDiv: {
+    width: "50%",
+  },
+  guidence: {
+    textAlign: {
+      xs: "end",
+      sm: "end",
+      md: "end",
+      lg: "right",
+    },
+    width: {
+      xs: "80vw",
+      lg: "40vw",
+    },
+    paddingY: {
+      xs: "2vh",
+      sm: "2.5vh",
+      md: "3vh",
+      lg: "3vh",
+    },
+  },
+
+  desc: {
+    color: "#2D2D2D",
+    width: {
+      xs: "80vw",
+      lg: "40vw",
+    },
+    textAlign: {
+      xs: "end",
+      sm: "end",
+      md: "end",
+      lg: "end",
+    },
+  },
+  buttonDiv: {
+    display: "flex",
+    alignItems: "flex-end",
+  },
+  containedBtn: {
+    boxShadow: "1px 4px 24px 0px #38B6FFB2",
+    backgroundColor: "#38B6FF",
+    color: "white",
+    paddingY: {
+      xs: "1.5vh",
+      sm: "2vh",
+      lg: "1.5vh",
+    },
+    marginY: "2vh",
+    paddingX: {
+      xs: "3vh",
+      sm: "4vh",
+    },
+    textTransform: "none",
+    borderRadius: "10px",
+
+    width: {
+      xs: "100%",
+      sm: "100%",
+      md: "100%",
+      lg: "100%",
+    },
+    transition: "all .5s ease-in-out",
+
+    ":hover": {
+      boxShadow: "1px 4px 24px 0px #38B6FFB2",
+      backgroundColor: "#38B6FF",
+      transform: "scale(1.02)",
+    },
+  },
+};
