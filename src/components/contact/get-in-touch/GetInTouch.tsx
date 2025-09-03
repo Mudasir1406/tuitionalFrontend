@@ -56,7 +56,6 @@ const GetInTouch: React.FunctionComponent = () => {
 
     if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
         newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "Invalid phone number";
@@ -146,7 +145,6 @@ const GetInTouch: React.FunctionComponent = () => {
 
     const formDataString = keyValuePairs.join("&");
 
-    // console.log("formDataString", formDataString);
 
     try {
       const response = await fetch(
@@ -168,7 +166,6 @@ const GetInTouch: React.FunctionComponent = () => {
         text: "",
         html: createContactTemplate(formData),
       });
-      console.log("formData", formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({

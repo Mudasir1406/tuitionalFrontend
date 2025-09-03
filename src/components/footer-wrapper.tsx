@@ -19,7 +19,6 @@ const FooterWrapper: React.FC = () => {
         if (data && typeof data === 'object') {
           setFooterData(data);
         } else {
-          console.warn("Invalid footer data structure received:", data);
           // Set a default empty structure to prevent errors
           setFooterData({
             id: "",

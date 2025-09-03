@@ -17,7 +17,6 @@ interface Props {
   
 }
 function ArTagsAndSocial({ tags, showSocial }: Props) {
-  // console.log("showSocial", showSocial);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 

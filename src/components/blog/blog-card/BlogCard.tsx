@@ -26,7 +26,6 @@ interface Props {
 }
 
 function BlogCard({ data }: Props) {
-  console.log("blogCard Image", data?.heroSection?.image);
   const pathname = usePathname();
   const isArabicRoute = pathname.startsWith('/ar');
   const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';

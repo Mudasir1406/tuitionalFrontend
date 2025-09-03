@@ -24,7 +24,6 @@ const handleRedirect = (url: string) => {
 };
 
 function TutoringProgramSection({ data }: props) {
-  // console.log("TutoringProgramSection", data);
   return (
     <div className={styles.main}>
       <Typography

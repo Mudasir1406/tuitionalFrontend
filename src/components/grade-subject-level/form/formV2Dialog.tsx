@@ -67,7 +67,6 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
 
     if (key === "PhoneNumber" && typeof value === "string") {
       if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
         newErrors.PhoneNumber = isValidPhoneNumber(value)
           ? ""
           : "Invalid phone number";

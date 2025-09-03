@@ -16,7 +16,6 @@ interface Props {
   showSocial: boolean;
 }
 function TagsAndSocial({ tags, showSocial }: Props) {
-  // console.log("showSocial", showSocial);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 

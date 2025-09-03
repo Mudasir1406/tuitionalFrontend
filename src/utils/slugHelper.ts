@@ -16,7 +16,6 @@ const getLocation = async () => {
   const res = await fetch("/api/location");
   const data = await res.json();
   return data;
-  //   console.log("User Location:", data);
 };
 
 const useGeoLocation = (): GeoLocationData => {

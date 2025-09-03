@@ -29,9 +29,6 @@ interface Props {
 }
 
 const ArHero = ({ data, timestamp, showSocial }: Props) => {
-  // console.log("ArHero - data:", data);
-  // console.log("ArHero - timestamp:", timestamp);
-  // console.log("ArHero - showSocial:", showSocial);
   
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;

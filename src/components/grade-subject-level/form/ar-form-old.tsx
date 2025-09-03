@@ -62,8 +62,7 @@
 
 //     if (key === "PhoneNumber" && typeof value === "string") {
 //       if (!isValidPhoneNumber(value)) {
-//         console.log("رقم هاتف غير صحيح!");
-//         newErrors.PhoneNumber = isValidPhoneNumber(value)
+// //         newErrors.PhoneNumber = isValidPhoneNumber(value)
 //           ? ""
 //           : "رقم هاتف غير صحيح";
 //         return;

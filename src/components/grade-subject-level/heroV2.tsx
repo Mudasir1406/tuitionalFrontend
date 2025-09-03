@@ -15,7 +15,6 @@ type IProps = {
 };
 
 const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
-  // console.log("heroComp", data);
   return (
     <>
       <Box

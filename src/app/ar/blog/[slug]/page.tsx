@@ -60,7 +60,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     getDocumentsByName("categories"),
   ]);
 
-  // console.log("Pagelevel", data, "data hero", "sequence", sequence);
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;

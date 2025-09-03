@@ -23,7 +23,6 @@ const ReviewsOnWp = ({ reviews }: Props) => {
 
   const displayedReviews = showAll ? reviews : reviews.slice(0, 4);
 
-  // console.log("ReviewsOnWp", reviews);
   return (
     <Box sx={styles.background}>
       <Typography

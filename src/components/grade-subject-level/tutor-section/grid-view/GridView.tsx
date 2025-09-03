@@ -11,7 +11,6 @@ interface props {
   cardsData: any[];
 }
 function GridView({ cardsData }: props) {
-  // console.log("gridView", cardsData);
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
