@@ -32,7 +32,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   // Filter blogs by tag
   const filteredData = data?.filter((blog: AllBlogsData) =>
-    blog?.tag?.data?.some((blogTag: any) => blogTag.id === tag?.id)
+    blog?.blog_tag?.tags?.some((blogTag: any) => blogTag.id === tag?.id)
   ) || [];
 
   return (
