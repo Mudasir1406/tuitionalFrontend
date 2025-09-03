@@ -1,6 +1,6 @@
 import React from "react";
 import ArHeader from "../../../components/ar-header";
-import { Grid, Metadata } from "@mui/material";
+import { Grid } from "@mui/material";
 import ArServerFooter from "../../../components/ar-server-footer";
 import { SITE_URL } from "@/utils/env";
 import GetStarted from "@/components/home/get-started";
@@ -11,6 +11,7 @@ import AboutUs from "@/components/about/about-us";
 import ArAboutHero from "@/components/about/ar-about-hero";
 import styles from "../../about/about.module.css";
 import { getStartedData } from "@/services/get-started/get-started";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "من نحن - تيوشنال التعليمية",
