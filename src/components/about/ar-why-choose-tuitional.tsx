@@ -1,7 +1,7 @@
 "use client";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-
+import { useI18n } from "@/context/language-context";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import scholarHat from "../../../public/assets/images/svg/scholarHat.svg";
@@ -16,8 +16,9 @@ type IProps = {
   icon: string;
 };
 
-const WhyChooseTuitional: React.FunctionComponent = () => {
+const ArWhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
+  const { t } = useI18n();
   const [isGreaterThanLarge, setIsGreaterThanLarge] = React.useState(false);
 
   React.useEffect(() => {
@@ -35,7 +36,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
   }, [theme]);
 
   return (
-    <Box>
+    <Box dir="rtl">
       <Box sx={styles.headingContanier}>
         <Typography
           sx={styles.mainHeading}
@@ -43,34 +44,9 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
           variant="h2"
           className={leagueSpartan.className}
         >
-          Why Choose Tuitional?
+          لماذا تختار تيوشنال؟
         </Typography>
       </Box>
-      {/* <Grid container={isXL} spacing={2} sx={styles.gridContainer}>
-        <Grid item>
-          <InfoBox
-            heading="Experienced Tutors"
-            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
-            icon="scholarHat"
-          />
-        </Grid>
-        <Grid item>
-          <InfoBox
-            heading="One-on-One Learning"
-            dec={`Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements.`}
-            icon="book"
-          />
-        </Grid>
-        <Grid item>
-          <InfoBox
-            heading="Flexible Schedules"
-            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
-            icon="calendar"
-          />
-        </Grid>
-        
-        
-      </Grid> */}
 
       <Grid
         container={!isGreaterThanLarge}
@@ -79,22 +55,22 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
       >
         <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
-            heading="Experienced Tutors"
-            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
+            heading="مدرسون ذوو خبرة"
+            dec="لدينا فريق مؤهل وخبير من المدرسين عبر الإنترنت الذين يتفوقون في مجموعة واسعة من المواد. مدرسون من جميع أنحاء العالم يساعدون الطلاب في تعلم موادهم المطلوبة بلغاتهم المفضلة مع التفوق في تعلم موادهم المطلوبة."
             icon="scholarHat"
           />
         </Grid>
         <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
-            heading="One-on-One Learning"
-            dec="Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements."
+            heading="التعلم الفردي"
+            dec="جلسات التدريس الفردي الشخصي عبر الإنترنت تساعد الطلاب في التعامل مع صعوبات موادهم وفقًا لاحتياجاتهم التعليمية الفردية ومتطلباتهم وتفضيلاتهم. يهدف مدرسونا إلى توفير جلسات تعليمية مخصصة لتلبية متطلبات كل طالب الأكاديمية."
             icon="book"
           />
         </Grid>
         <Grid item md={12} lg={3} sx={styles.gridItem}>
           <InfoBox
-            heading="Flexible Schedules"
-            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
+            heading="جداول زمنية مرنة"
+            dec="من مجموعة واسعة من الجداول المرنة يمكن للطلاب اختيار أوقاتهم وأيامهم المفضلة لتناسب جداولهم المزدحمة. الجداول المرنة طريقة رائعة لمساعدة الطلاب على التعلم وتثقيف أنفسهم بأفضل الطرق الممكنة."
             icon="calendar"
           />
         </Grid>
@@ -103,7 +79,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
   );
 };
 
-export default WhyChooseTuitional;
+export default ArWhyChooseTuitional;
 
 const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
   return (
@@ -119,10 +95,10 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         flexDirection: "column",
         borderRadius: "10px",
         padding: "24px",
-        boxShadow:
-          "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
+        boxShadow: "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
         position: "relative",
         marginX: { sm: "24px" },
+        direction: "rtl",
       }}
     >
       <Box sx={styles.icon}>
@@ -147,7 +123,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
               src={scholarHat.src}
               width={scholarHat.width}
               height={scholarHat.height}
-              alt="sucess"
+              alt="نجاح"
               style={{ width: "100%", height: "100%" }}
             />
           )}
@@ -156,17 +132,16 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
               src={book.src}
               width={book.width}
               height={book.height}
-              alt="book"
+              alt="كتاب"
               style={{ width: "100%", height: "100%" }}
             />
           )}
-
           {icon === "calendar" && (
             <Image
               src={calendar.src}
               width={calendar.width}
               height={calendar.height}
-              alt="calendar"
+              alt="تقويم"
               style={{ width: "100%", height: "100%" }}
             />
           )}
@@ -217,9 +192,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "60px",
-
-    boxShadow:
-      " 0px -2px 4px 0px #0000005C inset, 0px 4px 12.6px 0px #009BF526",
+    boxShadow: " 0px -2px 4px 0px #0000005C inset, 0px 4px 12.6px 0px #009BF526",
     marginBottom: { xs: "10px", sm: "20px", md: "30px", lg: "40px" },
     marginTop: { lg: "-80px" },
   },
@@ -240,7 +213,6 @@ const styles = {
     "::before": {
       content: "''",
       position: "absolute",
-      // zIndex: 10,
       backgroundImage: {
         xs: `url(${linesMobile.src})`,
         sm: `url(${linesInvert.src})`,
@@ -259,7 +231,6 @@ const styles = {
         md: "43px",
         lg: "43px",
       },
-
       backgroundRepeat: "no-repeat",
       top: {
         xs: -12,
@@ -267,7 +238,7 @@ const styles = {
         md: -35,
         lg: -35,
       },
-      left: {
+      right: { // Changed from left for RTL
         xs: "11%",
         sm: "-6%",
         md: "-6%",

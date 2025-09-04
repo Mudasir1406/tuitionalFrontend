@@ -27,7 +27,46 @@
     "description": "Privacy policy for Tuitional Education platform.",
     "heading": "Privacy Policy for Tuitional Education",
     "effective_date": "Effective Date: 1/1/2025",
-    "intro": "Tuitional Education (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard the information you provide to us when you use our services.",
+    "intro": "Tuitional Education (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard the information you provide to us when you use our services. This document is specifically designed to comply with Google OAuth consent screen requirements.",
+    "info_collect": "Information We Collect",
+    "personal_info": "1. Personal Information:",
+    "personal_desc": "When you use our platform, we may collect the following personal information:",
+    "name": "Name",
+    "email": "Email address",
+    "google_account": "Google account information (accessed via Google OAuth, as authorized by you).",
+    "usage_data": "2. Usage Data:",
+    "usage_desc": "We collect analytics related to the scheduling and usage of class meeting links, including:",
+    "meeting_timestamps": "Meeting creation timestamps.",
+    "participation": "Teacher and student participation data.",
+    "session_analytics": "Session duration and attendance analytics.",
+    "how_use": "How We Use Your Information",
+    "class_links": "Class Meeting Links: We use Google Meet integration to automatically create class meeting links for teachers and students.",
+    "data_analytics": "Data Analytics: Meeting analytics (such as attendance and duration) are stored in our database to provide insights and improve the learning experience.",
+    "communication": "Communication: To send important updates, notifications, or reminders related to your classes.",
+    "sharing": "Sharing Your Information",
+    "sharing_desc": "We do not sell, trade, or rent your personal information to third parties. However, we may share your information in the following cases:",
+    "service_providers": "Service Providers: Third-party tools and services (such as Google Meet) used to facilitate our operations.",
+    "legal_requirements": "Legal Requirements: When required by law or to comply with legal processes.",
+    "security": "Data Security",
+    "security_desc": "We implement industry-standard security measures to protect your information, including:",
+    "encrypted_transfer": "Encrypted data transfer (HTTPS).",
+    "secure_storage": "Secure database storage.",
+    "access_control": "Access control policies.",
+    "consent": "Your Consent",
+    "consent_desc": "By using our services and authorizing Google OAuth, you consent to the collection and use of your information as outlined in this Privacy Policy.",
+    "rights": "Your Rights",
+    "rights_desc": "You have the following rights regarding your data:",
+    "access": "Access: Request a copy of your personal data.",
+    "correction": "Correction: Request corrections to inaccuracies in your data.",
+    "deletion": "Deletion: Request deletion of your data, subject to legal or operational requirements.",
+    "exercise_rights": "To exercise these rights, contact us at:",
+    "third_party": "Third-Party Services",
+    "third_party_desc": "Our integration with Google Meet is subject to Google's privacy policy. We recommend reviewing Google's policies to understand how they handle your information.",
+    "google_privacy": "Google Privacy Policy",
+    "changes": "Changes to This Privacy Policy",
+    "changes_desc": "We reserve the right to update this Privacy Policy at any time. You will be notified of changes through our platform or via email. Continued use of our services after any changes constitutes acceptance of the updated Privacy Policy.",
+    "contact": "Contact Us",
+    "contact_desc": "If you have any questions or concerns about this Privacy Policy, please contact us:",
     "contact_email": "hello@tuitionaledu.com",
     "contact_phone": "+971 564900376"
   },
@@ -35,8 +74,69 @@
     "title": "Terms of Service - Tuitional Education", 
     "heading": "Terms of Service for Tuitional Education",
     "effective_date": "Effective Date: 1/1/2025",
-    "intro": "Welcome to Tuitional Education. By accessing or using our services, you agree to comply with and be bound by the following Terms of Service.",
+    "intro": "Welcome to Tuitional Education (\"we\" or \"our platform\"). By using our services, you agree to comply with the following Terms of Service (\"Terms\"). If you do not agree to these Terms, please do not use our services.",
+    "use_services": "1. Use of Services",
+    "use_services_desc": "Our services, including integration with Google Meet for creating class meeting links, are intended for educational purposes only. You agree to use our platform responsibly and in accordance with all applicable laws and regulations.",
+    "account_resp": "2. Account Responsibilities",
+    "account_confidentiality": "You are responsible for maintaining the confidentiality of your account credentials and ensuring the security of your account.",
+    "notify_unauthorized": "You agree to notify us immediately of any unauthorized use of your account or security breach.",
+    "prohibited": "3. Prohibited Activities",
+    "prohibited_desc": "When using our services, you agree not to:",
+    "disrupt_platform": "Engage in any activity that disrupts or interferes with our platform's functionality.",
+    "misuse_services": "Misuse our services for unauthorized purposes, including but not limited to spamming, hacking, or distributing harmful content.",
+    "infringe_ip": "Infringe upon the intellectual property rights of others.",
+    "ip": "4. Intellectual Property",
+    "ip_desc": "All content, trademarks, logos, and intellectual property associated with Tuitional Education are owned by Tuitional Education or its licensors. You may not use, reproduce, or distribute our content without prior written consent.",
+    "modifications": "5. Service Modifications",
+    "modifications_desc": "We reserve the right to modify, suspend, or discontinue any aspect of our services at any time without prior notice. We are not liable for any inconvenience or loss resulting from such changes.",
+    "liability": "6. Limitation of Liability",
+    "liability_desc": "To the fullest extent permitted by law, Tuitional Education is not liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of our services.",
+    "termination": "7. Termination",
+    "termination_desc": "We reserve the right to terminate or suspend your account at our sole discretion if you violate these Terms or engage in activities harmful to our platform or users.",
+    "governing": "8. Governing Law",
+    "governing_desc": "These Terms are governed by the laws of [Insert Jurisdiction]. Any disputes arising from these Terms will be subject to the exclusive jurisdiction of the courts in [Insert Jurisdiction].",
+    "changes": "9. Changes to Terms",
+    "changes_desc": "We may update these Terms from time to time. We will notify you of significant changes through our platform or via email. Continued use of our services constitutes acceptance of the updated Terms.",
+    "contact": "10. Contact Us",
+    "contact_desc": "If you have any questions about these Terms, please contact us:",
     "contact_email": "hello@tuitionaledu.com",
     "contact_phone": "+971 564900376"
+  },
+  "careers": {
+    "title": "We Are Always on the Lookout for Talented People",
+    "description": "Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact.",
+    "hero": {
+      "heading": "We Are Always on the Lookout for Talented People",
+      "subheading": "Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact."
+    },
+    "team_values": {
+      "heading": "Our Team Values",
+      "description": "At Tuitional, we believe in creating an environment where everyone can thrive and contribute to our mission of transforming education."
+    },
+    "top_talent": {
+      "heading": "Join Our Top Talent Team",
+      "description": "We're looking for exceptional individuals who share our passion for education and innovation."
+    },
+    "apply_now": {
+      "heading": "Ready to Make an Impact?",
+      "description": "Join our team and help shape the future of online education.",
+      "button": "Apply Now"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials - Hear What Our Students Have to Say",
+    "description": "Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience.",
+    "hero": {
+      "heading": "What Our Students Say",
+      "subheading": "Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience."
+    },
+    "reviews": {
+      "heading": "Student Reviews",
+      "description": "Real feedback from our students and parents about their learning journey with us."
+    },
+    "video_reviews": {
+      "heading": "Video Testimonials",
+      "description": "Hear directly from our students about their experience with Tuitional."
+    }
   }
 }

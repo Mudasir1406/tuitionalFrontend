@@ -9,6 +9,7 @@
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
+  scroll-behavior: smooth;
 }
 
 /* RTL Support */
@@ -27,6 +28,7 @@ html[dir="rtl"],
 html[dir="rtl"] body {
   overflow-x: hidden;
 }
+
 
 /* Arabic font support */
 html[dir="rtl"] * {

@@ -3,11 +3,11 @@ import ArHeader from "../../../components/ar-header";
 import { Grid } from "@mui/material";
 import ArServerFooter from "../../../components/ar-server-footer";
 import { SITE_URL } from "@/utils/env";
-import GetStarted from "@/components/home/get-started";
-import HeroInfo from "@/components/about/hero-info";
-import WhyChooseTuitional from "@/components/about/why-choose-tuitional";
+import ArGetStarted from "@/components/home/ar-get-started";
+import ArHeroInfo from "@/components/about/ar-hero-info";
+import ArWhyChooseTuitional from "@/components/about/ar-why-choose-tuitional";
 import StudentSays from "@/components/grade-subject-level/students-says";
-import AboutUs from "@/components/about/about-us";
+import ArAboutUs from "@/components/about/ar-about-us";
 import ArAboutHero from "@/components/about/ar-about-hero";
 import styles from "../../about/about.module.css";
 import { getStartedData } from "@/services/get-started/get-started";
@@ -29,7 +29,7 @@ const studentSaysAr = {
 };
 
 const ArAbout: React.FC = async () => {
-  const getStarted = await getStartedData();
+  const getStarted = await getStartedData('ar');
   
   return (
     <div dir="rtl">
@@ -40,17 +40,47 @@ const ArAbout: React.FC = async () => {
             <ArAboutHero />
           </div>
           <div className={styles["hero-picture"]}>
-            <HeroInfo />
+            <ArHeroInfo />
           </div>
         </div>
       </div>
-      <AboutUs />
-      <WhyChooseTuitional />
-      <StudentSays data={studentSaysAr} />
-      <GetStarted data={getStarted} />
+      <Grid sx={style.aboutUsContainer}>
+        <ArAboutUs />
+      </Grid>
+      <Grid sx={style.whyChooseContainer}>
+        <ArWhyChooseTuitional />
+      </Grid>
+      <Grid sx={style.getStartedContainer}>
+        <ArGetStarted data={getStarted} />
+      </Grid>
+      <Grid sx={style.studentSaysContainer}>
+        <StudentSays data={studentSaysAr} />
+      </Grid>
       <ArServerFooter />
     </div>
   );
 };
 
 export default ArAbout;
+
+const style = {
+  aboutUsContainer: {
+    background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+  },
+  whyChooseContainer: {
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+    marginY: { xs: "5vh", md: "10vh" },
+  },
+  getStartedContainer: {
+    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
+    marginY: { xs: "5vh", md: "10vh" },
+  },
+  studentSaysContainer: {
+    background: "#9EDCFF",
+    paddingY: {
+      xs: "5vh",
+      md: "10vh",
+    },
+  },
+};

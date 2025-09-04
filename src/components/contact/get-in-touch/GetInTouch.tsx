@@ -17,6 +17,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
+import "react-phone-number-input/style.css";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 
 import toast from "react-hot-toast";
