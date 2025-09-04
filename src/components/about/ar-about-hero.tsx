@@ -6,12 +6,14 @@ const ArAboutHero = () => {
   return (
     <Box sx={styles.hero}>
       <Typography sx={styles.heading} component={"h1"} variant="h1" className={leagueSpartan.className}>
-        من نحن
+        تطوير{" "}
+        <Typography sx={styles.expertText} component={"span"} variant="h1" className={leagueSpartan.className}>
+          التدريس الشخصي عبر الإنترنت
+        </Typography>{" "}
+        عبر الخليج
       </Typography>
       <Typography sx={styles.desc} component={"p"} variant="body2" className={leagueSpartan.className}>
-        تيوشنال هي منصة تعليمية رائدة عبر الإنترنت تقدم تدريساً شخصياً عالي الجودة
-        للطلاب في منطقة الخليج. نحن ملتزمون بتوفير تجربة تعليمية متميزة تساعد الطلاب
-        على تحقيق أهدافهم الأكاديمية والوصول إلى إمكاناتهم الكاملة.
+        توفير حلول تعليمية مبتكرة ومحسنة عالية الجودة لمساعدة الطلاب على تحقيق النمو الأكاديمي والتفوق من خلال التدريس الفردي عبر الإنترنت.
       </Typography>
     </Box>
   );
@@ -50,6 +52,10 @@ const styles = {
       lg: "3.5rem",
     },
     fontWeight: 700,
+  },
+  expertText: {
+    color: "#38B6FF",
+    display: "inline",
   },
   desc: {
     textAlign: {

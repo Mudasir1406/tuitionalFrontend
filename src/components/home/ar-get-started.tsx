@@ -56,7 +56,7 @@ const ArGetStarted: React.FunctionComponent<IProps> = ({ data }) => {
       >
         <Grid container spacing={3} justifyContent="center" alignItems="center">
           {data?.map((item, index) => (
-            <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
+            <Grid item xs={12} sm={12} md={6} lg={4} xl={4} key={index}>
               <ArGetStartedBox {...item as any} />
             </Grid>
           ))}
@@ -160,8 +160,9 @@ const ArGetStartedBox: React.FC<Props> = ({
     <Box sx={styles.contanier}>
       <Box
         sx={{
-          height: isLargeOrAbove ? 300 : 280,
-          width: 300,
+          height: { xs: 200, sm: 250, md: 280, lg: 300 },
+          width: "100%",
+          maxWidth: 300,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -308,9 +309,13 @@ const styles = {
   contanier: {
     height: "auto",
     width: {
-      lg: "80%",
-      xl: "400px",
+      xs: "95%",
+      sm: "90%",
+      md: "85%",
+      lg: "100%",
+      xl: "380px",
     },
+    maxWidth: "380px",
     backgroundColor: "#D7F0FF",
     alignItems: "center",
     padding: "10px 30px",

@@ -21,7 +21,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ footerData }) => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <footer>
       <Box sx={styles.background}>
@@ -364,9 +364,13 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     if (!item || typeof item !== 'string' || item.trim() === '') {
                       return null;
                     }
-                    const url = findAboutUsURL(item);
+                    let url = findAboutUsURL(item);
+                    // Add /ar prefix for Arabic locale if not already present
+                    if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
+                      url = `/ar${url}`;
+                    }
                     return (
-                      <a
+                      <Link
                         href={url}
                         style={{
                           textDecoration: "none",
@@ -381,7 +385,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                         >
                           {item}
                         </Typography>
-                      </a>
+                      </Link>
                     );
                   })}
                 </Box>
@@ -406,9 +410,13 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     if (!item || typeof item !== 'string' || item.trim() === '') {
                       return null;
                     }
-                    const url = findAboutUsURL(item);
+                    let url = findAboutUsURL(item);
+                    // Add /ar prefix for Arabic locale if not already present
+                    if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
+                      url = `/ar${url}`;
+                    }
                     return (
-                      <a
+                      <Link
                         href={url}
                         style={{ textDecoration: "none" }}
                         key={index}
@@ -420,7 +428,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                         >
                           {item}
                         </Typography>
-                      </a>
+                      </Link>
                     );
                   })}
                 </Box>

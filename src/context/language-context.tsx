@@ -26,13 +26,15 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
     setIsClient(true);
   }, []);
 
-  // Initialize locale from localStorage after client mount
+  // Initialize locale from URL path or localStorage after client mount
   useEffect(() => {
     if (isClient && typeof window !== "undefined") {
-      const savedLocale = localStorage.getItem('tuitional-locale') as Locale;
-      if (savedLocale && ['en', 'ar'].includes(savedLocale)) {
-        setLocaleState(savedLocale);
-      }
+      // First check if we're on an /ar route
+      const pathLocale = window.location.pathname.startsWith('/ar') ? 'ar' : 'en';
+      setLocaleState(pathLocale);
+      
+      // Also update localStorage to match the current page
+      localStorage.setItem('tuitional-locale', pathLocale);
     }
   }, [isClient]);
 
