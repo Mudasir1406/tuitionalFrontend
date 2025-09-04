@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)",
+      "Bash(npm run analyze:*)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

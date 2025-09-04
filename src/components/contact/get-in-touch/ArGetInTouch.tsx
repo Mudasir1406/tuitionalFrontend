@@ -153,6 +153,10 @@ const ArGetInTouch: React.FunctionComponent = () => {
             width={girlLaptop.width}
             height={girlLaptop.height}
             alt="فتاة تستخدم الكمبيوتر المحمول"
+            loading="lazy"
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
             style={{
               width: "100%",
               height: "100%",
