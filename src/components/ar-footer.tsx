@@ -250,7 +250,7 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "end",
+                        textAlign: "start",
                         marginTop: "20px",
                       },
                     ]}
@@ -301,7 +301,7 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                     sx={[
                       styles.heading,
                       {
-                        textAlign: "end",
+                        textAlign: "start",
                         marginTop: "20px",
                       },
                     ]}
