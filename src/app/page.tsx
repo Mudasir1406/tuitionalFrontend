@@ -130,14 +130,11 @@ const Home: React.FC = async () => {
                 <Image
                   src={homeImage}
                   alt="Student learning with Tuitional"
-                  layout="responsive"
-                  width={640} // actual image width
-                  height={625} // actual image height
+                  fill
                   priority
-                  quality={85}
-                  sizes="(max-width: 575px) 240px, (max-width: 768px) 400px, (max-width: 1200px) 600px, 640px"
+                  quality={80}
+                  sizes="(max-width: 575px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 40vw, 640px"
                   className={style.image}
-                  // sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <Info />

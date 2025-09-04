@@ -55,7 +55,8 @@ const Header: React.FC<IProps> = ({ background }) => {
                   }}
                   width={logo.width}
                   height={logo.height}
-                  quality={100}
+                  priority
+                  quality={90}
                 />
               </Box>
             </a>
@@ -65,10 +66,12 @@ const Header: React.FC<IProps> = ({ background }) => {
                 alt="Logo"
                 width={logoMobile.width}
                 height={logoMobile.height}
+                priority
+                quality={90}
                 style={{
                   width: 203,
                   height: 49,
-                  objectFit: "none",
+                  objectFit: "contain",
                 }}
               />
             </Box>

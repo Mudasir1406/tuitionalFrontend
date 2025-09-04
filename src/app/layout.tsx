@@ -50,6 +50,20 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
+        <link rel="dns-prefetch" href="//img.icons8.com" />
+        <link
+          rel="preload"
+          href="/assets/images/static/girl-with-book.webp"
+          as="image"
+          type="image/webp"
+        />
+        <link
+          rel="preload"
+          href="/assets/images/static/logo.png"
+          as="image"
+          type="image/png"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
