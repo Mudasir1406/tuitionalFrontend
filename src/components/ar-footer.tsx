@@ -14,12 +14,14 @@ import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
 import FooterLinks from "./footerLinks/FooterLinks";
 import { findAboutUsURL } from "@/utils/helper";
+import { useI18n } from "@/context/language-context";
 
 interface FooterProps {
   footerData: FooterData | null;
 }
 
 const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
+  const { locale } = useI18n();
   return (
     <footer dir="rtl">
       <Box sx={styles.background}>
@@ -264,9 +266,13 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                       ) {
                         return null;
                       }
-                      const url = findAboutUsURL(item);
+                      let url = findAboutUsURL(item);
+                      // Add /ar prefix for Arabic locale if not already present
+                      if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
+                        url = `/ar${url}`;
+                      }
                       return (
-                        <a
+                        <Link
                           href={url}
                           style={{
                             textDecoration: "none",
@@ -281,7 +287,7 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                           >
                             {item}
                           </Typography>
-                        </a>
+                        </Link>
                       );
                     })}
                 </Box>
@@ -311,9 +317,13 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                       ) {
                         return null;
                       }
-                      const url = findAboutUsURL(item);
+                      let url = findAboutUsURL(item);
+                      // Add /ar prefix for Arabic locale if not already present
+                      if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
+                        url = `/ar${url}`;
+                      }
                       return (
-                        <a
+                        <Link
                           href={url}
                           style={{ textDecoration: "none" }}
                           key={index}
@@ -325,7 +335,7 @@ const ArFooter: React.FC<FooterProps> = ({ footerData }) => {
                           >
                             {item}
                           </Typography>
-                        </a>
+                        </Link>
                       );
                     })}
                 </Box>
