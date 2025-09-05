@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 import { leagueSpartan } from "./fonts";
-import FbPixelPageView from "./metrics/pixel-tracker";
+// import FbPixelPageView from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
@@ -108,7 +108,7 @@ export default function RootLayout({
             <HtmlWrapper className={leagueSpartan.variable}>
               <DrawerProvider>
                 <DynamicModel />
-                <FbPixelPageView />
+                {/* <FbPixelPageView /> */}
             {children}
                 <Metrics />
                 <Toaster />
