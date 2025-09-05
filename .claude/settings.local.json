@@ -3,7 +3,12 @@
     "allow": [
       "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)",
       "Bash(npm run analyze:*)",
-      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend/**)"
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\app/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components\\home/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)"
     ],
     "deny": [],
     "ask": []
