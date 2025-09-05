@@ -29,9 +29,9 @@ html[dir="rtl"] body {
 }
 
 
-/* Arabic font support */
+/* Arabic font support - using optimized CSS variables */
 html[dir="rtl"] * {
-  font-family: 'Noto Sans Arabic', 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-noto-arabic), var(--font-league-spartan), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 /* RTL adjustments for common elements */
