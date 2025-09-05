@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 import { DrawerProvider } from "@/context/drawer-context";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     "font-display": "swap",
   },
 };
-import { leagueSpartan } from "./fonts";
+import { leagueSpartan, notoSansArabic } from "./fonts";
 import FbPixelPageView from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
@@ -35,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${leagueSpartan.variable}`}
+      className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -51,13 +52,7 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="//img.icons8.com" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap"
-        />
         <link
           rel="preload"
           href="/assets/images/static/girl-with-book.webp"
@@ -90,9 +85,9 @@ export default function RootLayout({
           }}
         />
         <noscript>
-          <img
-            height="1"
-            width="1"
+          <Image
+            height={1}
+            width={1}
             style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
             alt=""
@@ -113,7 +108,7 @@ export default function RootLayout({
 
         <ThemeProvider theme={theme}>
           <I18nProvider>
-            <HtmlWrapper className={leagueSpartan.variable}>
+            <HtmlWrapper className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}>
               <DrawerProvider>
                 <DynamicModel />
                 <FbPixelPageView />
