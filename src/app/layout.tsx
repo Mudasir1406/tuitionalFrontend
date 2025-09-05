@@ -64,7 +64,9 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
-        <script
+        <Script
+          id="facebook-pixel-inline"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
