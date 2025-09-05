@@ -17,20 +17,48 @@ import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
 
-const ArInfo = dynamic(() => import("../../components/home/ar-info"));
-const ArFilter = dynamic(() => import("../../components/home/ar-filter"));
-const ServerFooter = dynamic(() => import("../../components/ar-server-footer"));
+// Critical above-the-fold - Load with SSR
+const ArInfo = dynamic(() => import("../../components/home/ar-info"), {
+  ssr: true,
+});
+const ArFilter = dynamic(() => import("../../components/home/ar-filter"), {
+  ssr: true,
+});
+
+// Below-the-fold - Lazy load with placeholders
+const ArTrusted = dynamic(() => import("../../components/home/ar-trusted"), {
+  ssr: false,
+  loading: () => <div style={{height: '200px', backgroundColor: '#f5f5f5'}} />,
+});
+const ArOurClient = dynamic(
+  () => import("../../components/home/ar-our-client"),
+  {
+    ssr: false,
+    loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+  }
+);
+const ArFaqs = dynamic(() => import("../../components/home/ar-faqs"), {
+  ssr: false,
+  loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+});
 const ArContactUs = dynamic(
-  () => import("../../components/home/ar-contact-us")
+  () => import("../../components/home/ar-contact-us"),
+  {
+    ssr: false,
+    loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+  }
 );
 const ArGetStarted = dynamic(
-  () => import("../../components/home/ar-get-started")
+  () => import("../../components/home/ar-get-started"),
+  {
+    ssr: false,
+    loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+  }
 );
-const ArTrusted = dynamic(() => import("../../components/home/ar-trusted"));
-const ArOurClient = dynamic(
-  () => import("../../components/home/ar-our-client")
-);
-const ArFaqs = dynamic(() => import("../../components/home/ar-faqs"));
+const ServerFooter = dynamic(() => import("../../components/ar-server-footer"), {
+  ssr: false,
+  loading: () => <div style={{height: '500px', backgroundColor: '#f5f5f5'}} />,
+});
 
 export const metadata: Metadata = {
   title: "أفضل منصة تدريس فردي عبر الإنترنت في منطقة الخليج",

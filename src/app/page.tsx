@@ -16,16 +16,44 @@ import { Header } from "../components";
 import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
-const Info = dynamic(() => import("../components/home/info"));
-const Filter = dynamic(() => import("../components/home/filter"));
-const ServerFooter = dynamic(() => import("../components/server-footer"));
-const ContactUs = dynamic(() => import("../components/home/contact-us"));
+// Critical above-the-fold - Load with SSR
+const Info = dynamic(() => import("../components/home/info"), {
+  ssr: true,
+});
+const Filter = dynamic(() => import("../components/home/filter"), {
+  ssr: true,
+});
+
+// Below-the-fold - Lazy load with placeholders
+const Trusted = dynamic(() => import("../components/home/trusted"), {
+  ssr: false,
+  loading: () => <div style={{height: '200px', backgroundColor: '#f5f5f5'}} />,
+});
+const OurClient = dynamic(() => import("../components/home/our-client"), {
+  ssr: false,
+  loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+});
+const Faqs = dynamic(() => import("../components/home/faqs"), {
+  ssr: false,
+  loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+});
+const ContactUs = dynamic(() => import("../components/home/contact-us"), {
+  ssr: false,
+  loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+});
+
+// Footer and non-critical
 const GetStarted = dynamic(
-  () => import("@/components/grade-subject-level/get-started")
+  () => import("@/components/grade-subject-level/get-started"),
+  {
+    ssr: false,
+    loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+  }
 );
-const Trusted = dynamic(() => import("../components/home/trusted"));
-const OurClient = dynamic(() => import("../components/home/our-client"));
-const Faqs = dynamic(() => import("../components/home/faqs"));
+const ServerFooter = dynamic(() => import("../components/server-footer"), {
+  ssr: false,
+  loading: () => <div style={{height: '500px', backgroundColor: '#f5f5f5'}} />,
+});
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
