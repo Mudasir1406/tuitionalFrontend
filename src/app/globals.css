@@ -1,5 +1,4 @@
-/* Import Arabic font */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
+/* Arabic font moved to layout.tsx as non-blocking preload */
 
 .App {
   overflow-x: hidden;
