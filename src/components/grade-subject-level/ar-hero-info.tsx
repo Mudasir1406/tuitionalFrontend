@@ -38,6 +38,7 @@ const ArHeroInfo: React.FunctionComponent<IProps> = ({ image, imageAltText }) =>
             backgroundRepeat: "no-repeat",
             position: "absolute",
             bottom: 0,
+            left: 0,
             zIndex: "0",
             loading: "lazy",
           },
