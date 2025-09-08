@@ -19,9 +19,10 @@ type Teacher = {
 
 type TeacherCardProps = {
   teacher: Teacher;
+  locale?: string;
 };
 
-const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
+const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, locale = "en" }) => {
   const [tutorModal, setTutorModal] = useState<boolean>(false);
 
   const handleCloseTutorModal = () => {
@@ -32,6 +33,22 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
   };
 
   const maxLength = 120;
+
+  // Translation objects
+  const translations = {
+    en: {
+      bookADemo: "Book A Demo",
+      viewProfile: "View Profile",
+      tutorHoursProvided: "Tutor Hours Provided"
+    },
+    ar: {
+      bookADemo: "احجز حصة تجريبية",
+      viewProfile: "عرض الملف الشخصي", 
+      tutorHoursProvided: "ساعات التدريس المقدمة"
+    }
+  };
+
+  const t = translations[locale as keyof typeof translations];
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -59,7 +76,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             component={"span"}
             variant="caption"
           >
-            +{teacher?.["Hours Taught"]} Tutor Hours Provided
++{teacher?.["Hours Taught"]} {t.tutorHoursProvided}
           </Typography>
           <Typography
             // sx={style.guidence}
@@ -73,7 +90,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
         </div>
         <div className={styles.actionSection}>
           <PopUpButton
-            text="Book A Demo"
+text={t.bookADemo}
             href="popup"
             sx={style.contactButton}
           />
@@ -83,7 +100,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             type="button"
             onClick={handleOpenTutorModal}
           >
-            View Profile
+{t.viewProfile}
           </Button>
         </div>
       </div>
@@ -93,6 +110,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
           handleClose={handleCloseTutorModal}
           open={tutorModal}
           data={teacher as any}
+          locale={locale}
         />
       )}
     </div>

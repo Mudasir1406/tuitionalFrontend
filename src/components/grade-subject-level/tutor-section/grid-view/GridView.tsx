@@ -9,8 +9,9 @@ import { useMediaQuery, useTheme } from "@mui/material";
 interface props {
   // cardsData: CardProps[];
   cardsData: any[];
+  locale?: string;
 }
-function GridView({ cardsData }: props) {
+function GridView({ cardsData, locale = "en" }: props) {
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -105,7 +106,7 @@ function GridView({ cardsData }: props) {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <ImageCard data={card} />
+              <ImageCard data={card} locale={locale} />
             </div>
           ))}
         </div>

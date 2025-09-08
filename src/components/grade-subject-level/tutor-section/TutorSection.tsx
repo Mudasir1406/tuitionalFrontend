@@ -25,7 +25,7 @@ export type CardProps = {
 };
 
 const Form: React.FunctionComponent<IProps> = async ({ data }) => {
-  const val = await getTutorsByFilter(data.curriculum, data.subject);
+  const val = await getTutorsByFilter(data.curriculum, data.subject, "en");
 
   return (
     <div className={styles.main}>
@@ -48,9 +48,9 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
 
       <div className={styles.mt1}>
         {data?.view === "Row View" ? (
-          <ListView data={val} />
+          <ListView data={val} locale="en" />
         ) : (
-          <GridView cardsData={val} />
+          <GridView cardsData={val} locale="en" />
         )}
       </div>
     </div>

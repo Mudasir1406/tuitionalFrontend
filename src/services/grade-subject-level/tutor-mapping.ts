@@ -88,16 +88,18 @@ export const mapSubjectToEnglish = (subject: string): string => {
  */
 export const getTutorsByFilterWithMapping = async (
   curriculum: string,
-  subject: string
+  subject: string,
+  locale: string = "en"
 ): Promise<any[]> => {
   // Import the original function
   const { getTutorsByFilter } = await import('./grade-subject-level');
   
-  // Map Arabic values to English
+  // For Arabic locale, still map to English values for database queries
+  // but fetch from Arabic tutor collection
   const mappedCurriculum = mapCurriculumToEnglish(curriculum);
   const mappedSubject = mapSubjectToEnglish(subject);
   
   
-  // Call original function with mapped English values
-  return getTutorsByFilter(mappedCurriculum, mappedSubject);
+  // Call original function with mapped English values and locale
+  return getTutorsByFilter(mappedCurriculum, mappedSubject, locale);
 };

@@ -8,9 +8,10 @@ import { useMediaQuery, useTheme } from "@mui/material";
 
 interface props {
   cardsData: any[];
+  locale?: string;
 }
 
-function ArGridView({ cardsData }: props) {
+function ArGridView({ cardsData, locale = "ar" }: props) {
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -99,7 +100,7 @@ function ArGridView({ cardsData }: props) {
               onMouseLeave={() => setIsHovered(false)}
               style={{ direction: "ltr" }} // Keep card content in LTR for proper display
             >
-              <ImageCard data={card} />
+              <ImageCard data={card} locale={locale} />
             </div>
           ))}
         </div>
