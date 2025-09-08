@@ -25,7 +25,11 @@ export type CardProps = {
 };
 
 const ArTutorSection: React.FunctionComponent<IProps> = async ({ data }) => {
-  const val = await getTutorsByFilterWithMapping(data.curriculum, data.subject);
+  const val = await getTutorsByFilterWithMapping(
+    data.curriculum,
+    data.subject,
+    "ar"
+  );
 
   return (
     <div className={styles.main} style={{ direction: "rtl" }}>
@@ -41,9 +45,9 @@ const ArTutorSection: React.FunctionComponent<IProps> = async ({ data }) => {
 
       <div className={styles.mt1}>
         {data?.view === "Row View" ? (
-          <ListView data={val} />
+          <ListView data={val} locale="ar" />
         ) : (
-          <ArGridView cardsData={val} />
+          <ArGridView cardsData={val} locale="ar" />
         )}
       </div>
     </div>

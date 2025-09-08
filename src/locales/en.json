@@ -8,7 +8,21 @@
   },
   "buttons": {
     "ai_digital_sat": "AI Digital SAT",
-    "book_demo": "Book Demo Classes"
+    "book_demo": "Book Demo Classes",
+    "book_a_demo": "Book A Demo",
+    "show_more": "Show More"
+  },
+  "tutor_section": {
+    "vetted_tutor": "Vetted Tutor",
+    "vetted_tutor_description": "Our tutors go through a rigorous selection process, having been interviewed to assess their teaching skills & subject knowledge. They have extensive tutoring experience with a track record of success, helping students achieve their academic goals.",
+    "pool_of_tutors": "Pool of 100s of Tutors to choose from",
+    "recorded_classes": "Recorded classes for review",
+    "progress_tracking": "Progress Tracking",
+    "flexible_scheduling": "Flexible Scheduling",
+    "post_test_analysis": "Post-Test Analysis",
+    "parental_updates": "Parental Updates",
+    "tutor_hours_provided": "Tutor Hours Provided",
+    "view_profile": "View Profile"
   },
   "footer": {
     "admission_text": "Admissions are Open for the Next Year Batch",

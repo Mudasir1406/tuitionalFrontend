@@ -21,25 +21,47 @@ import {
 
 interface props {
   data: any[];
-  // data: {
-  //   name: string;
-  //   hoursProvided: number;
-  //   description: string;
-  //   title: string;
-  //   imageSrc: string;
-  // }[];
+  locale?: string;
 }
 
-function ListView({ data }: props) {
+function ListView({ data, locale = "en" }: props) {
   const [showFull, setShowFull] = useState(false);
   const toggleShowMore = () => {
     setShowFull((prev) => !prev);
   };
+
+  // Translation objects
+  const translations = {
+    en: {
+      showMore: "Show More",
+      vettedTutor: "Vetted Tutor",
+      vettedTutorDescription: "Our tutors go through a rigorous selection process, having been interviewed to assess their teaching skills & subject knowledge. They have extensive tutoring experience with a track record of success, helping students achieve their academic goals.",
+      poolOfTutors: "Pool of 100s of Tutors to choose from",
+      recordedClasses: "Recorded classes for review",
+      progressTracking: "Progress Tracking",
+      flexibleScheduling: "Flexible Scheduling",
+      postTestAnalysis: "Post-Test Analysis",
+      parentalUpdates: "Parental Updates"
+    },
+    ar: {
+      showMore: "عرض المزيد",
+      vettedTutor: "مدرس معتمد",
+      vettedTutorDescription: "يخضع مدرسونا لعملية انتقاء صارمة، حيث تتم مقابلتهم لتقييم مهاراتهم التدريسية ومعرفتهم بالمادة. لديهم خبرة تدريس واسعة مع سجل حافل بالنجاح، مما يساعد الطلاب على تحقيق أهدافهم الأكاديمية.",
+      poolOfTutors: "مجموعة من المئات من المدرسين للاختيار من بينهم",
+      recordedClasses: "فصول مسجلة للمراجعة",
+      progressTracking: "تتبع التقدم",
+      flexibleScheduling: "جدولة مرنة",
+      postTestAnalysis: "تحليل ما بعد الاختبار",
+      parentalUpdates: "تحديثات أولياء الأمور"
+    }
+  };
+
+  const t = translations[locale as keyof typeof translations];
   return (
     <div className={styles.main}>
       <div className={styles.mainList}>
         {data?.slice(0, showFull ? data?.length : 10).map((teacher, index) => (
-          <TeacherCard key={teacher.id} teacher={teacher} />
+          <TeacherCard key={teacher.id} teacher={teacher} locale={locale} />
         ))}
         {!showFull && data?.length > 10 && (
           <Button
@@ -48,7 +70,7 @@ function ListView({ data }: props) {
             type="button"
             onClick={toggleShowMore}
           >
-            Show More
+{t.showMore}
           </Button>
         )}
       </div>
@@ -67,17 +89,14 @@ function ListView({ data }: props) {
             component={"p"}
             variant="subtitle1"
           >
-            Vetted Tutor
+{t.vettedTutor}
           </Typography>
           <Typography
             className={`${leagueSpartan.className} ${styles.mt1}`}
             component={"p"}
             variant="body2"
           >
-            Our tutors go through a rigorous selection process, having been
-            interviewed to assess their teaching skills & subject knowledge.
-            They have extensive tutoring experience with a track record of
-            success, helping students achieve their academic goals.{" "}
+{t.vettedTutorDescription}
           </Typography>
         </div>
 
@@ -93,7 +112,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Pool of 100s of Tutors to choose from{" "}
+{t.poolOfTutors}
             </Typography>
           </div>
           <div className={styles.smallCard}>
@@ -105,7 +124,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Recorded classes for review{" "}
+{t.recordedClasses}
             </Typography>
           </div>
           <div className={styles.smallCard}>
@@ -119,7 +138,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Progress Tracking{" "}
+{t.progressTracking}
             </Typography>
           </div>
           <div className={styles.smallCard}>
@@ -133,7 +152,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Flexible Scheduling{" "}
+{t.flexibleScheduling}
             </Typography>
           </div>
           <div className={styles.smallCard}>
@@ -147,7 +166,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Post-Test Analysis{" "}
+{t.postTestAnalysis}
             </Typography>
           </div>
           <div className={styles.smallCard}>
@@ -161,7 +180,7 @@ function ListView({ data }: props) {
               component={"p"}
               variant="caption"
             >
-              Parental Updates{" "}
+{t.parentalUpdates}
             </Typography>
           </div>
         </div>

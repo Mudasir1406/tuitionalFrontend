@@ -10,11 +10,13 @@ import dummyImg from "../../../public/assets/images/static/blogimg3.png";
 import PopUpButton from "../pop-up-button";
 import dynamic from "next/dynamic";
 const TutorModal = dynamic(() => import("../home/tutor-modal"), { ssr: false });
+
 interface props {
   data: CardProps;
+  locale?: string;
 }
 
-const ImageCard = ({ data }: props) => {
+const ImageCard = ({ data, locale = "en" }: props) => {
   const [tutorModal, setTutorModal] = useState<boolean>(false);
 
   const handleCloseTutorModal = () => {
@@ -89,13 +91,18 @@ const ImageCard = ({ data }: props) => {
             {data?.["Success rate"]}
           </Typography>
         </div>
-        <PopUpButton text="Book A Demo" href="popup" sx={style.contactButton} />
+        <PopUpButton 
+          text={locale === "ar" ? "احجز حصة تجريبية" : "Book A Demo"} 
+          href="popup" 
+          sx={style.contactButton} 
+        />
 
         {tutorModal && (
           <TutorModal
             handleClose={handleCloseTutorModal}
             open={tutorModal}
             data={data}
+            locale={locale}
           />
         )}
       </div>
