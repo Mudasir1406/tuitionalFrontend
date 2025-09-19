@@ -8,7 +8,15 @@
       "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
       "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
       "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components\\home/**)",
-      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)"
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)",
+      "WebFetch(domain:tuitionaledu.com)",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(npm run build:analyze:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run dev:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run build:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
