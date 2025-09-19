@@ -15,6 +15,6 @@ export const notoSansArabic = Noto_Sans_Arabic({
   display: "swap", // Better for performance and consistency
   variable: "--font-noto-arabic",
   adjustFontFallback: true, // Enable fallback optimization
-  preload: true, // Preload font for better performance
-  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+  preload: false, // Disable preload to avoid network issues
+  fallback: ["Tahoma", "Arial Unicode MS", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
 });
