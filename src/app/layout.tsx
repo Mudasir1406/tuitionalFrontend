@@ -86,7 +86,7 @@ export default function RootLayout({
         {/* CSS is handled automatically by Next.js */}
         <Script
           id="facebook-pixel-inline"
-          strategy="afterInteractive"
+          strategy="worker"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)

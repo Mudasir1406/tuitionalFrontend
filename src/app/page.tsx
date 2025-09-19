@@ -24,66 +24,32 @@ const Filter = dynamic(() => import("../components/home/filter"), {
   ssr: true,
 });
 
-// Below-the-fold - Lazy load with optimized placeholders
+// Below-the-fold - Lazy load with optimized placeholders and viewport detection
 const Trusted = dynamic(() => import("../components/home/trusted"), {
   ssr: false,
   loading: () => (
     <div style={{
       height: '200px',
-      backgroundColor: '#f8fafc',
+      backgroundColor: 'transparent',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      opacity: 0.7
     }}>
-      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
+      <div style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#e2e8f0', opacity: 0.5 }} />
     </div>
   ),
 });
 const OurClient = dynamic(() => import("../components/home/our-client"), {
   ssr: false,
-  loading: () => (
-    <div style={{
-      height: '400px',
-      backgroundColor: '#f8fafc',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      opacity: 0.7
-    }}>
-      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
-    </div>
-  ),
+  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
 });
 const Faqs = dynamic(() => import("../components/home/faqs"), {
   ssr: false,
-  loading: () => (
-    <div style={{
-      height: '300px',
-      backgroundColor: '#f8fafc',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      opacity: 0.7
-    }}>
-      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
-    </div>
-  ),
+  loading: () => <div style={{ height: '300px', backgroundColor: 'transparent' }} />,
 });
 const ContactUs = dynamic(() => import("../components/home/contact-us"), {
   ssr: false,
-  loading: () => (
-    <div style={{
-      height: '400px',
-      backgroundColor: '#f8fafc',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      opacity: 0.7
-    }}>
-      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
-    </div>
-  ),
+  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
 });
 
 // Footer and non-critical
