@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
     viewportFit: 'cover',
-    themeColor: '#38b6ff',
   },
+  themeColor: '#38b6ff',
   other: {
     "font-display": "swap",
     "color-scheme": "light",
