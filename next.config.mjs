@@ -7,7 +7,17 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Performance optimizations
+  poweredByHeader: false,
+  compress: true,
+  swcMinify: true,
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
+  },
+
   webpack: (config, { isServer }) => {
+    // Audio file handling
     config.module.rules.push({
       test: /\.(mp3|wav)$/,
       use: {
@@ -21,9 +31,24 @@ const nextConfig = {
       },
     });
 
+    // Tree shaking optimization
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+
     return config;
   },
   images: {
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: false,
+    contentDispositionType: 'attachment',
     remotePatterns: [
       {
         protocol: "https",
@@ -39,6 +64,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn-icons-png.flaticon.com",
         pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.facebook.com",
+        pathname: "/tr**",
       },
     ],
   },

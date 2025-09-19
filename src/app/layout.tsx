@@ -18,8 +18,16 @@ export const metadata: Metadata = {
   verification: {
     google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    viewportFit: 'cover',
+    themeColor: '#38b6ff',
+  },
   other: {
     "font-display": "swap",
+    "color-scheme": "light",
   },
 };
 import { leagueSpartan, notoSansArabic } from "./fonts";
@@ -52,7 +60,9 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="//img.icons8.com" />
+        <link rel="dns-prefetch" href="//www.facebook.com" />
         <link
           rel="preload"
           href="/assets/images/static/girl-with-book.webp"
@@ -65,14 +75,22 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
+        {/* Mobile performance optimizations */}
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="dns-prefetch" href="//cdn-icons-png.flaticon.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        {/* CSS is handled automatically by Next.js */}
         <Script
           id="facebook-pixel-inline"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                         
-              n.callMethod.apply(n,arguments):n.queue.push   
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push
               (arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!
               0;n.version='2.0';n.queue=[];t=b.createElement(e);
               t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];

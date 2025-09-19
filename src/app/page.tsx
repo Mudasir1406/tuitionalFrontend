@@ -24,22 +24,66 @@ const Filter = dynamic(() => import("../components/home/filter"), {
   ssr: true,
 });
 
-// Below-the-fold - Lazy load with placeholders
+// Below-the-fold - Lazy load with optimized placeholders
 const Trusted = dynamic(() => import("../components/home/trusted"), {
   ssr: false,
-  loading: () => <div style={{height: '200px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => (
+    <div style={{
+      height: '200px',
+      backgroundColor: '#f8fafc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      opacity: 0.7
+    }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    </div>
+  ),
 });
 const OurClient = dynamic(() => import("../components/home/our-client"), {
   ssr: false,
-  loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => (
+    <div style={{
+      height: '400px',
+      backgroundColor: '#f8fafc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      opacity: 0.7
+    }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    </div>
+  ),
 });
 const Faqs = dynamic(() => import("../components/home/faqs"), {
   ssr: false,
-  loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => (
+    <div style={{
+      height: '300px',
+      backgroundColor: '#f8fafc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      opacity: 0.7
+    }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    </div>
+  ),
 });
 const ContactUs = dynamic(() => import("../components/home/contact-us"), {
   ssr: false,
-  loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => (
+    <div style={{
+      height: '400px',
+      backgroundColor: '#f8fafc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      opacity: 0.7
+    }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#e2e8f0', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    </div>
+  ),
 });
 
 // Footer and non-critical
@@ -160,9 +204,12 @@ const Home: React.FC = async () => {
                   alt="Student learning with Tuitional"
                   fill
                   priority
-                  quality={80}
-                  sizes="(max-width: 575px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 40vw, 640px"
+                  quality={85}
+                  sizes="(max-width: 575px) 90vw, (max-width: 768px) 45vw, (max-width: 1200px) 35vw, 500px"
                   className={style.image}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgdmlld0JveD0iMCAwIDY0MCA0ODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idHJhbnNwYXJlbnQiIC8+PC9zdmc+"
+                  loading="eager"
                 />
               </div>
               <Info />
