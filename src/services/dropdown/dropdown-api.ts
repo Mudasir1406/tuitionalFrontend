@@ -1,0 +1,161 @@
+import { doc, getDoc, FirestoreError } from 'firebase/firestore';
+import { db } from '../../firebaseConfig/config';
+
+export interface DropdownOptions {
+  grades: string[];
+  subjects: string[];
+  curriculum: string[];
+  countries: string[];
+  currencies: {
+    [country: string]: string;
+  };
+  lastUpdated?: string;
+}
+
+// Fallback data for SSR reliability
+const getFallbackDropdownOptions = (): DropdownOptions => ({
+  grades: [
+    'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5',
+    'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10',
+    'Grade 11', 'Grade 12', 'AS Level', 'A2 Level',
+    'IB Year 1', 'IB Year 2'
+  ],
+  subjects: [
+    'Mathematics', 'Physics', 'Chemistry', 'Biology',
+    'English', 'Arabic', 'Computer Science', 'Economics',
+    'Business Studies', 'Accounting', 'History', 'Geography',
+    'Psychology', 'Art & Design', 'French', 'Spanish'
+  ],
+  curriculum: [
+    'British', 'American', 'IB', 'Canadian', 'Australian',
+    'IGCSE', 'A-Levels', 'SAT', 'AP', 'CBSE', 'ICSE'
+  ],
+  countries: [
+    'United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait',
+    'Bahrain', 'Oman', 'United States', 'United Kingdom', 'Canada'
+  ],
+  currencies: {
+    'United Arab Emirates': 'AED',
+    'Saudi Arabia': 'SAR',
+    'Qatar': 'QAR',
+    'Kuwait': 'KWD',
+    'Bahrain': 'BHD',
+    'Oman': 'OMR',
+    'United States': 'USD',
+    'United Kingdom': 'GBP',
+    'Canada': 'CAD'
+  }
+});
+
+/**
+ * Server-side function to fetch dropdown options from Firebase
+ * Supports both English and Arabic locales
+ * Returns fallback data if Firebase fails (for SSR reliability)
+ */
+export const getDropdownOptions = async (locale: 'en' | 'ar' = 'en'): Promise<DropdownOptions> => {
+  try {
+    const collectionName = locale === 'ar' ? 'dropdown-items-ar' : 'dropdown-items';
+    const documentPath = `${collectionName}/educational-options`;
+
+    console.log('🔥 Dropdown Debug - Fetching from:', documentPath);
+    console.log('🔥 Dropdown Debug - Database instance:', db);
+    console.log('🔥 Dropdown Debug - Project ID:', db.app.options.projectId);
+
+    const docRef = doc(db, collectionName, 'educational-options');
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      const data = docSnapshot.data() as DropdownOptions;
+      console.log('🔥 Dropdown Debug - Firebase data found:', {
+        grades: data.grades?.length || 0,
+        subjects: data.subjects?.length || 0,
+        curriculum: data.curriculum?.length || 0,
+        countries: data.countries?.length || 0,
+        currencies: Object.keys(data.currencies || {}).length,
+        lastUpdated: data.lastUpdated
+      });
+
+      // Validate required fields
+      if (data.grades && data.subjects && data.curriculum && data.countries && data.currencies) {
+        return {
+          grades: data.grades,
+          subjects: data.subjects,
+          curriculum: data.curriculum,
+          countries: data.countries,
+          currencies: data.currencies,
+          lastUpdated: data.lastUpdated
+        };
+      } else {
+        console.log('🔥 Dropdown Debug - Invalid data structure, using fallback');
+        return getFallbackDropdownOptions();
+      }
+    } else {
+      console.log('🔥 Dropdown Debug - Document does not exist, using fallback data');
+      return getFallbackDropdownOptions();
+    }
+
+  } catch (error) {
+    console.error('🔥 Dropdown Debug - Error fetching dropdown options:', error);
+    handleFirestoreError(error as FirestoreError);
+    // Always return fallback data on error for SSR reliability
+    return getFallbackDropdownOptions();
+  }
+};
+
+/**
+ * Get dropdown options for custom pricing specifically
+ * This can be different from regular package filters
+ */
+export const getCustomPricingDropdownOptions = async (locale: 'en' | 'ar' = 'en'): Promise<DropdownOptions> => {
+  // For now, use the same dropdown options
+  // Can be extended later if custom pricing needs different options
+  return getDropdownOptions(locale);
+};
+
+/**
+ * Validate if dropdown data is complete and valid
+ */
+export const validateDropdownData = (data: Partial<DropdownOptions>): data is DropdownOptions => {
+  return !!(
+    data.grades && Array.isArray(data.grades) && data.grades.length > 0 &&
+    data.subjects && Array.isArray(data.subjects) && data.subjects.length > 0 &&
+    data.curriculum && Array.isArray(data.curriculum) && data.curriculum.length > 0 &&
+    data.countries && Array.isArray(data.countries) && data.countries.length > 0 &&
+    data.currencies && typeof data.currencies === 'object' && Object.keys(data.currencies).length > 0
+  );
+};
+
+/**
+ * Get dropdown options with cache (for performance)
+ * Note: Cache should be implemented at the application level for SSR
+ */
+export const getCachedDropdownOptions = async (
+  locale: 'en' | 'ar' = 'en',
+  maxAge: number = 5 * 60 * 1000 // 5 minutes default
+): Promise<DropdownOptions> => {
+  // For now, just fetch fresh data
+  // Can implement caching later if needed
+  return getDropdownOptions(locale);
+};
+
+// Centralized error handling for Firestore errors
+const handleFirestoreError = (error: FirestoreError) => {
+  console.error("🔥 Dropdown Firestore Error Code:", error.code);
+  console.error("🔥 Dropdown Firestore Error Message:", error.message);
+
+  // Log specific error types for debugging
+  switch (error.code) {
+    case 'permission-denied':
+      console.error("🔥 Permission denied - check Firestore rules");
+      break;
+    case 'unavailable':
+      console.error("🔥 Firestore service unavailable");
+      break;
+    case 'not-found':
+      console.error("🔥 Document or collection not found");
+      break;
+    default:
+      console.error("🔥 Unknown Firestore error");
+  }
+};
+

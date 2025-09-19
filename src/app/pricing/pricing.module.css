@@ -1,0 +1,211 @@
+.main {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.hero {
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 100%);
+  color: white;
+  position: relative;
+  overflow: visible;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 1rem 4rem 1rem;
+  max-width: 4xl;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countrySection {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.countryBox {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: visible;
+}
+
+.countryLabel {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.countrySelector {
+  min-width: 220px;
+}
+
+.trustSection {
+  background: white;
+  padding: 6rem 0;
+}
+
+.trustTitle {
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 4xl;
+  margin: 0 auto;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #38B6FF;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.loadingContainer {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loadingText {
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .heroContent {
+    padding: 4rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+    line-height: 1.3;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .countryBox {
+    padding: 1rem;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .trustSection {
+    padding: 4rem 0;
+  }
+  
+  .trustTitle {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .statLabel {
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.125rem;
+  }
+  
+  .trustTitle {
+    font-size: 2.5rem;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1200px) {
+  .heroContent {
+    padding: 8rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 4rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.5rem;
+  }
+  
+  .trustTitle {
+    font-size: 3rem;
+  }
+}
