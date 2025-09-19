@@ -18,17 +18,18 @@ export const metadata: Metadata = {
   verification: {
     google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    viewportFit: 'cover',
-  },
-  themeColor: '#38b6ff',
   other: {
     "font-display": "swap",
     "color-scheme": "light",
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: '#38b6ff',
 };
 import { leagueSpartan, notoSansArabic } from "./fonts";
 import FbPixelPageView from "./metrics/pixel-tracker";

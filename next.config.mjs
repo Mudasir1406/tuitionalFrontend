@@ -12,8 +12,8 @@ const nextConfig = {
   compress: true,
   swcMinify: true,
   experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
+    // optimizeCss: true,
+    // optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
 
   webpack: (config, { isServer }) => {
