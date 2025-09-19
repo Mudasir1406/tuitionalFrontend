@@ -11,9 +11,11 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   swcMinify: true,
+  reactStrictMode: true,
+  productionBrowserSourceMaps: false,
   experimental: {
-    // optimizeCss: true,
-    // optimizePackageImports: ['@mui/material', '@mui/icons-material'],
+    optimizeCss: true,
+    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
   },
 
   webpack: (config, { isServer }) => {
@@ -38,6 +40,25 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
+      };
+
+      // Optimize chunk splitting
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          mui: {
+            name: 'mui',
+            test: /[\\/]node_modules[\\/](@mui|@emotion)[\\/]/,
+            priority: 30,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            name: 'vendor',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 20,
+            reuseExistingChunk: true,
+          },
+        },
       };
     }
 
