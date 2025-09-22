@@ -1,0 +1,318 @@
+/* Clean Modern Package Cards */
+.card {
+  background: #ffffff;
+  border: 2px solid #f1f5f9;
+  border-radius: 20px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+  /* height: 100%; */
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-color: #e2e8f0;
+}
+
+/* Popular Card with Brand Color */
+.popular {
+  background: #38b6ff;
+  border-color: #38b6ff;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(56, 182, 255, 0.25);
+  margin: 4px 0 8px 0;
+}
+
+.popular:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 40px rgba(56, 182, 255, 0.3);
+}
+
+/* Header Section */
+.header {
+  margin-bottom: 32px;
+}
+
+.packageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.popular .packageTitle {
+  color: white;
+}
+
+/* Price Section */
+.priceSection {
+  margin-bottom: 40px;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.currency {
+  font-size: 24px;
+  font-weight: 600;
+  color: #64748b;
+  margin-right: 4px;
+}
+
+.popular .currency {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.amount {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.popular .amount {
+  color: white;
+}
+
+.period {
+  font-size: 16px;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.popular .period {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.originalPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.crossed {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.popular .crossed {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.savings {
+  background: #22c55e;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Content Section */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Features */
+.features {
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #475569;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.featureItem:last-child {
+  margin-bottom: 0;
+}
+
+.popular .featureItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  background: #22c55e;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.popular .checkIcon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Actions */
+.actions {
+  margin-top: auto;
+}
+
+.actionButton {
+  background: #1e293b !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 16px 32px !important;
+  border-radius: 16px !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  letter-spacing: 0.025em !important;
+  width: 100% !important;
+}
+
+.actionButton:hover {
+  background: #334155 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 41, 59, 0.3) !important;
+}
+
+/* Popular Button - White background with dark text */
+.popularButton {
+  background: white !important;
+  color: #1e293b !important;
+  border: 2px solid white !important;
+}
+
+.popularButton:hover {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .card {
+    padding: 32px 24px;
+    margin-bottom: 32px;
+  }
+
+  .popular {
+    transform: none;
+    margin: 0 0 32px 0;
+    scale: 1;
+    box-shadow: 0 4px 20px rgba(56, 182, 255, 0.25);
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .packageTitle {
+    font-size: 20px;
+  }
+
+  .amount {
+    font-size: 36px;
+  }
+
+  .priceSection {
+    margin-bottom: 32px;
+  }
+
+  .features {
+    margin-bottom: 32px;
+  }
+
+  .featureItem {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .actionButton {
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    padding: 36px 28px;
+  }
+
+  .packageTitle {
+    font-size: 22px;
+  }
+
+  .amount {
+    font-size: 42px;
+  }
+}
+
+/* Desktop Large */
+@media (min-width: 1200px) {
+  .card {
+    padding: 48px 36px;
+  }
+
+  .amount {
+    font-size: 52px;
+  }
+}
+
+/* Focus states for accessibility */
+.actionButton:focus {
+  outline: 2px solid #38b6ff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 3px;
+  }
+
+  .popular {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .actionButton {
+    transition: none;
+  }
+
+  .card:hover,
+  .popular {
+    transform: none;
+  }
+}

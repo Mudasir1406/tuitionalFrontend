@@ -92,6 +92,9 @@ const style = {
     // fontWeight: 400,
     textAlign: { xs: "center", md: "left", lg: "left" },
     marginBottom: { xs: "2vh", md: "4vh" },
+    "& ul": {
+      paddingInlineStart: 0,
+    },
   },
   button: {
     backgroundColor: "#FFFFFF",

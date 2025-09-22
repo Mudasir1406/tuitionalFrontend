@@ -26,75 +26,114 @@ export default SectionsBox;
 const style = {
   contanier: {},
   inner: {
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "3vh",
-    // },
-    // fontWeight: {
-    //   xs: "auto",
-    //   lg: "700",
-    // },
-    textAlign: "start",
+    fontSize: {
+      xs: "2.5vh",
+      sm: "2.8vh",
+      md: "3vh",
+      lg: "3vh",
+    },
+    fontWeight: {
+      xs: 600,
+      lg: 700,
+    },
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "center",
+      lg: "left",
+    },
+    lineHeight: {
+      xs: 1.4,
+      lg: 1.3,
+    },
+    flex: 1,
     paddingX: {
-      // xs: "2vh",
+      xs: 0,
       lg: "0",
     },
   },
   boxsection: {
-    borderRadius: "1.5vh",
+    borderRadius: {
+      xs: "12px",
+      lg: "1.5vh",
+    },
     background: "#E7F6FF",
     boxShadow:
       "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px -3px 8px 0px rgba(56, 182, 255, 0.20)",
     backdropFilter: "blur(5px)",
-    height: {
-      xs: "8vh",
+    minHeight: {
+      xs: "auto",
+      sm: "10vh",
       lg: "12vh",
+    },
+    padding: {
+      xs: "16px",
+      sm: "20px 24px",
+      lg: "0 24px",
     },
     display: "flex",
     alignItems: "center",
     flexDirection: {
-      xs: "row",
+      xs: "column",
+      sm: "column",
+      md: "column",
       lg: "row",
     },
-    justifyContent: "center",
-    paddingX: {
-      xs: "3vw",
-      sm: "3vw",
-      lg: "0",
+    justifyContent: "space-between",
+    gap: {
+      xs: "12px",
+      sm: "16px",
+      lg: "2vh",
     },
-    gap: "2vh",
     marginY: {
       xs: "16px",
       lg: 0,
+    },
+    marginX: {
+      xs: "16px",
+      sm: "0",
     },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
     backgroundColor: "#38B6FF",
     color: "white",
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "2vh",
-    // },
-    // fontWeight: 700,
-    paddingY: {
-      xs: "1vh",
-      lg: "10px",
+    fontSize: {
+      xs: "2vh",
+      sm: "2vh",
+      md: "2vh",
+      lg: "2vh",
+    },
+    fontWeight: {
+      xs: 600,
+      lg: 700,
+    },
+    padding: {
+      xs: "10px 20px",
+      sm: "12px 24px",
+      lg: "14px 28px",
     },
     textTransform: "none",
-    borderRadius: "10px",
-    width: {
-      xs: "50%",
-      sm: "20%",
-      md: "20%",
-      lg: "20%",
+    borderRadius: {
+      xs: "8px",
+      lg: "10px",
     },
-    transition: "all .5s ease-in-out",
+    width: {
+      xs: "100%",
+      sm: "auto",
+      md: "auto",
+      lg: "auto",
+    },
+    minWidth: {
+      sm: "140px",
+      lg: "160px",
+    },
+    whiteSpace: "nowrap",
+    transition: "all .3s ease-in-out",
     ":hover": {
-      backgroundColor: "#38B6FF",
-      transform: "scale(1.05)",
-
-      boxShadow: "1px 4px 24px 0px #38B6FFB2",
+      backgroundColor: "#2563eb",
+      transform: "scale(1.02)",
+      boxShadow: "1px 6px 28px 0px #38B6FFB2",
     },
   },
 };
