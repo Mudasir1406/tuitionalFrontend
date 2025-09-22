@@ -91,6 +91,13 @@ type IProps = {
 
 const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
   const getStarted = await getStartedData();
+
+  // Count how many link_list sections exist
+  const linkListCount = Object.keys(data).filter((key) =>
+    key.includes("link_list")
+  ).length;
+  const hasMultipleLinkList = linkListCount > 1;
+
   const renderSection = (name: string) => {
     if (name.includes("hero_section")) {
       return (
@@ -166,7 +173,13 @@ const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
     else if (name.includes("link_list")) {
       return (
         <>
-          <Box sx={styles.verticalMargin}>
+          <Box
+            sx={
+              hasMultipleLinkList
+                ? styles.reducedVerticalMargin
+                : styles.verticalMargin
+            }
+          >
             <LinkListViewSection data={data?.[name as keyof PageData]} />
           </Box>
         </>
@@ -344,6 +357,7 @@ export default GradeSubjectLevelV2;
 
 const styles = {
   verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
+  reducedVerticalMargin: { marginY: { xs: "0vh", md: "0vh" } },
   heroContanier: {
     // width: { lg: "100%", sm: "100%" },
     paddingTop: {

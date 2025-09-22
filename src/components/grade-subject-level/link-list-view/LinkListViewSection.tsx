@@ -21,14 +21,14 @@ function LinkListViewSection({ data }: IProps) {
         }}
       ></Typography>
 
-      <Typography
+      {/* <Typography
         className={`${leagueSpartan.className} ${styles.description}`}
         component={"p"}
         variant="body2"
         dangerouslySetInnerHTML={{
           __html: data?.paragraph,
         }}
-      ></Typography>
+      ></Typography> */}
 
       <div className={styles.list}>
         {data?.subjects?.map((ls, i) => (

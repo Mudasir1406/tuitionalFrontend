@@ -26,7 +26,7 @@
   .list {
     grid-template-columns: 1fr;
     gap: 12px;
-    margin: 24px 0;
+    margin: 16px 0;
   }
 }
 
@@ -132,17 +132,17 @@
 /* Mobile typography adjustments */
 @media (max-width: 768px) {
   .main {
-    padding: 24px 4vw;
+    padding: 16px 4vw;
   }
 
   .title {
     font-size: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .description {
     font-size: 15px;
-    margin: 6px 0 20px 0;
+    margin: 4px 0 12px 0;
   }
 
   .item p {
