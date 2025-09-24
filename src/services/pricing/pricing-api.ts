@@ -440,10 +440,10 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
 // Get all active custom packages
 export const getActiveCustomPackages = async (): Promise<CustomPackage[]> => {
   try {
-    console.log('🔥 Custom Packages Debug - Fetching from custom-packages collection...');
+    console.log('🔥 Custom Packages Debug - Fetching from custom-pricing collection...');
 
     const q = query(
-      collection(db, 'custom-packages'),
+      collection(db, 'custom-pricing'),
       where('isActive', '==', true)
     );
 

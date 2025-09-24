@@ -6,7 +6,7 @@
   padding: 40px 32px;
   text-align: center;
   transition: all 0.3s ease;
-  height: 100%;
+  height: 760px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -21,8 +21,8 @@
 
 /* Popular Card with Brand Color */
 .popular {
-  background: #38B6FF;
-  border-color: #38B6FF;
+  background: #38b6ff;
+  border-color: #38b6ff;
   color: white;
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(56, 182, 255, 0.25);
@@ -288,7 +288,7 @@
 
 /* Focus states for accessibility */
 .actionButton:focus {
-  outline: 2px solid #38B6FF;
+  outline: 2px solid #38b6ff;
   outline-offset: 2px;
 }
 
