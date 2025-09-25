@@ -92,10 +92,6 @@ function GridView({ cardsData, locale = "en" }: props) {
         <div
           className={styles.cardWrapper}
           style={{
-            // transform: `translateX(-${
-            //   currentIndex *
-            //   (100 / (cardsData?.length > 4 ? cardsData?.length + 3 : 8))
-            // }%)`,
             transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`,
           }}
         >

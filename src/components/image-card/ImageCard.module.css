@@ -133,16 +133,89 @@
   transform: scaleY(1.2);
 }
 
-@media (max-width: 576px) {
-  /* .containedButton {
-    font-size: 4vw;
-  } */
+/* Extra small mobile devices */
+@media (max-width: 399.98px) {
+  .imageWrapper {
+    height: 180px;
+  }
+  .cardTextDiv {
+    padding: 12px;
+  }
+  .name {
+    font-size: 1rem;
+  }
+  .university {
+    font-size: 0.8rem;
+    margin: 6px 0;
+  }
+  .description {
+    font-size: 0.8rem;
+    margin: 6px 0;
+  }
+  .subject {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+  .containedButton {
+    padding: 14px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .stars {
+    height: 2.5vh;
+    width: 12vh;
+  }
 }
 
-@media (min-width: 768px) {
-  /* .containedButton {
-    font-size: 2.1vw;
-  } */
+/* Small mobile devices */
+@media (min-width: 400px) and (max-width: 576px) {
+  .imageWrapper {
+    height: 200px;
+  }
+  .cardTextDiv {
+    padding: 14px;
+  }
+  .name {
+    font-size: 1.1rem;
+  }
+  .university {
+    font-size: 0.85rem;
+  }
+  .description {
+    font-size: 0.85rem;
+  }
+  .subject {
+    font-size: 0.75rem;
+    padding: 3px 7px;
+  }
+  .containedButton {
+    padding: 16px;
+    margin: 18px 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* Medium tablets */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .imageWrapper {
+    height: 220px;
+  }
+  .cardTextDiv {
+    padding: 15px;
+  }
+  .containedButton {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablets and small laptops */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .imageWrapper {
+    height: 240px;
+  }
+  .containedButton {
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 992px) {

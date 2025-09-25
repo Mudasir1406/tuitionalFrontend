@@ -13,6 +13,8 @@
 
 .mainList {
   flex: 2;
+  display: flex;
+  flex-direction: column;
   /* max-height: 95vh; */
   overflow-y: auto;
 
@@ -109,19 +111,15 @@
   box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 0.2);
   background-color: #38b6ff;
   text-transform: none;
-  /* font-size: 25px; */
-  /* font-weight: 700; */
   line-height: 18.4px;
   text-align: center;
   border-radius: 10px;
   justify-content: center;
-  margin: auto;
-  /* width: max-content; */
-  /* padding: 18px; */
-
-  /* margin: 20px 0; */
-  transition: all 0.5s ease-in-out;
-  padding: 2vh;
+  margin: 20px auto;
+  width: fit-content;
+  padding: 18px 32px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
 }
 
 .containedButton:hover {
@@ -160,5 +158,13 @@
   .info {
     align-items: center; /* Center align for smaller screens */
     padding: 0px;
+  }
+
+  .containedButton {
+    margin: 16px auto;
+    padding: 14px 24px;
+    font-size: 14px;
+    width: 90%;
+    max-width: 200px;
   }
 }

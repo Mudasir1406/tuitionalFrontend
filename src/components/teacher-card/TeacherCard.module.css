@@ -80,6 +80,7 @@
   flex-direction: column;
   gap: 8px;
   flex-shrink: 0;
+  min-width: 160px;
 }
 
 .demoButton {
@@ -98,29 +99,49 @@
   background-color: #0056b3;
 }
 
-.outlinedButton {
-  /* padding: 8px 16px; */
-  padding: 2vh;
+/* Base button styling */
+.baseButton {
+  padding: 18px;
   display: flex;
   align-self: center;
-  background-color: white;
-  color: green;
+  justify-content: center;
   text-transform: none;
-
-  border: 2px solid green;
   border-radius: 10px;
-  /* font-size: 14px; */
-  /* font-weight: bold; */
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   line-height: 18.4px;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+}
+
+/* Primary button (Book a Demo) */
+.primaryButton {
+  background-color: #38b6ff;
+  color: white;
+  box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 0.4);
+}
+
+.primaryButton:hover {
+  background-color: #38b6ff;
+  transform: translateY(-2px);
+  box-shadow: 1px 4px 24px 0px rgba(56, 182, 255, 0.7);
+}
+
+/* Outlined button (View Profile) */
+.outlinedButton {
+  background-color: transparent;
+  color: #38b6ff;
+  border: 2px solid #38b6ff;
+  box-shadow: 0 2px 8px rgba(56, 182, 255, 0.1);
 }
 
 .outlinedButton:hover {
-  background-color: white;
-  color: green;
-  border: 2px solid green;
-  transform: scale(1.02);
+  background-color: #38b6ff;
+  color: white;
+  border: 2px solid #38b6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(56, 182, 255, 0.3);
 }
 
 .containedButton {
@@ -148,11 +169,26 @@
   box-shadow: 1px 4px 24px 0px #38b6ffb2;
 }
 
+.descriptionContainer {
+  margin-top: 8px;
+}
+
 .showMore {
   color: #38b6ff;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+  /* font-family: inherit; */
 }
+
+.showMore:hover {
+  color: #2590d8;
+  text-decoration: underline;
+}
+
 
 @media (max-width: 576px) {
   .cardContent {
@@ -163,10 +199,31 @@
   .card {
     padding: 12px;
     width: 92%;
+    margin: 8px auto;
+  }
+
+  .imageSection {
+    margin-right: 0;
+    margin-bottom: 12px;
   }
 
   .infoSection {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
 
-    margin-bottom: 16px;
+  .descriptionContainer {
+    margin-top: 6px;
+  }
+
+  .actionSection {
+    width: 100%;
+    min-width: unset;
+    gap: 6px;
+  }
+
+  .baseButton, .primaryButton, .outlinedButton {
+    padding: 14px;
+    font-size: 14px;
   }
 }

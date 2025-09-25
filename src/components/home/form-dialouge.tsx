@@ -485,18 +485,42 @@ const styles = {
       "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
     backgroundColor: "white",
     width: {
-      xs: "90vw",
+      xs: "95vw",
+      sm: "90vw",
       md: "50vw",
     },
-    // height: "60vh",
-    borderRadius: "30px",
+    maxWidth: {
+      xs: "400px",
+      sm: "500px",
+      md: "600px",
+    },
+    maxHeight: {
+      xs: "90vh",
+      sm: "85vh",
+      md: "80vh",
+    },
+    borderRadius: {
+      xs: "20px",
+      md: "30px",
+    },
     p: 0,
     overflow: "auto",
+    margin: {
+      xs: "8px",
+      md: "auto",
+    },
   },
   mainDiv: {
-    paddingX: "2%",
-    paddingY: "2%",
-    // minWidth: { xs: "90vw", md: "500px" },
+    paddingX: {
+      xs: "16px",
+      sm: "20px",
+      md: "2%",
+    },
+    paddingY: {
+      xs: "16px",
+      sm: "20px",
+      md: "2%",
+    },
   },
   // form: {
   //   maxWidth: "95%",
@@ -564,13 +588,30 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginX: "3vh",
-    marginTop: "3vh",
-    marginBottom: "2vh",
+    marginX: {
+      xs: "16px",
+      md: "3vh",
+    },
+    marginTop: {
+      xs: "16px",
+      md: "3vh",
+    },
+    marginBottom: {
+      xs: "12px",
+      md: "2vh",
+    },
   },
   dialogHeading: {
-    fontSize: "3vh",
-    lineHeight: "2.2vh",
+    fontSize: {
+      xs: "20px",
+      sm: "24px",
+      md: "3vh",
+    },
+    lineHeight: {
+      xs: "24px",
+      sm: "28px",
+      md: "2.2vh",
+    },
     fontWeight: 500,
     color: "rgba(0, 0, 0, 1)",
     letterSpacing: "-2%",
@@ -583,16 +624,30 @@ const styles = {
   input: {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     backgroundColor: "white",
-    marginTop: "1.5vh",
-    marginBottom: "1vh",
+    marginTop: {
+      xs: "12px",
+      md: "1.5vh",
+    },
+    marginBottom: {
+      xs: "8px",
+      md: "1vh",
+    },
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    // fontSize: "1.5vh",
     fontWeight: 400,
     "& .MuiOutlinedInputRoot": {
-      height: "5.5vh",
+      height: {
+        xs: "48px",
+        sm: "52px",
+        md: "5.5vh",
+      },
+      fontSize: {
+        xs: "14px",
+        sm: "16px",
+        md: "inherit",
+      },
     },
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
@@ -605,8 +660,8 @@ const styles = {
     color: "white",
     textTransform: "none",
     fontSize: {
-      xs: "1.5vh",
-      sm: "1.5vh",
+      xs: "14px",
+      sm: "16px",
       md: "1.5vh",
       lg: "2vh",
     },
@@ -614,14 +669,29 @@ const styles = {
     lineHeight: "18.4px",
     textAlign: "center",
     borderRadius: "10px",
-    paddingX: "1.8vw",
-    paddingY: "1.5vh",
-    marginY: "2vh",
+    paddingX: {
+      xs: "16px",
+      md: "1.8vw",
+    },
+    paddingY: {
+      xs: "12px",
+      md: "1.5vh",
+    },
+    marginY: {
+      xs: "16px",
+      md: "2vh",
+    },
     ":hover": {
       backgroundColor: "#38B6FF",
     },
-    width: "96%",
-    marginX: "2%",
+    width: {
+      xs: "100%",
+      md: "96%",
+    },
+    marginX: {
+      xs: "0",
+      md: "2%",
+    },
   },
   outlinedBtn: {
     color: "rgba(56, 182, 255, 1)",
@@ -643,8 +713,10 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "1.5vh",
-    // marginBottom: "1.5vh",
+    marginTop: {
+      xs: "12px",
+      md: "1.5vh",
+    },
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -653,11 +725,15 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    // height: "42px",
-    height: "5.5vh",
-
-    // fontSize: "1.7vh",
-    // fontWeight: 400,
-    // minHeight: "50px",
+    height: {
+      xs: "48px",
+      sm: "52px",
+      md: "5.5vh",
+    },
+    fontSize: {
+      xs: "14px",
+      sm: "16px",
+      md: "inherit",
+    },
   },
 };

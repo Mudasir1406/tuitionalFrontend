@@ -18,6 +18,7 @@ type IProps = {
   backgroundColor?: string;
   sx?: SxProps<Theme> | undefined;
   values?: FormType;
+  className?: string;
 };
 
 const PopUpButton: React.FunctionComponent<IProps> = ({
@@ -25,6 +26,7 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
   text,
   sx,
   values,
+  className,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [mounted, setMounted] = useState(false);
@@ -49,7 +51,7 @@ const PopUpButton: React.FunctionComponent<IProps> = ({
     <>
       <Button
         sx={sx}
-        className={leagueSpartan.className}
+        className={`${leagueSpartan.className} ${className || ''}`}
         href={href !== "popup" ? href : undefined} // Only set href if not "popup"
         onClick={(e) => {
           if (href === "popup") {

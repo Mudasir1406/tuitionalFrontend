@@ -22,7 +22,10 @@ type TeacherCardProps = {
   locale?: string;
 };
 
-const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, locale = "en" }) => {
+const TeacherCard: React.FC<TeacherCardProps> = ({
+  teacher,
+  locale = "en",
+}) => {
   const [tutorModal, setTutorModal] = useState<boolean>(false);
 
   const handleCloseTutorModal = () => {
@@ -32,6 +35,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, locale = "en" }) => 
     setTutorModal(true);
   };
 
+  const [showMore, setShowMore] = useState(false);
   const maxLength = 120;
 
   // Translation objects
@@ -39,16 +43,24 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, locale = "en" }) => 
     en: {
       bookADemo: "Book A Demo",
       viewProfile: "View Profile",
-      tutorHoursProvided: "Tutor Hours Provided"
+      tutorHoursProvided: "Tutor Hours Provided",
+      showMore: "Show more",
+      showLess: "Show less",
     },
     ar: {
       bookADemo: "احجز حصة تجريبية",
-      viewProfile: "عرض الملف الشخصي", 
-      tutorHoursProvided: "ساعات التدريس المقدمة"
-    }
+      viewProfile: "عرض الملف الشخصي",
+      tutorHoursProvided: "ساعات التدريس المقدمة",
+      showMore: "عرض المزيد",
+      showLess: "عرض أقل",
+    },
   };
 
   const t = translations[locale as keyof typeof translations];
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -76,31 +88,44 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, locale = "en" }) => 
             component={"span"}
             variant="caption"
           >
-+{teacher?.["Hours Taught"]} {t.tutorHoursProvided}
+            +{teacher?.["Hours Taught"]} {t.tutorHoursProvided}
           </Typography>
-          <Typography
-            // sx={style.guidence}
-            variant={"body2"}
-            className={`${leagueSpartan.className} ${styles.mt1}`}
-            component={"div"}
-            dangerouslySetInnerHTML={{
-              __html: teacher?.Description?.substring(0, maxLength),
-            }}
-          ></Typography>
+          <div className={styles.descriptionContainer}>
+            <Typography
+              variant={"body2"}
+              className={`${leagueSpartan.className} ${styles.mt1}`}
+              component={"div"}
+              dangerouslySetInnerHTML={{
+                __html: showMore
+                  ? teacher?.Description
+                  : teacher?.Description?.length > maxLength
+                  ? `${teacher?.Description?.substring(0, maxLength)}...`
+                  : teacher?.Description,
+              }}
+            ></Typography>
+            {teacher?.Description?.length > maxLength && (
+              <span
+                className={`${leagueSpartan.className} ${styles.showMore}`}
+                onClick={toggleShowMore}
+              >
+                {showMore ? t.showLess : t.showMore}
+              </span>
+            )}
+          </div>
         </div>
         <div className={styles.actionSection}>
           <PopUpButton
-text={t.bookADemo}
+            text={t.bookADemo}
             href="popup"
-            sx={style.contactButton}
+            className={`${styles.baseButton} ${styles.primaryButton}`}
           />
           <Button
             variant="contained"
-            className={`${leagueSpartan.className} ${styles.outlinedButton}`}
+            className={`${leagueSpartan.className} ${styles.baseButton} ${styles.outlinedButton}`}
             type="button"
             onClick={handleOpenTutorModal}
           >
-{t.viewProfile}
+            {t.viewProfile}
           </Button>
         </div>
       </div>
@@ -119,25 +144,3 @@ text={t.bookADemo}
 
 export default TeacherCard;
 
-const style = {
-  contactButton: {
-    display: "flex",
-    alignSelf: "center",
-    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    backgroundColor: "#38b6ff",
-    textTransform: "none",
-    lineHeight: "18.4px",
-    textAlign: "center",
-    borderRadius: "10px",
-    width: "100%",
-    padding: "18px",
-    margin: "20px 0",
-    transition: "all 0.5s ease-in-out",
-    color: "white",
-    ":hover": {
-      backgroundColor: "#38b6ff",
-      transform: "scale(1.02)",
-      boxShadow: "1px 4px 24px 0px #38b6ffb2",
-    },
-  },
-};
