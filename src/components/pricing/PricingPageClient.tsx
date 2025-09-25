@@ -90,33 +90,80 @@ const PricingPageClient: React.FC<PricingPageClientProps> = ({
       {/* Trust Section */}
       <section className={styles.trustSection}>
         <Container maxWidth="lg">
-          <Typography variant="h3" className={`${styles.trustTitle} ${leagueSpartan.className}`}>
-            Trusted by Students Worldwide
-          </Typography>
-          <div className={styles.statsGrid}>
-            <div className={styles.statItem}>
-              <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>10,000+</Typography>
-              <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                Students Tutored
+          <div className={styles.trustContent}>
+            <div className={styles.trustHeader}>
+              <Typography variant="h3" className={`${styles.trustTitle} ${leagueSpartan.className}`}>
+                Trusted by Students Worldwide
+              </Typography>
+              <Typography className={`${styles.trustSubtitle} ${leagueSpartan.className}`}>
+                Join thousands of successful students who have achieved their academic goals with our expert tutoring
               </Typography>
             </div>
-            <div className={styles.statItem}>
-              <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>500+</Typography>
-              <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                Expert Tutors
-              </Typography>
+
+            <div className={styles.statsGrid}>
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>🎓</div>
+                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>10,000+</Typography>
+                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
+                  Students Tutored
+                </Typography>
+                <div className={styles.statProgress}>
+                  <div className={styles.progressBar} style={{width: '90%'}}></div>
+                </div>
+              </div>
+
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>👨‍🏫</div>
+                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>500+</Typography>
+                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
+                  Expert Tutors
+                </Typography>
+                <div className={styles.statProgress}>
+                  <div className={styles.progressBar} style={{width: '85%'}}></div>
+                </div>
+              </div>
+
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>📚</div>
+                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>15+</Typography>
+                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
+                  Curricula Supported
+                </Typography>
+                <div className={styles.statProgress}>
+                  <div className={styles.progressBar} style={{width: '75%'}}></div>
+                </div>
+              </div>
+
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>⭐</div>
+                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>98%</Typography>
+                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
+                  Student Satisfaction
+                </Typography>
+                <div className={styles.statProgress}>
+                  <div className={styles.progressBar} style={{width: '98%'}}></div>
+                </div>
+              </div>
             </div>
-            <div className={styles.statItem}>
-              <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>15+</Typography>
-              <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                Curricula Supported
-              </Typography>
-            </div>
-            <div className={styles.statItem}>
-              <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>98%</Typography>
-              <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                Student Satisfaction
-              </Typography>
+
+            {/* Achievement badges */}
+            <div className={styles.achievementBadges}>
+              <div className={styles.badge}>
+                <span className={styles.badgeIcon}>🏆</span>
+                <span className={styles.badgeText}>Top Rated Platform</span>
+              </div>
+              <div className={styles.badge}>
+                <span className={styles.badgeIcon}>🌟</span>
+                <span className={styles.badgeText}>Award Winning</span>
+              </div>
+              <div className={styles.badge}>
+                <span className={styles.badgeIcon}>🔒</span>
+                <span className={styles.badgeText}>Secure & Trusted</span>
+              </div>
+              <div className={styles.badge}>
+                <span className={styles.badgeIcon}>💯</span>
+                <span className={styles.badgeText}>Results Guaranteed</span>
+              </div>
             </div>
           </div>
         </Container>
