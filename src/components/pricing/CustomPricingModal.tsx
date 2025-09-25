@@ -502,6 +502,7 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
 
       {/* Content */}
       <div className={styles.modalContent}>
+
         {/* Scrollable Package Rows Section */}
         <div className={styles.scrollableContent}>
           <div className={styles.rowsContainer}>

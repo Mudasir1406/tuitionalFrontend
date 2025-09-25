@@ -270,16 +270,77 @@ const handleFirestoreError = (error: FirestoreError) => {
 // CUSTOM PACKAGES API (New Hour-Based Pricing)
 // ========================================
 
-// Fallback custom packages data
+// Fallback custom packages data (Updated for new grade group structure)
 const getFallbackCustomPackages = (): CustomPackage[] => [
   {
     id: 'custom-1',
-    packageName: 'UAE Grade 10 IGCSE Mathematics British',
-    country: 'UAE', // Updated to match dropdown-items
-    grade: 'Grade 10',
-    level: 'IGCSE',
-    curriculum: 'British',
-    subject: 'Mathematics',
+    packageName: 'UAE Elementary (1-4) All Subjects & Curricula',
+    country: 'UAE',
+    grade: 'Elementary (1-4)', // New grade group format
+    level: 'All Levels', // Universal coverage
+    curriculum: 'All Curricula', // Universal coverage
+    subject: 'All Subjects', // Universal coverage
+    baseRatePerHour: 75,
+    currency: 'AED',
+    discountTiers: [
+      {
+        id: '1',
+        minHours: 0,
+        maxHours: 8,
+        discountPercentage: 0,
+        finalRatePerHour: 75,
+        isActive: true,
+        description: 'Standard Rate'
+      },
+      {
+        id: '2',
+        minHours: 9,
+        maxHours: 20,
+        discountPercentage: 5,
+        finalRatePerHour: 71.25,
+        isActive: true,
+        description: 'Volume Discount'
+      },
+      {
+        id: '3',
+        minHours: 21,
+        maxHours: 50,
+        discountPercentage: 10,
+        finalRatePerHour: 67.5,
+        isActive: true,
+        description: 'Bulk Discount'
+      },
+      {
+        id: '4',
+        minHours: 51,
+        maxHours: null,
+        discountPercentage: 15,
+        finalRatePerHour: 63.75,
+        isActive: true,
+        description: 'Premium Discount'
+      }
+    ],
+    isActive: true,
+    order: 1,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    description: 'Complete elementary tutoring covering all subjects and curricula for grades 1-4',
+    features: [
+      'All subjects covered',
+      'All curricula supported',
+      '1-on-1 personalized sessions',
+      'Flexible scheduling',
+      'Progress tracking'
+    ]
+  },
+  {
+    id: 'custom-2',
+    packageName: 'UAE Secondary (9-10) All Subjects & Curricula',
+    country: 'UAE',
+    grade: 'Secondary (9-10)', // New grade group format
+    level: 'All Levels',
+    curriculum: 'All Curricula',
+    subject: 'All Subjects',
     baseRatePerHour: 85,
     currency: 'AED',
     discountTiers: [
@@ -321,35 +382,35 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
       }
     ],
     isActive: true,
-    order: 1,
+    order: 2,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    description: 'Comprehensive IGCSE Mathematics tutoring with British curriculum focus',
+    description: 'Comprehensive secondary tutoring covering all subjects and curricula for grades 9-10',
     features: [
-      '1-on-1 personalized sessions',
-      'Flexible scheduling',
-      'Progress tracking',
-      'Exam preparation',
-      'Practice materials included'
+      'All subjects covered',
+      'All curricula supported',
+      'IGCSE exam preparation',
+      'Advanced problem solving',
+      'University preparation'
     ]
   },
   {
-    id: 'custom-2',
-    packageName: 'Saudi Arabia Grade 11 A-Levels Physics British',
-    country: 'Saudi Arabia',
-    grade: 'Grade 11',
-    level: 'A-Levels',
-    curriculum: 'British',
-    subject: 'Physics',
-    baseRatePerHour: 90,
-    currency: 'SAR',
+    id: 'custom-3',
+    packageName: 'USA Advanced (11-12) All Subjects & Curricula',
+    country: 'USA',
+    grade: 'Advanced (11-12)', // New grade group format
+    level: 'All Levels',
+    curriculum: 'All Curricula',
+    subject: 'All Subjects',
+    baseRatePerHour: 95,
+    currency: 'USD',
     discountTiers: [
       {
         id: '1',
         minHours: 0,
         maxHours: 8,
         discountPercentage: 0,
-        finalRatePerHour: 90,
+        finalRatePerHour: 95,
         isActive: true,
         description: 'Standard Rate'
       },
@@ -358,7 +419,7 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
         minHours: 9,
         maxHours: 20,
         discountPercentage: 5,
-        finalRatePerHour: 85.5,
+        finalRatePerHour: 90.25,
         isActive: true,
         description: 'Volume Discount'
       },
@@ -367,50 +428,41 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
         minHours: 21,
         maxHours: 50,
         discountPercentage: 10,
-        finalRatePerHour: 81,
+        finalRatePerHour: 85.5,
         isActive: true,
         description: 'Bulk Discount'
-      },
-      {
-        id: '4',
-        minHours: 51,
-        maxHours: null,
-        discountPercentage: 15,
-        finalRatePerHour: 76.5,
-        isActive: true,
-        description: 'Premium Discount'
       }
     ],
     isActive: true,
-    order: 2,
+    order: 3,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    description: 'Advanced A-Level Physics with practical applications and exam focus',
+    description: 'Advanced tutoring covering all subjects and curricula for grades 11-12',
     features: [
-      'Advanced problem solving',
-      'Lab experiment guidance',
-      'University preparation',
-      'Past papers practice',
-      'Concept visualization'
+      'All subjects covered',
+      'All curricula supported',
+      'AP exam preparation',
+      'SAT/ACT preparation',
+      'College application support'
     ]
   },
   {
-    id: 'custom-3',
-    packageName: 'USA Grade 1 A-Levels Mathematics American',
-    country: 'USA', // Match dropdown-items
-    grade: 'Grade 1',
-    level: 'A-Levels',
-    curriculum: 'American',
-    subject: 'Mathematics',
-    baseRatePerHour: 100,
-    currency: 'USD',
+    id: 'custom-4',
+    packageName: 'Saudi Arabia Middle (5-8) All Subjects & Curricula',
+    country: 'Saudi Arabia',
+    grade: 'Middle (5-8)', // New grade group format
+    level: 'All Levels',
+    curriculum: 'All Curricula',
+    subject: 'All Subjects',
+    baseRatePerHour: 80,
+    currency: 'SAR',
     discountTiers: [
       {
         id: '1',
         minHours: 0,
         maxHours: 8,
         discountPercentage: 0,
-        finalRatePerHour: 100,
+        finalRatePerHour: 80,
         isActive: true,
         description: 'Standard Rate'
       },
@@ -418,21 +470,23 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
         id: '2',
         minHours: 9,
         maxHours: 20,
-        discountPercentage: 5,
-        finalRatePerHour: 95,
+        discountPercentage: 8,
+        finalRatePerHour: 73.6,
         isActive: true,
         description: 'Volume Discount'
       }
     ],
     isActive: true,
-    order: 3,
+    order: 4,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    description: 'USA Grade 1 A-Levels Mathematics with American curriculum',
+    description: 'Middle school tutoring covering all subjects and curricula for grades 5-8',
     features: [
-      'American curriculum focus',
-      'Grade 1 fundamentals',
-      'Interactive learning'
+      'All subjects covered',
+      'All curricula supported',
+      'Foundation building',
+      'Study skills development',
+      'Exam preparation'
     ]
   }
 ];
@@ -477,10 +531,51 @@ export const getActiveCustomPackages = async (): Promise<CustomPackage[]> => {
   }
 };
 
-// Find custom package by academic configuration
+// Helper function to map individual grades to grade groups
+const mapGradeToGradeGroup = (grade: string): string => {
+  const gradeUpper = grade.toLowerCase();
+
+  // Handle specific grade formats first (before numeric extraction)
+  if (gradeUpper.includes('igcse')) {
+    return 'Secondary (9-10)';
+  }
+  if (gradeUpper.includes('a-level') || gradeUpper.includes('a level') ||
+      gradeUpper.includes('as level') || gradeUpper.includes('a2 level')) {
+    return 'Advanced (11-12)';
+  }
+  if (gradeUpper.includes('ib') || gradeUpper.includes('international baccalaureate')) {
+    return 'Advanced (11-12)';
+  }
+  if (gradeUpper.includes('kindergarten') || gradeUpper.includes('pre-k') || gradeUpper.includes('kg')) {
+    return 'Elementary (1-4)';
+  }
+
+  // Extract numeric part from grade string
+  const numericGrade = parseInt(grade.replace(/\D/g, '')) || 0;
+
+  if (numericGrade >= 1 && numericGrade <= 4) {
+    return 'Elementary (1-4)';
+  } else if (numericGrade >= 5 && numericGrade <= 8) {
+    return 'Middle (5-8)';
+  } else if (numericGrade >= 9 && numericGrade <= 10) {
+    return 'Secondary (9-10)';
+  } else if (numericGrade >= 11 && numericGrade <= 12) {
+    return 'Advanced (11-12)';
+  } else {
+    // Default fallback for unrecognized formats
+    console.warn(`🔥 Grade Mapping - Unrecognized grade format: "${grade}", defaulting to Elementary (1-4)`);
+    return 'Elementary (1-4)';
+  }
+};
+
+// Find custom package by academic configuration (Updated for new grade group structure)
 export const findCustomPackage = async (selection: Omit<CustomPricingSelection, 'hours'>): Promise<CustomPackage | null> => {
   try {
-    console.log('🔥 Custom Package Search - Looking for:', selection);
+    console.log('🔥 Custom Package Search - Original selection:', selection);
+
+    // Map the user's grade to grade group for database search
+    const gradeGroup = mapGradeToGradeGroup(selection.grade);
+    console.log(`🔥 Custom Package Search - Mapped grade "${selection.grade}" to grade group "${gradeGroup}"`);
 
     const packages = await getActiveCustomPackages();
     console.log('🔥 Custom Package Search - Available packages count:', packages.length);
@@ -490,33 +585,41 @@ export const findCustomPackage = async (selection: Omit<CustomPricingSelection, 
       console.log(`🔥 Custom Package Search - Package ${index + 1}:`, {
         id: pkg.id,
         country: pkg.country,
-        grade: pkg.grade,
-        level: pkg.level,
-        curriculum: pkg.curriculum,
-        subject: pkg.subject
+        grade: pkg.grade, // This should now be grade group like "Elementary (1-4)"
+        packageName: pkg.packageName
       });
     });
 
+    // NEW LOGIC: Search only by country and grade group (subjects and curricula are universal)
     const matchingPackage = packages.find(pkg => {
       const countryMatch = pkg.country === selection.country;
-      const gradeMatch = pkg.grade === selection.grade;
-      const levelMatch = pkg.level === selection.level;
-      const curriculumMatch = pkg.curriculum === selection.curriculum;
-      const subjectMatch = pkg.subject === selection.subject;
+      const gradeGroupMatch = pkg.grade === gradeGroup; // Match against grade group, not individual grade
 
       console.log(`🔥 Custom Package Search - Checking package ${pkg.id}:`, {
         countryMatch: `"${pkg.country}" === "${selection.country}" = ${countryMatch}`,
-        gradeMatch: `"${pkg.grade}" === "${selection.grade}" = ${gradeMatch}`,
-        levelMatch: `"${pkg.level}" === "${selection.level}" = ${levelMatch}`,
-        curriculumMatch: `"${pkg.curriculum}" === "${selection.curriculum}" = ${curriculumMatch}`,
-        subjectMatch: `"${pkg.subject}" === "${selection.subject}" = ${subjectMatch}`,
-        overallMatch: countryMatch && gradeMatch && levelMatch && curriculumMatch && subjectMatch
+        gradeGroupMatch: `"${pkg.grade}" === "${gradeGroup}" = ${gradeGroupMatch}`,
+        overallMatch: countryMatch && gradeGroupMatch
       });
 
-      return countryMatch && gradeMatch && levelMatch && curriculumMatch && subjectMatch;
+      return countryMatch && gradeGroupMatch;
     });
 
-    console.log('🔥 Custom Package Search - Found match:', matchingPackage?.id || 'None');
+    if (matchingPackage) {
+      console.log('🔥 Custom Package Search - Found match:', {
+        id: matchingPackage.id,
+        packageName: matchingPackage.packageName,
+        country: matchingPackage.country,
+        gradeGroup: matchingPackage.grade,
+        note: 'This package covers all subjects & curricula for this country/grade group'
+      });
+    } else {
+      console.log('🔥 Custom Package Search - No match found for:', {
+        country: selection.country,
+        gradeGroup: gradeGroup,
+        originalGrade: selection.grade
+      });
+    }
+
     return matchingPackage || null;
 
   } catch (error) {
