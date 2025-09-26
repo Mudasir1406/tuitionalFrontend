@@ -26,19 +26,18 @@ export default SectionsBoxV2;
 const style = {
   contanier: {},
   inner: {
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "3vh",
-    // },
-    // fontWeight: {
-    //   xs: "auto",
-    //   lg: "700",
-    // },
-    textAlign: "start",
-    paddingX: {
-      // xs: "2vh",
-      lg: "0",
+    fontSize: {
+      xs: "14px",
+      sm: "15px",
+      md: "16px",
+      lg: "18px",
     },
+    fontWeight: {
+      xs: 600,
+      lg: 700,
+    },
+    textAlign: "center",
+    lineHeight: 1.4,
   },
   boxsection: {
     borderRadius: "1.5vh",
@@ -58,11 +57,17 @@ const style = {
     },
     justifyContent: "center",
     paddingX: {
-      xs: "3vw",
-      sm: "3vw",
-      lg: "0",
+      xs: "16px",
+      sm: "20px",
+      md: "24px",
+      lg: "24px",
     },
-    gap: "2vh",
+    gap: {
+      xs: "16px",
+      sm: "20px",
+      md: "24px",
+      lg: "32px",
+    },
     marginY: {
       xs: "16px",
       lg: 0,
@@ -83,11 +88,11 @@ const style = {
     },
     textTransform: "none",
     borderRadius: "10px",
-    width: {
-      xs: "50%",
-      sm: "20%",
-      md: "20%",
-      lg: "20%",
+    width: "auto",
+    minWidth: {
+      xs: "120px",
+      sm: "140px",
+      md: "160px",
     },
     transition: "all .5s ease-in-out",
     ":hover": {
