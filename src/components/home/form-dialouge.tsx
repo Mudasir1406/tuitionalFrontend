@@ -346,7 +346,10 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         <Divider />
 
         <Box sx={styles.mainDiv}>
-          <form onSubmit={onClickUpload} style={{ width: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+          <form
+            onSubmit={onClickUpload}
+            style={{ width: "100%", boxSizing: "border-box" }}
+          >
             <Box sx={styles.inputDivTop}>
               <Box sx={styles.inputInner}>
                 <Input
@@ -390,16 +393,39 @@ const FormDialog: React.FunctionComponent<IProps> = ({
             </Box>
 
             <Box sx={styles.inputDiv}>
-              <div style={styles.div}>
-                {formData.EmailAddress && (
-                  <PhoneInput
-                    defaultCountry="SA"
-                    value={formData?.PhoneNumber || ""}
-                    onChange={(e) => handleChange("PhoneNumber", String(e))}
-                    inputComponent={CustomInput}
-                    style={{...styles.phoneInput, maxWidth: '100%', overflow: 'hidden'}}
-                  />
-                )}
+              <Box sx={{
+                ...styles.div,
+                '& .custom-phone-input': {
+                  height: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  },
+                  minHeight: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  },
+                  maxHeight: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  }
+                }
+              }}>
+                <PhoneInput
+                  defaultCountry="SA"
+                  value={formData?.PhoneNumber || ""}
+                  onChange={(e) => handleChange("PhoneNumber", String(e))}
+                  inputComponent={CustomInput}
+                  style={{
+                    ...styles.phoneInput,
+                    maxWidth: "100%",
+                    overflow: "hidden",
+                    paddingLeft: "8px",
+                  }}
+                  className="custom-phone-input"
+                />
 
                 {errors.PhoneNumber && (
                   <Typography
@@ -411,14 +437,12 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                     {errors.PhoneNumber}
                   </Typography>
                 )}
-              </div>
+              </Box>
               <div style={styles.div}>
                 <DropDown
                   name="Grade"
                   placeholder="Select Grade"
-                  marginTop="1.5vh"
                   data={filterData?.grade || []}
-                  // multiple
                   value={formData.Grade}
                   onChange={handleChange}
                 />
@@ -440,7 +464,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   placeholder="Select Curriculum"
                   name="Curriculum"
                   data={filterData?.curriculum || []}
-                  marginTop="1.5vh"
                   value={formData.Curriculum}
                   onChange={handleChange}
                 />
@@ -460,7 +483,6 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                   name="Subject"
                   placeholder="Select Subjects"
                   data={filterData?.subject || []}
-                  marginTop="1.5vh"
                   multiple
                   value={formData.Subject}
                   onChange={handleChange}
@@ -477,22 +499,25 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                 )}
               </div>
             </Box>
-            <div style={{marginTop: "4px"}}>
+            <div style={{ marginTop: "4px" }}>
               <TextField
-                sx={[styles.input, {
-                  "& .MuiOutlinedInput-root": {
-                    height: "auto",
-                    minHeight: { xs: "80px", sm: "100px", md: "120px" },
-                    alignItems: "flex-start",
-                    paddingTop: { xs: "8px", sm: "10px", md: "12px" },
-                    paddingBottom: { xs: "8px", sm: "10px", md: "12px" },
+                sx={[
+                  styles.input,
+                  {
+                    "& .MuiOutlinedInput-root": {
+                      height: "auto",
+                      minHeight: { xs: "80px", sm: "100px", md: "120px" },
+                      alignItems: "flex-start",
+                      paddingTop: { xs: "8px", sm: "10px", md: "12px" },
+                      paddingBottom: { xs: "8px", sm: "10px", md: "12px" },
+                    },
+                    "& .MuiInputBase-inputMultiline": {
+                      fontSize: { xs: "14px", sm: "15px", md: "16px" },
+                      lineHeight: 1.4,
+                      resize: "none",
+                    },
                   },
-                  "& .MuiInputBase-inputMultiline": {
-                    fontSize: { xs: "14px", sm: "15px", md: "16px" },
-                    lineHeight: 1.4,
-                    resize: "none",
-                  }
-                }]}
+                ]}
                 fullWidth
                 multiline
                 rows={3}
@@ -552,10 +577,11 @@ const styles = {
       md: "20px",
     },
     p: 0,
-    overflow: "hidden",
+    overflow: "visible",
     margin: 0,
     position: "relative",
     boxSizing: "border-box" as const,
+    zIndex: 1,
   },
   mainDiv: {
     paddingX: {
@@ -575,7 +601,7 @@ const styles = {
     },
     width: "100%",
     boxSizing: "border-box" as const,
-    overflow: "hidden",
+    overflow: "visible",
   },
   // form: {
   //   maxWidth: "95%",
@@ -609,7 +635,7 @@ const styles = {
     minWidth: 0,
     width: "100%",
     boxSizing: "border-box" as const,
-    overflow: "hidden" as const,
+    overflow: "visible" as const,
   },
   textArea: {
     backgroundColor: "white",
@@ -845,7 +871,17 @@ const styles = {
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
     height: {
-      xs: "44px",
+      xs: "5.4vh !important",
+      sm: "48px !important",
+      md: "52px !important",
+    },
+    minHeight: {
+      xs: "5.4vh",
+      sm: "48px",
+      md: "52px",
+    },
+    maxHeight: {
+      xs: "5.4vh",
       sm: "48px",
       md: "52px",
     },
@@ -857,5 +893,53 @@ const styles = {
     display: "flex",
     alignItems: "center",
     width: "100%",
+    boxSizing: "border-box" as const,
+    fontWeight: 400,
+    overflow: "hidden",
+    "& .PhoneInput": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+      minHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+      maxHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+    },
+    "& .PhoneInput > div": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+      minHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+    },
+    "& .PhoneInputCountrySelect": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+    },
+    "& .PhoneInputInput": {
+      height: "100% !important",
+      border: "none !important",
+      outline: "none !important",
+      fontSize: "inherit",
+      backgroundColor: "transparent !important",
+      flex: "1 !important",
+      minHeight: {
+        xs: "5.2vh",
+        sm: "46px",
+        md: "50px",
+      },
+      lineHeight: 1,
+      padding: "0 !important",
+    },
   },
 };

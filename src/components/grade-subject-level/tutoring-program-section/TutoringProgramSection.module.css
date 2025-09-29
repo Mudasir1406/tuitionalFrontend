@@ -71,6 +71,9 @@
   .main {
     padding-bottom: 5vh;
   }
+  .description {
+    text-align: justify;
+  }
 }
 
 @media (min-width: 768px) {

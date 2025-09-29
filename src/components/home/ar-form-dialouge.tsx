@@ -72,7 +72,9 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
         : "عنوان بريد إلكتروني غير صالح";
     }
     if (key === "FirstName" && typeof value === "string") {
-      newErrors.FirstName = isNotEmpty(value) ? "" : "الاسم لا يمكن أن يكون فارغًا";
+      newErrors.FirstName = isNotEmpty(value)
+        ? ""
+        : "الاسم لا يمكن أن يكون فارغًا";
     }
     if (key === "Grade" && typeof value === "string") {
       newErrors.Grade = isNotEmpty(value) ? "" : "الصف لا يمكن أن يكون فارغًا";
@@ -83,10 +85,14 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
         : "المنهج لا يمكن أن يكون فارغًا";
     }
     if (key === "Subject" && typeof value === "string") {
-      newErrors.Subject = isNotEmpty(value) ? "" : "المواد لا يمكن أن تكون فارغة";
+      newErrors.Subject = isNotEmpty(value)
+        ? ""
+        : "المواد لا يمكن أن تكون فارغة";
     }
     if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "الرسالة لا يمكن أن تكون فارغة";
+      newErrors.message = isNotEmpty(value)
+        ? ""
+        : "الرسالة لا يمكن أن تكون فارغة";
     }
 
     setFormData({
@@ -105,7 +111,7 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
       let utmSource = "Direct";
       let utmMedium = "Direct";
       let utmCampaign = "Direct";
-      
+
       if (typeof window !== "undefined") {
         const params = new URLSearchParams(window.location.search);
         medium = params.get("gad_source")
@@ -113,12 +119,12 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
           : params.get("fbclid")
           ? "facebook"
           : "SEO";
-        
+
         utmSource = params.get("utm_source") || "Direct";
         utmMedium = params.get("utm_medium") || "Direct";
         utmCampaign = params.get("utm_campaign") || "Direct";
       }
-      
+
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
@@ -240,6 +246,42 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
       className="pricing-dialog"
       maxWidth={false}
       sx={{
+        "& .MuiDialog-container": {
+          margin: 0,
+          padding: 0,
+          width: "100%",
+          height: "100%",
+        },
+        "& .MuiDialog-paper": {
+          margin: {
+            xs: "8px",
+            sm: "16px",
+            md: "32px",
+            lg: "32px",
+            xl: "40px",
+          },
+          width: {
+            xs: "calc(100vw - 16px)",
+            sm: "calc(100vw - 32px)",
+            md: "calc(100vw - 64px)",
+            lg: "800px",
+            xl: "900px",
+          },
+          maxWidth: {
+            xs: "calc(100vw - 16px)",
+            sm: "calc(100vw - 32px)",
+            md: "calc(100vw - 64px)",
+            lg: "800px",
+            xl: "900px",
+          },
+          maxHeight: {
+            xs: "calc(100vh - 16px)",
+            sm: "calc(100vh - 32px)",
+            md: "calc(100vh - 64px)",
+            lg: "calc(100vh - 64px)",
+            xl: "calc(100vh - 80px)",
+          },
+        },
         "& .MuiPaper-root": {
           backgroundColor: "transparent",
           boxShadow: "none",
@@ -263,14 +305,29 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
             ابدأ الآن
           </Typography>
           <ClearRoundedIcon
-            sx={{ width: "30px", height: "30px", cursor: "pointer" }}
+            sx={{
+              width: { xs: "28px", sm: "32px", md: "30px" },
+              height: { xs: "28px", sm: "32px", md: "30px" },
+              cursor: "pointer",
+              color: "#64748b",
+              padding: "4px",
+              borderRadius: "50%",
+              "&:hover": {
+                backgroundColor: "#f1f5f9",
+                color: "#38B6FF",
+              },
+              transition: "all 0.2s ease",
+            }}
             onClick={handleClose}
           />
         </Box>
         <Divider />
 
         <Box sx={styles.mainDiv}>
-          <form onSubmit={onClickUpload}>
+          <form
+            onSubmit={onClickUpload}
+            style={{ width: "100%", boxSizing: "border-box" }}
+          >
             <Box sx={styles.inputDivTop}>
               <Box sx={styles.inputInner}>
                 <Input
@@ -312,47 +369,53 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
               </Box>
             </Box>
 
-            <PhoneInput
-              defaultCountry="SA"
-              value={formData?.PhoneNumber || ""}
-              onChange={(e) => handleChange("PhoneNumber", String(e))}
-              inputComponent={CustomInput}
-              style={styles.phoneInput}
-            />
-            {errors.PhoneNumber && (
-              <Typography
-                className={`${leagueSpartan.className} `}
-                sx={styles.error}
-                component={"p"}
-                variant="caption"
-              >
-                {errors.PhoneNumber}
-              </Typography>
-            )}
-
             <Box sx={styles.inputDiv}>
-              <Box sx={styles.inputInner}>
-                <TranslatableDropDown
-                  placeholder="اختر المنهج"
-                  name="Curriculum"
-                  data={filterData?.curriculum || []}
-                  value={formData.Curriculum}
-                  onChange={handleChange}
-                  locale="ar"
-                  isSubjectField={false}
+              <Box sx={{
+                ...styles.div,
+                '& .custom-phone-input': {
+                  height: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  },
+                  minHeight: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  },
+                  maxHeight: {
+                    xs: '5.4vh !important',
+                    sm: '5.4vh !important',
+                    md: '36px !important'
+                  }
+                }
+              }}>
+                <PhoneInput
+                  defaultCountry="SA"
+                  value={formData?.PhoneNumber || ""}
+                  onChange={(e) => handleChange("PhoneNumber", String(e))}
+                  inputComponent={CustomInput}
+                  style={{
+                    ...styles.phoneInput,
+                    maxWidth: "100%",
+                    overflow: "hidden",
+                    paddingRight: "8px",
+                  }}
+                  className="custom-phone-input"
                 />
-                {errors.Curriculum && (
+
+                {errors.PhoneNumber && (
                   <Typography
-                    className={`${leagueSpartan.className} `}
                     sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
                     component={"p"}
                     variant="caption"
                   >
-                    {errors.Curriculum}
+                    {errors.PhoneNumber}
                   </Typography>
                 )}
               </Box>
-              <Box sx={styles.inputInner}>
+              <div style={styles.div}>
                 <TranslatableDropDown
                   name="Grade"
                   placeholder="اختر الصف"
@@ -364,59 +427,102 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
                 />
                 {errors.Grade && (
                   <Typography
-                    className={`${leagueSpartan.className} `}
                     sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
                     component={"p"}
                     variant="caption"
                   >
                     {errors.Grade}
                   </Typography>
                 )}
-              </Box>
+              </div>
+            </Box>
+            <Box sx={styles.inputDiv}>
+              <div style={styles.div}>
+                <TranslatableDropDown
+                  placeholder="اختر المنهج"
+                  name="Curriculum"
+                  data={filterData?.curriculum || []}
+                  value={formData.Curriculum}
+                  onChange={handleChange}
+                  locale="ar"
+                  isSubjectField={false}
+                />
+                {errors.Curriculum && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.Curriculum}
+                  </Typography>
+                )}
+              </div>
+              <div style={styles.div}>
+                <TranslatableDropDown
+                  name="Subject"
+                  placeholder="اختر المواد"
+                  data={filterData?.subject || []}
+                  value={formData.Subject}
+                  onChange={handleChange}
+                  multiple
+                  locale="ar"
+                  isSubjectField={true}
+                />
+                {errors.Subject && (
+                  <Typography
+                    sx={styles.error}
+                    className={`${leagueSpartan.className} ${styles.error}`}
+                    component={"p"}
+                    variant="caption"
+                  >
+                    {errors.Subject}
+                  </Typography>
+                )}
+              </div>
             </Box>
 
-            <TranslatableDropDown
-              name="Subject"
-              placeholder="اختر المواد"
-              data={filterData?.subject || []}
-              value={formData.Subject}
-              onChange={handleChange}
-              multiple
-              locale="ar"
-              isSubjectField={true}
-            />
-            {errors.Subject && (
-              <Typography
-                className={`${leagueSpartan.className} `}
-                sx={styles.error}
-                component={"p"}
-                variant="caption"
-              >
-                {errors.Subject}
-              </Typography>
-            )}
-
-            <TextField
-              sx={[styles.input]}
-              fullWidth
-              multiline
-              rows={4}
-              name="Message"
-              value={formData.message}
-              onChange={(e) => handleChange("message", e.target.value)}
-              placeholder="أدخل رسالتك هنا..."
-              className={`${leagueSpartan.className} `}
-            />
-            {errors.message && (
-              <Typography
-                className={`${leagueSpartan.className} `}
-                sx={styles.error}
-                component={"p"}
-                variant="caption"
-              >
-                {errors.message}
-              </Typography>
-            )}
+            <div style={{ marginTop: "4px" }}>
+              <TextField
+                sx={[
+                  styles.input,
+                  {
+                    "& .MuiOutlinedInput-root": {
+                      height: "auto",
+                      minHeight: { xs: "80px", sm: "100px", md: "120px" },
+                      alignItems: "flex-start",
+                      paddingTop: { xs: "8px", sm: "10px", md: "12px" },
+                      paddingBottom: { xs: "8px", sm: "10px", md: "12px" },
+                    },
+                    "& .MuiInputBase-inputMultiline": {
+                      fontSize: { xs: "14px", sm: "15px", md: "16px" },
+                      lineHeight: 1.4,
+                      resize: "none",
+                    },
+                  },
+                ]}
+                fullWidth
+                multiline
+                rows={3}
+                name="Message"
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+                variant="outlined"
+                placeholder="أخبرنا عن احتياجاتك التعليمية والمواد المفضلة وأهدافك التعليمية..."
+                className={leagueSpartan.className}
+              />
+              {errors.message && (
+                <Typography
+                  sx={styles.error}
+                  className={`${leagueSpartan.className} ${styles.error}`}
+                  component={"p"}
+                  variant="caption"
+                >
+                  {errors.message}
+                </Typography>
+              )}
+            </div>
 
             <Button
               variant="contained"
@@ -444,98 +550,328 @@ export default ArFormDialog;
 
 const styles = {
   contanier: {
-    width: {
-      xs: "90vw",
-      sm: "75vw",
-      md: "60vw",
-      lg: "35vw",
-    },
+    boxShadow:
+      "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
     backgroundColor: "white",
-    borderRadius: "10px",
-    paddingY: "30px",
-    paddingX: "40px",
+    width: "100%",
+    height: "100%",
+    borderRadius: {
+      xs: "12px",
+      sm: "16px",
+      md: "20px",
+    },
+    p: 0,
+    overflow: "visible",
+    margin: 0,
+    position: "relative",
+    boxSizing: "border-box" as const,
+    zIndex: 1,
+  },
+  mainDiv: {
+    paddingX: {
+      xs: "12px",
+      sm: "16px",
+      md: "20px",
+    },
+    paddingTop: {
+      xs: "12px",
+      sm: "16px",
+      md: "20px",
+    },
+    paddingBottom: {
+      xs: "16px",
+      sm: "20px",
+      md: "24px",
+    },
+    width: "100%",
+    boxSizing: "border-box" as const,
+    overflow: "visible",
   },
   header: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: "20px",
+    paddingX: {
+      xs: "12px",
+      sm: "16px",
+      md: "20px",
+    },
+    paddingTop: {
+      xs: "16px",
+      sm: "20px",
+      md: "24px",
+    },
+    paddingBottom: {
+      xs: "8px",
+      sm: "12px",
+      md: "16px",
+    },
+    width: "100%",
+    boxSizing: "border-box" as const,
   },
   dialogHeading: {
-    fontSize: "28px",
-    fontWeight: 700,
-    color: "#000000",
-  },
-  mainDiv: {
-    marginTop: "20px",
+    fontSize: {
+      xs: "22px",
+      sm: "26px",
+      md: "30px",
+    },
+    lineHeight: {
+      xs: "28px",
+      sm: "32px",
+      md: "36px",
+    },
+    fontWeight: 600,
+    color: "rgba(0, 0, 0, 1)",
+    letterSpacing: "-0.02em",
   },
   inputDivTop: {
     display: "flex",
-    flexDirection: {
-      xs: "column",
-      sm: "row",
-    },
-    gap: "20px",
-    marginBottom: "20px",
+    flexDirection: { xs: "column", sm: "column", md: "row" },
+    columnGap: { md: "20px", lg: "24px" },
+    rowGap: { xs: "4px", sm: "6px" },
+    marginBottom: { xs: "4px", sm: "6px" },
+    width: "100%",
+    boxSizing: "border-box" as const,
   },
   inputDiv: {
     display: "flex",
-    flexDirection: {
-      xs: "column",
-      sm: "row",
-    },
-    gap: "20px",
-    marginY: "20px",
+    flexDirection: { xs: "column", sm: "column", md: "row" },
+    columnGap: { md: "20px", lg: "24px" },
+    rowGap: { xs: "4px", sm: "6px" },
+    marginTop: { xs: "4px", sm: "6px" },
+    width: "100%",
+    boxSizing: "border-box" as const,
   },
   inputInner: {
+    display: "flex",
+    flexDirection: "column",
     flex: 1,
+    minWidth: 0,
+    width: "100%",
+    boxSizing: "border-box" as const,
+  },
+  div: {
+    flex: 1,
+    minWidth: 0,
+    width: "100%",
+    boxSizing: "border-box" as const,
+    overflow: "visible" as const,
   },
   input: {
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     backgroundColor: "white",
-    marginY: "10px",
+    marginTop: {
+      xs: "6px",
+      sm: "8px",
+      md: "12px",
+    },
+    marginBottom: {
+      xs: "2px",
+      sm: "4px",
+      md: "6px",
+    },
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0,0,0,0.77)",
+    borderRadius: "10px",
+    fontWeight: 400,
+    width: "100%",
+    boxSizing: "border-box" as const,
+    "& .MuiOutlinedInput-root": {
+      height: {
+        xs: "44px",
+        sm: "48px",
+        md: "52px",
+      },
+      fontSize: {
+        xs: "14px",
+        sm: "15px",
+        md: "16px",
+      },
+      borderRadius: "10px",
+      width: "100%",
+      boxSizing: "border-box" as const,
+    },
     "& .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #E0E0E0",
-      borderRadius: "8px",
+      border: "none",
     },
-    "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #38B6FF",
-    },
-    "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "2px solid #38B6FF",
+    "& .MuiInputBase-multiline": {
+      padding: {
+        xs: "8px 12px",
+        sm: "10px 14px",
+        md: "12px 16px",
+      },
     },
   },
   phoneInput: {
-    border: "1px solid #E0E0E0",
-    borderRadius: "8px",
-    padding: "14px",
-    marginY: "10px",
-    fontFamily: "inherit",
-    fontSize: "16px",
-    "&:hover": {
-      border: "1px solid #38B6FF",
+    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
+    paddingLeft: {
+      xs: "10px",
+      sm: "12px",
+      md: "14px",
     },
-    "&:focus": {
-      border: "2px solid #38B6FF",
+    paddingRight: {
+      xs: "10px",
+      sm: "12px",
+      md: "14px",
+    },
+    backgroundColor: "white",
+    marginTop: {
+      xs: "6px",
+      sm: "8px",
+      md: "12px",
+    },
+    marginBottom: {
+      xs: "2px",
+      sm: "4px",
+      md: "6px",
+    },
+    outline: "none",
+    border: "none",
+    ":focus": {
       outline: "none",
+      boxShadow: "0px 2px 8px rgba(56, 182, 255, 0.2)",
+    },
+    position: "relative",
+    zIndex: 2,
+    color: "rgba(0,0,0,0.77)",
+    borderRadius: "10px",
+    height: {
+      xs: "5.4vh !important",
+      sm: "48px !important",
+      md: "52px !important",
+    },
+    minHeight: {
+      xs: "5.4vh",
+      sm: "48px",
+      md: "52px",
+    },
+    maxHeight: {
+      xs: "5.4vh",
+      sm: "48px",
+      md: "52px",
+    },
+    fontSize: {
+      xs: "14px",
+      sm: "15px",
+      md: "16px",
+    },
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    boxSizing: "border-box" as const,
+    fontWeight: 400,
+    overflow: "hidden",
+    "& .PhoneInput": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+      minHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+      maxHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+    },
+    "& .PhoneInput > div": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+      minHeight: {
+        xs: "5.4vh",
+        sm: "48px",
+        md: "52px",
+      },
+    },
+    "& .PhoneInputCountrySelect": {
+      height: "100% !important",
+      display: "flex !important",
+      alignItems: "center !important",
+    },
+    "& .PhoneInputInput": {
+      height: "100% !important",
+      border: "none !important",
+      outline: "none !important",
+      fontSize: "inherit",
+      backgroundColor: "transparent !important",
+      flex: "1 !important",
+      minHeight: {
+        xs: "5.2vh",
+        sm: "46px",
+        md: "50px",
+      },
+      lineHeight: 1,
+      padding: "0 !important",
     },
   },
   error: {
-    color: "red",
-    marginTop: "5px",
-    fontSize: "12px",
+    color: "#ef4444",
+    fontSize: {
+      xs: "12px",
+      sm: "13px",
+      md: "14px",
+    },
+    marginTop: {
+      xs: "4px",
+      sm: "6px",
+      md: "8px",
+    },
+    marginLeft: {
+      xs: "8px",
+      sm: "10px",
+      md: "12px",
+    },
+    lineHeight: 1.3,
   },
   containedButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "0px 6px 20px rgba(56, 182, 255, 0.3)",
     backgroundColor: "#38B6FF",
     color: "white",
-    fontWeight: 700,
-    fontSize: "18px",
-    padding: "12px 30px",
-    borderRadius: "8px",
-    width: "100%",
-    marginTop: "20px",
     textTransform: "none",
-    "&:hover": {
-      backgroundColor: "#2196F3",
+    fontSize: {
+      xs: "15px",
+      sm: "16px",
+      md: "17px",
     },
+    fontWeight: 700,
+    lineHeight: 1.2,
+    textAlign: "center",
+    borderRadius: "10px",
+    height: {
+      xs: "46px",
+      sm: "50px",
+      md: "54px",
+    },
+    paddingX: {
+      xs: "20px",
+      sm: "24px",
+      md: "28px",
+    },
+    marginTop: {
+      xs: "12px",
+      sm: "16px",
+      md: "20px",
+    },
+    marginBottom: {
+      xs: "4px",
+      sm: "8px",
+      md: "12px",
+    },
+    ":hover": {
+      backgroundColor: "#2563eb",
+      boxShadow: "0px 8px 24px rgba(56, 182, 255, 0.4)",
+      transform: "translateY(-1px)",
+    },
+    transition: "all 0.3s ease",
+    width: "100%",
+    border: "none",
+    cursor: "pointer",
   },
 };
