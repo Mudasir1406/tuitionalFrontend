@@ -142,7 +142,7 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
         ...values,
       });
     }
-  }, [values]);
+  }, [values, formData]);
 
   const onClickUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

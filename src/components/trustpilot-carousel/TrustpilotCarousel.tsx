@@ -25,7 +25,7 @@ const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
   const [touchEnd, setTouchEnd] = useState(0);
 
   // Real Trustpilot reviews data from tuitionaledu.com
-  const reviews: Review[] = [
+  const reviews = React.useMemo<Review[]>(() => [
     {
       id: 1,
       name: "Zahra",
@@ -80,7 +80,7 @@ const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
       timePosted: "January 15, 2025",
       isVerified: true,
     },
-  ];
+  ], []);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -108,7 +108,7 @@ const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
     ));
   };
 
-  const getVisibleReviews = () => {
+  const getVisibleReviews = React.useCallback(() => {
     // For mobile: show 1 review
     // For desktop: show 3 reviews
     const reviewsToShow =
@@ -120,7 +120,7 @@ const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
       visibleReviews.push(reviews[reviewIndex]);
     }
     return visibleReviews;
-  };
+  }, [currentIndex, reviews]);
 
   const [visibleReviews, setVisibleReviews] = useState(getVisibleReviews());
 
@@ -132,7 +132,7 @@ const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
     handleResize(); // Set initial visible reviews
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [currentIndex]);
+  }, [currentIndex, getVisibleReviews]);
 
   // Touch handlers for swipe functionality
   const handleTouchStart = (e: React.TouchEvent) => {
