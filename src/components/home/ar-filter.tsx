@@ -23,7 +23,7 @@ const ArFilter: React.FC<FilterProps> = ({ data }) => {
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     sheetName: "Lead Forms",
   });
 

@@ -88,8 +88,8 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "المواد لا يمكن أن تكون فارغة";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "لا يمكن أن تكون الرسالة فارغة";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "لا يمكن أن تكون الرسالة فارغة";
     }
 
     setFormData({
@@ -122,8 +122,8 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
       newErrors.Curriculum = "لا يمكن أن يكون المنهج فارغاً";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "لا يمكن أن تكون الرسالة فارغة";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "لا يمكن أن تكون الرسالة فارغة";
     }
 
     setErrors(newErrors);
@@ -169,7 +169,7 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
         sheetName: "Lead Forms",
       });
     }
@@ -345,18 +345,18 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
             multiline
             rows={4}
             name="Message"
-            value={formData.message}
-            onChange={(e) => handleChange("message", e.target.value)}
+            value={formData.Message}
+            onChange={(e) => handleChange("Message", e.target.value)}
             placeholder="أدخل رسالتك هنا..."
             className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
           />
-          {errors.message && (
+          {errors.Message && (
             <Typography
               className={`${leagueSpartan.className} ${styles.error}`}
               component={"p"}
               variant="caption"
             >
-              {errors.message}
+              {errors.Message}
             </Typography>
           )}
         </div>
