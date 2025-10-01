@@ -51,11 +51,11 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
     Grade: values?.Grade || "",
     Curriculum: values?.Curriculum || "",
     Subject: values?.Subject || "",
-    message: values?.message || "",
+    Message: values?.Message || "",
     Browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
     sheetName: "PPC Leads",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
@@ -88,8 +88,8 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -119,8 +119,8 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
       newErrors.Grade = "Grade cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -185,7 +185,7 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
         sheetName: "PPC Leads",
       });
     }
@@ -352,18 +352,18 @@ const FormV2Dialog: React.FunctionComponent<IProps> = ({ open, handleClose, valu
                 multiline
                 rows={4}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 placeholder="Message"
                 className={`${leagueSpartan.className} ${styles.textArea} ${styles.textField}`}
               />{" "}
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   className={`${leagueSpartan.className} ${styles.error}`}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
             </div>
