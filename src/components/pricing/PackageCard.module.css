@@ -313,14 +313,14 @@
   }
 
   .featureItem {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
 /* Extra Large Screens */
 @media (min-width: 1440px) {
   .featureItem {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .packageTitle {
