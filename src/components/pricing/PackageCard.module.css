@@ -143,11 +143,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  font-size: 16px;
   color: #475569;
   line-height: 1.5;
   text-align: left;
   flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+.featureText {
+  font-size: 16px;
 }
 
 .popular .featureItem {
@@ -271,8 +274,11 @@
     margin-bottom: 32px;
   }
 
+  .featureText {
+    font-size: 14px !important;
+  }
+
   .featureItem {
-    font-size: 14px;
     line-height: 1.4;
   }
 
@@ -312,15 +318,15 @@
     font-size: 52px;
   }
 
-  .featureItem {
-    font-size: 14px;
+  .featureText {
+    font-size: 14px !important;
   }
 }
 
 /* Extra Large Screens */
 @media (min-width: 1440px) {
-  .featureItem {
-    font-size: 13px;
+  .featureText {
+    font-size: 13px !important;
   }
 
   .packageTitle {
