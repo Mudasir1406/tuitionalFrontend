@@ -104,7 +104,7 @@ const ArPackageCard: React.FC<ArPackageCardProps> = memo(({
               className={`${styles.featureItem} ${leagueSpartan.className}`}
             >
               <span className={styles.checkIcon}>✓</span>
-              <span>{feature}</span>
+              <span className={styles.featureText}>{feature}</span>
             </div>
           ))}
           {pkg.features && pkg.features.length > 5 && (
