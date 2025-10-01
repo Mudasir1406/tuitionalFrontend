@@ -1,0 +1,938 @@
+/* ====================================== */
+/* MODERN CUSTOM PRICING MODAL - NO SCROLL */
+/* ====================================== */
+
+.modal {
+  z-index: 1300;
+}
+
+.modal .MuiBackdrop-root {
+  backdrop-filter: blur(4px);
+  position: fixed;
+}
+
+/* Prevent body scroll when modal is open */
+.modal[aria-hidden="false"] ~ * {
+  overflow: hidden;
+}
+
+body:has(.modal[aria-hidden="false"]) {
+  overflow: hidden !important;
+}
+
+.modalPaper {
+  border-radius: 20px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden !important;
+  max-height: 90vh !important;
+  height: 90vh !important;
+  margin: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* ====================================== */
+/* HEADER */
+/* ====================================== */
+
+.modalHeader {
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  color: white;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-weight: 700;
+  margin: 0;
+  font-size: 24px;
+}
+
+.closeButton {
+  color: white !important;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.1);
+}
+
+/* ====================================== */
+/* CONTENT */
+/* ====================================== */
+
+.modalContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+/* Info Banner */
+.infoBanner {
+  background: linear-gradient(90deg, #e0f2fe 0%, #e8f5e8 100%);
+  border: 1px solid #38b6ff;
+  border-left: 4px solid #38b6ff;
+  padding: 12px 20px;
+  margin: 16px 20px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.infoBannerText {
+  color: #1e40af;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+}
+
+.scrollableContent {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f1f5f9;
+}
+
+.scrollableContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollableContent::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.scrollableContent::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+.scrollableContent::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.rowsContainer {
+  padding: 20px 32px 12px;
+}
+
+.fixedBottomSection {
+  flex-shrink: 0;
+  background: white;
+  border-top: 2px solid #e2e8f0;
+}
+
+
+/* ====================================== */
+/* PACKAGE ROWS */
+/* ====================================== */
+
+.packageRow {
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  min-height: 48px;
+}
+
+.packageRow:hover {
+  border-color: #38B6FF;
+  box-shadow: 0 6px 20px rgba(56, 182, 255, 0.12), 0 2px 6px rgba(56, 182, 255, 0.08);
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+}
+
+.packageRow:last-child {
+  margin-bottom: 0;
+}
+
+/* Row Number */
+.rowNumber {
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 100%);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(56, 182, 255, 0.2);
+}
+
+.rowNumberText {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* Row Content */
+.rowContent {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 0.8fr 0.8fr 1fr 1fr 0.8fr 1.6fr;
+  gap: 6px;
+  align-items: center;
+}
+
+.dropdown {
+  min-width: 80px;
+}
+
+.dropdown .MuiOutlinedInput-root {
+  border-radius: 6px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  min-height: 32px;
+  font-size: 12px;
+}
+
+.dropdown .MuiOutlinedInput-root:hover {
+  box-shadow: 0 4px 12px rgba(56, 182, 255, 0.1);
+}
+
+.dropdown .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 4px 12px rgba(56, 182, 255, 0.25);
+}
+
+.dropdown .MuiInputLabel-root {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.dropdown .MuiInputLabel-root.Mui-focused {
+  color: #38B6FF;
+}
+
+.dropdown .MuiOutlinedInput-notchedOutline {
+  border-color: #e2e8f0;
+}
+
+.dropdown .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #38B6FF;
+}
+
+.dropdown .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #38B6FF;
+  border-width: 2px;
+}
+
+.hoursInput {
+  min-width: 60px;
+}
+
+.hoursField {
+  background: #ffffff;
+}
+
+.hoursField .MuiOutlinedInput-root {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-height: 32px;
+  font-size: 12px;
+}
+
+.hoursField .MuiOutlinedInput-root:hover {
+  box-shadow: 0 4px 12px rgba(56, 182, 255, 0.1);
+}
+
+.hoursField .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 4px 12px rgba(56, 182, 255, 0.25);
+}
+
+.hoursField .MuiInputLabel-root.Mui-focused {
+  color: #38B6FF;
+}
+
+.hoursField .MuiOutlinedInput-notchedOutline {
+  border-color: #e2e8f0;
+}
+
+.hoursField .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #38B6FF;
+}
+
+.hoursField .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #38B6FF;
+  border-width: 2px;
+}
+
+.priceDetails {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 182, 255, 0.2);
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.currentPrice {
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.originalPrice {
+  font-size: 12px;
+  color: #ef4444;
+  text-decoration: line-through;
+  margin-bottom: 1px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.savingsText {
+  font-size: 10px;
+  color: #10b981;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.discountInfo {
+  font-size: 8px;
+  color: #6b7280;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 1px;
+}
+
+.loadingPrice {
+  text-align: center;
+  padding: 8px 6px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.loadingText {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.errorPrice {
+  text-align: center;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+}
+
+.errorText {
+  font-size: 10px;
+  color: #dc2626;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Pricing Display - for Arabic modal */
+.pricingDisplay {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 182, 255, 0.2);
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.calculatingText {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.rateText {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.originalRate {
+  font-size: 11px;
+  color: #ef4444;
+  text-decoration: line-through;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+}
+
+.originalRate::before {
+  content: "قبل: ";
+  font-size: 9px;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.discountedRate {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.discountedRate::before {
+  content: "بعد الخصم: ";
+  font-size: 9px;
+  font-weight: 600;
+  color: #10b981;
+  background: none;
+  -webkit-text-fill-color: #10b981;
+}
+
+.totalCostText {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.2;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(56, 182, 255, 0.2);
+}
+
+.discountInfo {
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+/* Discount badge for visual emphasis */
+.discountBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-left: 6px;
+  margin-top: 2px;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.discountBadge::before {
+  content: "🔥 ";
+  margin-right: 2px;
+}
+
+/* Row Actions */
+.rowActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.deleteButton {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background: rgba(239, 68, 68, 0.2) !important;
+  transform: scale(1.1);
+}
+
+/* ====================================== */
+/* ADD ROW SECTION */
+/* ====================================== */
+
+.addRowSection {
+  padding: 12px 32px 16px;
+  display: flex;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.addRowButton {
+  background: linear-gradient(135deg, rgba(56, 182, 255, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%) !important;
+  color: #38B6FF !important;
+  border: 1px dashed #38B6FF !important;
+  border-radius: 8px !important;
+  padding: 8px 20px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.2s ease !important;
+  font-size: 14px !important;
+}
+
+.addRowButton:hover {
+  background: linear-gradient(135deg, rgba(56, 182, 255, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%) !important;
+  border-color: #2563eb !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(56, 182, 255, 0.2);
+}
+
+.divider {
+  margin: 0 !important;
+  background: #e2e8f0 !important;
+}
+
+/* ====================================== */
+/* TOTAL SUMMARY */
+/* ====================================== */
+
+.totalSummary {
+  padding: 20px 32px;
+  background: white;
+}
+
+.summaryContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(56, 182, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 2px solid rgba(56, 182, 255, 0.1);
+}
+
+.summaryLabel {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.summaryPricing {
+  text-align: right;
+}
+
+.totalPrice {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.totalSavings {
+  font-size: 14px;
+  color: #10b981;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* ====================================== */
+/* FOOTER */
+/* ====================================== */
+
+.modalFooter {
+  padding: 16px 32px 24px;
+  background: white;
+}
+
+.proceedButton {
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 16px 32px !important;
+  border-radius: 16px !important;
+  text-transform: none !important;
+  font-size: 18px !important;
+  box-shadow: 0 8px 25px rgba(56, 182, 255, 0.4) !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  letter-spacing: 0.025em !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.proceedButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.5) !important;
+}
+
+.proceedButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.proceedButton:hover::before {
+  left: 100%;
+}
+
+/* ====================================== */
+/* RESPONSIVE DESIGN */
+/* ====================================== */
+
+@media (max-width: 1200px) {
+  .rowContent {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+
+  .dropdown {
+    min-width: 70px;
+  }
+
+  .dropdown .MuiOutlinedInput-root {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 900px) {
+  .modalPaper {
+    margin: 8px !important;
+    height: 96vh !important;
+    max-height: 96vh !important;
+  }
+
+  .modalHeader {
+    padding: 12px 16px;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .rowsContainer {
+    padding: 12px 16px 8px;
+  }
+
+  .packageRow {
+    padding: 8px 6px;
+    margin-bottom: 4px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .rowNumber {
+    width: 18px;
+    height: 18px;
+    align-self: flex-start;
+  }
+
+  .rowNumberText {
+    font-size: 9px;
+  }
+
+  .rowContent {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 8px;
+  }
+
+  .dropdown {
+    min-width: auto;
+  }
+
+  .dropdown .MuiOutlinedInput-root {
+    min-height: 32px;
+    font-size: 12px;
+  }
+
+  .hoursInput {
+    grid-column: 1;
+  }
+
+  .priceDetails {
+    grid-column: 2;
+    text-align: right;
+    min-width: auto;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .currentPrice {
+    font-size: 16px;
+  }
+
+  .originalPrice {
+    font-size: 13px;
+  }
+
+  .savingsText {
+    font-size: 11px;
+  }
+
+  .addRowSection {
+    padding: 12px 16px 16px;
+  }
+
+  .totalSummary {
+    padding: 12px 16px;
+  }
+
+  .summaryContent {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .totalPrice {
+    font-size: 24px;
+  }
+
+  .modalFooter {
+    padding: 12px 16px 16px;
+  }
+
+  .proceedButton {
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .modalPaper {
+    margin: 4px !important;
+    height: 96vh !important;
+    max-height: 96vh !important;
+    border-radius: 16px !important;
+  }
+
+  .modalHeader {
+    padding: 12px 16px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .rowsContainer {
+    padding: 12px 16px 8px;
+  }
+
+  .packageRow {
+    padding: 8px 6px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+  }
+
+  .rowContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .hoursInput {
+    order: 1;
+  }
+
+  .priceDetails {
+    order: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid rgba(56, 182, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .pricingDisplay {
+    order: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid rgba(56, 182, 255, 0.2);
+    min-width: auto;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .rateText {
+    font-size: 16px;
+  }
+
+  .originalRate {
+    font-size: 12px;
+  }
+
+  .discountedRate {
+    font-size: 16px;
+  }
+
+  .totalCostText {
+    font-size: 14px;
+  }
+
+  .dropdown .MuiOutlinedInput-root {
+    min-height: 36px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  .dropdown .MuiInputLabel-root {
+    font-size: 12px;
+  }
+
+  .currentPrice {
+    font-size: 15px;
+  }
+
+  .originalPrice {
+    font-size: 12px;
+  }
+
+  .savingsText {
+    font-size: 10px;
+  }
+
+  .totalPrice {
+    font-size: 22px;
+  }
+
+  .addRowSection {
+    padding: 12px 16px 16px;
+  }
+
+  .totalSummary {
+    padding: 16px 16px;
+  }
+
+  .modalFooter {
+    padding: 12px 16px 20px;
+  }
+
+  .proceedButton {
+    padding: 14px 24px !important;
+    font-size: 16px !important;
+    border-radius: 12px !important;
+  }
+
+  .summaryContent {
+    padding: 16px 20px;
+    border-radius: 12px;
+  }
+
+  .summaryLabel {
+    font-size: 16px;
+  }
+
+  .addRowButton {
+    padding: 12px 24px !important;
+    font-size: 15px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ====================================== */
+/* ACCESSIBILITY & ANIMATIONS */
+/* ====================================== */
+
+.packageRow {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus states for accessibility */
+.proceedButton:focus,
+.addRowButton:focus,
+.deleteButton:focus,
+.closeButton:focus {
+  outline: 2px solid #38B6FF;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .packageRow {
+    border-width: 3px;
+  }
+
+  .modalHeader {
+    border-bottom: 3px solid #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .packageRow,
+  .proceedButton,
+  .addRowButton,
+  .deleteButton,
+  .closeButton {
+    transition: none;
+    animation: none;
+  }
+
+  .packageRow:hover,
+  .proceedButton:hover,
+  .addRowButton:hover {
+    transform: none;
+  }
+
+  .proceedButton::before {
+    display: none;
+  }
+}
