@@ -48,11 +48,11 @@ const ArContactUs: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     Browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
     sheetName: "Lead Forms",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -89,8 +89,8 @@ const ArContactUs: React.FunctionComponent<IProps> = ({
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "المواد لا يمكن أن تكون فارغة";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "الرسالة لا يمكن أن تكون فارغة";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "الرسالة لا يمكن أن تكون فارغة";
     }
 
     setFormData({
@@ -122,8 +122,8 @@ const ArContactUs: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "المنهج لا يمكن أن يكون فارغًا";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "الرسالة لا يمكن أن تكون فارغة";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "الرسالة لا يمكن أن تكون فارغة";
     }
 
     // Update errors state
@@ -179,7 +179,7 @@ const ArContactUs: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -386,19 +386,19 @@ const ArContactUs: React.FunctionComponent<IProps> = ({
                 multiline
                 rows={4}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 placeholder="أدخل رسالتك هنا..."
                 className={`${leagueSpartan.className} `}
               />
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   className={`${leagueSpartan.className} `}
                   sx={styles.error}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
               <Button

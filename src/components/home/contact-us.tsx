@@ -48,11 +48,11 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     Browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
     sheetName: "Lead Forms",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -89,8 +89,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -122,8 +122,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "Curriculum cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -179,7 +179,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -387,19 +387,19 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                 multiline
                 rows={4}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 placeholder="Enter your message here..."
                 className={`${leagueSpartan.className} `}
               />{" "}
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   className={`${leagueSpartan.className} `}
                   sx={styles.error}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
               <Button

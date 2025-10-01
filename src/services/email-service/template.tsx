@@ -139,11 +139,11 @@ export const createEmailTemplate = (formData: FormType) => `
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Country:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.country}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Country}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">IP:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.ip}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.IP}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">browser:</td>
@@ -151,19 +151,19 @@ export const createEmailTemplate = (formData: FormType) => `
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Source Page URL:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.pageURL}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.SourcePageURL}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Message:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.message}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Message}</td>
         </tr>
          <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Date:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.date}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Date}</td>
         </tr>
         <tr>
           <td style="border: 1px solid #dddddd; padding: 8px;">Time:</td>
-          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.time}</td>
+          <td style="border: 1px solid #dddddd; padding: 8px;">${formData.Time}</td>
         </tr>
       </table>
     </body>
