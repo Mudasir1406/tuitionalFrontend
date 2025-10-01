@@ -67,29 +67,6 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
     countries: dropdownOptions.countries
   };
 
-  // Debug dropdown options on mount
-  useEffect(() => {
-    if (open) {
-      console.log('🔥 CustomPricingModal - Dropdown options loaded:', {
-        grades: dropdownOptions.grades?.length || 0,
-        subjects: dropdownOptions.subjects?.length || 0,
-        curriculum: dropdownOptions.curriculum?.length || 0,
-        countries: dropdownOptions.countries?.length || 0,
-        currencies: Object.keys(dropdownOptions.currencies || {}).length
-      });
-
-      console.log('🔥 CustomPricingModal - Available dropdown values:');
-      console.log('  Grades:', dropdownOptions.grades);
-      console.log('  Subjects:', dropdownOptions.subjects);
-      console.log('  Curriculum:', dropdownOptions.curriculum);
-      console.log('  Countries:', dropdownOptions.countries);
-
-      console.log('🔥 CustomPricingModal - SUPPORTED_COUNTRIES:');
-      SUPPORTED_COUNTRIES.forEach((country, index) => {
-        console.log(`  ${index + 1}. code: "${country.code}", name: "${country.name}"`);
-      });
-    }
-  }, [open, dropdownOptions]);
 
   // Initialize with one row
   useEffect(() => {
@@ -115,7 +92,6 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
   const generateRowId = () => `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
   const addNewRow = () => {
-    console.log('🔥 CustomPricingModal - Adding new row with userCountry:', userCountry);
 
     // Map userCountry to dropdown format if needed
     const mappedCountry = userCountry === 'United States' ? 'USA' :
@@ -150,26 +126,9 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
   };
 
   const updateRow = (rowId: string, field: keyof PackageRow, value: any) => {
-    console.log('🔥 CustomPricingModal - updateRow called:', {
-      rowId,
-      field,
-      value,
-      valueType: typeof value
-    });
-
     setRows(prev => prev.map(row => {
       if (row.id === rowId) {
         const updatedRow = { ...row, [field]: value };
-
-        console.log('🔥 CustomPricingModal - Row after update:', {
-          id: updatedRow.id,
-          country: updatedRow.country,
-          grade: updatedRow.grade,
-          level: updatedRow.level,
-          curriculum: updatedRow.curriculum,
-          subject: updatedRow.subject,
-          hours: updatedRow.hours
-        });
 
         // If academic fields changed, recalculate pricing from database
         if (['country', 'grade', 'level', 'curriculum', 'subject', 'hours'].includes(field)) {
@@ -185,34 +144,12 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
 
   // Real-time pricing calculation using database
   const calculateRealPricing = async (row: PackageRow) => {
-    console.log('🔥 CustomPricingModal - calculateRealPricing called with row:', {
-      id: row.id,
-      country: `"${row.country}" (type: ${typeof row.country})`,
-      grade: `"${row.grade}" (type: ${typeof row.grade})`,
-      level: `"${row.level}" (type: ${typeof row.level})`,
-      curriculum: `"${row.curriculum}" (type: ${typeof row.curriculum})`,
-      subject: `"${row.subject}" (type: ${typeof row.subject})`,
-      hours: `${row.hours} (type: ${typeof row.hours})`
-    });
-
     // Check if all required fields are filled
     if (!row.country || !row.grade || !row.level || !row.curriculum || !row.subject || !row.hours) {
-      console.log('🔥 Custom Pricing - Missing required fields for calculation');
       return;
     }
 
     try {
-      const selectionObject = {
-        country: row.country,
-        grade: row.grade,
-        level: row.level,
-        curriculum: row.curriculum,
-        subject: row.subject,
-        hours: row.hours
-      };
-
-      console.log('🔥 Custom Pricing - EXACT VALUES being sent to calculateCustomPricing:', selectionObject);
-
       const pricingResult = await calculateCustomPricing({
         country: row.country,
         grade: row.grade,
@@ -327,7 +264,6 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
   };
 
   const handleProceed = () => {
-    console.log('Package Configuration:', rows);
     // Handle booking logic here
     handleClose();
   };
@@ -343,21 +279,6 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
 
       {/* Row Content - All in one horizontal line */}
       <div className={styles.rowContent}>
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>Country</InputLabel>
-          <Select
-            value={row.country}
-            label="Country"
-            onChange={(e) => updateRow(row.id, 'country', e.target.value)}
-          >
-            {dropdownOptionsWithLevels.countries.map((country) => (
-              <MenuItem key={country} value={country}>
-                {country}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
         <FormControl className={styles.dropdown} size="small">
           <InputLabel>Grade</InputLabel>
           <Select

@@ -1,27 +1,28 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { getDropdownOptions } from '@/services/dropdown/dropdown-api';
-import { Header } from '@/components';
+import ArHeader from '@/components/ar-header';
 import dynamic from 'next/dynamic';
-import styles from './pricing.module.css';
+import { SITE_URL } from '@/utils/env';
+import styles from '../../pricing/pricing.module.css';
 
 // Lazy load heavy components
-const PricingPageClient = dynamic(
-  () => import('@/components/pricing/PricingPageClient'),
+const ArPricingPageClient = dynamic(
+  () => import('@/components/pricing/ArPricingPageClient'),
   {
     ssr: true,
     loading: () => (
       <div className={styles.main}>
         <div style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div>Loading pricing packages...</div>
+          <div>جاري تحميل باقات التدريس...</div>
         </div>
       </div>
     )
   }
 );
 
-const Footer = dynamic(
-  () => import('@/components/footer-wrapper'),
+const ArServerFooter = dynamic(
+  () => import('@/components/ar-server-footer'),
   {
     ssr: false,
     loading: () => <div style={{ height: '400px', backgroundColor: '#f5f5f5' }} />
@@ -30,12 +31,15 @@ const Footer = dynamic(
 
 // Generate dynamic metadata
 export const metadata: Metadata = {
-  title: 'Tutoring Packages & Pricing | Tuitional',
-  description: 'Choose from our flexible tutoring packages designed for different curricula and grade levels. Personalized learning with certified tutors at competitive prices.',
-  keywords: 'tutoring packages, online tutoring prices, IGCSE tutoring, A-levels tutoring, curriculum-based learning',
+  title: 'باقات وأسعار التدريس | تيوشنال',
+  description: 'اختر من بين باقات التدريس المرنة المصممة لمناهج ومستويات دراسية مختلفة. تعلم شخصي مع مدرسين معتمدين بأسعار تنافسية.',
+  keywords: 'باقات التدريس, أسعار التدريس عبر الإنترنت, تدريس IGCSE, تدريس A-levels, التعلم القائم على المنهج',
+  alternates: {
+    canonical: `${SITE_URL}/ar/pricing`,
+  },
   openGraph: {
-    title: 'Tutoring Packages & Pricing | Tuitional',
-    description: 'Find the perfect tutoring package for your academic goals. Expert tutors, flexible scheduling, and competitive pricing.',
+    title: 'باقات وأسعار التدريس | تيوشنال',
+    description: 'اعثر على باقة التدريس المثالية لأهدافك الأكاديمية. مدرسون خبراء، جدولة مرنة، وأسعار تنافسية.',
     type: 'website',
   },
 };
@@ -51,7 +55,7 @@ interface PageProps {
   searchParams: SearchParams;
 }
 
-export default async function PricingPage({ searchParams }: PageProps) {
+export default async function ArPricingPage({ searchParams }: PageProps) {
   // Parse URL filters with defaults (will be overridden by geolocation)
   const initialFilters = {
     grade: searchParams.grade || '',
@@ -64,15 +68,16 @@ export default async function PricingPage({ searchParams }: PageProps) {
   const dropdownOptions = await getDropdownOptions('en');
 
   return (
-    <>
-      <Header />
+    <div dir="rtl">
+      <ArHeader />
       <main className={styles.main}>
-        <PricingPageClient
+        <ArPricingPageClient
           initialFilters={initialFilters}
           dropdownOptions={dropdownOptions}
+          locale="ar"
         />
       </main>
-      <Footer />
-    </>
+      <ArServerFooter />
+    </div>
   );
 }

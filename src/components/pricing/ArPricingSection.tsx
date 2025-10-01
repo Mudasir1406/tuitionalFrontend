@@ -5,29 +5,29 @@ import { getPricingPageData } from '@/services/pricing/pricing-api';
 import { PricingFilters } from '@/types/pricing';
 import { DropdownOptions } from '@/services/dropdown/dropdown-api';
 import { leagueSpartan } from '@/app/fonts';
-import PackageCard from './PackageCard';
+import ArPackageCard from './ArPackageCard';
 import dynamic from 'next/dynamic';
 import styles from './PricingSection.module.css';
 
 // Lazy load the modal only when needed
-const CustomPricingModal = dynamic(
-  () => import('./CustomPricingModal'),
+const ArCustomPricingModal = dynamic(
+  () => import('./ArCustomPricingModal'),
   {
     ssr: false,
     loading: () => null
   }
 );
 
-interface PricingSectionProps {
+interface ArPricingSectionProps {
   filters: PricingFilters;
   dropdownOptions: DropdownOptions;
   locale?: string;
 }
 
-const PricingSection: React.FC<PricingSectionProps> = ({
+const ArPricingSection: React.FC<ArPricingSectionProps> = ({
   filters,
   dropdownOptions,
-  locale = 'en'
+  locale = 'ar'
 }) => {
 
   const [pricingData, setPricingData] = React.useState<any>(null);
@@ -44,11 +44,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
     }
   };
 
-  // Handle modal close - optionally reset to online tab for better UX
+  // Handle modal close
   const handleModalClose = () => {
     setIsModalOpen(false);
-    // Uncomment the line below if you want to auto-switch back to online tab when modal closes
-    // setSessionType('online');
   };
 
   React.useEffect(() => {
@@ -82,7 +80,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
       <section className={styles.container}>
         <Container maxWidth="lg">
           <div className={styles.loadingContent}>
-            <Typography>Loading packages...</Typography>
+            <Typography>جاري تحميل الباقات...</Typography>
           </div>
         </Container>
       </section>
@@ -96,12 +94,12 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         <Container maxWidth="lg">
           <div className={styles.noPackages}>
             <Typography variant="h4" className={styles.noPackagesTitle}>
-              {hasError ? 'Service Temporarily Unavailable' : 'No Packages Available'}
+              {hasError ? 'الخدمة غير متاحة مؤقتاً' : 'لا توجد باقات متاحة'}
             </Typography>
             <Typography className={styles.noPackagesDesc}>
-              {hasError 
-                ? 'We are experiencing technical difficulties. Please try again later or contact our support team.'
-                : 'We don\'t have any packages available for your selected criteria. Please try different filters or contact us directly.'
+              {hasError
+                ? 'نواجه صعوبات تقنية. يرجى المحاولة مرة أخرى لاحقاً أو الاتصال بفريق الدعم.'
+                : 'لا توجد لدينا أي باقات متاحة للمعايير المحددة. يرجى تجربة مرشحات أخرى أو الاتصال بنا مباشرة.'
               }
             </Typography>
           </div>
@@ -116,7 +114,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         {/* New Header with Toggle */}
         <div className={styles.header}>
           <Typography variant="h2" className={`${styles.title} ${leagueSpartan.className}`}>
-            Our packages
+            باقاتنا
           </Typography>
 
           {/* Session Type Toggle */}
@@ -126,25 +124,17 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                 className={`${styles.toggleButton} ${sessionType === 'online' ? styles.toggleActive : ''} ${leagueSpartan.className}`}
                 onClick={() => handleTabChange('online')}
               >
-                Online Sessions (Save up to 30%)
+                جلسات عبر الإنترنت (وفر حتى 30%)
               </Button>
               <Button
                 className={`${styles.toggleButton} ${sessionType === 'custom' ? styles.toggleActive : ''} ${leagueSpartan.className}`}
                 onClick={() => handleTabChange('custom')}
               >
-                Custom Package Builder
+                منشئ الباقات المخصصة
               </Button>
             </div>
           </div>
         </div>
-
-        {/* Remove the old filter for now - focusing on clean design */}
-        {/* <PricingFilter
-          initialPackages={pricingData.packages}
-          filterOptions={pricingData.filterOptions}
-          userCountry={filters.country}
-          locale={locale}
-        /> */}
 
         {/* Packages Grid - Show only for online sessions */}
         {sessionType === 'online' ? (
@@ -154,7 +144,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
               .slice(0, 3)
               .map((pkg: any, index: number) => (
                 <div key={pkg.id} className={styles.packageCardWrapper}>
-                  <PackageCard
+                  <ArPackageCard
                     package={pkg}
                     userCountry={filters.country}
                     locale={locale}
@@ -169,11 +159,11 @@ const PricingSection: React.FC<PricingSectionProps> = ({
           <div className={styles.customPlaceholder}>
             <div className={styles.customMessage}>
               <Typography variant="h4" className={`${styles.customTitle} ${leagueSpartan.className}`}>
-                🎯 Custom Package Builder
+                🎯 منشئ الباقات المخصصة
               </Typography>
               <Typography className={`${styles.customDescription} ${leagueSpartan.className}`}>
-                Configure your perfect tutoring package with flexible hours, subjects, and pricing tiers.
-                The builder will open automatically.
+                قم بتكوين باقة التدريس المثالية لك مع ساعات مرنة ومواد دراسية وفئات أسعار.
+                سيتم فتح المنشئ تلقائياً.
               </Typography>
               {!isModalOpen && (
                 <Button
@@ -181,7 +171,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                   className={`${styles.reopenButton} ${leagueSpartan.className}`}
                   onClick={() => setIsModalOpen(true)}
                 >
-                  Open Package Builder
+                  فتح منشئ الباقات
                 </Button>
               )}
             </div>
@@ -189,7 +179,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         )}
 
         {/* Custom Pricing Modal */}
-        <CustomPricingModal
+        <ArCustomPricingModal
           open={isModalOpen}
           onClose={handleModalClose}
           userCountry={filters.country}
@@ -201,4 +191,4 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   );
 };
 
-export default PricingSection;
+export default ArPricingSection;

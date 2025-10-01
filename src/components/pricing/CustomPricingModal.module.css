@@ -182,7 +182,7 @@ body:has(.modal[aria-hidden="false"]) {
 .rowContent {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 0.8fr 0.8fr 1fr 1fr 0.8fr 1.6fr;
   gap: 6px;
   align-items: center;
 }
@@ -271,37 +271,40 @@ body:has(.modal[aria-hidden="false"]) {
 
 .priceDetails {
   text-align: center;
-  background: linear-gradient(135deg, rgba(56, 182, 255, 0.06) 0%, rgba(124, 58, 237, 0.06) 100%);
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(56, 182, 255, 0.15);
-  min-width: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 182, 255, 0.2);
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .currentPrice {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 1px;
-  line-height: 1.1;
+  margin-bottom: 2px;
+  line-height: 1.2;
 }
 
 .originalPrice {
-  font-size: 9px;
-  color: #94a3b8;
+  font-size: 12px;
+  color: #ef4444;
   text-decoration: line-through;
-  margin-bottom: 0;
-  line-height: 1;
+  margin-bottom: 1px;
+  line-height: 1.1;
+  font-weight: 500;
 }
 
 .savingsText {
-  font-size: 8px;
+  font-size: 10px;
   color: #10b981;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .discountInfo {
@@ -314,11 +317,16 @@ body:has(.modal[aria-hidden="false"]) {
 
 .loadingPrice {
   text-align: center;
-  padding: 8px 4px;
+  padding: 8px 6px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .loadingText {
-  font-size: 10px;
+  font-size: 11px;
   color: #6b7280;
   font-weight: 500;
   font-style: italic;
@@ -326,16 +334,134 @@ body:has(.modal[aria-hidden="false"]) {
 
 .errorPrice {
   text-align: center;
-  padding: 4px;
-  background: rgba(239, 68, 68, 0.1);
-  border-radius: 4px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
 }
 
 .errorText {
-  font-size: 9px;
+  font-size: 10px;
   color: #dc2626;
   font-weight: 500;
   line-height: 1.2;
+}
+
+/* Pricing Display - for Arabic modal */
+.pricingDisplay {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 182, 255, 0.2);
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.calculatingText {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.rateText {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.originalRate {
+  font-size: 11px;
+  color: #ef4444;
+  text-decoration: line-through;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0.9;
+  position: relative;
+}
+
+.originalRate::before {
+  content: "قبل: ";
+  font-size: 9px;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.discountedRate {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.discountedRate::before {
+  content: "بعد الخصم: ";
+  font-size: 9px;
+  font-weight: 600;
+  color: #10b981;
+  background: none;
+  -webkit-text-fill-color: #10b981;
+}
+
+.totalCostText {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.2;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(56, 182, 255, 0.2);
+}
+
+.discountInfo {
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+/* Discount badge for visual emphasis */
+.discountBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-left: 6px;
+  margin-top: 2px;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.discountBadge::before {
+  content: "🔥 ";
+  margin-right: 2px;
 }
 
 /* Row Actions */
@@ -561,19 +687,22 @@ body:has(.modal[aria-hidden="false"]) {
     grid-column: 2;
     text-align: right;
     min-width: auto;
-    padding: 4px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   .currentPrice {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .originalPrice {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .savingsText {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .addRowSection {
@@ -648,11 +777,43 @@ body:has(.modal[aria-hidden="false"]) {
   .priceDetails {
     order: 2;
     text-align: center;
-    background: rgba(56, 182, 255, 0.08);
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
     padding: 8px;
     margin-top: 4px;
     border: 1px solid rgba(56, 182, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .pricingDisplay {
+    order: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid rgba(56, 182, 255, 0.2);
+    min-width: auto;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .rateText {
+    font-size: 16px;
+  }
+
+  .originalRate {
+    font-size: 12px;
+  }
+
+  .discountedRate {
+    font-size: 16px;
+  }
+
+  .totalCostText {
+    font-size: 14px;
   }
 
   .dropdown .MuiOutlinedInput-root {
@@ -666,15 +827,15 @@ body:has(.modal[aria-hidden="false"]) {
   }
 
   .currentPrice {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .originalPrice {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .savingsText {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .totalPrice {

@@ -14,6 +14,7 @@ export interface TutoringPackage {
       currency: string;
     };
   };
+  discountPercentage?: number; // Discount percentage for online sessions (e.g., 30 for 30%)
   isActive: boolean;
   order: number;
   createdAt?: string;
@@ -30,8 +31,10 @@ export interface PricingFilters {
 export interface CountryInfo {
   code: string;
   name: string;
+  nameAr?: string;
   flag: string;
   currency: string;
+  dbKey?: string; // Database key used in Firebase pricing (e.g., "USA" for "United States")
 }
 
 

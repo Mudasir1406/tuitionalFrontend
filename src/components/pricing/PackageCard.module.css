@@ -6,7 +6,7 @@
   padding: 40px 32px;
   text-align: center;
   transition: all 0.3s ease;
-  height: 760px;
+  height: 580px; /* Fixed height for consistency */
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -40,7 +40,7 @@
 }
 
 .packageTitle {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   color: #1e293b;
   margin: 0;
@@ -135,17 +135,22 @@
 .features {
   margin-bottom: 40px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px; /* Minimum space for features */
 }
 
 .featureItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: auto; /* Dynamic spacing between items */
   font-size: 16px;
   color: #475569;
   line-height: 1.5;
   text-align: left;
+  min-height: 32px; /* Minimum height for each feature */
 }
 
 .featureItem:last-child {
@@ -220,6 +225,11 @@
   .card {
     padding: 32px 24px;
     margin-bottom: 32px;
+    height: 520px; /* Shorter on mobile */
+  }
+
+  .features {
+    min-height: 160px; /* Adjusted for mobile */
   }
 
   .popular {

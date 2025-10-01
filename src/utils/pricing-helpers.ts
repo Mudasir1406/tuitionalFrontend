@@ -4,20 +4,59 @@ export const SUPPORTED_COUNTRIES: CountryInfo[] = [
   {
     code: "United Arab Emirates",
     name: "United Arab Emirates",
+    nameAr: "دولة الإمارات العربية المتحدة",
     flag: "🇦🇪",
     currency: "AED",
+    dbKey: "UAE"
   },
-  { code: "United States", name: "United States", flag: "🇺🇸", currency: "USD" },
+  {
+    code: "United States",
+    name: "United States",
+    nameAr: "الولايات المتحدة الأمريكية",
+    flag: "🇺🇸",
+    currency: "USD",
+    dbKey: "USA"
+  },
   {
     code: "United Kingdom",
     name: "United Kingdom",
+    nameAr: "المملكة المتحدة",
     flag: "🇬🇧",
     currency: "GBP",
+    dbKey: "UK"
   },
-  { code: "Canada", name: "Canada", flag: "🇨🇦", currency: "CAD" },
-  { code: "Saudi Arabia", name: "Saudi Arabia", flag: "🇸🇦", currency: "SAR" },
-  { code: "Qatar", name: "Qatar", flag: "🇶🇦", currency: "QAR" },
-  { code: "Kuwait", name: "Kuwait", flag: "🇰🇼", currency: "KWD" },
+  {
+    code: "Canada",
+    name: "Canada",
+    nameAr: "كندا",
+    flag: "🇨🇦",
+    currency: "CAD",
+    dbKey: "Canada"
+  },
+  {
+    code: "Saudi Arabia",
+    name: "Saudi Arabia",
+    nameAr: "المملكة العربية السعودية",
+    flag: "🇸🇦",
+    currency: "SAR",
+    dbKey: "Saudi Arabia"
+  },
+  {
+    code: "Qatar",
+    name: "Qatar",
+    nameAr: "دولة قطر",
+    flag: "🇶🇦",
+    currency: "QAR",
+    dbKey: "Qatar"
+  },
+  {
+    code: "Kuwait",
+    name: "Kuwait",
+    nameAr: "دولة الكويت",
+    flag: "🇰🇼",
+    currency: "KWD",
+    dbKey: "Kuwait"
+  },
 ];
 
 // Map API country codes to pricing country names (matching Firebase data structure)
@@ -25,18 +64,18 @@ export const mapApiCountryToPricing = (apiCountry: string): string => {
   const countryMapping: { [key: string]: string } = {
     // Country codes to Firebase format
     AE: "UAE",
-    SA: "Saudi Arabia", 
+    SA: "Saudi Arabia",
     QA: "Qatar",
     KW: "Kuwait",
     BH: "Bahrain",
     OM: "Oman",
     US: "USA",
-    GB: "UK", 
+    GB: "UK",
     CA: "Canada",
     // Full country names to Firebase format
     "United Arab Emirates": "UAE",
     "Saudi Arabia": "Saudi Arabia",
-    Qatar: "Qatar", 
+    Qatar: "Qatar",
     Kuwait: "Kuwait",
     Bahrain: "Bahrain",
     Oman: "Oman",
@@ -44,7 +83,7 @@ export const mapApiCountryToPricing = (apiCountry: string): string => {
     "United Kingdom": "UK",
     Canada: "Canada",
   };
-  return countryMapping[apiCountry] || "Saudi Arabia"; // Default to Saudi Arabia
+  return countryMapping[apiCountry] || apiCountry; // Return original if no mapping found
 };
 
 export const formatPrice = (
