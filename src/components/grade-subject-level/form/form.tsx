@@ -68,13 +68,9 @@ const Form: React.FunctionComponent<IProps> = ({ background }) => {
     let newErrors = { ...errors };
 
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid phone number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid phone number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
