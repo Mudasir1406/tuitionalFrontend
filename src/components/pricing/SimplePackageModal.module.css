@@ -1,0 +1,206 @@
+.modal {
+  z-index: 1300;
+}
+
+.modal * {
+  font-family: var(--font-league-spartan), 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+.modalPaper {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.modalHeader {
+  padding: 1.5rem 1.5rem 0 !important;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1.25rem;
+}
+
+.closeButton {
+  color: #64748b !important;
+  padding: 0.5rem !important;
+}
+
+.closeButton:hover {
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+.modalContent {
+  padding: 1.5rem !important;
+  font-family: var(--font-league-spartan), 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+.description {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formField > div,
+.formField .dropdown,
+.formField .dropdown-header,
+.formField .dropdown-placeholder,
+.formField .dropdown-menu,
+.formField .dropdown-item {
+  font-family: var(--font-league-spartan), 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+.fieldLabel {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.priceEstimate {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.priceRow:last-of-type {
+  margin-bottom: 0.75rem;
+}
+
+.priceLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.priceValue {
+  font-size: 0.875rem;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.75rem;
+}
+
+.totalLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.totalValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #38B6FF;
+}
+
+.modalActions {
+  padding: 0 1.5rem 1.5rem !important;
+  gap: 0.75rem;
+}
+
+.cancelButton {
+  background: transparent !important;
+  border: 1px solid #e5e7eb !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.cancelButton:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #374151 !important;
+}
+
+.submitButton {
+  background: #38B6FF !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 8px rgba(56, 182, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submitButton:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4) !important;
+}
+
+.submitButton:disabled {
+  background: #e5e7eb !important;
+  color: #9ca3af !important;
+  box-shadow: none !important;
+  transform: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .modalHeader {
+    padding: 1rem 1rem 0 !important;
+  }
+  
+  .modalTitle {
+    font-size: 1.125rem;
+  }
+  
+  .modalContent {
+    padding: 1rem !important;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .modalActions {
+    padding: 0 1rem 1rem !important;
+    flex-direction: column-reverse;
+  }
+  
+  .cancelButton,
+  .submitButton {
+    width: 100%;
+    margin: 0;
+  }
+}

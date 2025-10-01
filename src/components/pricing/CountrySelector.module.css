@@ -1,0 +1,171 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 200px;
+}
+
+.trigger:hover {
+  background: #f9fafb;
+  border-color: #38B6FF;
+}
+
+.trigger:focus {
+  outline: none;
+  border-color: #38B6FF;
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.1);
+}
+
+.flag {
+  font-size: 1.125rem;
+}
+
+.countryName {
+  flex: 1;
+  text-align: left;
+  color: #374151;
+}
+
+.currency {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.container:has(.dropdown) .chevron {
+  transform: rotate(180deg);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  min-width: 280px;
+}
+
+.dropdownUp {
+  top: auto;
+  bottom: calc(100% + 0.5rem);
+}
+
+.dropdownContent {
+  padding: 0.5rem 0;
+  max-height: 50vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: left;
+}
+
+.option:hover {
+  background: #f9fafb;
+}
+
+.optionSelected {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.optionSelected:hover {
+  background: #dbeafe;
+}
+
+.optionFlag {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.optionInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.optionName {
+  font-weight: 500;
+  color: inherit;
+  margin-bottom: 0.125rem;
+}
+
+.optionCurrency {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.optionSelected .optionCurrency {
+  color: #6366f1;
+}
+
+.checkIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #38B6FF;
+  flex-shrink: 0;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .trigger {
+    min-width: 180px;
+    padding: 0.625rem 0.875rem;
+  }
+  
+  .dropdown {
+    min-width: 260px;
+  }
+  
+  .option {
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* Focus and accessibility */
+.option:focus {
+  outline: none;
+  background: #f3f4f6;
+}
+
+.optionSelected:focus {
+  background: #dbeafe;
+}
