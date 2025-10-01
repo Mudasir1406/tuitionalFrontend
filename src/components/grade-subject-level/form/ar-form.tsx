@@ -46,11 +46,11 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     Browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
     sheetName: "Lead Forms",
   });
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
