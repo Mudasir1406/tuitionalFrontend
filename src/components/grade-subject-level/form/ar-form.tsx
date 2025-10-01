@@ -61,13 +61,9 @@ const ArForm: React.FunctionComponent<IProps> = ({ background }) => {
     let newErrors = { ...errors };
 
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "رقم هاتف غير صحيح";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "رقم هاتف غير صحيح";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)

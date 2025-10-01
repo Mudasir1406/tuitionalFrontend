@@ -54,13 +54,9 @@ const ApplyNow: React.FunctionComponent = () => {
     }
     // Perform validation if the key is "phone"
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid PhoneNumber number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid PhoneNumber number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
