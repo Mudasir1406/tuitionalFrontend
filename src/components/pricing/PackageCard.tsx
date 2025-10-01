@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { Button, Typography } from "@mui/material";
 import { TutoringPackage } from "@/types/pricing";
 import { getCurrencySymbol } from "@/utils/pricing-helpers";
@@ -20,6 +20,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
   isPopular = false,
   sessionType = "online",
 }) => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
   const userPrice = pkg.pricing[userCountry];
 
   // Memoize expensive pricing calculations
@@ -103,7 +104,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
             <span className={styles.checkIcon}>✓</span>
             <span>{pkg.sessionDuration} per session</span>
           </div> */}
-          {pkg.features?.slice(0,4)?.map((feature, idx) => (
+          {(showAllFeatures ? pkg.features : pkg.features?.slice(0, 5))?.map((feature, idx) => (
             <div
               key={idx}
               className={`${styles.featureItem} ${leagueSpartan.className}`}
@@ -112,6 +113,16 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
               <span>{feature}</span>
             </div>
           ))}
+          {pkg.features && pkg.features.length > 5 && (
+            <div
+              className={`${styles.moreFeatures} ${leagueSpartan.className}`}
+              onClick={() => setShowAllFeatures(!showAllFeatures)}
+            >
+              {showAllFeatures
+                ? "Show less"
+                : `+${pkg.features.length - 5} more features`}
+            </div>
+          )}
         </div>
 
         {/* Action Button */}

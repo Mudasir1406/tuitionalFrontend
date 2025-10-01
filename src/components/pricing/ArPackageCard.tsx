@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { Button, Typography }
  from "@mui/material";
 import { TutoringPackage } from "@/types/pricing";
@@ -21,6 +21,7 @@ const ArPackageCard: React.FC<ArPackageCardProps> = memo(({
   isPopular = false,
   sessionType = "online",
 }) => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
   const userPrice = pkg.pricing[userCountry];
 
   // Memoize expensive pricing calculations
@@ -97,7 +98,7 @@ const ArPackageCard: React.FC<ArPackageCardProps> = memo(({
       <div className={styles.content}>
         {/* Key Features */}
         <div className={styles.features}>
-          {pkg.features?.slice(0,4)?.map((feature, idx) => (
+          {(showAllFeatures ? pkg.features : pkg.features?.slice(0, 5))?.map((feature, idx) => (
             <div
               key={idx}
               className={`${styles.featureItem} ${leagueSpartan.className}`}
@@ -106,6 +107,16 @@ const ArPackageCard: React.FC<ArPackageCardProps> = memo(({
               <span>{feature}</span>
             </div>
           ))}
+          {pkg.features && pkg.features.length > 5 && (
+            <div
+              className={`${styles.moreFeatures} ${leagueSpartan.className}`}
+              onClick={() => setShowAllFeatures(!showAllFeatures)}
+            >
+              {showAllFeatures
+                ? "عرض أقل"
+                : `+${pkg.features.length - 5} ميزات أخرى`}
+            </div>
+          )}
         </div>
 
         {/* Action Button */}

@@ -6,7 +6,7 @@
   padding: 40px 32px;
   text-align: center;
   transition: all 0.3s ease;
-  height: 580px; /* Fixed height for consistency */
+  min-height: 650px; /* Minimum height for consistency */
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -133,11 +133,11 @@
 
 /* Features */
 .features {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 12px;
   min-height: 200px; /* Minimum space for features */
 }
 
@@ -145,20 +145,39 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: auto; /* Dynamic spacing between items */
   font-size: 16px;
   color: #475569;
   line-height: 1.5;
   text-align: left;
-  min-height: 32px; /* Minimum height for each feature */
-}
-
-.featureItem:last-child {
-  margin-bottom: 0;
+  flex-shrink: 0; /* Prevent items from shrinking */
 }
 
 .popular .featureItem {
   color: rgba(255, 255, 255, 0.9);
+}
+
+.moreFeatures {
+  font-size: 14px;
+  color: #38b6ff;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.moreFeatures:hover {
+  color: #2a9be0;
+  transform: translateY(-1px);
+}
+
+.popular .moreFeatures {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.popular .moreFeatures:hover {
+  color: white;
 }
 
 .checkIcon {
@@ -225,7 +244,7 @@
   .card {
     padding: 32px 24px;
     margin-bottom: 32px;
-    height: 520px; /* Shorter on mobile */
+    min-height: 580px; /* Minimum height on mobile */
   }
 
   .features {
@@ -256,12 +275,12 @@
   }
 
   .features {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+    max-height: 200px; /* Adjusted for mobile */
   }
 
   .featureItem {
     font-size: 15px;
-    margin-bottom: 12px;
   }
 
   .actionButton {
