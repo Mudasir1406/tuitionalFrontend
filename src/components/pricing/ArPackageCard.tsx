@@ -5,7 +5,7 @@ import { getCurrencySymbol } from "@/utils/pricing-helpers";
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./PackageCard.module.css";
 
-interface PackageCardProps {
+interface ArPackageCardProps {
   package: TutoringPackage;
   userCountry: string;
   locale?: string;
@@ -13,10 +13,10 @@ interface PackageCardProps {
   sessionType?: "online" | "offline";
 }
 
-const PackageCard: React.FC<PackageCardProps> = memo(({
+const ArPackageCard: React.FC<ArPackageCardProps> = memo(({
   package: pkg,
   userCountry,
-  locale = "en",
+  locale = "ar",
   isPopular = false,
   sessionType = "online",
 }) => {
@@ -44,7 +44,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
   }, [userPrice.price, userPrice.currency, sessionType, pkg.sessionsPerWeek, pkg.discountPercentage]);
 
   return (
-    <div className={`${styles.card} ${isPopular ? styles.popular : ""}`}>
+    <div className={`${styles.card} ${isPopular ? styles.popular : ""}`} dir="rtl">
       {/* Package Name */}
       <div className={styles.header}>
         <Typography
@@ -65,7 +65,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
           </span>
         </div>
         <Typography className={`${styles.period} ${leagueSpartan.className}`}>
-          per session
+          لكل جلسة
         </Typography>
         {sessionType === "online" && basePrice !== displayPrice && discount > 0 && (
           <Typography
@@ -75,7 +75,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
               {currencySymbol}
               {basePrice}
             </span>
-            <span className={styles.savings}>Save {discount}%</span>
+            <span className={styles.savings}>وفر {discount}%</span>
           </Typography>
         )}
       </div>
@@ -84,14 +84,6 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
       <div className={styles.content}>
         {/* Key Features */}
         <div className={styles.features}>
-          {/* <div className={`${styles.featureItem} ${leagueSpartan.className}`}>
-            <span className={styles.checkIcon}>✓</span>
-            <span>{pkg.sessionsPerWeek} sessions per week</span>
-          </div>
-          <div className={`${styles.featureItem} ${leagueSpartan.className}`}>
-            <span className={styles.checkIcon}>✓</span>
-            <span>{pkg.sessionDuration} per session</span>
-          </div> */}
           {pkg.features?.slice(0,4)?.map((feature, idx) => (
             <div
               key={idx}
@@ -112,7 +104,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
               isPopular ? styles.popularButton : ""
             } ${leagueSpartan.className}`}
           >
-            Get Started
+            ابدأ الآن
           </Button>
         </div>
       </div>
@@ -120,6 +112,6 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
   );
 });
 
-PackageCard.displayName = 'PackageCard';
+ArPackageCard.displayName = 'ArPackageCard';
 
-export default PackageCard;
+export default ArPackageCard;

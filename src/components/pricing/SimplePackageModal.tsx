@@ -82,10 +82,7 @@ const SimplePackageModal: React.FC<SimplePackageModalProps> = ({
 
   const handleSubmit = () => {
     if (!canSubmit()) return;
-    
-    console.log('Package Configuration:', config);
-    console.log('Estimated Monthly Cost:', calculateMonthlyPrice());
-    
+
     // TODO: Send to your backend/WhatsApp/email
     alert(`Custom package configured!\n\nGrade: ${config.grade}\nSubjects: ${config.subjects.join(', ')}\nCurriculum: ${config.curriculum}\nSessions/week: ${config.sessionsPerWeek}\n\nEstimated cost: ${currency} ${calculateMonthlyPrice()}/month\n\nWe'll contact you soon!`);
     

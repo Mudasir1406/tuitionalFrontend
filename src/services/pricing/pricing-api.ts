@@ -28,6 +28,7 @@ const getFallbackPackages = (): TutoringPackage[] => [
       'United Kingdom': { price: 40, currency: 'GBP' },
       'Canada': { price: 65, currency: 'CAD' }
     },
+    discountPercentage: 30,
     isActive: true,
     order: 1
   },
@@ -55,6 +56,7 @@ const getFallbackPackages = (): TutoringPackage[] => [
       'United Kingdom': { price: 50, currency: 'GBP' },
       'Canada': { price: 80, currency: 'CAD' }
     },
+    discountPercentage: 25,
     isActive: true,
     order: 2
   },
@@ -82,6 +84,7 @@ const getFallbackPackages = (): TutoringPackage[] => [
       'United Kingdom': { price: 65, currency: 'GBP' },
       'Canada': { price: 100, currency: 'CAD' }
     },
+    discountPercentage: 20,
     isActive: true,
     order: 3
   }

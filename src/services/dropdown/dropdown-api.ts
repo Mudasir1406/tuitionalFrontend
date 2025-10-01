@@ -12,8 +12,8 @@ export interface DropdownOptions {
   lastUpdated?: string;
 }
 
-// Fallback data for SSR reliability
-const getFallbackDropdownOptions = (): DropdownOptions => ({
+// Fallback data for SSR reliability - English
+const getFallbackDropdownOptionsEn = (): DropdownOptions => ({
   grades: [
     'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5',
     'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10',
@@ -46,6 +46,46 @@ const getFallbackDropdownOptions = (): DropdownOptions => ({
     'Canada': 'CAD'
   }
 });
+
+// Fallback data for SSR reliability - Arabic
+const getFallbackDropdownOptionsAr = (): DropdownOptions => ({
+  grades: [
+    'الصف الأول', 'الصف الثاني', 'الصف الثالث', 'الصف الرابع', 'الصف الخامس',
+    'الصف السادس', 'الصف السابع', 'الصف الثامن', 'الصف التاسع', 'الصف العاشر',
+    'الصف الحادي عشر', 'الصف الثاني عشر', 'المستوى التمهيدي', 'المستوى المتقدم',
+    'السنة الأولى IB', 'السنة الثانية IB'
+  ],
+  subjects: [
+    'الرياضيات', 'الفيزياء', 'الكيمياء', 'الأحياء',
+    'اللغة الإنجليزية', 'اللغة العربية', 'علوم الحاسوب', 'الاقتصاد',
+    'دراسات الأعمال', 'المحاسبة', 'التاريخ', 'الجغرافيا',
+    'علم النفس', 'الفن والتصميم', 'اللغة الفرنسية', 'اللغة الإسبانية'
+  ],
+  curriculum: [
+    'البريطاني', 'الأمريكي', 'IB', 'الكندي', 'الأسترالي',
+    'IGCSE', 'A-Levels', 'SAT', 'AP', 'CBSE', 'ICSE'
+  ],
+  countries: [
+    'دولة الإمارات العربية المتحدة', 'المملكة العربية السعودية', 'دولة قطر', 'دولة الكويت',
+    'مملكة البحرين', 'سلطنة عُمان', 'الولايات المتحدة الأمريكية', 'المملكة المتحدة', 'كندا'
+  ],
+  currencies: {
+    'دولة الإمارات العربية المتحدة': 'AED',
+    'المملكة العربية السعودية': 'SAR',
+    'دولة قطر': 'QAR',
+    'دولة الكويت': 'KWD',
+    'مملكة البحرين': 'BHD',
+    'سلطنة عُمان': 'OMR',
+    'الولايات المتحدة الأمريكية': 'USD',
+    'المملكة المتحدة': 'GBP',
+    'كندا': 'CAD'
+  }
+});
+
+// Generic fallback function that chooses based on locale
+const getFallbackDropdownOptions = (locale: 'en' | 'ar' = 'en'): DropdownOptions => {
+  return locale === 'ar' ? getFallbackDropdownOptionsAr() : getFallbackDropdownOptionsEn();
+};
 
 /**
  * Server-side function to fetch dropdown options from Firebase
@@ -87,18 +127,18 @@ export const getDropdownOptions = async (locale: 'en' | 'ar' = 'en'): Promise<Dr
         };
       } else {
         console.log('🔥 Dropdown Debug - Invalid data structure, using fallback');
-        return getFallbackDropdownOptions();
+        return getFallbackDropdownOptions(locale);
       }
     } else {
       console.log('🔥 Dropdown Debug - Document does not exist, using fallback data');
-      return getFallbackDropdownOptions();
+      return getFallbackDropdownOptions(locale);
     }
 
   } catch (error) {
     console.error('🔥 Dropdown Debug - Error fetching dropdown options:', error);
     handleFirestoreError(error as FirestoreError);
     // Always return fallback data on error for SSR reliability
-    return getFallbackDropdownOptions();
+    return getFallbackDropdownOptions(locale);
   }
 };
 

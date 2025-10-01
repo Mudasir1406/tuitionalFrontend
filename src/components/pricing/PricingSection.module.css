@@ -51,11 +51,11 @@
 
 .toggleButton:hover {
   background: rgba(56, 182, 255, 0.1) !important;
-  color: #38B6FF !important;
+  color: #38b6ff !important;
 }
 
 .toggleActive {
-  background: #38B6FF !important;
+  background: #38b6ff !important;
   color: white !important;
   box-shadow: 0 2px 8px rgba(56, 182, 255, 0.3) !important;
 }
@@ -122,10 +122,14 @@
   padding: 48px 40px;
   width: 100%;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
 }
 
 .customMessage:hover {
-  border-color: #38B6FF;
+  border-color: #38b6ff;
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(56, 182, 255, 0.15);
@@ -150,7 +154,7 @@
 }
 
 .reopenButton {
-  background: #38B6FF !important;
+  background: #38b6ff !important;
   color: white !important;
   border: none !important;
   padding: 14px 32px !important;
@@ -432,7 +436,7 @@
 
 /* Focus states for accessibility */
 .toggleButton:focus {
-  outline: 2px solid #38B6FF;
+  outline: 2px solid #38b6ff;
   outline-offset: 2px;
 }
 
@@ -443,7 +447,7 @@
   }
 
   .toggleActive {
-    border: 2px solid #38B6FF;
+    border: 2px solid #38b6ff;
   }
 }
 

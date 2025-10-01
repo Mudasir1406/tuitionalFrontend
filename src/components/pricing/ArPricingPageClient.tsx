@@ -9,14 +9,14 @@ import { DropdownOptions } from "@/services/dropdown/dropdown-api";
 import styles from "../../app/pricing/pricing.module.css";
 
 // Lazy load below-the-fold components
-const PricingSection = dynamic(
-  () => import("./PricingSection"),
+const ArPricingSection = dynamic(
+  () => import("./ArPricingSection"),
   {
     ssr: true,
     loading: () => (
       <Container maxWidth="lg">
         <div style={{ minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Typography>Loading packages...</Typography>
+          <Typography>جاري تحميل الباقات...</Typography>
         </div>
       </Container>
     )
@@ -24,7 +24,7 @@ const PricingSection = dynamic(
 );
 
 // Lazy load trust section for better performance
-const TrustSection = React.lazy(() =>
+const ArTrustSection = React.lazy(() =>
   Promise.resolve({
     default: () => (
       <section className={styles.trustSection}>
@@ -32,10 +32,10 @@ const TrustSection = React.lazy(() =>
           <div className={styles.trustContent}>
             <div className={styles.trustHeader}>
               <Typography variant="h3" className={`${styles.trustTitle} ${leagueSpartan.className}`}>
-                Trusted by Students Worldwide
+                موثوق من قبل الطلاب حول العالم
               </Typography>
               <Typography className={`${styles.trustSubtitle} ${leagueSpartan.className}`}>
-                Join thousands of successful students who have achieved their academic goals with our expert tutoring
+                انضم إلى آلاف الطلاب الناجحين الذين حققوا أهدافهم الأكاديمية مع خبراء التدريس لدينا
               </Typography>
             </div>
 
@@ -44,7 +44,7 @@ const TrustSection = React.lazy(() =>
                 <div className={styles.statIcon}>🎓</div>
                 <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>10,000+</Typography>
                 <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Students Tutored
+                  طالب تم تدريسهم
                 </Typography>
                 <div className={styles.statProgress}>
                   <div className={styles.progressBar} style={{width: '90%'}}></div>
@@ -55,7 +55,7 @@ const TrustSection = React.lazy(() =>
                 <div className={styles.statIcon}>👨‍🏫</div>
                 <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>500+</Typography>
                 <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Expert Tutors
+                  مدرس خبير
                 </Typography>
                 <div className={styles.statProgress}>
                   <div className={styles.progressBar} style={{width: '85%'}}></div>
@@ -66,7 +66,7 @@ const TrustSection = React.lazy(() =>
                 <div className={styles.statIcon}>📚</div>
                 <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>15+</Typography>
                 <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Curricula Supported
+                  منهج مدعوم
                 </Typography>
                 <div className={styles.statProgress}>
                   <div className={styles.progressBar} style={{width: '75%'}}></div>
@@ -77,7 +77,7 @@ const TrustSection = React.lazy(() =>
                 <div className={styles.statIcon}>⭐</div>
                 <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>98%</Typography>
                 <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Student Satisfaction
+                  رضا الطلاب
                 </Typography>
                 <div className={styles.statProgress}>
                   <div className={styles.progressBar} style={{width: '98%'}}></div>
@@ -86,22 +86,22 @@ const TrustSection = React.lazy(() =>
             </div>
 
             {/* Achievement badges */}
-               <div className={styles.achievementBadges}>
+            <div className={styles.achievementBadges}>
               <div className={styles.badge}>
                 <span className={styles.badgeIcon}>🏆</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Top Rated Platform</span>
+                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>منصة عالية التقييم</span>
               </div>
-                <div className={styles.badge}>
+              <div className={styles.badge}>
                 <span className={styles.badgeIcon}>🌟</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Award Winning</span>
+                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>حائزة على جوائز</span>
               </div>
               <div className={styles.badge}>
                 <span className={styles.badgeIcon}>🔒</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Secure & Trusted</span>
+                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>آمنة وموثوقة</span>
               </div>
               <div className={styles.badge}>
                 <span className={styles.badgeIcon}>💯</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Results Guaranteed</span>
+                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>نتائج مضمونة</span>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ const TrustSection = React.lazy(() =>
   })
 );
 
-interface PricingPageClientProps {
+interface ArPricingPageClientProps {
   initialFilters: {
     grade?: string;
     subject?: string;
@@ -122,10 +122,10 @@ interface PricingPageClientProps {
   locale?: string;
 }
 
-const PricingPageClient: React.FC<PricingPageClientProps> = memo(({
+const ArPricingPageClient: React.FC<ArPricingPageClientProps> = memo(({
   initialFilters,
   dropdownOptions,
-  locale = "en",
+  locale = "ar",
 }) => {
   const [filters, setFilters] = useState(initialFilters);
   const geoData = useGeoLocation();
@@ -159,19 +159,17 @@ const PricingPageClient: React.FC<PricingPageClientProps> = memo(({
         <Container maxWidth="lg">
           <div className={styles.heroContent}>
             <Typography variant="h1" className={`${styles.heroTitle} ${leagueSpartan.className}`}>
-              Find Your Perfect Tutoring Package
+              اعثر على باقة التدريس المثالية لك
             </Typography>
             <Typography className={`${styles.heroSubtitle} ${leagueSpartan.className}`}>
-              Expert tutoring tailored to your curriculum, grade level, and
-              learning goals. Join thousands of students achieving academic
-              excellence with our personalized approach.
+              تدريس متخصص مصمم حسب منهجك ومستواك الدراسي وأهدافك التعليمية. انضم إلى آلاف الطلاب الذين يحققون التفوق الأكاديمي من خلال نهجنا الشخصي.
             </Typography>
           </div>
         </Container>
       </section>
 
       {/* Pricing Section with Dynamic Filters */}
-      <PricingSection
+      <ArPricingSection
         filters={filters}
         dropdownOptions={dropdownOptions}
         locale={locale}
@@ -180,15 +178,15 @@ const PricingPageClient: React.FC<PricingPageClientProps> = memo(({
       {/* Lazy load trust section */}
       <React.Suspense fallback={
         <div style={{ minHeight: '400px', backgroundColor: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Typography>Loading testimonials...</Typography>
+          <Typography>جاري تحميل التوصيات...</Typography>
         </div>
       }>
-        <TrustSection />
+        <ArTrustSection />
       </React.Suspense>
     </>
   );
 });
 
-PricingPageClient.displayName = 'PricingPageClient';
+ArPricingPageClient.displayName = 'ArPricingPageClient';
 
-export default PricingPageClient;
+export default ArPricingPageClient;

@@ -4,14 +4,15 @@
 }
 
 .hero {
-  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 100%);
-  color: white;
+  background: linear-gradient(180deg, #ffffff 0%, #38b6ff 100%);
+  color: #1e293b;
   position: relative;
   overflow: visible;
+  padding-top: 120px;
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -28,6 +29,9 @@
   padding: 3rem 1rem 4rem 1rem;
   max-width: 4xl;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heroTitle {
@@ -39,11 +43,12 @@
 .heroSubtitle {
   font-size: 1.25rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  margin-bottom: 3rem;
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
+  color: #1e293b;
+  opacity: 0.9;
 }
 
 .countrySection {
@@ -53,15 +58,15 @@
 }
 
 .countryBox {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: #f8fafc;
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   overflow: visible;
 }
 
@@ -69,6 +74,7 @@
   font-size: 0.875rem;
   opacity: 0.8;
   margin-bottom: 0.5rem;
+  color: #64748b;
 }
 
 .countrySelector {
@@ -87,7 +93,7 @@
 }
 
 .trustSection::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -117,7 +123,7 @@
   margin-bottom: 1.5rem;
   font-size: 3.5rem;
   line-height: 1.2;
-  background: linear-gradient(135deg, #1e293b 0%, #38B6FF 50%, #2563eb 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #38b6ff 50%, #2563eb 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -156,13 +162,13 @@
 }
 
 .statCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background: linear-gradient(90deg, #38b6ff 0%, #2563eb 50%, #7c3aed 100%);
   transform: translateY(-4px);
   transition: transform 0.4s ease;
 }
@@ -177,10 +183,18 @@
   transform: translateY(0);
 }
 
-.statCard:nth-child(1) { animation-delay: 0.1s; }
-.statCard:nth-child(2) { animation-delay: 0.2s; }
-.statCard:nth-child(3) { animation-delay: 0.3s; }
-.statCard:nth-child(4) { animation-delay: 0.4s; }
+.statCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.statCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.statCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.statCard:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 .statIcon {
   font-size: 3rem;
@@ -192,7 +206,7 @@
 .statNumber {
   font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #38b6ff 0%, #2563eb 50%, #7c3aed 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -223,26 +237,35 @@
 
 .progressBar {
   height: 100%;
-  background: linear-gradient(90deg, #38B6FF 0%, #2563eb 50%, #7c3aed 100%);
+  background: linear-gradient(90deg, #38b6ff 0%, #2563eb 50%, #7c3aed 100%);
   border-radius: 3px;
   transition: width 1.5s ease-out;
   position: relative;
 }
 
 .progressBar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* ====================================== */
@@ -258,7 +281,11 @@
 }
 
 .badge {
-  background: linear-gradient(135deg, rgba(56, 182, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(56, 182, 255, 0.1) 0%,
+    rgba(124, 58, 237, 0.1) 100%
+  );
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 50px;
@@ -272,13 +299,13 @@
 }
 
 .badge::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #38B6FF 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #38b6ff 0%, #7c3aed 100%);
   border-radius: 50px;
   padding: 2px;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -331,8 +358,12 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 100px;
+  }
+
   .heroContent {
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .heroTitle {
@@ -476,15 +507,15 @@
   .heroContent {
     padding: 8rem 1rem;
   }
-  
+
   .heroTitle {
     font-size: 4rem;
   }
-  
+
   .heroSubtitle {
     font-size: 1.5rem;
   }
-  
+
   .trustTitle {
     font-size: 3rem;
   }
@@ -558,11 +589,11 @@
   }
 }
 
-/* Fade In Animation for Cards */
+/* Optimized Fade In Animation for Cards - reduced for better performance */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -571,8 +602,13 @@
 }
 
 .statCard {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.4s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.statCard:hover {
+  will-change: auto;
 }
 
 /* Progress bar animation */
