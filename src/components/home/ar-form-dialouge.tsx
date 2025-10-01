@@ -50,7 +50,7 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
@@ -85,8 +85,8 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "المواد لا يمكن أن تكون فارغة";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "الرسالة لا يمكن أن تكون فارغة";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "الرسالة لا يمكن أن تكون فارغة";
     }
 
     setFormData({
@@ -167,8 +167,8 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "المنهج لا يمكن أن يكون فارغًا";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "الرسالة لا يمكن أن تكون فارغة";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "الرسالة لا يمكن أن تكون فارغة";
     }
 
     setErrors(newErrors);
@@ -221,7 +221,7 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -402,19 +402,19 @@ const ArFormDialog: React.FunctionComponent<IProps> = ({
               multiline
               rows={4}
               name="Message"
-              value={formData.message}
-              onChange={(e) => handleChange("message", e.target.value)}
+              value={formData.Message}
+              onChange={(e) => handleChange("Message", e.target.value)}
               placeholder="أدخل رسالتك هنا..."
               className={`${leagueSpartan.className} `}
             />
-            {errors.message && (
+            {errors.Message && (
               <Typography
                 className={`${leagueSpartan.className} `}
                 sx={styles.error}
                 component={"p"}
                 variant="caption"
               >
-                {errors.message}
+                {errors.Message}
               </Typography>
             )}
 
