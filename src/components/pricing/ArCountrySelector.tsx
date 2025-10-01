@@ -66,18 +66,17 @@ const ArCountrySelector: React.FC<ArCountrySelectorProps> = ({
         }}
       >
         {SUPPORTED_COUNTRIES.map((country) => {
-          const info = getCountryInfo(country);
-          const pricingKey = mapApiCountryToPricing(country);
-
+          const pricingKey = mapApiCountryToPricing(country.dbKey || country.code);
+          
           return (
             <MenuItem
-              key={country}
+              key={country.dbKey || country.code}
               value={pricingKey}
               className={styles.menuItem}
             >
               <div className={styles.countryOption}>
-                <span className={styles.flag}>{info.flag}</span>
-                <span className={styles.countryName}>{info.nameAr}</span>
+                <span className={styles.flag}>{country.flag}</span>
+                <span className={styles.countryName}>{country.nameAr}</span>
               </div>
             </MenuItem>
           );

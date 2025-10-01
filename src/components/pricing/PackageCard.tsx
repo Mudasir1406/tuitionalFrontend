@@ -22,10 +22,19 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
 }) => {
   const userPrice = pkg.pricing[userCountry];
 
-  if (!userPrice) return null;
-
   // Memoize expensive pricing calculations
   const { displayPrice, monthlyPrice, currencySymbol, basePrice, discount } = useMemo(() => {
+    if (!userPrice) {
+      // Return default values when userPrice is null
+      return {
+        displayPrice: 0,
+        monthlyPrice: 0,
+        currencySymbol: "",
+        basePrice: 0,
+        discount: 0
+      };
+    }
+
     const calculatedBasePrice = userPrice.price;
     const discountPercent = pkg.discountPercentage || 0; // Use database discount or 0
     const calculatedDisplayPrice = sessionType === "online" && discountPercent > 0
@@ -41,7 +50,9 @@ const PackageCard: React.FC<PackageCardProps> = memo(({
       basePrice: calculatedBasePrice,
       discount: discountPercent
     };
-  }, [userPrice.price, userPrice.currency, sessionType, pkg.sessionsPerWeek, pkg.discountPercentage]);
+  }, [userPrice, sessionType, pkg.sessionsPerWeek, pkg.discountPercentage]);
+
+  if (!userPrice) return null;
 
   return (
     <div className={`${styles.card} ${isPopular ? styles.popular : ""}`}>

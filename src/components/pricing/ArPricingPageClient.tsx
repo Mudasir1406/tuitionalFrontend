@@ -150,7 +150,7 @@ const ArPricingPageClient: React.FC<ArPricingPageClientProps> = memo(({
         }));
       }
     }
-  }, [geoData]);
+  }, [geoData, filters.country]);
 
   return (
     <>

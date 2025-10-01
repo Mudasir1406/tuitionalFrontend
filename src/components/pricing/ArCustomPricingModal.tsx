@@ -87,7 +87,7 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
     if (open && rows.length === 0) {
       addNewRow();
     }
-  }, [open]);
+  }, [open, rows.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle body scroll lock
   useEffect(() => {
@@ -101,10 +101,10 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
     }
   }, [open]);
 
-  const generateRowId = () =>
-    `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const generateRowId = React.useCallback(() =>
+    `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, []);
 
-  const addNewRow = () => {
+  const addNewRow = React.useCallback(() => {
     // Map userCountry to dropdown format if needed
     const mappedCountry =
       userCountry === "United States"
@@ -133,7 +133,7 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
       calculationError: undefined,
     };
     setRows((prev) => [...prev, newRow]);
-  };
+  }, [userCountry, generateRowId]);
 
   const removeRow = (rowId: string) => {
     if (rows.length > 1) {

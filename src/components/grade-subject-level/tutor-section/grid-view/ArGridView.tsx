@@ -50,13 +50,13 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
   // Determine the number of visible cards based on the screen size
   const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + visibleCards >= cardsData.length
         ? 0
         : prevIndex + visibleCards
     );
-  };
+  }, [setCurrentIndex, visibleCards, cardsData.length]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -74,7 +74,7 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
 
       return () => clearInterval(interval);
     }
-  }, [isHovered]);
+  }, [isHovered, handleNext]);
 
   return (
     <div className={styles.carouselContainer} style={{ direction: "rtl" }}>
