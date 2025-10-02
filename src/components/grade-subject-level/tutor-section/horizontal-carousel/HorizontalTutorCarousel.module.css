@@ -54,7 +54,7 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid #f0f0f0;
-  height: 280px;
+  height: auto;
 }
 
 .tutorCard:hover {
@@ -157,7 +157,7 @@
   .tutorCard {
     min-width: 200px;
     max-width: 200px;
-    height: 260px;
+    /* height: 260px; */
   }
 
   .carouselTrack {
