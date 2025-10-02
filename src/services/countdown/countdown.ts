@@ -97,10 +97,64 @@ export const updateCountdownData = async (data: Partial<CountdownData>, pageType
       ...data,
       updatedAt: new Date().toISOString()
     };
-    
+
     await setDoc(docRef, updateData, { merge: true });
   } catch (error) {
     handleFirestoreError(error as FirestoreError);
     throw error;
   }
+};
+
+// Auto-restart countdown (when countdown reaches 0)
+export const restartCountdown = async (pageType: PageType = 'igcse', daysToAdd: number = 20): Promise<CountdownData | null> => {
+  try {
+    const config = getPageConfig(pageType);
+    const docRef = doc(db, "countdown", config.docId);
+
+    // Check if countdown exists and has expired
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const existingData = docSnap.data() as CountdownData;
+      const existingTargetDate = new Date(existingData.targetDate);
+      const now = new Date();
+
+      // Only restart if countdown has actually expired
+      if (existingTargetDate.getTime() > now.getTime()) {
+        console.log("Countdown hasn't expired yet. Skipping restart.");
+        return existingData;
+      }
+    }
+
+    // Create new countdown
+    const now = new Date();
+    const newTargetDate = new Date(now.getTime() + (daysToAdd * 24 * 60 * 60 * 1000));
+
+    const newCountdownData: CountdownData = {
+      targetDate: newTargetDate.toISOString(),
+      title: config.title,
+      isActive: true,
+      createdAt: docSnap.exists() ? (docSnap.data() as CountdownData).createdAt : now.toISOString(),
+      updatedAt: now.toISOString()
+    };
+
+    await setDoc(docRef, newCountdownData);
+    console.log(`Countdown restarted for ${pageType}: ${daysToAdd} days from now`);
+
+    return newCountdownData;
+  } catch (error) {
+    console.error("Error restarting countdown:", error);
+    handleFirestoreError(error as FirestoreError);
+    return null;
+  }
+};
+
+// Check if countdown has expired
+export const isCountdownExpired = (countdownData: CountdownData | null): boolean => {
+  if (!countdownData) return true;
+
+  const targetDate = new Date(countdownData.targetDate);
+  const now = new Date();
+
+  return targetDate.getTime() <= now.getTime();
 };

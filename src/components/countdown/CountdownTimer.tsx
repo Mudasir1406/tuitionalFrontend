@@ -6,6 +6,8 @@ import {
   getCountdownData,
   CountdownData,
   PageType,
+  restartCountdown,
+  isCountdownExpired,
 } from "@/services/countdown/countdown";
 
 interface TimeLeft {
@@ -39,6 +41,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
+  const [hasTriggeredRestart, setHasTriggeredRestart] = useState(false);
+  const [pageType, setPageType] = useState<PageType>('igcse');
 
   useEffect(() => {
     // Detect page type from current URL
@@ -55,8 +59,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     // Fetch countdown data from database in background
     const fetchCountdownData = async () => {
       try {
-        const pageType = detectPageType();
-        const data = await getCountdownData(pageType);
+        const detectedPageType = detectPageType();
+        setPageType(detectedPageType);
+        const data = await getCountdownData(detectedPageType);
         setCountdownData(data);
       } catch (error) {
         console.error("Failed to fetch countdown data:", error);
@@ -66,6 +71,40 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
     fetchCountdownData();
   }, [targetDays, title]);
+
+  // Auto-restart countdown when it expires
+  useEffect(() => {
+    const checkAndRestart = async () => {
+      // Only trigger restart once and when countdown has expired
+      if (!hasTriggeredRestart && countdownData && isCountdownExpired(countdownData)) {
+        console.log(`Countdown expired for ${pageType}. Triggering auto-restart...`);
+        setHasTriggeredRestart(true);
+
+        try {
+          // Auto-restart with 20 days
+          const newCountdownData = await restartCountdown(pageType, 20);
+          if (newCountdownData) {
+            setCountdownData(newCountdownData);
+            console.log(`Countdown restarted successfully! New target: 20 days from now`);
+            // Reset trigger flag after successful restart
+            setTimeout(() => setHasTriggeredRestart(false), 5000);
+          }
+        } catch (error) {
+          console.error("Failed to restart countdown:", error);
+          // Reset flag to allow retry
+          setTimeout(() => setHasTriggeredRestart(false), 10000);
+        }
+      }
+    };
+
+    // Check every minute if countdown needs restart
+    const intervalId = setInterval(checkAndRestart, 60000);
+
+    // Also check immediately when component mounts or countdown data changes
+    checkAndRestart();
+
+    return () => clearInterval(intervalId);
+  }, [countdownData, hasTriggeredRestart, pageType]);
 
   useEffect(() => {
     if (!countdownData || !countdownData.isActive) return;
