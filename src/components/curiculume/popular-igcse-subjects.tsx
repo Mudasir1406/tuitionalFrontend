@@ -6,7 +6,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 
-interface IProps {
+  interface IProps {
   data: PageData["popular_subjects"];
 }
 
