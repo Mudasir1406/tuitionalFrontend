@@ -7,9 +7,10 @@ import { leagueSpartan } from "@/app/fonts";
 
 interface Props {
   blogs: AllBlogsData[] | null | undefined;
+  locale?: string; // Support any language: 'en', 'es', 'ar', 'fr', 'pt', etc.
 }
 
-const RelatedBlogs = ({ blogs }: Props) => {
+const RelatedBlogs = ({ blogs, locale = 'en' }: Props) => {
   return (
     <>
       {" "}
@@ -22,7 +23,7 @@ const RelatedBlogs = ({ blogs }: Props) => {
       </Typography>
       <div className={styles.blogContainer}>
         {blogs?.slice(0, 3)?.map((blog) => (
-          <BlogCard data={blog} key={blog.id} />
+          <BlogCard data={blog} key={blog.id} locale={locale} />
         ))}
       </div>
     </>

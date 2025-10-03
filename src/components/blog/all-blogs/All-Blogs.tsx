@@ -8,9 +8,10 @@ import { AllBlogsData } from "@/types/grade-subject-level.types";
 
 interface Props {
   blogs: AllBlogsData[];
+  locale?: string; // Support any language: 'en', 'es', 'ar', 'fr', 'pt', etc.
 }
 
-function AllBlogs({ blogs }: Props) {
+function AllBlogs({ blogs, locale = 'en' }: Props) {
   const [visibleCount, setVisibleCount] = useState(6);
   const loadMore = 3;
 
@@ -21,7 +22,7 @@ function AllBlogs({ blogs }: Props) {
     <div className={styles.blogs}>
       <div className={styles.blogContainer}>
         {blogs.slice(0, visibleCount).map((blog) => (
-          <BlogCard data={blog} key={blog.id} />
+          <BlogCard data={blog} key={blog.id} locale={locale} />
         ))}
       </div>
       {blogs?.length > 3 && visibleCount < blogs.length && (

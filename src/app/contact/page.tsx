@@ -20,17 +20,7 @@ export const metadata: Metadata = {
 const Contact: React.FC = () => {
   return (
     <>
-      <Header
-        background={{
-          height: {
-            xs: "100px",
-            sm: "100px",
-            md: "200px",
-            lg: "200px",
-          },
-          background: "#D7F0FF",
-        }}
-      />
+      <Header />
       <Box sx={styles.background}>
         <Container sx={styles.contanier}>
           <LearnTogeather />

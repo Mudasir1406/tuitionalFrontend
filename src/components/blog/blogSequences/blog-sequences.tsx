@@ -49,6 +49,7 @@ type IProps = {
   allBlogs: AllBlogsData[] | null | undefined;
   allTags: { name: { en: string; ar: string }; id: string }[];
   allCategories: { name: { en: string; ar: string }; id: string }[];
+  locale?: string; // Support any language: 'en', 'es', 'ar', 'fr', 'pt', etc.
 };
 
 const MainSection = ({ children }: any) => {
@@ -102,6 +103,7 @@ const BlogSequences: React.FC<IProps> = ({
   allBlogs,
   allTags,
   allCategories,
+  locale = 'en',
 }) => {
   let isLeftSectionRendered = false; // Flag to track LeftSection rendering
 
@@ -197,7 +199,7 @@ const BlogSequences: React.FC<IProps> = ({
         data?.[name as keyof PageData].isShow && (
           <div className={styles.container}>
             <div className={styles.verticalMargin}>
-              <RelatedBlogs blogs={allBlogs} />
+              <RelatedBlogs blogs={allBlogs} locale={locale} />
             </div>
           </div>
         )

@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { redirectToExternal } from "@/utils/helper";
-import { usePathname } from "next/navigation";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 import moment from "moment";
 import dummyImg1 from "../../../../public/assets/images/static/blogimg1.png";
@@ -23,12 +22,12 @@ export interface BlogsProps {
 
 interface Props {
   data: AllBlogsData;
+  locale?: string; // Support any language: 'en', 'es', 'ar', 'fr', 'pt', etc.
 }
 
-function BlogCard({ data }: Props) {
-  const pathname = usePathname();
-  const isArabicRoute = pathname.startsWith('/ar');
-  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
+function BlogCard({ data, locale = 'en' }: Props) {
+  // Generate blog URL based on locale
+  const blogBaseUrl = locale === 'en' ? '/blog' : `/${locale}/blog`;
   return (
     <div className={styles.card}>
       {/* <Image

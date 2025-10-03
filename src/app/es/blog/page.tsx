@@ -2,7 +2,7 @@ import { Header } from "@/components";
 import Footer from "@/components/footer-wrapper";
 import React, { useState } from "react";
 
-import styles from "./blog.module.css";
+import styles from "../../blog/blog.module.css";
 import AllBlogs from "@/components/blog/all-blogs/All-Blogs";
 import Hero from "@/components/blog/hero/Hero";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
@@ -12,8 +12,8 @@ import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 
 const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
-  // Fetch English blogs
-  const data = await getDocumentsByName("blogs-v1-en");
+  // Fetch Spanish blogs
+  const data = await getDocumentsByName("blogs-v1-es");
 
   // Filter data based on search query (if provided)
   const filteredData = searchParams?.search
@@ -45,10 +45,11 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
       </div>
 
       <SearchBar searchQuery={searchParams?.search || ""} />
-      <AllBlogs blogs={filteredData} locale="en" />
+      <AllBlogs blogs={filteredData} locale="es" />
 
       <Footer />
     </>
   );
 };
+
 export default Page;

@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "community": "Comunidad y Eventos",
+    "testimonials": "Testimonios",
+    "contact": "Contacto",
+    "blog": "Blog"
+  },
+  "buttons": {
+    "ai_digital_sat": "SAT Digital con IA",
+    "book_demo": "Reservar Clases de Demostración",
+    "book_a_demo": "Reservar una Demo",
+    "show_more": "Mostrar más",
+    "read_more": "Leer más",
+    "back": "Volver",
+    "load_more": "Cargar más"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "tutor_section": {
+    "vetted_tutor": "Tutor Verificado",
+    "vetted_tutor_description": "Nuestros tutores pasan por un proceso de selección riguroso, habiendo sido entrevistados para evaluar sus habilidades docentes y conocimientos del área. Tienen experiencia extensa en tutoría con un historial de éxito, ayudando a los estudiantes a lograr sus objetivos académicos.",
+    "pool_of_tutors": "Bolsa de cientos de tutores para elegir",
+    "recorded_classes": "Clases grabadas para revisión",
+    "progress_tracking": "Seguimiento de Progreso",
+    "flexible_scheduling": "Programación Flexible",
+    "post_test_analysis": "Análisis Post-Examen",
+    "parental_updates": "Actualizaciones a Padres",
+    "tutor_hours_provided": "Horas de Tutoría Proporcionadas",
+    "view_profile": "Ver Perfil"
+  },
+  "footer": {
+    "admission_text": "Las Admisiones Están Abiertas para el Próximo Año",
+    "enroll_now": "¡Inscríbete Ahora!",
+    "description": "Tuitional es una Plataforma de Tecnología Educativa en Línea. Ofrecemos clases de tutoría en vivo para Grados 4-8, IGCSE, GCSE y A-Levels, etc., para todos los planes de estudio como Cambridge, Pearson Edexcel",
+    "sections": {
+      "curriculums": "Plan de Estudios",
+      "subjects": "Asignaturas",
+      "get_help": "Obtener Ayuda",
+      "about_us": "Sobre Nosotros"
+    },
+    "copyright": "Todos los Derechos Reservados ©2025 Tuitional"
+  },
+  "blog": {
+    "title": "Blog - Tuitional",
+    "description": "Explora nuestros artículos de blog sobre educación, tutoría y consejos académicos.",
+    "heading": "Últimos Artículos del Blog",
+    "read_time": "min de lectura",
+    "published_date": "Publicado el",
+    "author": "Por",
+    "previous_post": "Publicación Anterior",
+    "next_post": "Siguiente Publicación",
+    "no_posts": "No hay publicaciones de blog disponibles.",
+    "search_placeholder": "Buscar artículos...",
+    "category": "Categoría",
+    "tags": "Etiquetas"
+  },
+  "privacy": {
+    "title": "Política de Privacidad - Educación Tuitional",
+    "description": "Política de privacidad para la plataforma de Educación Tuitional.",
+    "heading": "Política de Privacidad para Educación Tuitional",
+    "effective_date": "Fecha de Vigencia: 1/1/2025",
+    "intro": "Educación Tuitional (\"nosotros\", \"nuestro\" o \"a\") está comprometida en proteger su privacidad. Esta Política de Privacidad describe cómo recopilamos, usamos y salvaguardamos la información que usted nos proporciona cuando usa nuestros servicios. Este documento está diseñado específicamente para cumplir con los requisitos de pantalla de consentimiento de Google OAuth.",
+    "info_collect": "Información que Recopilamos",
+    "personal_info": "1. Información Personal:",
+    "personal_desc": "Cuando usted usa nuestra plataforma, podemos recopilar la siguiente información personal:",
+    "name": "Nombre",
+    "email": "Dirección de correo electrónico",
+    "google_account": "Información de cuenta de Google (accedida a través de Google OAuth, según usted autorice).",
+    "usage_data": "2. Datos de Uso:",
+    "usage_desc": "Recopilamos análisis relacionados con la programación y uso de enlaces de reuniones de clase, incluyendo:",
+    "meeting_timestamps": "Marcas de tiempo de creación de reuniones.",
+    "participation": "Datos de participación de profesores y estudiantes.",
+    "session_analytics": "Análisis de duración y asistencia a sesiones.",
+    "how_use": "Cómo Usamos Su Información",
+    "class_links": "Enlaces de Reuniones de Clase: Usamos la integración con Google Meet para crear automáticamente enlaces de reuniones de clase para profesores y estudiantes.",
+    "data_analytics": "Análisis de Datos: Los análisis de reuniones (como asistencia y duración) se almacenan en nuestra base de datos para proporcionar información y mejorar la experiencia de aprendizaje.",
+    "communication": "Comunicación: Para enviar actualizaciones importantes, notificaciones o recordatorios relacionados con sus clases.",
+    "sharing": "Compartiendo Su Información",
+    "sharing_desc": "No vendemos, intercambiamos ni alquilamos su información personal a terceros. Sin embargo, podemos compartir su información en los siguientes casos:",
+    "service_providers": "Proveedores de Servicios: Herramientas y servicios de terceros (como Google Meet) usados para facilitar nuestras operaciones.",
+    "legal_requirements": "Requisitos Legales: Cuando lo requiera la ley o para cumplir con procesos legales.",
+    "security": "Seguridad de Datos",
+    "security_desc": "Implementamos medidas de seguridad estándar de la industria para proteger su información, incluyendo:",
+    "encrypted_transfer": "Transferencia de datos encriptada (HTTPS).",
+    "secure_storage": "Almacenamiento seguro en base de datos.",
+    "access_control": "Políticas de control de acceso.",
+    "consent": "Su Consentimiento",
+    "consent_desc": "Al usar nuestros servicios y autorizar Google OAuth, usted consiente la recopilación y uso de su información como se detalla en esta Política de Privacidad.",
+    "rights": "Sus Derechos",
+    "rights_desc": "Usted tiene los siguientes derechos respecto a sus datos:",
+    "access": "Acceso: Solicitar una copia de sus datos personales.",
+    "correction": "Corrección: Solicitar correcciones a inexactitudes en sus datos.",
+    "deletion": "Eliminación: Solicitar eliminación de sus datos, sujeto a requisitos legales u operacionales.",
+    "exercise_rights": "Para ejercer estos derechos, contáctenos en:",
+    "third_party": "Servicios de Terceros",
+    "third_party_desc": "Nuestra integración con Google Meet está sujeta a la política de privacidad de Google. Recomendamos revisar las políticas de Google para entender cómo manejan su información.",
+    "google_privacy": "Política de Privacidad de Google",
+    "changes": "Cambios a Esta Política de Privacidad",
+    "changes_desc": "Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Usted será notificado de cambios a través de nuestra plataforma o por correo electrónico. El uso continuado de nuestros servicios después de cualquier cambio constituye aceptación de la Política de Privacidad actualizada.",
+    "contact": "Contáctenos",
+    "contact_desc": "Si tiene alguna pregunta o inquietud sobre esta Política de Privacidad, por favor contáctenos:",
+    "contact_email": "hello@tuitionaledu.com",
+    "contact_phone": "+971 5649000376"
+  },
+  "terms": {
+    "title": "Términos de Servicio - Educación Tuitional",
+    "heading": "Términos de Servicio para Educación Tuitional",
+    "effective_date": "Fecha de Vigencia: 1/1/2025",
+    "intro": "Bienvenido a Educación Tuitional (\"nosotros\" o \"nuestra plataforma\"). Al usar nuestros servicios, usted acepta cumplir con los siguientes Términos de Servicio (\"Términos\"). Si no está de acuerdo con estos Términos, por favor no use nuestros servicios.",
+    "use_services": "1. Uso de Servicios",
+    "use_services_desc": "Nuestros servicios, incluyendo integración con Google Meet para crear enlaces de reuniones de clase, están destinados únicamente para fines educativos. Usted acepta usar nuestra plataforma responsablemente y de acuerdo con todas las leyes y regulaciones aplicables.",
+    "account_resp": "2. Responsabilidades de la Cuenta",
+    "account_confidentiality": "Usted es responsable de mantener la confidencialidad de sus credenciales de cuenta y asegurar la seguridad de su cuenta.",
+    "notify_unauthorized": "Usted acepta notificarnos inmediatamente de cualquier uso no autorizado de su cuenta o brecha de seguridad.",
+    "prohibited": "3. Actividades Prohibidas",
+    "prohibited_desc": "Cuando use nuestros servicios, usted acepta no:",
+    "disrupt_platform": "Participar en cualquier actividad que interrumpa o interfiera con la funcionalidad de nuestra plataforma.",
+    "misuse_services": "Mal uso de nuestros servicios para fines no autorizados, incluyendo pero no limitado a correo no deseado, hacking o distribución de contenido dañino.",
+    "infringe_ip": "Infringir los derechos de propiedad intelectual de otros.",
+    "ip": "4. Propiedad Intelectual",
+    "ip_desc": "Todo el contenido, marcas registradas, logotipos y propiedad intelectual asociada con Educación Tuitional es propiedad de Educación Tuitional o sus licenciatarios. Usted no puede usar, reproducir o distribuir nuestro contenido sin consentimiento previo por escrito.",
+    "modifications": "5. Modificaciones de Servicio",
+    "modifications_desc": "Nos reservamos el derecho de modificar, suspender o discontinuar cualquier aspecto de nuestros servicios en cualquier momento sin previo aviso. No somos responsables por ningún inconveniente o pérdida resultante de tales cambios.",
+    "liability": "6. Limitación de Responsabilidad",
+    "liability_desc": "Hasta el máximo permitido por la ley, Educación Tuitional no es responsable de ningún daño directo, indirecto, incidental, consecuente o punitivo que surja de su uso de nuestros servicios.",
+    "termination": "7. Terminación",
+    "termination_desc": "Nos reservamos el derecho de terminar o suspender su cuenta a nuestra entera discreción si usted viola estos Términos o participa en actividades dañinas para nuestra plataforma o usuarios.",
+    "governing": "8. Ley Aplicable",
+    "governing_desc": "Estos Términos están regidos por las leyes de [Inserte Jurisdicción]. Cualquier disputa que surja de estos Términos estará sujeta a la jurisdicción exclusiva de los tribunales en [Inserte Jurisdicción].",
+    "changes": "9. Cambios a los Términos",
+    "changes_desc": "Podemos actualizar estos Términos de vez en cuando. Le notificaremos de cambios importantes a través de nuestra plataforma o por correo electrónico. El uso continuado de nuestros servicios constituye aceptación de los Términos actualizados.",
+    "contact": "10. Contáctenos",
+    "contact_desc": "Si tiene alguna pregunta sobre estos Términos, por favor contáctenos:",
+    "contact_email": "hello@tuitionaledu.com",
+    "contact_phone": "+971 5649000376"
+  },
+  "careers": {
+    "title": "Siempre Estamos Buscando Personas con Talento",
+    "description": "¿Quiere ser parte de nuestro equipo dinámico? Siempre estamos buscando individuos apasionados que siempre buscan hacer una diferencia.",
+    "hero": {
+      "heading": "Siempre Estamos Buscando Personas con Talento",
+      "subheading": "¿Quiere ser parte de nuestro equipo dinámico? Siempre estamos buscando individuos apasionados que siempre buscan hacer una diferencia."
+    },
+    "team_values": {
+      "heading": "Nuestros Valores de Equipo",
+      "description": "En Tuitional, creemos en crear un entorno donde todos puedan prosperar y contribuir a nuestra misión de transformar la educación."
+    },
+    "top_talent": {
+      "heading": "Únase a Nuestro Equipo de Talento Superior",
+      "description": "Buscamos individuos excepcionales que compartan nuestra pasión por la educación y la innovación."
+    },
+    "apply_now": {
+      "heading": "¿Listo para Hacer una Diferencia?",
+      "description": "Únase a nuestro equipo y ayude a moldear el futuro de la educación en línea.",
+      "button": "Solicite Ahora"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonios - Escuche Lo Que Nuestros Estudiantes Tienen Que Decir",
+    "description": "Los estudiantes en Tuitional siempre han hablado favorablemente de su experiencia. Aquí está lo que comparten sobre su experiencia.",
+    "hero": {
+      "heading": "Lo Que Nuestros Estudiantes Dicen",
+      "subheading": "Los estudiantes en Tuitional siempre han hablado favorablemente de su experiencia. Aquí está lo que comparten sobre su experiencia."
+    },
+    "reviews": {
+      "heading": "Reseñas de Estudiantes",
+      "description": "Retroalimentación real de nuestros estudiantes y padres sobre su viaje de aprendizaje con nosotros."
+    },
+    "video_reviews": {
+      "heading": "Testimonios en Video",
+      "description": "Escuche directamente de nuestros estudiantes sobre su experiencia con Tuitional."
+    }
+  }
+}

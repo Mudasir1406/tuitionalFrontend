@@ -5,10 +5,12 @@ import type { Locale, I18nContextType } from "@/types/i18n.types";
 // Import translation files
 import enTranslations from "@/locales/en.json";
 import arTranslations from "@/locales/ar.json";
+import esTranslations from "@/locales/es.json";
 
 const translations = {
   en: enTranslations,
   ar: arTranslations,
+  es: esTranslations,
 };
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
@@ -29,8 +31,16 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
   // Initialize locale from URL path or localStorage after client mount
   useEffect(() => {
     if (isClient && typeof window !== "undefined") {
-      // First check if we're on an /ar route
-      const pathLocale = window.location.pathname.startsWith('/ar') ? 'ar' : 'en';
+      // Check if we're on an /ar or /es route
+      const path = window.location.pathname;
+      let pathLocale: Locale = 'en'; // default to English
+      
+      if (path.startsWith('/ar')) {
+        pathLocale = 'ar';
+      } else if (path.startsWith('/es')) {
+        pathLocale = 'es';
+      }
+      
       setLocaleState(pathLocale);
       
       // Also update localStorage to match the current page

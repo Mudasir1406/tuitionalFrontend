@@ -54,7 +54,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* <SearchBar searchQuery={slug || ""} type="tags"/> */}
       <Breadcrumb />
 
-      <AllBlogs blogs={filteredData} />
+      <AllBlogs blogs={filteredData} locale="en" />
 
       <Footer />
     </>

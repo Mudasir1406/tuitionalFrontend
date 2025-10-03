@@ -43,7 +43,7 @@ const dumyData = {
   },
 };
 export type TagItem = {
-  data: { name: { en: string; ar: string }; id: string }[];
+  data: { name: { en: string; ar: string; es: string }; id: string }[];
 };
 const Page = async ({ params }: { params: { slug: string } }) => {
   const [data, sequence, allBlogs, allTags, allCategories]: [
@@ -53,9 +53,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     TagItem[],
     TagItem[]
   ] = await Promise.all([
-    getBlogData(params.slug, "en"),
+    getBlogData(params.slug, "es"),
     getPageSequence(),
-    getDocumentsByName("blogs-v1-en"),
+    getDocumentsByName("blogs-v1-es"),
     getDocumentsByName("tags"),
     getDocumentsByName("categories"),
   ]);
@@ -92,7 +92,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         allBlogs={allBlogs}
         allTags={allTags?.[0]?.data}
         allCategories={allCategories?.[0]?.data}
-        locale="en"
+        locale="es"
       />
     </>
   );

@@ -49,6 +49,29 @@ export const getDocumentsByName = async (collectionName: string) => {
   }
 };
 
+export const getBlogs = async (locale: string = "en") => {
+  try {
+    let collectionName = "blogs-v1-en";
+    if (locale === "ar") {
+      collectionName = "blogs-v1-ar";
+    } else if (locale === "es") {
+      collectionName = "blogs-v1-es";
+    }
+    
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    
+    const documents: any = querySnapshot.docs.map((doc) => ({
+      id: doc.id, // Document ID
+      ...doc.data(), // Spread the document data
+    }));
+    
+    return documents;
+  } catch (error) {
+    console.error("Error getting blog documents: ", error);
+    return null;
+  }
+};
+
 export const getPageData = async (slug: string, locale: string = "en"): Promise<PageData | null> => {
   // if (cachedPageData) return cachedPageData; // Use cached data if available
 
@@ -71,7 +94,12 @@ export const getBlogData = async (slug: string, locale: string = "en"): Promise<
   // if (cachedPageData) return cachedPageData; // Use cached data if available
 
   try {
-    const collectionName = locale === "ar" ? "blogs-v1-ar" : "blogs-v1-en";
+    let collectionName = "blogs-v1-en";
+    if (locale === "ar") {
+      collectionName = "blogs-v1-ar";
+    } else if (locale === "es") {
+      collectionName = "blogs-v1-es";
+    }
     const docRef = doc(db, collectionName, slug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
