@@ -41,7 +41,7 @@ export type FormType = {
   Grade: string;
   Curriculum: string;
   Subject: string;
-  message: string;
+  Message: string;
   country?: string;
   ip?: string;
   Browser?: string;
@@ -93,7 +93,7 @@ const FormDialogV1: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
@@ -131,7 +131,7 @@ const FormDialogV1: React.FunctionComponent<IProps> = ({
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
     if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -194,8 +194,8 @@ const FormDialogV1: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "Curriculum cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -245,7 +245,7 @@ const FormDialogV1: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -432,21 +432,21 @@ const FormDialogV1: React.FunctionComponent<IProps> = ({
                 multiline
                 rows={5}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 // label="Message*"
                 variant="outlined"
                 placeholder="Message"
                 className={leagueSpartan.className}
               />
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   sx={styles.error}
                   className={`${leagueSpartan.className} ${styles.error}`}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
             </div>

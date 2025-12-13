@@ -165,22 +165,21 @@ const FormV2: React.FunctionComponent<IProps> = ({ background }) => {
     }
   };
   useEffect(() => {
-    getFilterData().then((data) => {
-      setFilterData(data);
-<<<<<<< HEAD
-=======
-    }).catch(error => {
-      console.error("Filter data loading failed:", error);
-      // Use fallback empty arrays so form still works
-      setFilterData({ 
-        grade: [], 
-        curriculum: [], 
-        subject: [], 
-        type: [], 
-        id: "" 
+    getFilterData()
+      .then((data) => {
+        setFilterData(data);
+      })
+      .catch((error) => {
+        console.error("Filter data loading failed:", error);
+        // Use fallback empty arrays so form still works
+        setFilterData({
+          grade: [],
+          curriculum: [],
+          subject: [],
+          type: [],
+          id: "",
+        });
       });
->>>>>>> 22d54f9aeb4c549055f4bfd0f8610b7c24eb2e27
-    });
   }, []);
 
   const geoData = useGeoLocation();
