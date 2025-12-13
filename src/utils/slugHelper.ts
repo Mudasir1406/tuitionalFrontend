@@ -16,7 +16,6 @@ const getLocation = async () => {
   const res = await fetch("/api/location");
   const data = await res.json();
   return data;
-  //   console.log("User Location:", data);
 };
 
 const useGeoLocation = (): GeoLocationData => {
@@ -49,12 +48,9 @@ const useGeoLocation = (): GeoLocationData => {
         const ipResponse = await fetch("https://api.ipify.org?format=json");
         const { ip } = await ipResponse.json();
 
-        // Get geo data
-        // const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
-        // const geoData = await geoResponse.json();
-        // const res = await fetch("/api/location");
-        // const geoData = await res.json();
-        const geoData: any = await getLocation();
+        // Get geo data by passing the IP to the API
+        const res = await fetch(`/api/location?ip=${ip}`);
+        const geoData = await res.json();
 
         setGeoData({
           ip,

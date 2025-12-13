@@ -9,7 +9,6 @@ import {
 } from "../../services/trusted-schools/trusted-schools";
 import { leagueSpartan } from "@/app/fonts";
 import Image, { StaticImageData } from "next/image";
-
 const Trusted: React.FC = async () => {
   const trustedSchools: Trusted_Schools_Type = await getTrustedSchools();
   return (
@@ -43,13 +42,23 @@ const Trusted: React.FC = async () => {
 export default Trusted;
 
 type Props = {
-  imageSource: StaticImageData;
+  imageSource: StaticImageData | string;
 };
 
 const ImageBox: React.FC<Props> = ({ imageSource }) => {
+  // Handle both string URLs from Firebase and StaticImageData
+  // console.log('imageSource', imageSource)
+  // const src = typeof imageSource === "string" ? imageSource : imageSource?.src;
+
+  // // Add error handling for invalid sources
+  // if (!src) {
+  //   console.warn("Invalid image source:", imageSource);
+  //   return null;
+  // }
+
   return (
     <Box sx={styles.imageBox} className="schoolsBox">
-      <Image
+       <Image
         src={imageSource}
         width={80}
         height={80}
@@ -163,5 +172,9 @@ const styles = {
     justifyContent: "center",
     backgroundColor: "white",
     borderRadius: "10px",
+  },
+  // RTL styles
+  headingRTL: {
+    direction: "rtl",
   },
 };

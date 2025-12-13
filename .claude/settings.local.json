@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)",
+      "Bash(npm run analyze:*)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\app/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components\\home/**)",
+      "Read(/C:\\Work Repo\\Tuitional\\tuitionalFrontend\\src\\components/**)",
+      "WebFetch(domain:algooru.com)",
+      "WebFetch(domain:tuitionaledu.com)",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(npm run lint)",
+      "Bash(timeout 10s npm run dev:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run build:analyze:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)",
+      "Bash(pkill:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

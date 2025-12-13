@@ -1,0 +1,92 @@
+.card {
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+  overflow: hidden;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.cardRTL {
+  direction: rtl;
+}
+
+/* .image {
+  width: 100%;
+  height: auto;
+} */
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  height: 400px;
+}
+
+.image {
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.textDiv {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textDivRTL {
+  flex-direction: row-reverse;
+  direction: rtl;
+}
+
+.textDiv_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.textDiv_textRTL {
+  text-align: right;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.titleRTL {
+  text-align: right;
+}
+
+.date {
+  color: #a7a7a7;
+  margin-bottom: 8px;
+}
+
+.dateRTL {
+  text-align: right;
+}
+
+.text {
+  color: #2d2d2d;
+  margin-top: 8px;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.iconDiv {
+  background-color: #38b6ff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
+
+.iconDivRTL {
+  /* Icon direction remains same as it's visual */
+}

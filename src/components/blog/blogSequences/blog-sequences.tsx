@@ -10,7 +10,7 @@ const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), {
   ssr: true,
 });
 
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
+const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
 const Breadcrumb = dynamic(
   () => import("@/components/bread-crumb/bread-crumb"),
   {
@@ -47,8 +47,8 @@ import Image from "next/image";
 type IProps = {
   data: PageData;
   allBlogs: AllBlogsData[] | null | undefined;
-  allTags: { name: string; id: string }[];
-  allCategories: { name: string; id: string }[];
+  allTags: { name: { en: string; ar: string }; id: string }[];
+  allCategories: { name: { en: string; ar: string }; id: string }[];
 };
 
 const MainSection = ({ children }: any) => {
@@ -105,8 +105,6 @@ const BlogSequences: React.FC<IProps> = ({
 }) => {
   let isLeftSectionRendered = false; // Flag to track LeftSection rendering
 
-  console.log("GradeSubjectLevel", data);
-  // console.log("BlogSequences", allTags);
 
   const renderSection = (name: string) => {
     if (name.includes("heroSection")) {
@@ -170,18 +168,17 @@ const BlogSequences: React.FC<IProps> = ({
           </BlogInnerLaylout>
         )
       );
-    } else if (name.includes("blog_tag")) {
+    } 
+    else if (name.includes("blog_tag") || name.includes("tag")) {
       return (
-        data?.[name as keyof PageData] && (
-          <BlogInnerLaylout onlyChildren>
-            {/* <div className={styles.container}> */}
-            <TagsAndSocial
-              tags={data?.[name as keyof PageData]?.tags}
-              showSocial={data?.postCTA?.isShow}
-            />
-            {/* </div> */}
-          </BlogInnerLaylout>
-        )
+        <BlogInnerLaylout onlyChildren>
+          {/* <div className={styles.container}> */}
+          <TagsAndSocial
+            tags={data?.[name as keyof PageData]?.data || allTags}
+            showSocial={data?.postCTA?.isShow}
+          />
+          {/* </div> */}
+        </BlogInnerLaylout>
       );
     } else if (name.includes("postCTA")) {
       return (
@@ -216,7 +213,7 @@ const BlogSequences: React.FC<IProps> = ({
         <div key={key}>{renderSection(key.trim())}</div>
       ))}
 
-      <Footer />
+      <ServerFooter />
     </>
   );
 };

@@ -13,9 +13,6 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { leagueSpartan } from "@/app/fonts";
 import "../DropDown/DropDown.css";
 import { isValidPhoneNumber } from "react-phone-number-input";
-const PhoneInput = dynamic(() => import("react-phone-number-input"), {
-  ssr: false,
-});
 import CustomInput from "../custom-input/custom-input";
 import DropDown from "../DropDown/DropDown";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
@@ -27,6 +24,10 @@ import { addFormData } from "@/utils/globalFunction";
 import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
 import { sendForm } from "@/services/contact-form/contact-form";
+
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 
 type IProps = {
   open: boolean;
@@ -41,13 +42,14 @@ export type FormType = {
   Grade: string;
   Curriculum: string;
   Subject: string;
-  message: string;
-  country?: string;
-  ip?: string;
+  Message: string;
+  Country?: string;
+  IP?: string;
   Browser?: string;
-  pageURL?: string;
-  time?: string;
-  date?: string;
+  SourcePageURL?: string;
+  Time?: string;
+  Date?: string;
+  Medium?: string;
   sheetName?: string;
 };
 
@@ -93,7 +95,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
@@ -102,14 +104,9 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
     // Perform validation if the key is "phone"
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid phone number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid phone number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
@@ -130,8 +127,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -194,8 +191,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "Curriculum cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -206,12 +203,14 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
 
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: "lead_form_error",
-        formData: newErrors, // Send errors if needed
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "lead_form_error",
+          formData: newErrors, // Send errors if needed
+          formType: "lead Form",
+        });
+      }
 
       return;
     }
@@ -222,20 +221,24 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       await sendForm(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_success",
-        formData: formData, // You can include submitted data for analytics
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_success",
+          formData: formData, // You can include submitted data for analytics
+          formType: "lead Form",
+        });
+      }
     } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       // ✅ Send Error Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_failed",
-        error: error.message,
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_failed",
+          error: error.message,
+          formType: "lead Form",
+        });
+      }
     } finally {
       setLoading(false);
       setFormData({
@@ -245,7 +248,7 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -432,21 +435,21 @@ const FormDialog: React.FunctionComponent<IProps> = ({
                 multiline
                 rows={5}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 // label="Message*"
                 variant="outlined"
                 placeholder="Enter your message here..."
                 className={leagueSpartan.className}
               />
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   sx={styles.error}
                   className={`${leagueSpartan.className} ${styles.error}`}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
             </div>

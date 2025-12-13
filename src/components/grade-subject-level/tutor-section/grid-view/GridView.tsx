@@ -9,27 +9,54 @@ import { useMediaQuery, useTheme } from "@mui/material";
 interface props {
   // cardsData: CardProps[];
   cardsData: any[];
+  locale?: string;
 }
-function GridView({ cardsData }: props) {
-  // console.log("gridView", cardsData);
+function GridView({ cardsData, locale = "en" }: props) {
   const theme = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Client-side media query setup
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const lgQuery = window.matchMedia(theme.breakpoints.up("lg"));
+      const mdQuery = window.matchMedia(theme.breakpoints.between("md", "lg"));
+      const smQuery = window.matchMedia(theme.breakpoints.down("sm"));
+      
+      setIsLargeScreen(lgQuery.matches);
+      setIsMediumScreen(mdQuery.matches);
+      setIsSmallScreen(smQuery.matches);
+      
+      const handleLgChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
+      const handleMdChange = (e: MediaQueryListEvent) => setIsMediumScreen(e.matches);
+      const handleSmChange = (e: MediaQueryListEvent) => setIsSmallScreen(e.matches);
+      
+      lgQuery.addEventListener('change', handleLgChange);
+      mdQuery.addEventListener('change', handleMdChange);
+      smQuery.addEventListener('change', handleSmChange);
+      
+      return () => {
+        lgQuery.removeEventListener('change', handleLgChange);
+        mdQuery.removeEventListener('change', handleMdChange);
+        smQuery.removeEventListener('change', handleSmChange);
+      };
+    }
+  }, [theme]);
 
   // Determine the number of visible cards based on the screen size
   const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + visibleCards >= cardsData.length
         ? 0
         : prevIndex + visibleCards
     );
-  };
+  }, [setCurrentIndex, visibleCards, cardsData.length]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -53,7 +80,7 @@ function GridView({ cardsData }: props) {
 
       return () => clearInterval(interval);
     }
-  }, [isHovered]);
+  }, [isHovered, handleNext]);
 
   return (
     <div className={styles.carouselContainer}>
@@ -79,7 +106,7 @@ function GridView({ cardsData }: props) {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <ImageCard data={card} />
+              <ImageCard data={card} locale={locale} />
             </div>
           ))}
         </div>

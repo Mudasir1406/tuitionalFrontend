@@ -1,8 +1,24 @@
 import path from "path";
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Performance optimizations
+  poweredByHeader: false,
+  compress: true,
+  swcMinify: true,
+  reactStrictMode: true,
+  productionBrowserSourceMaps: false,
+  experimental: {
+    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+  },
+
   webpack: (config, { isServer }) => {
+    // Audio file handling
     config.module.rules.push({
       test: /\.(mp3|wav)$/,
       use: {
@@ -16,9 +32,43 @@ const nextConfig = {
       },
     });
 
+    // Tree shaking optimization
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+
+      // Optimize chunk splitting
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          mui: {
+            name: 'mui',
+            test: /[\\/]node_modules[\\/](@mui|@emotion)[\\/]/,
+            priority: 30,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            name: 'vendor',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 20,
+            reuseExistingChunk: true,
+          },
+        },
+      };
+    }
+
     return config;
   },
   images: {
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: false,
+    contentDispositionType: 'attachment',
     remotePatterns: [
       {
         protocol: "https",
@@ -34,6 +84,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn-icons-png.flaticon.com",
         pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.facebook.com",
+        pathname: "/tr**",
       },
     ],
   },
@@ -169,4 +224,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

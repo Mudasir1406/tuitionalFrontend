@@ -17,6 +17,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
+import "react-phone-number-input/style.css";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 
 import toast from "react-hot-toast";
@@ -55,14 +56,9 @@ const GetInTouch: React.FunctionComponent = () => {
     let newErrors = { ...errors };
 
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid phone number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid phone number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
@@ -146,7 +142,6 @@ const GetInTouch: React.FunctionComponent = () => {
 
     const formDataString = keyValuePairs.join("&");
 
-    // console.log("formDataString", formDataString);
 
     try {
       const response = await fetch(
@@ -168,7 +163,6 @@ const GetInTouch: React.FunctionComponent = () => {
         text: "",
         html: createContactTemplate(formData),
       });
-      console.log("formData", formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
       (window as any).dataLayer.push({
@@ -265,6 +259,10 @@ const GetInTouch: React.FunctionComponent = () => {
             width={girlLaptop.width}
             height={girlLaptop.height}
             alt="Contact Tuitional Support"
+            loading="lazy"
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
             style={{
               width: "100%",
               height: "100%",

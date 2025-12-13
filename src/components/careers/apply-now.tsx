@@ -21,6 +21,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
+import "react-phone-number-input/style.css";
 import CustomInput from "../custom-input/custom-input";
 import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
 import Input from "../input/Input";
@@ -53,13 +54,9 @@ const ApplyNow: React.FunctionComponent = () => {
     }
     // Perform validation if the key is "phone"
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid PhoneNumber number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid PhoneNumber number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
@@ -690,8 +687,8 @@ const styles = {
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     paddingLeft: "10px",
     backgroundColor: "white",
-    marginTop: "1.8vh",
-    marginBottom: "1.8vh",
+    marginTop: "2vh",
+    marginBottom: "2vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -700,16 +697,7 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    // height: "58px",
-    height: "5.7vh",
-    // height: "45px",
-    // height: "52px",
-    // padding:'2vh 15px',
-    // padding: "8px 15px",
-
-    fontSize: "1.7vh",
-    fontWeight: 400,
-    // minHeight: "50px",
+    height: "5.5vh",
   },
   input: {
     backgroundColor: "white",

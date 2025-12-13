@@ -1,12 +1,7 @@
 "use client";
 
-// import { leagueSpartan } from "@/app/fonts";
 import { createTheme } from "@mui/material/styles";
-import { League_Spartan } from "next/font/google";
-export const leagueSpartan = League_Spartan({
-  subsets: ["latin"],
-  display: "swap",
-});
+import { leagueSpartan } from "@/app/fonts";
 
 const theme = createTheme({
   typography: {

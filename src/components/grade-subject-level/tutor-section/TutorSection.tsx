@@ -5,10 +5,6 @@ import { Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./style.module.css";
 
-import img1 from "../../../../public/assets/images/static/blogimg1.png";
-import img2 from "../../../../public/assets/images/static/blogimg2.png";
-import img3 from "../../../../public/assets/images/static/blogimg3.png";
-
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
 import { tutor_section } from "@/types/grade-subject-level.types";
@@ -29,8 +25,7 @@ export type CardProps = {
 };
 
 const Form: React.FunctionComponent<IProps> = async ({ data }) => {
-  const val = await getTutorsByFilter(data.curriculum, data.subject);
-
+  const val = await getTutorsByFilter(data.curriculum, data.subject, "en");
 
   return (
     <div className={styles.main}>
@@ -53,9 +48,9 @@ const Form: React.FunctionComponent<IProps> = async ({ data }) => {
 
       <div className={styles.mt1}>
         {data?.view === "Row View" ? (
-          <ListView data={val} />
+          <ListView data={val} locale="en" />
         ) : (
-          <GridView cardsData={val} />
+          <GridView cardsData={val} locale="en" />
         )}
       </div>
     </div>

@@ -14,7 +14,6 @@ function AllBlogs({ blogs }: Props) {
   const [visibleCount, setVisibleCount] = useState(6);
   const loadMore = 3;
 
-  // console.log("allBlogs", blogs);
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + loadMore);
   };

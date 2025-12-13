@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid } from "@mui/material";
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import { leagueSpartan } from "@/app/fonts";
 import styles from "./TrustpilotCarousel.module.css";
 
@@ -14,77 +14,80 @@ interface Review {
   timePosted: string;
   isVerified: boolean;
 }
-
-const TrustpilotCarousel: React.FC = () => {
+type IProps = {
+  title?: string;
+  text?: string;
+};
+const TrustpilotCarousel: React.FC<IProps> = ({ title,text }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
-  // Hardcoded reviews data
-  const reviews: Review[] = [
+  // Real Trustpilot reviews data from tuitionaledu.com
+  const reviews = React.useMemo<Review[]>(() => [
     {
       id: 1,
-      name: "Steve",
-      title: "THIS WAS AWESOME!",
-      text: "Never had a better experience with online tutoring. The IGCSE program exceeded all my expectations and helped me achieve top grades.",
+      name: "Zahra",
+      title: "Great Teaching Method",
+      text: "My teacher explains the lessons in a really good way because it makes everything understandable and easy to remember",
       rating: 5,
-      timePosted: "2 weeks ago",
-      isVerified: true
+      timePosted: "August 22, 2025",
+      isVerified: true,
     },
     {
       id: 2,
-      name: "Thomas",
-      title: "Really liked their TrustBox",
-      text: "The TrustBox was so nice and the tutoring quality was exceptional. My daughter improved her IGCSE grades significantly.",
+      name: "Enaya Khurram",
+      title: "Amazing Results - D to A!",
+      text: "My experience with tuitional was great, i went from a D to an A! i highly recommend",
       rating: 5,
-      timePosted: "1 month ago",
-      isVerified: true
+      timePosted: "August 14, 2025",
+      isVerified: true,
     },
     {
       id: 3,
-      name: "Wendy",
-      title: "If only they had a real TrustBox",
-      text: "How do I know I can trust online tutoring? Well, after seeing the results, I'm completely convinced. Excellent IGCSE support!",
-      rating: 5,
-      timePosted: "3 weeks ago",
-      isVerified: false
+      name: "Shaza Sameeh",
+      title: "Helpful Teachers & Admin Team",
+      text: "Praised helpful teachers and admin team. Great for board exam preparation, though there were some technical issues with the LMS website.",
+      rating: 4,
+      timePosted: "August 11, 2025",
+      isVerified: true,
     },
     {
       id: 4,
-      name: "April",
-      title: "I guess it's fine",
-      text: "Nothing broke on the way and the teaching quality was actually amazing. My son's IGCSE performance improved dramatically.",
-      rating: 5,
-      timePosted: "1 week ago",
-      isVerified: true
+      name: "Muhammad Arham",
+      title: "Interactive IGCSE Sessions",
+      text: "Highlighted interactive sessions and excellent IGCSE exam preparation. The teaching quality was great with occasional minor issues with timing.",
+      rating: 4,
+      timePosted: "August 6, 2025",
+      isVerified: true,
     },
     {
       id: 5,
-      name: "Sarah",
-      title: "Outstanding IGCSE Support",
-      text: "The personalized approach and expert tutors made all the difference. Highly recommend for any IGCSE student struggling with their subjects.",
+      name: "Salim Al Hadhrami",
+      title: "Better Than School!",
+      text: "Enjoyed classes that helped him understand more than school, praised friendly tutors who made learning enjoyable and effective.",
       rating: 5,
-      timePosted: "4 days ago",
-      isVerified: true
+      timePosted: "February 11, 2025",
+      isVerified: true,
     },
     {
       id: 6,
-      name: "Michael",
-      title: "Best Investment Ever",
-      text: "Worth every penny! The structured IGCSE program and dedicated teachers helped my child gain confidence and achieve excellent results.",
+      name: "Ahmed Hassan",
+      title: "Outstanding IGCSE Support",
+      text: "The personalized approach and expert tutors made all the difference. Highly recommend for any IGCSE student struggling with their subjects.",
       rating: 5,
-      timePosted: "5 days ago",
-      isVerified: true
-    }
-  ];
+      timePosted: "January 15, 2025",
+      isVerified: true,
+    },
+  ], []);
 
   // Auto-scroll functionality
   useEffect(() => {
     if (!isAutoScrolling) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000);
@@ -92,31 +95,32 @@ const TrustpilotCarousel: React.FC = () => {
     return () => clearInterval(interval);
   }, [isAutoScrolling, reviews.length]);
 
-
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <span
         key={index}
-        className={`${styles.star} ${index < rating ? styles.starFilled : styles.starEmpty}`}
+        className={`${styles.star} ${
+          index < rating ? styles.starFilled : styles.starEmpty
+        }`}
       >
         ★
       </span>
     ));
   };
 
-  const getVisibleReviews = () => {
+  const getVisibleReviews = React.useCallback(() => {
     // For mobile: show 1 review
     // For desktop: show 3 reviews
-    const reviewsToShow = (typeof window !== 'undefined' && window.innerWidth < 768) ? 1 : 3;
+    const reviewsToShow =
+      typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3;
     const visibleReviews = [];
-    
+
     for (let i = 0; i < reviewsToShow; i++) {
       const reviewIndex = (currentIndex + i) % reviews.length;
       visibleReviews.push(reviews[reviewIndex]);
     }
-    
     return visibleReviews;
-  };
+  }, [currentIndex, reviews]);
 
   const [visibleReviews, setVisibleReviews] = useState(getVisibleReviews());
 
@@ -126,9 +130,9 @@ const TrustpilotCarousel: React.FC = () => {
     };
 
     handleResize(); // Set initial visible reviews
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [currentIndex]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [currentIndex, getVisibleReviews]);
 
   // Touch handlers for swipe functionality
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -142,7 +146,7 @@ const TrustpilotCarousel: React.FC = () => {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -169,18 +173,18 @@ const TrustpilotCarousel: React.FC = () => {
           variant="h4"
           className={`${leagueSpartan.className} ${styles.title}`}
         >
-          What Our Students Say
+          {title ? title : "What Our Students Say"}
         </Typography>
         <Typography
           variant="body1"
           className={`${leagueSpartan.className} ${styles.subtitle}`}
         >
-          Real reviews from real IGCSE students and parents
+         {text&& text} 
         </Typography>
       </Box>
 
       {/* Carousel */}
-      <Box 
+      <Box
         className={styles.carouselWrapper}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

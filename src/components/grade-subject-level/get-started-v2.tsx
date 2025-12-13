@@ -149,8 +149,8 @@ const GetStartedV2: React.FunctionComponent = () => {
                   <Image
                     src={item.image}
                     alt=""
-                    width={300}
-                    height={300}
+                    width={200}
+                    height={200}
                     style={{
                       width: "100%",
                       height: "100%",
@@ -207,7 +207,7 @@ const styles = {
     maxWidth: "320px",
     position: "relative",
     padding: "1rem",
-    minHeight: "400px",
+    minHeight: "320px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -229,7 +229,7 @@ const styles = {
     maxWidth: "280px",
     backgroundColor: "#E3F2FD", // Light blue background
     alignItems: "center",
-    padding: "1.5rem",
+    padding: "1rem",
     borderRadius: "12px",
     display: "flex",
     flexDirection: "column",
@@ -341,11 +341,11 @@ const styles = {
     maxWidth: {
       xs: "280px", 
       sm: "300px",
-      lg: "400px",
+      lg: "350px",
     },
     backgroundColor: "#D7F0FF",
     alignItems: "center",
-    padding: "10px 30px",
+    padding: "15px 20px",
     margin: "10px auto",
     borderRadius: {
       xs: "12px",
@@ -357,21 +357,21 @@ const styles = {
   },
   boxHeading: {
     textAlign: "center",
-    margin: "2vh 0",
+    // margin: "2vh 0",
   },
   boxDesc: {
     textAlign: "center",
-    margin: "2vh 0",
+    // margin: "2vh 0",
   },
   imageBox: {
-    width: 300,
+    width: 200,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     height: {
-      xs: 150,
-      sm: 250,
-      md: 250,
+      xs: 100,
+      sm: 150,
+      md: 150,
     },
   },
 };
@@ -395,8 +395,8 @@ const GetStartedBox: React.FC<Props> = ({
         <Image
           src={image}
           alt=""
-          width={300}
-          height={300}
+          width={200}
+          height={200}
           style={{
             width: "100%",
             height: "100%",

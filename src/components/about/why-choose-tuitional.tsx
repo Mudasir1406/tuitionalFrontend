@@ -18,8 +18,21 @@ type IProps = {
 
 const WhyChooseTuitional: React.FunctionComponent = () => {
   const theme = useTheme();
+  const [isGreaterThanLarge, setIsGreaterThanLarge] = React.useState(false);
 
-  const isGreaterThanLarge = useMediaQuery(theme.breakpoints.up("lg")); // Greater than `lg`
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
+      setIsGreaterThanLarge(mediaQuery.matches);
+      
+      const handleChange = (e: MediaQueryListEvent) => {
+        setIsGreaterThanLarge(e.matches);
+      };
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, [theme]);
 
   return (
     <Box>
@@ -61,7 +74,7 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
 
       <Grid
         container={!isGreaterThanLarge}
-        // spacing={2}
+        spacing={!isGreaterThanLarge ? 2 : 0}
         sx={styles.gridContainer}
       >
         <Grid item md={12} lg={3} sx={styles.gridItem}>
@@ -97,10 +110,9 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "auto", sm: "auto", md: "auto", xl: "420px" },
-        // width: { xs: "186px", sm: "322px", md: "360px", lg: "420px" },
-        height: { xs: "auto", sm: "auto", md: "auto", xl: "460px" },
-        // height: { xs: "127px", sm: "275px", md: "313px", lg: "460px" },
+        width: { xs: "100%", sm: "320px", md: "360px", lg: "380px", xl: "420px" },
+        height: { xs: "auto", sm: "280px", md: "320px", lg: "400px", xl: "460px" },
+        minHeight: { xs: "250px", sm: "280px", md: "320px", lg: "400px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -110,7 +122,7 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
         boxShadow:
           "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
         position: "relative",
-        marginx: { sm: "24px" },
+        marginX: { sm: "24px" },
       }}
     >
       <Box sx={styles.icon}>
@@ -185,12 +197,17 @@ const styles = {
   heading: {
     marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
     textAlign: "center",
+    fontSize: { xs: "16px", sm: "18px", md: "20px", lg: "24px", xl: "28px" },
+    fontWeight: 600,
+    lineHeight: { xs: "20px", sm: "22px", md: "24px", lg: "28px", xl: "32px" },
   },
   dec: {
     textAlign: "center",
-    maxWidth: { xs: "auto", sm: "auto", md: "auto", lg: "450px" },
-    // maxWidth: { xs: "160px", sm: "200px", md: "250px", lg: "450px" },
+    maxWidth: { xs: "100%", sm: "280px", md: "320px", lg: "340px", xl: "380px" },
     color: "rgba(0,0,0,0.77)",
+    fontSize: { xs: "12px", sm: "13px", md: "14px", lg: "15px", xl: "16px" },
+    lineHeight: { xs: "16px", sm: "17px", md: "18px", lg: "20px", xl: "22px" },
+    margin: "auto",
   },
   icon: {
     width: { xs: "45px", sm: "55px", md: "75px", lg: "115px" },
@@ -268,17 +285,18 @@ const styles = {
   },
   gridContainer: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "stretch",
     justifyContent: "center",
-    width: "auto",
-    // width: { lg: "90%", md: "auto" },
-    // rowGap: "12px",
-    columnGap: "24px",
-    // display: "flex",
+    width: "100%",
+    columnGap: { lg: "24px", xs: 0 },
+    rowGap: { xs: "16px", lg: 0 },
     flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
+    flexWrap: "wrap",
   },
   gridItem: {
     marginBottom: { xs: "16px", lg: "0" },
     width: { xs: "100%", sm: "100%", md: "90%", lg: "auto" },
+    display: "flex",
+    justifyContent: "center",
   },
 };

@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig/config";
 
-export const getFooterData = async (): Promise<FooterData> => {
+export const getFooterData = async (locale: string = 'en'): Promise<FooterData> => {
   let temp: FooterData = {
     id: "",
     aboutUs: [],
@@ -14,10 +14,30 @@ export const getFooterData = async (): Promise<FooterData> => {
       linkdin: "",
     },
   };
-  const queryData = await getDocs(collection(db, "footer"));
-  queryData.forEach((doc) => {
-    temp = { id: doc.id, ...doc.data() } as FooterData;
-  });
+  
+  try {
+    const queryData = await getDocs(collection(db, "footer-v2"));
+    queryData.forEach((doc) => {
+      const data = doc.data();
+      temp = {
+        id: doc.id,
+        // Extract language-specific arrays, fallback to English if Arabic not available
+        aboutUs: data.aboutUs?.[locale] || data.aboutUs?.en || [],
+        curriculums: data.curriculums?.[locale] || data.curriculums?.en || [],
+        getHelp: data.getHelp?.[locale] || data.getHelp?.en || [],
+        subjects: data.subjects?.[locale] || data.subjects?.en || [],
+        // Social links remain the same for all languages
+        link: data.link || {
+          facebook: "",
+          insta: "",
+          linkdin: "",
+        },
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
+  }
+  
   return temp;
 };
 export type FooterData = {

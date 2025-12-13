@@ -48,11 +48,11 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     Browser: "",
-    country: "",
-    ip: "",
-    pageURL: "",
+    Country: "",
+    IP: "",
+    SourcePageURL: "",
     sheetName: "Lead Forms",
   });
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -62,14 +62,9 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     let newErrors = { ...errors };
 
     if (key === "PhoneNumber" && typeof value === "string") {
-      if (!isValidPhoneNumber(value)) {
-        console.log("Invalid phone number!");
-        newErrors.PhoneNumber = isValidPhoneNumber(value)
-          ? ""
-          : "Invalid phone number";
-
-        return;
-      }
+      newErrors.PhoneNumber = isValidPhoneNumber(value)
+        ? ""
+        : "Invalid phone number";
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
@@ -90,8 +85,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
-    if (key === "message" && typeof value === "string") {
-      newErrors.message = isNotEmpty(value) ? "" : "Message cannot be empty";
+    if (key === "Message" && typeof value === "string") {
+      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
     }
 
     setFormData({
@@ -123,8 +118,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       newErrors.Curriculum = "Curriculum cannot be empty";
     }
 
-    if (!isNotEmpty(formData.message)) {
-      newErrors.message = "Message cannot be empty";
+    if (!isNotEmpty(formData.Message)) {
+      newErrors.Message = "Message cannot be empty";
     }
 
     // Update errors state
@@ -135,12 +130,14 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       setLoading(false); // Stop loading if validation fails
       toast.error("Please fix the errors in the form before submitting.");
 
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: "lead_form_error",
-        formData: newErrors, // Send errors if needed
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "lead_form_error",
+          formData: newErrors, // Send errors if needed
+          formType: "lead Form",
+        });
+      }
 
       return;
     }
@@ -151,20 +148,24 @@ const ContactUs: React.FunctionComponent<IProps> = ({
       await sendForm(formData);
       toast.success("Form submitted successfully!");
       // ✅ Send Success Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_success",
-        formData: formData, // You can include submitted data for analytics
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_success",
+          formData: formData, // You can include submitted data for analytics
+          formType: "lead Form",
+        });
+      }
     } catch (error: any) {
       console.error("Error saving data:", error);
       toast.error("Form submitted Failed!");
       // ✅ Send Error Event to GTM
-      (window as any).dataLayer.push({
-        event: "lead_form_failed",
-        error: error.message,
-        formType: "lead Form",
-      });
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer.push({
+          event: "lead_form_failed",
+          error: error.message,
+          formType: "lead Form",
+        });
+      }
     } finally {
       setLoading(false);
       setFormData({
@@ -174,7 +175,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
         Grade: "",
         Curriculum: "",
         Subject: "",
-        message: "",
+        Message: "",
       });
     }
   };
@@ -182,25 +183,27 @@ const ContactUs: React.FunctionComponent<IProps> = ({
   const geoData = useGeoLocation();
 
   React.useEffect(() => {
-    if (!geoData.isLoading && !geoData.error) {
-      const browser = navigator.userAgent;
-      const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-      const params = new URLSearchParams(window.location.search);
+    if (!geoData.isLoading && !geoData.error && geoData.browser) {
+      // Client-side only UTM parameter detection
+      let medium = "SEO";
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        medium = params.get("gad_source")
+          ? "google Ads"
+          : params.get("fbclid")
+          ? "facebook"
+          : "SEO";
+      }
+      
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
         Country: geoData.country || "",
-        Browser: browser,
-        SourcePageURL: pageURL,
-        Date: currentDate,
-        Time: currentTime,
-        Medium: params.get("gad_source")
-          ? "google Ads"
-          : params.get("fbclid")
-          ? "facebook"
-          : "SEO",
+        Browser: geoData.browser || "",
+        SourcePageURL: geoData.pageURL || "",
+        Date: geoData.date || "",
+        Time: geoData.time || "",
+        Medium: medium,
       }));
     }
   }, [geoData]);
@@ -380,19 +383,19 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                 multiline
                 rows={4}
                 name="Message"
-                value={formData.message}
-                onChange={(e) => handleChange("message", e.target.value)}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
                 placeholder="Enter your message here..."
                 className={`${leagueSpartan.className} `}
               />{" "}
-              {errors.message && (
+              {errors.Message && (
                 <Typography
                   className={`${leagueSpartan.className} `}
                   sx={styles.error}
                   component={"p"}
                   variant="caption"
                 >
-                  {errors.message}
+                  {errors.Message}
                 </Typography>
               )}
               <Button

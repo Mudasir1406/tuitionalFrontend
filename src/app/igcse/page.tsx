@@ -25,7 +25,12 @@ const TutorSectionV2 = dynamic(
   { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> }
 );
 
-const BenifitsSection = dynamic(
+const FormV2Dialog = dynamic(
+  () => import("@/components/grade-subject-level/form/formV2Dialog"),
+  { ssr: false, loading: () => null }
+);
+
+const BenifitsSectionV2 = dynamic(
   () =>
     import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
   { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> }
@@ -61,18 +66,31 @@ const Faqs = dynamic(() => import("@/components/home/faqs"), {
   loading: () => <Box sx={{ height: "300px" }} />,
 });
 
+const FooterV2 = dynamic(() => import("@/components/footerV2"), {
+  ssr: true,
+  loading: () => <Box sx={{ height: "500px" }} />,
+});
+
 const IgcsePage = () => {
   // Remove blocking data fetches - components will fetch their own data
 
   // Hardcoded hero section data
   const heroData = {
-    header: "Expert IGCSE Tutoring - Achieve Your Best Grades",
+    header:
+      "<span style='color: #38B6FF; font-size: inherit; font-weight: inherit; line-height: inherit;'>Guaranteed A* Grades!</span><br/>The #1 IGCSE Tutors Are Here to Help.",
     headerTag: "h1",
-    paragraph:
-      "1:1 Live Tutors, Past-Paper Strategy, Proven Results. Join 10,000+ Students Today.",
+    paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
   };
+
+  const heroBulletPoints = [
+    "1:1 Live Tutors",
+    "Qualified, Vetted Tutors",
+    "Interactive Learning",
+    "Flexible Scheduling",
+    "Parent & Student Portal",
+  ];
 
   // Data for tutor section - will fetch from tutors_data collection
   const tutorSectionData = {
@@ -101,7 +119,7 @@ const IgcsePage = () => {
   // Data for student testimonials
   const studentSaysData = {
     isShow: true,
-    header: "What Our IGCSE Students Say",
+    header: "Video Testimonials from Our IGCSE Students",
     headerTag: "h2",
     paragraph: "Hear from students who achieved their goals with our help",
   };
@@ -152,7 +170,11 @@ const IgcsePage = () => {
           <Grid container spacing={3} sx={styles.heroGrid}>
             <Grid item xs={12} sm={12} md={12} lg={6}>
               <Box sx={styles.heroContent}>
-                <HeroV2 data={heroData} withForm />
+                <HeroV2
+                  data={heroData}
+                  withForm
+                  bulletPoints={heroBulletPoints}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={6}>
@@ -173,10 +195,17 @@ const IgcsePage = () => {
       <Box sx={styles.verticalMargin}>
         <TutorSectionV2 data={tutorSectionData} />
       </Box>
+      <Box sx={styles.verticalMargin}>
+        <SectionsBox />
+      </Box>
 
+      {/* Trustpilot Reviews Carousel */}
+      <Box sx={styles.verticalMargin}>
+        <TrustpilotCarousel text="Real reviews from real IGCSE students and parents" />
+      </Box>
       {/* Benefits Section */}
       <Box sx={styles.verticalMargin}>
-        <BenifitsSection data={benefitsSectionData} />
+        <BenifitsSectionV2 data={benefitsSectionData} />
       </Box>
 
       {/* Popular IGCSE Subjects */}
@@ -185,11 +214,6 @@ const IgcsePage = () => {
           title="Popular IGCSE Subjects We Cover"
           headerTag="h2"
         />
-      </Box>
-
-      {/* Trustpilot Reviews Carousel */}
-      <Box sx={styles.verticalMargin}>
-        <TrustpilotCarousel />
       </Box>
 
       {/* Student Says Section */}
@@ -213,7 +237,8 @@ const IgcsePage = () => {
         <Faqs />
       </Box>
 
-      {/* <ServerFooter /> */}
+      {/* Footer */}
+      <FooterV2 />
     </Box>
   );
 };

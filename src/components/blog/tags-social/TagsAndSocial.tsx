@@ -12,11 +12,10 @@ import whatsapp from "../../../../public/assets/images/static/pngimg.com - whats
 import { usePathname } from "next/navigation";
 
 interface Props {
-  tags: string[];
+  tags: { name: { en: string; ar: string }; id: string }[];
   showSocial: boolean;
 }
 function TagsAndSocial({ tags, showSocial }: Props) {
-  // console.log("showSocial", showSocial);
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 
@@ -40,11 +39,10 @@ function TagsAndSocial({ tags, showSocial }: Props) {
         </Typography>
         <div className={styles.allTags}>
           {tags?.map((tag: any, i) => (
-            // <Tag label={tag.name} key={i} link={`${newUrl}/${tag.name}`} />
             <Tag
-              label={tag.name}
+              label={tag.name.en}
               key={i}
-              link={`${newUrl}/${tag?.name?.replace(/\s+/g, "-")}`}
+              link={`${newUrl}/${tag?.id}`}
             />
           ))}
         </div>

@@ -268,7 +268,7 @@ const styles = {
     },
   },
   ratingContanierMobile: { display: "flex", alignItems: "center" },
-  ourStudentInner: { width: "20%", marginLeft: 20 },
+  ourStudentInner: { width: "20%", marginX: 20 },
   ourStudent: {
     width: "100%",
     position: "relative",

@@ -10,10 +10,10 @@ import { PageData } from "@/types/grade-subject-level.types";
 type IProps = {
   data: PageData["hero_section"];
   withForm?: boolean;
+  bulletPoints: string[];
 };
 
-const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
-  // console.log("heroComp", data);
+const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
   return (
     <>
       <Box
@@ -55,149 +55,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
               // lg: "70vh",
             },
           }}
-        >
-          {/* <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap", // Ensures items wrap to the next line
-              justifyContent: {
-                xs: "center",
-                lg: "space-between",
-              },
-              gap: "16px", // Adds equal spacing between items
-              marginTop: "3vh",
-              width: { xs: "100%", sm: "60%", lg: "100%" },
-              marginX: "auto",
-            }}
-          >
-            {withForm ? (
-              <Typography
-                sx={styles.desc}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle1"
-              >
-                {data?.imageAltText
-                  ? data?.imageAltText
-                  : "IGCSE A Level | IGCSE AS Level"}
-              </Typography>
-            ) : (
-              <>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)", // Ensures equal width for all items
-                    maxWidth: "calc(50% - 24px)", // Prevents items from growing too much
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    9756 Active Students
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    35000+ Tutoring Hours Provided
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    1 : 1 Online Classes
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    12+ Tutor Year Experience
-                  </Typography>
-                </Box>
-              </>
-            )}
-          </Box> */}
-        </Box>
+        ></Box>
 
         <Box
           sx={{
@@ -207,6 +65,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
             },
           }}
         >
+<<<<<<< HEAD
           <Box
             sx={{
               display: "flex",
@@ -227,6 +86,58 @@ const HeroV2: React.FC<IProps> = ({ data, withForm }) => {
               gap: "1rem",
             }}
           >
+=======
+          {withForm ? (
+            // IGCSE Bullet Points with Check Icons
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  marginTop: { xs: "2vh", md: "3vh" },
+                  marginBottom: "2vh",
+                }}
+              >
+                {bulletPoints?.map((feature, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: {
+                        xs: "center",
+                        lg: "flex-start",
+                      },
+                    }}
+                  >
+                    <CheckCircleIcon
+                      sx={{
+                        color: "#22C55E",
+                        fontSize: "1.2rem",
+                        marginRight: "8px",
+                      }}
+                    />
+                    <Typography
+                      variant="body2"
+                      className={leagueSpartan.className}
+                      component="span"
+                      sx={{
+                        fontWeight: 500,
+                        color: "#374151",
+                      }}
+                    >
+                      {feature}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+
+              {/* Bottom tagline */}
+            </Box>
+          ) : (
+            // Original Trustpilot section for other pages
+>>>>>>> 22d54f9aeb4c549055f4bfd0f8610b7c24eb2e27
             <Box
               sx={{
                 display: "flex",

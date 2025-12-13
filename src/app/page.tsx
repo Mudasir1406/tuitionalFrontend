@@ -16,16 +16,54 @@ import { Header } from "../components";
 import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
-const Info = dynamic(() => import("../components/home/info"));
-const Filter = dynamic(() => import("../components/home/filter"));
-const Footer = dynamic(() => import("../components/footer"));
-const ContactUs = dynamic(() => import("../components/home/contact-us"));
+// Critical above-the-fold - Load with SSR
+const Info = dynamic(() => import("../components/home/info"), {
+  ssr: true,
+});
+const Filter = dynamic(() => import("../components/home/filter"), {
+  ssr: true,
+});
+
+// Below-the-fold - Lazy load with optimized placeholders and viewport detection
+const Trusted = dynamic(() => import("../components/home/trusted"), {
+  ssr: false,
+  loading: () => (
+    <div style={{
+      height: '200px',
+      backgroundColor: 'transparent',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <div style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#e2e8f0', opacity: 0.5 }} />
+    </div>
+  ),
+});
+const OurClient = dynamic(() => import("../components/home/our-client"), {
+  ssr: false,
+  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
+});
+const Faqs = dynamic(() => import("../components/home/faqs"), {
+  ssr: false,
+  loading: () => <div style={{ height: '300px', backgroundColor: 'transparent' }} />,
+});
+const ContactUs = dynamic(() => import("../components/home/contact-us"), {
+  ssr: false,
+  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
+});
+
+// Footer and non-critical
 const GetStarted = dynamic(
-  () => import("@/components/grade-subject-level/get-started")
+  () => import("@/components/grade-subject-level/get-started"),
+  {
+    ssr: false,
+    loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+  }
 );
-const Trusted = dynamic(() => import("../components/home/trusted"));
-const OurClient = dynamic(() => import("../components/home/our-client"));
-const Faqs = dynamic(() => import("../components/home/faqs"));
+const ServerFooter = dynamic(() => import("../components/server-footer"), {
+  ssr: false,
+  loading: () => <div style={{height: '500px', backgroundColor: '#f5f5f5'}} />,
+});
 
 export const metadata: Metadata = {
   title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
@@ -130,14 +168,14 @@ const Home: React.FC = async () => {
                 <Image
                   src={homeImage}
                   alt="Student learning with Tuitional"
-                  layout="responsive"
-                  width={640} // actual image width
-                  height={625} // actual image height
+                  fill
                   priority
                   quality={85}
-                  sizes="(max-width: 575px) 240px, (max-width: 768px) 400px, (max-width: 1200px) 600px, 640px"
+                  sizes="(max-width: 575px) 90vw, (max-width: 768px) 45vw, (max-width: 1200px) 35vw, 500px"
                   className={style.image}
-                  // sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgdmlld0JveD0iMCAwIDY0MCA0ODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idHJhbnNwYXJlbnQiIC8+PC9zdmc+"
+                  loading="eager"
                 />
               </div>
               <Info />
@@ -162,7 +200,7 @@ const Home: React.FC = async () => {
       <Box sx={styles.verticalMargin}>
         <ContactUs filterData={filterData} />
       </Box>
-      <Footer />
+      <ServerFooter />
     </>
   );
 };
