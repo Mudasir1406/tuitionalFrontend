@@ -11,10 +11,10 @@ import "swiper/css/pagination";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-const PopUpButton = dynamic(() => import("../pop-up-button"));
-
 import { ArrowLeftRounded, ArrowRightRounded } from "@mui/icons-material";
 import dynamic from "next/dynamic";
+
+const PopUpButton = dynamic(() => import("../pop-up-button"));
 
 type IProps = {
   data: GetStartedData[];
@@ -57,7 +57,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         <Grid container spacing={3} justifyContent="center" alignItems="center">
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
-              <GetStartedBox {...item} />
+              <GetStartedBox {...item as any} />
             </Grid>
           ))}
         </Grid>
@@ -126,7 +126,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           {/* Slides */}
           {data?.map((item, index) => (
             <SwiperSlide key={index}>
-              <GetStartedBox {...item} />
+              <GetStartedBox {...item as any} />
             </SwiperSlide>
           ))}
         </Swiper>

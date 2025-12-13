@@ -105,3 +105,13 @@
     height: 80vh;
   }
 }
+
+.verticalMargin {
+  margin: 7vh 0;
+}
+
+@media (max-width: 991px) {
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+}

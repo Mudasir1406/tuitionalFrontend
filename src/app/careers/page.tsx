@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components";
 import { Box, Container, Grid } from "@mui/material";
-import Footer from "../../components/footer";
+import Footer from "../../components/footer-wrapper";
 // import carrerHero from "../../../public/assets/images/static/carrerHero.png";
 
 import Hero from "../../components/careers/hero";

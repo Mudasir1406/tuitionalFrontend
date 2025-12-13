@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 import { DrawerProvider } from "@/context/drawer-context";
+import { I18nProvider } from "@/context/language-context";
+import HtmlWrapper from "@/components/html-wrapper";
 import Metrics from "./metrics";
 import Script from "next/script";
 import theme from "./assets/css/theme";
@@ -17,23 +20,22 @@ export const metadata: Metadata = {
   },
   other: {
     "font-display": "swap",
+    "color-scheme": "light",
   },
 };
-import { League_Spartan } from "next/font/google";
-import PageViewTracker from "@/components/page-view-tracker";
-import PixelTracker from "./metrics/pixel-tracker";
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: '#38b6ff',
+};
+import { leagueSpartan, notoSansArabic } from "./fonts";
 import FbPixelPageView from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
   ssr: true,
-});
-
-export const leagueSpartan = League_Spartan({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600"],
-  variable: "--font-league-spartan",
-  preload: true, // Add this
 });
 
 export default function RootLayout({
@@ -43,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${leagueSpartan.variable}`}
+      className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -58,12 +60,38 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <script
+        <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="//img.icons8.com" />
+        <link rel="dns-prefetch" href="//www.facebook.com" />
+        <link
+          rel="preload"
+          href="/assets/images/static/girl-with-book.webp"
+          as="image"
+          type="image/webp"
+        />
+        <link
+          rel="preload"
+          href="/assets/images/static/logo.png"
+          as="image"
+          type="image/png"
+        />
+        {/* Mobile performance optimizations */}
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="dns-prefetch" href="//cdn-icons-png.flaticon.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        {/* CSS is handled automatically by Next.js */}
+        <Script
+          id="facebook-pixel-inline"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                         
-              n.callMethod.apply(n,arguments):n.queue.push   
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push
               (arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!
               0;n.version='2.0';n.queue=[];t=b.createElement(e);
               t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
@@ -76,9 +104,9 @@ export default function RootLayout({
           }}
         />
         <noscript>
-          <img
-            height="1"
-            width="1"
+          <Image
+            height={1}
+            width={1}
             style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
             alt=""
@@ -87,7 +115,7 @@ export default function RootLayout({
       </head>
 
       <body style={{ margin: 0 }}>
-        <PixelTracker />
+        {/* <PixelTracker /> */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
@@ -98,13 +126,17 @@ export default function RootLayout({
         </noscript>
 
         <ThemeProvider theme={theme}>
-          <DrawerProvider>
-            <DynamicModel />
-            <FbPixelPageView />
+          <I18nProvider>
+            <HtmlWrapper className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}>
+              <DrawerProvider>
+                <DynamicModel />
+                <FbPixelPageView />
             {children}
-            <Metrics />
-            <Toaster />
-          </DrawerProvider>
+                <Metrics />
+                <Toaster />
+              </DrawerProvider>
+            </HtmlWrapper>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

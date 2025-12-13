@@ -1,0 +1,83 @@
+.ctaContainer {
+  background: linear-gradient(135deg, #38b6ff 0%, #2a8fd4 100%);
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.ctaContainerRTL {
+  direction: rtl;
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.titleRTL {
+  text-align: center;
+}
+
+.description {
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.descriptionRTL {
+  text-align: center;
+}
+
+.ctaButton {
+  background: white;
+  color: #38b6ff;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: #f8f9fa;
+  color: #2a8fd4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.disclaimer {
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+.disclaimerRTL {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .ctaContainer {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .ctaButton {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}

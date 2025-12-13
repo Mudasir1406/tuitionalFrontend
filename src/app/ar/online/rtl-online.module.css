@@ -1,0 +1,41 @@
+.container {
+  direction: rtl;
+  text-align: right;
+}
+
+.heroSection {
+  padding: 2rem;
+  text-align: center;
+}
+
+.heroSection h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1976d2;
+}
+
+.heroSection p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.verticalMargin {
+  margin: 7vh 0;
+}
+
+@media (max-width: 768px) {
+  .verticalMargin {
+    margin: 5vh 0;
+  }
+  
+  .heroSection h1 {
+    font-size: 2rem;
+  }
+  
+  .heroSection p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}

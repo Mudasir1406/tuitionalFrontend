@@ -6,7 +6,7 @@ const GoogleTagManager = () => {
     <>
       <Script
         id="google-tag-manager"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         defer
         dangerouslySetInnerHTML={{
           __html: `

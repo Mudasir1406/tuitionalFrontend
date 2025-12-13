@@ -20,7 +20,7 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
     Grade: "",
     Curriculum: "",
     Subject: "",
-    message: "",
+    Message: "",
     sheetName: "Lead Forms",
   });
   const handleChange = (key: string, value: string | string[]) => {

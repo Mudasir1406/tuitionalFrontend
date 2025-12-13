@@ -13,13 +13,12 @@ type IProps = {
 };
 
 const Hero: React.FC<IProps> = ({ data, withForm }) => {
-  // console.log("heroComp", data);
   return (
     <>
       <Box
         sx={{
           height: { lg: "65vh" },
-          paddingLeft: { lg: "5vw" },
+    paddingInlineStart: { lg: "5vw" }, // Logical property for padding-left in LTR, padding-right in RTL
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

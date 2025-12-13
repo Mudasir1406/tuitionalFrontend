@@ -60,7 +60,7 @@ const BenifitsSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
             component={"p"}
             variant="caption"
           >
-            Pool of 100s of Tutors to choose from{" "}
+            Pool of 500 + Tutors{" "}
           </Typography>
         </div>
         <div className={styles.smallCard}>
@@ -72,7 +72,7 @@ const BenifitsSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
             component={"p"}
             variant="caption"
           >
-            Recorded classes for review{" "}
+            24/7 On-Demand Academic Support.{" "}
           </Typography>
         </div>
         <div className={styles.smallCard}>
@@ -156,7 +156,7 @@ const BenifitsSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
             component={"p"}
             variant="caption"
           >
-            Parental Updates{" "}
+            Real-Time Parent Dashboard{" "}
           </Typography>
         </div>
       </div>

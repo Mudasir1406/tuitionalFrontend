@@ -1,0 +1,245 @@
+/* Main Container */
+.container {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Section */
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logoSection {
+  margin-bottom: 8px;
+}
+
+.trustpilotLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trustpilotText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00B67A;
+}
+
+.headline {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.highlighted {
+  background-color: #E8F5E8;
+  color: #00B67A;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+/* Right Section */
+.rightSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.reviewCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 400px;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.excellentText {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.reviewStars {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewCount {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.trustpilotSmallLogo {
+  margin-top: 8px;
+}
+
+.trustpilotSmallText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00B67A;
+}
+
+/* Review Content */
+.reviewContent {
+  position: relative;
+}
+
+.reviewText {
+  margin-bottom: 20px;
+}
+
+.reviewTextContent {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  font-style: italic;
+}
+
+.reviewerInfo {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+/* Navigation */
+.navigationArrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.arrowButton {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.arrowButton:hover {
+  background-color: #00B67A;
+  border-color: #00B67A;
+}
+
+.arrowButton:hover .arrowIcon {
+  color: white;
+}
+
+.arrowIcon {
+  font-size: 14px;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+/* Stars */
+.star {
+  font-size: 20px;
+  transition: color 0.2s ease;
+}
+
+.starFilled {
+  color: #00B67A;
+}
+
+.starEmpty {
+  color: #e5e7eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 16px;
+  }
+  
+  .wrapper {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .leftSection {
+    align-items: center;
+  }
+  
+  .headline {
+    font-size: 32px;
+    text-align: center;
+  }
+  
+  .description {
+    text-align: center;
+    max-width: 400px;
+  }
+  
+  .reviewCard {
+    padding: 24px;
+    max-width: 100%;
+  }
+  
+  .excellentText {
+    font-size: 20px;
+  }
+  
+  .reviewTextContent {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headline {
+    font-size: 28px;
+  }
+  
+  .reviewCard {
+    padding: 20px;
+  }
+  
+  .trustpilotText {
+    font-size: 16px;
+  }
+}

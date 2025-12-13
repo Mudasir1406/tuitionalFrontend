@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components";
 import { Grid } from "@mui/material";
-import Footer from "../../components/footer";
+import Footer from "../../components/footer-wrapper";
 import aboutHero from "../../../public/assets/images/static/hero-about.webp";
 import GetStarted from "@/components/home/get-started";
 import HeroInfo from "@/components/about/hero-info";

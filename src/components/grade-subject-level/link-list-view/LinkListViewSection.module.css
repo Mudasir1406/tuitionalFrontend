@@ -6,6 +6,9 @@
   padding: 0vh 5vw;
 }
 
+.title {
+  text-align: start;
+}
 .list {
   display: grid;
   grid-template-columns: auto auto auto;

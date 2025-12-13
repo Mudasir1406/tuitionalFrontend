@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tuitionaledu.com
+
+# Sitemaps
+Sitemap: https://tuitionaledu.com/sitemap.xml

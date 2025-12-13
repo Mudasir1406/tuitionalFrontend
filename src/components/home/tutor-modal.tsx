@@ -16,6 +16,7 @@ type IProps = {
   open: boolean;
   handleClose: () => void;
   data: tutorData;
+  locale?: string;
 };
 
 export type tutorData = {
@@ -33,7 +34,19 @@ const TutorModal: React.FunctionComponent<IProps> = ({
   open,
   handleClose,
   data,
+  locale = "en",
 }) => {
+  // Translation objects
+  const translations = {
+    en: {
+      bookADemo: "Book A Demo"
+    },
+    ar: {
+      bookADemo: "احجز حصة تجريبية"
+    }
+  };
+
+  const t = translations[locale as keyof typeof translations];
   return (
     <Dialog
       open={open}
@@ -109,7 +122,7 @@ const TutorModal: React.FunctionComponent<IProps> = ({
             </Box>
 
             <PopUpButton
-              text="Book A Demo"
+              text={t.bookADemo}
               href="popup"
               sx={styles.contactButton}
             />

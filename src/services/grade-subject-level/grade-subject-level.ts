@@ -42,7 +42,6 @@ export const getDocumentsByName = async (collectionName: string) => {
       id: doc.id, // Document ID
       ...doc.data(), // Spread the document data
     }));
-    // console.log("Snapshot: query", documents);
     return documents;
   } catch (error) {
     console.error("Error getting documents: ", error);
@@ -50,16 +49,17 @@ export const getDocumentsByName = async (collectionName: string) => {
   }
 };
 
-export const getPageData = async (slug: string): Promise<PageData | null> => {
+export const getPageData = async (slug: string, locale: string = "en"): Promise<PageData | null> => {
   // if (cachedPageData) return cachedPageData; // Use cached data if available
 
   try {
-    const docRef = doc(db, "grade-subject-level", slug);
+    const collectionName = locale === "ar" ? "grade-subject-level-ar" : "grade-subject-level-en";
+    const docRef = doc(db, collectionName, slug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       return docSnap.data() as PageData;
     } else {
-      console.error("No such document for slug:", slug);
+      console.error("No such document for slug:", slug, "in collection:", collectionName);
       return null;
     }
   } catch (error) {
@@ -67,16 +67,18 @@ export const getPageData = async (slug: string): Promise<PageData | null> => {
     return null;
   }
 };
-export const getBlogData = async (slug: string): Promise<PageData | null> => {
+export const getBlogData = async (slug: string, locale: string = "en"): Promise<PageData | null> => {
   // if (cachedPageData) return cachedPageData; // Use cached data if available
 
   try {
-    const docRef = doc(db, "blogs", slug);
+    const collectionName = locale === "ar" ? "blogs-v1-ar" : "blogs-v1-en";
+    const docRef = doc(db, collectionName, slug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return docSnap.data() as PageData;
+      const data = docSnap.data() as PageData;
+      return data;
     } else {
-      console.error("No such document for slug:", slug);
+      console.error("No such document for slug:", slug, "in collection:", collectionName);
       return null;
     }
   } catch (error) {
@@ -121,13 +123,15 @@ interface GroupDocument {
 
 export const getTutorsByFilter = async (
   curiculum: string,
-  subject: string
+  subject: string,
+  locale: string = "en"
 ): Promise<GroupDocument[]> => {
-  // if (cachedPageData) return cachedPageData; // Use cached data if available
+  // Use language-specific tutor collections
+  const collectionName = locale === "ar" ? "tutors-data-ar" : "tutors-data-en";
 
   if (curiculum == "" && subject == "") {
     var temp: any = [];
-    const queryData = await getDocs(collection(db, "tutors_data"));
+    const queryData = await getDocs(collection(db, collectionName));
     queryData.forEach((doc) => {
       temp.push({ id: doc.id, ...doc.data() } as any);
     });
@@ -135,13 +139,13 @@ export const getTutorsByFilter = async (
   }
 
   const query1 = query(
-    collection(db, "tutors_data"),
+    collection(db, collectionName),
     where("Curiculum", "array-contains", curiculum)
   );
 
   // Query for the second condition
   const query2 = query(
-    collection(db, "tutors_data"),
+    collection(db, collectionName),
     where("Subjects", "array-contains", subject)
   );
 
@@ -165,7 +169,6 @@ export const getTutorsByFilter = async (
   const results: GroupDocument[] = Array.from(resultSet).map((item) =>
     JSON.parse(item)
   );
-  // console.log("Results for Tutors : ", results);
   return results;
 };
 

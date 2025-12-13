@@ -5,6 +5,9 @@ import { leagueSpartan } from "@/app/fonts";
 import {
   getCountdownData,
   CountdownData,
+  PageType,
+  restartCountdown,
+  isCountdownExpired,
 } from "@/services/countdown/countdown";
 
 interface TimeLeft {
@@ -37,13 +40,28 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     updatedAt: new Date().toISOString(),
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
+  const [hasTriggeredRestart, setHasTriggeredRestart] = useState(false);
+  const [pageType, setPageType] = useState<PageType>('igcse');
 
   useEffect(() => {
+    // Detect page type from current URL
+    const detectPageType = (): PageType => {
+      if (typeof window !== 'undefined') {
+        const path = window.location.pathname.toLowerCase();
+        if (path.includes('/igcse')) return 'igcse';
+        if (path.includes('/gcse')) return 'gcse';
+        if (path.includes('/a-level')) return 'a-level';
+      }
+      return 'igcse'; // default fallback
+    };
+
     // Fetch countdown data from database in background
     const fetchCountdownData = async () => {
       try {
-        const data = await getCountdownData();
+        const detectedPageType = detectPageType();
+        setPageType(detectedPageType);
+        const data = await getCountdownData(detectedPageType);
         setCountdownData(data);
       } catch (error) {
         console.error("Failed to fetch countdown data:", error);
@@ -53,6 +71,40 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
     fetchCountdownData();
   }, [targetDays, title]);
+
+  // Auto-restart countdown when it expires
+  useEffect(() => {
+    const checkAndRestart = async () => {
+      // Only trigger restart once and when countdown has expired
+      if (!hasTriggeredRestart && countdownData && isCountdownExpired(countdownData)) {
+        console.log(`Countdown expired for ${pageType}. Triggering auto-restart...`);
+        setHasTriggeredRestart(true);
+
+        try {
+          // Auto-restart with 20 days
+          const newCountdownData = await restartCountdown(pageType, 20);
+          if (newCountdownData) {
+            setCountdownData(newCountdownData);
+            console.log(`Countdown restarted successfully! New target: 20 days from now`);
+            // Reset trigger flag after successful restart
+            setTimeout(() => setHasTriggeredRestart(false), 5000);
+          }
+        } catch (error) {
+          console.error("Failed to restart countdown:", error);
+          // Reset flag to allow retry
+          setTimeout(() => setHasTriggeredRestart(false), 10000);
+        }
+      }
+    };
+
+    // Check every minute if countdown needs restart
+    const intervalId = setInterval(checkAndRestart, 60000);
+
+    // Also check immediately when component mounts or countdown data changes
+    checkAndRestart();
+
+    return () => clearInterval(intervalId);
+  }, [countdownData, hasTriggeredRestart, pageType]);
 
   useEffect(() => {
     if (!countdownData || !countdownData.isActive) return;
@@ -88,8 +140,23 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     return () => clearInterval(timer);
   }, [countdownData]);
 
-  // Remove scroll detection - countdown will be sticky by default
-  // Header scrolls away naturally, countdown stays at top
+  // Scroll detection to change to fixed positioning
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const headerHeight = 70; // Approximate header height
+      
+      // Switch to fixed when scrolled past header
+      if (scrollPosition > headerHeight) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const formatNumber = (num: number): string => {
     return num.toString().padStart(2, "0");
@@ -101,7 +168,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }
 
   return (
-    <Box sx={styles.stickyContainer}>
+    <Box sx={{
+      ...styles.stickyContainer,
+      position: isFixed ? "fixed" : "sticky",
+    }}>
       <Box sx={styles.countdownBox}>
         <Typography
           variant="body2"
@@ -110,7 +180,6 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         >
           {countdownData.title}
         </Typography>
-
         <Box sx={styles.timerContainer}>
           <Box sx={styles.timeUnit}>
             <Typography
@@ -195,13 +264,12 @@ export default CountdownTimer;
 
 const styles = {
   stickyContainer: {
-    position: "sticky",
     top: 0,
-    left: "0",
-    right: "0",
+    left: 0,
+    right: 0,
     zIndex: 1000,
     width: "100%",
-    padding: "0",
+    padding: 0,
   },
   countdownBox: {
     background: "#006dac",

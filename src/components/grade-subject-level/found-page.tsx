@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../footer";
+import Footer from "../footer-wrapper";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Logo from "../../../public/assets/images/static/logo.png";
