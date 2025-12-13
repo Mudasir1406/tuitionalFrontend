@@ -5,6 +5,7 @@ import greenstar from "../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
 import CircleIcon from "@mui/icons-material/Circle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { PageData } from "@/types/grade-subject-level.types";
 
 type IProps = {
@@ -65,28 +66,6 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
             },
           }}
         >
-<<<<<<< HEAD
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "row",
-                lg: "row",
-              },
-              alignItems: {
-                xs: "center",
-                lg: "flex-start",
-              },
-              justifyContent: {
-                xs: "center",
-                lg: "start",
-              },
-              marginTop: { xs: "1vh", md: "4vh" },
-
-              gap: "1rem",
-            }}
-          >
-=======
           {withForm ? (
             // IGCSE Bullet Points with Check Icons
             <Box>
@@ -136,63 +115,63 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
               {/* Bottom tagline */}
             </Box>
           ) : (
-            // Original Trustpilot section for other pages
->>>>>>> 22d54f9aeb4c549055f4bfd0f8610b7c24eb2e27
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                src={greenstar}
-                alt="img"
-                style={{ height: "3vh", width: "3vh" }}
-              />
-              <Typography
+            <Box>
+              <Box
                 sx={{
-                  //   fontSize: "2.3vh",
-                  padding: ".7vh 0 0 1vh",
-                  //   fontWeight: 600,
+                  display: "flex",
+                  alignItems: "center",
                 }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle2"
               >
-                Trustpilot
-              </Typography>
-            </Box>
+                <Image
+                  src={greenstar}
+                  alt="img"
+                  style={{ height: "3vh", width: "3vh" }}
+                />
+                <Typography
+                  sx={{
+                    //   fontSize: "2.3vh",
+                    padding: ".7vh 0 0 1vh",
+                    //   fontWeight: 600,
+                  }}
+                  className={leagueSpartan.className}
+                  component={"p"}
+                  variant="subtitle2"
+                >
+                  Trustpilot
+                </Typography>
+              </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                // gap: "1rem",
-              }}
-            >
-              <Typography
+              <Box
                 sx={{
-                  // fontSize: { lg: "2vh", xs: "1.7vh" },
-                  // fontWeight: 400,
-                  padding: "1vh 0 0 0",
+                  display: "flex",
+                  alignItems: "center",
+                  // gap: "1rem",
                 }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="caption"
               >
-                Excellent (4.7/5)
-              </Typography>
-              <Image
-                src={greenstars}
-                alt="img"
-                style={{
-                  height: "3vh",
-                  width: "14vh",
-                  padding: ".7vh 0 0 2vh",
-                }}
-              />
+                <Typography
+                  sx={{
+                    // fontSize: { lg: "2vh", xs: "1.7vh" },
+                    // fontWeight: 400,
+                    padding: "1vh 0 0 0",
+                  }}
+                  className={leagueSpartan.className}
+                  component={"p"}
+                  variant="caption"
+                >
+                  Excellent (4.7/5)
+                </Typography>
+                <Image
+                  src={greenstars}
+                  alt="img"
+                  style={{
+                    height: "3vh",
+                    width: "14vh",
+                    padding: ".7vh 0 0 2vh",
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
+          )}
         </Box>
       </Box>
     </>
