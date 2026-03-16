@@ -10,8 +10,13 @@ import { ArrowCircleRight } from "@mui/icons-material";
 type IProps = { data: PageData["link_list"] };
 
 function LinkListViewSection({ data }: IProps) {
+  // Replace <b> with <strong> for semantic SEO (screen readers + crawlers treat <strong> as important)
+  const semanticParagraph = data?.paragraph
+    ?.replace(/<b>/g, "<strong>")
+    ?.replace(/<\/b>/g, "</strong>");
+
   return (
-    <div className={styles.main}>
+    <section className={styles.main}>
       <Typography
         className={`${leagueSpartan.className} ${styles.title}`}
         variant={data?.headerTag ? data.headerTag : ("h3" as any)}
@@ -23,10 +28,10 @@ function LinkListViewSection({ data }: IProps) {
 
       <Typography
         className={`${leagueSpartan.className} ${styles.description}`}
-        component={"p"}
+        component={"div"}
         variant="body2"
         dangerouslySetInnerHTML={{
-          __html: data?.paragraph,
+          __html: semanticParagraph,
         }}
       ></Typography>
 
@@ -58,7 +63,7 @@ function LinkListViewSection({ data }: IProps) {
           </a>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
