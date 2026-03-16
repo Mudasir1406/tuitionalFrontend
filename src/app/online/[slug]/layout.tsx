@@ -8,7 +8,7 @@ import React, { ReactNode } from "react";
 
 // Helper function to fetch page data
 const fetchData = async (
-  slug: string
+  slug: string,
 ): Promise<PageData | undefined | null> => {
   return await getPageData(slug);
 };
@@ -23,6 +23,8 @@ export const generateMetadata = async ({
 
   const { title, description, metaName, ogImage, ogTitle, ogDescription } =
     data.meta_tags;
+
+  console.log("Data---->", data);
 
   return {
     title: title,
