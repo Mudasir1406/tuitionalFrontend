@@ -5,6 +5,14 @@ import Link from "next/link";
 import logo from "../../../public/assets/images/static/logo.png";
 import { leagueSpartan } from "@/app/fonts";
 // import HeaderV3 from "@/components/header-v3";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const ThankYouPage = () => {
   return (
