@@ -141,6 +141,7 @@ const styles = {
       xs: "2vh",
       sm: "3vh",
       md: "4vh",
+      lg: "5vh",
     },
     color: "#000000",
     fontSize: {

@@ -7,6 +7,7 @@ import { GetStartedData } from "../../services/get-started/get-started";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/pagination";
 import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
@@ -58,7 +59,6 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
-          centeredSlides={true}
           breakpoints={breakPoints}
           breakpointsBase="window"
           loop={data?.length >= 3}
@@ -86,8 +86,10 @@ export default GetStarted;
 
 const styles = {
   swiperContanier: {
-    display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
-    flexDirection: "row",
+    display: { xs: "block", sm: "block", md: "block", lg: "none" },
+    overflow: "hidden",
+    paddingBottom: "40px",
+    width: "100%",
   },
   slide: {
     display: "flex",
@@ -184,14 +186,8 @@ const styles = {
     flexDirection: "row",
   },
   contanier: {
-    height: { xs: "565px", lg: "600px", xl: "auto" },
-    // height: "auto",
-    width: {
-      lg: "auto",
-      // lg: "360px",
-      xl: "auto",
-      // xl: "400px",
-    },
+    height: "auto",
+    width: { xs: "100%", lg: "auto" },
     backgroundColor: "#D7F0FF",
     alignItems: "center",
     padding: "10px",
@@ -253,8 +249,8 @@ const GetStartedBox: React.FC<Props> = ({
     <Box sx={styles.contanier}>
       <Box
         sx={{
-          height: isLargeOrAbove ? 300 : 280,
-          width: 300,
+          width: "100%",
+          maxWidth: 300,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -265,7 +261,6 @@ const GetStartedBox: React.FC<Props> = ({
           alt=""
           width={300}
           height={isLargeOrAbove ? 300 : 280}
-          // height={360}
           style={{ width: "100%", height: "auto", objectFit: "cover" }}
         ></Image>
       </Box>
