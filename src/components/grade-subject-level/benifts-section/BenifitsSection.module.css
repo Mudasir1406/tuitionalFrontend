@@ -30,7 +30,8 @@
   justify-content: center;
   background-color: white;
   padding: 16px;
-  height: 140px;
+  min-height: 140px;
+  height: auto;
 
   /* box-shadow: inset 0px 6px 8px rgba(0, 0, 0, 0.05),
     inset -4px -4px 10px rgba(0, 0, 0, 0.15); */
@@ -66,7 +67,8 @@
     width: 100%;
   }
   .smallCard {
-    height: 100px;
+    min-height: 120px;
+    height: auto;
   }
   .main {
     /* padding: 5vh 24px; */
@@ -93,6 +95,7 @@
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .cards {
     grid-template-columns: repeat(4, 1fr);
+    width: 100%;
   }
 }
 

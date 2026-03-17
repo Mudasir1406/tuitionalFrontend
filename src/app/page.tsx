@@ -215,8 +215,7 @@ const styles = {
     paddingTop: {
       xs: "120px",
       sm: "120px",
-      // md: "200px",
-      md: "120px",
+      md: 0,
       lg: 0,
       xl: 0,
     },

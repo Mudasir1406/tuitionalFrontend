@@ -6,6 +6,7 @@ interface IProps {
   data: PageData["main_content"];
 }
 const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
+  console.log("MainContent data:", data);
   return (
     <>
       <Box sx={style.contanier}>
@@ -58,9 +59,9 @@ const style = {
   },
   title: {
     width: {
-      xs: "100%", 
-      sm: "100%", 
-      md: "100%", 
+      xs: "100%",
+      sm: "100%",
+      md: "100%",
       lg: "50vw", // Desktop view
     },
     // fontSize: {
