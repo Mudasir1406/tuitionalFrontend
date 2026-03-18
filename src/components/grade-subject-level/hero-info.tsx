@@ -1,5 +1,7 @@
+"use client";
+
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
 import Image from "next/image";
 type IProps = {
@@ -8,6 +10,9 @@ type IProps = {
 };
 
 const HeroInfo: React.FunctionComponent<IProps> = ({ image, imageAltText }) => {
+  const validSrc = image?.trim() && image.trim() !== "undefined" ? image.trim() : subjectLevelImage.src;
+  const [src, setSrc] = useState(validSrc);
+
   return (
     <>
       <Grid
@@ -16,40 +21,18 @@ const HeroInfo: React.FunctionComponent<IProps> = ({ image, imageAltText }) => {
         md={12}
         sm={12}
         xs={12}
-        sx={{
-          position: "relative",
-          "::before": {
-            content: "''",
-            backgroundImage: `url(${image || subjectLevelImage.src})`,
-            backgroundPosition: "bottom",
-            backgroundSize: {
-              xs: "contain",
-              lg: "contain",
-            },
-            height: {
-              xs: "100%",
-              sm: "100%",
-              md: "70vh",
-              lg: "80vh",
-            },
-            width: "100%",
-            backgroundRepeat: "no-repeat",
-            position: "absolute",
-            bottom: 0,
-            zIndex: "0",
-            loading: "lazy",
-          },
-        }}
       >
-        <Box sx={styles.container}></Box>
-        <Image
-          className="sr-only"
-          alt={imageAltText}
-          src={image}
-          width={1}
-          height={1}
-          loading="lazy"
-        ></Image>
+        <Box sx={styles.container}>
+          <Image
+            alt={imageAltText || ""}
+            src={src}
+            fill
+            priority
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 50vw"
+            style={{ objectFit: "contain", objectPosition: "bottom" }}
+            onError={() => setSrc(subjectLevelImage.src)}
+          />
+        </Box>
       </Grid>
     </>
   );

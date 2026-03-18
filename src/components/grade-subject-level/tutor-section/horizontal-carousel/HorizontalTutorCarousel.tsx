@@ -14,37 +14,72 @@ interface HorizontalTutorCarouselProps {
 
 const HorizontalTutorCarousel: React.FC<HorizontalTutorCarouselProps> = ({
   tutors,
-  title = "Recommended Tutors"
+  title = "Recommended Tutors",
 }) => {
   const getInitials = (firstName: string, lastName?: string) => {
-    return `${firstName[0]}${lastName ? lastName[0] : ''}`.toUpperCase();
+    return `${firstName[0]}${lastName ? lastName[0] : ""}`.toUpperCase();
   };
 
   // Generate random realistic data for each tutor
   const generateTutorStats = (index: number) => {
     const ratings = [4.8, 4.9, 5.0, 4.7, 4.9, 4.8, 4.9, 5.0, 4.7];
-    const hours = [12500, 14500, 15400, 21000, 9500, 11200, 13800, 15600, 10500];
+    const hours = [
+      12500, 14500, 15400, 21000, 9500, 11200, 13800, 15600, 10500,
+    ];
     const experience = [9, 8, 12, 24, 8, 24, 12, 11, 14];
     const batches = [120, 91, 60, 98, 56, 180, 60, 167, 124];
-    
+
     // Country codes for SVG flags
     const countryCodes = [
-      "sa", "ae", "ae", "ae", "us", "sa", "ae", "fr", "gb", "au", 
-      "nz", "ie", "fr", "es", "de", "it", "nl", "be", "ch"
+      "sa",
+      "ae",
+      "ae",
+      "ae",
+      "us",
+      "sa",
+      "ae",
+      "fr",
+      "gb",
+      "au",
+      "nz",
+      "ie",
+      "fr",
+      "es",
+      "de",
+      "it",
+      "nl",
+      "be",
+      "ch",
     ];
     const countryNames = [
-      "Saudi Arabia", "UAE", "UAE", "UAE", "USA", "Qatar",
-      "France", "UK", "Uk", "Australia", "New Zealand", "Ireland", 
-      "France", "Spain", "Germany", "Italy", "Netherlands", "Belgium", "Switzerland"
+      "Saudi Arabia",
+      "UAE",
+      "UAE",
+      "UAE",
+      "USA",
+      "Qatar",
+      "France",
+      "UK",
+      "Uk",
+      "Australia",
+      "New Zealand",
+      "Ireland",
+      "France",
+      "Spain",
+      "Germany",
+      "Italy",
+      "Netherlands",
+      "Belgium",
+      "Switzerland",
     ];
-    
+
     return {
       rating: ratings[index % ratings.length],
       hours: hours[index % hours.length],
       experience: experience[index % experience.length],
       batches: batches[index % batches.length],
       countryCode: countryCodes[index % countryCodes.length],
-      countryName: countryNames[index % countryNames.length]
+      countryName: countryNames[index % countryNames.length],
     };
   };
 
@@ -73,27 +108,27 @@ const HorizontalTutorCarousel: React.FC<HorizontalTutorCarouselProps> = ({
                   >
                     {getInitials(tutor["First Name"], tutor["Last Name"])}
                   </Avatar>
-                  
+
                   {/* Country Flag - Bottom Left */}
-                  <Box 
-                    className={styles.countryFlag} 
+                  <Box
+                    className={styles.countryFlag}
                     title={stats.countryName}
-                    style={{ 
-                      backgroundColor: 'transparent'
+                    style={{
+                      backgroundColor: "transparent",
                     }}
                   >
                     <FlagIcon countryCode={stats.countryCode} size={24} />
                   </Box>
                 </Box>
-                
+
                 <Box className={styles.nameRatingRow}>
                   <Typography
                     variant="h6"
                     className={`${leagueSpartan.className} ${styles.tutorName}`}
                   >
-                    {`${tutor["First Name"]} ${tutor["Last Name"] || ''}`}
+                    {`${tutor["First Name"]} ${tutor["Last Name"] || ""}`}
                   </Typography>
-                  
+
                   <Box className={styles.ratingContainer}>
                     <Star className={styles.ratingIcon} />
                     <Typography variant="body2" className={styles.ratingText}>

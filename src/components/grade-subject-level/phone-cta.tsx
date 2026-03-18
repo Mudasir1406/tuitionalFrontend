@@ -51,8 +51,8 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
           }}
         ></Typography>
 
-        <Box sx={style.mobileContanier}>
-          <TextField
+        {/* <Box sx={style.mobileContanier}> */}
+        {/* <TextField
             placeholder="Mobile Number with Country Code"
             InputProps={style.inputProps}
             sx={style.textField}
@@ -60,14 +60,14 @@ const PhoneCta: React.FunctionComponent<IProps> = ({ data }) => {
             onChange={(e) => {
               handleChange("PhoneNumber", e.target.value);
             }}
-          />
-          <PopUpButton
-            sx={style.button}
-            href={data.link}
-            text={data?.buttonText}
-            values={formData}
-          />
-        </Box>
+          /> */}
+        <PopUpButton
+          sx={style.button}
+          href={data.link}
+          text={data?.buttonText}
+          values={formData}
+        />
+        {/* </Box> */}
       </Box>
     </Box>
   );
@@ -79,23 +79,27 @@ const style = {
   button: {
     backgroundColor: "#38B6FF",
     boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
-    backgroundFilter: " blur(5px)",
+    backgroundFilter: "blur(5px)",
     color: "#FFFFFF",
     width: {
-      xs: "40%",
+      xs: "80%",
+      sm: "60%",
+      md: "50%",
       lg: "40%",
     },
-    height: {
-      xs: "8vh",
-      sm: "6vh",
-      lg: "8.5vh",
+    height: "auto",
+    padding: {
+      xs: "12px 16px",
+      sm: "14px 20px",
+      lg: "16px 24px",
     },
-    borderTopRightRadius: "14px",
-    borderBottomRightRadius: "14px",
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "auto",
-    // },
+    fontSize: {
+      xs: "0.875rem",
+      sm: "1rem",
+      lg: "1.1rem",
+    },
+    borderRadius: "14px",
+    lineHeight: 1.4,
     ":hover": {
       backgroundColor: "#38B6FF",
     },

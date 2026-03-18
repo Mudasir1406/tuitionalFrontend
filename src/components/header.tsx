@@ -351,7 +351,7 @@ const styles = {
     backgroundColor: "#38B6FF",
     borderRadius: "50%",
     position: "absolute",
-    animation: `rightCircleAnimation 6s ease-in-out infinite alternate`,
+    // animation: `rightCircleAnimation 6s ease-in-out infinite alternate`,
   },
   background: {
     position: "absolute",
