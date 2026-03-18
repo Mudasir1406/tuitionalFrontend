@@ -4,66 +4,45 @@ import styles from "./GridView.module.css";
 import { East, West } from "@mui/icons-material";
 import ImageCard from "@/components/image-card/ImageCard";
 import { CardProps } from "../TutorSection";
-import { useMediaQuery, useTheme } from "@mui/material";
 
 interface props {
   cardsData: any[];
   locale?: string;
 }
 
-function ArGridView({ cardsData, locale = "ar" }: props) {
-  const theme = useTheme();
+const getVisibleCards = () => {
+  if (typeof window === "undefined") return 4;
+  if (window.innerWidth >= 1200) return 4;
+  if (window.innerWidth >= 768) return 2;
+  return 1;
+};
 
+function ArGridView({ cardsData, locale = "ar" }: props) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-  const [isMediumScreen, setIsMediumScreen] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [visibleCards, setVisibleCards] = useState(4);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Client-side media query setup
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const lgQuery = window.matchMedia(theme.breakpoints.up("lg"));
-      const mdQuery = window.matchMedia(theme.breakpoints.between("md", "lg"));
-      const smQuery = window.matchMedia(theme.breakpoints.down("sm"));
-      
-      setIsLargeScreen(lgQuery.matches);
-      setIsMediumScreen(mdQuery.matches);
-      setIsSmallScreen(smQuery.matches);
-      
-      const handleLgChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
-      const handleMdChange = (e: MediaQueryListEvent) => setIsMediumScreen(e.matches);
-      const handleSmChange = (e: MediaQueryListEvent) => setIsSmallScreen(e.matches);
-      
-      lgQuery.addEventListener('change', handleLgChange);
-      mdQuery.addEventListener('change', handleMdChange);
-      smQuery.addEventListener('change', handleSmChange);
-      
-      return () => {
-        lgQuery.removeEventListener('change', handleLgChange);
-        mdQuery.removeEventListener('change', handleMdChange);
-        smQuery.removeEventListener('change', handleSmChange);
-      };
-    }
-  }, [theme]);
+    const update = () => setVisibleCards(getVisibleCards());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
-  // Determine the number of visible cards based on the screen size
-  const visibleCards = isLargeScreen ? 4 : isMediumScreen ? 2 : 1;
+  const maxIndex = Math.max(cardsData.length - visibleCards, 0);
 
   const handleNext = React.useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + visibleCards >= cardsData.length
-        ? 0
-        : prevIndex + visibleCards
-    );
-  }, [setCurrentIndex, visibleCards, cardsData.length]);
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex >= maxIndex) return 0;
+      return Math.min(prevIndex + visibleCards, maxIndex);
+    });
+  }, [setCurrentIndex, visibleCards, maxIndex]);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex - visibleCards < 0
-        ? Math.max(cardsData.length - visibleCards, 0)
-        : prevIndex - visibleCards
-    );
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex <= 0) return maxIndex;
+      return Math.max(prevIndex - visibleCards, 0);
+    });
   };
 
   useEffect(() => {
@@ -96,9 +75,9 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
             <div
               key={i}
               className={styles.card}
+              style={{ flex: `0 0 calc(${100 / visibleCards}% - 16px)`, direction: "ltr" }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              style={{ direction: "ltr" }} // Keep card content in LTR for proper display
             >
               <ImageCard data={card} locale={locale} />
             </div>
