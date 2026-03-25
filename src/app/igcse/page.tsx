@@ -1,5 +1,24 @@
 import React from "react";
+import { Metadata } from "next";
 import { Box, Grid } from "@mui/material";
+
+export const metadata: Metadata = {
+  title: "IGCSE Tutoring | Tuitional",
+  description: "Get the best IGCSE tutoring at Tuitional.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
 
@@ -15,50 +34,50 @@ const CountdownTimer = dynamic(
   {
     ssr: false,
     loading: () => null, // No loading state to prevent layout shifts
-  }
+  },
 );
 
 // Individual components for lazy loading - Enable SSR for better performance
 
 const TutorSectionV2 = dynamic(
   () => import("@/components/grade-subject-level/tutor-section/TutorSectionV2"),
-  { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> }
+  { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> },
 );
 
 const FormV2Dialog = dynamic(
   () => import("@/components/grade-subject-level/form/formV2Dialog"),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: () => null },
 );
 
 const BenifitsSectionV2 = dynamic(
   () =>
     import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
-  { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> }
+  { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> },
 );
 
 const PopularIgcseSubjectsV2 = dynamic(
   () => import("@/components/curiculume/popular-igcse-subjects-v2"),
-  { ssr: true, loading: () => <Box sx={{ height: "350px" }} /> }
+  { ssr: true, loading: () => <Box sx={{ height: "350px" }} /> },
 );
 
 const TrustpilotCarousel = dynamic(
   () => import("@/components/trustpilot-carousel/TrustpilotCarousel"),
-  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
+  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> },
 );
 
 const StudentSaysV2 = dynamic(
   () => import("@/components/grade-subject-level/students-says-v2"),
-  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> }
+  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> },
 );
 
 const SectionsBox = dynamic(
   () => import("@/components/grade-subject-level/sectionsbox"),
-  { ssr: false, loading: () => <Box sx={{ height: "200px" }} /> }
+  { ssr: false, loading: () => <Box sx={{ height: "200px" }} /> },
 );
 
 const GetStartedV2 = dynamic(
   () => import("@/components/grade-subject-level/get-started-v2"),
-  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> }
+  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> },
 );
 
 const Faqs = dynamic(() => import("@/components/home/faqs"), {
@@ -122,32 +141,6 @@ const IgcsePage = () => {
     header: "Video Testimonials from Our IGCSE Students",
     headerTag: "h2",
     paragraph: "Hear from students who achieved their goals with our help",
-  };
-
-  // Data for FAQs
-  const faqsData = {
-    isShow: true,
-    header: "Frequently Asked Questions",
-    headerTag: "h2",
-    paragraph:
-      "Find answers to common questions about our IGCSE tutoring program",
-    faq: [
-      {
-        question: "What IGCSE subjects do you offer tutoring for?",
-        answer:
-          "We offer tutoring for all major IGCSE subjects including Mathematics, English, Sciences, and more.",
-      },
-      {
-        question: "How are the tutoring sessions conducted?",
-        answer:
-          "All sessions are conducted online through our interactive platform with experienced IGCSE teachers.",
-      },
-      {
-        question: "What is the duration of each tutoring session?",
-        answer:
-          "Standard sessions are 60 minutes long, but we can adjust based on your needs and preferences.",
-      },
-    ],
   };
 
   return (

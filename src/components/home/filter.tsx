@@ -43,10 +43,10 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
         medium = params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
-          ? "facebook"
-          : "SEO";
+            ? "facebook"
+            : "SEO";
       }
-      
+
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
@@ -69,7 +69,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
         </Typography>
         Customized for 1:1 Online Tutoring Sessions
       </Typography>
-      <Typography sx={styles.desc} component={"p"} variant="body2">
+      <Typography sx={styles.desc} component={"p"} variant="body1">
         Tuitional Is An Online Tutoring Platform Providing Quality Education
         Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
         your learning journey.
@@ -144,23 +144,11 @@ const styles = {
       lg: "5vh",
     },
     color: "#000000",
-    fontSize: {
-      xs: "24px",
-      sm: "24px",
-      md: "28px",
-      lg: "3.1rem",
-    },
   },
   expertText: {
-    color: "#51B893",
+    color: "var(--color-accent)",
     display: "inline",
     position: "relative",
-    fontSize: {
-      xs: "24px",
-      sm: "24px",
-      md: "28px",
-      lg: "3.1rem",
-    },
     "::before": {
       content: "''",
       position: "absolute",
@@ -212,12 +200,6 @@ const styles = {
       md: "4vh",
     },
     color: "#000000",
-    fontSize: {
-      xs: "13px",
-      sm: "15px",
-      md: "16px",
-      lg: "1.6rem",
-    },
   },
   containedBtn: {
     boxShadow: "1px 4px 24px 0px #38B6FFB2",
@@ -274,7 +256,7 @@ const styles = {
   },
   descRTL: {
     textAlign: {
-      xs: "center", 
+      xs: "center",
       lg: "start",
     },
   },

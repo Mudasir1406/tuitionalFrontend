@@ -5,12 +5,13 @@ module.exports = {
   sitemapSize: 5000,
   changefreq: 'daily',
   priority: 0.7,
-  exclude: ['/admin', '/admin/*', '/api/*'],
+  exclude: ['/admin', '/admin/*', '/api/*', '/igcse'],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/admin', '/igcse'],
       },
     ],
   },

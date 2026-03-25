@@ -1,12 +1,32 @@
 "use client";
+import React, { useState } from "react";
 import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../../public/assets/images/static/logo.png";
 import { useDrawer } from "../context/drawer-context";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
+import { useI18n } from "@/context/language-context";
+import dynamic from "next/dynamic";
+import { Button } from "@mui/material";
+import RouteLanguageSwitcher from "./route-language-switcher";
+
+const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
+
 const ResponsiveDrawer = () => {
   const { open, toggleDrawer } = useDrawer();
+  const { t } = useI18n();
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClick = () => {
+    setOpenDialog(true);
+  };
+
   return (
     <div>
       <Drawer
@@ -68,7 +88,7 @@ const ResponsiveDrawer = () => {
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              Home
+              {t("nav.home")}
             </Typography>
           </a>
           <a href="/about" style={styles.link} onClick={toggleDrawer}>
@@ -76,7 +96,7 @@ const ResponsiveDrawer = () => {
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              About
+              {t("nav.about")}
             </Typography>
           </a>
           <a
@@ -88,7 +108,7 @@ const ResponsiveDrawer = () => {
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              Community & Events
+              {t("nav.community")}
             </Typography>
           </a>
           <a onClick={toggleDrawer} href="/testimonials" style={styles.link}>
@@ -96,7 +116,7 @@ const ResponsiveDrawer = () => {
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              Testimonials
+              {t("nav.testimonials")}
             </Typography>
           </a>
           <a href="/contact" style={styles.link} onClick={toggleDrawer}>
@@ -104,11 +124,38 @@ const ResponsiveDrawer = () => {
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              Contact
+              {t("nav.contact")}
             </Typography>
           </a>
+
+          <Box sx={styles.buttonContainer}>
+            <Button
+              variant="outlined"
+              sx={styles.outlinedBtn}
+              className={leagueSpartan.className}
+            >
+              {t("buttons.ai_digital_sat")}
+            </Button>
+            <Button
+              variant="contained"
+              sx={styles.containedBtn}
+              className={leagueSpartan.className}
+              onClick={() => {
+                toggleDrawer();
+                handleClick();
+              }}
+            >
+              {t("buttons.book_demo")}
+            </Button>
+            <Box sx={{ marginTop: "10px", width: "100%" }}>
+              <RouteLanguageSwitcher fullWidth />
+            </Box>
+          </Box>
         </Box>
       </Drawer>
+      {openDialog && (
+        <FormDialog open={openDialog} handleClose={handleClose} />
+      )}
     </div>
   );
 };
@@ -126,18 +173,50 @@ const styles = {
     cursor: "pointer",
   },
   typography: {
-    fontSize: "30px",
+    fontSize: "1.5rem",
     fontWeight: 500,
-    lineHeight: "60px",
-    textAlign: "center",
+    lineHeight: "2",
+    textAlign: "start",
     color: "black",
     cursor: "pointer",
+    marginY: "10px",
     display: {
       xs: "flex",
-      sm: "flex",
-      md: "flex",
       lg: "flex",
     },
   },
-  link: { textDecoration: "none" },
+  link: { textDecoration: "none", width: "100%" },
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
+    marginTop: "30px",
+    width: "100%",
+  },
+  containedBtn: {
+    boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
+    backgroundColor: "#38B6FF",
+    paddingY: "1.5vh",
+    fontSize: "1.1rem",
+    fontWeight: 700,
+    textAlign: "center",
+    letterSpacing: "-2%",
+    borderRadius: "1vh",
+    color: "white",
+    ":hover": {
+      backgroundColor: "#38B6FF",
+    },
+  },
+  outlinedBtn: {
+    color: "#51B893",
+    borderColor: "#51B893",
+    paddingY: "1.2vh",
+    fontSize: "1.1rem",
+    fontWeight: 700,
+    textAlign: "center",
+    whiteSpace: "nowrap",
+    ":hover": {
+      borderColor: "#51B893",
+    },
+  },
 };

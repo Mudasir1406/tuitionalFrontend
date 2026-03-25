@@ -15,17 +15,16 @@ const LearnTogeather: React.FC = () => {
 
         <Typography
           sx={styles.learn}
-          className={leagueSpartan.className}
           component={"h1"}
           variant="h1"
         >
           Let’s Learn Together
         </Typography>
         <Typography
-          sx={[styles.learn, { color: "rgba(56, 182, 255, 1)" }]}
-          className={leagueSpartan.className}
-          component={"h1"}
-          variant="h1"
+          sx={styles.learn}
+          component={"h2"}
+          variant="h2"
+          className="text-accent"
         >
           Anywhere & Everywhere
         </Typography>

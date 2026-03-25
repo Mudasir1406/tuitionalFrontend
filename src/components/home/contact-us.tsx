@@ -191,10 +191,10 @@ const ContactUs: React.FunctionComponent<IProps> = ({
         medium = params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
-          ? "facebook"
-          : "SEO";
+            ? "facebook"
+            : "SEO";
       }
-      
+
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
@@ -220,7 +220,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               alt="girl"
               className="girlGrid"
               style={{
-                position: "absolute",
+                position: "relative",
+                bottom: "0",
               }}
             ></Image>
           </Box>
@@ -233,7 +234,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
               component={"h5"}
               variant="h2"
             >
-              {/* Let&apos;s Get You Started! */}
               Schedule a Call
             </Typography>
             <Typography
@@ -284,6 +284,8 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                     onChange={(e) => handleChange("PhoneNumber", String(e))}
                     inputComponent={CustomInput}
                     style={styles.phoneInput}
+                    placeholder="Enter phone number here ..."
+                    disabled={!formData.EmailAddress}
                   />
                   {errors.PhoneNumber && (
                     <Typography
@@ -299,8 +301,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                     placeholder="Select Curriculum"
                     name="Curriculum"
                     data={filterData?.curriculum || []}
-                    // marginBottom="1.5vh"
-                    // marginTop="1.5vh"
                     value={formData.Curriculum}
                     onChange={handleChange}
                   />
@@ -359,8 +359,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                     name="Subject"
                     placeholder="Select Subjects"
                     data={filterData?.subject || []}
-                    // marginBottom="2vh"
-                    // marginTop="2vh"
                     value={formData.Subject}
                     onChange={handleChange}
                     multiple
@@ -403,7 +401,6 @@ const ContactUs: React.FunctionComponent<IProps> = ({
                 className={leagueSpartan.className}
                 sx={styles.containedButton}
                 type="submit"
-                // onClick={handleSubmit}
               >
                 {loading ? (
                   <CircularProgress
@@ -443,44 +440,14 @@ const styles = {
   },
   heading: {
     display: "flex",
-    // fontSize: {
-    //   xs: "35px",
-    //   sm: "40px",
-    //   md: "45px",
-    //   lg: "55px",
-    // },
-    // lineHeight: {
-    //   xs: "50px",
-    //   sm: "55px",
-    //   md: "60px",
-    //   lg: "65px",
-    // },
-    // fontWeight: 700,
 
-    // marginTop: {
-    //   xs: "60px",
-    //   sm: "80px",
-    //   md: "90px",
-    //   lg: "105px",
-    // },
-    // marginBottom: {
-    //   xs: "40px",
-    //   sm: "20px",
-    //   md: "20px",
-    //   lg: "20px",
-    // },
     position: "relative",
     marginLeft: {
       xs: "0px",
-      // sm: "55px",
-      // md: "60px",
-      // lg: "65px",
     },
-    // width: "100%",
     "::before": {
       content: "''",
       position: "absolute",
-      // zIndex: 10,
       backgroundImage: {
         xs: `url(${linesMobile.src})`,
         sm: `url(${linesInvert.src})`,
@@ -515,14 +482,6 @@ const styles = {
     },
   },
   desc: {
-    // fontSize: {
-    //   xs: "20px",
-    //   sm: "22px",
-    //   md: "22px",
-    //   lg: "22px",
-    // },
-    // fontWeight: 400,
-    // lineHeight: "35px",
     width: {
       xs: "75%",
       sm: "75%",
@@ -559,11 +518,6 @@ const styles = {
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
     height: "5.5vh",
-
-    // height: "5.5vh",
-    // fontSize: "1.7vh",
-    // fontWeight: 400,
-    // minHeight: "50px",
   },
   inputDiv: {
     marginY: "2vh",
@@ -615,9 +569,7 @@ const styles = {
     position: "relative",
   },
   container: {
-    // background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#D7F0FF)",
     position: "relative",
-    // zIndex: -2,
   },
   background: {
     background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#D7F0FF)",

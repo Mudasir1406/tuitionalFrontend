@@ -28,28 +28,44 @@ const Filter = dynamic(() => import("../components/home/filter"), {
 const Trusted = dynamic(() => import("../components/home/trusted"), {
   ssr: false,
   loading: () => (
-    <div style={{
-      height: '200px',
-      backgroundColor: 'transparent',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <div style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#e2e8f0', opacity: 0.5 }} />
+    <div
+      style={{
+        height: "200px",
+        backgroundColor: "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "30px",
+          height: "30px",
+          borderRadius: "50%",
+          backgroundColor: "#e2e8f0",
+          opacity: 0.5,
+        }}
+      />
     </div>
   ),
 });
 const OurClient = dynamic(() => import("../components/home/our-client"), {
   ssr: false,
-  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
+  loading: () => (
+    <div style={{ height: "400px", backgroundColor: "transparent" }} />
+  ),
 });
 const Faqs = dynamic(() => import("../components/home/faqs"), {
   ssr: false,
-  loading: () => <div style={{ height: '300px', backgroundColor: 'transparent' }} />,
+  loading: () => (
+    <div style={{ height: "300px", backgroundColor: "transparent" }} />
+  ),
 });
 const ContactUs = dynamic(() => import("../components/home/contact-us"), {
   ssr: false,
-  loading: () => <div style={{ height: '400px', backgroundColor: 'transparent' }} />,
+  loading: () => (
+    <div style={{ height: "400px", backgroundColor: "transparent" }} />
+  ),
 });
 
 // Footer and non-critical
@@ -57,18 +73,22 @@ const GetStarted = dynamic(
   () => import("@/components/grade-subject-level/get-started"),
   {
     ssr: false,
-    loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
-  }
+    loading: () => (
+      <div style={{ height: "300px", backgroundColor: "#f5f5f5" }} />
+    ),
+  },
 );
 const ServerFooter = dynamic(() => import("../components/server-footer"), {
   ssr: false,
-  loading: () => <div style={{height: '500px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => (
+    <div style={{ height: "500px", backgroundColor: "#f5f5f5" }} />
+  ),
 });
 
 export const metadata: Metadata = {
-  title: "The Best 1-on-1 Online Tutoring Platform in the Gulf Region",
+  title: "Tuitional: Live 1-on-1 IGCSE & A-Level Tutoring in the Gulf",
   description:
-    " Looking for personalized online tutoring and don’t know where to go? Contact Tuitional to ace your examination results through individual online tutoring sessions.",
+    "Struggling to find quality tutors in the Gulf? Tuitional offers live 1-on-1 sessions with 500+ experts for IGCSE, A-Levels & IB. Start today!",
   alternates: {
     canonical: `${SITE_URL}`,
   },
@@ -158,28 +178,26 @@ const Home: React.FC = async () => {
       />
       <Header />
       <Container sx={styles.contanier}>
-        <div className={style.container}>
-          <div className={style["grid-container"]}>
-            <div className={style["hero"]}>
-              <Filter data={filterData} />
+        <div className={style["grid-container"]}>
+          <div className={style["hero"]}>
+            <Filter data={filterData} />
+          </div>
+          <div className={style["hero-picture"]}>
+            <div className={style["image-container"]}>
+              <Image
+                src={homeImage}
+                alt="Student learning with Tuitional"
+                fill
+                priority
+                quality={85}
+                sizes="(max-width: 575px) 90vw, (max-width: 768px) 45vw, (max-width: 1200px) 35vw, 500px"
+                className={style.image}
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgdmlld0JveD0iMCAwIDY0MCA0ODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idHJhbnNwYXJlbnQiIC8+PC9zdmc+"
+                loading="eager"
+              />
             </div>
-            <div className={style["hero-picture"]}>
-              <div className={style["image-container"]}>
-                <Image
-                  src={homeImage}
-                  alt="Student learning with Tuitional"
-                  fill
-                  priority
-                  quality={85}
-                  sizes="(max-width: 575px) 90vw, (max-width: 768px) 45vw, (max-width: 1200px) 35vw, 500px"
-                  className={style.image}
-                  placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgdmlld0JveD0iMCAwIDY0MCA0ODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idHJhbnNwYXJlbnQiIC8+PC9zdmc+"
-                  loading="eager"
-                />
-              </div>
-              <Info />
-            </div>
+            <Info />
           </div>
         </div>
       </Container>
@@ -215,9 +233,9 @@ const styles = {
     paddingTop: {
       xs: "120px",
       sm: "120px",
-      md: 0,
-      lg: 0,
-      xl: 0,
+      md: "120px",
+      lg: "70px",
+      xl: "70px",
     },
     minHeight: { xs: "100%", lg: "100vh" },
     display: "flex",
