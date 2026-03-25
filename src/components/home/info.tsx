@@ -19,7 +19,7 @@ const Info = () => {
         <Box sx={styles.schoolbox}>
           <SchoolOutlinedIcon sx={styles.icon} />
         </Box>
-        <Typography sx={styles.text} variant="subtitle1">
+        <Typography sx={styles.text} variant="h3">
           50000+
         </Typography>
         <Typography sx={styles.text} variant="subtitle2">
@@ -46,7 +46,7 @@ const Info = () => {
               objectFit: "contain",
             }}
           />
-          <Typography sx={styles.text} variant="subtitle1">
+          <Typography sx={styles.text} variant="h3">
             500+{" "}
           </Typography>
           <Typography sx={styles.text} variant="subtitle2">

@@ -461,12 +461,19 @@ body {
 /* Headings */
 h1,
 h2,
-h3,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: inherit;
+}
+
 h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 0.5em;
   color: inherit;
@@ -487,24 +494,25 @@ h2 {
 h3 {
   font-size: 1.5rem;
   line-height: 1.3;
+  letter-spacing: 0;
 }
 
 h4 {
   font-size: 1.25rem;
   line-height: 1.4;
-  font-weight: 600;
+  letter-spacing: 0;
 }
 
 h5 {
   font-size: 1.125rem;
   line-height: 1.4;
-  font-weight: 600;
+  letter-spacing: 0;
 }
 
 h6 {
   font-size: 1rem;
   line-height: 1.5;
-  font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* Base Elements */
@@ -521,6 +529,14 @@ strong {
 small {
   font-size: 0.875rem;
   line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Specific Labels/Caps */
+.label-small {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 a {
@@ -529,8 +545,41 @@ a {
   transition: opacity 0.2s ease;
 }
 
-a:hover {
-  opacity: 0.8;
+a.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* --- STATS --- */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons */
+.btn-text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.category-tag {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* Utils */
@@ -545,7 +594,7 @@ a:hover {
 
 /* Responsive Overrides (Tablets) */
 @media (max-width: 1199px) {
-  h1 {
+  h1, .stat-number {
     font-size: 2.25rem;
   }
   h2 {
@@ -565,9 +614,10 @@ a:hover {
 /* Responsive Overrides (Mobile) */
 @media (max-width: 599px) {
   html {
-    font-size: 15px;
-  } /* Slight reduction for mobile as per plan */
-  h1 {
+    font-size: 15px; /* Slight reduction for mobile as per plan */
+  } 
+  
+  h1, .stat-number {
     font-size: 1.75rem;
   }
   h2 {
@@ -578,6 +628,10 @@ a:hover {
   }
   h4 {
     font-size: 1rem;
+  }
+
+  p, .btn-text {
+    font-size: 0.9375rem; /* 15px on mobile */
   }
 
   /* Input Accessibility: Keep inputs at 16px to prevent iOS zoom */

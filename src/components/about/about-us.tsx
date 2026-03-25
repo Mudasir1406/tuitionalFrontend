@@ -320,8 +320,8 @@ const styles = {
     color: "#2D2D2D",
   },
   textBold: {
-     fontWeight: 600,
-      color: "#2D2D2D",
+    fontWeight: 600,
+    color: "#2D2D2D",
   },
   dec: {
     textAlign: "justify",

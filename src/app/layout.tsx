@@ -32,7 +32,7 @@ export const viewport = {
   viewportFit: 'cover',
   themeColor: '#38b6ff',
 };
-import { leagueSpartan, notoSansArabic } from "./fonts";
+import { leagueSpartan, inter, notoSansArabic } from "./fonts";
 import FbPixelPageView from "./metrics/pixel-tracker";
 
 const DynamicModel = dynamic(() => import("@/components/drawer"), {
@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}
+      className={`${leagueSpartan.variable} ${inter.variable} ${notoSansArabic.variable}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -129,7 +129,7 @@ export default function RootLayout({
 
         <ThemeProvider theme={theme}>
           <I18nProvider>
-            <HtmlWrapper className={`${leagueSpartan.variable} ${notoSansArabic.variable}`}>
+            <HtmlWrapper className={`${leagueSpartan.variable} ${inter.variable} ${notoSansArabic.variable}`}>
               <DrawerProvider>
                 <DynamicModel />
                 <FbPixelPageView />

@@ -50,7 +50,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         <Grid container>
           {data?.map((item, index) => (
             <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
-              <GetStartedBox {...item as any} />
+              <GetStartedBox {...(item as any)} />
             </Grid>
           ))}
         </Grid>
@@ -73,7 +73,7 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index} style={styles.slide}>
-              <GetStartedBox {...item as any} />
+              <GetStartedBox {...(item as any)} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -110,15 +110,8 @@ const styles = {
       content: "''",
       position: "absolute",
       zIndex: 10,
-      // left: {
-      //   xs: -5,
-      //   sm: 10,
-      //   md: 10,
-      //   lg: '40%',
-      // },
-      left: { xs: "14%", sm: "18%", md: "36%" }, // Start positioning from the horizontal center of the parent
-      // transform: "translateX(-68%)", // Move it left by 50% of its own width to align center
 
+      left: { xs: "14%", sm: "18%", md: "36%" },
       top: {
         xs: -20,
         sm: -40,
@@ -165,19 +158,6 @@ const styles = {
     ":hover": {
       boxShadow: "1px 15px 34px 0px #38B6FF66",
       backgroundColor: "#38B6FF",
-      // padding: "18px",
-
-      // letterSpacing: "-2%",
-
-      // borderRadius: "10px",
-      // fontSize: {
-      //   xs: "25px",
-      //   sm: "25px",
-      //   md: "25px",
-      //   lg: "25px",
-      // },
-      // fontWeight: 700,
-      // lineHeight: "18.4px",
       textAlign: "center",
     },
   },
@@ -197,20 +177,12 @@ const styles = {
     flexDirection: "column",
   },
   boxHeading: {
-    // fontSize: "28px",
-    // fontWeight: 600,
-    // lineHeight: "34px",
     textAlign: "center",
-    // height: "100px",
     marginTop: "16px",
     marginBottom: "16px",
   },
   boxDesc: {
-    // fontSize: { xs: "18px", lg: "22px" },
-    // fontWeight: 400,
-    // lineHeight: { xs: "28px", lg: "32px" },
     textAlign: "center",
-    // height: "150px",
     marginBottom: "24px",
   },
 };
@@ -235,13 +207,13 @@ const GetStartedBox: React.FC<Props> = ({
     if (typeof window !== "undefined") {
       const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
       setIsLargeOrAbove(mediaQuery.matches);
-      
+
       const handleChange = (e: MediaQueryListEvent) => {
         setIsLargeOrAbove(e.matches);
       };
-      
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
     }
   }, [theme]);
 

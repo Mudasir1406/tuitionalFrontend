@@ -12,7 +12,7 @@ const TopTalent: React.FC = () => {
       <Grid item xs={12} md={7}>
         <Box
           sx={{
-            height: {xs:'80%',md:"75%"},
+            height: { xs: "80%", md: "75%" },
             width: "100%",
             display: "flex",
             justifyContent: "center",
