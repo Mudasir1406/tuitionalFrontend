@@ -4,16 +4,22 @@ import { Button, Box } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { leagueSpartan } from "@/app/fonts";
 
-const RouteLanguageSwitcher: React.FC = () => {
+interface RouteLanguageSwitcherProps {
+  fullWidth?: boolean;
+}
+
+const RouteLanguageSwitcher: React.FC<RouteLanguageSwitcherProps> = ({
+  fullWidth,
+}) => {
   const pathname = usePathname();
   const router = useRouter();
-  
-  const isArabic = pathname.startsWith('/ar');
-  
+
+  const isArabic = pathname.startsWith("/ar");
+
   const handleLanguageSwitch = () => {
     if (isArabic) {
       // Switch to English - remove /ar prefix
-      const englishPath = pathname.replace('/ar', '') || '/';
+      const englishPath = pathname.replace("/ar", "") || "/";
       router.push(englishPath);
     } else {
       // Switch to Arabic - add /ar prefix
@@ -23,14 +29,27 @@ const RouteLanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <Box sx={styles.container}>
+    <Box
+      sx={[styles.container, fullWidth ? { width: "100%", marginX: 0 } : {}]}
+    >
       <Button
         onClick={handleLanguageSwitch}
         variant="outlined"
-        sx={[styles.button, isArabic && styles.buttonRTL]}
+        sx={[
+          styles.button,
+          isArabic ? styles.buttonRTL : {},
+          fullWidth
+            ? {
+                width: "100%",
+                height: "auto",
+                paddingY: "1.2vh",
+                fontSize: "1.1rem",
+              }
+            : {},
+        ]}
         className={leagueSpartan.className}
       >
-        {isArabic ? 'English' : 'عربي'}
+        {isArabic ? "English" : "عربي"}
       </Button>
     </Box>
   );
@@ -46,19 +65,31 @@ const styles = {
     marginRight: { xs: "8px", lg: "12px" },
   },
   button: {
-    minWidth: "70px",
-    height: "35px",
-    fontSize: "14px",
-    fontWeight: 600,
     borderRadius: "8px",
     borderColor: "#38B6FF",
     color: "#38B6FF",
     textTransform: "none",
+    paddingY: "1.2vh",
+    paddingX: "1.5vw",
+    fontSize: "1.5vh",
+    fontWeight: 700,
+    lineHeight: "1.84vh",
+    textAlign: "center",
+    minWidth: "fit-content",
+    whiteSpace: "nowrap",
+    transition: "none",
     ":hover": {
       borderColor: "#38B6FF",
       backgroundColor: "rgba(56, 182, 255, 0.1)",
     },
+    display: {
+      xs: "none",
+      sm: "none",
+      md: "none",
+      lg: "flex",
+    },
   },
+
   buttonRTL: {
     fontFamily: "'Noto Sans Arabic', sans-serif",
   },

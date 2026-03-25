@@ -1,138 +1,133 @@
 "use client";
 
 import { createTheme } from "@mui/material/styles";
-import { leagueSpartan } from "@/app/fonts";
+import { leagueSpartan, inter } from "@/app/fonts";
+import { TYPOGRAPHY_TOKENS } from "./typographyTokens";
+
+/**
+ * Tuitional Brand Theme Customization
+ * Optimized for Typography & Font Standardisation Plan (March 2026)
+ * Uses League Spartan for Headings and Inter for Body
+ */
 
 const theme = createTheme({
   typography: {
-    fontFamily: `${leagueSpartan.style.fontFamily}`, // Add font family globally
+    // Global Default Font (Body)
+    fontFamily: inter.style.fontFamily,
 
-    // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
+    // Headings (H1-H6)
     h1: {
-      // fontSize: "6.88vh",
-      // fontWeight: 700,
-      // lineHeight: "7.5vh",
-      // "@media (max-width:900px)": {
-      //   // fontSize: "50px",
-      // },
-      // "@media (max-width:600px)": {
-      //   fontSize: "4.9vh",
-      //   lineHeight: "5.5vh",
-      // },
-      fontSize: "3.1rem", // ≈ 50px (if 1rem=16px)
-      lineHeight: 1.2,
-      fontWeight: 700,
-      "@media (max-width: 1200px)": {
-        fontSize: "2.5rem", // ≈ 40px
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h1.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h1.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h1.lineHeight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.h1.letterSpacing,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.h1.rem,
       },
-      "@media (max-width: 900px)": {
-        fontSize: "2rem", // ≈ 32px
-      },
-      "@media (max-width: 600px)": {
-        fontSize: "1.5rem", // ≈ 28px
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.h1.rem,
       },
     },
-
     h2: {
-      fontWeight: 600,
-      fontSize: "2.7rem", // ≈ 40px
-      "@media (max-width: 900px)": {
-        fontSize: "2rem", // ≈ 32px
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h2.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h2.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h2.lineHeight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.h2.letterSpacing,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.h2.rem,
       },
-      "@media (max-width: 600px)": {
-        fontSize: "1.1rem", // ≈ 24px
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.h2.rem,
       },
-      // fontSize: "5.29vh",
-      // lineHeight: "6.6vh",
-      // "@media (max-width:900px)": {
-      //   // fontSize: "40px",
-      // },
-      // "@media (max-width:600px)": {
-      //   fontSize: "3.8vh",
-      //   lineHeight: "4.6vh",
-      // },
     },
     h3: {
-      fontSize: "4.23vh",
-      fontWeight: 600,
-      lineHeight: "5.56vh",
-      "@media (max-width:900px)": {
-        // fontSize: "32px",
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h3.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h3.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h3.lineHeight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.h3.letterSpacing,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.h3.rem,
       },
-      "@media (max-width:600px)": {
-        // fontSize: "30px",
-        fontSize: "3.6vh",
-        lineHeight: "4.4vh",
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.h3.rem,
       },
     },
     h4: {
-      fontSize: "3.7vh",
-      fontWeight: 500,
-      lineHeight: 1.5,
-      "@media (max-width:900px)": {
-        // fontSize: "25px",
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h4.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h4.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h4.lineHeight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.h4.letterSpacing,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.h4.rem,
       },
-      "@media (max-width:600px)": {
-        // fontSize: "20px",
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.h4.rem,
       },
     },
+    h5: {
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h5.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h5.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h5.lineHeight,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.h5.rem,
+      },
+    },
+    h6: {
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.h6.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.h6.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.h6.lineHeight,
+    },
 
+    // Body & Captions
     body1: {
-      fontWeight: 400,
-      // fontSize: "2vh",
-      fontSize: "1rem",
-      lineHeight: "2.8vh",
-      "@media (max-width:600px)": {
-        // fontSize: "1.8vh",
-        fontSize: "0.875rem", // 14px
-        lineHeight: "2.1vh",
+      fontSize: TYPOGRAPHY_TOKENS.desktop.body.rem,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.body.lineHeight,
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.body.rem,
       },
     },
     body2: {
-      fontSize: "2.667vh",
-      fontWeight: 400,
-      lineHeight: "3.5vh",
-      // textAlign: "left",
-
-      "@media (max-width:900px)": {
-        // fontSize: "16px",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "0.9rem", // ≈ 28px
-        lineHeight: "1.1rem",
-        // textAlign: "left",
-      },
+      fontSize: TYPOGRAPHY_TOKENS.desktop.small.rem,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.small.lineHeight,
     },
 
+    // Special Variants
     subtitle1: {
-      fontSize: "3vh",
-      fontWeight: 600,
-      lineHeight: "3.9vh",
-      "@media (max-width:600px)": {
-        fontSize: "2.3vh",
-        lineHeight: "2.9vh",
+      fontFamily: leagueSpartan.style.fontFamily,
+      fontSize: TYPOGRAPHY_TOKENS.desktop.statNumber.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.statNumber.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.statNumber.lineHeight,
+      "@media (max-width: 1199px)": {
+        fontSize: TYPOGRAPHY_TOKENS.tablet.statNumber.rem,
+      },
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.statNumber.rem,
       },
     },
     subtitle2: {
-      fontSize: "2.9vh",
-      fontWeight: 600,
-      lineHeight: "3.333vh",
-      "@media (max-width:600px)": {
-        fontSize: "2vh",
-        lineHeight: "2.8vh",
-        textAlign: "left",
-      },
+      fontSize: TYPOGRAPHY_TOKENS.desktop.statLabel.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.statLabel.weight,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.statLabel.lineHeight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.statLabel.letterSpacing,
+      textTransform: "uppercase",
     },
     caption: {
-      fontSize: "2.3vh",
-      fontWeight: 400,
-      lineHeight: "2.5vh",
-      "@media (max-width:900px)": {
-        // fontSize: "16px",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "1.8vh",
-        lineHeight: "2.3vh",
+      fontSize: TYPOGRAPHY_TOKENS.desktop.small.rem,
+      lineHeight: TYPOGRAPHY_TOKENS.desktop.small.lineHeight,
+    },
+    button: {
+      fontSize: TYPOGRAPHY_TOKENS.desktop.button.rem,
+      fontWeight: TYPOGRAPHY_TOKENS.desktop.button.weight,
+      letterSpacing: TYPOGRAPHY_TOKENS.desktop.button.letterSpacing,
+      textTransform: "none",
+      "@media (max-width: 599px)": {
+        fontSize: TYPOGRAPHY_TOKENS.mobile.button.rem,
       },
     },
   },
@@ -140,56 +135,17 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          fontSize: "2.667vh", // Set the font size for all buttons
-          fontWeight: 500,
-          textTransform: "none", // Optional: Disable uppercase transformation
-          "@media (max-width:900px)": {
-            fontSize: "2vh", // Adjust font size for medium screens
-          },
-          "@media (max-width:600px)": {
-            fontSize: "1.9vh",
-          },
+          borderRadius: "8px",
+          padding: "10px 24px",
         },
       },
     },
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: "2.667vh",
-          fontWeight: 400,
-          // lineHeight: "3.5vh",
-          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
-
-          "@media (max-width:900px)": {
-            // fontSize: "16px",
-          },
-          "@media (max-width:600px)": {
-            fontSize: "2.1vh",
-            // lineHeight: "2.4vh",
-            // height: "42px",
-            // padding: "0",
-          },
-        },
-      },
-    },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          // fontSize: "20px",
-          // fontWeight: 400,
-          // fontFamily: `${leagueSpartan.style.fontFamily}, sans-serif`,
-          fontSize: "2vh",
-          fontWeight: 400,
-          lineHeight: "3.5vh",
-          fontFamily: `${leagueSpartan.style.fontFamily}`, // Use custom font here
-
-          "@media (max-width:900px)": {
-            // fontSize: "16px",
-          },
-          "@media (max-width:600px)": {
-            fontSize: "1.9vh",
-            lineHeight: "2.4vh",
-            // height: "42px",
+          fontSize: TYPOGRAPHY_TOKENS.desktop.formInput.rem,
+          "@media (max-width: 599px)": {
+            fontSize: TYPOGRAPHY_TOKENS.mobile.formInput.rem, // Ensure 16px to prevent iOS zoom
           },
         },
       },
@@ -200,8 +156,13 @@ const theme = createTheme({
           h1: "h1",
           h2: "h2",
           h3: "h3",
+          h4: "h4",
+          h5: "h5",
+          h6: "h6",
           body1: "p",
           body2: "p",
+          subtitle1: "div",
+          subtitle2: "span",
         },
       },
     },

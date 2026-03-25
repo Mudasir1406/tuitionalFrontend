@@ -19,10 +19,10 @@ const Info = () => {
         <Box sx={styles.schoolbox}>
           <SchoolOutlinedIcon sx={styles.icon} />
         </Box>
-        <Typography sx={styles.text} className={leagueSpartan.className}>
+        <Typography sx={styles.text} variant="subtitle1">
           50000+
         </Typography>
-        <Typography sx={styles.text} className={leagueSpartan.className}>
+        <Typography sx={styles.text} variant="subtitle2">
           Registered Students
         </Typography>
       </Box>
@@ -31,7 +31,7 @@ const Info = () => {
           <Box sx={styles.absoluteBoxOrange}>
             <VideocamOutlinedIcon sx={styles.icon} />
           </Box>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text} variant="subtitle2">
             100+ Live Sessions
           </Typography>
         </Box>
@@ -46,10 +46,10 @@ const Info = () => {
               objectFit: "contain",
             }}
           />
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text} variant="subtitle1">
             500+{" "}
           </Typography>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
+          <Typography sx={styles.text} variant="subtitle2">
             Tutor Screened
           </Typography>
         </Box>
@@ -64,19 +64,6 @@ const styles = {
   icon: { color: "white" },
   text: {
     color: "black",
-    fontSize: {
-      xs: "1.5vh", // Responsive font size
-      sm: "1.8vh",
-      md: "2vh",
-      lg: "2.2vh",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "2vh", // Responsive line height
-      sm: "2.2vh",
-      md: "2.4vh",
-      lg: "2.6vh",
-    },
     textAlign: "center",
   },
   container: {

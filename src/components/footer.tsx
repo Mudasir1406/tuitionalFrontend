@@ -38,7 +38,13 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               }}
               spacing={2}
             >
-              <Grid item lg={1} sm={12}>
+              <Grid
+                item
+                lg={1}
+                sm={12}
+                display={"flex"}
+                justifyContent={"center"}
+              >
                 <Box sx={styles.imageContanier}>
                   <Image
                     src={plan.src}
@@ -55,13 +61,9 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   ></Image>
                 </Box>
               </Grid>
-              <Grid item lg={5.5}>
-                <Typography
-                  variant="subtitle1"
-                  sx={styles.admissionText}
-                  className={leagueSpartan.className}
-                >
-                  {t('footer.admission_text')}
+              <Grid item lg={6}>
+                <Typography variant="subtitle1" sx={styles.admissionText}>
+                  {t("footer.admission_text")}
                 </Typography>
               </Grid>
               <Grid item lg={3}>
@@ -72,18 +74,14 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     height={phone.height}
                     alt="phone"
                   ></Image>
-                  <Typography
-                    variant="subtitle1"
-                    sx={styles.phoneText}
-                    className={leagueSpartan.className}
-                  >
+                  <Typography variant="h2" sx={styles.phoneText}>
                     +971 56 490 0376
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={2.5}>
+              <Grid item lg={2}>
                 <PopUpButton
-                  text={t('footer.enroll_now')}
+                  text={t("footer.enroll_now")}
                   href="popup"
                   sx={styles.contactButton}
                 />
@@ -94,7 +92,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
             container
             columnSpacing={5}
             sx={{
-              marginY: {
+              marginTop: {
                 xs: "70px",
                 sm: "80px",
                 md: "90px",
@@ -114,7 +112,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     display: { xs: "flex", sm: "flex" },
 
                     alignItems: "center",
-                    justifyContent: "flex-start",
+                    justifyContent: { xs: "center", lg: "flex-start" },
                   }}
                 >
                   <Image
@@ -125,12 +123,8 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     alt="logo"
                   ></Image>
                 </Box>
-                <Typography
-                  sx={styles.desc}
-                  className={leagueSpartan.className}
-                  variant="body2"
-                >
-                  {t('footer.description')}
+                <Typography sx={styles.desc} variant="body2">
+                  {t("footer.description")}
                 </Typography>
                 <Box sx={styles.socialBox}>
                   {footerData?.link?.facebook && (
@@ -183,173 +177,46 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
               <Box sx={styles.gridContent}>
-                <Typography
-                  sx={styles.heading}
-                  variant="subtitle2"
-                  className={leagueSpartan.className}
-                >
-                  {t('footer.sections.curriculums')}
+                <Typography sx={styles.heading} variant="subtitle2">
+                  {t("footer.sections.curriculums")}
                 </Typography>
-                {/* {footerData?.curriculums.map((item, index) => (
-                  <Typography
-                    sx={styles.text}
-                    variant="body2"
-                    key={index}
-                    className={leagueSpartan.className}
-                  >
-                    {item}
-                  </Typography>
-                ))} */}
-                {Array.isArray(footerData?.curriculums) && footerData.curriculums.length > 0 && (
-                  <FooterLinks footerData={footerData.curriculums} exact />
-                )}
-                {/* {footerData?.curriculums.slice(0, 10).map((item, index) => {
-                  const href = findExactSubjectURL(item);
-                  return (
-                    <Link
-                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
-                      key={index}
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit", // Adjust this to inherit the text color
-                      }}
-                    >
-                      <Typography
-                        sx={styles.text}
-                        variant="body2"
-                        key={index}
-                        className={leagueSpartan.className}
-                      >
-                        {item}
-                      </Typography>
-                    </Link>
-                  );
-                })} */}
+
+                {Array.isArray(footerData?.curriculums) &&
+                  footerData.curriculums.length > 0 && (
+                    <FooterLinks footerData={footerData.curriculums} exact />
+                  )}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
-              <Box
-                sx={[
-                  styles.gridContent,
-                  {
-                    height: {
-                      xs: "100%",
-                      sm: "100%",
-                      md: "100%",
-                      lg: "650px",
-                    },
-                    flexWrap: "wrap",
-                  },
-                ]}
-              >
-                <Typography
-                  sx={styles.heading}
-                  variant="subtitle2"
-                  className={leagueSpartan.className}
-                >
-                  {t('footer.sections.subjects')}
+              <Box sx={[styles.gridContent]}>
+                <Typography sx={styles.heading} variant="subtitle2">
+                  {t("footer.sections.subjects")}
                 </Typography>
-                {/* {footerData?.subjects.slice(0, 10).map((item, index) => (
-                  <Link
-                    href={`/${getFooterUrl( item.toLowerCase())}`}
-                    style={{
-                      textDecoration: "none",
-                      textDecorationColor: "none",
-                    }}
-                    key={index}
-                  >
-                    <Typography
-                      // onClick={() => handleRedirect(item)}
-                      sx={styles.text}
-                      variant="body2"
-                      key={index}
-                      className={leagueSpartan.className}
-                    >
-                      {item}
-                    </Typography>{" "}
-                  </Link>
-                ))} */}
 
-                {Array.isArray(footerData?.subjects) && footerData.subjects.length > 0 && (
-                  <FooterLinks footerData={footerData.subjects} exact />
-                )}
-
-                {/* {footerData?.subjects.slice(0, 10).map((item, index) => {
-                  const href = findExactSubjectURL(item);
-                  return (
-                    <Link
-                      href={href || "/"} // Fallback to the home page if the subject isn't mapped
-                      key={index}
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit", // Adjust this to inherit the text color
-                      }}
-                    >
-                      <Typography
-                        sx={styles.text}
-                        variant="body2"
-                        key={index}
-                        className={leagueSpartan.className}
-                      >
-                        {item}
-                      </Typography>
-                    </Link>
-                  );
-                })} */}
+                {Array.isArray(footerData?.subjects) &&
+                  footerData.subjects.length > 0 && (
+                    <FooterLinks footerData={footerData.subjects} exact />
+                  )}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} xs={6}>
               <Box sx={styles.gridContent}>
                 <Box>
-                  <Typography
-                    sx={styles.heading}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
-                    {t('footer.sections.get_help')}
+                  <Typography sx={styles.heading} variant="subtitle2">
+                    {t("footer.sections.get_help")}
                   </Typography>
 
-                  {/* {footerData?.getHelp.map((item, index) => (
-                    <Typography
-                      sx={styles.text}
-                      variant="body2"
-                      key={index}
-                      className={leagueSpartan.className}
-                    >
-                      {item}
-                    </Typography>
-                  ))} */}
-                  {Array.isArray(footerData?.getHelp) && footerData.getHelp.length > 0 && (
-                    <FooterLinks footerData={footerData.getHelp} exact={false} />
-                  )}
-
-                  {/* {footerData?.getHelp.slice(0, 10).map((item, index) => {
-                    const href = `/${generateSlug(item)}`;
-                    return (
-                      <Link
-                        href={href || "/"} // Fallback to the home page if the subject isn't mapped
-                        key={index}
-                        style={{
-                          textDecoration: "none",
-                          color: "inherit", // Adjust this to inherit the text color
-                        }}
-                      >
-                        <Typography
-                          sx={styles.text}
-                          variant="body2"
-                          key={index}
-                          className={leagueSpartan.className}
-                        >
-                          {item}
-                        </Typography>
-                      </Link>
-                    );
-                  })} */}
+                  {Array.isArray(footerData?.getHelp) &&
+                    footerData.getHelp.length > 0 && (
+                      <FooterLinks
+                        footerData={footerData.getHelp}
+                        exact={false}
+                      />
+                    )}
                 </Box>
                 <Box sx={{ display: { xs: "none", lg: "block" } }}>
                   <Typography
                     variant="subtitle2"
-                    className={leagueSpartan.className}
                     sx={[
                       styles.heading,
                       {
@@ -358,36 +225,34 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       },
                     ]}
                   >
-                    {t('footer.sections.about_us')}
+                    {t("footer.sections.about_us")}
                   </Typography>
-                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
-                    if (!item || typeof item !== 'string' || item.trim() === '') {
-                      return null;
-                    }
-                    let url = findAboutUsURL(item);
-                    // Add /ar prefix for Arabic locale if not already present
-                    if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
-                      url = `/ar${url}`;
-                    }
-                    return (
-                      <Link
-                        href={url}
-                        style={{
-                          textDecoration: "none",
-                          textDecorationColor: "none",
-                        }}
-                        key={index}
-                      >
-                        <Typography
-                          sx={styles.text}
-                          variant="body2"
-                          className={leagueSpartan.className}
-                        >
-                          {item}
-                        </Typography>
-                      </Link>
-                    );
-                  })}
+                  {Array.isArray(footerData?.aboutUs) &&
+                    footerData.aboutUs.map((item, index) => {
+                      if (
+                        !item ||
+                        typeof item !== "string" ||
+                        item.trim() === ""
+                      ) {
+                        return null;
+                      }
+                      let url = findAboutUsURL(item);
+                      // Add /ar prefix for Arabic locale if not already present
+                      if (
+                        locale === "ar" &&
+                        url !== "/" &&
+                        !url.startsWith("/ar")
+                      ) {
+                        url = `/ar${url}`;
+                      }
+                      return (
+                        <Link href={url} key={index}>
+                          <Typography sx={styles.text} variant="body2">
+                            {item}
+                          </Typography>
+                        </Link>
+                      );
+                    })}
                 </Box>
               </Box>
             </Grid>
@@ -395,7 +260,6 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               <Box sx={styles.gridContent}>
                 <Box sx={{ display: { xs: "block", lg: "none" } }}>
                   <Typography
-                    className={leagueSpartan.className}
                     sx={[
                       styles.heading,
                       {
@@ -404,44 +268,41 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       },
                     ]}
                   >
-                    {t('footer.sections.about_us')}
+                    {t("footer.sections.about_us")}
                   </Typography>
-                  {Array.isArray(footerData?.aboutUs) && footerData.aboutUs.map((item, index) => {
-                    if (!item || typeof item !== 'string' || item.trim() === '') {
-                      return null;
-                    }
-                    let url = findAboutUsURL(item);
-                    // Add /ar prefix for Arabic locale if not already present
-                    if (locale === 'ar' && url !== "/" && !url.startsWith('/ar')) {
-                      url = `/ar${url}`;
-                    }
-                    return (
-                      <Link
-                        href={url}
-                        style={{ textDecoration: "none" }}
-                        key={index}
-                      >
-                        <Typography
-                          sx={styles.text}
-                          variant="body2"
-                          className={leagueSpartan.className}
-                        >
-                          {item}
-                        </Typography>
-                      </Link>
-                    );
-                  })}
+                  {Array.isArray(footerData?.aboutUs) &&
+                    footerData.aboutUs.map((item, index) => {
+                      if (
+                        !item ||
+                        typeof item !== "string" ||
+                        item.trim() === ""
+                      ) {
+                        return null;
+                      }
+                      let url = findAboutUsURL(item);
+                      // Add /ar prefix for Arabic locale if not already present
+                      if (
+                        locale === "ar" &&
+                        url !== "/" &&
+                        !url.startsWith("/ar")
+                      ) {
+                        url = `/ar${url}`;
+                      }
+                      return (
+                        <Link href={url} key={index}>
+                          <Typography sx={styles.text} variant="body2">
+                            {item}
+                          </Typography>
+                        </Link>
+                      );
+                    })}
                 </Box>
               </Box>
             </Grid>
           </Grid>
           <Divider sx={{ color: "black", width: "78%" }}></Divider>
-          <Typography
-            sx={styles.rights}
-            variant="subtitle2"
-            className={leagueSpartan.className}
-          >
-            {t('footer.copyright')}
+          <Typography sx={styles.rights} variant="subtitle2">
+            {t("footer.copyright")}
           </Typography>
         </Box>
       </Box>
@@ -493,14 +354,6 @@ const styles = {
     justifyContent: "center",
   },
   admissionText: {
-    // fontSize: {
-    //   xs: "4.5vw",
-    //   sm: "4.5vw",
-    //   md: "3.5vw",
-    //   lg: "2vw",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "32px",
     marginLeft: "10px",
     color: "white",
     textAlign: {
@@ -524,33 +377,18 @@ const styles = {
     width: { xs: "80%", sm: "80%", md: "85%" },
   },
   phoneText: {
-    // fontSize: {
-    //   xs: "5vw",
-    //   sm: "3vw",
-    //   md: "1.5vw",
-    //   lg: "1.5vw",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "23px",
     color: "white",
     marginX: "10px",
   },
   contactButton: {
     boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
     backgroundColor: "white",
-
-    // fontSize: {
-    //   xs: "4vw",
-    //   sm: "2.1vw",
-    //   md: "2vw",
-    //   lg: "1.4vw",
-    // },
     borderRadius: "10px",
     letterSpacing: "-2%",
-    // fontWeight: 700,
     lineHeight: "23px",
     color: "#009BF5",
     textTransform: "none",
+    width: "100%",
     paddingY: {
       xs: "1.5vh",
       sm: "1.5vh",
@@ -571,14 +409,6 @@ const styles = {
     },
   },
   desc: {
-    // fontSize: {
-    //   xs: "17px",
-    //   sm: "21px",
-    //   md: "22px",
-    //   lg: "22px",
-    // },
-    // fontWeight: 400,
-    // lineHeight: "32px",
     marginTop: "40px",
     textAlign: {
       xs: "center",
@@ -593,30 +423,12 @@ const styles = {
     flexDirection: "column",
   },
   heading: {
-    // fontSize: {
-    //   xs: "22px",
-    //   sm: "26px",
-    //   md: "28px",
-    //   lg: "30px",
-    // },
     fontWeight: 700,
-    // lineHeight: {
-    //   xs: "26px",
-    //   sm: "28px",
-    //   md: "30px",
-    //   lg: "32px",
-    // },
+
     marginBottom: "15px",
     marginTop: "12px",
   },
   text: {
-    // fontSize: {
-    //   xs: "19px",
-    //   sm: "20px",
-    //   md: "21px",
-    //   lg: "21px",
-    // },
-    // fontWeight: 400,
     lineHeight: {
       xs: "35px",
       sm: "40px",
@@ -626,19 +438,6 @@ const styles = {
     color: "black",
   },
   rights: {
-    // fontSize: {
-    //   xs: "12px",
-    //   sm: "20px",
-    //   md: "22px",
-    //   lg: "25px",
-    // },
-    // fontWeight: 500,
-    // lineHeight: {
-    //   xs: "26px",
-    //   sm: "28px",
-    //   md: "30px",
-    //   lg: "32px",
-    // },
     marginY: {
       xs: "20px",
       sm: "30px",

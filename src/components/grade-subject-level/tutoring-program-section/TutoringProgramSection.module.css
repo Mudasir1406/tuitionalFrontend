@@ -101,14 +101,14 @@
 }
 
 .contactButton {
-  box-shadow: 1px 15px 34px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 1);
   background-color: white;
   font-size: 4vw;
   border-radius: 10px;
   letter-spacing: -2%;
   font-weight: 700;
   line-height: 23px;
-  color: #009bf5;
+  color: rgba(56, 182, 255, 1);
   text-transform: none;
   padding: 15px 25px;
 }
@@ -138,5 +138,5 @@
   background-color: white;
   border-radius: 10px;
   letter-spacing: -2%;
-  box-shadow: 1px 15px 34px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 15px 34px 0px rgba(56, 182, 255, 1);
 }

@@ -8,6 +8,7 @@ import { I18nProvider } from "@/context/language-context";
 import HtmlWrapper from "@/components/html-wrapper";
 import Metrics from "./metrics";
 import Script from "next/script";
+import UniversalSchema from "@/components/seo/UniversalSchema";
 import theme from "./assets/css/theme";
 import "./globals.css";
 
@@ -76,6 +77,7 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
+        <UniversalSchema />
         {/* Mobile performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />

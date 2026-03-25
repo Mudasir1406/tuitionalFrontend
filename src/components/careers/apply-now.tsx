@@ -151,13 +151,13 @@ const ApplyNow: React.FunctionComponent = () => {
     const formDataObject = new FormData();
 
     Object.entries(formData).map((value) =>
-      formDataObject.append(value[0], value[1])
+      formDataObject.append(value[0], value[1]),
     );
 
     const keyValuePairs: string[] = [];
     for (const [key, value] of Array.from(formDataObject.entries())) {
       keyValuePairs.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
+        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`,
       );
     }
 
@@ -175,7 +175,7 @@ const ApplyNow: React.FunctionComponent = () => {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
           },
-        }
+        },
       );
       await sendEmail({
         // recipientEmail: "careers@tuitionaledu.com",
@@ -213,38 +213,7 @@ const ApplyNow: React.FunctionComponent = () => {
       });
     }
   };
-  // React.useEffect(() => {
-  //   const getClientLocation = async () => {
-  //     const browser = navigator.userAgent;
-  //     const pageURL = window.location.href;
-  //     const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-  //     const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
-  //     const params = new URLSearchParams(window.location.search);
-  //     try {
-  //       const res = await fetch("https://ipinfo.io/json");
-  //       const locationData = await res.json();
 
-  //       setFormData((prev) => ({
-  //         ...prev,
-  //         Browser: browser,
-  //         SourcePageURL: pageURL,
-  //         Date: currentDate,
-  //         Time: currentTime,
-  //         IP: locationData?.ip,
-  //         Country: locationData?.country,
-  //         Medium: params.get("gad_source")
-  //           ? "google Ads"
-  //           : params.get("fbclid")
-  //           ? "facebook"
-  //           : "SEO",
-  //       }));
-  //     } catch (error) {
-  //       console.error("Error fetching location data:", error);
-  //     }
-  //   };
-
-  //   getClientLocation();
-  // }, []);
   const geoData = useGeoLocation();
 
   React.useEffect(() => {
@@ -265,8 +234,8 @@ const ApplyNow: React.FunctionComponent = () => {
         Medium: params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
-          ? "facebook"
-          : "SEO",
+            ? "facebook"
+            : "SEO",
       }));
     }
   }, [geoData]);
@@ -341,8 +310,6 @@ const ApplyNow: React.FunctionComponent = () => {
               >
                 <Grid item xs={12} md={12} lg={6}>
                   <Input
-                    // style={{ width: "93%" }}
-                    // style={{ padding: "0 8px", height: "5.7vh" }}
                     name="FirstName"
                     value={formData.FirstName}
                     onChange={handleChange}
@@ -362,8 +329,6 @@ const ApplyNow: React.FunctionComponent = () => {
 
                   <Box sx={styles.my}>
                     <Input
-                      // style={{ width: "93%" }}
-                      // style={{ padding: "0 8px", height: "5.7vh" }}
                       name="EmailAddress"
                       value={formData.EmailAddress}
                       onChange={handleChange}
@@ -382,8 +347,6 @@ const ApplyNow: React.FunctionComponent = () => {
                     )}
                   </Box>
                   <Input
-                    // style={{ width: "93%" }}
-                    // style={{ padding: "0 8px", height: "5.7vh" }}
                     name="Country"
                     value={formData.Country}
                     onChange={handleChange}
@@ -403,9 +366,6 @@ const ApplyNow: React.FunctionComponent = () => {
                 </Grid>
                 <Grid item xs={12} lg={6}>
                   <Input
-                    // style={{ width: "93%" }}
-                    // style={{ padding: "0 8px", height: "5.7vh" }}
-                    // style={{ height: "5.7vh" }}
                     name="LastName"
                     value={formData.LastName}
                     onChange={handleChange}
@@ -521,19 +481,6 @@ export default ApplyNow;
 const styles = {
   heading: {
     display: "flex",
-    // fontSize: {
-    //   xs: "35px",
-    //   sm: "40px",
-    //   md: "45px",
-    //   lg: "55px",
-    // },
-    // lineHeight: {
-    //   xs: "50px",
-    //   sm: "55px",
-    //   md: "60px",
-    //   lg: "65px",
-    // },
-    // fontWeight: 700,
 
     marginTop: {
       xs: "0px",
@@ -550,15 +497,12 @@ const styles = {
     position: "relative",
     marginLeft: {
       xs: "0px",
-      // sm: "55px",
       md: "60px",
       lg: "65px",
     },
-    // width: "100%",
     "::before": {
       content: "''",
       position: "absolute",
-      // zIndex: 10,
       backgroundImage: {
         xs: `url(${linesMobile.src})`,
         sm: `url(${linesInvert.src})`,
@@ -599,9 +543,7 @@ const styles = {
   inputDiv: {
     display: "flex",
     flexDirection: { xs: "column", lg: "row" },
-
     columnGap: "24px",
-    // rowGap: "12px",
     width: "100%",
     flex: 1,
   },
@@ -701,14 +643,7 @@ const styles = {
   },
   input: {
     backgroundColor: "white",
-    // marginY: "12px",
     width: "100%",
-    // outline: "none",
-    // ":focus-visible": {
-    //   outline: "none",
-    // },
-    // width: "95%"
-    // height:'',
     position: "relative",
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",

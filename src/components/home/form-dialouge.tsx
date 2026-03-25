@@ -164,8 +164,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
         Medium: params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
-          ? "facebook"
-          : "SEO",
+            ? "facebook"
+            : "SEO",
       }));
     }
   }, [geoData]);
@@ -342,15 +342,15 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
             <Box sx={styles.inputDiv}>
               <div style={styles.div}>
-                {formData.EmailAddress && (
-                  <PhoneInput
-                    defaultCountry="SA"
-                    value={formData?.PhoneNumber || ""}
-                    onChange={(e) => handleChange("PhoneNumber", String(e))}
-                    inputComponent={CustomInput}
-                    style={styles.phoneInput}
-                  />
-                )}
+                <PhoneInput
+                  defaultCountry="SA"
+                  value={formData?.PhoneNumber || ""}
+                  onChange={(e) => handleChange("PhoneNumber", String(e))}
+                  inputComponent={CustomInput}
+                  style={styles.phoneInput}
+                  disabled={!formData.EmailAddress}
+                  placeholder="Enter phone number here ..."
+                />
 
                 {errors.PhoneNumber && (
                   <Typography
@@ -644,7 +644,6 @@ const styles = {
     paddingLeft: "10px",
     backgroundColor: "white",
     marginTop: "1.5vh",
-    // marginBottom: "1.5vh",
     outline: "none",
     ":focusVisible": {
       outline: "none",
@@ -653,11 +652,9 @@ const styles = {
     zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     borderRadius: "10px",
-    // height: "42px",
     height: "5.5vh",
-
-    // fontSize: "1.7vh",
-    // fontWeight: 400,
-    // minHeight: "50px",
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    },
   },
 };
