@@ -252,12 +252,7 @@ const ContactUs: React.FunctionComponent<IProps> = ({
             >
               <Box sx={styles.formBox} />
               <Box sx={styles.formInner} />
-              <Grid
-                container
-                columnSpacing={2}
-                // rowSpacing={2}
-                sx={{ zIndex: 1 }}
-              >
+              <Grid container columnSpacing={2} sx={{ zIndex: 1 }}>
                 <Grid item lg={6} md={12} sm={12} xs={12}>
                   <Box sx={styles.inputDiv}>
                     <Input
@@ -587,14 +582,12 @@ const styles = {
     backgroundColor: "white",
     marginY: "2vh",
     position: "relative",
-    // zIndex: 2,
     color: "rgba(0,0,0,0.77)",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
     },
     boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
     borderRadius: "5px",
-    // zIndex:1,
   },
   containedButton: {
     display: "flex",

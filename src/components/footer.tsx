@@ -61,12 +61,12 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   ></Image>
                 </Box>
               </Grid>
-              <Grid item lg={6}>
-                <Typography variant="subtitle1" sx={styles.admissionText}>
+              <Grid item lg={5.5}>
+                <Typography variant="h2" sx={styles.admissionText}>
                   {t("footer.admission_text")}
                 </Typography>
               </Grid>
-              <Grid item lg={3}>
+              <Grid item lg={3.5}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Image
                     src={phone.src}

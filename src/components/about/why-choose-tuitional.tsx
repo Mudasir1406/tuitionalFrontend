@@ -24,13 +24,13 @@ const WhyChooseTuitional: React.FunctionComponent = () => {
     if (typeof window !== "undefined") {
       const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
       setIsGreaterThanLarge(mediaQuery.matches);
-      
+
       const handleChange = (e: MediaQueryListEvent) => {
         setIsGreaterThanLarge(e.matches);
       };
-      
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
     }
   }, [theme]);
 
@@ -110,8 +110,20 @@ const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
     <Box
       sx={{
         backgroundColor: "rgba(255,255,255,0.7)",
-        width: { xs: "100%", sm: "320px", md: "360px", lg: "380px", xl: "420px" },
-        height: { xs: "auto", sm: "280px", md: "320px", lg: "400px", xl: "460px" },
+        width: {
+          xs: "100%",
+          sm: "320px",
+          md: "360px",
+          lg: "380px",
+          xl: "420px",
+        },
+        height: {
+          xs: "auto",
+          sm: "280px",
+          md: "320px",
+          lg: "400px",
+          xl: "460px",
+        },
         minHeight: { xs: "250px", sm: "280px", md: "320px", lg: "400px" },
         display: "flex",
         alignItems: "center",
@@ -203,7 +215,13 @@ const styles = {
   },
   dec: {
     textAlign: "center",
-    maxWidth: { xs: "100%", sm: "280px", md: "320px", lg: "340px", xl: "380px" },
+    maxWidth: {
+      xs: "100%",
+      sm: "280px",
+      md: "320px",
+      lg: "340px",
+      xl: "380px",
+    },
     color: "rgba(0,0,0,0.77)",
     fontSize: { xs: "12px", sm: "13px", md: "14px", lg: "15px", xl: "16px" },
     lineHeight: { xs: "16px", sm: "17px", md: "18px", lg: "20px", xl: "22px" },
