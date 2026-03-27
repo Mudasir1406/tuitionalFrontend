@@ -96,12 +96,14 @@ const Header: React.FC<IProps> = ({ background }) => {
                 {t("nav.about")}
               </Typography>
             </a>
-            <Typography
-              sx={styles.typography}
-              className={leagueSpartan.className}
-            >
-              {t("nav.community")}
-            </Typography>
+            <a href={"/blog"} style={styles.link}>
+              <Typography
+                sx={styles.typography}
+                className={leagueSpartan.className}
+              >
+                {t("nav.blogs")}
+              </Typography>
+            </a>
             <a href={"/testimonials"} style={styles.link}>
               <Typography
                 sx={styles.typography}
@@ -257,16 +259,10 @@ const styles = {
     textAlign: "center",
     letterSpacing: "-2%",
     borderRadius: "1vh",
+    transition: "all 0.5s ease-in-out",
     ":hover": {
-      boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
       backgroundColor: "#38B6FF",
-      paddingY: "1.5vh",
-      fontSize: "1.5vh",
-      fontWeight: 700,
-      lineHeight: "1.84vh",
-      textAlign: "center",
-      letterSpacing: "-2%",
-      borderRadius: "1vh",
+      boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
     },
     display: {
       xs: "none",

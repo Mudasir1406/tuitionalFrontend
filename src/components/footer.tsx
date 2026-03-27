@@ -126,51 +126,99 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   {t("footer.description")}
                 </Typography>
                 <Box sx={styles.socialBox}>
-                  {footerData?.link?.facebook && (
+                  <Box sx={styles.iconsOnly}>
+                    {footerData?.link?.facebook && (
+                      <Link
+                        target="_blank"
+                        href={footerData.link.facebook}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={
+                            "https://img.icons8.com/?size=40&id=uLWV5A9vXIPu&format=png&color=000000"
+                          }
+                          style={styles.social}
+                          alt="facebook"
+                          width={40}
+                          height={40}
+                        ></Image>
+                      </Link>
+                    )}
+                    {footerData?.link?.insta && (
+                      <Link
+                        target="_blank"
+                        href={footerData.link.insta}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={
+                            "https://img.icons8.com/?size=40&id=BrU2BBoRXiWq&format=png&color=000000"
+                          }
+                          style={styles.social}
+                          alt="insta"
+                          width={40}
+                          height={40}
+                        ></Image>
+                      </Link>
+                    )}
+                    {footerData?.link?.linkdin && (
+                      <Link
+                        target="_blank"
+                        href={footerData.link.linkdin}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={
+                            "https://img.icons8.com/?size=40&id=MR3dZdlA53te&format=png&color=000000"
+                          }
+                          style={styles.social}
+                          alt="linkdin"
+                          width={40}
+                          height={40}
+                        ></Image>
+                      </Link>
+                    )}
+                  </Box>
+                  <Box sx={styles.contactInfo}>
                     <Link
-                      target="_blank"
-                      href={footerData.link.facebook}
-                      rel="noreferrer"
+                      href="mailto:hello@tuitionaledu.com"
+                      style={{
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
                     >
                       <Image
-                        src={facebook.src}
-                        style={styles.social}
-                        alt="facebook"
-                        width={facebook.width}
-                        height={facebook.height}
-                      ></Image>
+                        src="https://img.icons8.com/?size=100&id=GoQbcSSHazaK&format=png&color=000000"
+                        alt="email"
+                        width={20}
+                        height={20}
+                        style={{ marginRight: "10px" }}
+                      />
+                      <Typography sx={styles.contactText} variant="body2">
+                        hello@tuitionaledu.com
+                      </Typography>
                     </Link>
-                  )}
-                  {footerData?.link?.insta && (
                     <Link
-                      target="_blank"
-                      href={footerData.link.insta}
-                      rel="noreferrer"
+                      href="tel:+971564900376"
+                      style={{
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
                     >
                       <Image
-                        src={insta}
-                        style={styles.social}
-                        alt="insta"
-                        width={insta.width}
-                        height={insta.height}
-                      ></Image>
+                        src="https://img.icons8.com/?size=100&id=3kO3tw1rKmYw&format=png&color=000000"
+                        alt="phone"
+                        width={20}
+                        height={20}
+                        style={{ marginRight: "10px" }}
+                      />
+                      <Typography sx={styles.contactText} variant="body2">
+                        +971 56 490 0376
+                      </Typography>
                     </Link>
-                  )}
-                  {footerData?.link?.linkdin && (
-                    <Link
-                      target="_blank"
-                      href={footerData.link.linkdin}
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={linkdin}
-                        style={styles.social}
-                        alt="linkdin"
-                        width={linkdin.width}
-                        height={linkdin.height}
-                      ></Image>
-                    </Link>
-                  )}
+                  </Box>
                 </Box>
               </Box>
             </Grid>
@@ -479,20 +527,41 @@ const styles = {
     backgroundColor: "transparent",
   },
   social: {
-    width: "48px",
-    height: "48px",
+    width: "40px",
+    height: "40px",
     marginRight: "20px",
     cursor: "pointer",
     zIndex: 100,
   },
   socialBox: {
-    display: { xs: "flex", sm: "flex", md: "flex", lg: "block" },
+    display: "flex",
+    flexDirection: "column",
     marginTop: {
       xs: "40px",
       lg: "20px",
     },
-    alignItems: "center",
+    alignItems: { xs: "center", lg: "flex-start" },
     justifyContent: "center",
     marginBottom: "80px",
+  },
+  iconsOnly: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: { xs: "center", lg: "flex-start" },
+    marginBottom: "15px",
+  },
+  contactInfo: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: { xs: "center", lg: "flex-start" },
+    gap: "5px",
+  },
+  contactText: {
+    color: "black",
+    fontWeight: 500,
+    fontSize: "14px",
+    ":hover": {
+      color: "#37B6FF",
+    },
   },
 };

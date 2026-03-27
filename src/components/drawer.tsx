@@ -99,16 +99,12 @@ const ResponsiveDrawer = () => {
               {t("nav.about")}
             </Typography>
           </a>
-          <a
-            href="/communityandevents"
-            style={styles.link}
-            onClick={toggleDrawer}
-          >
+          <a href="/blog" style={styles.link} onClick={toggleDrawer}>
             <Typography
               sx={styles.typography}
               className={leagueSpartan.className}
             >
-              {t("nav.community")}
+              {t("nav.blogs")}
             </Typography>
           </a>
           <a onClick={toggleDrawer} href="/testimonials" style={styles.link}>
