@@ -33,8 +33,8 @@ const Header: React.FC<IProps> = ({ background }) => {
   return (
     <Box sx={[styles.background, background]}>
       <Box sx={styles.circleBox} />
-      <Box sx={[styles.leftCircle, isRTL && styles.leftCircleRTL]} />
-      <Box sx={[styles.rightCircle, isRTL && styles.rightCircleRTL]} />
+      {/* <Box sx={[styles.leftCircle, isRTL && styles.leftCircleRTL]} /> */}
+      {/* <Box sx={[styles.rightCircle, isRTL && styles.rightCircleRTL]} /> */}
       <AppBar
         position="sticky"
         sx={[styles.container, isRTL && styles.containerRTL]}
@@ -67,11 +67,12 @@ const Header: React.FC<IProps> = ({ background }) => {
                 width={logoMobile.width}
                 height={logoMobile.height}
                 priority
-                quality={90}
+                quality={100}
                 style={{
-                  width: 203,
-                  height: 49,
+                  width: "90%",
+                  height: "90%",
                   objectFit: "contain",
+                  marginLeft: 20,
                 }}
               />
             </Box>
@@ -121,13 +122,13 @@ const Header: React.FC<IProps> = ({ background }) => {
 
           {/* Buttons Section */}
           <Box sx={[styles.buttonsSection, isRTL && styles.buttonsSectionRTL]}>
-            <Button
+            {/* <Button
               variant="outlined"
               sx={styles.outlinedBtn}
               className={leagueSpartan.className}
             >
               {t("buttons.ai_digital_sat")}
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               sx={styles.containedBtn}
@@ -250,7 +251,7 @@ const styles = {
     boxShadow: "0.1vh 1.5vh 3.4vh 0px #38B6FF66",
     backgroundColor: "#38B6FF",
     paddingY: "1.5vh",
-    fontSize: "1.5vh",
+    fontSize: "1.1rem",
     fontWeight: 700,
     lineHeight: "1.84vh",
     textAlign: "center",

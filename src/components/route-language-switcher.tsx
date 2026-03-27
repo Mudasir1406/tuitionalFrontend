@@ -44,6 +44,7 @@ const RouteLanguageSwitcher: React.FC<RouteLanguageSwitcherProps> = ({
                 height: "auto",
                 paddingY: "1.2vh",
                 fontSize: "1.1rem",
+                display: "flex",
               }
             : {},
         ]}
@@ -61,8 +62,8 @@ const styles = {
   container: {
     display: "flex",
     alignItems: "center",
-    marginLeft: { xs: "8px", lg: "12px" },
-    marginRight: { xs: "8px", lg: "12px" },
+    marginLeft: { xs: "0px", lg: "12px" },
+    marginRight: { xs: "0px", lg: "12px" },
   },
   button: {
     borderRadius: "8px",
@@ -82,12 +83,12 @@ const styles = {
       borderColor: "#38B6FF",
       backgroundColor: "rgba(56, 182, 255, 0.1)",
     },
-    display: {
-      xs: "none",
-      sm: "none",
-      md: "none",
-      lg: "flex",
-    },
+    // display: {
+    //   xs: "none",
+    //   sm: "none",
+    //   md: "none",
+    //   lg: "flex",
+    // },
   },
 
   buttonRTL: {

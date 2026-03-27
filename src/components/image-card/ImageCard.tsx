@@ -47,7 +47,7 @@ const ImageCard = ({ data, locale = "en" }: props) => {
         <Typography
           className={`${leagueSpartan.className} ${styles.heading}`}
           component={"p"}
-          variant="subtitle1"
+          variant="h3"
           onClick={toggleShowMore}
         >
           {`${data?.["First Name"]} ${data?.["Last Name"]} `}{" "}
@@ -91,10 +91,10 @@ const ImageCard = ({ data, locale = "en" }: props) => {
             {data?.["Success rate"]}
           </Typography>
         </div>
-        <PopUpButton 
-          text={locale === "ar" ? "احجز حصة تجريبية" : "Book A Demo"} 
-          href="popup" 
-          sx={style.contactButton} 
+        <PopUpButton
+          text={locale === "ar" ? "احجز حصة تجريبية" : "Book A Demo"}
+          href="popup"
+          sx={style.contactButton}
         />
 
         {tutorModal && (
