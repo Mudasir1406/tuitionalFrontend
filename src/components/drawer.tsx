@@ -129,13 +129,13 @@ const ResponsiveDrawer = () => {
           </a>
 
           <Box sx={styles.buttonContainer}>
-            <Button
+            {/* <Button
               variant="outlined"
               sx={styles.outlinedBtn}
               className={leagueSpartan.className}
             >
               {t("buttons.ai_digital_sat")}
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               sx={styles.containedBtn}
@@ -153,9 +153,7 @@ const ResponsiveDrawer = () => {
           </Box>
         </Box>
       </Drawer>
-      {openDialog && (
-        <FormDialog open={openDialog} handleClose={handleClose} />
-      )}
+      {openDialog && <FormDialog open={openDialog} handleClose={handleClose} />}
     </div>
   );
 };
@@ -168,8 +166,8 @@ const styles = {
     alignItems: "flex-start",
   },
   image: {
-    width: 144,
-    height: 34,
+    width: "100%",
+    height: "100%",
     cursor: "pointer",
   },
   typography: {

@@ -110,7 +110,6 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   sx={{
                     width: "100%",
                     display: { xs: "flex", sm: "flex" },
-
                     alignItems: "center",
                     justifyContent: { xs: "center", lg: "flex-start" },
                   }}
@@ -424,9 +423,9 @@ const styles = {
   },
   heading: {
     fontWeight: 700,
-
     marginBottom: "15px",
     marginTop: "12px",
+    textTransform: "capitalize",
   },
   text: {
     lineHeight: {
@@ -490,7 +489,7 @@ const styles = {
     display: { xs: "flex", sm: "flex", md: "flex", lg: "block" },
     marginTop: {
       xs: "40px",
-      lg: "70px",
+      lg: "20px",
     },
     alignItems: "center",
     justifyContent: "center",
