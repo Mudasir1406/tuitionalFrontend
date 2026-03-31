@@ -14,9 +14,8 @@ import React from "react";
 const Page = async ({ params }: { params: { slug: string } }) => {
   const [data, sequence]: [
     PageData | undefined | null,
-    Component_Sequence_Type | undefined | null
+    Component_Sequence_Type | undefined | null,
   ] = await Promise.all([getPageData(params.slug), getPageSequence()]);
-
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;
@@ -40,6 +39,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   if (!sequence) {
     return <div>Error: Component sequence not found.</div>;
   }
+
+  console.log("Data---->", data);
 
   if (data?.variant == "new") {
     return (

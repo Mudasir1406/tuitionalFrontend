@@ -24,8 +24,6 @@ export const generateMetadata = async ({
   const { title, description, metaName, ogImage, ogTitle, ogDescription } =
     data.meta_tags;
 
-  console.log("Data---->", data);
-
   return {
     title: title,
     description: description,
@@ -53,6 +51,8 @@ const Layout = async ({
   children: ReactNode;
 }) => {
   const data: PageData | undefined | null = await fetchData(params.slug);
+
+  console.log("Data---->", data);
 
   if (!data) return null;
 
