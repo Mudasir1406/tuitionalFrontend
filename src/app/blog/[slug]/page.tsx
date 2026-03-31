@@ -51,7 +51,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     Component_Sequence_Type | undefined | null,
     AllBlogsData[] | null | undefined,
     TagItem[],
-    TagItem[]
+    TagItem[],
   ] = await Promise.all([
     getBlogData(params.slug, "en"),
     getPageSequence(),
@@ -60,6 +60,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     getDocumentsByName("categories"),
   ]);
 
+  console.log("blog data---->", data);
 
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;

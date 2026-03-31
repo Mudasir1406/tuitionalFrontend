@@ -1,0 +1,51 @@
+.authorContainer {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 24px;
+  margin-top: 8px;
+}
+
+.authorInfo {
+  margin-bottom: 16px;
+}
+
+.authorName {
+  font-weight: 700 !important;
+  font-size: 1.05em !important;
+}
+
+.authorBio {
+  color: #555;
+  margin-top: 8px !important;
+  line-height: 1.6 !important;
+}
+
+.shareSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.shareTitle {
+  font-weight: 600 !important;
+  color: #333;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.socialIcon {
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.socialIcon:hover {
+  opacity: 0.75;
+}

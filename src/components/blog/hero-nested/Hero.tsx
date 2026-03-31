@@ -13,6 +13,13 @@ import whatsapp from "../../../../public/assets/images/static/pngimg.com - whats
 import { usePathname } from "next/navigation";
 import moment from "moment";
 
+interface AuthorProfile {
+  authorName?: string;
+  blogDate?: string;
+  authorCountry?: string;
+  authorStars?: number;
+}
+
 interface Props {
   data: {
     category: {
@@ -26,9 +33,10 @@ interface Props {
   };
   timestamp: number;
   showSocial: boolean;
+  authorProfile?: AuthorProfile;
 }
 
-const Hero = ({ data, timestamp, showSocial }: Props) => {
+const Hero = ({ data, timestamp, showSocial, authorProfile }: Props) => {
   const pathname = usePathname();
   const currentUrl = `https://tuitionaledu.com${pathname}`;
 
@@ -36,8 +44,9 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
     whatsapp: `https://wa.me/?text=${currentUrl}`,
     linkedin: `https://www.linkedin.com/shareArticle?url=${currentUrl}`,
-    twitter: `https://twitter.com/intent/tweet?url=${currentUrl}`, // Twitter share URL
+    twitter: `ht tps://twitter.com/intent/tweet?url=${currentUrl}`, // Twitter share URL
   };
+
   return (
     <div className={styles.heroContainer}>
       <div className={styles.leftIcons} />
@@ -58,12 +67,28 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
             variant="body2"
             component={"p"}
           >
-            {`${data?.category?.data?.[0]?.name?.en} | ${moment(timestamp * 1000).format(
-              "MMMM DD,YYYY"
-            )}
-              `}
+            {`${authorProfile?.authorName} | ${authorProfile?.blogDate}`}
           </Typography>
         </div>
+
+        {/* Author name + blog date from authorProfile */}
+        {/* {authorProfile?.authorName && (
+          <div className={styles.authorMeta}>
+            <Typography
+              className={`${leagueSpartan.className}`}
+              variant="body2"
+              component={"p"}
+              sx={{
+                color: "rgba(255,255,255,0.9)",
+                mt: "8px",
+                fontSize: "0.9rem",
+              }}
+            >
+              ✍️ {authorProfile.authorName}
+              {authorProfile.blogDate ? ` · ${authorProfile.blogDate}` : ""}
+            </Typography>
+          </div>
+        )} */}
         {showSocial && (
           <div className={styles.centerDiv}>
             {/* <div className={styles.arrowDiv}>
@@ -117,12 +142,9 @@ const Hero = ({ data, timestamp, showSocial }: Props) => {
             </div>{" "}
           </div>
         )}
-
       </div>{" "}
     </div>
   );
 };
 
 export default Hero;
-
-

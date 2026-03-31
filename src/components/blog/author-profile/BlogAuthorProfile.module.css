@@ -1,0 +1,104 @@
+.container {
+  margin-top: 8px;
+}
+
+.card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: #f7fbff;
+  border: 1px solid #d7f0ff;
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+/* ── Avatar ── */
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatarFallback {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #38b6ff;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Text info ── */
+.info {
+  flex: 1;
+}
+
+.name {
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 6px !important;
+  color: #1a1a1a;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.metaText {
+  color: #555 !important;
+  font-size: 0.85rem !important;
+}
+
+/* ── Stars ── */
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.starFilled {
+  color: #f5a623;
+  font-size: 1.2rem;
+}
+
+.starEmpty {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+/* ── Bio ── */
+.about {
+  color: #444 !important;
+  line-height: 1.6 !important;
+  margin-top: 4px !important;
+}
+
+/* ── Mobile ── */
+@media (max-width: 575px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .meta {
+    justify-content: center;
+  }
+  .stars {
+    justify-content: center;
+  }
+}

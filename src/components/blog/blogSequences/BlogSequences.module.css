@@ -1,3 +1,4 @@
+/* ─── Shared utilities ─────────────────────────────────────── */
 .container {
   padding: 0 5vw;
 }
@@ -8,43 +9,149 @@
   margin-bottom: 7vh;
 }
 
-.main {
-  display: flex;
-  justify-content: space-between;
-}
-.mainLeft {
-  /* display: flex; */
-  flex: 0.2;
-  /* min-width: 20%; */
-}
-.mainRight {
-  flex: 0.75;
-  /* max-width: 75%; */
-}
-
-.typographyContent img {
-  max-width: 100%; /* Ensures image does not overflow */
-  width: 100%; /* Set a fixed width (adjust as needed) */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Prevents extra spacing around images */
-  margin: 0 auto; /* Centers the image */
-}
+/* ─── Hero / above-the-fold ────────────────────────────────── */
 .imageDiv {
   position: relative;
   width: 90%;
   margin: auto;
-  /* height: 100%; */
   height: 40vh;
 }
-
 .blogImg {
   border-radius: 16px;
   object-fit: cover;
 }
+.authorByline {
+  padding: 8px 0 4px 0;
+}
+.authorBylineText {
+  color: #555;
+  font-style: italic;
+}
 
-@media (max-width: 575px) {
-  .blogImg {
-    height: 20vh;
+/* ─── Two-column layout ────────────────────────────────────────
+   The left column is completely static.
+   Only the right column scrolls — it acts as the scroll container
+   for all blog content, related articles, and the footer.
+   ─────────────────────────────────────────────────────────── */
+.twoColumnLayout {
+  display: flex;
+  /* Fill the viewport below the header so only the right col scrolls */
+  height: calc(100vh - 80px); /* 80px ≈ header height — adjust if needed */
+  overflow: hidden;            /* prevent the layout itself from scrolling */
+  padding: 0 5vw;
+  gap: 3%;
+}
+
+/* Left sidebar — no scroll, fully static */
+.leftCol {
+  flex: 0 0 22%;
+  overflow: hidden;
+  padding-top: 3vh;
+}
+
+/* Right column — the ONLY scrolling area on the page */
+.rightCol {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3vh 0 5vh 0;
+  /* Optional: thin custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #d0d0d0 transparent;
+}
+.rightCol::-webkit-scrollbar {
+  width: 5px;
+}
+.rightCol::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 4px;
+}
+
+/* Spacing between stacked right-column sections */
+.rightSection {
+  margin-bottom: 5vh;
+}
+
+/* ─── Blog content typography ──────────────────────────────── */
+.typographyContent {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+}
+.typographyContent h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0.67em 0;
+  line-height: 1.25;
+}
+.typographyContent h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0.75em 0;
+  line-height: 1.3;
+}
+.typographyContent h3 {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 0.83em 0;
+  line-height: 1.35;
+}
+.typographyContent h4 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin: 1em 0;
+}
+.typographyContent h5 {
+  font-size: 1em;
+  font-weight: 700;
+  margin: 1.1em 0;
+}
+.typographyContent h6 {
+  font-size: 0.9em;
+  font-weight: 700;
+  margin: 1.2em 0;
+}
+.typographyContent p {
+  margin: 0.75em 0;
+  line-height: 1.7;
+}
+.typographyContent ul {
+  list-style-type: disc;
+  padding-left: 1.75em;
+  margin: 0.6em 0;
+}
+.typographyContent ol {
+  list-style-type: decimal;
+  padding-left: 1.75em;
+  margin: 0.6em 0;
+}
+.typographyContent li {
+  margin: 0.4em 0;
+  line-height: 1.65;
+}
+.typographyContent img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ─── Responsive ───────────────────────────────────────────── */
+
+/* Mobile & tablet: single-column, normal page scroll */
+@media (max-width: 991px) {
+  .twoColumnLayout {
+    flex-direction: column;
+    height: auto;         /* let content determine height */
+    overflow: visible;    /* restore normal page scroll */
+    padding: 0 4vw;
+  }
+  .leftCol {
+    display: none;        /* hide sidebar form on small screens */
+  }
+  .rightCol {
+    overflow-y: visible;  /* content scrolls with the page */
+    padding: 3vh 0;
   }
   .verticalMargin {
     margin: 5vh 0;
@@ -55,58 +162,8 @@
   .container {
     padding: 0 4vw;
   }
-  .main {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .mainLeft {
-    flex: 1;
-  }
-  .mainRight {
-    flex: 1;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-  .verticalMargin {
-    margin: 5vh 0;
-  }
-
-  .bottomMargin {
-    margin-bottom: 5vh;
-  }
-
-  .main {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .mainLeft {
-    flex: 1;
-  }
-  .mainRight {
-    flex: 1;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
   .blogImg {
-    height: 30vh;
-  }
-  .verticalMargin {
-    margin: 5vh 0;
-  }
-  .bottomMargin {
-    margin-bottom: 5vh;
-  }
-  .main {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .mainLeft {
-    flex: 1;
-  }
-  .mainRight {
-    flex: 1;
+    height: 25vh;
   }
 }
 
