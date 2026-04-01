@@ -4,14 +4,13 @@ import React, { useState } from "react";
 import styles from "./Hero.module.css";
 import { leagueSpartan } from "@/app/fonts";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import PopUpButton from "@/components/pop-up-button";
 import Image from "next/image";
 import greenstar from "../../../../public/assets/images/svg/greenstar.svg";
 import greenstars from "../../../../public/assets/images/svg/greenstars.svg";
 interface Props {
   slug?: string;
 }
-
+this;
 const Hero = ({ slug }: Props) => {
   const [formData, setFormData] = useState<{ phone: string }>({
     phone: "",
@@ -45,16 +44,25 @@ const Hero = ({ slug }: Props) => {
       <div className={styles.mobileContanier}>
         <TextField
           placeholder="Your Email*"
-          //   sx={style.textField}
           className={styles.textField}
           value={formData.phone}
           onChange={(e) => {
             handleChange("phone", e.target.value);
           }}
+          sx={{
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+          }}
         />
         <Button
           variant="contained"
-          //   classN={styles.button}
           className={`${leagueSpartan.className} ${styles.button}`}
           onClick={() => handleClick()}
         >
@@ -95,9 +103,7 @@ const Hero = ({ slug }: Props) => {
           />
           <Typography
             sx={{
-              //   fontSize: "2.3vh",
               padding: ".7vh 0 0 1vh",
-              //   fontWeight: 600,
             }}
             className={leagueSpartan.className}
             component={"p"}
@@ -111,13 +117,10 @@ const Hero = ({ slug }: Props) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            // gap: "1rem",
           }}
         >
           <Typography
             sx={{
-              // fontSize: { lg: "2vh", xs: "1.7vh" },
-              // fontWeight: 400,
               padding: "1vh 0 0 0",
             }}
             className={leagueSpartan.className}
@@ -142,5 +145,3 @@ const Hero = ({ slug }: Props) => {
 };
 
 export default Hero;
-
-const style = {};
