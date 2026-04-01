@@ -16,8 +16,8 @@ function SearchBar({
   const [search, setSearch] = useState(searchQuery);
   const router = useRouter();
   const pathname = usePathname();
-  const isArabicRoute = pathname.startsWith('/ar');
-  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
+  const isArabicRoute = pathname.startsWith("/ar");
+  const blogBaseUrl = isArabicRoute ? "/ar/blog" : "/blog";
 
   // const handleSearch = () => {
   //   if (search) {
@@ -56,6 +56,17 @@ function SearchBar({
           className={styles.textField}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          sx={{
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+          }}
           onKeyPress={handleKeyPress} // Trigger search on Enter
         />
         <Button
