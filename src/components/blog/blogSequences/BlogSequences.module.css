@@ -37,7 +37,7 @@
   display: flex;
   /* Fill the viewport below the header so only the right col scrolls */
   height: calc(100vh - 80px); /* 80px ≈ header height — adjust if needed */
-  overflow: hidden;            /* prevent the layout itself from scrolling */
+  overflow: hidden; /* prevent the layout itself from scrolling */
   padding: 0 5vw;
   gap: 3%;
 }
@@ -142,15 +142,15 @@
 @media (max-width: 991px) {
   .twoColumnLayout {
     flex-direction: column;
-    height: auto;         /* let content determine height */
-    overflow: visible;    /* restore normal page scroll */
+    height: auto; /* let content determine height */
+    overflow: visible; /* restore normal page scroll */
     padding: 0 4vw;
   }
   .leftCol {
-    display: none;        /* hide sidebar form on small screens */
+    display: none; /* hide sidebar form on small screens */
   }
   .rightCol {
-    overflow-y: visible;  /* content scrolls with the page */
+    overflow-y: visible; /* content scrolls with the page */
     padding: 3vh 0;
   }
   .verticalMargin {
