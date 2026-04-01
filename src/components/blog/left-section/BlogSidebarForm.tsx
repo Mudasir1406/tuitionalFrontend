@@ -159,6 +159,7 @@ const BlogSidebarForm: React.FC = () => {
         onChange={handleChange}
         placeholder="Enter name here ..."
         className={`${styles.input} ${leagueSpartan.className}`}
+        style={{ height: "36px", fontSize: "0.82rem" }}
       />
       {errors.FirstName && (
         <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
@@ -172,6 +173,7 @@ const BlogSidebarForm: React.FC = () => {
         onChange={handleChange}
         placeholder="Enter email here ..."
         className={`${styles.input} ${leagueSpartan.className}`}
+        style={{ height: "36px", fontSize: "0.82rem" }}
       />
       {errors.EmailAddress && (
         <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
@@ -199,7 +201,7 @@ const BlogSidebarForm: React.FC = () => {
       <DropDown
         name="Grade"
         placeholder="Select Grade"
-        marginTop="1.5vh"
+        marginTop="8px"
         data={filterData?.grade || []}
         value={formData.Grade}
         onChange={handleChange}
@@ -214,7 +216,7 @@ const BlogSidebarForm: React.FC = () => {
         placeholder="Select Curriculum"
         name="Curriculum"
         data={filterData?.curriculum || []}
-        marginTop="1.5vh"
+        marginTop="8px"
         value={formData.Curriculum}
         onChange={handleChange}
       />
@@ -228,7 +230,7 @@ const BlogSidebarForm: React.FC = () => {
         name="Subject"
         placeholder="Select Subjects"
         data={filterData?.subject || []}
-        marginTop="1.5vh"
+        marginTop="8px"
         multiple
         value={formData.Subject}
         onChange={handleChange}
@@ -242,7 +244,7 @@ const BlogSidebarForm: React.FC = () => {
       <TextField
         fullWidth
         multiline
-        rows={4}
+        rows={3}
         name="Message"
         value={formData.Message}
         onChange={(e) => handleChange("Message", e.target.value)}
@@ -278,16 +280,18 @@ const phoneStyle: React.CSSProperties = {
   boxShadow: "0px 1px 4px 0px rgba(0,0,0,0.08)",
   paddingLeft: "10px",
   backgroundColor: "white",
-  marginTop: "12px",
+  marginTop: "8px",
   outline: "none",
   borderRadius: "10px",
-  height: "44px",
+  height: "36px",
   width: "100%",
+  fontSize: "0.82rem",
 };
 
 const textareaStyle = {
-  mt: "12px",
+  mt: "8px",
   "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+  "& .MuiOutlinedInput-input": { fontSize: "0.82rem", padding: "8px 10px" },
   boxShadow: "0px 1px 4px 0px rgba(0,0,0,0.08)",
   borderRadius: "10px",
   backgroundColor: "white",

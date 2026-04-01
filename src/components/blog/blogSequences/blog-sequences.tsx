@@ -173,10 +173,9 @@ const BlogSequences: React.FC<IProps> = ({
               <RelatedBlogs blogs={allBlogs} />
             </div>
           )}
-
-          <ServerFooter />
         </div>
       </div>
+      <ServerFooter />
     </>
   );
 };
