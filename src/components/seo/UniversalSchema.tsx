@@ -419,9 +419,7 @@ const UniversalSchema = () => {
               "reviewBody": "My sessions with my teacher have been amazing. They explain things clearly, are patient with questions, and make even tough topics easy to understand. I always leave feeling more confident.",
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5",
-                "worstRating": "1"
+                "ratingValue": "5"
               },
               "author": {
                 "@type": "Person",
@@ -439,9 +437,7 @@ const UniversalSchema = () => {
               "reviewBody": "The teaching is great. The teachers make everyone understand, you can ask any questions you may have. The classes are fun and comfortable.",
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5",
-                "worstRating": "1"
+                "ratingValue": "5"
               },
               "author": {
                 "@type": "Person",
