@@ -15,6 +15,11 @@ const UniversalSchema = () => {
               "name": "Tuitional Education",
               "alternateName": "Tuitional",
               "url": "https://tuitionaledu.com",
+              "brand": {
+                "@type": "Brand",
+                "name": "Tuitional",
+                "logo": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png"
+              },
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png",
@@ -22,8 +27,10 @@ const UniversalSchema = () => {
                 "height": 120
               },
               "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png",
+              "slogan": "Live 1-on-1 IGCSE & A-Level Online Tutoring in the Gulf",
               "description": "Tuitional is a UAE-licensed online tutoring platform providing live 1-on-1 sessions for Grades 1–12 across IGCSE, GCSE, A-Levels, IB, and standardised test prep. Serving students across the Gulf region and beyond with personalised study plans and vetted tutors.",
               "foundingDate": "2020",
+              "foundingLocation": "Dubai, United Arab Emirates",
               "founder": [
                 {
                   "@type": "Person",
@@ -48,17 +55,27 @@ const UniversalSchema = () => {
               ],
               "address": {
                 "@type": "PostalAddress",
-                "addressCountry": "AE",
-                "addressRegion": "Dubai"
+                "streetAddress": "Dubai",
+                "addressLocality": "Dubai",
+                "addressRegion": "Dubai",
+                "postalCode": "",
+                "addressCountry": "AE"
               },
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
+                  "contactType": "Customer Service",
                   "telephone": "+971-56-490-0376",
-                  "contactType": "customer service",
                   "email": "hello@tuitionaledu.com",
                   "availableLanguage": ["English", "Arabic"],
-                  "areaServed": ["AE", "SA", "QA", "OM", "BH", "GB", "ES"]
+                  "areaServed": ["AE", "SA", "QA", "OM", "BH", "GB", "ES"],
+                  "hoursAvailable": "Mo-Su 09:00-18:00"
+                },
+                {
+                  "@type": "ContactPoint",
+                  "contactType": "Sales",
+                  "telephone": "+971-56-490-0376",
+                  "email": "hello@tuitionaledu.com"
                 }
               ],
               "sameAs": [
@@ -79,7 +96,116 @@ const UniversalSchema = () => {
                 "@type": "QuantitativeValue",
                 "minValue": 50,
                 "maxValue": 200
-              }
+              },
+              "knowsAbout": [
+                "IGCSE Online Tutoring",
+                "A-Level Online Tutoring",
+                "IB Online Tutoring",
+                "GCSE Tutoring",
+                "Test Preparation",
+                "Online Education",
+                "Student Mentoring",
+                "Academic Consulting"
+              ],
+              "expertise": [
+                "Online Education",
+                "IGCSE Curriculum",
+                "A-Level Curriculum",
+                "IB Curriculum",
+                "GCSE Curriculum",
+                "Academic Tutoring",
+                "Student Support",
+                "Personalized Learning"
+              ],
+              "areaServed": [
+                {
+                  "@type": "Country",
+                  "name": "United Arab Emirates"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Saudi Arabia"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Qatar"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Oman"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Bahrain"
+                },
+                {
+                  "@type": "Country",
+                  "name": "United Kingdom"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Spain"
+                }
+              ],
+              "mainEntity": {
+                "@id": "https://tuitionaledu.com/#organization"
+              },
+              "certification": [
+                {
+                  "@type": "Thing",
+                  "name": "UAE Licensed Online Tutoring Platform",
+                  "description": "Registered and licensed to operate as an online educational platform in the United Arab Emirates"
+                }
+              ],
+              "serviceOffered": [
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#igcse-service",
+                  "name": "IGCSE / GCSE Online Tutoring"
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#alevel-service",
+                  "name": "A-Level / AS-Level Online Tutoring"
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#ib-service",
+                  "name": "IB Online Tutoring"
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#testprep-service",
+                  "name": "Test Preparation Services"
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#middle-school-service",
+                  "name": "Grades 1-8 Online Tutoring"
+                },
+                {
+                  "@type": "Service",
+                  "@id": "https://tuitionaledu.com/#language-service",
+                  "name": "Language Speaking Lessons"
+                }
+              ],
+              "department": [
+                {
+                  "@type": "Organization",
+                  "name": "Academic Consulting Department",
+                  "description": "Provides student assessment, tutor matching, and personalized study plan creation"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Student Support Services",
+                  "description": "Offers 24/7 academic assistance, progress tracking, and performance feedback"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Tutor Management",
+                  "description": "Screens, trains, and monitors 500+ vetted tutors"
+                }
+              ]
             },
             {
               "@type": "WebSite",
@@ -141,16 +267,12 @@ const UniversalSchema = () => {
               "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday"
+                  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
                 ],
                 "opens": "09:00",
-                "closes": "18:00"
+                "closes": "18:00",
+                "validFrom": "2024-01-01",
+                "validThrough": "2025-12-31"
               },
               "aggregateRating": {
                 "@type": "AggregateRating",
@@ -192,22 +314,10 @@ const UniversalSchema = () => {
               },
               "serviceType": "Online Tutoring",
               "areaServed": [
-                {
-                  "@type": "Country",
-                  "name": "United Arab Emirates"
-                },
-                {
-                  "@type": "Country",
-                  "name": "Saudi Arabia"
-                },
-                {
-                  "@type": "Country",
-                  "name": "Qatar"
-                },
-                {
-                  "@type": "Country",
-                  "name": "Oman"
-                }
+                {"@type": "Country", "name": "United Arab Emirates"},
+                {"@type": "Country", "name": "Saudi Arabia"},
+                {"@type": "Country", "name": "Qatar"},
+                {"@type": "Country", "name": "Oman"}
               ],
               "offers": {
                 "@type": "Offer",
@@ -226,18 +336,9 @@ const UniversalSchema = () => {
               },
               "serviceType": "Online Tutoring",
               "areaServed": [
-                {
-                  "@type": "Country",
-                  "name": "United Arab Emirates"
-                },
-                {
-                  "@type": "Country",
-                  "name": "Saudi Arabia"
-                },
-                {
-                  "@type": "Country",
-                  "name": "United Kingdom"
-                }
+                {"@type": "Country", "name": "United Arab Emirates"},
+                {"@type": "Country", "name": "Saudi Arabia"},
+                {"@type": "Country", "name": "United Kingdom"}
               ],
               "offers": {
                 "@type": "Offer",
@@ -419,7 +520,9 @@ const UniversalSchema = () => {
               "reviewBody": "My sessions with my teacher have been amazing. They explain things clearly, are patient with questions, and make even tough topics easy to understand. I always leave feeling more confident.",
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue": "5"
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
               },
               "author": {
                 "@type": "Person",
@@ -437,7 +540,9 @@ const UniversalSchema = () => {
               "reviewBody": "The teaching is great. The teachers make everyone understand, you can ask any questions you may have. The classes are fun and comfortable.",
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue": "5"
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
               },
               "author": {
                 "@type": "Person",
