@@ -15,14 +15,14 @@ const EducationalCounseling: React.FunctionComponent<{
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={12} md={12} lg={6}>
             <Box>
-              <Typography
+              {/* <Typography
                 sx={style.counseling}
                 className={leagueSpartan.className}
                 component={"p"}
                 variant="subtitle2"
               >
                 Educational Counseling
-              </Typography>
+              </Typography> */}
 
               <Typography
                 sx={style.guidence}

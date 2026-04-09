@@ -37,7 +37,7 @@ const EducationalCounseling: React.FunctionComponent<{
             order={{ xs: 1, lg: data?.right_to_left ? 2 : 1 }} // Change order only on larger screens
           >
             <Box>
-              {data?.subjects && data?.subjects?.length < 1 && (
+              {/* {data?.subjects && data?.subjects?.length < 1 && (
                 <Typography
                   sx={style.counseling}
                   className={leagueSpartan.className}
@@ -46,7 +46,7 @@ const EducationalCounseling: React.FunctionComponent<{
                 >
                   Educational Counseling
                 </Typography>
-              )}
+              )} */}
               <Typography
                 sx={style.guidence}
                 variant={data.headerTag ? data.headerTag : ("h3" as any)}
@@ -77,7 +77,7 @@ const EducationalCounseling: React.FunctionComponent<{
                       className={leagueSpartan.className}
                       component={"p"}
                     >
-                     {data?.focusArea}
+                      {data?.focusArea}
                     </Typography>
 
                     <Box sx={style.tags}>
