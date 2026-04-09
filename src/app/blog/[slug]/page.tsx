@@ -60,8 +60,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     getDocumentsByName("categories"),
   ]);
 
-  console.log("blog data---->", data);
-
   const sortJsonObjectBySequenceNumber = (jsonObject: {
     [key: string]: any;
   }): { [key: string]: any } => {
