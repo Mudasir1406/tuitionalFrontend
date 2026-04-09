@@ -18,7 +18,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
       <Box
         sx={{
           height: { lg: "65vh" },
-          paddingInlineStart: { lg: "5vw" }, // Logical property for padding-left in LTR, padding-right in RTL
+          paddingInlineStart: { lg: "5vw" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -76,11 +76,12 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                 className={leagueSpartan.className}
                 component={"p"}
                 variant="subtitle1"
-              >
-                {data?.imageAltText
-                  ? data?.imageAltText
-                  : "IGCSE A Level | IGCSE AS Level"}
-              </Typography>
+                dangerouslySetInnerHTML={{
+                  __html: data?.imageAltText
+                    ? data?.imageAltText
+                    : "IGCSE A Level | IGCSE AS Level",
+                }}
+              ></Typography>
             ) : (
               <>
                 <Box
