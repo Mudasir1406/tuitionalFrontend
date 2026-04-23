@@ -52,8 +52,6 @@ const Layout = async ({
 }) => {
   const data: PageData | undefined | null = await fetchData(params.slug);
 
-  console.log("Data inside layout---->", data);
-
   if (!data) return null;
 
   // const pageSchema = {

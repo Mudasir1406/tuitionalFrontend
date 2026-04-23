@@ -45,8 +45,10 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
           className={leagueSpartan.className}
           component={"p"}
           variant="body2"
-          dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.paragraph) }}
-        />
+          dangerouslySetInnerHTML={{
+            __html: data?.paragraph,
+          }}
+        ></Typography>
 
         <Box
           sx={{

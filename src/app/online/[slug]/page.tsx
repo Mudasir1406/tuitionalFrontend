@@ -40,8 +40,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     return <div>Error: Component sequence not found.</div>;
   }
 
-  console.log("Data inside online---->", data);
-
   if (data?.variant == "new") {
     return (
       <GradeSubjectLevelV2 data={sortJsonObjectBySequenceNumber(data) as any} />
