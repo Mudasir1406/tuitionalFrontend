@@ -10,7 +10,6 @@ import { ArrowCircleRight } from "@mui/icons-material";
 type IProps = { data: PageData["link_list"] };
 
 function LinkListViewSection({ data }: IProps) {
-  console.log("data---->", data);
   // Replace <b> with <strong> for semantic SEO (screen readers + crawlers treat <strong> as important)
   const semanticParagraph = data?.paragraph
     ?.replace(/<b>/g, "<strong>")

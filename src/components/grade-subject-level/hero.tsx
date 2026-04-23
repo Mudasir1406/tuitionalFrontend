@@ -6,6 +6,7 @@ import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
 import CircleIcon from "@mui/icons-material/Circle";
 import { PageData } from "@/types/grade-subject-level.types";
+import { decodeHtmlEntities } from "@/utils/helper";
 
 type IProps = {
   data: PageData["hero_section"];
@@ -33,7 +34,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
 
           component={data?.headerTag ? data?.headerTag : ("h1" as any)}
           dangerouslySetInnerHTML={{
-            __html: data?.header,
+            __html: decodeHtmlEntities(data?.header),
           }}
         ></Typography>
 
@@ -42,9 +43,8 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
           className={leagueSpartan.className}
           component={"p"}
           variant="body2"
-        >
-          {data?.paragraph}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.paragraph) }}
+        />
 
         <Box
           sx={{

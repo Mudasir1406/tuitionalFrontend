@@ -86,12 +86,12 @@ const TutorModal: React.FunctionComponent<IProps> = ({
             </Typography>
             <Box sx={styles.subjects}>
               {data?.Subjects?.map((tag, index) => (
-                <Tag key={index} label={tag} index={index} />
+                <Tag key={index} label={tag} index={index} isClickable={false} />
               ))}
             </Box>
             <Box sx={styles.subjects}>
               {data?.Curiculum?.map((tag, index) => (
-                <Tag key={index} label={tag} index={index} />
+                <Tag key={index} label={tag} index={index} isClickable={false} />
               ))}
             </Box>
             <Typography
