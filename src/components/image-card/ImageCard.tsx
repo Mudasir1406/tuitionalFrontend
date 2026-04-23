@@ -54,12 +54,12 @@ const ImageCard = ({ data, locale = "en" }: props) => {
         </Typography>
         <div className={styles.subjects}>
           {data?.Subjects?.map((tag, index) => (
-            <Tag key={index} label={tag} index={index} />
+            <Tag key={index} label={tag} index={index} isClickable={false} />
           ))}
         </div>
         <div className={styles.subjects}>
           {data?.Curiculum?.map((tag, index) => (
-            <Tag key={index} label={tag} index={index} />
+            <Tag key={index} label={tag} index={index} isClickable={false} />
           ))}
         </div>
         <Typography

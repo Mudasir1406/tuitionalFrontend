@@ -7,6 +7,7 @@ import Image from "next/image";
 import CircleIcon from "@mui/icons-material/Circle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { PageData } from "@/types/grade-subject-level.types";
+import { decodeHtmlEntities } from "@/utils/helper";
 
 type IProps = {
   data: PageData["hero_section"];
@@ -35,7 +36,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
 
           component={data?.headerTag ? data?.headerTag : ("h1" as any)}
           dangerouslySetInnerHTML={{
-            __html: data?.header,
+            __html: decodeHtmlEntities(data?.header),
           }}
         ></Typography>
 
@@ -44,9 +45,8 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
           className={leagueSpartan.className}
           component={"p"}
           variant="body2"
-        >
-          {data?.paragraph}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.paragraph) }}
+        />
 
         <Box
           sx={{

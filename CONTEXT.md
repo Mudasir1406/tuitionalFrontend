@@ -1,462 +1,240 @@
-# Tuitional Frontend - Project Context
+# tuitionalFrontend — Context
 
-## Overview
-Tuitional is an online educational technology platform providing personalized tutoring services for students in the Gulf region. The frontend is built with Next.js 14 and focuses on British curriculum education (IGCSE, GCSE, A-Levels).
+> Quick-orientation document for agents and new contributors. The **code is the source of truth** — if this file and a file in `src/` disagree, update this file.
 
-## Technology Stack
+---
 
-### Core Technologies
-- **Framework**: Next.js 14.2.5 (App Router)
-- **Language**: TypeScript 5
-- **Styling**: Material-UI (MUI) 5.15.15 with custom CSS modules
-- **State Management**: React Context API (DrawerProvider)
-- **Backend**: Firebase Firestore
-- **HTTP Client**: Axios 1.7.7
+## 1. What This Project Is
 
-### Key Dependencies
-- **UI Framework**: @mui/material, @mui/icons-material, @emotion/react, @emotion/styled
-- **Authentication & Database**: Firebase 10.11.1
-- **Utilities**: 
-  - moment (date handling)
-  - cheerio (web scraping)
-  - react-hot-toast (notifications)
-  - react-phone-number-input
-  - sharp (image optimization)
-  - swiper (carousels)
-  - wavesurfer.js (audio visualization)
+Public-facing marketing / lead-generation site for **Tuitional** (online tutoring for the Gulf region, British curricula — IGCSE, GCSE, A-Level, O-Level). Next.js 14 App Router, server-rendered with per-slug dynamic pages, reading content authored in the sibling **TuitionalCMS** repo.
 
-## Project Structure
+- Live site: `https://tuitionaledu.com`
+- Companion admin: `../TuitionalCMS` (writes the Firestore documents this app reads)
+- Audience: students/parents in UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman; bilingual (EN + AR with full RTL)
+
+---
+
+## 2. Stack
+
+| Concern | Choice |
+|---|---|
+| Framework | Next.js **14.2.35** (App Router) + React 18 + TypeScript 5 (`strict: true`) |
+| UI library | `@mui/material` + `@mui/icons-material` |
+| Style engine | `@emotion/react` + `@emotion/styled` |
+| Authoring style | **Mixed**: MUI `sx` props AND per-component `*.module.css` files. Both are accepted here (unlike TuitionalCMS, which bans CSS modules). |
+| Fonts | `League Spartan` (EN), `Inter`, `Noto Sans Arabic` — all via `next/font/google` in [src/app/fonts.ts](src/app/fonts.ts) |
+| Backend | Firebase Web SDK 10 — Firestore (content reads only, no writes) |
+| i18n | Home-grown: [src/context/language-context.tsx](src/context/language-context.tsx) + JSON dictionaries in [src/locales/](src/locales/) |
+| HTTP | `axios` |
+| Analytics | GA4 + GTM + Facebook Pixel (inline in [src/app/layout.tsx](src/app/layout.tsx)) + Microsoft Clarity |
+| Carousels | `swiper` |
+| Dates | `moment` |
+| Toasts | `react-hot-toast` |
+| Package manager | **npm** (lockfile: `package-lock.json`) — note: CMS uses yarn, this repo uses npm |
+
+### Scripts
+| Script | Effect |
+|---|---|
+| `npm run dev` | Dev server (port 3000 by default) |
+| `npm run build` | Production build |
+| `npm run build:analyze` | Build with bundle analyzer (`ANALYZE=true`) |
+| `npm start` | Production server |
+| `npm run lint` | `next lint` |
+
+No test suite exists.
+
+---
+
+## 3. Repository Layout
 
 ```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── (pages)/
-│   │   ├── about/         # About page
-│   │   ├── blog/          # Blog with dynamic routing
-│   │   ├── careers/       # Careers page
-│   │   ├── contact/       # Contact page
-│   │   ├── testimonials/  # Testimonials page
-│   │   └── online/        # Dynamic tutoring pages
-│   ├── api/               # API routes
-│   ├── assets/            # Static assets (CSS, icons)
-│   ├── metrics/           # Analytics components
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   └── globals.css        # Global styles
-├── components/            # Reusable UI components
-├── context/               # React Context providers
-├── services/              # Data fetching & API services
-├── types/                 # TypeScript type definitions
-├── utils/                 # Utility functions & constants
-└── axios/                 # Axios configuration
+tuitionalFrontend/
+├── next.config.mjs              ← image remote patterns + extensive legacy redirects + webpack chunk-splitting
+├── next-sitemap.config.js
+├── performance-test.js
+├── global.d.ts                  ← audio module declarations (mp3/wav via file-loader)
+├── public/                      ← static assets (images, icons, audio)
+└── src/
+    ├── app/                     ← App Router
+    │   ├── layout.tsx           ← root providers, font variables, Pixel init, GTM noscript
+    │   ├── page.tsx             ← home
+    │   ├── globals.css
+    │   ├── style.css
+    │   ├── fonts.ts             ← League Spartan / Inter / Noto Sans Arabic
+    │   ├── sitemap.ts           ← pulls slugs from Firestore
+    │   ├── robots.txt
+    │   ├── not-found.tsx
+    │   ├── metrics/             ← GA4, GTM, Clarity, Facebook Pixel tracker components
+    │   ├── api/
+    │   │   ├── location/route.ts
+    │   │   └── meta-conversion/route.ts   ← server-side Facebook Conversions API proxy
+    │   ├── assets/              ← shared CSS + theme (`assets/css/theme.ts`)
+    │   ├── online/              ← /online + /online/[slug] dynamic tutoring pages
+    │   ├── blog/                ← /blog, /blog/[slug], /blog/category/[slug], /blog/tag/[slug]
+    │   ├── igcse/               ← dedicated IGCSE landing page
+    │   ├── gcse/, a-level/      ← curriculum landing pages
+    │   ├── pricing/
+    │   ├── about/, contact/, careers/, testimonials/, thank-you/
+    │   ├── curiculume/, maincuriculume/   ← note: misspelled legacy routes, keep as-is
+    │   ├── privacy-policy/, terms-and-conditions/
+    │   ├── 404/
+    │   └── ar/                  ← Arabic mirrors of the above
+    │       ├── page.tsx
+    │       ├── online/          ← /ar/online, /ar/online/[slug]
+    │       ├── blog/            ← full Arabic blog tree
+    │       ├── pricing/, about/, contact/, testimonials/, careers/
+    │       └── privacy-policy/, terms-and-conditions/
+    ├── components/
+    │   ├── header.tsx, header-v2.tsx, header-v3.tsx
+    │   ├── footer.tsx, footerV2.tsx, footer-wrapper.tsx, server-footer.tsx
+    │   ├── ar-header.tsx, ar-footer.tsx, ar-server-footer.tsx
+    │   ├── drawer.tsx           ← mobile nav (dynamic-imported in layout)
+    │   ├── html-wrapper.tsx     ← sets <html lang/dir> from useI18n
+    │   ├── language-switcher.tsx, route-language-switcher.tsx
+    │   ├── grade-subject-level/ ← V1 + V2 tutoring page renderers (EN + AR variants)
+    │   ├── home/                ← filter, form dialog, FAQs, trusted, tutor modal (EN + AR variants)
+    │   ├── blog/                ← hero, search, cards, sequences, CTAs, tags (EN + AR variants)
+    │   ├── pricing/             ← PackageCard, CustomPricingCard, modals, country selector (EN + AR)
+    │   ├── countdown/           ← CountdownTimer (reads `countdown/igcse-offer`)
+    │   ├── curiculume/, maincuriculume/, about/, careers/, contact/, testimonials/
+    │   ├── tutor-section/, school-logos-section/, teacher-card/, trustpilot-*/
+    │   ├── seo/UniversalSchema  ← JSON-LD injected in <head>
+    │   ├── page-view-tracker.tsx, performance-monitor.tsx
+    │   └── index.ts             ← barrel export
+    ├── context/                 ← DrawerProvider + I18nProvider (singular folder name — legacy)
+    │   ├── drawer-context.tsx
+    │   └── language-context.tsx
+    ├── hooks/
+    │   └── useI18n.ts
+    ├── locales/
+    │   ├── en.json
+    │   └── ar.json
+    ├── services/                ← all Firestore reads live here
+    │   ├── grade-subject-level/ ← pages, blogs, component sequence, sitemap slugs
+    │   ├── filter-data/         ← curriculum / grade / subject dropdowns
+    │   ├── pricing/, contact-form/, email-service/, faqs/, footer/
+    │   ├── get-started/, dropdown/, testimonials/, video-reviews/
+    │   ├── reviews-on-wp/, trusted-schools/, countdown/
+    ├── types/
+    │   ├── grade-subject-level.types.ts   ← PageData, AllBlogsData, Component_Sequence_Type
+    │   ├── i18n.types.ts
+    │   └── pricing.ts
+    ├── utils/
+    │   ├── env.ts               ← SITE_URL, email constants, Pixel ID/TOKEN (hardcoded)
+    │   ├── helper.ts, globalFunction.tsx, constants.ts
+    │   ├── slugHelper.ts, subject-translations.ts, pricing-helpers.ts
+    │   └── middleware.ts
+    ├── axios/                   ← axios base config
+    └── firebaseConfig/
+        └── config.ts            ← Firestore init (public Web SDK keys — safe to commit)
 ```
 
-## Key Features
-
-### Routing Structure
-- **Static Routes**: `/`, `/about`, `/contact`, `/careers`, `/testimonials`, `/blog`
-- **Arabic Static Routes**: `/ar`, `/ar/about`, `/ar/contact`, `/ar/testimonials`, `/ar/blog`
-- **Dynamic Routes**: 
-  - `/online/[slug]` - Subject/grade specific tutoring pages
-  - `/blog/[slug]` - Individual blog posts (English)
-  - `/blog/category/[slug]` - Blog categories (English)
-  - `/blog/tag/[slug]` - Blog tags (English)
-- **Arabic Dynamic Routes**:
-  - `/ar/blog/[slug]` - Individual blog posts (Arabic)
-  - `/ar/blog/category/[slug]` - Blog categories (Arabic)
-  - `/ar/blog/tag/[slug]` - Blog tags (Arabic)
-
-### Core Components
-
-#### Layout Components
-- **Header** (`src/components/header.tsx`): Navigation bar with responsive menu
-- **Footer** (`src/components/footer.tsx`): Site-wide footer with links and contact info
-- **Drawer** (`src/components/drawer.tsx`): Mobile navigation drawer
-
-#### Business Logic Components
-- **Filter System**: Subject/grade/curriculum filtering for tutoring services
-- **Contact Forms**: Lead generation and enrollment forms
-- **Testimonials**: Customer review display system
-- **Blog System**: Content management with categories and tags
-
-### State Management
-- **DrawerContext**: Manages mobile navigation drawer state
-- **Firebase Integration**: Real-time data fetching for:
-  - Filter data (subjects, grades, curricula)
-  - Testimonials
-  - Blog content
-  - Contact form submissions
-
-### Data Layer (`src/services/`)
-- **filter-data**: Curriculum, grade, and subject filtering
-- **testimonials**: Customer review management
-- **contact-form**: Lead capture and form handling
-- **grade-subject-level**: Dynamic page content
-- **email-service**: Email template and sending logic
-
-### Styling Approach
-- **Material-UI theming** with custom theme (`src/app/assets/css/theme.ts`)
-- **CSS Modules** for component-specific styling
-- **Responsive design** with mobile-first approach
-- **Custom fonts**: League Spartan from Google Fonts
-
-## Configuration Files
-
-### Next.js Configuration (`next.config.mjs`)
-- Audio file handling (mp3, wav)
-- Image optimization for Firebase Storage and external sources
-- Extensive redirect rules for SEO migration
-- File loader configuration
-
-### TypeScript Configuration
-- Strict mode enabled
-- Path aliases: `@/*` maps to `./src/*`
-- Modern module resolution with bundler
-
-## Business Context
-
-### Target Market
-- Students in Gulf region (UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman)
-- British curriculum education (IGCSE, GCSE, A-Levels)
-- Grades 4-8 and higher secondary education
-
-### Core Services
-- 1-on-1 online tutoring
-- Live interactive classes
-- Personalized learning plans
-- Multi-curriculum support (Cambridge, Pearson Edexcel, AQA)
-
-### Key Pages
-- **Home**: Lead generation with filtering and contact forms
-- **Online Tutoring**: Dynamic pages for each subject/grade combination
-- **About**: Company information and values
-- **Testimonials**: Social proof and customer reviews
-- **Contact**: Multiple contact methods and enrollment
-- **Blog**: Educational content and SEO
-- **Careers**: Hiring and talent acquisition
-
-### Analytics & Tracking
-- Google Analytics integration
-- Google Tag Manager
-- Microsoft Clarity
-- Custom metrics tracking
-
-## Development Notes
-
-### Performance Optimizations
-- Dynamic imports for non-critical components
-- Image optimization with Next.js Image component
-- Lazy loading for testimonials and blog content
-- Responsive image loading with multiple breakpoints
-
-### SEO Implementation
-- Dynamic sitemap generation
-- Structured data (JSON-LD) for organization and services
-- Meta tag management per page
-- Canonical URLs and redirects
-
-### Firebase Integration
-- Firestore for content management
-- Real-time data synchronization
-- Collection-based data organization
-- Error handling for offline scenarios
-
-## Key Files to Reference
-
-- `src/app/layout.tsx`: Root application layout and providers
-- `src/app/page.tsx`: Home page implementation
-- `src/components/header.tsx`: Main navigation component
-- `src/components/footer.tsx`: Site footer with dynamic links
-- `src/context/drawer-context.tsx`: Mobile navigation state
-- `src/services/filter-data/filter-data.ts`: Core filtering logic
-- `src/utils/env.ts`: Environment constants
-- `next.config.mjs`: Next.js configuration and redirects
-
-## Arabic Blog Implementation (Recent Update)
-
-### Overview
-Complete bilingual blog system implemented with Arabic translation, RTL support, and separate content collections.
-
-### Architecture
-- **URL-based Language Detection**: `/blog` for English, `/ar/blog` for Arabic
-- **Separate Collections**: `blogs-v1-en` and `blogs-v1-ar` in Firebase
-- **Bilingual Data Structure**: Categories and tags with `{id, name: {en, ar}}` format
-- **Component Duplication Strategy**: Arabic-specific components (ArHeader, ArFooter, etc.)
-
-### Key Files Created/Modified
-
-#### Arabic Pages
-- `src/app/ar/blog/page.tsx` - Arabic blog listing
-- `src/app/ar/blog/[slug]/page.tsx` - Individual Arabic blog posts
-- `src/app/ar/blog/category/[slug]/page.tsx` - Arabic category filtering
-- `src/app/ar/blog/tag/[slug]/page.tsx` - Arabic tag filtering
-
-#### Arabic Components
-- `src/components/blog/hero/ArHero.tsx` - Arabic hero with Trustpilot
-- `src/components/blog/search-bar/ArSearchBar.tsx` - Arabic search interface
-- `src/components/blog/blogSequences/ar-blog-sequences.tsx` - Arabic blog layout
-- `src/components/blog/hero-nested/ArHero.tsx` - Arabic nested hero
-- `src/components/blog/postCTA/ArPostCTA.tsx` - Arabic call-to-action
-- `src/components/blog/left-section/ar-left-section.tsx` - Arabic sidebar
-- `src/components/blog/tags-social/ArTagsAndSocial.tsx` - Arabic tags section
-
-#### Styling
-- `src/app/ar/blog/rtl-blog.module.css` - RTL layout styles
-- `src/app/ar/blog/category/[slug]/blog.module.css` - Arabic category styles
-- `src/app/ar/blog/tag/[slug]/blog.module.css` - Arabic tag styles
-
-#### Modified Services
-- `src/services/grade-subject-level/grade-subject-level.ts`:
-  - `getBlogData()` function updated with locale parameter
-  - Supports fetching from language-specific collections
-
-#### Updated Types
-- `src/types/grade-subject-level.types.ts`:
-  - Updated `AllBlogsData` type for new heroSection.category structure
-  - Bilingual category/tag support: `{id, name: {ar, en}}`
-
-### Technical Implementation
-
-#### Bilingual Data Structure
-```typescript
-// Categories & Tags Structure
-{
-  id: string,
-  name: {
-    en: string,
-    ar: string
-  }
-}
-
-// Blog heroSection.category Structure  
-{
-  category: {
-    data: [
-      {
-        id: string,
-        name: {
-          ar: string,
-          en: string
-        }
-      }
-    ]
-  }
-}
-```
-
-#### Translation Mappings
-- **Search**: "Search Our Blog" → "ابحث في مدونتنا"
-- **Search Button**: "Search" → "بحث"
-- **Categories**: "Category" → "التصنيف", "Categories" → "التصنيفات"
-- **Tags**: "Tag" → "العلامة", "Tags" → "العلامات"
-- **Newsletter**: "Subscribe!" → "اشترك!"
-- **Email Placeholder**: "Your Email*" → "بريدك الإلكتروني*"
-- **Rating**: "Excellent (4.7/5)" → "ممتاز (4.7/5)"
-- **Fallbacks**: "Our Blogs" → "مدوناتنا"
-
-#### Key Features Implemented
-1. **Complete RTL Support**: All Arabic pages flow right-to-left
-2. **Arabic Hero Section**: Proper Trustpilot display with Arabic rating
-3. **Bilingual Navigation**: Left sidebar works with both languages
-4. **ID-based Routing**: Category/tag URLs use IDs instead of names
-5. **Responsive Spacing**: CSS modules with viewport-based margins
-6. **Consistent Filtering**: Both languages use same filtering logic
-
-#### Routing Logic
-- **Language Detection**: Based on URL path (`/ar/` prefix)
-- **Collection Selection**: Automatic based on detected language
-- **Cross-language Links**: Arabic sidebar redirects to Arabic pages
-- **Fallback Handling**: Graceful degradation for missing translations
-
-### Development Notes
-
-#### Accordion Component Fix
-- Updated to use ID-based routing instead of name-based
-- Supports both English and Arabic title detection
-- Routes to appropriate language-specific pages
-
-#### CSS Modules Implementation
-- Local CSS files for Arabic pages to ensure styling works
-- `verticalMargin` class provides responsive spacing
-- Desktop: 7vh margins, Mobile: 5vh margins
-
-#### Firebase Collections
-- **English**: `blogs-v1-en`, `categories`, `tags`
-- **Arabic**: `blogs-v1-ar`, `categories`, `tags` (shared collections)
-- **Bilingual Structure**: Same categories/tags serve both languages
-
-### Testing URLs
-- Arabic Category: `http://localhost:3001/ar/blog/category/resources`
-- Arabic Tag: `http://localhost:3001/ar/blog/tag/exam-preparation`
-- Arabic Blog: `http://localhost:3001/ar/blog`
-- Arabic Individual: `http://localhost:3001/ar/blog/[slug]`
-
-### Future Considerations
-- All Arabic blog functionality is complete
-- System handles bilingual content seamlessly
-- Extensible for additional languages if needed
-- Maintains performance with separate collections
-
-## Arabic Online Tutoring Pages Implementation
-
-### Architecture Overview
-Extended the Arabic translation system to `/online` pages following the same bilingual approach:
-- English online pages: `/online/*`
-- Arabic online pages: `/ar/online/*`
-
-### Key Components Created
-
-#### Arabic Online Pages
-1. **`/ar/online/page.tsx`** - Main Arabic online tutoring page
-   - Arabic header and footer integration
-   - RTL layout with proper styling
-   - Semantic HTML structure for SEO
-
-2. **`/ar/online/[slug]/page.tsx`** - Individual Arabic online tutoring pages
-   - Fetches from `grade-subject-level-ar` collection
-   - Uses `sortJsonObjectBySequenceNumber` for proper component ordering
-   - Arabic metadata generation and canonical URLs
-
-3. **`/ar/online/[slug]/layout.tsx`** - Arabic layout wrapper
-   - Server-side metadata generation
-   - Proper schema markup for Arabic pages
-   - Canonical URL structure for SEO
-
-#### Arabic Components for Online Pages
-1. **`ArGradeSubjectLevel`** - Arabic version of main tutoring component
-   - Replaces `Header` with `ArHeader` and `Footer` with `ArServerFooter`
-   - Uses Arabic-translated sections (ArSectionsBox, ArForm)
-   - Maintains same component sequence logic
-
-2. **`ArGradeSubjectLevelV2`** - Arabic version of V2 tutoring component
-   - Object.entries iteration with proper Arabic components
-   - Arabic form integration for contact sections
-   - RTL-compatible styling and layout
-
-3. **`ArSectionsBox`** - Translated call-to-action section
-   - Arabic text: "انضم إلى فصول تفاعلية مباشرة عبر الإنترنت مع مدرسينا المعتمدين!"
-   - Button: "احجز تجربة مجانية" (Book a Free Demo)
-   - RTL text alignment
-
-4. **`ArForm`** - Complete Arabic contact form
-   - All placeholders translated to Arabic
-   - Error messages in Arabic
-   - Dropdown options: "اختر الصف", "اختر المنهج", "اختر المادة"
-   - Submit button: "إرسال الآن"
-   - Toast notifications in Arabic
-
-#### Service Layer Updates
-
-##### Grade Subject Level Service
-```typescript
-export const getPageData = async (slug: string, locale: string = "en"): Promise<PageData | null> => {
-  const collectionName = locale === "ar" ? "grade-subject-level-ar" : "grade-subject-level-en";
-  // Fetch from language-specific collection
-}
-```
-
-#### Database Collections
-- **grade-subject-level-en**: English online tutoring content
-- **grade-subject-level-ar**: Arabic online tutoring content
-
-#### Component Sequencing
-- **V2 Components**: Use `sortJsonObjectBySequenceNumber(data)` to sort by `sequenceNumber` property
-- **Regular Components**: Use `sequence.sections.sort((a, b) => a.placment - b.placment)`
-- Both approaches ensure consistent component ordering
-
-#### CSS and Styling
-- **RTL CSS Module**: `rtl-online.module.css`
-- **Form RTL Support**: Proper text direction and alignment
-- **Hero Section Padding**: Fixed RTL padding issues with container-level styling
-
-### Implementation Status
-✅ Arabic online tutoring pages with RTL support
-✅ Translated form components with Arabic validation
-✅ Proper component sequencing for both V1 and V2 layouts
-✅ Database integration with Arabic collections
-✅ SEO-optimized Arabic pages with metadata
-✅ Server Footer integration with proper data fetching
-
-## IGCSE Page Implementation
-
-### Page Structure
-Created dedicated IGCSE landing page at `/igcse` with comprehensive tutoring information and lead generation.
-
-### Components Architecture
-
-#### Core Components
-1. **Header-V2** - Enhanced header for landing pages
-2. **Hero Section with Form** - Two-column layout with content and lead form
-3. **School Logos Section** - Partner institution display
-4. **Tutor Section** - Expert tutor profiles with hardcoded data
-5. **Benefits Section** - Program advantages
-6. **Student Testimonials** - Video reviews integration
-7. **Call-to-Action Sections** - Multiple conversion points
-8. **Get Started Section** - Final conversion section
-9. **FAQs** - Common questions and answers
-
-#### Data Integration
-
-##### Tutor Section with Hardcoded Data
-- **TutorSectionV2** - Exact copy of original with hardcoded tutor profiles
-- **4 Expert Tutors** with detailed profiles:
-  - Sarah Johnson (Cambridge) - Math, Physics, Chemistry
-  - Michael Chen (Oxford) - English, History, Geography  
-  - Emma Williams (Imperial) - Biology, Chemistry, Environmental Science
-  - David Thompson (LSE) - Economics, Business, Mathematics
-- **Same styling and layout** as database-driven version
-- **GridView/ListView** rendering options
-
-##### Database Services Integration
-- **Get Started Data** - `getStartedData()` service
-- **Video Reviews** - `getVideoReviews()` service for testimonials
-- **Benefits Section** - Hardcoded with proper data structure
-- **FAQs** - Hardcoded IGCSE-specific questions
-
-#### Sticky Countdown Timer
-
-##### Database-Synchronized Countdown
-- **Firebase Collection**: `countdown/igcse-offer`
-- **Centralized Management**: All users see identical countdown
-- **Data Structure**:
-```typescript
-interface CountdownData {
-  targetDate: string;    // ISO string format
-  title: string;         // Display title
-  isActive: boolean;     // Enable/disable countdown
-  createdAt: string;     // Creation timestamp
-  updatedAt: string;     // Last update timestamp
-}
-```
-
-##### Countdown Service (`src/services/countdown/countdown.ts`)
-- **Auto-creation**: Creates 20-day default countdown if none exists
-- **Fallback mechanism**: Client-side calculation if database fails
-- **Admin controls**: Update functions for managing countdown
-
-##### CountdownTimer Component Features
-- **Real-time updates**: Updates every second
-- **Format**: Days:Hours:Minutes:Seconds with zero-padding
-- **Sticky positioning**: Fixed at top center of page
-- **Responsive design**: Works across all device sizes
-- **Loading states**: Proper handling of async data fetching
-
-#### Styling and Layout
-- **Professional design** with Material-UI components
-- **Responsive grid system** for all sections
-- **Consistent spacing** using `verticalMargin` utility
-- **Call-to-action optimization** with multiple conversion points
-
-### Current Implementation Status
-✅ Complete IGCSE landing page structure
-✅ Database-synchronized countdown timer
-✅ Hardcoded tutor profiles with professional presentation
-✅ Lead generation form with validation
-✅ School logos and testimonials integration
-✅ Benefits section with IGCSE-specific advantages
-✅ FAQ section with relevant questions
-✅ SEO-optimized structure and metadata
-✅ Performance-optimized with dynamic imports
-
-### Current Focus: Translation System
-Working on extending the Arabic translation system to include IGCSE page and other components, following the established bilingual architecture pattern.
+### Legacy quirks to preserve
+- `curiculume/` and `maincuriculume/` folders — misspelled intentionally; imports and live URLs depend on this. **Do not "fix" the spelling.**
+- `context/` is singular here (vs `contexts/` plural in TuitionalCMS). Keep as-is.
+- Arabic components use both PascalCase (`ArHero.tsx`) and kebab-case (`ar-header.tsx`) depending on vintage — follow the local file's convention.
+- `react-beautiful-dnd` is not in this repo (it was a TuitionalCMS concern); no DnD here.
+
+---
+
+## 4. i18n / RTL Architecture
+
+- **Two top-level language roots**: English pages live at `/…`, Arabic pages at `/ar/…`. Route detection in [src/context/language-context.tsx](src/context/language-context.tsx) sets `locale` to `'ar'` when `window.location.pathname.startsWith('/ar')`, else `'en'`.
+- **Translation function**: `const { t, locale, isRTL, setLocale } = useI18n()`. Call as `t("some.nested.key")` against [src/locales/en.json](src/locales/en.json) / [src/locales/ar.json](src/locales/ar.json). Missing keys fall back to EN, then to the key string itself. **Unlike TuitionalCMS, `t` IS a function here — do not refactor to an object pattern.**
+- **RTL mirroring**: [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) sets `<html dir>` and `lang`. There is no `stylis-plugin-rtl` — direction is mirrored by explicit styles and by using Arabic-specific component variants (`ArHeader`, `ArHero`, `ArForm`, etc.).
+- **Component duplication pattern**: most visual surfaces have a paired Arabic version (`components/blog/hero/Hero.tsx` ↔ `components/blog/ar-hero/ArHero.tsx`). The `/ar/**` page files import the `Ar*` variants. When editing a surface, check whether the Arabic twin needs the same change.
+
+---
+
+## 5. Data Model (Firestore)
+
+All reads go through [src/services/**](src/services/) — components should not call the Firebase SDK directly. Writes happen in the CMS, not here.
+
+| Collection | Doc ID | What it holds |
+|---|---|---|
+| `grade-subject-level-en` / `grade-subject-level-ar` | URL slug | `PageData` for `/online/[slug]` and `/ar/online/[slug]`. Section-keyed object with `sequenceNumber` per section. |
+| `blogs-v1-en` / `blogs-v1-ar` | URL slug | Blog post `PageData` (hero, content, author, FAQs, tags, related, CTA). |
+| `component-sequence-en` / `-ar` | collection name | Ordered `{ sections: { name, placment }[] }` for fixed-sequence rendering. Note misspelling `placment` — preserved from CMS. |
+| `page-categories-en` / `-ar` | auto | Category templates referenced by listing pages. |
+| `custom-pricing`, `tutoring-packages{-lang}` | auto | Pricing / package data consumed by `/pricing` and `/ar/pricing`. |
+| `dropdown-items{-lang}/educational-options` | fixed | Catalogue of grades/levels/subjects/countries/currencies for filter forms. |
+| `countdown/igcse-offer` | fixed | Global countdown displayed on `/igcse` via [CountdownTimer](src/components/countdown/). |
+
+### Two renderer variants
+[src/app/online/[slug]/page.tsx](src/app/online/[slug]/page.tsx) branches on `data.variant`:
+- `variant === "new"` → `GradeSubjectLevelV2` (object-entries iteration, sorted by `sequenceNumber`)
+- else → `GradeSubjectLevel` (uses a separate `component-sequence-*` doc and sorts by `placment`)
+
+Both variants still exist in the wild; don't remove either.
+
+---
+
+## 6. Routing Map (Summary)
+
+| Route | File |
+|---|---|
+| `/` | [src/app/page.tsx](src/app/page.tsx) |
+| `/online`, `/online/[slug]` | [src/app/online/](src/app/online/) |
+| `/blog`, `/blog/[slug]`, `/blog/category/[slug]`, `/blog/tag/[slug]` | [src/app/blog/](src/app/blog/) |
+| `/igcse`, `/gcse`, `/a-level` | curriculum landing pages |
+| `/pricing` | [src/app/pricing/](src/app/pricing/) |
+| `/about`, `/contact`, `/careers`, `/testimonials`, `/thank-you` | static pages |
+| `/privacy-policy`, `/terms-and-conditions` | legal pages |
+| `/curiculume`, `/maincuriculume` | legacy curriculum pages (misspelled — keep) |
+| `/ar/**` | Arabic mirrors of all of the above |
+| `/api/location` | server geo-IP helper |
+| `/api/meta-conversion` | server-side Facebook Conversions API endpoint |
+| `/sitemap.xml` | generated in [src/app/sitemap.ts](src/app/sitemap.ts) |
+| `/robots.txt` | [src/app/robots.txt](src/app/robots.txt) |
+
+[next.config.mjs](next.config.mjs) carries a large block of **permanent legacy redirects** (from the old WordPress site). Add new redirects there; do not `redirect()` in route files unless the mapping is dynamic.
+
+---
+
+## 7. Performance Posture
+
+- `experimental.optimizePackageImports`: MUI + Emotion tree-shaking.
+- Custom webpack `splitChunks`: separate `mui` and `vendor` chunks.
+- `next/image` everywhere — image `remotePatterns` allow `firebasestorage.googleapis.com`, `img.icons8.com`, `cdn-icons-png.flaticon.com`, `www.facebook.com/tr*`. **Don't add new hostnames without updating [next.config.mjs](next.config.mjs).**
+- Dynamic imports for non-critical components (mobile drawer, heavy below-the-fold surfaces).
+- `productionBrowserSourceMaps: false`, `compress: true`, `swcMinify: true`.
+- Fonts: all three families use `display: "swap"` + `adjustFontFallback`. `notoSansArabic` has `preload: false` because it's only needed on `/ar/**`.
+- Facebook Pixel is init'd inline (`strategy="afterInteractive"`) and additionally tracked on route changes via [src/app/metrics/pixel-tracker.tsx](src/app/metrics/pixel-tracker.tsx).
+
+Refer to [PERFORMANCE_OPTIMIZATION_PLAN.md](PERFORMANCE_OPTIMIZATION_PLAN.md) for the longer roadmap.
+
+---
+
+## 8. Environment, Secrets, and Known Debt
+
+- [src/utils/env.ts](src/utils/env.ts) hardcodes `SITE_URL`, email aliases, **Facebook Pixel ID and PIXEL_TOKEN**. The PIXEL_TOKEN is a long-lived access token for the Conversions API — treat as a secret-in-source debt item and do not propagate the pattern.
+- Firebase config in [src/firebaseConfig/config.ts](src/firebaseConfig/config.ts) uses the public Web SDK keys (these are fine to commit).
+- Inline analytics IDs in [src/app/layout.tsx](src/app/layout.tsx): GTM container `GTM-NG7HWSZT`, Pixel `1950457082424995`, Facebook domain verification meta. Don't rotate casually.
+- No `.env` loading pattern is wired in — adding one requires updating affected modules.
+
+---
+
+## 9. Relationship to the CMS
+
+- **TuitionalCMS** (`../TuitionalCMS`) is the **write** side — admins edit pages, blogs, pricing, dropdowns, and component sequences there. Documents land in the Firestore collections listed in §5.
+- **This app** is the **read** side — it renders those documents for the public.
+- Schema changes that affect rendering (new section names, new field shapes, renames) must be coordinated across both repos. When in doubt, consult `../TuitionalCMS/architecture.md` for field-level specifics.
+- The `-en` / `-ar` collection-suffix convention is shared between the two repos; don't diverge it.
+
+---
+
+## 10. Quick-Reference Files
+
+- [src/app/layout.tsx](src/app/layout.tsx) — root providers, font variables, analytics scripts
+- [src/context/language-context.tsx](src/context/language-context.tsx) — i18n + `useI18n()`
+- [src/context/drawer-context.tsx](src/context/drawer-context.tsx) — mobile nav state
+- [src/services/grade-subject-level/grade-subject-level.ts](src/services/grade-subject-level/grade-subject-level.ts) — primary content reader
+- [src/types/grade-subject-level.types.ts](src/types/grade-subject-level.types.ts) — page/blog/sequence types
+- [src/app/fonts.ts](src/app/fonts.ts) — font registration (the only place to add fonts)
+- [src/utils/env.ts](src/utils/env.ts) — site-wide constants
+- [next.config.mjs](next.config.mjs) — redirects + image hosts + bundle splitting
+- [src/app/sitemap.ts](src/app/sitemap.ts) — dynamic sitemap generation
+
+---
+
+**End.** Update this file in the same PR whenever the routing tree, Firestore collection set, provider stack, or redirect list changes meaningfully.

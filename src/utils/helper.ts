@@ -8,6 +8,22 @@ export const generateSlug = (text: string) => {
     .toLowerCase(); // Convert to lowercase
 };
 
+// Decode HTML entities that may have been persisted in plain-text CMS fields
+// (e.g. &lt;style&gt; stored when an author pasted HTML into a TextField).
+// Passing the decoded string to dangerouslySetInnerHTML lets the browser parse
+// the real tags instead of displaying "<style>" as literal text.
+export const decodeHtmlEntities = (s?: string | null): string => {
+  if (!s) return "";
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#x27;/g, "'")
+    .replace(/&nbsp;/g, " ");
+};
+
 export const subjectsMap: Record<string, string> = {
   // English subjects (exact Firebase data)
   Mathematics: "/online/math-tutors",
