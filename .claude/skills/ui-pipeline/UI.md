@@ -1,52 +1,110 @@
 ---
 name: tuitionalFrontend UI Pipeline
-description: Canonical file templates, folder conventions, and authoring rules for the public marketing site. Load before creating any new component or page.
+description: Stage 3 of the SDLC. File templates, folder conventions, and authoring idioms for the public marketing site. Loaded after Design.md locks the tokens; feeds QA.md for verification next.
 type: ui-pipeline
 ---
 
-# tuitionalFrontend — UI Pipeline
+# tuitionalFrontend — UI Pipeline (SDLC Stage 3)
 
+> **Where you are in the pipeline:** You arrived here from [Design.md](./Design.md) with tokens and patterns chosen. This file gives you the implementation skeleton — file layout, imports order, component templates, bilingual idioms. After authoring, continue to [QA.md](./QA.md) to verify.
 > **Version:** 2.0.0 (tailored from the CMS pipeline) | **Scope:** `src/` directory of `tuitionalFrontend`
-> **Audience:** Any engineer/LLM performing UI work in `tuitionalFrontend`. Non-compliance is an error condition.
-> **Cross-reference:** Always read [RULES.md](./RULES.md) alongside this document — RULES.md contains the hard gates; this doc contains the templates and idioms.
+> **Cross-reference:** Always keep [RULES.md](./RULES.md) loaded — this file gives the "how to build"; RULES.md gives the "what is forbidden".
 
 ---
 
-## 1. Repository Shape
+## 0. SDLC Navigation Band
+
+```
+Development.md ───► Design.md ───►  [UI.md — you are here]  ───► QA.md
+                                              ▲
+                                              │  always consult
+                                              ▼
+                                         RULES.md
+```
+
+| If you need to… | Go to |
+|---|---|
+| Understand the task / find the right file for a symptom | [Development.md §2 Context Map](./Development.md) |
+| Confirm a design token | [Design.md §1–4](./Design.md) |
+| Confirm a rule (forbidden APIs, foundation files) | [RULES.md](./RULES.md) |
+| Verify before shipping | [QA.md §QA-02, §QA-05, §QA-06](./QA.md) |
+
+---
+
+## 1. Repository Shape — the authoritative map
 
 ```
 tuitionalFrontend/
-├── next.config.mjs          ← image remote hosts, redirects, chunk splitting
+├── next.config.mjs          ← image remote hosts, redirects, chunk splitting [foundation]
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx       ← root providers, font variables, analytics
+│   │   ├── layout.tsx       ← root providers, font variables, analytics [foundation]
 │   │   ├── page.tsx         ← home EN
-│   │   ├── globals.css      ← RTL, base typography
-│   │   ├── style.css        ← shared styles
-│   │   ├── fonts.ts         ← leagueSpartan, inter, notoSansArabic
-│   │   ├── sitemap.ts
+│   │   ├── globals.css      ← RTL, base typography [foundation]
+│   │   ├── style.css        ← shared styles [foundation]
+│   │   ├── fonts.ts         ← leagueSpartan, inter, notoSansArabic [foundation]
+│   │   ├── sitemap.ts       ← sitemap generator (reads Firestore slugs)
 │   │   ├── robots.txt
 │   │   ├── not-found.tsx
-│   │   ├── metrics/         ← GTM, GA4, Clarity, Pixel trackers
-│   │   ├── api/             ← /api/location, /api/meta-conversion
-│   │   ├── assets/css/      ← theme.ts, typographyTokens.ts, typography.css
-│   │   ├── online/          ← /online + /online/[slug] + ar twin
-│   │   ├── blog/            ← /blog tree + ar twin
+│   │   ├── 404/             ← explicit 404 route
+│   │   ├── metrics/         ← GTM, GA4, Clarity, Pixel trackers [foundation-adjacent]
+│   │   ├── api/
+│   │   │   ├── location/    ← /api/location — geo-IP lookup
+│   │   │   └── meta-conversion/ ← /api/meta-conversion — FB server-side events
+│   │   ├── assets/css/
+│   │   │   ├── theme.ts            [foundation]
+│   │   │   ├── typographyTokens.ts [foundation]
+│   │   │   └── typography.css
+│   │   ├── online/[slug]/   ← grade-subject-level dynamic route (EN)
+│   │   ├── blog/            ← /blog tree
 │   │   ├── igcse/ gcse/ a-level/
 │   │   ├── pricing/
 │   │   ├── about/ contact/ careers/ testimonials/ thank-you/
-│   │   ├── curiculume/ maincuriculume/  (legacy misspellings — do not rename)
+│   │   ├── curiculume/ maincuriculume/   ← legacy misspellings, DO NOT rename
 │   │   ├── privacy-policy/ terms-and-conditions/
-│   │   └── ar/              ← Arabic mirror tree
+│   │   └── ar/              ← Arabic mirror tree (about/, blog/, careers/, contact/,
+│   │                           online/, pricing/, privacy-policy/, terms-and-conditions/,
+│   │                           testimonials/, page.tsx)
 │   ├── components/          ← feature-scoped folders + top-level primitives
 │   ├── context/             ← SINGULAR here. DrawerProvider + I18nProvider only
-│   ├── hooks/               ← useI18n
-│   ├── locales/             ← en.json, ar.json
-│   ├── services/            ← Firestore reads (grade-subject-level, blogs, pricing, …)
-│   ├── types/               ← grade-subject-level.types.ts, i18n.types.ts, pricing.ts
-│   ├── utils/               ← env, helper, globalFunction, constants, slugHelper, …
-│   ├── axios/               ← axios base config
-│   └── firebaseConfig/      ← Firestore init
+│   │   ├── drawer-context.tsx    [foundation]
+│   │   └── language-context.tsx  [foundation]
+│   ├── hooks/
+│   │   └── useI18n.ts            [foundation]
+│   ├── locales/
+│   │   ├── en.json          ← EN translations
+│   │   └── ar.json          ← AR translations
+│   ├── services/            ← Firestore reads
+│   │   ├── contact-form/
+│   │   ├── countdown/
+│   │   ├── dropdown/
+│   │   ├── email-service/
+│   │   ├── faqs/
+│   │   ├── filter-data/
+│   │   ├── footer/
+│   │   ├── get-started/
+│   │   ├── grade-subject-level/   ← page + blog + sequence + sitemap slugs
+│   │   ├── pricing/
+│   │   ├── reviews-on-wp/
+│   │   ├── testimonials/
+│   │   ├── trusted-schools/
+│   │   └── video-reviews/
+│   ├── types/
+│   │   ├── grade-subject-level.types.ts
+│   │   ├── i18n.types.ts
+│   │   └── pricing.ts
+│   ├── utils/
+│   │   ├── constants.ts
+│   │   ├── env.ts            ← SITE_URL + PIXEL_TOKEN [foundation-adjacent]
+│   │   ├── globalFunction.tsx
+│   │   ├── helper.ts
+│   │   ├── middleware.ts
+│   │   ├── pricing-helpers.ts
+│   │   ├── slugHelper.ts
+│   │   └── subject-translations.ts
+│   ├── axios/                ← axios base config
+│   └── firebaseConfig/
+│       └── config.ts         ← Firestore init [foundation]
 ```
 
 ### Differences from the CMS (don't conflate)
@@ -55,16 +113,42 @@ tuitionalFrontend/
 |---|---|---|
 | Context folder | `src/context/` (singular) | `src/contexts/` (plural) + singular legacy |
 | Styling | `sx` **OR** CSS modules | `sx` ONLY (CSS modules banned) |
-| `t` | Function: `t("key.path")` | Plain object: `t.key` |
+| `t` | **Function**: `t("key.path")` | Plain object: `t.key` |
 | Form helper | none — inline with `useI18n()` | `useFormTranslations()` mandatory |
 | DnD | absent | `@hello-pangea/dnd` |
 | Rich text | absent | Quill |
 | Package manager | `npm` | `yarn` |
-| Direction | CMS writes Firestore | This repo READS only |
+| Direction | READS Firestore | WRITES Firestore |
 
 ---
 
-## 2. Server vs Client Component Rules
+## 2. Where to put a new file — quick reference
+
+| What you're building | Put it in |
+|---|---|
+| A new top-level page | `src/app/<route>/page.tsx` (+ `src/app/ar/<route>/page.tsx` mirror) |
+| A new dynamic page | `src/app/<route>/[slug]/page.tsx` (+ AR mirror) |
+| A section component for an existing feature | `src/components/<feature>/<name>.tsx` + `ar-<name>.tsx` twin |
+| A new feature folder | `src/components/<feature>/` — add EN and AR files in parallel |
+| A reusable primitive (button, chip, input) | `src/components/<name>.tsx` at the top level |
+| A Firestore read | `src/services/<domain>/` |
+| A TypeScript type | `src/types/<domain>.types.ts` |
+| A translation string | BOTH `src/locales/en.json` AND `src/locales/ar.json` |
+| A redirect rule | `next.config.mjs` redirects() (foundation → approval) |
+| A utility helper | `src/utils/<name>.ts` |
+
+### ✅ DO
+- Mirror file location between EN and AR (the twin lives next to the EN file or in a sibling folder).
+- Add a new type when extending data shape — don't duplicate existing interfaces.
+
+### ❌ DON'T
+- Don't create a `src/contexts/` (plural) folder — contexts live in `src/context/` here.
+- Don't create a shared `src/styles/` directory — CSS modules live next to their `.tsx`.
+- Don't author a new page without its AR mirror (unless documented as EN-only).
+
+---
+
+## 3. Server vs Client Component Rules
 
 ### Server Component (default, `app/**/page.tsx`)
 
@@ -83,11 +167,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 export default Page;
 ```
 
-- No `"use client"` directive
-- Directly `await` service calls
-- Use `redirect("/404")` for not-found (NOT `notFound()` — match existing convention)
-- Pass data down as props
-- Generate metadata via `generateMetadata` if needed (see existing blog pages)
+#### ✅ DO
+- Keep `page.tsx` files server-rendered.
+- `await` service calls directly.
+- Pass data down as props.
+- Use `redirect("/404")` for not-found — matches existing convention.
+- Export `generateMetadata` for SEO when the page has a dynamic title/description.
+
+#### ❌ DON'T
+- Don't add `"use client"` to `page.tsx`.
+- Don't use `notFound()` — stick with `redirect("/404")`.
+- Don't call Firebase SDK directly in a page.tsx — route through `src/services/`.
 
 ### Client Component (`components/**/*.tsx`, any file with hooks/state)
 
@@ -97,7 +187,6 @@ export default Page;
 import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useI18n } from "@/hooks/useI18n";
-// (or: import { useI18n } from "@/context/language-context")
 
 interface FooSectionProps {
   data: SomeType;
@@ -125,16 +214,21 @@ const styles = {
 };
 ```
 
-**Rules:**
-- Client components never call Firebase directly — data comes via props
-- Client components may call `/api/*` routes or `/api/location` if they need client-time state
-- Start the file with `"use client";` on line 1
+#### ✅ DO
+- Start the file with `"use client";` on line 1.
+- Receive data as props from a server component parent.
+- Use `useI18n()` for any user-facing string.
+
+#### ❌ DON'T
+- Don't call Firebase SDK (`getDoc`, `setDoc`, `collection`, `query`) anywhere in a client component.
+- Don't fetch on render — if you need client-time data, use `/api/location` for geo-IP via the established pattern.
+- Don't call services from a client component unless it's a clearly client-only scenario (geo-IP, form submit).
 
 ---
 
-## 3. File Template — Pattern A (sx + styles object)
+## 4. File Template — Pattern A (`sx` + styles object)
 
-Use this for most components. Preferred when you have simple styles and want to stay within MUI's system.
+Use this for most components. Preferred when styles are simple and you want to stay within MUI's system.
 
 ```tsx
 "use client";
@@ -210,11 +304,21 @@ const styles = {
 };
 ```
 
+### ✅ DO
+- Keep `const styles = {...}` at the bottom of the file.
+- Cast literal `textAlign` with `as const` to keep TypeScript happy.
+- Pull token values from [Design.md §1–4](./Design.md) verbatim.
+
+### ❌ DON'T
+- Don't interleave styles with JSX.
+- Don't mix `styled()` into this pattern.
+- Don't reference `theme.*` inside these objects.
+
 ---
 
-## 4. File Template — Pattern B (CSS Module)
+## 5. File Template — Pattern B (CSS Module)
 
-Use this when you need complex descendant selectors, pseudo-elements, or shared keyframes. Follow the shape used in [components/pricing/](src/components/pricing/).
+Use this when you need complex descendant selectors, pseudo-elements, or shared keyframes. Follow the shape in [components/pricing/](src/components/pricing/).
 
 ### `PackageCard.tsx`
 
@@ -271,13 +375,7 @@ export default PackageCard;
   border-color: #38b6ff;
 }
 
-.title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
+.title { font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0; }
 .popular .title { color: #ffffff; }
 
 .price { display: flex; align-items: baseline; gap: 4px; }
@@ -290,9 +388,19 @@ export default PackageCard;
 }
 ```
 
+### ✅ DO
+- Keep the `.module.css` next to the `.tsx` in the same folder.
+- Use `@media (max-width: 1199px)` / `(max-width: 599px)` to stay aligned with the theme breakpoints.
+- Use `memo` for list-item cards (pricing, blog cards).
+
+### ❌ DON'T
+- Don't create a shared `/styles/` directory.
+- Don't mix `sx` and CSS module authoring for the **same** property — pick one per property.
+- Don't import a global stylesheet into a component.
+
 ---
 
-## 5. Arabic Twin Pattern
+## 6. Arabic Twin Pattern
 
 When the Arabic layout diverges significantly from EN, create a twin:
 
@@ -306,25 +414,33 @@ components/blog/ar-hero/ArHero.tsx  ← AR twin (PascalCase mirrors file convent
 
 ### Which convention to use?
 
-- If the EN file is `kebab-case.tsx`: Arabic twin is `ar-<name>.tsx` (lowercase `ar-` prefix)
-- If the EN file is `PascalCase.tsx` inside a scoped folder: Arabic twin is the same folder renamed with `ar-` prefix containing `Ar<Name>.tsx`
+| EN file casing | AR twin convention |
+|---|---|
+| `kebab-case.tsx` | `ar-<name>.tsx` (lowercase `ar-` prefix) |
+| `PascalCase.tsx` inside scoped folder (e.g. `blog/hero/Hero.tsx`) | Same folder renamed with `ar-` prefix containing `Ar<Name>.tsx` — e.g. `blog/ar-hero/ArHero.tsx` |
 
-Match the local convention of the feature folder you're in. Don't standardize across; the existing split is deliberate.
+Match the local convention of the feature folder you're in. Don't standardize across folders — the existing split is deliberate.
 
 ### Arabic route tree
 
-`/ar/**` routes import the twin explicitly:
+[src/app/ar/](src/app/ar/) routes import the twin explicitly:
 
 ```tsx
 // src/app/ar/page.tsx
 import ArHome from "@/views/ar-home"; // or the appropriate twin
 ```
 
-When adding a new page, add `src/app/<route>/page.tsx` AND `src/app/ar/<route>/page.tsx`. Missing Arabic mirrors surface as 404s.
+### ✅ DO
+- Add the `/ar/<route>/page.tsx` alongside the new `/<route>/page.tsx`.
+- Keep EN and AR twins structurally aligned to simplify future edits.
+
+### ❌ DON'T
+- Don't author only EN and assume RTL conditionals will cover AR — when layout diverges significantly, use a twin.
+- Don't rename existing twins to "fix" inconsistent casing.
 
 ---
 
-## 6. i18n Authoring Rules
+## 7. i18n Authoring Rules
 
 ### Using the hook
 
@@ -333,6 +449,8 @@ import { useI18n } from "@/hooks/useI18n";
 
 const { t, locale, isRTL, isArabic, isEnglish, setLocale, toggleLanguage } = useI18n();
 ```
+
+Alternative (lighter surface): `import { useI18n } from "@/context/language-context"` → `{ t, locale, isRTL, setLocale }` only. **Prefer `@/hooks/useI18n` — it's a superset.**
 
 ### Looking up a key
 
@@ -364,21 +482,29 @@ Both files, same structure:
 }
 ```
 
-Missing AR keys fall back to EN, then to the raw key string. Shipping without the AR translation results in visible English strings on `/ar/**` — treat it as a defect.
-
-### Inline alternative (small/one-off strings)
-
-For single strings that don't justify a JSON key:
+### Inline alternative (one-off strings)
 
 ```tsx
 <Typography>{isArabic ? "مرحبا" : "Welcome"}</Typography>
 ```
 
-Prefer JSON keys for anything that will be reused or that the marketing team might want to translate independently.
+Prefer JSON keys for anything reusable or that the marketing team might want to update.
+
+### ✅ DO
+- Call `t` as a **function**: `t("key.path")`.
+- Add keys to BOTH `en.json` and `ar.json` in the same commit.
+- Use dot-path nesting that mirrors the JSON.
+
+### ❌ DON'T
+- Don't call `t` as an object (`t.key`) — it throws. That's the CMS pattern, not this repo's.
+- Don't import `@/locales/en.json` directly inside a component — always go through `t()`.
+- Don't ship an English string that will render on `/ar/**`.
+
+**If missing AR translations cause English leaks → Navigate to [src/locales/ar.json](src/locales/ar.json) and add the key.**
 
 ---
 
-## 7. Styling Idioms
+## 8. Styling Idioms
 
 ### MUI breakpoints inside `sx`
 
@@ -410,36 +536,42 @@ Allowed, but don't author the same property in both:
 
 ### Avoiding theme helpers inside `sx`
 
-Don't write `theme.palette.primary.main` or `theme.spacing(2)` inside `sx`. Use literal values or CSS variables:
-
 ```tsx
 // ❌ sx={{ color: theme.palette.primary.main }}
 // ✅ sx={{ color: "#38b6ff" }}
 // ✅ sx={{ color: "var(--color-accent)" }}
 ```
 
+### ✅ DO
+- Collapse identical breakpoint values: `{ xs: "20px", sm: "20px", md: "20px" }` → `"20px"`.
+- Pair `vh`-driven input heights with a `minHeight` clamp (e.g. `minHeight: 48px`).
+
+### ❌ DON'T
+- Don't use `theme.breakpoints.up()` / `theme.breakpoints.down()` inside `sx`.
+- Don't use `em` anywhere. Don't use `vw` for `font-size`.
+
 ---
 
-## 8. Data & Service Rules
+## 9. Data & Service Rules
 
 ### Services live in `src/services/`
 
 ```
 services/
-├── grade-subject-level/   ← page + blog + sequence + sitemap slugs
-├── filter-data/           ← curriculum/grade/subject dropdowns
-├── pricing/
 ├── contact-form/
+├── countdown/
+├── dropdown/
 ├── email-service/
 ├── faqs/
+├── filter-data/             ← curriculum/grade/subject dropdowns
 ├── footer/
 ├── get-started/
-├── dropdown/
-├── testimonials/
-├── video-reviews/
+├── grade-subject-level/     ← page + blog + sequence + sitemap slugs
+├── pricing/
 ├── reviews-on-wp/
+├── testimonials/
 ├── trusted-schools/
-└── countdown/
+└── video-reviews/
 ```
 
 ### Calling from a Server Component
@@ -454,68 +586,85 @@ if (!data) return redirect("/404");
 You generally should NOT. Data arrives from the server component as props.
 
 **Exceptions** that legitimately run client-side:
-- Geo-IP lookup via `/api/location` (used by forms for Country/IP tracking — see `slugHelper.ts`'s `useGeoLocation`)
-- Contact-form submission POSTs
-- Meta Conversions API forwarding via `/api/meta-conversion`
+- Geo-IP lookup via `/api/location` (used by forms for Country/IP tracking — see `slugHelper.ts`'s `useGeoLocation`).
+- Contact-form submission POSTs.
+- Meta Conversions API forwarding via `/api/meta-conversion`.
 
 ### Collection naming
 
-- `grade-subject-level-en` / `grade-subject-level-ar`
-- `blogs-v1-en` / `blogs-v1-ar`
-- `component-sequence-en` / `component-sequence-ar` (section ordering — note the `placment` misspelling in docs)
-- `page-categories-en` / `page-categories-ar`
-- `custom-pricing` (country-agnostic doc set)
-- `tutoring-packages-en` / `tutoring-packages-ar`
-- `dropdown-items-en` / `dropdown-items-ar`
-- `countdown/igcse-offer` (fixed doc)
+| Collection | Notes |
+|---|---|
+| `grade-subject-level-en` / `grade-subject-level-ar` | Marketing pages |
+| `blogs-v1-en` / `blogs-v1-ar` | Blog posts |
+| `component-sequence-en` / `component-sequence-ar` | Section ordering (note the `placment` misspelling in docs — preserve) |
+| `page-categories-en` / `page-categories-ar` | Page templates |
+| `custom-pricing` | Country-agnostic doc set |
+| `tutoring-packages-en` / `tutoring-packages-ar` | Legacy package model |
+| `dropdown-items-en` / `dropdown-items-ar` | Catalogue |
+| `countdown/igcse-offer` | Fixed doc |
 
-**The CMS writes these. This repo reads them.** Never introduce `setDoc`/`addDoc`/`updateDoc`/`deleteDoc` here.
+### ✅ DO
+- Return `null` / `[]` / `undefined` on service failure.
+- Resolve the collection name based on `locale` (e.g. `locale === "ar" ? "x-ar" : "x-en"`).
+- Keep the `placment` misspelling intact in `component-sequence-*` reads.
 
----
-
-## 9. Routing Templates
-
-### Adding a new top-level static page
-
-1. `src/app/<route>/page.tsx` — Server Component, default export
-2. `src/app/ar/<route>/page.tsx` — Arabic mirror (import `Ar*` twin)
-3. `src/components/<route>/` — section components (with `ar-*.tsx` twins)
-4. Keys added to both `src/locales/en.json` and `ar.json`
-5. If the page should appear in search results: check [sitemap.ts](src/app/sitemap.ts) already picks it up or needs updating
-6. `generateMetadata` exported for `<title>` + `<meta description>`
-
-### Adding a new dynamic page
-
-Same as above, but:
-- `src/app/<route>/[slug]/page.tsx` with `async function` reading `params.slug`
-- Service function with locale parameter
-- Check [sitemap.ts](src/app/sitemap.ts) iterates the corresponding slug list
-
-### Adding a new redirect
-
-Append to `redirects()` array in [next.config.mjs](next.config.mjs). That's a foundation file → requires approval.
+### ❌ DON'T
+- Don't throw from a service.
+- Don't introduce `setDoc` / `addDoc` / `updateDoc` / `deleteDoc` — this repo is **READ-ONLY**.
+- Don't "clean up" field names — the CMS writes them; renaming breaks everything.
 
 ---
 
 ## 10. Component Existence Check (BEFORE AUTHORING)
 
-Before creating a new component, search for an existing one in this order:
+Before creating a new component, search in this order:
 
-1. `src/components/<matching-scope>/` — feature folders first (blog/, home/, pricing/, grade-subject-level/)
-2. `src/components/` (top level) — primitives:
-   - [DropDown/](src/components/DropDown/) — select/autocomplete
-   - [custom-input/](src/components/custom-input/), [input/](src/components/input/), [textArea/](src/components/textArea/) — inputs
-   - [pop-up-button.tsx](src/components/pop-up-button.tsx) / [pop-up-buttonV2.tsx](src/components/pop-up-buttonV2.tsx) — lead-capture CTA
-   - [image-card/](src/components/image-card/)
-   - [tag/](src/components/tag/), [tags/](src/components/tags/), [ar-tags/](src/components/ar-tags/) — tag chips
-   - [teacher-card/](src/components/teacher-card/) — tutor card
-   - [bread-crumb/](src/components/bread-crumb/)
-   - [line-break-text.tsx](src/components/line-break-text.tsx)
-   - [language-switcher.tsx](src/components/language-switcher.tsx), [route-language-switcher.tsx](src/components/route-language-switcher.tsx)
-3. Header variants: [header.tsx](src/components/header.tsx), [header-v2.tsx](src/components/header-v2.tsx), [header-v3.tsx](src/components/header-v3.tsx), [ar-header.tsx](src/components/ar-header.tsx)
-4. Footer variants: [footer.tsx](src/components/footer.tsx), [footerV2.tsx](src/components/footerV2.tsx), [server-footer.tsx](src/components/server-footer.tsx), [footer-wrapper.tsx](src/components/footer-wrapper.tsx), [ar-footer.tsx](src/components/ar-footer.tsx), [ar-server-footer.tsx](src/components/ar-server-footer.tsx)
+### 10.1 Feature folders
 
-**If a match exists — USE IT. Do NOT refactor it on the side. Do NOT create a parallel implementation.**
+| Feature | Folder |
+|---|---|
+| Blog | [src/components/blog/](src/components/blog/) (+ `ar-*` twins) |
+| Home | [src/components/home/](src/components/home/) (+ `ar-*` twins) |
+| Pricing | [src/components/pricing/](src/components/pricing/) |
+| Grade-Subject-Level | [src/components/grade-subject-level/](src/components/grade-subject-level/) |
+| About | [src/components/about/](src/components/about/) |
+| Careers | [src/components/careers/](src/components/careers/) |
+| Contact | [src/components/contact/](src/components/contact/) |
+| Countdown | [src/components/countdown/](src/components/countdown/) |
+| Curriculum | [src/components/curiculume/](src/components/curiculume/), [src/components/maincuriculume/](src/components/maincuriculume/) **(preserve misspelling)** |
+| Footer links | [src/components/footerLinks/](src/components/footerLinks/) |
+| SEO | [src/components/seo/](src/components/seo/) |
+| Testimonials | [src/components/testimonials/](src/components/testimonials/) |
+| Trustpilot | [src/components/trustpilot-carousel/](src/components/trustpilot-carousel/), [src/components/trustpilot-review/](src/components/trustpilot-review/) |
+
+### 10.2 Top-level primitives
+
+| Concern | File |
+|---|---|
+| Select / autocomplete | [src/components/DropDown/](src/components/DropDown/) |
+| Inputs | [src/components/custom-input/](src/components/custom-input/), [src/components/input/](src/components/input/), [src/components/textArea/](src/components/textArea/) |
+| Lead-capture CTA | [src/components/pop-up-button.tsx](src/components/pop-up-button.tsx), [src/components/pop-up-buttonV2.tsx](src/components/pop-up-buttonV2.tsx) |
+| Image card | [src/components/image-card/](src/components/image-card/) |
+| Tag chips | [src/components/tag/](src/components/tag/), [src/components/tags/](src/components/tags/), [src/components/ar-tags/](src/components/ar-tags/) |
+| Tutor card | [src/components/teacher-card/](src/components/teacher-card/) |
+| Breadcrumb | [src/components/bread-crumb/](src/components/bread-crumb/) |
+| Line break | [src/components/line-break-text.tsx](src/components/line-break-text.tsx) |
+| Language switcher | [src/components/language-switcher.tsx](src/components/language-switcher.tsx), [src/components/route-language-switcher.tsx](src/components/route-language-switcher.tsx) |
+| Tracking | [src/components/page-view-tracker.tsx](src/components/page-view-tracker.tsx), [src/components/performance-monitor.tsx](src/components/performance-monitor.tsx) |
+| HTML wrapper | [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) **(foundation)** |
+
+### 10.3 Headers & Footers (variants)
+
+- Header: [header.tsx](src/components/header.tsx), [header-v2.tsx](src/components/header-v2.tsx), [header-v3.tsx](src/components/header-v3.tsx), [ar-header.tsx](src/components/ar-header.tsx).
+- Footer: [footer.tsx](src/components/footer.tsx), [footerV2.tsx](src/components/footerV2.tsx), [server-footer.tsx](src/components/server-footer.tsx), [footer-wrapper.tsx](src/components/footer-wrapper.tsx), [ar-footer.tsx](src/components/ar-footer.tsx), [ar-server-footer.tsx](src/components/ar-server-footer.tsx).
+
+### ✅ DO
+- If a match exists → USE IT AS-IS.
+- If you think an existing file must be changed: report the modification need and wait for approval ([RULES §RULE-05](./RULES.md) Zero Modification Rule).
+
+### ❌ DON'T
+- Don't create a parallel implementation of something that already exists.
+- Don't refactor a neighbouring file on the side of a feature task.
 
 ---
 
@@ -523,19 +672,28 @@ Before creating a new component, search for an existing one in this order:
 
 Imports and live URLs depend on these names. **Never rename in passing.**
 
-- `curiculume/` and `maincuriculume/` route folders + URLs
-- `form-dialouge.tsx`, `ar-form-dialouge.tsx` (misspelling carried over from CMS)
-- `students-says.tsx` / `students-says-v2.tsx` (grammar)
-- `placment` field name in Firestore `component-sequence-*` docs
-- PascalCase twin files (`Hero.tsx`, `ArHero.tsx`) in `blog/`, `pricing/`, `teacher-card/` etc. — mirror this pattern when you're IN those folders; don't replicate it outside
+| Name | Reason |
+|---|---|
+| `curiculume/` route + folder | Live URLs indexed |
+| `maincuriculume/` route + folder | Live URLs indexed |
+| `form-dialouge.tsx`, `ar-form-dialouge.tsx`, `form-dialouge-v1.tsx` | Misspelling carried over from CMS |
+| `students-says.tsx`, `students-says-v2.tsx` | Grammar (intentional) |
+| `placment` field name in Firestore `component-sequence-*` docs | CMS schema |
+| PascalCase twins (`Hero.tsx`, `ArHero.tsx`) inside `blog/`, `pricing/`, `teacher-card/` | Deliberate local convention |
 
-New files MUST be correctly spelled and kebab-case (e.g. `my-section.tsx`). Twin pairs must use a consistent casing (both kebab or both Pascal — don't mix).
+### ✅ DO
+- Preserve the exact spelling when reading / writing to these files.
+- When adding sibling files, match the folder's existing casing (kebab OR Pascal, not both).
+
+### ❌ DON'T
+- Don't rename these in a refactor / cleanup PR.
+- Don't replicate the PascalCase convention in new folders where kebab-case is the norm.
 
 ---
 
 ## 12. Analytics Integration (every page)
 
-Do not disable or re-parent these in layout.tsx:
+Do not disable or re-parent these in [layout.tsx](src/app/layout.tsx):
 
 - Facebook Pixel inline init (`1950457082424995`)
 - GTM container `GTM-NG7HWSZT`
@@ -545,16 +703,31 @@ Do not disable or re-parent these in layout.tsx:
 
 If a specific page needs additional Pixel events (e.g. `Lead` when a form submits), fire them from a `useEffect` or event handler. Pair with the server-side mirror at [/api/meta-conversion](src/app/api/meta-conversion/route.ts) when the event is high-value.
 
+### ✅ DO
+- Consume the global trackers as-is.
+- Mirror conversion-worthy events through the server API.
+
+### ❌ DON'T
+- Don't mount a second `<Toaster />` or `<FbPixelPageView />`.
+- Don't log `PIXEL_TOKEN` client-side.
+
 ---
 
 ## 13. Image Rules
 
-- Use `next/image` everywhere — never `<img>` for content images
-- Always provide `width`, `height`, and descriptive `alt`
-- Above-the-fold hero images: add `priority`
-- Remote `src`: host must be allowlisted in [next.config.mjs](next.config.mjs) `remotePatterns`
-- Currently allowlisted: `firebasestorage.googleapis.com`, `img.icons8.com`, `cdn-icons-png.flaticon.com`, `www.facebook.com/tr*`
-- Adding a new host = foundation-file change = requires approval
+- Use `next/image` everywhere — never `<img>` for content images.
+- Always provide `width`, `height`, and descriptive `alt`.
+- Above-the-fold hero images: add `priority`.
+- Remote `src`: host must be allowlisted in [next.config.mjs](next.config.mjs) `remotePatterns`.
+- Currently allowlisted: `firebasestorage.googleapis.com`, `img.icons8.com`, `cdn-icons-png.flaticon.com`, `www.facebook.com/tr*`.
+
+### ✅ DO
+- Set `priority` only on the first above-the-fold hero image of the page.
+- Provide a descriptive `alt` — not "image" or "logo".
+
+### ❌ DON'T
+- Don't add a new remote host without escalating (foundation file change).
+- Don't use `<img>` for content.
 
 ---
 
@@ -573,13 +746,17 @@ Follow the pattern for:
 - Modals and dialogs triggered by user action
 - Heavy interactive widgets not needed at initial paint
 
-Do NOT dynamic-import everything — hero/visible-on-paint components must be statically imported for correct LCP.
+### ✅ DO
+- Dynamic-import modal / drawer / dropdown triggered on demand.
+- Keep `ssr: true` when the component renders on the server in the fallback state.
+
+### ❌ DON'T
+- Don't dynamic-import a hero / above-the-fold block — will hurt LCP.
+- Don't dynamic-import a server component inside a server component.
 
 ---
 
-## 15. Authoring Checklist
-
-Before committing any new component:
+## 15. Authoring Checklist — before declaring "implementation done"
 
 ```
 ☐ Server or Client Component chosen correctly
@@ -601,6 +778,15 @@ Before committing any new component:
 ☐ npm run lint passes
 ☐ npm run build passes
 ```
+
+---
+
+## 16. Next stop in the pipeline
+
+- **Need to confirm your choices don't break a rule?** → [RULES.md §RULE-01 through §RULE-19](./RULES.md)
+- **Ready to run the full QA gate?** → [QA.md](./QA.md)
+- **Found a symptom and need the right file?** → [Development.md §2 Context Map](./Development.md)
+- **Need token / anatomy reference?** → [Design.md](./Design.md)
 
 ---
 
