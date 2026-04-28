@@ -198,6 +198,8 @@ export type PageData = {
 
     serviceType: string;
   };
+  jsonLdSchema?: string;
+  jsonLdSchemaVersion?: number;
 };
 
 export type Popular_Subjects_Type = {

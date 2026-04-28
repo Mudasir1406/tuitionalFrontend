@@ -22,7 +22,8 @@
       "Bash(rm:*)",
       "Bash(pkill:*)",
       "Bash(netstat:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npx tsc *)"
     ],
     "deny": [],
     "ask": []
