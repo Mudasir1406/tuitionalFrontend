@@ -1,17 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Card,
-  CardMedia,
-  Typography,
-  Grid,
-  IconButton,
-} from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
+import { cn } from "@/utils/cn";
 import { PageData } from "@/types/grade-subject-level.types";
 import { getVideoReviews } from "@/services/video-reviews/video-reviews";
-import styles from "./students-says-v2.module.css";
 
 interface StudentSaysV2Props {
   data: PageData["what_our_student_says"];
@@ -25,152 +17,111 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data, title }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const HeaderTag = (data?.headerTag ?? "h2") as "h2" | "h3" | "h4";
 
   useEffect(() => {
-    const fetchVideoData = async () => {
-      try {
-        const videos = await getVideoReviews();
+    getVideoReviews()
+      .then((videos) => {
         setVideoData(videos);
         setIsLoading(false);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Failed to fetch video reviews:", error);
         setIsLoading(false);
-      }
-    };
-
-    fetchVideoData();
+      });
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleDotClick = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  // Touch handlers for swipe functionality
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
+  const handleTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe && currentIndex < videoData.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-    if (isRightSwipe && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    if (distance > 50 && currentIndex < videoData.length - 1) setCurrentIndex(currentIndex + 1);
+    if (distance < -50 && currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-  const visibleItems = isMobile ? 1 : 4;
-  const totalSlides = Math.ceil(videoData.length / visibleItems);
-
   return (
-    <Box className={styles.container}>
-      <Typography
-        variant={data?.headerTag ? data?.headerTag : ("h2" as any)}
-        className={`${leagueSpartan.className} ${styles.heading}`}
-        component={data?.headerTag as keyof JSX.IntrinsicElements}
-        dangerouslySetInnerHTML={{
-          __html: title ? title : data?.header,
-        }}
+    <div className="mx-[3vw] flex flex-col items-center justify-center px-0 lg:mx-[2vh] lg:px-[5vw]">
+      <HeaderTag
+        className="text-center font-heading text-h2-mobile sm:text-h2-tablet md:text-start lg:text-start lg:text-h2 text-ink-900"
+        dangerouslySetInnerHTML={{ __html: title ?? data?.header ?? "" }}
       />
-      <Typography
-        variant="body2"
-        className={`${leagueSpartan.className} ${styles.desc}`}
-        component={"p"}
-        dangerouslySetInnerHTML={{
-          __html: data?.paragraph,
-        }}
+      <div
+        className="w-full px-0 py-[2vh] pb-[4vh] text-center font-heading text-body-mobile text-ink-900 sm:text-body md:text-start lg:w-[139vh] lg:py-[1vh] lg:pb-[3vh] lg:text-center"
+        dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
       />
 
       {isLoading ? (
-        <Box
-          sx={{ display: "flex", justifyContent: "center", padding: "2rem" }}
-        >
-          <Typography>Loading videos...</Typography>
-        </Box>
+        <div className="flex justify-center p-8">
+          <p className="font-heading text-body text-ink-700">Loading videos...</p>
+        </div>
       ) : isMobile ? (
-        // Mobile: Horizontal scrolling layout
-        <Box
-          className={styles.mobileContainer}
+        <div
+          className="w-full overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <Box
-            className={styles.mobileCarousel}
-            sx={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {videoData.map((video, index) => (
-              <Box key={index} className={styles.mobileVideoItem}>
-                <Card className={styles.mobileCard}>
-                  <CardMedia
-                    component="video"
+              <div key={index} className="w-full shrink-0 px-2">
+                <div className="overflow-hidden rounded-[20px]">
+                  <video
                     src={video.video}
                     controls
                     poster={video.thumbnil}
-                    className={styles.mobileCardMedia}
+                    className="h-[200px] w-full"
                   />
-                </Card>
-              </Box>
+                </div>
+              </div>
             ))}
-          </Box>
+          </div>
 
-          {/* Dot indicators for mobile */}
           {videoData.length > 1 && (
-            <Box className={styles.dotContainer}>
+            <div className="mt-4 flex justify-center gap-2">
               {videoData.map((_, index) => (
-                <Box
+                <button
                   key={index}
-                  className={`${styles.dot} ${
-                    index === currentIndex ? styles.dotActive : ""
-                  }`}
-                  onClick={() => handleDotClick(index)}
+                  type="button"
+                  onClick={() => setCurrentIndex(index)}
+                  className={cn(
+                    "h-2 w-2 rounded-full transition-colors",
+                    index === currentIndex ? "bg-brand-500" : "bg-ink-300",
+                  )}
+                  aria-label={`Slide ${index + 1}`}
                 />
               ))}
-            </Box>
+            </div>
           )}
-        </Box>
+        </div>
       ) : (
-        // Desktop: Grid layout (same as original)
-        <Grid container spacing={2}>
+        <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {videoData.map((video, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <Card className={styles.card}>
-                <CardMedia
-                  component="video"
-                  src={video.video}
-                  controls
-                  poster={video.thumbnil}
-                  className={styles.cardMedia}
-                />
-              </Card>
-            </Grid>
+            <div key={index} className="overflow-hidden rounded-[20px]">
+              <video
+                src={video.video}
+                controls
+                poster={video.thumbnil}
+                className="h-[200px] w-full lg:h-[48vh]"
+              />
+            </div>
           ))}
-        </Grid>
+        </div>
       )}
-    </Box>
+    </div>
   );
 };
 

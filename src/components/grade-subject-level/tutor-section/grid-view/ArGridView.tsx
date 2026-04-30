@@ -1,9 +1,8 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import styles from "./GridView.module.css";
-import { East, West } from "@mui/icons-material";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import ImageCard from "@/components/image-card/ImageCard";
-import { CardProps } from "../TutorSection";
 
 interface props {
   cardsData: any[];
@@ -36,7 +35,7 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
       if (prevIndex >= maxIndex) return 0;
       return Math.min(prevIndex + visibleCards, maxIndex);
     });
-  }, [setCurrentIndex, visibleCards, maxIndex]);
+  }, [visibleCards, maxIndex]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => {
@@ -47,26 +46,26 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
 
   useEffect(() => {
     if (!isHovered) {
-      const interval = setInterval(() => {
-        handleNext();
-      }, 5000);
-
+      const interval = setInterval(() => handleNext(), 5000);
       return () => clearInterval(interval);
     }
   }, [isHovered, handleNext]);
 
   return (
-    <div className={styles.carouselContainer} style={{ direction: "rtl" }}>
-      {/* In RTL, left button should navigate right (next) */}
-      <button onClick={handleNext} className={styles.leftButton}>
-        <East color="info" />
+    <div className="relative flex items-center gap-2" dir="rtl">
+      <button
+        type="button"
+        onClick={handleNext}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
+        aria-label="Next"
+      >
+        <ArrowRight size={20} />
       </button>
 
-      <div className={styles.cardContainer}>
+      <div className="flex-1 overflow-hidden">
         <div
-          className={styles.cardWrapper}
+          className="flex gap-4 transition-transform duration-500"
           style={{
-            // In RTL, we need to reverse the transform direction
             transform: `translateX(${currentIndex * (100 / visibleCards)}%)`,
             direction: "rtl",
           }}
@@ -74,7 +73,7 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
           {cardsData?.map((card, i) => (
             <div
               key={i}
-              className={styles.card}
+              className="shrink-0"
               style={{ flex: `0 0 calc(${100 / visibleCards}% - 16px)`, direction: "ltr" }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -85,9 +84,13 @@ function ArGridView({ cardsData, locale = "ar" }: props) {
         </div>
       </div>
 
-      {/* In RTL, right button should navigate left (prev) */}
-      <button onClick={handlePrev} className={styles.rightButton}>
-        <West color="info" />
+      <button
+        type="button"
+        onClick={handlePrev}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
+        aria-label="Previous"
+      >
+        <ArrowLeft size={20} />
       </button>
     </div>
   );

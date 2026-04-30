@@ -1,18 +1,9 @@
 "use client";
-import React, { useState } from 'react';
-import { 
-  Dialog, 
-  DialogTitle, 
-  DialogContent, 
-  DialogActions, 
-  Button, 
-  Typography, 
-  IconButton
-} from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
-import { leagueSpartan } from '@/app/fonts';
-import DropDown from '../DropDown/DropDown';
-import styles from './SimplePackageModal.module.css';
+
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Dialog as HouseDialog } from "@/components/ui/dialog";
+import DropDown from "../DropDown/DropDown";
 
 interface SimplePackageModalProps {
   open: boolean;
@@ -33,205 +24,134 @@ interface PackageConfig {
   sessionsPerWeek: number;
 }
 
+const sessionsOptions = ["2", "3", "4", "5+"];
+
 const SimplePackageModal: React.FC<SimplePackageModalProps> = ({
   open,
   onClose,
   baseRate,
   currency,
-  filterOptions
+  filterOptions,
 }) => {
   const [config, setConfig] = useState<PackageConfig>({
-    grade: '',
+    grade: "",
     subjects: [],
-    curriculum: '',
-    sessionsPerWeek: 2
+    curriculum: "",
+    sessionsPerWeek: 2,
   });
 
-  const sessionsOptions = ['2', '3', '4', '5+'];
-
   const handleFieldChange = (field: string, value: string | string[]) => {
-    if (field === 'subjects') {
-      // Handle multi-select subjects
-      setConfig(prev => ({
-        ...prev,
-        subjects: Array.isArray(value) ? value : []
-      }));
-    } else if (field === 'sessionsPerWeek') {
+    if (field === "subjects") {
+      setConfig((prev) => ({ ...prev, subjects: Array.isArray(value) ? value : [] }));
+    } else if (field === "sessionsPerWeek") {
       const stringValue = Array.isArray(value) ? value[0] : value;
-      setConfig(prev => ({
-        ...prev,
-        sessionsPerWeek: parseInt(stringValue) || 2
-      }));
+      setConfig((prev) => ({ ...prev, sessionsPerWeek: parseInt(stringValue) || 2 }));
     } else {
-      // Handle single-select fields
       const stringValue = Array.isArray(value) ? value[0] : value;
-      setConfig(prev => ({
-        ...prev,
-        [field]: stringValue
-      }));
+      setConfig((prev) => ({ ...prev, [field]: stringValue }));
     }
   };
 
-  const calculateMonthlyPrice = () => {
-    return baseRate * config.sessionsPerWeek * 4;
-  };
-
-  const canSubmit = () => {
-    return config.grade && config.subjects.length > 0 && config.curriculum;
-  };
+  const calculateMonthlyPrice = () => baseRate * config.sessionsPerWeek * 4;
+  const canSubmit = () => config.grade && config.subjects.length > 0 && config.curriculum;
 
   const handleSubmit = () => {
     if (!canSubmit()) return;
-
-    // TODO: Send to your backend/WhatsApp/email
-    alert(`Custom package configured!\n\nGrade: ${config.grade}\nSubjects: ${config.subjects.join(', ')}\nCurriculum: ${config.curriculum}\nSessions/week: ${config.sessionsPerWeek}\n\nEstimated cost: ${currency} ${calculateMonthlyPrice()}/month\n\nWe'll contact you soon!`);
-    
-    onClose();
+    alert(
+      `Custom package configured!\n\nGrade: ${config.grade}\nSubjects: ${config.subjects.join(", ")}\nCurriculum: ${config.curriculum}\nSessions/week: ${config.sessionsPerWeek}\n\nEstimated cost: ${currency} ${calculateMonthlyPrice()}/month\n\nWe'll contact you soon!`,
+    );
+    handleClose();
   };
 
   const handleClose = () => {
-    setConfig({
-      grade: '',
-      subjects: [],
-      curriculum: '',
-      sessionsPerWeek: 2
-    });
+    setConfig({ grade: "", subjects: [], curriculum: "", sessionsPerWeek: 2 });
     onClose();
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      maxWidth="sm"
-      fullWidth
-      className={`${styles.modal} ${leagueSpartan.className}`}
-      PaperProps={{
-        className: `${styles.modalPaper} ${leagueSpartan.className}`
-      }}
-    >
-      <DialogTitle className={styles.modalHeader}>
-        <div className={styles.headerContent}>
-          <Typography variant="h6" className={`${styles.modalTitle} ${leagueSpartan.className}`}>
-            Build Your Custom Package
-          </Typography>
-          <IconButton onClick={handleClose} className={styles.closeButton}>
-            <CloseIcon />
-          </IconButton>
+    <HouseDialog open={open} onClose={handleClose} title="Build Your Custom Package" size="md">
+      <p className="font-heading text-body text-ink-700">
+        Select your preferences to create a personalized tutoring package.
+      </p>
+
+      <div className="mt-6 grid grid-cols-1 gap-4">
+        <div>
+          <label className="mb-1 block font-heading text-form-label text-ink-700">Grade Level *</label>
+          <DropDown
+            name="grade"
+            placeholder="Select grade"
+            data={filterOptions.grades}
+            value={config.grade}
+            onChange={handleFieldChange}
+          />
         </div>
-      </DialogTitle>
-
-      <DialogContent className={styles.modalContent}>
-        <Typography className={`${styles.description} ${leagueSpartan.className}`}>
-          Select your preferences to create a personalized tutoring package.
-        </Typography>
-
-        <div className={styles.formGrid}>
-          <div className={styles.formField}>
-            <Typography className={`${styles.fieldLabel} ${leagueSpartan.className}`}>
-              Grade Level *
-            </Typography>
-            <div className={leagueSpartan.className}>
-              <DropDown
-                name="grade"
-                placeholder="Select grade"
-                data={filterOptions.grades}
-                value={config.grade}
-                onChange={handleFieldChange}
-                className={leagueSpartan.className}
-              />
-            </div>
-          </div>
-
-          <div className={styles.formField}>
-            <Typography className={`${styles.fieldLabel} ${leagueSpartan.className}`}>
-              Subjects * (Select multiple)
-            </Typography>
-            <div className={leagueSpartan.className}>
-              <DropDown
-                name="subjects"
-                placeholder="Select subjects"
-                data={filterOptions.subjects}
-                value={config.subjects}
-                onChange={handleFieldChange}
-                multiple={true}
-                className={leagueSpartan.className}
-              />
-            </div>
-          </div>
-
-          <div className={styles.formField}>
-            <Typography className={`${styles.fieldLabel} ${leagueSpartan.className}`}>
-              Curriculum *
-            </Typography>
-            <div className={leagueSpartan.className}>
-              <DropDown
-                name="curriculum"
-                placeholder="Select curriculum"
-                data={filterOptions.curricula}
-                value={config.curriculum}
-                onChange={handleFieldChange}
-                className={leagueSpartan.className}
-              />
-            </div>
-          </div>
-
-          <div className={styles.formField}>
-            <Typography className={`${styles.fieldLabel} ${leagueSpartan.className}`}>
-              Sessions per week
-            </Typography>
-            <div className={leagueSpartan.className}>
-              <DropDown
-                name="sessionsPerWeek"
-                placeholder="Select sessions"
-                data={sessionsOptions}
-                value={config.sessionsPerWeek.toString()}
-                onChange={handleFieldChange}
-                className={leagueSpartan.className}
-              />
-            </div>
-          </div>
+        <div>
+          <label className="mb-1 block font-heading text-form-label text-ink-700">
+            Subjects * (Select multiple)
+          </label>
+          <DropDown
+            name="subjects"
+            placeholder="Select subjects"
+            data={filterOptions.subjects}
+            value={config.subjects}
+            onChange={handleFieldChange}
+            multiple
+          />
         </div>
-
-        <div className={styles.priceEstimate}>
-          <div className={styles.priceRow}>
-            <span className={`${styles.priceLabel} ${leagueSpartan.className}`}>Base rate:</span>
-            <span className={`${styles.priceValue} ${leagueSpartan.className}`}>
-              {currency} {baseRate}/hour
-            </span>
-          </div>
-          <div className={styles.priceRow}>
-            <span className={`${styles.priceLabel} ${leagueSpartan.className}`}>Sessions/month:</span>
-            <span className={`${styles.priceValue} ${leagueSpartan.className}`}>
-              {config.sessionsPerWeek * 4} sessions
-            </span>
-          </div>
-          <div className={styles.totalRow}>
-            <span className={`${styles.totalLabel} ${leagueSpartan.className}`}>Estimated Monthly:</span>
-            <span className={`${styles.totalValue} ${leagueSpartan.className}`}>
-              {currency} {calculateMonthlyPrice()}
-            </span>
-          </div>
+        <div>
+          <label className="mb-1 block font-heading text-form-label text-ink-700">Curriculum *</label>
+          <DropDown
+            name="curriculum"
+            placeholder="Select curriculum"
+            data={filterOptions.curricula}
+            value={config.curriculum}
+            onChange={handleFieldChange}
+          />
         </div>
-      </DialogContent>
+        <div>
+          <label className="mb-1 block font-heading text-form-label text-ink-700">
+            Sessions per week
+          </label>
+          <DropDown
+            name="sessionsPerWeek"
+            placeholder="Select sessions"
+            data={sessionsOptions}
+            value={config.sessionsPerWeek.toString()}
+            onChange={handleFieldChange}
+          />
+        </div>
+      </div>
 
-      <DialogActions className={styles.modalActions}>
-        <Button
-          onClick={handleClose}
-          className={`${styles.cancelButton} ${leagueSpartan.className}`}
-        >
+      <div className="mt-6 rounded-md bg-brand-50 p-4">
+        <div className="flex items-center justify-between">
+          <span className="font-heading text-small text-ink-700">Base rate:</span>
+          <span className="font-heading text-small font-semibold text-ink-900">
+            {currency} {baseRate}/hour
+          </span>
+        </div>
+        <div className="mt-2 flex items-center justify-between">
+          <span className="font-heading text-small text-ink-700">Sessions/month:</span>
+          <span className="font-heading text-small font-semibold text-ink-900">
+            {config.sessionsPerWeek * 4} sessions
+          </span>
+        </div>
+        <div className="mt-3 flex items-center justify-between border-t border-ink-200 pt-3">
+          <span className="font-heading text-h6 text-ink-900">Estimated Monthly:</span>
+          <span className="font-heading text-h5 font-bold text-brand-500">
+            {currency} {calculateMonthlyPrice()}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-6 flex justify-end gap-2">
+        <Button onClick={handleClose} variant="ghost">
           Cancel
         </Button>
-        <Button
-          onClick={handleSubmit}
-          disabled={!canSubmit()}
-          variant="contained"
-          className={`${styles.submitButton} ${leagueSpartan.className}`}
-        >
+        <Button onClick={handleSubmit} disabled={!canSubmit()} variant="primary">
           Get Quote
         </Button>
-      </DialogActions>
-    </Dialog>
+      </div>
+    </HouseDialog>
   );
 };
 

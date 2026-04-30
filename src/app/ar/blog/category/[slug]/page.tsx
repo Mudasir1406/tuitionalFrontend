@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 import Breadcrumb from "@/components/bread-crumb/bread-crumb";
-import ArHeader from "@/components/ar-header";
+import ArHeader from "@/components/header";
 import ArServerFooter from "@/components/ar-server-footer";
 
 const ArSearchBar = dynamic(

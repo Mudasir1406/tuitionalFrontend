@@ -1,33 +1,27 @@
+"use client";
+
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import {
-  Box,
-  CircularProgress,
-  Divider,
-  TextField,
-  Typography,
-} from "@mui/material";
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
-import { leagueSpartan } from "@/app/fonts";
-import "../DropDown/DropDown.css";
-import { isValidPhoneNumber } from "react-phone-number-input";
-import CustomInput from "../custom-input/custom-input";
-import DropDown from "../DropDown/DropDown";
-import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
+import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { X } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Dialog as HouseDialog } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/input";
+import { useI18n } from "@/context/language-context";
+import CustomInput from "../custom-input/custom-input";
 import Input from "../input/Input";
+import TranslatableDropDown from "../DropDown/TranslatableDropDown";
+import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
+import { sendForm } from "@/services/contact-form/contact-form";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
-import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
-import { sendForm } from "@/services/contact-form/contact-form";
+import "../DropDown/DropDown.css";
 
-const PhoneInput = dynamic(() => import("react-phone-number-input"), {
-  ssr: false,
-});
+const PhoneInput = dynamic(() => import("react-phone-number-input"), { ssr: false });
 
 type IProps = {
   open: boolean;
@@ -81,11 +75,55 @@ export type ContactFormType = {
   Time?: string;
   sheetName?: string;
 };
-const FormDialog: React.FunctionComponent<IProps> = ({
-  open,
-  handleClose,
-  values,
-}) => {
+
+const STRINGS = {
+  en: {
+    heading: "Get Started",
+    placeholder_name: "Enter name here ...",
+    placeholder_email: "Enter email here ...",
+    placeholder_phone: "Enter phone number here ...",
+    placeholder_grade: "Select Grade",
+    placeholder_curriculum: "Select Curriculum",
+    placeholder_subject: "Select Subjects",
+    placeholder_message: "Enter your message here...",
+    submit: "Submit Now",
+    err_name: "Name cannot be empty",
+    err_email: "Invalid email address",
+    err_phone: "Invalid phone number",
+    err_grade: "Grade cannot be empty",
+    err_curriculum: "Curriculum cannot be empty",
+    err_subject: "Subjects cannot be empty",
+    err_message: "Message cannot be empty",
+    err_fix: "Please fix the errors in the form before submitting.",
+    toast_success: "Form submitted successfully!",
+    toast_failed: "Form submission failed!",
+  },
+  ar: {
+    heading: "ابدأ الآن",
+    placeholder_name: "ادخل اسمك هنا ...",
+    placeholder_email: "ادخل بريدك الإلكتروني هنا ...",
+    placeholder_phone: "ادخل رقم الهاتف هنا ...",
+    placeholder_grade: "اختر الصف",
+    placeholder_curriculum: "اختر المنهج",
+    placeholder_subject: "اختر المواد",
+    placeholder_message: "ادخل رسالتك هنا...",
+    submit: "إرسال الآن",
+    err_name: "الاسم مطلوب",
+    err_email: "بريد إلكتروني غير صالح",
+    err_phone: "رقم هاتف غير صالح",
+    err_grade: "الصف مطلوب",
+    err_curriculum: "المنهج مطلوب",
+    err_subject: "المواد مطلوبة",
+    err_message: "الرسالة مطلوبة",
+    err_fix: "يرجى إصلاح الأخطاء في النموذج قبل الإرسال.",
+    toast_success: "تم إرسال النموذج بنجاح!",
+    toast_failed: "فشل في إرسال النموذج!",
+  },
+};
+
+const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
+  const { locale } = useI18n();
+  const s = STRINGS[locale];
   const [filterData, setFilterData] = React.useState<Filter_Data | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [formData, setFormData] = React.useState<FormType>({
@@ -99,49 +137,36 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     sheetName: "Lead Forms",
   });
   const [errors, setErrors] = React.useState<Partial<FormType>>({});
-  const handleChange = (key: string, value: string | string[]) => {
-    let newErrors = { ...errors };
 
-    // Perform validation if the key is "phone"
+  const handleChange = (key: string, value: string | string[]) => {
+    const newErrors = { ...errors };
     if (key === "PhoneNumber" && typeof value === "string") {
-      newErrors.PhoneNumber = isValidPhoneNumber(value)
-        ? ""
-        : "Invalid phone number";
+      newErrors.PhoneNumber = isValidPhoneNumber(value) ? "" : s.err_phone;
     }
     if (key === "EmailAddress" && typeof value === "string") {
-      newErrors.EmailAddress = isValidEmail(value)
-        ? ""
-        : "Invalid email address";
+      newErrors.EmailAddress = isValidEmail(value) ? "" : s.err_email;
     }
     if (key === "FirstName" && typeof value === "string") {
-      newErrors.FirstName = isNotEmpty(value) ? "" : "Name cannot be empty";
+      newErrors.FirstName = isNotEmpty(value) ? "" : s.err_name;
     }
     if (key === "Grade" && typeof value === "string") {
-      newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
+      newErrors.Grade = isNotEmpty(value) ? "" : s.err_grade;
     }
     if (key === "Curriculum" && typeof value === "string") {
-      newErrors.Curriculum = isNotEmpty(value)
-        ? ""
-        : "Curriculum cannot be empty";
+      newErrors.Curriculum = isNotEmpty(value) ? "" : s.err_curriculum;
     }
     if (key === "Subject" && typeof value === "string") {
-      newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
+      newErrors.Subject = isNotEmpty(value) ? "" : s.err_subject;
     }
     if (key === "Message" && typeof value === "string") {
-      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
+      newErrors.Message = isNotEmpty(value) ? "" : s.err_message;
     }
-
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
+    setFormData({ ...formData, [key]: value });
     setErrors(newErrors);
   };
 
   React.useEffect(() => {
-    if (values) {
-      setFormData(values);
-    }
+    if (values) setFormData(values);
   }, [values]);
 
   const geoData = useGeoLocation();
@@ -150,8 +175,8 @@ const FormDialog: React.FunctionComponent<IProps> = ({
     if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const currentDate = new Date().toLocaleDateString();
+      const currentTime = new Date().toLocaleTimeString();
       const params = new URLSearchParams(window.location.search);
       setFormData((prev) => ({
         ...prev,
@@ -169,49 +194,30 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       }));
     }
   }, [geoData]);
+
   const onClickUpload = async () => {
     setLoading(true);
     const newErrors: Partial<FormType> = {};
+    if (!isNotEmpty(formData.FirstName)) newErrors.FirstName = s.err_name;
+    if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = s.err_email;
+    if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = s.err_phone;
+    if (!isNotEmpty(formData.Grade)) newErrors.Grade = s.err_grade;
+    if (!isNotEmpty(formData.Curriculum)) newErrors.Curriculum = s.err_curriculum;
+    if (!isNotEmpty(formData.Message)) newErrors.Message = s.err_message;
 
-    if (!isNotEmpty(formData.FirstName)) {
-      newErrors.FirstName = "Name cannot be empty";
-    }
-
-    if (!isValidEmail(formData.EmailAddress)) {
-      newErrors.EmailAddress = "Invalid email address";
-    }
-
-    if (!isValidPhoneNumber(formData.PhoneNumber)) {
-      newErrors.PhoneNumber = "Invalid phone number";
-    }
-    if (!isNotEmpty(formData.Grade)) {
-      newErrors.Grade = "Grade cannot be empty";
-    }
-    if (!isNotEmpty(formData.Curriculum)) {
-      newErrors.Curriculum = "Curriculum cannot be empty";
-    }
-
-    if (!isNotEmpty(formData.Message)) {
-      newErrors.Message = "Message cannot be empty";
-    }
-
-    // Update errors state
     setErrors(newErrors);
 
-    // Step 2: Check if there are any errors
     if (Object.values(newErrors).some((error) => error)) {
-      setLoading(false); // Stop loading if validation fails
-      toast.error("Please fix the errors in the form before submitting.");
-
+      setLoading(false);
+      toast.error(s.err_fix);
       if (typeof window !== "undefined") {
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
           event: "lead_form_error",
-          formData: newErrors, // Send errors if needed
+          formData: newErrors,
           formType: "lead Form",
         });
       }
-
       return;
     }
 
@@ -219,19 +225,17 @@ const FormDialog: React.FunctionComponent<IProps> = ({
 
     try {
       await sendForm(formData);
-      toast.success("Form submitted successfully!");
-      // ✅ Send Success Event to GTM
+      toast.success(s.toast_success);
       if (typeof window !== "undefined") {
         (window as any).dataLayer.push({
           event: "lead_form_success",
-          formData: formData, // You can include submitted data for analytics
+          formData,
           formType: "lead Form",
         });
       }
     } catch (error: any) {
       console.error("Error saving data:", error);
-      toast.error("Form submitted Failed!");
-      // ✅ Send Error Event to GTM
+      toast.error(s.toast_failed);
       if (typeof window !== "undefined") {
         (window as any).dataLayer.push({
           event: "lead_form_failed",
@@ -252,409 +256,137 @@ const FormDialog: React.FunctionComponent<IProps> = ({
       });
     }
   };
+
   React.useEffect(() => {
-    getFilterData().then((data) => {
-      setFilterData(data);
-    });
+    getFilterData().then((data) => setFilterData(data));
   }, []);
+
+  const inputCls = "my-1 rounded-md bg-white text-ink-800 shadow-card";
+  const errCls = "ms-1 mt-1 font-body text-small text-danger";
+
   return (
-    <Dialog
-      open={open}
-      keepMounted
-      onClose={handleClose}
-      className="pricing-dialog"
-      maxWidth={false}
-      sx={{
-        "& .MuiPaper-root": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-
-          width: { xs: "100%", sm: "auto" },
-        },
-        "& .MuiPaper-elevation": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-        },
-        "& .MuiPaper-rounded": {
-          backgroundColor: "transparent",
-          boxShadow: "none",
-        },
-      }}
-    >
-      <DialogContent sx={styles.contanier}>
-        <Box sx={styles.header}>
-          <Typography
-            className={leagueSpartan.className}
-            sx={styles.dialogHeading}
-          >
-            Get Started
-          </Typography>
-          <ClearRoundedIcon
-            sx={{ width: "30px", height: "30px", cursor: "pointer" }}
+    <HouseDialog open={open} onClose={handleClose} hideCloseButton size="xl">
+      <div className="-m-4 sm:-m-6 w-full overflow-auto rounded-[30px] bg-white shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)] sm:w-auto md:w-[50vw]">
+        <div className="mt-[3vh] mb-[2vh] mx-[3vh] flex items-center justify-between">
+          <h2 className="font-heading text-[3vh] font-medium leading-[2.2vh] tracking-tight text-black">
+            {s.heading}
+          </h2>
+          <button
+            type="button"
             onClick={handleClose}
-          />
-        </Box>
-        <Divider />
+            className="cursor-pointer"
+            aria-label="Close"
+          >
+            <X size={30} />
+          </button>
+        </div>
+        <hr className="border-ink-200" />
 
-        <Box sx={styles.mainDiv}>
-          <form onSubmit={onClickUpload}>
-            <Box sx={styles.inputDivTop}>
-              <Box sx={styles.inputInner}>
+        <div className="px-[2%] py-[2%]">
+          <form onSubmit={(e) => { e.preventDefault(); onClickUpload(); }}>
+            <div className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2">
+              <div>
                 <Input
                   name="FirstName"
                   value={formData.FirstName}
                   onChange={handleChange}
-                  placeholder={"Enter name here ..."}
-                  className={`${styles.input} ${leagueSpartan.className}`}
+                  placeholder={s.placeholder_name}
+                  className={inputCls}
                 />
-                {errors.FirstName && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} `}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.FirstName}
-                  </Typography>
-                )}
-              </Box>
-
-              <Box sx={styles.inputInner}>
+                {errors.FirstName && <p className={errCls}>{errors.FirstName}</p>}
+              </div>
+              <div>
                 <Input
                   name="EmailAddress"
                   value={formData.EmailAddress}
                   onChange={handleChange}
-                  placeholder={"Enter email here ..."}
-                  className={`${styles.input} ${leagueSpartan.className} `}
+                  placeholder={s.placeholder_email}
+                  className={inputCls}
                 />
-                {errors.EmailAddress && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} ${styles.error}`}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.EmailAddress}
-                  </Typography>
-                )}
-              </Box>
-            </Box>
-
-            <Box sx={styles.inputDiv}>
-              <div style={styles.div}>
+                {errors.EmailAddress && <p className={errCls}>{errors.EmailAddress}</p>}
+              </div>
+              <div>
                 <PhoneInput
                   defaultCountry="SA"
                   value={formData?.PhoneNumber || ""}
                   onChange={(e) => handleChange("PhoneNumber", String(e))}
                   inputComponent={CustomInput}
-                  style={styles.phoneInput}
                   disabled={!formData.EmailAddress}
-                  placeholder="Enter phone number here ..."
+                  placeholder={s.placeholder_phone}
+                  className="relative z-[2] my-1 h-[5.5vh] min-h-[44px] rounded-md bg-white ps-[10px] text-ink-800 shadow-card outline-none"
                 />
-
-                {errors.PhoneNumber && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} ${styles.error}`}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.PhoneNumber}
-                  </Typography>
-                )}
+                {errors.PhoneNumber && <p className={errCls}>{errors.PhoneNumber}</p>}
               </div>
-              <div style={styles.div}>
-                <DropDown
+              <div>
+                <TranslatableDropDown
                   name="Grade"
-                  placeholder="Select Grade"
-                  marginTop="1.5vh"
+                  placeholder={s.placeholder_grade}
                   data={filterData?.grade || []}
-                  // multiple
                   value={formData.Grade}
                   onChange={handleChange}
+                  locale={locale}
+                  isSubjectField={false}
                 />
-                {errors.Grade && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} ${styles.error}`}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.Grade}
-                  </Typography>
-                )}
+                {errors.Grade && <p className={errCls}>{errors.Grade}</p>}
               </div>
-            </Box>
-            <Box sx={styles.inputDiv}>
-              <div style={styles.div}>
-                <DropDown
-                  placeholder="Select Curriculum"
+              <div>
+                <TranslatableDropDown
+                  placeholder={s.placeholder_curriculum}
                   name="Curriculum"
                   data={filterData?.curriculum || []}
-                  marginTop="1.5vh"
                   value={formData.Curriculum}
                   onChange={handleChange}
+                  locale={locale}
+                  isSubjectField={false}
                 />
-                {errors.Curriculum && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} ${styles.error}`}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.Curriculum}
-                  </Typography>
-                )}
+                {errors.Curriculum && <p className={errCls}>{errors.Curriculum}</p>}
               </div>
-              <div style={styles.div}>
-                <DropDown
+              <div>
+                <TranslatableDropDown
                   name="Subject"
-                  placeholder="Select Subjects"
+                  placeholder={s.placeholder_subject}
                   data={filterData?.subject || []}
-                  marginTop="1.5vh"
                   multiple
                   value={formData.Subject}
                   onChange={handleChange}
-                />{" "}
-                {errors.Subject && (
-                  <Typography
-                    sx={styles.error}
-                    className={`${leagueSpartan.className} ${styles.error}`}
-                    component={"p"}
-                    variant="caption"
-                  >
-                    {errors.Subject}
-                  </Typography>
-                )}
+                  locale={locale}
+                  isSubjectField={true}
+                />
+                {errors.Subject && <p className={errCls}>{errors.Subject}</p>}
               </div>
-            </Box>
-            <div>
-              <TextField
-                sx={[styles.input]}
-                fullWidth
-                multiline
-                rows={5}
+            </div>
+
+            <div className="mt-2">
+              <Textarea
                 name="Message"
+                rows={5}
                 value={formData.Message}
                 onChange={(e) => handleChange("Message", e.target.value)}
-                // label="Message*"
-                variant="outlined"
-                placeholder="Enter your message here..."
-                className={leagueSpartan.className}
+                placeholder={s.placeholder_message}
+                className={inputCls}
               />
-              {errors.Message && (
-                <Typography
-                  sx={styles.error}
-                  className={`${leagueSpartan.className} ${styles.error}`}
-                  component={"p"}
-                  variant="caption"
-                >
-                  {errors.Message}
-                </Typography>
-              )}
+              {errors.Message && <p className={errCls}>{errors.Message}</p>}
             </div>
 
             <Button
-              sx={styles.containedButton}
-              className={leagueSpartan.className}
-              onClick={onClickUpload}
+              type="submit"
+              disabled={loading}
+              className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
             >
               {loading ? (
-                <CircularProgress
-                  sx={{ width: "12px", height: "12px", color: "white" }}
-                  size={18}
+                <span
+                  className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+                  aria-label="loading"
                 />
               ) : (
-                "Submit Now"
+                s.submit
               )}
             </Button>
           </form>
-        </Box>
-        {/* </Grid> */}
-      </DialogContent>
-    </Dialog>
+        </div>
+      </div>
+    </HouseDialog>
   );
 };
 
 export default FormDialog;
-
-const styles = {
-  contanier: {
-    boxShadow:
-      "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
-    backgroundColor: "white",
-    width: {
-      xs: "100%",
-      md: "50vw",
-    },
-
-    // height: "60vh",
-    borderRadius: "30px",
-    p: 0,
-    overflow: "auto",
-  },
-  mainDiv: {
-    paddingX: "2%",
-    paddingY: "2%",
-    // minWidth: { xs: "90vw", md: "500px" },
-  },
-  // form: {
-  //   maxWidth: "95%",
-  //   margin: "auto",
-  // },
-  title: {
-    textAlign: "center",
-    marginBottom: "1.5vh",
-  },
-  error: {
-    color: "red",
-    marginTop: "6px",
-    marginLeft: "6px",
-  },
-  div: {
-    flex: 1,
-  },
-  textArea: {
-    backgroundColor: "white",
-    position: "relative",
-    zIndex: 2,
-    color: "rgba(0, 0, 0, 0.77)",
-    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-    borderRadius: "5px",
-    border: "none",
-    padding: 0,
-  },
-  textField: {
-    marginTop: "12px",
-  },
-  inputDiv: {
-    display: "flex",
-    flexDirection: { xs: "column", lg: "row" },
-
-    columnGap: "24px",
-    // rowGap: "12px",
-
-    flex: 1,
-  },
-  inputDivTop: {
-    display: "flex",
-    flexDirection: { xs: "column", lg: "row" },
-
-    columnGap: "24px",
-    rowGap: "12px",
-
-    flex: 1,
-  },
-  inputInner: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 1,
-  },
-
-  rowGap: {
-    rowGap: "12px",
-  },
-
-  lable: {
-    fontSize: "1.7vh", // Adjusted font size with vh unit
-    fontWeight: 400,
-    color: "black",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginX: "3vh",
-    marginTop: "3vh",
-    marginBottom: "2vh",
-  },
-  dialogHeading: {
-    fontSize: "3vh",
-    lineHeight: "2.2vh",
-    fontWeight: 500,
-    color: "rgba(0, 0, 0, 1)",
-    letterSpacing: "-2%",
-  },
-  lableHeading: {
-    fontSize: "2.1vh", // Adjusted font size with vh unit
-    fontWeight: 400,
-    // marginY: "1vh",
-  },
-  input: {
-    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-    backgroundColor: "white",
-    marginTop: "1.5vh",
-    marginBottom: "1vh",
-    position: "relative",
-    zIndex: 2,
-    color: "rgba(0,0,0,0.77)",
-    borderRadius: "10px",
-    // fontSize: "1.5vh",
-    fontWeight: 400,
-    "& .MuiOutlinedInputRoot": {
-      height: "5.5vh",
-    },
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
-    },
-  },
-  containedButton: {
-    display: "flex",
-    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    backgroundColor: "#38B6FF",
-    color: "white",
-    textTransform: "none",
-    fontSize: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      md: "1.5vh",
-      lg: "2vh",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
-    textAlign: "center",
-    borderRadius: "10px",
-    paddingX: "1.8vw",
-    paddingY: "1.5vh",
-    marginY: "2vh",
-    ":hover": {
-      backgroundColor: "#38B6FF",
-    },
-    width: "96%",
-    marginX: "2%",
-  },
-  outlinedBtn: {
-    color: "rgba(56, 182, 255, 1)",
-    borderColor: "rgba(56, 182, 255, 1)",
-    fontSize: "1.5vh",
-    fontWeight: 700,
-    lineHeight: "1.84vh",
-    textTransform: "none",
-    paddingX: "1.8vw !important",
-    paddingY: "1.5vh !important",
-    height: "5vh",
-    textAlign: "center",
-    ":hover": {
-      color: "rgba(56, 182, 255, 1)",
-      borderColor: "rgba(56, 182, 255, 1)",
-    },
-  },
-  phoneInput: {
-    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-    paddingLeft: "10px",
-    backgroundColor: "white",
-    marginTop: "1.5vh",
-    outline: "none",
-    ":focusVisible": {
-      outline: "none",
-    },
-    position: "relative",
-    zIndex: 2,
-    color: "rgba(0,0,0,0.77)",
-    borderRadius: "10px",
-    height: "5.5vh",
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
-    },
-  },
-};

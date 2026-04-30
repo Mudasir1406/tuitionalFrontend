@@ -1,8 +1,6 @@
 import React from "react";
 import { Header } from "../../components";
-import { Grid } from "@mui/material";
 import Footer from "../../components/footer-wrapper";
-import aboutHero from "../../../public/assets/images/static/hero-about.webp";
 import GetStarted from "@/components/home/get-started";
 import HeroInfo from "@/components/about/hero-info";
 import WhyChooseTuitional from "@/components/about/why-choose-tuitional";
@@ -18,6 +16,7 @@ const studentSays = {
   paragraph:
     "Students affiliated with Tuitional have always shared their exceptional academic journey in a positive way. Students at Tuitional have not only excelled in their required examination but have also improved their academic horizon and educational capabilities. Here is what our valued students have to share about their experience at Tuition.",
 };
+
 const About: React.FC = async () => {
   const getStarted = await getStartedData();
   return (
@@ -34,85 +33,21 @@ const About: React.FC = async () => {
         </div>
       </div>
 
-      <Grid sx={style.aboutUsContainer}>
+      <div className="bg-gradient-to-b from-[#D7F0FF] to-white/70 px-6 sm:px-6 md:px-[3vw] lg:px-[6vw]">
         <AboutUs />
-      </Grid>
-      <Grid sx={style.whyChooseContainer}>
+      </div>
+      <div className="my-[5vh] px-6 sm:px-6 md:my-[10vh] md:px-[3vw] lg:px-[6vw]">
         <WhyChooseTuitional />
-      </Grid>
-      <Grid sx={style.getStartedContainer}>
+      </div>
+      <div className="my-[5vh] px-6 sm:px-6 md:my-[10vh] md:px-[3vw] lg:px-[6vw]">
         <GetStarted data={getStarted} />
-      </Grid>
-      <Grid sx={style.studentSaysContainer}>
+      </div>
+      <div className="bg-[#9EDCFF] py-[5vh] md:py-[10vh]">
         <StudentSays data={studentSays} />
-      </Grid>
+      </div>
       <Footer />
     </>
   );
 };
 
 export default About;
-
-const style = {
-  contanier: {},
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-
-  aboutUsContainer: {
-    background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
-    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
-    // marginY: {
-    //   xs: "70px",
-    //   sm: "80px",
-    //   md: "95px",
-    //   lg: "105px",
-    // },
-  },
-
-  whyChooseContainer: {
-    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
-    marginY: { xs: "5vh", md: "10vh" },
-  },
-  getStartedContainer: {
-    paddingX: { xs: "24px", sm: "24px", md: "3vw", lg: "6vw" },
-    marginY: { xs: "5vh", md: "10vh" },
-    // marginY: {
-    //   xs: "70px",
-    //   sm: "80px",
-    //   md: "95px",
-    //   lg: "105px",
-    // },
-  },
-  studentSaysContainer: {
-    background: "#9EDCFF",
-    // xs: "5vh", md: "10vh"
-    paddingY: {
-      xs: "5vh",
-      md: "10vh",
-      // lg: "7vh",
-    },
-  },
-  heroPicture: {
-    background: {
-      xs: "linear-gradient(178.64deg, #FDFDFD 18.41%, #38B6FF 69.11%)",
-      lg: "none",
-    },
-    padding: 0,
-    position: "relative",
-    "::before": {
-      content: "''",
-      backgroundImage: {
-        xs: `url(${aboutHero.src})`,
-        sm: `url(${aboutHero.src})`,
-        md: `url(${aboutHero.src})`,
-        lg: `url(${aboutHero.src})`,
-      },
-      backgroundPosition: "bottom",
-      backgroundSize: "contain",
-      height: { xs: "400px", sm: "500px", md: "80vh", lg: "80vh" },
-      width: "100%",
-      backgroundRepeat: "no-repeat",
-      position: "absolute",
-      bottom: 0,
-    },
-  },
-};

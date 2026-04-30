@@ -1,180 +1,63 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
-import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import linesmobile from "../../../public/assets/images/static/linesMobile.png";
+import Image, { type StaticImageData } from "next/image";
 import "swiper/css";
+
 import {
   Trusted_Schools_Type,
   getTrustedSchools,
 } from "../../services/trusted-schools/trusted-schools";
-import { leagueSpartan } from "@/app/fonts";
-import Image, { StaticImageData } from "next/image";
-const Trusted: React.FC = async () => {
+import en from "@/locales/en.json";
+import ar from "@/locales/ar.json";
+import linesInvert from "../../../public/assets/images/static/lines-invert.png";
+import linesMobile from "../../../public/assets/images/static/linesMobile.png";
+
+interface Props {
+  locale?: "en" | "ar";
+}
+
+const Trusted: React.FC<Props> = async ({ locale = "en" }) => {
   const trustedSchools: Trusted_Schools_Type = await getTrustedSchools();
+  const t = locale === "ar" ? ar.home.trusted : en.home.trusted;
+
   return (
-    <Box sx={styles.background}>
-      <Typography
-        sx={styles.heading}
-        className={leagueSpartan.className}
-        component={"h2"}
-        variant="h2"
-      >
-        Trusted By Students At Top Schools
-      </Typography>
-      <Box sx={styles.slideContainer}>
-        <Box sx={styles.slideContent}>
+    <div className="-z-[2] flex h-full w-screen flex-col items-center justify-center bg-gradient-to-b from-[#D3EFFE] to-white/70">
+      <h2 className="relative mt-[7vh] text-center font-heading text-h2-mobile sm:mt-[8vh] sm:text-h2-tablet md:mt-[9.5vh] lg:mt-[10.5vh] lg:text-h2 px-[2vw] sm:px-0 text-black">
+        <Image
+          src={linesMobile}
+          alt=""
+          aria-hidden="true"
+          className="absolute -top-[2vh] left-[2vw] z-10 h-[100px] w-[100px] object-contain sm:hidden"
+        />
+        <Image
+          src={linesInvert}
+          alt=""
+          aria-hidden="true"
+          className="absolute z-10 hidden h-[100px] w-[100px] object-contain sm:-left-[3.5vw] sm:-top-[3vh] sm:block md:-left-[3vw] md:-top-[3vh] lg:-left-[35px] lg:-top-10"
+        />
+        {t.heading}
+      </h2>
+
+      <div className="relative mt-[5vh] w-full overflow-hidden">
+        <div className="flex animate-[slide_20s_linear_infinite] whitespace-nowrap">
           {trustedSchools?.images.map((item, index) => (
-            <Box
-              sx={{ background: "transparent", marginLeft: "10px" }}
-              key={index}
-            >
-              <Box key={index} sx={styles.imageBox}>
-                <ImageBox imageSource={item} />
-              </Box>
-            </Box>
+            <div key={index} className="ms-[10px] bg-transparent">
+              <ImageBox imageSource={item} />
+            </div>
           ))}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Trusted;
 
-type Props = {
+interface ImageBoxProps {
   imageSource: StaticImageData | string;
-};
+}
 
-const ImageBox: React.FC<Props> = ({ imageSource }) => {
-  // Handle both string URLs from Firebase and StaticImageData
-  // console.log('imageSource', imageSource)
-  // const src = typeof imageSource === "string" ? imageSource : imageSource?.src;
-
-  // // Add error handling for invalid sources
-  // if (!src) {
-  //   console.warn("Invalid image source:", imageSource);
-  //   return null;
-  // }
-
-  return (
-    <Box sx={styles.imageBox} className="schoolsBox">
-       <Image
-        src={imageSource}
-        width={80}
-        height={80}
-        alt=""
-        // style={{ objectFit: "cover", width: "6vw", height: "auto" }}
-      />
-    </Box>
-  );
-};
-
-const styles = {
-  slideContainer: {
-    width: "100%",
-    overflow: "hidden",
-    position: "relative",
-  },
-  slideContent: {
-    display: "flex",
-    whiteSpace: "nowrap",
-    animation: "slide 20s linear infinite",
-    marginTop: "5vh",
-  },
-  background: {
-    background: "linear-gradient(to bottom, #D3EFFE, rgba(255, 255, 255, 0.7))",
-    height: "100%",
-    zIndex: -2,
-    marginTop: {
-      xs: "0vh",
-      sm: "0vh",
-      md: "0vh",
-      lg: "0vh",
-    },
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100vw",
-    justifyContent: "center",
-  },
-  heading: {
-    color: "#000000",
-    // fontSize: {
-    //   xs: "3.5vh",
-    //   sm: "4vh",
-    //   md: "5.5vh",
-    //   lg: "5.5vh",
-    // },
-    // fontWeight: 700,
-    // lineHeight: {
-    //   xs: "4.5vh",
-    //   sm: "5vh",
-    //   md: "6.5vh",
-    //   lg: "6.5vh",
-    // },
-    marginTop: {
-      xs: "7vh",
-      sm: "8vh",
-      md: "9.5vh",
-      lg: "10.5vh",
-    },
-    position: "relative",
-    textAlign: "center",
-    paddingX: {
-      xs: "2vw",
-      sm: "0vw",
-      md: "0vw",
-      lg: "0vw",
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      left: {
-        xs: "2vw",
-        sm: "-3.5vw",
-        md: "-3vw",
-        lg: "-35px",
-      },
-      top: {
-        xs: "-2vh",
-        sm: "-3vh",
-        md: "-3vh",
-        lg: "-40px",
-      },
-      backgroundImage: {
-        xs: `url(${linesmobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: 100,
-      width: 100,
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  scroller: {
-    flexDirection: "row",
-    display: "flex",
-  },
-  imageBox: {
-    height: {
-      xs: 107,
-      lg: "40vh",
-    },
-    width: {
-      xs: 177,
-      lg: 349,
-    },
-    maxHeight: "190px",
-    alignItems: "center",
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: "10px",
-  },
-  // RTL styles
-  headingRTL: {
-    direction: "rtl",
-  },
-};
+const ImageBox: React.FC<ImageBoxProps> = ({ imageSource }) => (
+  <div className="schoolsBox flex h-[107px] w-[177px] max-h-[190px] items-center justify-center rounded-md bg-white lg:h-[40vh] lg:w-[349px]">
+    <Image src={imageSource} width={80} height={80} alt="" />
+  </div>
+);

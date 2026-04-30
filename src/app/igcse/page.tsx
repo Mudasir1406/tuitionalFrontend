@@ -1,6 +1,5 @@
 import React from "react";
 import { Metadata } from "next";
-import { Box, Grid } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "IGCSE Tutoring | Tuitional",
@@ -19,81 +18,67 @@ export const metadata: Metadata = {
     },
   },
 };
+
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
 
-// Critical above-the-fold components - load immediately
 import HeaderV3 from "@/components/header-v3";
 import HeroV2 from "@/components/grade-subject-level/heroV2";
 import FormV2 from "@/components/grade-subject-level/form/formV2";
 import SchoolLogosSection from "@/components/grade-subject-level/school-logos-section/SchoolLogosSection";
 
-// Progressive loading - only load when needed
 const CountdownTimer = dynamic(
   () => import("@/components/countdown/CountdownTimer"),
-  {
-    ssr: false,
-    loading: () => null, // No loading state to prevent layout shifts
-  },
+  { ssr: false, loading: () => null },
 );
-
-// Individual components for lazy loading - Enable SSR for better performance
 
 const TutorSectionV2 = dynamic(
   () => import("@/components/grade-subject-level/tutor-section/TutorSectionV2"),
-  { ssr: true, loading: () => <Box sx={{ height: "400px" }} /> },
-);
-
-const FormV2Dialog = dynamic(
-  () => import("@/components/grade-subject-level/form/formV2Dialog"),
-  { ssr: false, loading: () => null },
+  { ssr: true, loading: () => <div className="h-[400px]" /> },
 );
 
 const BenifitsSectionV2 = dynamic(
   () =>
     import("@/components/grade-subject-level/benifts-section/BenifitsSection"),
-  { ssr: true, loading: () => <Box sx={{ height: "300px" }} /> },
+  { ssr: true, loading: () => <div className="h-[300px]" /> },
 );
 
 const PopularIgcseSubjectsV2 = dynamic(
   () => import("@/components/curiculume/popular-igcse-subjects-v2"),
-  { ssr: true, loading: () => <Box sx={{ height: "350px" }} /> },
+  { ssr: true, loading: () => <div className="h-[350px]" /> },
 );
 
 const TrustpilotCarousel = dynamic(
   () => import("@/components/trustpilot-carousel/TrustpilotCarousel"),
-  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> },
+  { ssr: false, loading: () => <div className="h-[400px]" /> },
 );
 
 const StudentSaysV2 = dynamic(
   () => import("@/components/grade-subject-level/students-says-v2"),
-  { ssr: false, loading: () => <Box sx={{ height: "300px" }} /> },
+  { ssr: false, loading: () => <div className="h-[300px]" /> },
 );
 
 const SectionsBox = dynamic(
   () => import("@/components/grade-subject-level/sectionsbox"),
-  { ssr: false, loading: () => <Box sx={{ height: "200px" }} /> },
+  { ssr: false, loading: () => <div className="h-[200px]" /> },
 );
 
 const GetStartedV2 = dynamic(
   () => import("@/components/grade-subject-level/get-started-v2"),
-  { ssr: false, loading: () => <Box sx={{ height: "400px" }} /> },
+  { ssr: false, loading: () => <div className="h-[400px]" /> },
 );
 
 const Faqs = dynamic(() => import("@/components/home/faqs"), {
   ssr: false,
-  loading: () => <Box sx={{ height: "300px" }} />,
+  loading: () => <div className="h-[300px]" />,
 });
 
 const FooterV2 = dynamic(() => import("@/components/footerV2"), {
   ssr: true,
-  loading: () => <Box sx={{ height: "500px" }} />,
+  loading: () => <div className="h-[500px]" />,
 });
 
 const IgcsePage = () => {
-  // Remove blocking data fetches - components will fetch their own data
-
-  // Hardcoded hero section data
   const heroData = {
     header:
       "<span style='color: #38B6FF; font-size: inherit; font-weight: inherit; line-height: inherit;'>Guaranteed A* Grades!</span><br/>The #1 IGCSE Tutors Are Here to Help.",
@@ -111,20 +96,18 @@ const IgcsePage = () => {
     "Parent & Student Portal",
   ];
 
-  // Data for tutor section - will fetch from tutors_data collection
   const tutorSectionData = {
     isShow: true,
     header: "Meet Some Of Our Expert IGCSE Tutors",
     headerTag: "h2",
     paragraph:
       "Learn from qualified teachers with years of IGCSE teaching experience",
-    curriculum: "IGCSE", // This will be used to filter tutors from tutors_data collection
-    subject: "", // Empty string will fetch all IGCSE tutors
-    view: "Horizontal Carousel", // Set display format to use new horizontal carousel
+    curriculum: "IGCSE",
+    subject: "",
+    view: "Horizontal Carousel",
     sequenceNumber: 1,
   };
 
-  // Data for benefits section - matches the expected igcse_tutoring_program structure
   const benefitsSectionData = {
     isShow: true,
     section: "Why Choose Our IGCSE Program",
@@ -135,7 +118,6 @@ const IgcsePage = () => {
     link: "/contact",
   };
 
-  // Data for student testimonials
   const studentSaysData = {
     isShow: true,
     header: "Video Testimonials from Our IGCSE Students",
@@ -144,124 +126,74 @@ const IgcsePage = () => {
   };
 
   return (
-    <Box
-      className={leagueSpartan.className}
-      sx={{
-        overflowX: "hidden",
-        width: "100%",
-        minHeight: "100vh",
-        WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
-      }}
+    <div
+      className={`${leagueSpartan.className} min-h-screen w-full overflow-x-hidden antialiased`}
     >
       <HeaderV3 />
       <CountdownTimer />
 
-      {/* Hero Section with Form */}
-      <Box sx={styles.heroContainer}>
-        <Box sx={styles.heroWrapper}>
-          <Grid container spacing={3} sx={styles.heroGrid}>
-            <Grid item xs={12} sm={12} md={12} lg={6}>
-              <Box sx={styles.heroContent}>
-                <HeroV2
-                  data={heroData}
-                  withForm
-                  bulletPoints={heroBulletPoints}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={6}>
-              <Box sx={styles.formWrapper}>
-                <FormV2 />
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
+      <div className="flex items-center justify-center px-4 pt-6 lg:min-h-[90vh] lg:px-12 lg:pt-8">
+        <div className="w-full max-w-[1400px]">
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
+            <div className="flex flex-col">
+              <HeroV2
+                data={heroData}
+                withForm
+                bulletPoints={heroBulletPoints}
+              />
+            </div>
+            <div>
+              <FormV2 />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      {/* School Logos Section */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <SchoolLogosSection />
-      </Box>
+      </div>
 
-      {/* Tutor Section */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <TutorSectionV2 data={tutorSectionData} />
-      </Box>
-      <Box sx={styles.verticalMargin}>
+      </div>
+      <div className="my-6">
         <SectionsBox />
-      </Box>
+      </div>
 
-      {/* Trustpilot Reviews Carousel */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <TrustpilotCarousel text="Real reviews from real IGCSE students and parents" />
-      </Box>
-      {/* Benefits Section */}
-      <Box sx={styles.verticalMargin}>
-        <BenifitsSectionV2 data={benefitsSectionData} />
-      </Box>
+      </div>
 
-      {/* Popular IGCSE Subjects */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
+        <BenifitsSectionV2 data={benefitsSectionData} />
+      </div>
+
+      <div className="my-6">
         <PopularIgcseSubjectsV2
           title="Popular IGCSE Subjects We Cover"
           headerTag="h2"
         />
-      </Box>
+      </div>
 
-      {/* Student Says Section */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <StudentSaysV2 data={studentSaysData} />
-      </Box>
+      </div>
 
-      {/* Blog CTA Section */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <SectionsBox />
-      </Box>
+      </div>
 
-      {/* Get Started Section */}
-      <Box sx={styles.verticalMargin}>
+      <div className="my-6">
         <GetStartedV2 />
-      </Box>
+      </div>
 
-      {/* FAQs Section */}
-
-      <Box sx={{ ...styles.verticalMargin, mx: 10 }}>
+      <div className="mx-10 my-6">
         <Faqs />
-      </Box>
+      </div>
 
-      {/* Footer */}
       <FooterV2 />
-    </Box>
+    </div>
   );
 };
 
 export default IgcsePage;
-
-const styles = {
-  verticalMargin: {
-    my: 3, // Simplified margin
-  },
-  heroContainer: {
-    pt: { xs: 3, lg: 4 }, // Reduced padding - header/countdown now in normal flow
-    minHeight: { xs: "auto", lg: "90vh" },
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    px: { xs: 2, lg: 6 }, // Simplified padding
-  },
-  heroWrapper: {
-    width: "100%",
-    maxWidth: 1400,
-  },
-  heroGrid: {
-    alignItems: "center",
-  },
-  heroContent: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  formWrapper: {
-    pt: { xs: 0, lg: 0 },
-  },
-};

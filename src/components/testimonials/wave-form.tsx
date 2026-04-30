@@ -1,14 +1,11 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import WaveSurfer from "wavesurfer.js";
-import { Box, IconButton, Typography } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import user from "../../../public/assets/images/static/user.png";
+import { Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { parseUrl } from "next/dist/shared/lib/router/utils/parse-url";
+import user from "../../../public/assets/images/static/user.png";
 
 interface WaveformProps {
   audio: string;
@@ -29,26 +26,22 @@ const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
       const url = await getDownloadURL(audioRef);
       setAudioUrl(url);
     };
-
-    if (audio) {
-      fetchAudioUrl();
-    }
+    if (audio) fetchAudioUrl();
   }, [audio]);
+
   useEffect(() => {
-    if (!audioUrl) return;
-    if (!containerRef.current) return;
+    if (!audioUrl || !containerRef.current) return;
 
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,
       barWidth: 2,
-      barHeight: .5,
+      barHeight: 0.5,
       cursorWidth: 0,
     });
     waveSurfer.load(audioUrl);
     waveSurfer.on("ready", () => {
       waveSurferRef.current = waveSurfer;
     });
-
     waveSurfer.on("audioprocess", () => {
       setCurrentTime(waveSurfer.getCurrentTime().toFixed(0));
     });
@@ -76,94 +69,40 @@ const Waveform: React.FC<WaveformProps> = ({ audio, image }) => {
 
   const formattedCurrentTime = formatTime(Number(currentTime));
   const formattedDuration = formatTime(
-    waveSurferRef.current?.getDuration() || 0
+    waveSurferRef.current?.getDuration() || 0,
   );
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        width: { lg: "580px", md: "500px", sm: "450px", xs: "300px" },
-        backgroundColor: "white",
-        boxShadow:
-          "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset, 0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
-        borderRadius: "100px",
-        height: { xs: "65px", lg: "100px" },
-        paddingX: { lg: "20px", md: "20px", sm: "10px", xs: "10px" },
-      }}
+    <div
+      className="flex h-[65px] w-[300px] items-center rounded-[100px] bg-white px-[10px] shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)] sm:w-[450px] md:w-[500px] lg:h-[100px] lg:w-[580px] lg:px-5"
     >
-      <IconButton
+      <button
+        type="button"
         onClick={handlePlayPause}
-        sx={{
-          width: { xs: "50px", lg: "70px" },
-          height: { xs: "50px", lg: "70px" },
-          padding: 0,
-          backgroundColor: "rgba(81, 184, 147, 1)",
-          marginRight: "10px",
-        }}
+        aria-label={isPlaying ? "Pause" : "Play"}
+        className="me-[10px] flex h-[50px] w-[50px] items-center justify-center rounded-full bg-success p-0 lg:h-[70px] lg:w-[70px]"
       >
         {isPlaying ? (
-          <PauseIcon sx={styles.icon} />
+          <Pause className="text-white" />
         ) : (
-          <PlayArrowIcon sx={styles.icon} />
+          <Play className="text-white" />
         )}
-      </IconButton>
-      <Typography sx={styles.time}>
+      </button>
+      <span className="me-[10px] text-[12px] font-medium leading-[20px] sm:text-[14px] sm:leading-[20px] md:text-[16px] md:leading-[23px] lg:text-[16px] lg:leading-[23px]">
         {formattedCurrentTime}/{formattedDuration}
-      </Typography>
-      <Box ref={containerRef} sx={{ flex: 1, marginRight: "10px" }} />
-      <Box
-        sx={{
-          width: { xs: "50px", lg: "70px" },
-          height: { xs: "50px", lg: "70px" },
-          borderRadius: "35px",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      </span>
+      <div ref={containerRef} className="me-[10px] flex-1" />
+      <div className="flex h-[50px] w-[50px] items-center justify-center overflow-hidden rounded-full lg:h-[70px] lg:w-[70px]">
         <Image
           src={image || user.src}
-          style={styles.image}
           width={user.width}
           height={user.height}
           alt="User"
+          className="h-full w-full"
         />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
-Waveform.propTypes = {
-  audio: PropTypes.string.isRequired,
-};
-
 export default Waveform;
-
-const styles = {
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-  icon: {
-    color: "white",
-  },
-  time: {
-    fontSize: {
-      xs: "12px",
-      sm: "14px",
-      md: "16px",
-      lg: "16px",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "20px",
-      sm: "20px",
-      md: "23px",
-      lg: "23px",
-    },
-    marginRight: "10px",
-  },
-};

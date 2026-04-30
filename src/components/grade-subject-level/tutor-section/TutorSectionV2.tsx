@@ -1,9 +1,4 @@
-// "use client";
 import React from "react";
-import { Typography } from "@mui/material";
-
-import { leagueSpartan } from "@/app/fonts";
-import styles from "./style.module.css";
 
 import GridView from "./grid-view/GridView";
 import ListView from "./list-view/ListView";
@@ -128,12 +123,12 @@ const hardcodedTutors: CardProps[] = [
   },
 ];
 
-const TutorSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
-  // Use hardcoded data instead of fetching from database
+const TutorSectionV2: React.FC<IProps> = ({ data }) => {
   const val = hardcodedTutors;
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
 
   return (
-    <div className={styles.main}>
+    <div className="px-6 py-12 lg:py-16">
       {data?.view === "Horizontal Carousel" ? (
         <HorizontalTutorCarousel
           tutors={val}
@@ -141,21 +136,12 @@ const TutorSectionV2: React.FunctionComponent<IProps> = ({ data }) => {
         />
       ) : (
         <>
-          <Typography
-            className={`${leagueSpartan.className} ${styles.title}`}
-            variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-            component={data?.headerTag ? data.headerTag : ("h3" as any)}
-            dangerouslySetInnerHTML={{
-              __html: data?.header,
-            }}
-          ></Typography>
-
-          <div className={styles.mt1}>
-            {data?.view === "Row View" ? (
-              <ListView data={val} />
-            ) : (
-              <GridView cardsData={val} />
-            )}
+          <HeaderTag
+            className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+            dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
+          />
+          <div className="mt-8">
+            {data?.view === "Row View" ? <ListView data={val} /> : <GridView cardsData={val} />}
           </div>
         </>
       )}

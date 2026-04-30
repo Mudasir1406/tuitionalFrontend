@@ -1,10 +1,13 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import dynamic from "next/dynamic";
 
-// Arabic dynamic imports for optimization
-const ArHeader = dynamic(() => import("@/components/ar-header"), { ssr: true });
+import {
+  Component_Sequence_Type,
+  PageData,
+} from "@/types/grade-subject-level.types";
+import { getStartedData } from "@/services/get-started/get-started";
+
+const ArHeader = dynamic(() => import("@/components/header"), { ssr: true });
 const ArHero = dynamic(() => import("@/components/grade-subject-level/ar-hero"), { ssr: true });
 const ArSectionsBox = dynamic(() => import("@/components/grade-subject-level/ar-sectionsbox"), { ssr: true });
 const ArOffer = dynamic(() => import("@/components/curiculume/ar-offer"), { ssr: true });
@@ -21,37 +24,29 @@ const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
 const ArTutorSection = dynamic(() => import("./tutor-section/ArTutorSection"), { ssr: true });
 
-import {
-  Component_Sequence_Type,
-  PageData,
-} from "@/types/grade-subject-level.types";
-import { getStartedData } from "@/services/get-started/get-started";
-
 type IProps = {
   data: PageData;
   sequence: Component_Sequence_Type;
 };
 
 const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
-  const getStarted = await getStartedData('ar');
-  
+  const getStarted = await getStartedData("ar");
+
   const renderSection = (name: string) => {
     switch (name) {
       case "Hero Section":
         return (
           <>
             {data?.hero_section && (
-              <Box sx={styles.heroContanier}>
-                <Grid container>
-                  <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <ArHero data={data?.hero_section} />
-                  </Grid>
+              <div className="relative mx-[3vw] flex items-end pt-[120px] sm:mx-[3vw] sm:pt-[150px] md:pt-[200px] lg:mx-0 lg:h-screen lg:pt-0 xl:pt-0">
+                <div className="grid w-full grid-cols-1 lg:grid-cols-2">
+                  <ArHero data={data?.hero_section} />
                   <ArHeroInfo
                     image={data?.hero_section?.image}
                     imageAltText={data?.hero_section?.imageAltText}
                   />
-                </Grid>
-              </Box>
+                </div>
+              </div>
             )}
             <ArSectionsBox />
           </>
@@ -59,86 +54,92 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
       case "Main Content":
         return (
           data.main_content && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <MainContent data={data?.main_content} />
-            </Box>
+            </div>
           )
         );
       case "Phone CTA ":
         return (
           data.phone_cta && (
-            <Box sx={styles.phoneContanier}>
-              <Box sx={styles.phoneBackground} />
+            <div className="relative pb-[5vh]">
+              <div
+                className="absolute inset-0 -z-[1] h-full w-full"
+                style={{
+                  background:
+                    "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
+                }}
+              />
               <ArPhoneCta data={data?.phone_cta} />
-            </Box>
+            </div>
           )
         );
       case "Demo Pointers":
         return (
           data?.demo_pointers?.demoPointersData.length > 0 && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <DemoPointers data={data?.demo_pointers} />
-            </Box>
+            </div>
           )
         );
       case "Popular Subjects":
         return (
           data?.popular_subjects?.subjects.length > 0 && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <PopularSubjects data={data?.popular_subjects} />
-            </Box>
+            </div>
           )
         );
       case "Education Counseling":
         return (
           data.education_counseling && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <ArEducationalCounseling data={data?.education_counseling} />
-            </Box>
+            </div>
           )
         );
       case "What our Student Says":
         return (
           data.what_our_student_says && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <StudentSays data={data.what_our_student_says} />
-            </Box>
+            </div>
           )
         );
       case "Blog CTA":
         return (
           data.blog_CTA && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <BlogCta data={data?.blog_CTA} />
-            </Box>
+            </div>
           )
         );
       case "FAQs":
         return (
           data.Faqs && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <FrequentlyQuestions data={data?.Faqs} />
-            </Box>
+            </div>
           )
         );
       case "get started":
         return (
-          <Box sx={styles.verticalMargin}>
+          <div className="my-[5vh] md:my-[10vh]">
             <ArGetStarted data={getStarted} />
-          </Box>
+          </div>
         );
       case "what we offer":
         return (
-          <Box sx={styles.verticalMargin}>
+          <div className="my-[5vh] md:my-[10vh]">
             <ArOffer />
-          </Box>
+          </div>
         );
       case "tutor section":
         return (
           data.tutor_section && (
-            <Box sx={styles.verticalMargin}>
+            <div className="my-[5vh] md:my-[10vh]">
               <ArTutorSection data={data?.tutor_section} />
-            </Box>
+            </div>
           )
         );
       default:
@@ -147,46 +148,16 @@ const ArGradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
   };
 
   return (
-    <Box sx={styles.rtlContainer}>
+    <div dir="rtl">
       <ArHeader />
-      {sequence?.sections?.sort((a, b) => a.placment - b.placment).map((section, index) => (
-        <div key={index}>
-          {renderSection(section.name)}
-        </div>
-      ))}
+      {sequence?.sections
+        ?.sort((a, b) => a.placment - b.placment)
+        .map((section, index) => (
+          <div key={index}>{renderSection(section.name)}</div>
+        ))}
       <ArServerFooter />
-    </Box>
+    </div>
   );
 };
 
 export default ArGradeSubjectLevel;
-
-const styles = {
-  rtlContainer: {
-    direction: "rtl" as const,
-  },
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-  heroContanier: {
-    paddingTop: {
-      xs: "120px",
-      sm: "150px",
-      md: "200px",
-      lg: 0,
-      xl: 0,
-    },
-    height: { xs: "100%", lg: "100vh" },
-    display: "flex",
-    alignItems: "end",
-    position: "relative",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
-  },
-  phoneContanier: { position: "relative", paddingBottom: "5vh" },
-  phoneBackground: {
-    height: "100%",
-    width: "100%",
-    position: "absolute",
-    zIndex: -1,
-    background:
-      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
-  },
-};

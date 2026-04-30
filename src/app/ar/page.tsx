@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
 import lineSmall from "../../../public/assets/images/static/linesmall.png";
 import faqLine from "../../../public/assets/images/static/faq-line.webp";
 import dynamic from "next/dynamic";
@@ -12,52 +11,37 @@ import Script from "next/script";
 
 import "../globals.css";
 import style from "../page.module.css";
-import ArHeader from "../../components/ar-header";
+import ArHeader from "../../components/header";
 import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
 
-// Critical above-the-fold - Load with SSR
-const ArInfo = dynamic(() => import("../../components/home/ar-info"), {
-  ssr: true,
-});
-const ArFilter = dynamic(() => import("../../components/home/ar-filter"), {
-  ssr: true,
-});
+const ArInfo = dynamic(() => import("../../components/home/info"), { ssr: true });
+const ArFilter = dynamic(() => import("../../components/home/filter"), { ssr: true });
 
-// Below-the-fold - Lazy load with placeholders
-const ArTrusted = dynamic(() => import("../../components/home/ar-trusted"), {
+const ArTrusted = dynamic(() => import("../../components/home/trusted"), {
   ssr: false,
-  loading: () => <div style={{height: '200px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => <div className="h-[200px] bg-[#f5f5f5]" />,
 });
-const ArOurClient = dynamic(
-  () => import("../../components/home/ar-our-client"),
-  {
-    ssr: false,
-    loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
-  }
-);
-const ArFaqs = dynamic(() => import("../../components/home/ar-faqs"), {
+const ArOurClient = dynamic(() => import("../../components/home/our-client"), {
   ssr: false,
-  loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => <div className="h-[400px] bg-[#f5f5f5]" />,
 });
-const ArContactUs = dynamic(
-  () => import("../../components/home/ar-contact-us"),
-  {
-    ssr: false,
-    loading: () => <div style={{height: '400px', backgroundColor: '#f5f5f5'}} />,
-  }
-);
-const ArGetStarted = dynamic(
-  () => import("../../components/home/ar-get-started"),
-  {
-    ssr: false,
-    loading: () => <div style={{height: '300px', backgroundColor: '#f5f5f5'}} />,
-  }
-);
+const ArFaqs = dynamic(() => import("../../components/home/faqs"), {
+  ssr: false,
+  loading: () => <div className="h-[300px] bg-[#f5f5f5]" />,
+});
+const ArContactUs = dynamic(() => import("../../components/home/contact-us"), {
+  ssr: false,
+  loading: () => <div className="h-[400px] bg-[#f5f5f5]" />,
+});
+const ArGetStarted = dynamic(() => import("../../components/home/get-started"), {
+  ssr: false,
+  loading: () => <div className="h-[300px] bg-[#f5f5f5]" />,
+});
 const ServerFooter = dynamic(() => import("../../components/ar-server-footer"), {
   ssr: false,
-  loading: () => <div style={{height: '500px', backgroundColor: '#f5f5f5'}} />,
+  loading: () => <div className="h-[500px] bg-[#f5f5f5]" />,
 });
 
 export const metadata: Metadata = {
@@ -144,7 +128,7 @@ const arabicHomeSchema = {
 const ArHome: React.FC = async () => {
   const data = await getTestimonials("ar");
   const filterData = await getFilterData();
-  const getStarted = await getStartedData('ar');
+  const getStarted = await getStartedData("ar");
 
   return (
     <>
@@ -155,7 +139,7 @@ const ArHome: React.FC = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicHomeSchema) }}
       />
       <ArHeader />
-      <Container sx={[styles.contanier, styles.containerRTL]}>
+      <div className="mx-auto flex min-h-full items-end pt-[120px] sm:pt-[120px] md:pt-[120px] lg:min-h-screen lg:max-w-[1650px] lg:pt-0 xl:pt-0" dir="rtl">
         <div className={`${style.container} ${style.containerRTL}`}>
           <div className={style["grid-container"]}>
             <div className={style["hero"]}>
@@ -179,80 +163,31 @@ const ArHome: React.FC = async () => {
             </div>
           </div>
         </div>
-      </Container>
-      <ArTrusted />
-      <Box sx={styles.verticalMargin}>
+      </div>
+      <ArTrusted locale="ar" />
+      <div className="my-[5vh] md:my-[10vh]">
         <ArGetStarted data={getStarted} />
-      </Box>
+      </div>
       <ArOurClient data={data} />
-      <Box sx={styles.backgroundImage}>
-        <Container
-          sx={{
-            maxWidth: { lg: "1450px" },
-          }}
-        >
-          <ArFaqs />
-        </Container>
-      </Box>
-      <Box sx={styles.verticalMargin}>
+      <div className="relative h-full w-full">
+        <div
+          className="absolute bottom-[90%] h-[25vw] w-screen bg-cover bg-top bg-no-repeat sm:bottom-[83%] md:bottom-[80%] lg:hidden"
+          style={{ backgroundImage: `url(${lineSmall.src})` }}
+        />
+        <div
+          className="absolute bottom-[-90px] hidden h-[281px] w-screen bg-cover bg-top bg-no-repeat lg:block"
+          style={{ backgroundImage: `url(${faqLine.src})` }}
+        />
+        <div className="mx-auto lg:max-w-[1450px]">
+          <ArFaqs locale="ar" />
+        </div>
+      </div>
+      <div className="my-[5vh] md:my-[10vh]">
         <ArContactUs filterData={filterData} />
-      </Box>
+      </div>
       <ServerFooter />
     </>
   );
 };
 
 export default ArHome;
-
-const styles = {
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-
-  contanier: {
-    maxWidth: { lg: "1650px" },
-    paddingTop: {
-      xs: "120px",
-      sm: "120px",
-      md: "120px",
-      lg: 0,
-      xl: 0,
-    },
-    minHeight: { xs: "100%", lg: "100vh" },
-    display: "flex",
-    alignItems: "end",
-  },
-
-  // RTL specific styles
-  containerRTL: {
-    direction: "rtl",
-  },
-
-  backgroundImage: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-
-    "::before": {
-      content: "''",
-      backgroundImage: {
-        xs: `url(${lineSmall.src})`,
-        lg: `url(${faqLine.src})`,
-      },
-      backgroundSize: "cover",
-      backgroundPosition: "top",
-      position: "absolute",
-      bottom: {
-        xs: "90%",
-        sm: "83%",
-        md: "80%",
-        lg: -90,
-      },
-      backgroundRepeat: "no-repeat",
-      width: "100vw",
-      height: {
-        xs: "25vw",
-        lg: "281px",
-      },
-      objectFit: "contain",
-    },
-  },
-};

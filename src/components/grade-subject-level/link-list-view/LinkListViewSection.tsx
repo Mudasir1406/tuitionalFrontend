@@ -1,78 +1,45 @@
 "use client";
 
 import React from "react";
-import styles from "./LinkListViewSection.module.css";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
+import { ArrowRightCircle } from "lucide-react";
 import { PageData } from "@/types/grade-subject-level.types";
-import { ArrowCircleRight } from "@mui/icons-material";
 
 type IProps = { data: PageData["link_list"] };
 
 function LinkListViewSection({ data }: IProps) {
-  // Replace <b> with <strong> for semantic SEO (screen readers + crawlers treat <strong> as important)
   const semanticParagraph = data?.paragraph
     ?.replace(/<b>/g, "<strong>")
     ?.replace(/<\/b>/g, "</strong>");
 
   const hasParagraph = !!semanticParagraph?.trim();
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
 
   return (
-    <section className={styles.main}>
-      <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-        component={data?.headerTag ? data.headerTag : ("h3" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.header,
-        }}
-      ></Typography>
+    <section className="px-6 py-12 lg:py-16">
+      <HeaderTag
+        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+        dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
+      />
 
       {hasParagraph && (
-        <Typography
-          className={`${leagueSpartan.className} ${styles.description}`}
-          component={"div"}
-          variant="body2"
-          dangerouslySetInnerHTML={{
-            __html: semanticParagraph,
-          }}
-        ></Typography>
+        <div
+          className="mx-auto mt-6 max-w-3xl text-center font-heading text-body text-ink-700"
+          dangerouslySetInnerHTML={{ __html: semanticParagraph! }}
+        />
       )}
 
-      <div
-        className={`${styles.list} ${!hasParagraph ? styles.listNoParagraph : ""}`}
-      >
+      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {data?.subjects?.map((ls, i) => (
-          // <div
-          //   className={styles.item}
-          //   key={i}
-          //   onClick={() => redirectToExternal(ls.link, false)}
-          // >
-          //   <ArrowCircleRight style={{ color: "#38b6ff" }} />
-          //   <Typography
-          //     className={leagueSpartan.className}
-          //     component={"p"}
-          //     variant="caption"
-          //     dangerouslySetInnerHTML={{
-          //       __html: ls.name,
-          //     }}
-          //   ></Typography>
-          // </div>
-          <a href={ls.link} className={styles.item} key={i}>
-            <ArrowCircleRight style={{ color: "#38b6ff" }} />
-            <Typography
-              className={leagueSpartan.className}
-              component={"p"}
-              variant="caption"
+          <a
+            key={i}
+            href={ls.link}
+            className="flex items-center gap-2 rounded-md bg-white p-4 shadow-card hover:bg-brand-50"
+          >
+            <ArrowRightCircle className="text-brand-500 shrink-0" size={24} />
+            <p
+              className="font-heading text-[0.9rem] sm:text-[1.4rem] md:text-[1.7rem] text-ink-900"
               dangerouslySetInnerHTML={{ __html: ls.name }}
-              sx={{
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "1.4rem",
-                  md: "1.7rem",
-                },
-              }}
-            ></Typography>
+            />
           </a>
         ))}
       </div>

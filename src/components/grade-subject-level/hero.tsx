@@ -1,352 +1,85 @@
 import React from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
-import greenstar from "../../../public/assets/images/svg/greenstar.svg";
-import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import Image from "next/image";
-import CircleIcon from "@mui/icons-material/Circle";
+import { Circle } from "lucide-react";
+
 import { PageData } from "@/types/grade-subject-level.types";
 import { decodeHtmlEntities } from "@/utils/helper";
+import greenstar from "../../../public/assets/images/svg/greenstar.svg";
+import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 
 type IProps = {
   data: PageData["hero_section"];
   withForm?: boolean;
 };
 
+const stats = [
+  "9756 Active Students",
+  "35000+ Tutoring Hours Provided",
+  "1 : 1 Online Classes",
+  "12+ Tutor Year Experience",
+];
+
 const Hero: React.FC<IProps> = ({ data, withForm }) => {
+  const HeaderTag = (data?.headerTag ?? "h1") as "h1" | "h2";
+
   return (
-    <>
-      <Box
-        sx={{
-          height: { lg: "65vh" },
-          paddingInlineStart: { lg: "5vw" },
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          // marginX: { sm: "12px", lg: 0 },
-        }}
-      >
-        <Typography
-          sx={styles.heading}
-          variant={data?.headerTag ? data?.headerTag : ("h1" as any)}
-          className={leagueSpartan.className}
-          // component={data?.headerTag}
+    <div className="flex h-auto flex-col justify-center lg:h-[65vh] lg:ps-[5vw]">
+      <HeaderTag
+        className="mt-[3vh] w-full text-center font-heading text-h1-mobile sm:text-h1-tablet lg:mt-0 lg:w-full lg:text-start lg:text-h1 text-black"
+        dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.header ?? "") }}
+      />
 
-          component={data?.headerTag ? data?.headerTag : ("h1" as any)}
-          dangerouslySetInnerHTML={{
-            __html: decodeHtmlEntities(data?.header),
-          }}
-        ></Typography>
+      <div
+        className="mt-[2vh] w-full text-center font-heading text-body-mobile sm:text-body lg:w-[90%] lg:text-start text-black"
+        dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
+      />
 
-        <Typography
-          sx={styles.desc}
-          className={leagueSpartan.className}
-          component={"p"}
-          variant="body2"
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
-
-        <Box
-          sx={{
-            width: {
-              xs: "100%",
-              lg: "100%",
-              // lg: "70vh",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap", // Ensures items wrap to the next line
-              justifyContent: {
-                xs: "center",
-                lg: "space-between",
-              },
-              gap: "16px", // Adds equal spacing between items
-              marginTop: "3vh",
-              width: { xs: "100%", sm: "60%", lg: "100%" },
-              marginX: "auto",
-            }}
-          >
-            {withForm ? (
-              <Typography
-                sx={styles.desc}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle1"
-                dangerouslySetInnerHTML={{
-                  __html: data?.imageAltText
-                    ? data?.imageAltText
-                    : "IGCSE A Level | IGCSE AS Level",
-                }}
-              ></Typography>
-            ) : (
-              <>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)", // Ensures equal width for all items
-                    maxWidth: "calc(50% - 24px)", // Prevents items from growing too much
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    9756 Active Students
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    35000+ Tutoring Hours Provided
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    1 : 1 Online Classes
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    // justifyContent: "left",
-                    justifyContent: { xs: "center", sm: "center", lg: "left" },
-                    flex: "1 1 calc(50% - 24px)",
-                    maxWidth: "calc(50% - 24px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CircleIcon
-                    sx={{
-                      color: "#38B6FF",
-                      fontSize: "1rem",
-                      marginRight: "8px",
-                    }}
-                  />
-                  <Typography
-                    // sx={{ fontSize: "2vh", color: "#797979" }}
-                    variant="caption"
-                    className={leagueSpartan.className}
-                    component={"p"}
-                  >
-                    12+ Tutor Year Experience
-                  </Typography>
-                </Box>
-              </>
-            )}
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            width: {
-              xs: "100%",
-              lg: "75vh",
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "row",
-                lg: "row",
-              },
-              alignItems: {
-                xs: "center",
-                lg: "flex-start",
-              },
-              justifyContent: {
-                xs: "center",
-                lg: "start",
-              },
-              marginTop: "4vh",
-
-              gap: "1rem",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
+      <div className="w-full">
+        <div className="mx-auto mt-[3vh] flex w-full flex-wrap justify-center gap-4 sm:w-3/5 lg:w-full lg:justify-between">
+          {withForm ? (
+            <p
+              className="font-heading text-h6 text-ink-900"
+              dangerouslySetInnerHTML={{
+                __html: data?.imageAltText || "IGCSE A Level | IGCSE AS Level",
               }}
-            >
-              <Image
-                src={greenstar}
-                alt="img"
-                style={{ height: "3vh", width: "3vh" }}
-              />
-              <Typography
-                sx={{
-                  //   fontSize: "2.3vh",
-                  padding: ".7vh 0 0 1vh",
-                  //   fontWeight: 600,
-                }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="subtitle2"
-              >
-                Trustpilot
-              </Typography>
-            </Box>
+            />
+          ) : (
+            <>
+              {stats.map((label, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center lg:justify-start"
+                  style={{ maxWidth: "calc(50% - 24px)" }}
+                >
+                  <Circle
+                    size={16}
+                    className="me-2 fill-brand-500 text-brand-500"
+                    aria-hidden="true"
+                  />
+                  <p className="font-heading text-small text-ink-900">{label}</p>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                // gap: "1rem",
-              }}
-            >
-              <Typography
-                sx={{
-                  // fontSize: { lg: "2vh", xs: "1.7vh" },
-                  // fontWeight: 400,
-                  padding: "1vh 0 0 0",
-                }}
-                className={leagueSpartan.className}
-                component={"p"}
-                variant="caption"
-              >
-                Excellent (4.7/5)
-              </Typography>
-              <Image
-                src={greenstars}
-                alt="img"
-                style={{
-                  height: "3vh",
-                  width: "14vh",
-                  padding: ".7vh 0 0 2vh",
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </>
+      <div className="w-full lg:w-[75vh]">
+        <div className="mt-[4vh] flex flex-row items-center justify-center gap-4 lg:items-start lg:justify-start">
+          <div className="flex items-center">
+            <Image src={greenstar} alt="" className="h-[3vh] w-[3vh]" />
+            <p className="ps-[1vh] pt-[0.7vh] font-heading text-stat-label uppercase">
+              Trustpilot
+            </p>
+          </div>
+          <div className="flex items-center">
+            <p className="pt-[1vh] font-heading text-small">Excellent (4.7/5)</p>
+            <Image src={greenstars} alt="" className="h-[3vh] w-[14vh] ps-[2vh] pt-[0.7vh]" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
-export default Hero;
 
-const styles = {
-  heading: {
-    width: {
-      xs: "100%",
-      // lg: "35vw",
-      sm: "100%",
-    },
-    textAlign: {
-      xs: "center",
-      sm: "center",
-      md: "center",
-      lg: "start",
-    },
-    // fontSize: {
-    //   xs: "24px",
-    //   sm: "32px",
-    //   md: "42px",
-    //   lg: "5.5vh",
-    // },
-    // fontWeight: 700,
-    // lineHeight: {
-    //   xs: "28px",
-    //   sm: "36px",
-    //   md: "46px",
-    //   lg: "5.5vh",
-    // },
-    marginTop: {
-      xs: "3vh",
-      sm: "3vh",
-      md: "3vh",
-      lg: "0vh",
-    },
-    color: "#000000",
-  },
-  desc: {
-    width: {
-      sm: "100%",
-      lg: "90%",
-    },
-    // fontSize: {
-    //   xs: "12px",
-    //   sm: "12px",
-    //   md: "14px",
-    //   lg: "17px",
-    // },
-    // fontWeight: 400,
-    // lineHeight: {
-    //   xs: "2.5vh",
-    //   sm: "2.4vh",
-    //   md: "2.8vh",
-    //   lg: "2.8vh",
-    // },
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-    marginTop: "2vh",
-  },
-};
+export default Hero;

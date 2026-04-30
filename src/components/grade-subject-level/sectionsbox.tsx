@@ -1,100 +1,21 @@
-import { leagueSpartan } from "@/app/fonts";
-import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import PopUpButton from "../pop-up-button";
 
-const SectionsBox = () => {
-  return (
-    <>
-      <Box sx={style.boxsection}>
-        <Typography
-          className={leagueSpartan.className}
-          sx={style.inner}
-          variant="subtitle2"
-          component={"p"}
-        >
-          Join Live Interactive Online Classes with Our Certified Tutors!
-        </Typography>
-        <PopUpButton sx={style.containedBtn} text="Book a Demo" href="popup" />
-      </Box>
-    </>
-  );
-};
+const SectionsBox = () => (
+  <div className="my-4 flex h-[8vh] flex-row items-center justify-center gap-[2vh] rounded-[1.5vh] bg-[#E7F6FF] px-[3vw] backdrop-blur-sm shadow-[0px_2px_1px_0px_rgba(0,0,0,0.05),0px_-3px_8px_0px_rgba(56,182,255,0.20)] sm:px-[3vw] lg:my-0 lg:h-[12vh] lg:px-0">
+    <p className="text-start font-heading text-h6 font-bold text-ink-900 lg:text-[3vh]">
+      Join Live Interactive Online Classes with Our Certified Tutors!
+    </p>
+    <PopUpButton
+      text="Book a Demo"
+      href="popup"
+      className="w-1/2 rounded-[10px] py-[1vh] text-white sm:w-1/5 lg:py-[10px]"
+      style={{
+        boxShadow: "1px 4px 24px 0px #38B6FFB2",
+        backgroundColor: "#38B6FF",
+      }}
+    />
+  </div>
+);
 
 export default SectionsBox;
-
-const style = {
-  contanier: {},
-  inner: {
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "3vh",
-    // },
-    // fontWeight: {
-    //   xs: "auto",
-    //   lg: "700",
-    // },
-    textAlign: "start",
-    paddingX: {
-      // xs: "2vh",
-      lg: "0",
-    },
-  },
-  boxsection: {
-    borderRadius: "1.5vh",
-    background: "#E7F6FF",
-    boxShadow:
-      "0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px -3px 8px 0px rgba(56, 182, 255, 0.20)",
-    backdropFilter: "blur(5px)",
-    height: {
-      xs: "8vh",
-      lg: "12vh",
-    },
-    display: "flex",
-    alignItems: "center",
-    flexDirection: {
-      xs: "row",
-      lg: "row",
-    },
-    justifyContent: "center",
-    paddingX: {
-      xs: "3vw",
-      sm: "3vw",
-      lg: "0",
-    },
-    gap: "2vh",
-    marginY: {
-      xs: "16px",
-      lg: 0,
-    },
-  },
-  containedBtn: {
-    boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    backgroundColor: "#38B6FF",
-    color: "white",
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "2vh",
-    // },
-    // fontWeight: 700,
-    paddingY: {
-      xs: "1vh",
-      lg: "10px",
-    },
-    textTransform: "none",
-    borderRadius: "10px",
-    width: {
-      xs: "50%",
-      sm: "20%",
-      md: "20%",
-      lg: "20%",
-    },
-    transition: "all .5s ease-in-out",
-    ":hover": {
-      backgroundColor: "#38B6FF",
-      transform: "scale(1.05)",
-
-      boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    },
-  },
-};

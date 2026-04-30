@@ -1,189 +1,68 @@
 "use client";
 
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import linesmobile from "../../../public/assets/images/static/linesMobile.png";
+import Image from "next/image";
 import "swiper/css";
+
+import { Button } from "@/components/ui/button";
+import { useI18n } from "@/context/language-context";
 import Waveform from "./wave-form";
-import { leagueSpartan } from "@/app/fonts";
-import { WP_Reviews_Type } from "@/services/reviews-on-wp/reviews-on-wp";
-// import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
+import type { WP_Reviews_Type } from "@/services/reviews-on-wp/reviews-on-wp";
+import linesInvert from "../../../public/assets/images/static/lines-invert.png";
+import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 
 interface Props {
   reviews: WP_Reviews_Type[];
 }
 
 const ReviewsOnWp = ({ reviews }: Props) => {
+  const { t } = useI18n();
   const [showAll, setShowAll] = useState(false);
 
-  const handleLoadMore = () => {
-    setShowAll((prev) => !prev);
-  };
+  const handleLoadMore = () => setShowAll((prev) => !prev);
 
   const displayedReviews = showAll ? reviews : reviews.slice(0, 4);
 
   return (
-    <Box sx={styles.background}>
-      <Typography
-        sx={styles.heading}
-        className={leagueSpartan.className}
-        component={"h2"}
-        variant="h2"
-      >
-        Reviews on WhatsApp
-      </Typography>
-      <Grid container sx={styles.gridContanier} rowSpacing={2}>
+    <div className="-z-[2] flex h-full w-screen flex-col items-center justify-center bg-gradient-to-b from-[#D3EFFE] to-white/70">
+      <h2 className="relative mt-[70px] text-center font-heading text-h2-mobile sm:text-h2-tablet sm:mt-20 md:mt-[95px] lg:mt-[105px] lg:text-h2 text-black">
+        <Image
+          src={linesMobile}
+          alt=""
+          aria-hidden="true"
+          className="absolute -left-[10px] -top-5 z-10 h-[35px] w-[43px] object-contain sm:hidden"
+        />
+        <Image
+          src={linesInvert}
+          alt=""
+          aria-hidden="true"
+          className="absolute -left-[35px] -top-[35px] z-10 hidden h-[35px] w-[43px] object-contain sm:block"
+        />
+        {t("testimonials.reviews_on_wp.heading")}
+      </h2>
+
+      <div className="my-[50px] grid w-full grid-cols-1 items-center justify-center gap-y-4 lg:max-w-[1260px] lg:grid-cols-2 lg:gap-x-4">
         {displayedReviews.map((item, index) => (
-          <Grid item lg={6} key={index}>
+          <div key={index} className="flex justify-center">
             <Waveform audio={item.audio} image={item.imageUrl} />
-          </Grid>
+          </div>
         ))}
-      </Grid>
-      <Typography className={leagueSpartan.className} variant="body2">
-        10000+ student trusting our Tuitional classes.
-      </Typography>
+      </div>
+
+      <p className="font-body text-small">
+        {t("testimonials.reviews_on_wp.trust_line")}
+      </p>
+
       {!showAll && (
         <Button
-          variant="contained"
-          sx={styles.containedBtn}
-          className={leagueSpartan.className}
           onClick={handleLoadMore}
+          className="mt-5 w-[220px] rounded-md bg-white px-0 py-[18px] text-[#009BF5] shadow-[1px_15px_34px_0px_rgba(0,0,0,0.15)] transition-all duration-200 ease-out hover:scale-[1.06] hover:bg-white"
         >
-          Load More
-          {/* {showAll ? "Show Less" : "Load More"} */}
+          {t("testimonials.reviews_on_wp.load_more")}
         </Button>
       )}
-    </Box>
+    </div>
   );
 };
 
 export default ReviewsOnWp;
-
-const styles = {
-  containedBtn: {
-    letterSpacing: "-2%",
-    boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.15)",
-
-    backgroundColor: "white",
-
-    // fontSize: {
-    //   xs: "25px",
-    //   sm: "25px",
-    //   md: "25px",
-    //   lg: "25px",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "18.4px",
-    textAlign: "center",
-    width: "220px",
-    padding: "18px",
-    textTransform: "none",
-    marginTop: "20px",
-    transform: "scale(1)",
-    transition: "all ease-out 0.2s",
-    borderRadius: "10px",
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.15)",
-      transform: "scale(1.06)",
-      letterSpacing: "-2%",
-
-      backgroundColor: "white",
-      padding: "18px",
-
-      // fontSize: {
-      //   xs: "25px",
-      //   sm: "25px",
-      //   md: "25px",
-      //   lg: "25px",
-      // },
-      // fontWeight: 700,
-      // lineHeight: "18.4px",
-      textAlign: "center",
-    },
-    color: "rgba(0, 155, 245, 1)",
-  },
-  background: {
-    background: "linear-gradient(to bottom, #D3EFFE, rgba(255, 255, 255, 0.7))",
-    // position: "relative",
-    height: "100%",
-    zIndex: -2,
-    marginTop: {
-      xs: "0px",
-      sm: "0px",
-      md: "0px",
-      lg: "0px",
-    },
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100vw",
-    justifyContent: "center",
-  },
-  heading: {
-    color: "#000000",
-
-    // fontSize: {
-    //   xs: "35px",
-    //   sm: "40px",
-    //   md: "55px",
-    //   lg: "55px",
-    // },
-    // fontWeight: 700,
-    // lineHeight: {
-    //   xs: "45px",
-    //   sm: "50px",
-    //   md: "65px",
-    //   lg: "65px",
-    // },
-    marginTop: {
-      xs: "70px",
-      sm: "80px",
-      md: "95px",
-      lg: "105px",
-    },
-    position: "relative",
-    textAlign: "center",
-    paddingX: {
-      xs: "0px",
-      sm: 0,
-      md: 0,
-      lg: 0,
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      left: {
-        xs: -10,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      top: {
-        xs: -20,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      backgroundImage: {
-        xs: `url(${linesmobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: "35px",
-      width: "43px",
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  gridContanier: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    maxWidth: {
-      lg: "1260px",
-    },
-    marginY: "50px",
-  },
-};

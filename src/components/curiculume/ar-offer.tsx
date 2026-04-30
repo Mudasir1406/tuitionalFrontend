@@ -1,11 +1,25 @@
 "use client";
-import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import offer1 from "../../../public/assets/images/static/offer-img-1.png";
 import offer2 from "../../../public/assets/images/static/offer-img-2.png";
 import offer3 from "../../../public/assets/images/static/offer-img-3.png";
 import { leagueSpartan } from "@/app/fonts";
+
+const BUTTON_CLS =
+  "m-4 inline-flex w-1/2 cursor-pointer items-center justify-center rounded-[10px] bg-[#38B6FF] px-0 py-[1vh] text-[1.5vh] font-bold normal-case text-white shadow-[1px_4px_24px_0px_#38B6FFB2] transition-all duration-500 hover:scale-105 sm:w-[30%] md:m-[2vh_3vh] md:w-[30%] lg:w-[14vh]";
+
+const COVERAGE_TEXT_CLS =
+  "w-full px-[3vh] pt-[3vh] font-heading text-h6 font-semibold text-[#2D2D2D] sm:w-[70%] sm:px-[4vh] sm:pt-[4vh] lg:w-[70%] lg:px-[4vh] lg:pt-[4vh]";
+
+const REGULAR_TEXT_CLS =
+  "w-4/5 px-[1.5vh] pt-[1.5vh] font-heading text-h6 font-semibold text-[#2D2D2D] sm:w-[65%] sm:px-[1.5vh] sm:pt-[1.5vh] lg:w-[70%] lg:px-[3vh] lg:pt-[4vh]";
+
+const SmallImageWrap = ({ src }: { src: typeof offer2 }) => (
+  <div className="-mt-10 h-[15vh] w-full overflow-hidden text-end sm:h-[20vh] md:h-[25vh]">
+    <Image src={src} alt="pic" className="h-full w-auto object-contain" />
+  </div>
+);
 
 const ArOffer = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,409 +33,108 @@ const ArOffer = () => {
   }
 
   return (
-    <Box
-      sx={{
-        paddingX: {
-          xs: 0,
-          sm: 0,
-          md: "2vw",
-          lg: "5vw",
-        },
-        direction: "rtl",
-      }}
-    >
-      <Typography
-        className={leagueSpartan.className}
-        variant="h3"
-        sx={{
-          textAlign: "center",
-          fontWeight: "600",
-          lineHeight: "6vh",
-        }}
-        component={"h3"}
+    <div dir="rtl" className="px-0 sm:px-0 md:px-[2vw] lg:px-[5vw]">
+      <h3
+        className={`${leagueSpartan.className} text-center font-heading text-h2-mobile font-semibold leading-[6vh] sm:text-h2-tablet lg:text-h2 text-ink-900`}
       >
         ما نقدمه
-      </Typography>
+      </h3>
 
-      <Box
-        sx={{
-          marginX: {
-            xs: "1.5vh",
-            sm: "1.5vh",
-            md: "2.5vh",
-            lg: "0",
-          },
-        }}
-      >
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={12} lg={6}>
-            <Box
-              sx={{
-                background: "#9EDCFF",
-                borderRadius: "2vh",
-                marginY: "16px",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={style.coveragetext}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
+      <div className="mx-[1.5vh] sm:mx-[1.5vh] md:mx-[2.5vh] lg:mx-0">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div>
+            <div className="my-4 rounded-[2vh] bg-[#9EDCFF]">
+              <div className="flex">
+                <div>
+                  <p className={`${leagueSpartan.className} ${COVERAGE_TEXT_CLS}`}>
                     تغطية شاملة لمنهج الرياضيات IGCSE
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button variant="contained" sx={style.containedBtn}>
+                  </p>
+                  <div className="flex justify-end">
+                    <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
                       اعرف المزيد
-                    </Button>
-                  </Box>
-                </Box>
-                <Box sx={style.responsiveImageContainer}>
-                  <Image
-                    src={offer1}
-                    alt="pic"
-                    style={{
-                      width: "auto",
-                      height: "100%",
-                    }}
-                  />
-                </Box>
-              </Box>
-            </Box>
+                    </button>
+                  </div>
+                </div>
+                <div className="h-[15vh] sm:h-[20vh] md:h-[25vh] lg:h-[25vh]">
+                  <Image src={offer1} alt="pic" className="h-full w-auto" />
+                </div>
+              </div>
+            </div>
 
-            <Grid container spacing={2}>
-              <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box
-                  sx={{
-                    background: "#9EDCFF",
-                    borderRadius: "2vh",
-                  }}
-                >
-                  <Typography
-                    sx={style.regulartxt}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
-                    تقييمات منتظمة وملاحظات
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                    >
-                      اعرف المزيد
-                    </Button>
-                  </Box>
-                  <Box
-                    sx={{
-                      textAlign: "left",
-                      width: "100%",
-                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
-                      overflow: "hidden",
-                      marginTop: "-40px",
-                    }}
-                  >
-                    <Image
-                      src={offer2}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Grid>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-[2vh] bg-[#9EDCFF]">
+                <p className={`${leagueSpartan.className} ${REGULAR_TEXT_CLS}`}>
+                  تقييمات وملاحظات منتظمة
+                </p>
+                <div className="flex justify-end">
+                  <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
+                    اعرف المزيد
+                  </button>
+                </div>
+                <SmallImageWrap src={offer2} />
+              </div>
+              <div className="rounded-[2vh] bg-[#9EDCFF]">
+                <p className={`${leagueSpartan.className} ${REGULAR_TEXT_CLS}`}>
+                  الوصول إلى الموارد والمواد التدريبية
+                </p>
+                <div className="flex justify-end">
+                  <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
+                    اعرف المزيد
+                  </button>
+                </div>
+                <SmallImageWrap src={offer3} />
+              </div>
+            </div>
+          </div>
 
-              <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box
-                  sx={{
-                    background: "#9EDCFF",
-                    borderRadius: "2vh",
-                  }}
-                >
-                  <Typography
-                    sx={style.regulartxt}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
-                    الوصول إلى الموارد والمواد التدريبية
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                    >
-                      اعرف المزيد
-                    </Button>
-                  </Box>
-                  <Box
-                    sx={{
-                      textAlign: "left",
-                      width: "100%",
-                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
-                      overflow: "hidden",
-                      marginTop: "-40px",
-                    }}
-                  >
-                    <Image
-                      src={offer3}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-          </Grid>
+          <div className="flex flex-col-reverse md:flex-col">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="my-4 rounded-[2vh] bg-[#9EDCFF]">
+                <p className={`${leagueSpartan.className} ${REGULAR_TEXT_CLS}`}>
+                  تقييمات وملاحظات منتظمة
+                </p>
+                <div className="flex justify-end">
+                  <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
+                    اعرف المزيد
+                  </button>
+                </div>
+                <SmallImageWrap src={offer2} />
+              </div>
+              <div className="my-4 rounded-[2vh] bg-[#9EDCFF]">
+                <p className={`${leagueSpartan.className} ${REGULAR_TEXT_CLS}`}>
+                  الوصول إلى الموارد والمواد التدريبية
+                </p>
+                <div className="flex justify-end">
+                  <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
+                    اعرف المزيد
+                  </button>
+                </div>
+                <SmallImageWrap src={offer3} />
+              </div>
+            </div>
 
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column-reverse", md: "column" },
-            }}
-            item
-            xs={12}
-            sm={12}
-            md={12}
-            lg={6}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box
-                  sx={{
-                    background: "#9EDCFF",
-                    borderRadius: "2vh",
-                    marginY: "16px",
-                  }}
-                >
-                  <Typography
-                    sx={style.regulartxt}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
-                    تقييمات منتظمة وملاحظات
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                    >
-                      اعرف المزيد
-                    </Button>
-                  </Box>
-
-                  <Box
-                    sx={{
-                      textAlign: "left",
-                      width: "100%",
-                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
-                      overflow: "hidden",
-                      marginTop: "-40px",
-                    }}
-                  >
-                    <Image
-                      src={offer2}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={6} sm={6} md={6} lg={6}>
-                <Box
-                  sx={{
-                    background: "#9EDCFF",
-                    borderRadius: "2vh",
-                    marginY: "16px",
-                  }}
-                >
-                  <Typography
-                    sx={style.regulartxt}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
-                    الوصول إلى الموارد والمواد التدريبية
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                    >
-                      اعرف المزيد
-                    </Button>
-                  </Box>
-
-                  <Box
-                    sx={{
-                      textAlign: "left",
-                      width: "100%",
-                      height: { xs: "15vh", sm: "20vh", md: "25vh" },
-                      overflow: "hidden",
-                      marginTop: "-40px",
-                    }}
-                  >
-                    <Image
-                      src={offer3}
-                      alt="pic"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-            <Box
-              sx={{
-                background: "#9EDCFF",
-                borderRadius: "2vh",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={style.coveragetext}
-                    variant="subtitle2"
-                    className={leagueSpartan.className}
-                  >
+            <div className="rounded-[2vh] bg-[#9EDCFF]">
+              <div className="flex">
+                <div>
+                  <p className={`${leagueSpartan.className} ${COVERAGE_TEXT_CLS}`}>
                     تغطية شاملة لمنهج الرياضيات IGCSE
-                  </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "right" }}>
-                    <Button
-                      variant="contained"
-                      sx={style.containedBtn}
-                      className={leagueSpartan.className}
-                    >
+                  </p>
+                  <div className="flex justify-end">
+                    <button className={`${leagueSpartan.className} ${BUTTON_CLS}`}>
                       اعرف المزيد
-                    </Button>
-                  </Box>
-                </Box>
-                <Box sx={style.responsiveImageContainer}>
-                  <Image
-                    src={offer1}
-                    alt="pic"
-                    style={{
-                      width: "auto",
-                      height: "100%",
-                    }}
-                  />
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+                    </button>
+                  </div>
+                </div>
+                <div className="h-[15vh] sm:h-[20vh] md:h-[25vh] lg:h-[25vh]">
+                  <Image src={offer1} alt="pic" className="h-full w-auto" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default ArOffer;
-
-const style = {
-  coveragetext: {
-    color: "#2D2D2D",
-    width: {
-      xs: "100%",
-      sm: "70%",
-      lg: "70%",
-    },
-    paddingX: {
-      xs: "3vh",
-      sm: "4vh",
-      lg: "4vh",
-    },
-    paddingTop: {
-      xs: "3vh",
-      sm: "4vh",
-      lg: "4vh",
-    },
-    textAlign: "right" as const,
-  },
-  coverageImg: {
-    width: {
-      xs: "50%",
-      sm: "50%",
-      lg: "40%",
-    },
-  },
-  regulartxt: {
-    color: "#2D2D2D",
-    width: {
-      xs: "80%",
-      sm: "65%",
-      lg: "70%",
-    },
-    paddingX: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      lg: "3vh",
-    },
-    paddingTop: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      lg: "4vh",
-    },
-    textAlign: "right" as const,
-  },
-  containedBtn: {
-    boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    backgroundColor: "#38B6FF",
-    fontSize: "1.5vh",
-    fontWeight: 700,
-    padding: "1vh 0",
-    margin: { xs: "16px", sm: "16px", md: "2vh 3vh", lg: "2vh 3vh" },
-    textTransform: "none",
-    borderRadius: "10px",
-    width: {
-      xs: "50%",
-      sm: "30%",
-      md: "30%",
-      lg: "14vh",
-    },
-    transition: "all .5s ease-in-out",
-
-    ":hover": {
-      boxShadow: "1px 4px 24px 0px #38B6FFB2",
-      backgroundColor: "#38B6FF",
-      transform: "scale(1.05)",
-    },
-  },
-
-  responsiveImageContainer: {
-    height: "25vh",
-    "@media (max-width: 960px)": {
-      height: "20vh",
-    },
-    "@media (max-width: 600px)": {
-      height: "15vh",
-    },
-    "@media (max-width: 400px)": {
-      height: "auto",
-    },
-  },
-};

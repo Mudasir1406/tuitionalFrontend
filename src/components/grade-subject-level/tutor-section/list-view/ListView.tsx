@@ -1,188 +1,88 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./ListView.module.css";
-import TeacherCard from "@/components/teacher-card/TeacherCard";
-import { Button, Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
-import TutorIcon from "../../../../../public/assets/icons/11036302 1.svg";
 import Image from "next/image";
-import {
-  AccountCircle,
-  BarChart,
-  Group,
-  Insights,
-  Mic,
-  ScheduleOutlined,
-  SupervisorAccount,
-} from "@mui/icons-material";
-// import TutorIcon from '../../../../../public/assets/icons/11036302 1.svg'
-// import TutorIcon from '../../../../../public/assets/icons/11036302 1.svg'
+import { BarChart3, Clock, LineChart, Mic, User, Users } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import TeacherCard from "@/components/teacher-card/TeacherCard";
+import TutorIcon from "../../../../../public/assets/icons/11036302 1.svg";
 
 interface props {
   data: any[];
   locale?: string;
 }
 
+const translations = {
+  en: {
+    showMore: "Show More",
+    vettedTutor: "Vetted Tutor",
+    vettedTutorDescription:
+      "Our tutors go through a rigorous selection process, having been interviewed to assess their teaching skills & subject knowledge. They have extensive tutoring experience with a track record of success, helping students achieve their academic goals.",
+    poolOfTutors: "Pool of 100s of Tutors to choose from",
+    recordedClasses: "Recorded classes for review",
+    progressTracking: "Progress Tracking",
+    flexibleScheduling: "Flexible Scheduling",
+    postTestAnalysis: "Post-Test Analysis",
+    parentalUpdates: "Parental Updates",
+  },
+  ar: {
+    showMore: "عرض المزيد",
+    vettedTutor: "مدرس معتمد",
+    vettedTutorDescription:
+      "يخضع مدرسونا لعملية انتقاء صارمة، حيث تتم مقابلتهم لتقييم مهاراتهم التدريسية ومعرفتهم بالمادة. لديهم خبرة تدريس واسعة مع سجل حافل بالنجاح، مما يساعد الطلاب على تحقيق أهدافهم الأكاديمية.",
+    poolOfTutors: "مجموعة من المئات من المدرسين للاختيار من بينهم",
+    recordedClasses: "فصول مسجلة للمراجعة",
+    progressTracking: "تتبع التقدم",
+    flexibleScheduling: "جدولة مرنة",
+    postTestAnalysis: "تحليل ما بعد الاختبار",
+    parentalUpdates: "تحديثات أولياء الأمور",
+  },
+};
+
 function ListView({ data, locale = "en" }: props) {
   const [showFull, setShowFull] = useState(false);
-  const toggleShowMore = () => {
-    setShowFull((prev) => !prev);
-  };
-
-  // Translation objects
-  const translations = {
-    en: {
-      showMore: "Show More",
-      vettedTutor: "Vetted Tutor",
-      vettedTutorDescription: "Our tutors go through a rigorous selection process, having been interviewed to assess their teaching skills & subject knowledge. They have extensive tutoring experience with a track record of success, helping students achieve their academic goals.",
-      poolOfTutors: "Pool of 100s of Tutors to choose from",
-      recordedClasses: "Recorded classes for review",
-      progressTracking: "Progress Tracking",
-      flexibleScheduling: "Flexible Scheduling",
-      postTestAnalysis: "Post-Test Analysis",
-      parentalUpdates: "Parental Updates"
-    },
-    ar: {
-      showMore: "عرض المزيد",
-      vettedTutor: "مدرس معتمد",
-      vettedTutorDescription: "يخضع مدرسونا لعملية انتقاء صارمة، حيث تتم مقابلتهم لتقييم مهاراتهم التدريسية ومعرفتهم بالمادة. لديهم خبرة تدريس واسعة مع سجل حافل بالنجاح، مما يساعد الطلاب على تحقيق أهدافهم الأكاديمية.",
-      poolOfTutors: "مجموعة من المئات من المدرسين للاختيار من بينهم",
-      recordedClasses: "فصول مسجلة للمراجعة",
-      progressTracking: "تتبع التقدم",
-      flexibleScheduling: "جدولة مرنة",
-      postTestAnalysis: "تحليل ما بعد الاختبار",
-      parentalUpdates: "تحديثات أولياء الأمور"
-    }
-  };
-
   const t = translations[locale as keyof typeof translations];
+
+  const smallCards = [
+    { icon: <User className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.poolOfTutors },
+    { icon: <Mic className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.recordedClasses },
+    { icon: <BarChart3 className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.progressTracking },
+    { icon: <Clock className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.flexibleScheduling },
+    { icon: <LineChart className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.postTestAnalysis },
+    { icon: <Users className="h-[30px] w-[35px] text-[#009BF5]" />, label: t.parentalUpdates },
+  ];
+
   return (
-    <div className={styles.main}>
-      <div className={styles.mainList}>
-        {data?.slice(0, showFull ? data?.length : 10).map((teacher, index) => (
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <div className="flex flex-col gap-4 lg:col-span-8">
+        {data?.slice(0, showFull ? data.length : 10).map((teacher) => (
           <TeacherCard key={teacher.id} teacher={teacher} locale={locale} />
         ))}
         {!showFull && data?.length > 10 && (
-          <Button
-            variant="contained"
-            className={`${leagueSpartan.className} ${styles.containedButton}`}
-            type="button"
-            onClick={toggleShowMore}
-          >
-{t.showMore}
+          <Button onClick={() => setShowFull(true)} variant="primary" className="self-center">
+            {t.showMore}
           </Button>
         )}
       </div>
-      <div className={styles.info}>
-        <div className={styles.largeCard}>
-          <div className={styles.iconDiv}>
-            <Image
-              src={TutorIcon}
-              alt="Tutor Icon"
-              width={50} // Set width
-              height={50}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="subtitle1"
-          >
-{t.vettedTutor}
-          </Typography>
-          <Typography
-            className={`${leagueSpartan.className} ${styles.mt1}`}
-            component={"p"}
-            variant="body2"
-          >
-{t.vettedTutorDescription}
-          </Typography>
-        </div>
 
-        <div className={styles.smallCards}>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <AccountCircle
-                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-              />
-            </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.poolOfTutors}
-            </Typography>
+      <div className="flex flex-col gap-4 lg:col-span-4">
+        <div className="flex flex-col items-center rounded-md bg-white p-6 text-center shadow-card">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-50">
+            <Image src={TutorIcon} alt="Tutor Icon" width={50} height={50} />
           </div>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <Mic sx={{ color: "#009BF5", width: "35px", height: "30px" }} />
+          <p className="mt-4 font-heading text-h5 text-ink-900">{t.vettedTutor}</p>
+          <p className="mt-2 font-heading text-small text-ink-700">{t.vettedTutorDescription}</p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {smallCards.map((card, idx) => (
+            <div key={idx} className="flex flex-col items-center gap-2 rounded-md bg-white p-3 text-center shadow-card">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50">
+                {card.icon}
+              </div>
+              <p className="font-heading text-small text-ink-900">{card.label}</p>
             </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.recordedClasses}
-            </Typography>
-          </div>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <BarChart
-                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-              />
-            </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.progressTracking}
-            </Typography>
-          </div>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <ScheduleOutlined
-                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-              />
-            </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.flexibleScheduling}
-            </Typography>
-          </div>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <Insights
-                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-              />
-            </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.postTestAnalysis}
-            </Typography>
-          </div>
-          <div className={styles.smallCard}>
-            <div className={styles.iconDivSmall}>
-              <SupervisorAccount
-                sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-              />
-            </div>
-            <Typography
-              className={`${leagueSpartan.className}`}
-              component={"p"}
-              variant="caption"
-            >
-{t.parentalUpdates}
-            </Typography>
-          </div>
+          ))}
         </div>
       </div>
     </div>

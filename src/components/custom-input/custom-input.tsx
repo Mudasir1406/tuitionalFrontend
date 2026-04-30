@@ -1,28 +1,18 @@
 import { leagueSpartan } from "@/app/fonts";
-import { TextField, Typography, TextFieldProps } from "@mui/material";
-import { forwardRef } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
+import { cn } from "@/utils/cn";
 
-const CustomInput = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ value, onChange, placeholder, ...rest }, ref) => {
+const CustomInput = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, ...rest }, ref) => {
     return (
-      <TextField
-        inputRef={ref}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        fullWidth
-        InputProps={{
-          className: leagueSpartan.className,
-          sx: {
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-            padding: 0,
-            height: 0,
-          },
-        }}
+      <input
+        ref={ref}
         {...rest}
-        className={leagueSpartan.className}
+        className={cn(
+          leagueSpartan.className,
+          "h-full w-full border-0 bg-transparent p-0 outline-none placeholder:text-ink-400",
+          className,
+        )}
       />
     );
   },

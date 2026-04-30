@@ -1,185 +1,54 @@
-import { Box, Typography } from "@mui/material";
-import tutors from "../../../public/assets/images/static/tutors.png";
+"use client";
+
 import React from "react";
-import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
+import { GraduationCap, Video } from "lucide-react";
+import { useI18n } from "@/context/language-context";
+
+import tutors from "../../../public/assets/images/static/tutors.png";
 import homeImage from "../../../public/assets/images/static/girl-with-book.webp";
+
 const Info = () => {
+  const { t } = useI18n();
+
   return (
-    <Box sx={styles.container}>
-      <Box sx={styles.registerStudentBox}>
-        <Image
-          src={homeImage.src}
-          width={0}
-          height={0}
-          alt="1-on-1 Online tutoring platform"
-        />
-        <Box sx={styles.schoolbox}>
-          <SchoolOutlinedIcon sx={styles.icon} />
-        </Box>
-        <Typography sx={styles.text} variant="h3">
-          50000+
-        </Typography>
-        <Typography sx={styles.text} variant="subtitle2">
-          Registered Students
-        </Typography>
-      </Box>
-      <Box sx={styles.liveSessions}>
-        <Box sx={styles.singleBox}>
-          <Box sx={styles.absoluteBoxOrange}>
-            <VideocamOutlinedIcon sx={styles.icon} />
-          </Box>
-          <Typography sx={styles.text} variant="subtitle2">
-            100+ Live Sessions
-          </Typography>
-        </Box>
-        <Box sx={styles.singleBox}>
+    <div className="relative mt-[2.5vh] flex h-60 w-full items-end justify-between sm:mt-[2vh] sm:h-96 md:mt-[1.5vh] md:h-[70vh] lg:mt-[1vh] lg:h-[80vh]">
+      <div className="relative ms-[2%] mb-[5vh] flex h-[12vh] w-[35vw] flex-col items-center justify-center rounded-[1vh] bg-white shadow-[0px_0px_30px_0px_#38B6FF33] sm:mb-[10vh] sm:h-[15vh] sm:w-[23vw] md:mb-[15vh] md:h-[18vh] md:w-[25vw] lg:mb-[20vh] lg:h-[20vh] lg:w-[16vw]">
+        <Image src={homeImage.src} width={0} height={0} alt={t("home.info.image_alt")} />
+        <div className="absolute -top-[5vh] z-10 flex h-[7vh] w-[7vh] min-h-[30px] min-w-[30px] items-center justify-center rounded-full bg-success">
+          <GraduationCap className="text-white" aria-hidden="true" />
+        </div>
+        <p className="text-center font-heading text-black">50000+</p>
+        <p className="text-center font-heading text-stat-label uppercase text-black">
+          {t("home.info.registered_students")}
+        </p>
+      </div>
+
+      <div className="me-[2%] mb-[5vh] mt-[1vh] flex w-[30vw] flex-col items-center justify-center gap-[1vh] rounded-[1vh] sm:mb-[10vh] sm:w-[25vw] md:mb-[15vh] md:w-[20vw] lg:mb-[20vh] lg:w-[15vw]">
+        <div className="relative flex w-full flex-col items-center justify-center rounded-[1vh] bg-white p-[2vh] shadow-[0px_0px_30px_0px_#38B6FF33]">
+          <div className="absolute right-0 top-[-5vh] z-[99] flex h-[5vh] w-[5vh] min-h-[30px] min-w-[30px] items-center justify-center rounded-full bg-[#F86A6A] shadow-md">
+            <Video className="text-white" aria-hidden="true" />
+          </div>
+          <p className="text-center font-heading text-stat-label uppercase text-black">
+            100+ {t("home.info.live_sessions")}
+          </p>
+        </div>
+        <div className="relative flex w-full flex-col items-center justify-center rounded-[1vh] bg-white p-[2vh] shadow-[0px_0px_30px_0px_#38B6FF33]">
           <Image
-            alt={"tutors"}
             src={tutors.src}
             width={tutors.width}
             height={tutors.height}
-            style={{
-              width: "100%",
-              objectFit: "contain",
-            }}
+            alt={t("home.info.tutors_alt")}
+            className="w-full object-contain"
           />
-          <Typography sx={styles.text} variant="h3">
-            500+{" "}
-          </Typography>
-          <Typography sx={styles.text} variant="subtitle2">
-            Tutor Screened
-          </Typography>
-        </Box>
-      </Box>
-    </Box>
+          <p className="text-center font-heading text-black">500+</p>
+          <p className="text-center font-heading text-stat-label uppercase text-black">
+            {t("home.info.tutor_screened")}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Info;
-
-const styles = {
-  icon: { color: "white" },
-  text: {
-    color: "black",
-    textAlign: "center",
-  },
-  container: {
-    display: "flex",
-    alignItems: "end",
-    justifyContent: "space-between",
-    width: "100%",
-    height: {
-      // xs: "25vh",
-      // sm: "40vh",
-      xs: "15rem", // Approximate conversion of 25vh (assuming a root font size of 16px)
-      sm: "24rem",
-      md: "70vh",
-      lg: "80vh",
-    },
-    marginTop: {
-      xs: "2.5vh",
-      sm: "2vh",
-      md: "1.5vh",
-      lg: "1vh",
-    },
-    position: "relative",
-  },
-  registerStudentBox: {
-    boxShadow: "0px 0px 30px 0px #38B6FF33",
-    width: {
-      xs: "35vw",
-      sm: "23vw",
-      md: "25vw",
-      lg: "16vw",
-    },
-    height: {
-      xs: "12vh",
-      sm: "15vh",
-      md: "18vh",
-      lg: "20vh",
-    },
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    borderRadius: "1vh",
-    backgroundColor: "white",
-    position: "relative",
-    animation: "bounce 5s ease-in-out infinite",
-    marginLeft: "2%",
-    marginBottom: {
-      xs: "5vh",
-      sm: "10vh",
-      md: "15vh",
-      lg: "20vh",
-    },
-  },
-  liveSessions: {
-    width: {
-      xs: "30vw",
-      sm: "25vw",
-      md: "20vw",
-      lg: "15vw",
-    },
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    borderRadius: "1vh",
-    gap: "1vh",
-    marginTop: "1vh",
-    animation: "bounce 6s ease-in-out infinite",
-    marginRight: "2%",
-    marginBottom: {
-      xs: "5vh",
-      sm: "10vh",
-      md: "15vh",
-      lg: "20vh",
-    },
-  },
-  singleBox: {
-    background: "white",
-    borderRadius: "1vh",
-    padding: "2vh",
-    position: "relative",
-    width: "100%",
-    boxShadow: "0px 0px 30px 0px #38B6FF33",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-  absoluteBoxOrange: {
-    position: "absolute",
-    right: 0,
-    top: "-5vh",
-    zIndex: 99,
-    background: "#F86A6A",
-    borderRadius: "50%",
-    boxShadow: 3,
-    width: "5vh",
-    height: "5vh",
-    minHeight: "30px",
-    minWidth: "30px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  schoolbox: {
-    position: "absolute",
-    zIndex: 10,
-    width: "7vh",
-    height: "7vh",
-    backgroundColor: "#51B893",
-    borderRadius: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    top: "-5vh",
-    minHeight: "30px",
-    minWidth: "30px",
-  },
-};

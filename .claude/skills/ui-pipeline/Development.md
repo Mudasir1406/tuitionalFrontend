@@ -197,7 +197,7 @@ Use this table to navigate directly to the right file when you hit a symptom. Ev
 |---|---|---|
 | English leaks onto `/ar/**` | Missing key in [src/locales/ar.json](src/locales/ar.json) — add it; falls back to EN, then to raw key |
 | `t` throws at runtime | You called it as `t.key` — here it is a **function**: `t("key.path")`. See [src/hooks/useI18n.ts](src/hooks/useI18n.ts) and [src/context/language-context.tsx](src/context/language-context.tsx) |
-| RTL mirror not working | Three layers: [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) (html dir), [src/app/globals.css](src/app/globals.css) (global RTL), per-component `isRTL` conditionals (manual). NO stylis plugin here |
+| RTL mirror not working | Three layers: [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) (sets `html dir`), [src/app/globals.css](src/app/globals.css) (global RTL + Arabic font swap), Tailwind logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`) which auto-flip under `dir="rtl"`. NO stylis plugin |
 | AR font wrong | Expected: Noto Sans Arabic via `html[dir="rtl"] *` in [globals.css](src/app/globals.css). If overridden manually, remove the override |
 
 ### SEO / Analytics defects
@@ -309,21 +309,24 @@ Search in this order (full map in [UI.md §10](./UI.md)):
 
 - Start with `"use client";` on line 1 if you need state/effects/hooks.
 - Add `useI18n()` for any user-facing string.
-- Pick Pattern A (`sx` + `const styles`) or Pattern B (CSS module) based on neighbouring files — see [UI.md §3–4](./UI.md).
-- Apply RTL conditionals (`isRTL`, `isArabic`) to direction-sensitive styles, OR create a twin for diverging Arabic layouts.
-- Prefer MUI `variant`-driven typography over hand-sized text — see [Design.md §2](./Design.md).
-- Use `next/image` for all images with explicit `alt` + `width` + `height`.
+- Style with Tailwind utility classes; use `cn()` from `@/utils/cn` for conditional classes — see [UI.md §4](./UI.md).
+- Use logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`) for direction-sensitive layout, OR create an `ar-*.tsx` twin when LTR/AR layouts genuinely diverge.
+- Prefer the `text-*` Tailwind tokens (`text-h1`, `text-h2-mobile`, `text-body`) over hand-sized text — see [Design.md §2](./Design.md).
+- Reach for the house primitives in [src/components/ui/](src/components/ui/) (`Button`, `Input`, `Container`, `Dialog`, `Drawer`, `Select`) before raw HTML.
+- Use `next/image` for all images with explicit `alt` + `width` + `height` (or `fill`).
 
 #### ✅ DO
-- Match the styling pattern of the folder you're in (pricing/ → CSS modules; home/ → `sx`).
+- Match the styling rhythm of the folder you're in (Tailwind classes throughout).
 - Import `useI18n` from `@/hooks/useI18n` (superset) rather than `@/context/language-context`.
+- Use `lucide-react` for icons.
 - Set `priority` on above-the-fold hero images only.
 
 #### ❌ DON'T
-- Don't mix Pattern A and Pattern B for the same property ([RULES §RULE-02](./RULES.md)).
-- Don't use `styled()`, `makeStyles`, or `theme.palette.*` / `theme.spacing(n)` inside `sx`.
+- Don't reintroduce `@mui/*` / `@emotion/*` imports — they are uninstalled ([RULES §RULE-01](./RULES.md)).
+- Don't author new `*.module.css` files — Tailwind covers it.
 - Don't use `em` for anything; don't use `vw` for font-size.
 - Don't rely on `<img>` — always `next/image`.
+- Don't write `flex-row-reverse` driven by `isRTL` — let logical properties auto-flip.
 
 ### 4.4 Add translations
 

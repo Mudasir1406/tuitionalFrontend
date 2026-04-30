@@ -1,8 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
-import styles from "./BlogAuthorProfile.module.css";
 
 interface AuthorProfileData {
   authorName?: string;
@@ -17,84 +14,48 @@ interface Props {
   data: AuthorProfileData;
 }
 
-const StarRating = ({ stars }: { stars: number }) => {
-  const total = 5;
-  return (
-    <div className={styles.stars} aria-label={`${stars} out of 5 stars`}>
-      {Array.from({ length: total }).map((_, i) => (
-        <span key={i} className={i < stars ? styles.starFilled : styles.starEmpty}>
-          ★
-        </span>
-      ))}
-    </div>
-  );
-};
+const StarRating = ({ stars }: { stars: number }) => (
+  <div className="flex gap-0.5" aria-label={`${stars} out of 5 stars`}>
+    {Array.from({ length: 5 }).map((_, i) => (
+      <span key={i} className={i < stars ? "text-warning" : "text-ink-300"}>
+        ★
+      </span>
+    ))}
+  </div>
+);
 
 const BlogAuthorProfile: React.FC<Props> = ({ data }) => {
   if (!data?.authorName) return null;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        {/* Avatar */}
-        <div className={styles.avatarWrapper}>
+    <div className="my-6">
+      <div className="flex flex-col gap-4 rounded-md bg-brand-50 p-4 sm:flex-row sm:items-center">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-white">
           {data.authorImage ? (
-            <Image
-              src={data.authorImage}
-              alt={data.authorName}
-              fill
-              className={styles.avatar}
-            />
+            <Image src={data.authorImage} alt={data.authorName} fill className="object-cover" />
           ) : (
-            <div className={styles.avatarFallback}>
+            <div className="flex h-full w-full items-center justify-center bg-brand-200 font-heading text-h2 text-white">
               {data.authorName.charAt(0).toUpperCase()}
             </div>
           )}
         </div>
-
-        {/* Info */}
-        <div className={styles.info}>
-          <Typography
-            className={`${leagueSpartan.className} ${styles.name}`}
-            variant="h6"
-            component="p"
-          >
-            {data.authorName}
-          </Typography>
-
-          <div className={styles.meta}>
+        <div className="flex-1">
+          <p className="font-heading text-h6 text-ink-900">{data.authorName}</p>
+          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
             {data.authorCountry && (
-              <Typography
-                className={`${leagueSpartan.className} ${styles.metaText}`}
-                variant="body2"
-                component="span"
-              >
+              <span className="font-heading text-small text-ink-700">
                 📍 {data.authorCountry}
-              </Typography>
+              </span>
             )}
             {data.blogDate && (
-              <Typography
-                className={`${leagueSpartan.className} ${styles.metaText}`}
-                variant="body2"
-                component="span"
-              >
+              <span className="font-heading text-small text-ink-700">
                 🗓 {data.blogDate}
-              </Typography>
+              </span>
             )}
           </div>
-
-          {data.authorStars ? (
-            <StarRating stars={Number(data.authorStars)} />
-          ) : null}
-
+          {data.authorStars ? <StarRating stars={Number(data.authorStars)} /> : null}
           {data.authorAbout && (
-            <Typography
-              className={`${leagueSpartan.className} ${styles.about}`}
-              variant="body2"
-              component="p"
-            >
-              {data.authorAbout}
-            </Typography>
+            <p className="mt-2 font-heading text-small text-ink-800">{data.authorAbout}</p>
           )}
         </div>
       </div>

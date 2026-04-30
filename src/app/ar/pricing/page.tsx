@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { getDropdownOptions } from '@/services/dropdown/dropdown-api';
-import ArHeader from '@/components/ar-header';
+import ArHeader from '@/components/header';
 import dynamic from 'next/dynamic';
 import { SITE_URL } from '@/utils/env';
 import styles from '../../pricing/pricing.module.css';

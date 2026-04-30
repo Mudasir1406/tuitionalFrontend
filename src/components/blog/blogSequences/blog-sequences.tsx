@@ -1,41 +1,20 @@
 import React from "react";
 import * as cheerio from "cheerio";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
 import { Header } from "@/components";
-import dynamic from "next/dynamic";
-
-import styles from "./BlogSequences.module.css";
-
-const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), {
-  ssr: true,
-});
-const ServerFooter = dynamic(() => import("@/components/server-footer"), {
-  ssr: true,
-});
-const Breadcrumb = dynamic(
-  () => import("@/components/bread-crumb/bread-crumb"),
-  { ssr: true },
-);
-const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), {
-  ssr: true,
-});
-const FrequentlyQuestions = dynamic(
-  () => import("@/components/grade-subject-level/faqs"),
-  { ssr: true },
-);
-const AuthorSocial = dynamic(() => import("../author-social/AuthorSocial"), {
-  ssr: false,
-});
-const BlogAuthorProfile = dynamic(
-  () => import("../author-profile/BlogAuthorProfile"),
-  { ssr: true },
-);
-
 import { AllBlogsData, PageData } from "@/types/grade-subject-level.types";
-import { leagueSpartan } from "@/app/fonts";
 import LeftSection from "../left-section/left-section";
 import PostCTA from "../postCTA/PostCTA";
-import Image from "next/image";
+
+const Hero = dynamic(() => import("@/components/blog/hero-nested/Hero"), { ssr: true });
+const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
+const Breadcrumb = dynamic(() => import("@/components/bread-crumb/bread-crumb"), { ssr: true });
+const RelatedBlogs = dynamic(() => import("../relatedBlogs/RelatedBlogs"), { ssr: true });
+const FrequentlyQuestions = dynamic(() => import("@/components/grade-subject-level/faqs"), { ssr: true });
+const AuthorSocial = dynamic(() => import("../author-social/AuthorSocial"), { ssr: false });
+const BlogAuthorProfile = dynamic(() => import("../author-profile/BlogAuthorProfile"), { ssr: true });
 
 type IProps = {
   data: PageData;
@@ -57,15 +36,8 @@ const processHtmlContent = (html: string) => {
   return $.html();
 };
 
-const BlogSequences: React.FC<IProps> = ({
-  data,
-  allBlogs,
-  allTags,
-  allCategories,
-}) => {
+const BlogSequences: React.FC<IProps> = ({ data, allBlogs, allTags, allCategories }) => {
   const entries = Object.entries(data);
-
-  // Locate authorProfile data (if this blog has one)
   const authorProfileData = (data as any)?.authorProfile;
 
   const renderRightContent = (name: string) => {
@@ -73,25 +45,20 @@ const BlogSequences: React.FC<IProps> = ({
       const rawContent = (data?.[name as keyof PageData] as any)?.content || "";
       return (
         data?.[name as keyof PageData] && (
-          <div className={styles.rightSection}>
+          <div className="my-6">
             <div
-              className={`${leagueSpartan.className} ${styles.typographyContent}`}
-              dangerouslySetInnerHTML={{
-                __html: processHtmlContent(rawContent),
-              }}
+              className="prose font-heading text-ink-900 max-w-none"
+              dangerouslySetInnerHTML={{ __html: processHtmlContent(rawContent) }}
             />
           </div>
         )
       );
     }
-    if (name.includes("authorProfile")) {
-      // Rendered explicitly at the bottom — skip here to control position
-      return null;
-    }
+    if (name.includes("authorProfile")) return null;
     if (name.includes("Faqs")) {
       return (
         data?.[name as keyof PageData] && (
-          <div className={styles.rightSection}>
+          <div className="my-6">
             <FrequentlyQuestions data={data?.[name as keyof PageData]} />
           </div>
         )
@@ -100,7 +67,7 @@ const BlogSequences: React.FC<IProps> = ({
     if (name.includes("postCTA")) {
       return (
         (data?.[name as keyof PageData] as any)?.isShow && (
-          <div className={styles.rightSection}>
+          <div className="my-6">
             <PostCTA />
           </div>
         )
@@ -112,8 +79,6 @@ const BlogSequences: React.FC<IProps> = ({
   return (
     <>
       <Header />
-
-      {/* ── Full-width: hero section ── */}
       {entries
         .filter(([key]) => key.trim().includes("heroSection"))
         .map(([key]) => {
@@ -127,18 +92,17 @@ const BlogSequences: React.FC<IProps> = ({
                 authorProfile={authorProfileData}
               />
               {sectionData?.image && (
-                <div className={styles.imageDiv}>
+                <div className="relative mx-auto h-[40vh] max-w-screen-xl">
                   <Image
                     src={sectionData.image}
                     alt={sectionData?.imageAltText || ""}
-                    className={styles.blogImg}
                     fill
+                    className="object-cover"
                   />
                 </div>
               )}
-              <div className={styles.container}>
-                <div className={styles.verticalMargin}></div>
-                <div className={styles.verticalMargin}>
+              <div className="mx-auto max-w-screen-xl px-4">
+                <div className="my-4">
                   <Breadcrumb />
                 </div>
               </div>
@@ -146,30 +110,23 @@ const BlogSequences: React.FC<IProps> = ({
           );
         })}
 
-      {/* ── Two-column: static form left, scrollable content right ── */}
-      <div className={styles.twoColumnLayout}>
-        <div className={styles.leftCol}>
+      <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 px-4 lg:grid-cols-12">
+        <div className="lg:col-span-3">
           <LeftSection tags={allTags} categories={allCategories} />
         </div>
-
-        <div className={styles.rightCol}>
-          {/* Blog content sections (blogContent, Faqs, postCTA) */}
+        <div className="lg:col-span-9">
           {entries
             .filter(([key]) => !key.trim().includes("heroSection"))
             .map(([key]) => (
               <div key={key}>{renderRightContent(key.trim())}</div>
             ))}
-
-          {/* Author profile card — bottom of content */}
           {authorProfileData?.authorName && (
-            <div className={styles.rightSection}>
+            <div className="my-6">
               <BlogAuthorProfile data={authorProfileData} />
             </div>
           )}
-
-          {/* Related articles */}
           {allBlogs && allBlogs.length > 0 && (
-            <div className={styles.rightSection}>
+            <div className="my-6">
               <RelatedBlogs blogs={allBlogs} />
             </div>
           )}

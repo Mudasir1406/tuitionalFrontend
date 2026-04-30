@@ -1,16 +1,13 @@
 "use client";
+
 import React from "react";
-import styles from "./BlogCard.module.css";
-import Image, { StaticImageData } from "next/image";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
-import NorthEastIcon from "@mui/icons-material/NorthEast";
-import { redirectToExternal } from "@/utils/helper";
+import Image, { type StaticImageData } from "next/image";
 import { usePathname } from "next/navigation";
-import { AllBlogsData } from "@/types/grade-subject-level.types";
+import { ArrowUpRight } from "lucide-react";
 import moment from "moment";
+
+import { AllBlogsData } from "@/types/grade-subject-level.types";
 import dummyImg1 from "../../../../public/assets/images/static/blogimg1.png";
-import Link from "next/link";
 
 export interface BlogsProps {
   title: string;
@@ -27,55 +24,37 @@ interface Props {
 
 function BlogCard({ data }: Props) {
   const pathname = usePathname();
-  const isArabicRoute = pathname.startsWith('/ar');
-  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
+  const isArabicRoute = pathname.startsWith("/ar");
+  const blogBaseUrl = isArabicRoute ? "/ar/blog" : "/blog";
+
   return (
-    <div className={styles.card}>
-      {/* <Image
-        src={data?.heroSection?.image}
-        alt={data?.heroSection?.imageAltText ? data?.heroSection?.imageAltText : ""}
-        className={styles.image}
-        fill
-      /> */}
-      <div className={styles.imageWrapper}>
+    <div className="flex flex-col overflow-hidden rounded-md bg-white shadow-card">
+      <div className="relative h-48 w-full">
         <Image
           src={data?.heroSection?.image || dummyImg1}
           alt={data?.heroSection?.imageAltText || ""}
-          className={styles.image}
           fill
+          className="object-cover"
         />
       </div>
-      <div className={styles.textDiv}>
-        <div className={styles.textDiv_text}>
-          <Typography
-            className={`${styles.date} ${leagueSpartan.className}`}
-            variant="body1"
-            component={"p"}
-          >
+      <div className="flex items-start justify-between gap-2 p-4">
+        <div className="flex-1">
+          <p className="font-heading text-small text-ink-700">
             {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
-          </Typography>
+          </p>
           <a href={`${blogBaseUrl}/${data?.slugData}`}>
-            <Typography
-              className={`${styles.title} ${leagueSpartan.className}`}
-              variant="subtitle2"
-              component={"p"}
-              // onClick={() => redirectToExternal(`/blog/${data?.slugData}`)}
-            >
+            <p className="mt-1 font-heading text-h5 text-ink-900 hover:text-brand-500">
               {data?.heroSection?.header}
-            </Typography>
+            </p>
           </a>
         </div>
-
-        <div className={styles.textDiv_text}>
-          <a href={`${blogBaseUrl}/${data?.slugData}`}>
-            <div
-              className={styles.iconDiv}
-              // onClick={() => redirectToExternal(`/blog/${data?.id}`)}
-            >
-              <NorthEastIcon />
-            </div>
-          </a>
-        </div>
+        <a
+          href={`${blogBaseUrl}/${data?.slugData}`}
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-50 text-brand-500"
+          aria-label="Read more"
+        >
+          <ArrowUpRight size={18} />
+        </a>
       </div>
     </div>
   );

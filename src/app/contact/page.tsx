@@ -3,7 +3,6 @@ import { Header } from "../../components";
 
 import Footer from "../../components/footer-wrapper";
 import LearnTogeather from "../../components/contact/learn-togeather";
-import { Box, Container, Grid } from "@mui/material";
 import GetInTouch from "../../components/contact/get-in-touch/GetInTouch";
 import Info from "../../components/contact/info";
 import { Metadata } from "next";
@@ -20,48 +19,19 @@ export const metadata: Metadata = {
 const Contact: React.FC = () => {
   return (
     <>
-      <Header
-        background={{
-          height: {
-            xs: "100px",
-            sm: "100px",
-            md: "200px",
-            lg: "200px",
-          },
-          background: "#D7F0FF",
-        }}
-      />
-      <Box sx={styles.background}>
-        <Container sx={styles.contanier}>
+      <Header heroClassName="h-[100px] sm:h-[100px] md:h-[200px] lg:h-[200px] bg-[#D7F0FF]" />
+      <div className="bg-[#D7F0FF]">
+        <div className="mx-auto pt-[120px] sm:pt-[150px] md:pt-[200px] lg:max-w-[1450px] lg:pt-[210px]">
           <LearnTogeather />
-        </Container>
-      </Box>
+        </div>
+      </div>
       <GetInTouch />
-
-      <Container
-        sx={{ maxWidth: { lg: "1450px", margin: "auto" }, marginTop: "5vh",marginBottom:'3vh' }}
-      >
+      <div className="mx-auto mb-[3vh] mt-[5vh] lg:max-w-[1450px]">
         <Info />
-      </Container>
+      </div>
       <Footer />
     </>
   );
 };
 
 export default Contact;
-
-const styles = {
-  contanier: {
-    maxWidth: { lg: "1450px" },
-    paddingTop: {
-      xs: "120px",
-      sm: "150px",
-      md: "200px",
-      lg: "210px",
-    },
-    // height: "47vh",
-  },
-  background: {
-    background: "#D7F0FF",
-  },
-};

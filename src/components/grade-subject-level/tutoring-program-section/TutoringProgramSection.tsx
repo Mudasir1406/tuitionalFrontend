@@ -1,9 +1,7 @@
 "use client";
 
-import { leagueSpartan } from "@/app/fonts";
-import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import styles from "./TutoringProgramSection.module.css";
+import { Button } from "@/components/ui/button";
 import PopUpButton from "@/components/pop-up-button";
 
 interface props {
@@ -16,87 +14,44 @@ interface props {
   };
 }
 
-const handleRedirect = (url: string) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
-
 function TutoringProgramSection({ data }: props) {
-  return (
-    <div className={styles.main}>
-      <Typography
-        // clas={styles.guidence}
-        variant={data.headerTag ? data?.headerTag : ("h3" as any)}
-        className={`${leagueSpartan.className} ${styles.title}`}
-        component={data?.headerTag ? data.headerTag : ("h3" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.header,
-        }}
-      ></Typography>
-      <Typography
-        className={`${leagueSpartan.className} ${styles.description}`}
-        component={"p"}
-        variant="body2"
-        dangerouslySetInnerHTML={{
-          __html: data?.paragraph,
-        }}
-      ></Typography>
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const handleRedirect = (url: string) => window.open(url, "_blank", "noopener,noreferrer");
 
-      {data?.buttonLink && data?.buttonLink === "popup" ? (
-        <div className={styles.btnDiv}>
-          <PopUpButton
-            sx={style.contactButton}
-            text={data?.buttonTitle}
-            href="popup"
-          />
-        </div>
-      ) : (
-        <>
-          {data?.buttonTitle && (
-            <div className={styles.btnDiv}>
-              <Button
-                onClick={() => handleRedirect(data.buttonLink)}
-                variant="contained"
-                sx={style.contactButton}
-                className={leagueSpartan.className}
-              >
-                {data.buttonTitle}
-              </Button>
-            </div>
+  return (
+    <div className="px-6 py-12 text-center lg:py-16">
+      <HeaderTag
+        className="font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+        dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
+      />
+      <div
+        className="mx-auto mt-6 max-w-3xl font-heading text-body text-ink-700"
+        dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
+      />
+
+      {data?.buttonTitle && (
+        <div className="mt-6 flex justify-center">
+          {data?.buttonLink === "popup" ? (
+            <PopUpButton
+              text={data.buttonTitle}
+              href="popup"
+              className="px-[25px] py-[1.5vh] md:px-[22px] md:py-[2vh] lg:px-[25px]"
+              style={{
+                boxShadow: "1px 15px 34px 0px rgba(0,0,0,0.2)",
+                backgroundColor: "rgba(56,182,255,1)",
+                borderRadius: "10px",
+                color: "white",
+              }}
+            />
+          ) : (
+            <Button onClick={() => handleRedirect(data.buttonLink)} variant="primary" size="lg">
+              {data.buttonTitle}
+            </Button>
           )}
-        </>
+        </div>
       )}
     </div>
   );
 }
 
 export default TutoringProgramSection;
-
-const style = {
-  contactButton: {
-    boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
-    backgroundColor: "rgba(56, 182, 255, 1)",
-    borderRadius: "10px",
-    letterSpacing: "-2%",
-    lineHeight: "23px",
-    color: "white",
-    textTransform: "none",
-    paddingY: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      md: "2vh",
-      lg: "2vh",
-    },
-    paddingX: {
-      xs: "25px",
-      sm: "25px",
-      md: "22px",
-      lg: "25px",
-    },
-    ":hover": {
-      backgroundColor: "rgba(56, 182, 255, 1)",
-      borderRadius: "10px",
-      letterSpacing: "-2%",
-      boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
-    },
-  },
-};

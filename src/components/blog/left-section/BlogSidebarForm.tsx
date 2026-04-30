@@ -1,34 +1,29 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
+import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/input";
 import CustomInput from "@/components/custom-input/custom-input";
-import DropDown from "@/components/DropDown/DropDown";
+import TranslatableDropDown from "@/components/DropDown/TranslatableDropDown";
 import "@/components/DropDown/DropDown.css";
-import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
-import toast, { Toaster } from "react-hot-toast";
 import Input from "@/components/input/Input";
+import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
+import { sendForm } from "@/services/contact-form/contact-form";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
 import { addFormData } from "@/utils/globalFunction";
-import dynamic from "next/dynamic";
 import useGeoLocation from "@/utils/slugHelper";
-import { sendForm } from "@/services/contact-form/contact-form";
-import { FormType } from "@/components/home/form-dialouge";
-import styles from "./BlogSidebarForm.module.css";
+import { useI18n } from "@/context/language-context";
+import type { FormType } from "@/components/home/form-dialouge";
 
-const PhoneInput = dynamic(() => import("react-phone-number-input"), {
-  ssr: false,
-});
+const PhoneInput = dynamic(() => import("react-phone-number-input"), { ssr: false });
 
 const BlogSidebarForm: React.FC = () => {
+  const { locale } = useI18n();
   const [filterData, setFilterData] = useState<Filter_Data | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormType>({
@@ -49,8 +44,6 @@ const BlogSidebarForm: React.FC = () => {
     if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString();
-      const currentTime = new Date().toLocaleTimeString();
       const params = new URLSearchParams(window.location.search);
       setFormData((prev) => ({
         ...prev,
@@ -58,8 +51,8 @@ const BlogSidebarForm: React.FC = () => {
         Country: geoData.country || "",
         Browser: browser,
         SourcePageURL: pageURL,
-        Date: currentDate,
-        Time: currentTime,
+        Date: new Date().toLocaleDateString(),
+        Time: new Date().toLocaleTimeString(),
         Medium: params.get("gad_source")
           ? "google Ads"
           : params.get("fbclid")
@@ -103,7 +96,6 @@ const BlogSidebarForm: React.FC = () => {
   const onSubmit = async () => {
     setLoading(true);
     const newErrors: Partial<FormType> = {};
-
     if (!isNotEmpty(formData.FirstName)) newErrors.FirstName = "Name cannot be empty";
     if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = "Invalid email address";
     if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = "Invalid phone number";
@@ -124,7 +116,7 @@ const BlogSidebarForm: React.FC = () => {
     try {
       await sendForm(formData);
       toast.success("Form submitted successfully!");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error saving data:", error);
       toast.error("Form submission failed!");
     } finally {
@@ -142,159 +134,94 @@ const BlogSidebarForm: React.FC = () => {
     }
   };
 
+  const inputCls = "h-9 w-full rounded-md bg-white px-3 text-form-input text-ink-900 shadow-card";
+  const errCls = "ms-1 mt-1 font-body text-small text-danger";
+
   return (
-    <div className={styles.formWrapper}>
-      <Toaster />
-      <Typography
-        className={`${leagueSpartan.className} ${styles.formTitle}`}
-        variant="h6"
-        component="h3"
-      >
-        Get Started
-      </Typography>
+    <div className="flex flex-col gap-2 rounded-md bg-brand-50 p-4 shadow-card">
+      <h3 className="font-heading text-h6 text-ink-900">Get Started</h3>
 
       <Input
         name="FirstName"
         value={formData.FirstName}
         onChange={handleChange}
         placeholder="Enter name here ..."
-        className={`${styles.input} ${leagueSpartan.className}`}
-        style={{ height: "36px", fontSize: "0.82rem" }}
+        className={inputCls}
       />
-      {errors.FirstName && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.FirstName}
-        </Typography>
-      )}
+      {errors.FirstName && <p className={errCls}>{errors.FirstName}</p>}
 
       <Input
         name="EmailAddress"
         value={formData.EmailAddress}
         onChange={handleChange}
         placeholder="Enter email here ..."
-        className={`${styles.input} ${leagueSpartan.className}`}
-        style={{ height: "36px", fontSize: "0.82rem" }}
+        className={inputCls}
       />
-      {errors.EmailAddress && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.EmailAddress}
-        </Typography>
-      )}
+      {errors.EmailAddress && <p className={errCls}>{errors.EmailAddress}</p>}
 
-      <div className={styles.phoneWrapper}>
-        <PhoneInput
-          defaultCountry="SA"
-          value={formData.PhoneNumber || ""}
-          onChange={(e) => handleChange("PhoneNumber", String(e))}
-          inputComponent={CustomInput}
-          style={phoneStyle}
-          disabled={!formData.EmailAddress}
-          placeholder="Enter phone number ..."
-        />
-      </div>
-      {errors.PhoneNumber && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.PhoneNumber}
-        </Typography>
-      )}
+      <PhoneInput
+        defaultCountry="SA"
+        value={formData.PhoneNumber || ""}
+        onChange={(e) => handleChange("PhoneNumber", String(e))}
+        inputComponent={CustomInput}
+        disabled={!formData.EmailAddress}
+        placeholder="Enter phone number ..."
+        className="h-9 w-full rounded-md bg-white ps-2 shadow-card"
+      />
+      {errors.PhoneNumber && <p className={errCls}>{errors.PhoneNumber}</p>}
 
-      <DropDown
+      <TranslatableDropDown
         name="Grade"
         placeholder="Select Grade"
-        marginTop="8px"
         data={filterData?.grade || []}
         value={formData.Grade}
         onChange={handleChange}
+        locale={locale}
+        isSubjectField={false}
       />
-      {errors.Grade && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.Grade}
-        </Typography>
-      )}
+      {errors.Grade && <p className={errCls}>{errors.Grade}</p>}
 
-      <DropDown
+      <TranslatableDropDown
         placeholder="Select Curriculum"
         name="Curriculum"
         data={filterData?.curriculum || []}
-        marginTop="8px"
         value={formData.Curriculum}
         onChange={handleChange}
+        locale={locale}
+        isSubjectField={false}
       />
-      {errors.Curriculum && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.Curriculum}
-        </Typography>
-      )}
+      {errors.Curriculum && <p className={errCls}>{errors.Curriculum}</p>}
 
-      <DropDown
+      <TranslatableDropDown
         name="Subject"
         placeholder="Select Subjects"
         data={filterData?.subject || []}
-        marginTop="8px"
         multiple
         value={formData.Subject}
         onChange={handleChange}
+        locale={locale}
+        isSubjectField={true}
       />
-      {errors.Subject && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.Subject}
-        </Typography>
-      )}
+      {errors.Subject && <p className={errCls}>{errors.Subject}</p>}
 
-      <TextField
-        fullWidth
-        multiline
-        rows={3}
+      <Textarea
         name="Message"
+        rows={3}
         value={formData.Message}
         onChange={(e) => handleChange("Message", e.target.value)}
-        variant="outlined"
         placeholder="Enter your message here..."
-        className={`${leagueSpartan.className} ${styles.textarea}`}
-        sx={textareaStyle}
       />
-      {errors.Message && (
-        <Typography className={leagueSpartan.className} sx={errorStyle} variant="caption" component="p">
-          {errors.Message}
-        </Typography>
-      )}
+      {errors.Message && <p className={errCls}>{errors.Message}</p>}
 
-      <Button
-        fullWidth
-        className={`${leagueSpartan.className} ${styles.submitBtn}`}
-        onClick={onSubmit}
-      >
+      <Button onClick={onSubmit} variant="primary" className="w-full">
         {loading ? (
-          <CircularProgress size={18} sx={{ color: "white" }} />
+          <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
         ) : (
           "Submit Now"
         )}
       </Button>
     </div>
   );
-};
-
-const errorStyle = { color: "red", mt: "4px", ml: "4px" };
-
-const phoneStyle: React.CSSProperties = {
-  boxShadow: "0px 1px 4px 0px rgba(0,0,0,0.08)",
-  paddingLeft: "10px",
-  backgroundColor: "white",
-  marginTop: "8px",
-  outline: "none",
-  borderRadius: "10px",
-  height: "36px",
-  width: "100%",
-  fontSize: "0.82rem",
-};
-
-const textareaStyle = {
-  mt: "8px",
-  "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-  "& .MuiOutlinedInput-input": { fontSize: "0.82rem", padding: "8px 10px" },
-  boxShadow: "0px 1px 4px 0px rgba(0,0,0,0.08)",
-  borderRadius: "10px",
-  backgroundColor: "white",
 };
 
 export default BlogSidebarForm;

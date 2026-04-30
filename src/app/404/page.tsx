@@ -2,10 +2,8 @@
 
 import React from "react";
 import styles from "./style.module.css";
-import Link from "next/link";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "../fonts";
 import Image from "next/image";
+import { leagueSpartan } from "../fonts";
 import notFoundImg from "../../../public/assets/images/static/Group 1577707754.png";
 import logo from "../../../public/assets/images/static/logo.png";
 
@@ -15,46 +13,24 @@ export default function Custom404() {
       <div className={styles.main}>
         <div className={styles.top}>
           <Image src={notFoundImg} alt="ops" className={styles.image} />
-          <Typography
-            className={`${styles.title} ${leagueSpartan.className}`}
-            variant="h1"
-            component={"h1"}
-          >
-            Ops!
-          </Typography>
+          <h1 className={`${styles.title} ${leagueSpartan.className}`}>Ops!</h1>
         </div>
-        <Typography
-          className={`${styles.description} ${leagueSpartan.className}`}
-          variant="h4"
-          component={"p"}
-        >
+        <p className={`${styles.description} ${leagueSpartan.className}`}>
           {`The Page That You're Looking For Has Disappeared!`}
-        </Typography>
-        <Typography
-          className={`${styles.info} ${leagueSpartan.className}`}
-          variant="h4"
-          component={"p"}
-        >
+        </p>
+        <p className={`${styles.info} ${leagueSpartan.className}`}>
           {`We're Looking For It Too!`}
-        </Typography>
-        <Typography
-          className={`${styles.info} ${leagueSpartan.className}`}
-          variant="h4"
-          component={"p"}
-        >
+        </p>
+        <p className={`${styles.info} ${leagueSpartan.className}`}>
           {`Till Then.... Head Back To The`}
-          <Typography
-            className={`${styles.info} ${leagueSpartan.className}`}
-            variant="h4"
-            component={"span"}
-          >
+          <span className={`${styles.info} ${leagueSpartan.className}`}>
             <a href="/" className={`${styles.link} ${leagueSpartan.className}`}>
               {" "}
               Homepage{" "}
             </a>{" "}
             To Restart Your Journey.
-          </Typography>
-        </Typography>
+          </span>
+        </p>
       </div>
       <div className={styles.logoDiv}>
         <a href="/">

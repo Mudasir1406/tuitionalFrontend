@@ -1,20 +1,28 @@
 "use client";
-import { Box, Grid, Typography } from "@mui/material";
+
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import { useI18n } from "@/context/language-context";
+import useGeoLocation from "@/utils/slugHelper";
+import type { Filter_Data } from "../../services/filter-data/filter-data";
+import type { FormType } from "./form-dialouge";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
-import { Filter_Data } from "../../services/filter-data/filter-data";
-import { FormType } from "./form-dialouge";
-import dynamic from "next/dynamic";
-import useGeoLocation from "@/utils/slugHelper";
 
-const DropDown = dynamic(() => import("../DropDown/DropDown"));
+const TranslatableDropDown = dynamic(
+  () => import("../DropDown/TranslatableDropDown"),
+);
 const PopUpButton = dynamic(() => import("../pop-up-button"));
+
 interface FilterProps {
-  data: Filter_Data; // Replace with your actual type
+  data: Filter_Data;
 }
 
 const Filter: React.FC<FilterProps> = ({ data }) => {
+  const { t, isRTL, locale } = useI18n();
+
   const [formData, setFormData] = useState<FormType>({
     FirstName: "",
     EmailAddress: "",
@@ -27,16 +35,13 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
   });
 
   const handleChange = (key: string, value: string | string[]) => {
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
+    setFormData({ ...formData, [key]: value });
   };
+
   const geoData = useGeoLocation();
 
   React.useEffect(() => {
     if (!geoData.isLoading && !geoData.error && geoData.browser) {
-      // Client-side only UTM parameter detection
       let medium = "SEO";
       if (typeof window !== "undefined") {
         const params = new URLSearchParams(window.location.search);
@@ -46,7 +51,6 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
             ? "facebook"
             : "SEO";
       }
-
       setFormData((prev) => ({
         ...prev,
         IP: geoData.ip || "",
@@ -61,203 +65,94 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
   }, [geoData]);
 
   return (
-    <Box sx={styles.filter}>
-      <Typography sx={styles.heading} component={"h1"} variant="h1">
-        Online Tutoring{" "}
-        <Typography sx={styles.expertText} component={"span"} variant="h1">
-          Platform <br />{" "}
-        </Typography>
-        Customized for 1:1 Online Tutoring Sessions
-      </Typography>
-      <Typography sx={styles.desc} component={"p"} variant="body1">
-        Tuitional Is An Online Tutoring Platform Providing Quality Education
-        Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start
-        your learning journey.
-      </Typography>
-      <Box sx={styles.filterBox}>
-        <Grid container spacing={2}>
-          <Grid item lg={6} sm={12} xs={12} md={12}>
-            <DropDown
-              placeholder="Select Curriculum"
+    <div className="flex h-full max-h-[700px] w-full flex-col justify-center">
+      <h1 className="mt-[2vh] text-center font-heading text-h1-mobile sm:mt-[3vh] sm:text-h1-tablet md:mt-[4vh] lg:mt-[5vh] lg:w-[90%] lg:text-start lg:text-h1 text-black">
+        {t("home.filter.heading_lead")}
+        <span className="relative inline text-brand-500">
+          <Image
+            src={linesMobile}
+            alt=""
+            aria-hidden="true"
+            className="absolute -top-5 right-0 z-10 object-contain md:hidden"
+            width={linesMobile.width}
+            height={linesMobile.height}
+          />
+          <Image
+            src={lines}
+            alt=""
+            aria-hidden="true"
+            className="absolute -top-[30px] right-0 z-10 hidden object-contain md:block lg:-right-[45px]"
+            width={lines.width}
+            height={lines.height}
+          />
+          {t("home.filter.heading_accent")} <br />
+        </span>
+        {t("home.filter.heading_tail")}
+      </h1>
+
+      <p className="mt-[2vh] px-[2vh] text-center font-heading text-body-mobile sm:mt-[3vh] sm:text-body md:mt-[4vh] lg:px-0 lg:text-start text-black">
+        {t("home.filter.description")}
+      </p>
+
+      <div className="mt-[4vh] max-h-[70vh] origin-center animate-[rotateAnimation_1s_ease-in-out_infinite] rounded-[2vh] bg-brand-50 px-[2vh] py-[4vh] sm:px-[2vh] md:rounded-[1vh] md:px-[3vh] md:py-[5vh] lg:rounded-[1vh] lg:px-[3vh] lg:py-[5vh]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <TranslatableDropDown
+              placeholder={t("home.filter.select_curriculum")}
               data={data?.curriculum || []}
               value={formData.Curriculum}
               onChange={handleChange}
               name="Curriculum"
+              locale={locale}
+              isSubjectField={false}
             />
-          </Grid>
-          <Grid item lg={6} sm={12} xs={12} md={12}>
-            <DropDown
-              placeholder="Select Grade"
+          </div>
+          <div className="lg:col-span-6">
+            <TranslatableDropDown
+              placeholder={t("home.filter.select_grade")}
               data={data?.grade || []}
               value={formData.Grade}
               onChange={handleChange}
               name="Grade"
+              locale={locale}
+              isSubjectField={false}
             />
-          </Grid>
-          <Grid item lg={7} sm={12} xs={12} md={12}>
-            <DropDown
-              placeholder="Select Subjects"
+          </div>
+          <div className="lg:col-span-7">
+            <TranslatableDropDown
+              placeholder={t("home.filter.select_subjects")}
               data={data?.subject || []}
               value={formData.Subject}
               onChange={handleChange}
               name="Subject"
               multiple
+              locale={locale}
+              isSubjectField={true}
             />
-          </Grid>
-          <Grid item lg={5} sm={12} xs={12} md={12}>
+          </div>
+          <div className="lg:col-span-5">
             <PopUpButton
-              text="Get Started"
+              text={t("home.filter.cta")}
               href="popup"
               values={formData}
-              sx={styles.containedBtn}
+              className="w-full"
+              style={{
+                boxShadow: "1px 4px 24px 0px #38B6FFB2",
+                backgroundColor: "#38B6FF",
+                fontSize: "2vh",
+                fontWeight: 700,
+                lineHeight: "1.6vh",
+                padding: "2vh",
+                letterSpacing: "-0.02em",
+                color: "white",
+                borderRadius: "10px",
+              }}
             />
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Filter;
-
-const styles = {
-  filter: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    width: "100%",
-    maxHeight: "700px",
-  },
-  heading: {
-    width: {
-      lg: "90%",
-    },
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-    marginTop: {
-      xs: "2vh",
-      sm: "3vh",
-      md: "4vh",
-      lg: "5vh",
-    },
-    color: "#000000",
-  },
-  expertText: {
-    color: "var(--color-accent)",
-    display: "inline",
-    position: "relative",
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      right: {
-        md: 0,
-        lg: -45,
-      },
-      top: {
-        xs: -20.5,
-        sm: -20.5,
-        md: -30.5,
-        lg: -30.5,
-      },
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesMobile.src})`,
-        md: `url(${lines.src})`,
-        lg: `url(${lines.src})`,
-      },
-      height: {
-        xs: linesMobile.height,
-        sm: linesMobile.height,
-        md: lines.height,
-        lg: lines.height,
-      },
-      width: {
-        xs: linesMobile.width,
-        sm: linesMobile.width,
-        md: lines.width,
-        lg: lines.width,
-      },
-      backgroundPosition: "end",
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  desc: {
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-    paddingX: {
-      xs: "2vh",
-      lg: "0vh",
-    },
-    marginTop: {
-      xs: "2vh",
-      sm: "3vh",
-      md: "4vh",
-    },
-    color: "#000000",
-  },
-  containedBtn: {
-    boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    backgroundColor: "#38B6FF",
-    fontSize: "2vh",
-    fontWeight: 700,
-    lineHeight: "1.6vh",
-    textAlign: "center",
-    width: "100%",
-    padding: "2vh",
-    textTransform: "none",
-    letterSpacing: "-2%",
-    color: "white",
-    borderRadius: "10px",
-    ":hover": {
-      boxShadow: "1px 4px 24px 0px #38B6FFB2",
-      backgroundColor: "#38B6FF",
-    },
-  },
-  filterBox: {
-    backgroundColor: "#D7F0FF",
-    paddingY: {
-      xs: "4vh",
-      sm: "4vh",
-      md: "5vh",
-      lg: "5vh",
-    },
-    paddingX: {
-      xs: "2vh",
-      sm: "2vh",
-      md: "3vh",
-      lg: "3vh",
-    },
-    borderRadius: {
-      xs: "2vh",
-      sm: "2vh",
-      md: "1vh",
-      lg: "1vh",
-    },
-    marginTop: "4vh",
-    maxHeight: "70vh",
-    animation: "rotateAnimation 1s ease-in-out infinite",
-    transformOrigin: "center",
-  },
-  // RTL styles
-  filterRTL: {
-    direction: "rtl",
-  },
-  headingRTL: {
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-  },
-  descRTL: {
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-  },
-};

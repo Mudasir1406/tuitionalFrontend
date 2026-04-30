@@ -1,164 +1,60 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
 
-import { leagueSpartan } from "@/app/fonts";
-import styles from "./BenifitsSection.module.css";
-
+import React from "react";
 import Image from "next/image";
-import TutorIcon from "../../../../public/assets/icons/11036302 1.svg";
 import {
-  AccountCircle,
-  BarChart,
-  Book,
-  BookSharp,
-  CalendarMonth,
-  Insights,
+  BarChart3,
+  BookOpen,
+  Calendar,
+  Clock,
+  LineChart,
   Mic,
-  ScheduleOutlined,
-  SupervisorAccount,
-} from "@mui/icons-material";
+  Users,
+} from "lucide-react";
+
 import { PageData } from "@/types/grade-subject-level.types";
+import TutorIcon from "../../../../public/assets/icons/11036302 1.svg";
 
 type IProps = {
   data: PageData["igcse_tutoring_program"];
 };
 
-const ArBenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
-  return (
-    <div className={styles.main} style={{ direction: "rtl" }}>
-      <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.sectionTag ? data.sectionTag : ("h3" as any)}
-        component={data?.sectionTag ? data.sectionTag : ("h3" as any)}
-        style={{ textAlign: "center" }}
-        dangerouslySetInnerHTML={{
-          __html: data?.section,
-        }}
-      ></Typography>
+const items: { icon: React.ReactNode; label: string }[] = [
+  {
+    icon: <Image src={TutorIcon} alt="Tutor Icon" width={35} height={30} />,
+    label: "مجموعة من مئات المعلمين للاختيار من بينهم",
+  },
+  { icon: <Mic className="h-[30px] w-[35px] text-[#009BF5]" />, label: "حصص مسجلة للمراجعة" },
+  { icon: <Calendar className="h-[30px] w-[35px] text-[#009BF5]" />, label: "الوصول إلى الموارد والمواد التدريبية" },
+  { icon: <BookOpen className="h-[30px] w-[35px] text-[#009BF5]" />, label: "خطط دراسية مخصصة" },
+  { icon: <BarChart3 className="h-[30px] w-[35px] text-[#009BF5]" />, label: "تتبع التقدم" },
+  { icon: <Clock className="h-[30px] w-[35px] text-[#009BF5]" />, label: "جدولة مرنة" },
+  { icon: <LineChart className="h-[30px] w-[35px] text-[#009BF5]" />, label: "تحليل ما بعد الاختبار" },
+  { icon: <Users className="h-[30px] w-[35px] text-[#009BF5]" />, label: "تحديثات الوالدين" },
+];
 
-      <div className={styles.cards}>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Image
-              src={TutorIcon}
-              alt="Tutor Icon"
-              width={35}
-              height={30}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
+const ArBenifitsSection: React.FC<IProps> = ({ data }) => {
+  const HeaderTag = (data?.sectionTag ?? "h3") as "h2" | "h3" | "h4";
+
+  return (
+    <div className="bg-brand-500 px-6 py-12 text-white sm:px-12 lg:py-16" dir="rtl">
+      <HeaderTag
+        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-white"
+        dangerouslySetInnerHTML={{ __html: data?.section ?? "" }}
+      />
+
+      <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col items-center gap-3 rounded-md bg-white p-4 text-center shadow-card"
           >
-            مجموعة من مئات المعلمين للاختيار من بينهم
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Mic sx={{ color: "#009BF5", width: "35px", height: "30px" }} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
+              {item.icon}
+            </div>
+            <p className="font-heading text-small text-ink-900">{item.label}</p>
           </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            حصص مسجلة للمراجعة
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <CalendarMonth
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            الوصول إلى الموارد والمواد التدريبية
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <BookSharp
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            خطط دراسية مخصصة
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <BarChart
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            تتبع التقدم
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <ScheduleOutlined
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            جدولة مرنة
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Insights
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            تحليل ما بعد الاختبار
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <SupervisorAccount
-              sx={{ color: "#009BF5", width: "35px", height: "30px" }}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-            style={{ textAlign: "right" }}
-          >
-            تحديثات الوالدين
-          </Typography>
-        </div>
+        ))}
       </div>
     </div>
   );

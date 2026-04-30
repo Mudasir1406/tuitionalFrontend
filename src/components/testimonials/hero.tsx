@@ -1,224 +1,62 @@
 "use client";
 
-import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { useI18n } from "@/context/language-context";
+import { redirectToTrustpilot, scrollToTestimonials } from "@/utils/helper";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import lines from "../../../public/assets/images/static/lines.png";
-import { leagueSpartan } from "@/app/fonts";
-
-import { redirectToTrustpilot, scrollToTestimonials } from "@/utils/helper";
 
 const Hero: React.FC = () => {
+  const { t } = useI18n();
+  const tail = t("testimonials.hero.heading_line_2_tail");
+
   return (
-    <div style={{ width: "100%" }}>
-      <Typography
-        sx={styles.heading}
-        component={"h1"}
-        variant="h1"
-        className={leagueSpartan.className}
-      >
-        Our Verified <br /> Reviews from{" "}
-        <Typography
-          sx={styles.expertText}
-          // component="span"
-          variant="h1"
-          className={leagueSpartan.className}
-        >
-          Students{" "}
-        </Typography>
-        and Parents
-      </Typography>
-      <Typography
-        sx={styles.desc}
-        className={leagueSpartan.className}
-        component={"p"}
-        variant="body2"
-      >
-        Trusted by parents, students, and schools
-      </Typography>
-      <Box
-        sx={{
-          width: { xs: "100%", sm: "100%", md: "100%", lg: "70%" },
-          marginTop: { xs: "3vh", lg: "9vh" },
-          marginBottom: { lg: "19vh" },
-          display: {
-            xs: "flex",
-            sm: "flex",
-            md: "flex",
-            lg: "block",
-          },
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <div className="w-full">
+      <h1 className="mt-[3vh] text-center font-heading text-h1-mobile sm:text-h1-tablet lg:w-[90%] lg:text-start lg:text-h1 text-black">
+        {t("testimonials.hero.heading_line_1")} <br />
+        {t("testimonials.hero.heading_line_2_lead")}
+        <span className="relative inline text-success">
+          {t("testimonials.hero.heading_line_2_accent")}
+          <Image
+            src={linesMobile}
+            alt=""
+            aria-hidden="true"
+            className="absolute end-0 -top-[2.5vh] z-10 h-[1.9vh] w-[2vh] object-contain md:hidden"
+          />
+          <Image
+            src={lines}
+            alt=""
+            aria-hidden="true"
+            className="absolute end-0 -top-[3vh] z-10 hidden h-[4.3vh] w-[4.3vh] object-contain md:block"
+          />
+        </span>
+        {tail}
+      </h1>
+
+      <p className="mt-[3vh] px-[2vh] text-center font-body text-body-mobile sm:text-body lg:mt-[1vh] lg:px-0 lg:text-start text-black">
+        {t("testimonials.hero.description")}
+      </p>
+
+      <div className="mt-[3vh] flex w-full items-center justify-center lg:mt-[9vh] lg:mb-[19vh] lg:block lg:w-[70%]">
         <Button
-          variant="contained"
-          sx={styles.containedBtn}
-          className={leagueSpartan.className}
+          variant="primary"
           onClick={scrollToTestimonials}
+          className="w-1/2 rounded-[1vh] px-0 py-[2vh] shadow-[0.5vh_0.5vh_2.5vh_0px_#38B6FFB2]"
         >
-          View More
+          {t("testimonials.hero.cta_view_more")}
         </Button>
         <Button
-          variant="text"
-          sx={styles.textBtn}
-          className={leagueSpartan.className}
+          variant="ghost"
           onClick={redirectToTrustpilot}
+          className="w-1/2 px-0 py-[2vh] text-brand-500"
         >
-          Write A Review
+          {t("testimonials.hero.cta_write_review")}
         </Button>
-      </Box>
+      </div>
     </div>
   );
 };
 
 export default Hero;
-
-const styles = {
-  heading: {
-    // fontSize: {
-    //   xs: "5vh",
-    //   sm: "4.2vh",
-    //   md: "4.3vh",
-    //   lg: "5.5vh",
-    // },
-    // fontWeight: 500,
-    // lineHeight: {
-    //   xs: "5vh",
-    //   sm: "4.5vh",
-    //   md: "5.5vh",
-    //   lg: "6vh",
-    // },
-    width: {
-      lg: "90%",
-    },
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-    marginTop: {
-      xs: "3vh",
-    },
-    color: "#000000",
-  },
-  expertText: {
-    color: "#51B893",
-    display: "inline",
-    // fontSize: {
-    //   xs: "3.5vh",
-    //   sm: "4vh",
-    //   md: "4.5vh",
-    //   lg: "6vh",
-    // },
-    // fontWeight: 600,
-    // lineHeight: {
-    //   xs: "3vh",
-    //   sm: "3.5vh",
-    //   md: "5vh",
-    //   lg: "8vh",
-    // },
-    position: "relative",
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      right: {
-        xs: 0,
-        lg: 0,
-      },
-      top: {
-        xs: "-2.5vh",
-        lg: "-3vh",
-      },
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesMobile.src})`,
-        md: `url(${lines.src})`,
-        lg: `url(${lines.src})`,
-      },
-      height: {
-        xs: "1.9vh",
-        sm: "1.9vh",
-        md: "4.3vh",
-        lg: "4.3vh",
-      },
-      width: {
-        xs: "2vh",
-        sm: "2vh",
-        md: "4.3vh",
-        lg: "4.3vh",
-      },
-      backgroundPosition: "end",
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  desc: {
-    // fontSize: {
-    //   xs: "2.5vh",
-    //   sm: "2vh",
-    //   md: "2.5vh",
-    //   lg: "2.6vh",
-    // },
-    // fontWeight: 400,
-    // lineHeight: {
-    //   xs: "2.5vh",
-    //   sm: "2.4vh",
-    //   md: "2.8vh",
-    //   lg: "3.4vh",
-    // },
-    textAlign: {
-      xs: "center",
-      lg: "start",
-    },
-    paddingX: {
-      xs: "2vh",
-      lg: 0,
-    },
-    marginTop: {
-      xs: "3vh",
-      lg: "1vh",
-    },
-    color: "#000000",
-  },
-  containedBtn: {
-    boxShadow: "0.5vh 0.5vh 2.5vh 0px #38B6FFB2",
-    backgroundColor: "#38B6FF",
-    // fontSize: "2.5vh",
-    // fontWeight: 700,
-    // lineHeight: "2vh",
-    textAlign: "center",
-    width: "50%",
-    padding: "2vh",
-    textTransform: "none",
-    borderRadius: "1vh",
-    letterSpacing: "-2%",
-    ":hover": {
-      boxShadow: "0.5vh 0.5vh 2.5vh 0px #38B6FFB2",
-      backgroundColor: "#38B6FF",
-      // fontSize: "2.5vh",
-      padding: "2vh",
-      letterSpacing: "-2%",
-      // fontWeight: 700,
-      // lineHeight: "2vh",
-      textAlign: "center",
-      borderRadius: "1vh",
-    },
-  },
-  textBtn: {
-    // fontSize: "2.5vh",
-    // fontWeight: 700,
-    // lineHeight: "2vh",
-    textAlign: "center",
-    width: "50%",
-    padding: "2vh",
-    textTransform: "none",
-    color: "rgba(56, 182, 255, 1)",
-    ":hover": {
-      // fontSize: "2.5vh",
-      padding: "2vh",
-      fontWeight: 700,
-      // lineHeight: "2vh",
-      textAlign: "center",
-    },
-  },
-};

@@ -1,202 +1,46 @@
-import { Box, Typography, colors } from "@mui/material";
-import tutors from "../../../public/assets/images/static/tutors.png";
+"use client";
+
 import React from "react";
-import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
+import { useI18n } from "@/context/language-context";
+import tutors from "../../../public/assets/images/static/tutors.png";
 
 const HeroInfo: React.FC = () => {
+  const { t } = useI18n();
+
   return (
-    <>
-      <Box sx={styles.contanier}>
-        <Box sx={styles.registerStudentBox}>
-          <Typography
-            sx={[
-              styles.text,
-              {
-                fontWeight: "700",
-                fontSize: { lg: "2.5vh", md: "2.3vh", sm: "2.1vh", xs: "1vh" },
-                lineHeight: {
-                  lg: "3vh",
-                  md: "2.3vh",
-                  sm: "2.1vh",
-                  xs: "1vh",
-                },
-              },
-            ]}
-            className={leagueSpartan.className}
-          >
-            800+
-          </Typography>
-          <Typography
-            sx={[
-              styles.text,
-              {
-                fontSize: {
-                  lg: "1.5vh",
-                  md: "1vh",
-                  sm: "0.8vh",
-                  xs: "0.6vh",
-                },
-              },
-            ]}
-            className={leagueSpartan.className}
-          >
-            Vacancy Available
-          </Typography>
-          <Typography
-            sx={[
-              styles.text,
-              {
-                fontWeight: "700",
+    <div className="relative flex h-[100px] w-full items-end justify-between sm:h-[200px] md:h-full lg:h-full">
+      <div className="relative -mt-[100px] flex flex-col rounded-md border border-white/[0.18] bg-white p-[2vw] shadow-[0px_0px_30px_0px_rgba(56,182,255,0.2)]">
+        <p className="text-[1vh] font-bold leading-[1vh] text-black sm:text-[2.1vh] sm:leading-[2.1vh] md:text-[2.3vh] md:leading-[2.3vh] lg:text-[2.5vh] lg:leading-[3vh] font-heading">
+          {t("careers.hero_info.vacancy_count")}
+        </p>
+        <p className="text-[0.6vh] font-normal leading-[10px] text-black sm:text-[0.8vh] sm:leading-5 md:text-[1vh] md:leading-[23px] lg:text-[1.5vh] lg:leading-[25px] font-heading">
+          {t("careers.hero_info.vacancy_label")}
+        </p>
+        <p className="text-[0.8vh] font-bold leading-[10px] text-brand-500 sm:text-[1vh] sm:leading-5 md:text-[1.2vh] md:leading-[23px] lg:text-[1.5vh] lg:leading-[25px] font-heading">
+          {t("careers.hero_info.apply_cta")}
+        </p>
+      </div>
 
-                fontSize: {
-                  lg: "1.5vh",
-                  md: "1.2vh",
-                  sm: "1vh",
-                  xs: "0.8vh",
-                },
-                color: "#38B6FF",
-              },
-            ]}
-            className={leagueSpartan.className}
-          >
-            Apply Now{" "}
-          </Typography>
-        </Box>
-        <Box sx={styles.liveSessions}>
-          <Box sx={styles.usersBox}>
-            <Image
-              src={tutors.src}
-              style={{ width: "100%", height: "auto" }}
-              width={tutors.width}
-              height={tutors.height}
-              alt="tutor"
-            ></Image>
-            <Typography
-              sx={[
-                styles.text,
-                {
-                  fontWeight: "600",
-
-                  fontSize: {
-                    lg: "1.5vh",
-                    md: "1.2vh",
-                    sm: "1vh",
-                    xs: "0.8vh",
-                  },
-                },
-              ]}
-              className={leagueSpartan.className}
-            >
-              50k
-            </Typography>
-            <Typography
-              sx={[
-                styles.text,
-                {
-                  fontWeight: "600",
-
-                  fontSize: {
-                    lg: "1.5vh",
-                    md: "1.2vh",
-                    sm: "1vh",
-                    xs: "0.8vh",
-                  },
-                },
-              ]}
-              className={leagueSpartan.className}
-            >
-              Active Employee
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    </>
+      <div className="-mt-[100px] flex w-[72px] flex-col items-center justify-center gap-[10px] rounded-md sm:w-[170px] md:w-[190px] lg:w-[235px]">
+        <div className="relative flex flex-col items-center justify-center rounded-md border border-white/[0.18] bg-white p-[10px] shadow-[0px_0px_30px_0px_#38B6FF33]">
+          <Image
+            src={tutors.src}
+            width={tutors.width}
+            height={tutors.height}
+            alt={t("careers.hero_info.tutor_alt")}
+            className="h-auto w-full"
+          />
+          <p className="text-[0.8vh] font-semibold leading-[10px] text-black sm:text-[1vh] sm:leading-5 md:text-[1.2vh] md:leading-[23px] lg:text-[1.5vh] lg:leading-[25px] font-heading">
+            {t("careers.hero_info.employee_count")}
+          </p>
+          <p className="text-[0.8vh] font-semibold leading-[10px] text-black sm:text-[1vh] sm:leading-5 md:text-[1.2vh] md:leading-[23px] lg:text-[1.5vh] lg:leading-[25px] font-heading">
+            {t("careers.hero_info.employee_label")}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default HeroInfo;
-
-const styles = {
-  contanier: {
-    display: "flex",
-    alignItems: "end",
-    justifyContent: "space-between",
-    width: "100%",
-    height: {
-      xs: "100px",
-      sm: "200px",
-      md: "100%",
-      lg: "100%",
-    },
-    marginTop: {
-      xs: 0,
-      sm: 0,
-      md: 0,
-      lg: 0,
-    },
-    position: "relative",
-  },
-  text: {
-    color: "black",
-
-    fontSize: {
-      xs: "14px",
-      sm: "14px",
-      md: "16px",
-      lg: "18px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "10px",
-      sm: "20px",
-      md: "23px",
-      lg: "25px",
-    },
-  },
-
-  registerStudentBox: {
-    boxShadow: "0px 0px 30px 0px rgba(56, 182, 255, 0.2)",
-    padding: "2vw",
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "10px",
-    backgroundColor: "white",
-    position: "relative",
-    animation: "bounce 5s ease-in-out infinite",
-    background: "rgba(255, 255, 255, 1)",
-
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    marginTop: "-100px",
-  },
-  liveSessions: {
-    width: {
-      xs: "72px",
-      sm: "170px",
-      md: "190px",
-      lg: "235px",
-    },
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "10px",
-    gap: "10px",
-    marginTop: "-100px",
-    animation: "bounce 6s ease-in-out infinite",
-  },
-
-  usersBox: {
-    background: "rgba(255, 255, 255, 1)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    borderRadius: "10px",
-    padding: "10px",
-    position: "relative",
-    boxShadow: "0px 0px 30px 0px #38B6FF33",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-};

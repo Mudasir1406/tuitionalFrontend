@@ -1,22 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FormType } from "./home/form-dialouge";
 import { leagueSpartan } from "@/app/fonts";
-import { Button, SxProps, Theme } from "@mui/material";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
+import { cn } from "@/utils/cn";
 
 const FormDialog = dynamic(() => import("./home/form-dialouge"), {
   ssr: false,
 });
-const ArFormDialog = dynamic(() => import("./home/ar-form-dialouge"), {
-  ssr: false,
-});
+
 type IProps = {
   href: string;
   text: string;
-  backgroundColor?: string;
-  sx?: SxProps<Theme> | undefined;
+  className?: string;
+  style?: React.CSSProperties;
   values?: FormType;
   userFormV1?: boolean;
 };
@@ -24,52 +21,54 @@ type IProps = {
 const PopUpButton: React.FunctionComponent<IProps> = ({
   href,
   text,
-  sx,
+  className,
+  style,
   values,
-  userFormV1 = false,
 }) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
 
-  // Always determine Arabic status consistently
-  const isArabic = pathname.startsWith("/ar");
-
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleClick = () => {
+  const handleClose = () => setOpen(false);
+  const handleClick = (e: React.MouseEvent) => {
     if (href === "popup") {
-      setOpen(true); // Open popup if href is "popup"
+      e.preventDefault();
+      setOpen(true);
     }
   };
-  return (
-    <>
-      <Button
-        sx={sx}
-        className={leagueSpartan.className}
-        href={href !== "popup" ? href : undefined} // Only set href if not "popup"
-        onClick={(e) => {
-          if (href === "popup") {
-            e.preventDefault(); // Prevent default link behavior for "popup"
-          }
-          handleClick();
-        }}
-      >
-        {text}
-      </Button>
-      {open &&
-        mounted &&
-        (isArabic ? (
-          <ArFormDialog open={open} handleClose={handleClose} values={values} />
-        ) : (
+
+  const baseClasses =
+    "inline-flex cursor-pointer items-center justify-center text-center normal-case no-underline outline-none";
+
+  if (href === "popup") {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={handleClick}
+          className={cn(baseClasses, leagueSpartan.className, className)}
+          style={style}
+        >
+          {text}
+        </button>
+        {open && mounted && (
           <FormDialog open={open} handleClose={handleClose} values={values} />
-        ))}
-    </>
+        )}
+      </>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      className={cn(baseClasses, leagueSpartan.className, className)}
+      style={style}
+    >
+      {text}
+    </a>
   );
 };
 

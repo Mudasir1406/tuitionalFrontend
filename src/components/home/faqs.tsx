@@ -1,183 +1,47 @@
 import * as React from "react";
+import Image from "next/image";
+
+import { Faqs_Type, getFaqs } from "../../services/faqs/faqs";
+import en from "@/locales/en.json";
+import ar from "@/locales/ar.json";
+import Questions from "./questions";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import { Box, Typography } from "@mui/material";
-import { Faqs_Type, getFaqs } from "../../services/faqs/faqs";
-import { leagueSpartan } from "@/app/fonts";
-import Questions from "./questions";
 
-const Faqs: React.FC = async () => {
+interface Props {
+  locale?: "en" | "ar";
+}
+
+const Faqs: React.FC<Props> = async ({ locale = "en" }) => {
   const faqs: Faqs_Type[] = await getFaqs();
+  const t = locale === "ar" ? ar.home.faqs : en.home.faqs;
+
   return (
-    <Box sx={styles.contanier}>
-      <Box sx={styles.headingContanier}>
-        <Typography
-          sx={styles.heading}
-          className={leagueSpartan.className}
-          component={"h2"}
-          variant="h2"
-        >
-          Frequently Asked Questions
-        </Typography>
-      </Box>
-      {faqs?.map((item, index) => (
-        <Questions key={index} question={item.question} answer={item.answer} />
-      ))}
-    </Box>
+    <div className="relative mb-5 flex flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center bg-transparent">
+        <h2 className="relative mb-5 flex items-center justify-center text-center font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2 text-black">
+          <Image
+            src={linesMobile}
+            alt=""
+            aria-hidden="true"
+            className="absolute -left-[6%] -top-5 h-[19px] w-5 object-contain sm:hidden"
+          />
+          <Image
+            src={linesInvert}
+            alt=""
+            aria-hidden="true"
+            className="absolute -left-[6%] -top-[35px] hidden h-[35px] w-[43px] object-contain sm:block"
+          />
+          {t.heading}
+        </h2>
+      </div>
+      <div className="w-full">
+        {faqs?.map((item, index) => (
+          <Questions key={index} question={item.question} answer={item.answer} />
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default Faqs;
-
-const styles = {
-  contanier: {
-    marginBottom: "20px",
-    position: "relative",
-    dispaly: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headingContanier: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100%",
-    background: "transparent",
-  },
-  heading: {
-    display: "flex",
-    marginBottom: "20px",
-    position: "relative",
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#000000",
-    "::before": {
-      content: "''",
-      position: "absolute",
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: {
-        xs: "19px",
-        sm: "35px",
-        md: "35px",
-        lg: "35px",
-      },
-      width: {
-        xs: "20px",
-        sm: "43px",
-        md: "43px",
-        lg: "43px",
-      },
-
-      backgroundRepeat: "no-repeat",
-      top: {
-        xs: -20,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      left: {
-        xs: "-6%",
-        sm: "-6%",
-        md: "-6%",
-        lg: "-6%",
-      },
-    },
-  },
-  questionText: {
-    display: "flex",
-    fontSize: {
-      xs: "1.7vh",
-      sm: "1.8vh",
-      md: "2vh",
-      lg: "2.5vh",
-    },
-    fontWeight: 500,
-    lineHeight: {
-      xs: "2.7vh",
-      sm: "2.8vh",
-      md: "3.2vh",
-      lg: "3.4vh",
-    },
-    marginX: "10px",
-    color: "#000000",
-  },
-  answerText: {
-    display: "flex",
-    fontSize: {
-      xs: "1.2vh",
-      sm: "1.3vh",
-      md: "1.4vh",
-      lg: "1.7vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "2.6vh",
-      sm: "2.8vh",
-      md: "3.2vh",
-      lg: "3.2vh",
-    },
-  },
-  marginBottom: {
-    marginBottom: {
-      xs: "25px",
-      sm: "30px",
-      md: "40px",
-      lg: "50px",
-    },
-  },
-  containedButton: {
-    display: "flex",
-    alignSelf: "center",
-    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    backgroundColor: "#38B6FF",
-
-    letterSpacing: "-2%",
-
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   sm: "1.7vh",
-    //   md: "1.9vh",
-    //   lg: "2.2vh",
-    // },
-    // fontWeight: 700,
-    // lineHeight: "18.4px",
-    textAlign: "center",
-    borderRadius: "10px",
-
-    marginBottom: {
-      xs: "25px",
-      sm: "30px",
-      md: "40px",
-      lg: "50px",
-    },
-    marginTop: "50px",
-    padding: "18px",
-    paddingX: "50px",
-    textTransform: "none",
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-      backgroundColor: "#38B6FF",
-
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      padding: "18px",
-      letterSpacing: "-2%",
-      borderRadius: "10px",
-
-      fontWeight: 700,
-      lineHeight: "18.4px",
-      textAlign: "center",
-      paddingX: "50px",
-    },
-  },
-};

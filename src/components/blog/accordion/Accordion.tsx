@@ -1,10 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
-import styles from "./Accordion.module.css";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export interface AccordionProps {
   title: string;
@@ -14,40 +12,31 @@ export interface AccordionProps {
 const Accordion: React.FC<AccordionProps> = ({ title, items }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isArabicRoute = pathname.startsWith('/ar');
-  const blogBaseUrl = isArabicRoute ? '/ar/blog' : '/blog';
+  const isArabicRoute = pathname.startsWith("/ar");
+  const blogBaseUrl = isArabicRoute ? "/ar/blog" : "/blog";
 
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
   return (
-    <div className={`${styles.accordion} ${isOpen ? styles.open : ""}`}>
-      <div className={styles.header} onClick={toggleAccordion}>
-        <Typography
-          // sx={style.guidence}
-          variant={"body2"}
-          className={leagueSpartan.className}
-          component={"b"}
-        >
-          {title}
-        </Typography>
-
-        <span className={styles.icon}>{isOpen ? "▲" : "▼"}</span>
-      </div>
+    <div className="rounded-md border border-ink-200 bg-white p-3">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between font-heading font-bold"
+      >
+        <b>{title}</b>
+        <span>{isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}</span>
+      </button>
       {isOpen && (
-        <ul className={styles.items}>
+        <ul className="mt-2 flex flex-col gap-1">
           {items?.map((item, index) => {
-            const queryKey = title.toLowerCase() === 'category' || title.toLowerCase() === 'التصنيفات' ? 'category' : 'tag';
-
+            const queryKey =
+              title.toLowerCase() === "category" || title.toLowerCase() === "التصنيفات"
+                ? "category"
+                : "tag";
             return (
               <a href={`${blogBaseUrl}/${queryKey}/${item.id}`} key={index}>
-                <Typography
-                  variant="caption"
-                  className={`${leagueSpartan.className} ${styles.list}`}
-                  component="li"
-                >
+                <li className="font-heading text-small text-ink-700 hover:text-brand-500">
                   {item?.name}
-                </Typography>
+                </li>
               </a>
             );
           })}

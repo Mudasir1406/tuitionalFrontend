@@ -1,13 +1,12 @@
 import React from "react";
-import ArHeader from "../../../components/ar-header";
-import { Box, Container, Grid } from "@mui/material";
+import ArHeader from "../../../components/header";
 import ArServerFooter from "../../../components/ar-server-footer";
 import { SITE_URL } from "@/utils/env";
-import ArHero from "../../../components/careers/ar-hero";
-import ArTeamValues from "../../../components/careers/ar-team-values";
-import ArTopTalent from "../../../components/careers/ar-top-talent";
-import ArApplyNow from "../../../components/careers/ar-apply-now";
-import ArHeroInfo from "../../../components/careers/ar-hero-info";
+import Hero from "../../../components/careers/hero";
+import TeamValues from "../../../components/careers/team-values";
+import TopTalent from "../../../components/careers/top-talent";
+import ApplyNow from "../../../components/careers/apply-now";
+import HeroInfo from "../../../components/careers/hero-info";
 import { Metadata } from "next";
 import styles from "../../careers/careers.module.css";
 
@@ -26,23 +25,23 @@ const ArCareers: React.FC = () => {
       <div className={`${styles.container} ${styles.containerRTL}`}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
-            <ArHero />
+            <Hero />
           </div>
           <div className={styles["hero-picture"]}>
-            <ArHeroInfo />
+            <HeroInfo />
           </div>
         </div>
       </div>
-      <Box sx={style.contanier}>
-        <Container sx={{ maxWidth: { lg: "1650px" } }}>
-          <ArTeamValues />
-        </Container>
-      </Box>
-      <Container sx={{ maxWidth: { lg: "1650px" } }}>
-        <ArTopTalent />
-      </Container>
+      <div className="bg-gradient-to-b from-[#D7F0FF] to-white/70">
+        <div className="mx-auto lg:max-w-[1650px]">
+          <TeamValues />
+        </div>
+      </div>
+      <div className="mx-auto lg:max-w-[1650px]">
+        <TopTalent />
+      </div>
       <div id="careersForm">
-        <ArApplyNow />
+        <ApplyNow />
       </div>
       <ArServerFooter />
     </div>
@@ -50,9 +49,3 @@ const ArCareers: React.FC = () => {
 };
 
 export default ArCareers;
-
-const style = {
-  contanier: {
-    background: "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
-  },
-};

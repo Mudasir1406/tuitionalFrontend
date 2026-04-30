@@ -1,217 +1,52 @@
-import { Box, Typography, colors } from "@mui/material";
-import tutors from "../../../public/assets/images/static/tutors.png";
+"use client";
+
 import React from "react";
-import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
+import { Star } from "lucide-react";
+import { useI18n } from "@/context/language-context";
+import tutors from "../../../public/assets/images/static/tutors.png";
 
 const HeroInfo: React.FC = () => {
+  const { t } = useI18n();
+
   return (
-    <>
-      <Box sx={styles.contanier}>
-        <Box sx={styles.registerStudentBox}>
-          <Typography sx={styles.text} className={leagueSpartan.className}>
-            Tuitional is a great place for classes. I see my grades are
-            improving.
-          </Typography>
-          <Box
-            sx={{ marginY: { xs: "2px", sm: "5px", md: "5px", lg: "10px" } }}
-          >
-            {[0, 0, 0, 0, 0].map((item, index) => (
-              <StarPurple500OutlinedIcon
-                key={index}
-                sx={{
-                  height: "2vh",
-                  width: "2vh",
-                  color: "rgba(255, 205, 108, 1)",
-                }}
-              />
-            ))}
-          </Box>
-        </Box>
-        <Box sx={styles.liveSessions}>
-          <Box sx={styles.totalReview}>
-            <Typography
-              sx={styles.totalReviewText}
-              className={leagueSpartan.className}
-            >
-              15k
-            </Typography>
-            <Typography
-              sx={styles.clientText}
-              className={leagueSpartan.className}
-            >
-              Clients Reviews
-            </Typography>
-          </Box>
-          <Box sx={styles.usersBox}>
-            <Image
-              src={tutors.src}
-              style={{ width: "150px" }}
-              alt="teacher"
-              width={tutors.width}
-              height={tutors.height}
-            ></Image>
-          </Box>
-        </Box>
-      </Box>
-    </>
+    <div className="relative mt-[15px] flex h-full w-full items-center justify-between md:mt-0 lg:mt-auto lg:h-[70%]">
+      <div className="relative -mt-[100px] flex w-[150px] flex-col rounded-md border border-white/[0.18] bg-white/60 p-[1.2vh] shadow-[0px_0px_30px_0px_rgba(56,182,255,0.2)] backdrop-blur-[7.5px] sm:w-[170px] sm:p-[2.5vh] md:w-[190px] md:p-[2.9vh] lg:w-[280px] lg:p-[3.3vh]">
+        <p className="font-body text-[1.3vh] font-normal leading-[1.4vh] text-black md:text-[1.4vh] md:leading-[1.5vh] lg:text-[1.6vh] lg:leading-[2vh]">
+          {t("testimonials.hero_info.review_quote")}
+        </p>
+        <div className="my-[2px] flex sm:my-[5px] lg:my-[10px]">
+          {[0, 0, 0, 0, 0].map((_, index) => (
+            <Star
+              key={index}
+              className="h-[2vh] w-[2vh] fill-[#FFCD6C] text-[#FFCD6C]"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[2vh] -mt-[100px] rounded-md">
+        <div className="flex h-[49px] w-[163px] items-center justify-center gap-[10px] rounded-md border border-white/[0.18] bg-white/60 -mt-[100px] backdrop-blur-[7.5px] sm:h-[55px] sm:w-[210px] md:h-[62px] md:w-[220px] lg:h-[73px] lg:w-[235px]">
+          <span className="me-[0.2vw] flex h-[4.5vh] w-[4.5vh] items-center justify-center rounded-[5px] bg-brand-500 text-center text-[1.5vh] font-semibold leading-[1.4vh] text-white sm:h-[5.2vh] sm:w-[4.7vh] sm:rounded-[7.5px] md:h-[5.2vh] md:w-[4.7vh] md:rounded-[10px] md:text-[1.7vh] md:leading-[1.7vh] lg:h-[5.5vh] lg:w-[9vh] lg:rounded-[15px] lg:text-[2.5vh] lg:leading-[2vh]">
+            {t("testimonials.hero_info.client_count")}
+          </span>
+          <span className="font-body text-[1.3vh] font-semibold leading-[1.3vh] text-black sm:text-[1.6vh] sm:leading-[1.6vh]">
+            {t("testimonials.hero_info.client_label")}
+          </span>
+        </div>
+
+        <div className="relative flex flex-col rounded-md border border-white/[0.18] bg-white/60 p-[2vh] shadow-[0px_0px_30px_0px_#38B6FF33] backdrop-blur-[7.5px]">
+          <Image
+            src={tutors.src}
+            width={tutors.width}
+            height={tutors.height}
+            alt={t("testimonials.hero_info.tutors_alt")}
+            className="w-[150px]"
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default HeroInfo;
-
-const styles = {
-  text: {
-    color: "black",
-
-    fontSize: {
-      xs: "1.3vh",
-      sm: "1.3vh",
-      md: "1.4vh",
-      lg: "1.6vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "1.4vh",
-      sm: "1.4vh",
-      md: "1.5vh",
-      lg: "2vh",
-    },
-  },
-  totalReviewText: {
-    color: "white",
-
-    fontSize: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      md: "1.7vh",
-      lg: "2.5vh",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "1.4vh",
-      sm: "1.4vh",
-      md: "1.7vh",
-      lg: "2vh",
-    },
-    width: {
-      xs: "4.5vh",
-      sm: "4.7vh",
-      md: "4.7vh",
-      lg: "9vh",
-    },
-    height: {
-      xs: "4.5vh",
-      sm: "5.2vh",
-      md: "5.2vh",
-      lg: "5.5vh",
-    },
-    backgroundColor: "rgba(56, 182, 255, 1)",
-    textAlign: "center",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: { xs: "5px", sm: "7.5px", md: "10px", lg: "15px" },
-    marginRight: "0.2vw",
-  },
-  contanier: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    height: {
-      // xs: "250px",
-      // sm: "300px",
-      // md: "400px",
-      lg: "70%",
-    },
-    marginTop: {
-      xs: 15,
-      sm: 15,
-      md: 0,
-      lg: 'auto',
-    },
-    position: "relative",
-  },
-  registerStudentBox: {
-    boxShadow: "0px 0px 30px 0px rgba(56, 182, 255, 0.2)",
-    padding: { xs: "1.2vh", sm: "2.5vh", md: "2.9vh", lg: "3.3vh" },
-    width: {
-      xs: "150px",
-      sm: "170px",
-      md: "190px",
-      lg: "280px",
-    },
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "10px",
-    backgroundColor: "white",
-    position: "relative",
-    animation: "bounce 5s ease-in-out infinite",
-    background: "rgba(255, 255, 255, 0.6)",
-    backdropFilter: "blur(7.5px)",
-    WebkitBackdropFilter: "blur(7.5px)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    marginTop: "-100px",
-  },
-  liveSessions: {
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "10px",
-    gap: "2vh",
-    marginTop: "-100px",
-    animation: "bounce 6s ease-in-out infinite",
-  },
-
-  usersBox: {
-    background: "rgba(255, 255, 255, 0.6)",
-    backdropFilter: "blur(7.5px)",
-    WebkitBackdropFilter: "blur(7.5px)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    borderRadius: "10px",
-    padding: "2vh",
-    position: "relative",
-    boxShadow: "0px 0px 30px 0px #38B6FF33",
-    display: "flex",
-    flexDirection: "column",
-  },
-  totalReview: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    borderRadius: "10px",
-    gap: "10px",
-    background: "rgba(255, 255, 255, 0.6)",
-    backdropFilter: "blur(7.5px)",
-    WebkitBackdropFilter: "blur(7.5px)",
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    marginTop: "-100px",
-    width: {
-      xs: "163px",
-      sm: "210px",
-      md: "220px",
-      lg: "235px",
-    },
-    height: { xs: "49px", sm: "55px", md: "62px", lg: "73px" },
-    animation: "bounce 6s ease-in-out infinite",
-  },
-  clientText: {
-    color: "black",
-
-    fontSize: {
-      xs: "1.3vh",
-      sm: "1.6vh",
-      md: "1.6vh",
-      lg: "1.6vh",
-    },
-    fontWeight: 600,
-    lineHeight: {
-      xs: "1.3vh",
-      sm: "1.6vh",
-      md: "1.6vh",
-      lg: "1.6vh",
-    },
-  },
-};

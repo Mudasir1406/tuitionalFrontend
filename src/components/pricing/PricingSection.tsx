@@ -1,22 +1,20 @@
 "use client";
-import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
-import { getPricingPageData } from '@/services/pricing/pricing-api';
-import { PricingFilters } from '@/types/pricing';
-import { DropdownOptions } from '@/services/dropdown/dropdown-api';
-import { leagueSpartan } from '@/app/fonts';
-import PackageCard from './PackageCard';
-import dynamic from 'next/dynamic';
-import styles from './PricingSection.module.css';
 
-// Lazy load the modal only when needed
-const CustomPricingModal = dynamic(
-  () => import('./CustomPricingModal'),
-  {
-    ssr: false,
-    loading: () => null
-  }
-);
+import React from "react";
+import dynamic from "next/dynamic";
+
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { cn } from "@/utils/cn";
+import { getPricingPageData } from "@/services/pricing/pricing-api";
+import { PricingFilters } from "@/types/pricing";
+import { DropdownOptions } from "@/services/dropdown/dropdown-api";
+import PackageCard from "./PackageCard";
+
+const CustomPricingModal = dynamic(() => import("./CustomPricingModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 interface PricingSectionProps {
   filters: PricingFilters;
@@ -24,31 +22,16 @@ interface PricingSectionProps {
   locale?: string;
 }
 
-const PricingSection: React.FC<PricingSectionProps> = ({
-  filters,
-  dropdownOptions,
-  locale = 'en'
-}) => {
-
+const PricingSection: React.FC<PricingSectionProps> = ({ filters, dropdownOptions, locale = "en" }) => {
   const [pricingData, setPricingData] = React.useState<any>(null);
   const [hasError, setHasError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [sessionType, setSessionType] = React.useState<'online' | 'custom'>('online');
+  const [sessionType, setSessionType] = React.useState<"online" | "custom">("online");
 
-  // Auto-open modal when switching to custom tab
-  const handleTabChange = (newSessionType: 'online' | 'custom') => {
+  const handleTabChange = (newSessionType: "online" | "custom") => {
     setSessionType(newSessionType);
-    if (newSessionType === 'custom') {
-      setIsModalOpen(true);
-    }
-  };
-
-  // Handle modal close - optionally reset to online tab for better UX
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    // Uncomment the line below if you want to auto-switch back to online tab when modal closes
-    // setSessionType('online');
+    if (newSessionType === "custom") setIsModalOpen(true);
   };
 
   React.useEffect(() => {
@@ -59,51 +42,39 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         setPricingData(data);
         setHasError(false);
       } catch (error) {
-        if (process.env.NODE_ENV === 'development') {
-          console.error('Error loading pricing data:', error);
-        }
+        if (process.env.NODE_ENV === "development") console.error("Error loading pricing data:", error);
         setHasError(true);
-        // Set empty structure to trigger fallback
-        setPricingData({
-          packages: [],
-          filterOptions: { grades: [], subjects: [], curricula: [], countries: [] }
-        });
+        setPricingData({ packages: [], filterOptions: { grades: [], subjects: [], curricula: [], countries: [] } });
       } finally {
         setIsLoading(false);
       }
     };
-
     loadData();
   }, [filters, locale]);
 
-  // Loading state
   if (isLoading) {
     return (
-      <section className={styles.container}>
-        <Container maxWidth="lg">
-          <div className={styles.loadingContent}>
-            <Typography>Loading packages...</Typography>
-          </div>
+      <section className="py-12">
+        <Container size="lg">
+          <p className="text-center font-heading text-body text-ink-700">Loading packages...</p>
         </Container>
       </section>
     );
   }
 
-  // This should not happen due to fallback data, but extra safety
   if (!pricingData || pricingData.packages.length === 0) {
     return (
-      <section className={styles.container}>
-        <Container maxWidth="lg">
-          <div className={styles.noPackages}>
-            <Typography variant="h4" className={styles.noPackagesTitle}>
-              {hasError ? 'Service Temporarily Unavailable' : 'No Packages Available'}
-            </Typography>
-            <Typography className={styles.noPackagesDesc}>
-              {hasError 
-                ? 'We are experiencing technical difficulties. Please try again later or contact our support team.'
-                : 'We don\'t have any packages available for your selected criteria. Please try different filters or contact us directly.'
-              }
-            </Typography>
+      <section className="py-12">
+        <Container size="lg">
+          <div className="text-center">
+            <h4 className="font-heading text-h4 text-ink-900">
+              {hasError ? "Service Temporarily Unavailable" : "No Packages Available"}
+            </h4>
+            <p className="mt-2 font-heading text-body text-ink-700">
+              {hasError
+                ? "We are experiencing technical difficulties. Please try again later or contact our support team."
+                : "We don't have any packages available for your selected criteria. Please try different filters or contact us directly."}
+            </p>
           </div>
         </Container>
       </section>
@@ -111,91 +82,73 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   }
 
   return (
-    <section className={styles.container}>
-      <Container maxWidth="lg">
-        {/* New Header with Toggle */}
-        <div className={styles.header}>
-          <Typography variant="h2" className={`${styles.title} ${leagueSpartan.className}`}>
+    <section className="py-12">
+      <Container size="lg">
+        <div className="flex flex-col items-center gap-6">
+          <h2 className="text-center font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2 text-ink-900">
             Our packages
-          </Typography>
+          </h2>
 
-          {/* Session Type Toggle */}
-          <div className={styles.toggleContainer}>
-            <div className={styles.toggleWrapper}>
-              <Button
-                className={`${styles.toggleButton} ${sessionType === 'online' ? styles.toggleActive : ''} ${leagueSpartan.className}`}
-                onClick={() => handleTabChange('online')}
-              >
-                Online Sessions (Save up to 30%)
-              </Button>
-              <Button
-                className={`${styles.toggleButton} ${sessionType === 'custom' ? styles.toggleActive : ''} ${leagueSpartan.className}`}
-                onClick={() => handleTabChange('custom')}
-              >
-                Custom Package Builder
-              </Button>
-            </div>
+          <div className="inline-flex rounded-full bg-ink-100 p-1">
+            <button
+              type="button"
+              onClick={() => handleTabChange("online")}
+              className={cn(
+                "rounded-full px-4 py-2 font-body text-form-input font-semibold transition-colors",
+                sessionType === "online" ? "bg-white text-brand-500 shadow-sm" : "text-ink-700",
+              )}
+            >
+              Online Sessions (Save up to 30%)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleTabChange("custom")}
+              className={cn(
+                "rounded-full px-4 py-2 font-body text-form-input font-semibold transition-colors",
+                sessionType === "custom" ? "bg-white text-brand-500 shadow-sm" : "text-ink-700",
+              )}
+            >
+              Custom Package Builder
+            </button>
           </div>
         </div>
 
-        {/* Remove the old filter for now - focusing on clean design */}
-        {/* <PricingFilter
-          initialPackages={pricingData.packages}
-          filterOptions={pricingData.filterOptions}
-          userCountry={filters.country}
-          locale={locale}
-        /> */}
-
-        {/* Packages Grid - Show only for online sessions */}
-        {sessionType === 'online' ? (
-          <div className={styles.packagesGrid}>
+        {sessionType === "online" ? (
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {pricingData.packages
               .sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
               .slice(0, 3)
               .map((pkg: any, index: number) => (
-                <div key={pkg.id} className={styles.packageCardWrapper}>
-                  <PackageCard
-                    package={pkg}
-                    userCountry={filters.country}
-                    locale={locale}
-                    isPopular={index === 1} // Make the middle card popular with brand color
-                    sessionType={sessionType}
-                  />
-                </div>
+                <PackageCard
+                  key={pkg.id}
+                  package={pkg}
+                  userCountry={filters.country}
+                  locale={locale}
+                  isPopular={index === 1}
+                  sessionType={sessionType}
+                />
               ))}
           </div>
         ) : (
-          // Custom tab selected - show helpful message since modal opens automatically
-          <div className={styles.customPlaceholder}>
-            <div className={styles.customMessage}>
-              <Typography variant="h4" className={`${styles.customTitle} ${leagueSpartan.className}`}>
-                🎯 Custom Package Builder
-              </Typography>
-              <Typography className={`${styles.customDescription} ${leagueSpartan.className}`}>
-                Configure your perfect tutoring package with flexible hours, subjects, and pricing tiers.
-                The builder will open automatically.
-              </Typography>
-              {!isModalOpen && (
-                <Button
-                  variant="contained"
-                  className={`${styles.reopenButton} ${leagueSpartan.className}`}
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Open Package Builder
-                </Button>
-              )}
-            </div>
+          <div className="mt-12 rounded-lg bg-brand-50 p-12 text-center">
+            <h4 className="font-heading text-h4 text-ink-900">🎯 Custom Package Builder</h4>
+            <p className="mt-2 font-heading text-body text-ink-700">
+              Configure your perfect tutoring package with flexible hours, subjects, and pricing tiers. The builder will open automatically.
+            </p>
+            {!isModalOpen && (
+              <Button onClick={() => setIsModalOpen(true)} variant="primary" className="mt-6">
+                Open Package Builder
+              </Button>
+            )}
           </div>
         )}
 
-        {/* Custom Pricing Modal */}
         <CustomPricingModal
           open={isModalOpen}
-          onClose={handleModalClose}
+          onClose={() => setIsModalOpen(false)}
           userCountry={filters.country}
           dropdownOptions={dropdownOptions}
         />
-
       </Container>
     </section>
   );

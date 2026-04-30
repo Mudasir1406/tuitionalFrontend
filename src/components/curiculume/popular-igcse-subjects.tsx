@@ -1,5 +1,4 @@
-`'use client'`;
-import { Box, Grid, Typography } from "@mui/material";
+"use client";
 import React from "react";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
@@ -11,113 +10,47 @@ interface IProps {
 }
 
 const PopularSubjects: React.FunctionComponent<IProps> = ({ data }) => {
-  return (
-    <Box sx={{ paddingX: "5vw" }}>
-      <Box>
-        <Typography
-          sx={style.popularText}
-          className={leagueSpartan.className}
-          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-          component={data?.headerTag ? data.headerTag : ("h3" as any)}
-          dangerouslySetInnerHTML={{
-            __html: data?.header,
-          }}
-        ></Typography>
-      </Box>
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
 
-      <Box>
-        <Grid container spacing={2} justifyContent="center">
-          {data?.subjects?.map(
-            (
-              item: {
-                icon: string | StaticImport;
-                name:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | Promise<React.AwaitedReactNode>
-                  | null
-                  | undefined;
-              },
-              index: React.Key | null | undefined
-            ) => (
-              <Grid item xs={6} sm={6} md={3} lg={3} xl={2} key={index}>
-                <Box sx={style.cardsBoxes}>
-                  <Image
-                    src={
-                      item?.icon ||
-                      "https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/images%2FGroup%201577707240.png?alt=media&token=688d2e56-d995-4c40-b8ad-ae9837138df7"
-                    }
-                    alt="icon"
-                    width={40}
-                    height={40}
-                    
-                  />
-                  <Typography
-                    sx={style.subjects}
-                    className={leagueSpartan.className}
-                    variant="caption"
-                    component={"p"}
-                  >
-                    {item.name}
-                  </Typography>
-                </Box>
-              </Grid>
-            )
-          )}
-        </Grid>
-      </Box>
-    </Box>
+  return (
+    <div className="px-[5vw]">
+      <HeaderTag
+        className={`${leagueSpartan.className} mx-auto mb-[2.5vh] text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900`}
+        dangerouslySetInnerHTML={{ __html: data?.header }}
+      />
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6">
+        {data?.subjects?.map(
+          (
+            item: {
+              icon: string | StaticImport;
+              name: React.ReactNode;
+            },
+            index: React.Key | null | undefined,
+          ) => (
+            <div
+              key={index}
+              className="flex h-[5vh] cursor-pointer items-center justify-start gap-2.5 rounded-[2vh] bg-white p-[2vh] text-center backdrop-blur-[5px] shadow-[0px_-2.171px_6.514px_0px_rgba(0,0,0,0.20)_inset] transition-all duration-500 hover:scale-105 hover:bg-[#9EDCFF] lg:h-[5vh] lg:p-[3vh]"
+            >
+              <Image
+                src={
+                  item?.icon ||
+                  "https://firebasestorage.googleapis.com/v0/b/tuitional-website.appspot.com/o/images%2FGroup%201577707240.png?alt=media&token=688d2e56-d995-4c40-b8ad-ae9837138df7"
+                }
+                alt="icon"
+                width={40}
+                height={40}
+              />
+              <p
+                className={`${leagueSpartan.className} font-heading text-caption text-ink-900`}
+              >
+                {item.name}
+              </p>
+            </div>
+          ),
+        )}
+      </div>
+    </div>
   );
 };
 export default PopularSubjects;
-
-const style = {
-  // contain: { marginY: { lg: "6vh", sm: "5vh", xs: "4vh" } },
-  popularText: {
-    textAlign: "center",
-    // fontWeight: "600",
-    // textAlign: "center",
-    // fontSize: { lg: "5vh", sm: "2.5vh", xs: "3vh" },
-    // width: { lg: "45%", sm: "52%" },
-    margin: "0 auto 2.5vh auto",
-  },
-  subjects: {
-    color: "#2D2D2D",
-    // fontWeight: "600",
-    // fontSize: { lg: "2vh", xs: "1.2vh" },
-  },
-  cardsBoxes: {
-    background: "#FFF",
-    backdropFilter: "blur(5px)",
-    borderRadius: "2vh",
-    boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
-    textAlign: "center",
-    padding: {
-      xs: "2vh",
-      lg: "3vh",
-    },
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "left",
-    columnGap: "10px",
-    height: {
-      xs: "5vh",
-      lg: "5vh",
-    },
-    transition: "all .5s ease-in-out",
-
-    ":hover": {
-      transform: "scale(1.05)",
-      background: "#9EDCFF",
-    },
-  },
-};

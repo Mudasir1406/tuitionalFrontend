@@ -1,139 +1,135 @@
 "use client";
-import { Box, Button, Divider, Typography } from "@mui/material";
+
 import React, { useRef } from "react";
-import linesInvertWhite from "../../../public/assets/images/static/lines-invert-white.png";
-import { SwiperSlide, Swiper, SwiperRef } from "swiper/react";
-import { Autoplay, Pagination, EffectCards } from "swiper/modules";
-import WestIcon from "@mui/icons-material/West";
-import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
-import EastIcon from "@mui/icons-material/East";
-import user from "../../../public/assets/images/static/clientReview.png";
-import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
-import { Testimonials_Type } from "@/services/testimonials/testimonials";
-type IProps = {
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
+import { Autoplay, Pagination, EffectCards } from "swiper/modules";
+
+import { useI18n } from "@/context/language-context";
+import { cn } from "@/utils/cn";
+import linesInvertWhite from "../../../public/assets/images/static/lines-invert-white.png";
+import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
+import type { Testimonials_Type } from "@/services/testimonials/testimonials";
+
+interface IProps {
   data: Testimonials_Type[];
-};
+}
 
 const OurClient: React.FC<IProps> = ({ data }) => {
+  const { t, isRTL } = useI18n();
   const swiper = useRef<SwiperRef | null>(null);
-  const swiperPrev = () => {
-    swiper.current?.swiper.slidePrev();
-  };
-  const swiperNext = () => {
-    swiper.current?.swiper.slideNext();
-  };
+  const swiperPrev = () => swiper.current?.swiper.slidePrev();
+  const swiperNext = () => swiper.current?.swiper.slideNext();
   const duplicatedData = data?.length < 3 ? [...data, ...data, ...data] : data;
+  const testimonialsHref = isRTL ? "/ar/testimonials" : "/testimonials";
 
   return (
-    <Box sx={styles.constanier}>
-      <Box sx={styles.inner}>
-        <Box sx={styles.headingContanier}>
-          <Typography
-            sx={styles.heading}
-            className={leagueSpartan.className}
-            component={"h3"}
-            variant="h2"
+    <div className="relative my-[60px] flex flex-row items-center justify-center bg-gradient-to-b from-[#00A1FE] to-[#0D84C9] py-[90px] sm:my-[70px] sm:py-[100px] md:my-20 md:py-[110px] lg:my-10 lg:flex-col lg:py-[140px]">
+      <div className="relative flex w-full flex-col items-center justify-center lg:hidden">
+        <div className="flex flex-col items-center">
+          <h2 className="relative mb-[17px] text-center font-heading text-h2-mobile sm:text-h2-tablet md:text-start md:text-h2-tablet md:mb-[10px] lg:text-h2 text-white">
+            <Image
+              src={linesMobileWhite}
+              alt=""
+              aria-hidden="true"
+              className="absolute -left-[15px] -top-[15px] z-10 h-[35px] w-[43px] object-contain sm:hidden"
+            />
+            <Image
+              src={linesInvertWhite}
+              alt=""
+              aria-hidden="true"
+              className="absolute -left-10 -top-[35px] z-10 hidden h-[35px] w-[43px] object-contain sm:block"
+            />
+            {t("home.our_client.heading")}
+          </h2>
+          <p className="px-5 text-center font-heading text-body-mobile sm:px-[22px] sm:text-body md:px-0 lg:px-0 lg:text-start text-white">
+            {t("home.our_client.description")}
+          </p>
+          <Link
+            href={testimonialsHref}
+            className="mt-5 inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] text-[25px] font-bold tracking-tight text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
           >
-            What are Students Says!
-          </Typography>
-          <Typography
-            sx={styles.desc}
-            variant="body2"
-            className={leagueSpartan.className}
-          >
-            Listen to the incredible experiences shared by our students!
-            Register now to unlock an enriching world of enjoyable learning
-          </Typography>
-          <Button
-            variant="contained"
-            sx={styles.buttonMobile}
-            className={leagueSpartan.className}
-            href={"/testimonials"}
-          >
-            Read More
-          </Button>
-        </Box>
-        <Box sx={styles.swiperContanier}>
+            {t("home.our_client.read_more")}
+          </Link>
+        </div>
+
+        <div className="mt-8 flex w-full items-center justify-center sm:mt-[15px] md:mt-[15px] lg:mt-[15px]">
           <Swiper
             ref={swiper}
-            centeredSlides={true}
+            centeredSlides
             grabCursor
-            style={styles.swiper}
-            loop={duplicatedData?.length >= 3} // Check the length of the potentially duplicated data
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
+            style={{ height: "100%", display: "flex", width: "100%", alignItems: "center", justifyContent: "center" }}
+            loop={duplicatedData?.length >= 3}
+            autoplay={{ delay: 2500, disableOnInteraction: false }}
             modules={[Autoplay, Pagination, EffectCards]}
             effect="cards"
-            cardsEffect={{
-              perSlideOffset: 5,
-              slideShadows: false,
-              perSlideRotate: 1,
-            }}
+            cardsEffect={{ perSlideOffset: 5, slideShadows: false, perSlideRotate: 1 }}
           >
             {duplicatedData?.map((item, index) => (
-              <SwiperSlide key={index} style={styles.slide}>
+              <SwiperSlide
+                key={index}
+                style={{ display: "flex", borderRadius: 10, alignItems: "center", justifyContent: "center" }}
+              >
                 <ReviewMobile item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
-        </Box>
-        <Box sx={{ display: "flex", marginTop: 5 }}>
-          <Box sx={styles.nextButton} onClick={swiperPrev}>
-            <WestIcon />
-          </Box>
-          <Box sx={styles.nextButton} onClick={swiperNext}>
-            <EastIcon />
-          </Box>
-        </Box>
-      </Box>
-      <Box sx={styles.ourStudent}>
-        <Box sx={styles.ourStudentInner}>
-          <Typography
-            sx={styles.heading}
-            variant="h2"
-            className={leagueSpartan.className}
+        </div>
+
+        <div className="mt-5 flex">
+          <button
+            type="button"
+            onClick={swiperPrev}
+            className="mx-[10px] flex h-20 w-20 cursor-pointer items-center justify-center rounded-full bg-white/70 shadow-[0px_-3px_8px_0px_#00000026_inset] hover:bg-white/90"
+            aria-label="Previous"
           >
-            What our Students Says!
-          </Typography>
-          <Typography
-            sx={styles.desc}
-            variant="body2"
-            className={leagueSpartan.className}
+            <ArrowLeft />
+          </button>
+          <button
+            type="button"
+            onClick={swiperNext}
+            className="mx-[10px] flex h-20 w-20 cursor-pointer items-center justify-center rounded-full bg-white/70 shadow-[0px_-3px_8px_0px_#00000026_inset] hover:bg-white/90"
+            aria-label="Next"
           >
-            Listen to the incredible experiences shared by our students!
-            Register now to unlock an enriching world of enjoyable learning
-          </Typography>
-          <Button
-            variant="contained"
-            sx={styles.button}
-            className={leagueSpartan.className}
-            href={"/testimonials"}
+            <ArrowRight />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative hidden w-full lg:flex">
+        <div className="mx-20 w-1/5">
+          <h2 className="relative mb-[10px] text-start font-heading text-h2 text-white">
+            <Image
+              src={linesInvertWhite}
+              alt=""
+              aria-hidden="true"
+              className="absolute -left-10 -top-[35px] z-10 h-[35px] w-[43px] object-contain"
+            />
+            {t("home.our_client.heading")}
+          </h2>
+          <p className="text-start font-heading text-body text-white">
+            {t("home.our_client.description")}
+          </p>
+          <Link
+            href={testimonialsHref}
+            className="mt-[100px] inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] text-[20px] font-bold tracking-tight text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
           >
-            Read More
-          </Button>
-        </Box>
+            {t("home.our_client.read_more")}
+          </Link>
+        </div>
 
         <Swiper
           ref={swiper}
-          centeredSlides={true}
+          centeredSlides
           grabCursor
-          style={styles.swiperMobile}
+          style={{ height: "100%", marginTop: 10, display: "flex", width: "70%" }}
           loop={data?.length >= 3}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           modules={[Autoplay, Pagination, EffectCards]}
           effect="cards"
-          cardsEffect={{
-            perSlideOffset: 4,
-            slideShadows: false,
-            perSlideRotate: 1,
-          }}
+          cardsEffect={{ perSlideOffset: 4, slideShadows: false, perSlideRotate: 1 }}
         >
           {data.map((item, index) => (
             <SwiperSlide
@@ -144,504 +140,108 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </Box>
-      <Box sx={styles.info}>
-        <Box>
-          <Typography sx={styles.numbers} className={leagueSpartan.className}>
-            25K+
-          </Typography>
-          <Typography
-            sx={styles.numbersDec}
-            className={leagueSpartan.className}
-          >
-            Classes
-          </Typography>
-        </Box>
-        <Divider
-          orientation="vertical"
-          variant="middle"
-          flexItem
-          sx={styles.dvider}
-        />
-        <Box>
-          <Typography sx={styles.numbers} className={leagueSpartan.className}>
-            600K+
-          </Typography>
-          <Typography
-            sx={styles.numbersDec}
-            className={leagueSpartan.className}
-          >
-            Members
-          </Typography>
-        </Box>
-        <Divider
-          orientation="vertical"
-          variant="middle"
-          flexItem
-          sx={styles.dvider}
-        />
-        <Box>
-          <Typography sx={styles.numbers} className={leagueSpartan.className}>
-            8K+
-          </Typography>
-          <Typography
-            sx={styles.numbersDec}
-            className={leagueSpartan.className}
-          >
-            TEACHERS
-          </Typography>
-        </Box>
-        <Divider
-          orientation="vertical"
-          variant="middle"
-          flexItem
-          sx={styles.dvider}
-        />
-        <Box>
-          <Box sx={styles.ratingContanierMobile}>
-            <Typography sx={styles.numbers} className={leagueSpartan.className}>
-              4.8
-            </Typography>
-            <Box sx={{ marginLeft: 4 }}>
-              {[0, 0, 0, 0, 0].map((i, index) => (
-                <StarPurple500OutlinedIcon sx={styles.star} key={index} />
+      </div>
+
+      <div className="mt-[100px] hidden w-full items-center justify-evenly lg:flex">
+        <div>
+          <p className="font-heading text-[70px] font-semibold leading-[65px] text-white">25K+</p>
+          <p className="font-heading text-[20px] font-normal leading-[30px] text-white">
+            {t("home.our_client.classes")}
+          </p>
+        </div>
+        <div className="self-stretch border-s border-white" />
+        <div>
+          <p className="font-heading text-[70px] font-semibold leading-[65px] text-white">600K+</p>
+          <p className="font-heading text-[20px] font-normal leading-[30px] text-white">
+            {t("home.our_client.members")}
+          </p>
+        </div>
+        <div className="self-stretch border-s border-white" />
+        <div>
+          <p className="font-heading text-[70px] font-semibold leading-[65px] text-white">8K+</p>
+          <p className="font-heading text-[20px] font-normal leading-[30px] text-white">
+            {t("home.our_client.teachers")}
+          </p>
+        </div>
+        <div className="self-stretch border-s border-white" />
+        <div>
+          <div className="flex items-center">
+            <p className="font-heading text-[70px] font-semibold leading-[65px] text-white">4.8</p>
+            <div className="ms-4 flex">
+              {[0, 0, 0, 0, 0].map((_, index) => (
+                <Star key={index} className="text-white" size={18} />
               ))}
-            </Box>
-          </Box>
-          <Typography
-            sx={styles.numbersDec}
-            className={leagueSpartan.className}
-          >
-            Rating
-          </Typography>
-        </Box>
-      </Box>
-    </Box>
+            </div>
+          </div>
+          <p className="font-heading text-[20px] font-normal leading-[30px] text-white">
+            {t("home.our_client.rating")}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default OurClient;
 
-const styles = {
-  constanier: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "linear-gradient(180deg, #00A1FE 0%, #0D84C9 100%)",
-    paddingY: {
-      xs: "90px",
-      sm: "100px",
-      md: "110px",
-      lg: "140px",
-    },
-    marginY: {
-      xs: "60px",
-      sm: "70px",
-      md: "80px",
-      lg: 10,
-    },
-    position: "relative",
-    flexDirection: {
-      xs: "row",
-      sm: "row",
-      md: "row",
-      lg: "column",
-    },
-  },
-  dvider: { backgroundColor: "white" },
-  slide: {
-    display: "flex",
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  swiperContanier: {
-    display: "flex",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: {
-      xs: 8,
-      sm: 15,
-      md: 15,
-      lg: 15,
-    },
-  },
-  ratingContanierMobile: { display: "flex", alignItems: "center" },
-  ourStudentInner: { width: "20%", marginX: 20 },
-  ourStudent: {
-    width: "100%",
-    position: "relative",
-    display: {
-      xs: "none",
-      sm: "none",
-      md: "none",
-      lg: "flex",
-    },
-    alignItems: "center",
-  },
-  swiper: {
-    height: "100%",
-    display: "flex",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headingContanier: {
-    marginLeft: { xs: 0, lg: 10 },
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  inner: {
-    width: "100%",
-    position: "relative",
-    display: {
-      xs: "flex",
-      sm: "flex",
-      md: "flex",
-      lg: "none",
-    },
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  star: {
-    color: "white",
-  },
-  reviewContanier: {
-    paddingX: {
-      xs: "28px",
-      sm: "38px",
-      md: "50px",
-      lg: "50px",
-    },
-    paddingY: "60px",
-    width: {
-      xs: "75%",
-      sm: "400px",
-      md: "400px",
-      lg: "400px",
-    },
-    my: "auto",
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
-  swiperMobile: {
-    height: "100%",
-    marginTop: 10,
-    display: "flex",
-    width: "70%",
-  },
-  heading: {
-    // fontSize: {
-    //   xs: "35px",
-    //   sm: "40px",
-    //   md: "55px",
-    //   lg: "55px",
-    // },
-    // fontWeight: 600,
-    // lineHeight: {
-    //   xs: "45px",
-    //   sm: "50px",
-    //   md: "65px",
-    //   lg: "65px",
-    // },
-    position: "relative",
-    color: "white",
-    textAlign: {
-      xs: "center",
-      sm: "center",
-      md: "start",
-      lg: "start",
-    },
-    marginBottom: {
-      xs: "17px",
-      sm: "17px",
-      md: "10px",
-      lg: "10px",
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      left: {
-        xs: -15,
-        sm: -40,
-        md: -40,
-        lg: -40,
-      },
-      top: {
-        xs: -15,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      backgroundImage: {
-        xs: `url(${linesMobileWhite.src})`,
-        sm: `url(${linesInvertWhite.src})`,
-        md: `url(${linesInvertWhite.src})`,
-        lg: `url(${linesInvertWhite.src})`,
-      },
-      height: "35px",
-      width: "43px",
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  userContanier: {
-    display: "flex",
-    alignItems: "center",
-    marginTop: { xs: "4vh", sm: "4vh", md: "4vh", lg: "4vh", xl: "4vh" },
-  },
-  reviewText: {
-    fontSize: {
-      xs: "2vh",
-      sm: "2.2vh",
-      md: "2.4vh",
-      lg: "2.8vh",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "4vh",
-      sm: "3.6vh",
-      md: "3.2vh",
-      lg: "4vh",
-    },
-    // height: { xs: "100%", sm: "100%", md: "100%", lg: "350px", xl: "350px" },
-    // height: "350px",
-    color: "rgba(0,0,0,0.77)",
-  },
-  coma: {
-    fontSize: "20px",
-    fontWeight: 600,
-    lineHeight: "35px",
-    color: "white",
-    marginTop: "3px",
-    marginLeft: "10px",
-  },
-  ratingContanier: {
-    backgroundColor: "#E9B93D",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    width: "80px",
-    borderRadius: 10,
-    paddingX: "10px",
-    marginBottom: "10px",
-  },
-  nextButton: {
-    width: "80px",
-    height: "80px",
-    borderRadius: "40px",
-    backgroundColor: "rgba(255,255,255,0.7)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    boxShadow: "0px -3px 8px 0px #00000026 inset",
-    cursor: "pointer",
-    marginX: "10px",
-    ":hover": {
-      backgroundColor: "rgba(255,255,255,0.9)",
-    },
-  },
+interface RProps {
+  item: Testimonials_Type;
+}
 
-  username: {
-    // fontSize: { xs: "26px", sm: "26px" },
-    // fontWeight: 500,
-    // lineHeight: "35px",
-  },
-  userLocation: {
-    // fontSize: { xs: "18px", sm: "19px" },
-    // fontWeight: 400,
-    // lineHeight: "35px",
-    color: "rgba(0,0,0,0.77)",
-  },
-  desc: {
-    // fontSize: {
-    //   xs: "20px",
-    //   sm: "22px",
-    //   md: "22px",
-    //   lg: "22px",
-    // },
-    // fontWeight: 400,
-    // lineHeight: "35px",
-    color: "white",
-    textAlign: {
-      xs: "center",
-      sm: "center",
-      md: "center",
-      lg: "start",
-    },
-    paddingX: {
-      xs: "20px",
-      sm: "22px",
-      md: "0px",
-      lg: "0px",
-    },
-  },
-  button: {
-    boxShadow: "1px 15px 34px 0px #38B6FF66",
-    color: "#009BF5",
-    backgroundColor: "white",
+const Review: React.FC<RProps> = ({ item }) => (
+  <div className="flex w-[70%] rounded-md bg-white shadow-[0px_-3px_8px_0px_#00000026_inset]">
+    <Image
+      src={item.imageUrl}
+      width={400}
+      height={450}
+      alt="user"
+      className="w-2/5 object-contain"
+      style={{ maxHeight: "450px" }}
+    />
+    <div className="my-auto flex w-3/5 flex-col px-[28px] py-[60px] sm:px-[38px] md:px-[50px] lg:px-[50px]">
+      <div className="mb-[10px] flex w-20 items-center justify-center rounded-md bg-[#E9B93D] px-[10px]">
+        <Star className="h-[25px] w-[25px] text-white" />
+        <span className="ms-[10px] mt-[3px] font-heading text-[20px] font-semibold leading-[35px] text-white">
+          {item.rating.toFixed(1)}
+        </span>
+      </div>
+      <p className="font-heading text-[2vh] font-normal leading-[4vh] sm:text-[2.2vh] sm:leading-[3.6vh] md:text-[2.4vh] md:leading-[3.2vh] lg:text-[2.8vh] lg:leading-[4vh] text-ink-800">
+        {item.message}
+      </p>
+      <div className="mt-[4vh] flex items-center">
+        <div>
+          <p className="font-heading text-h5">{item.userName}</p>
+          <p className="font-heading text-small text-ink-800">{item.country}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
-    fontSize: "20px",
-    fontWeight: 700,
-    lineHeight: "18.4px",
-    textAlign: "center",
-    width: "249px",
-    padding: "18px",
-    marginTop: "100px",
-    textTransform: "none",
-    borderRadius: "10px",
-    letterSpacing: "-2%",
-
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px #38B6FF66",
-      backgroundColor: "white",
-      padding: "18px",
-
-      fontSize: "20px",
-      fontWeight: 700,
-      lineHeight: "18.4px",
-      textAlign: "center",
-      borderRadius: "10px",
-      letterSpacing: "-2%",
-    },
-  },
-  buttonMobile: {
-    boxShadow: "1px 15px 34px 0px #38B6FF66",
-    color: "#009BF5",
-    backgroundColor: "white",
-
-    fontSize: "25px",
-    fontWeight: 700,
-    lineHeight: "18.4px",
-    textAlign: "center",
-    width: "249px",
-    padding: "18px",
-    marginTop: "20px",
-    textTransform: "none",
-    borderRadius: "10px",
-    letterSpacing: "-2%",
-
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px #38B6FF66",
-      backgroundColor: "white",
-      padding: "18px",
-
-      fontSize: "25px",
-      letterSpacing: "-2%",
-
-      fontWeight: 700,
-      lineHeight: "18.4px",
-      textAlign: "center",
-      borderRadius: "10px",
-    },
-  },
-  info: {
-    display: {
-      xs: "none",
-      sm: "none",
-      md: "none",
-      lg: "flex",
-      xl: "flex",
-    },
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    width: "100%",
-    marginTop: "100px",
-  },
-  numbers: {
-    fontSize: "70px",
-    fontWeight: 600,
-    lineHeight: "65px",
-    color: "white",
-  },
-  numbersDec: {
-    fontSize: "20px",
-    fontWeight: 400,
-    lineHeight: "30px",
-    color: "white",
-  },
-};
-
-const Review: React.FC<RProps> = ({ item }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        borderRadius: 10,
-        boxShadow: "0px -3px 8px 0px #00000026 inset",
-        backgroundColor: "rgba(255,255,255,1)",
-        width: "70%",
-      }}
-    >
+const ReviewMobile: React.FC<RProps> = ({ item }) => (
+  <div className="my-auto flex w-3/4 flex-col rounded-md bg-white px-[28px] py-[60px] sm:w-[400px] sm:px-[38px] md:w-[400px] md:px-[50px] lg:w-[400px]">
+    <div className="mb-[10px] flex w-20 items-center justify-center rounded-md bg-[#E9B93D] px-[10px]">
+      <Star className="h-[25px] w-[25px] text-white" />
+      <span className="ms-[10px] mt-[3px] font-heading text-[20px] font-semibold leading-[35px] text-white">
+        {item.rating.toFixed(1)}
+      </span>
+    </div>
+    <p className="font-heading text-[2vh] font-normal leading-[4vh] sm:text-[2.2vh] sm:leading-[3.6vh] md:text-[2.4vh] md:leading-[3.2vh] lg:text-[2.8vh] lg:leading-[4vh] text-ink-800">
+      {item.message}
+    </p>
+    <div className="mt-[4vh] flex items-center">
       <Image
         src={item.imageUrl}
-        style={{ width: "40%", maxHeight: "450px", objectFit: "contain" }}
-        // style={{ width: "40%", maxHeight: "650px", objectFit: "contain" }}
-        width={user.width}
-        height={user.height}
+        width={50}
+        height={50}
+        loading="lazy"
         alt="user"
-      ></Image>
-      <Box sx={styles.reviewContanier}>
-        <Box sx={styles.ratingContanier}>
-          <StarPurple500OutlinedIcon
-            sx={{ height: 25, width: 25, color: "white" }}
-          />
-          <Typography sx={styles.coma}> {item.rating.toFixed(1)}</Typography>
-        </Box>
-        <Typography sx={styles.reviewText}>{item.message}</Typography>
-        <Box sx={styles.userContanier}>
-          <Box>
-            <Typography sx={styles.username} variant="h5">
-              {" "}
-              {item.userName}
-            </Typography>
-            <Typography sx={styles.userLocation} variant="caption">
-              {item.country}
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
-  );
-};
-
-type RProps = {
-  item: Testimonials_Type;
-};
-
-const ReviewMobile: React.FC<RProps> = ({ item }) => {
-  return (
-    <Box sx={styles.reviewContanier}>
-      <Box sx={styles.ratingContanier}>
-        <StarPurple500OutlinedIcon
-          sx={{ height: 25, width: 25, color: "white" }}
-        />
-        <Typography sx={styles.coma}>{item.rating.toFixed(1)}</Typography>
-      </Box>
-      <Typography sx={styles.reviewText}>{item.message}</Typography>
-      <Box sx={styles.userContanier}>
-        <Image
-          src={item.imageUrl}
-          width={50}
-          height={50}
-          loading="lazy"
-          alt="user"
-          style={{ borderRadius: 25, marginRight: 10 }}
-        ></Image>
-        <Box>
-          <Typography sx={styles.username} variant="h5">
-            {item.userName}
-          </Typography>
-          <Typography sx={styles.userLocation} variant="caption">
-            {" "}
-            {item.country}
-          </Typography>
-        </Box>
-      </Box>
-    </Box>
-  );
-};
+        className="me-[10px] rounded-full"
+      />
+      <div>
+        <p className="font-heading text-h5">{item.userName}</p>
+        <p className="font-heading text-small text-ink-800">{item.country}</p>
+      </div>
+    </div>
+  </div>
+);

@@ -1,37 +1,20 @@
 import React from "react";
-import Footer from "../footer-wrapper";
-import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import Footer from "../footer-wrapper";
 import Logo from "../../../public/assets/images/static/logo.png";
-import { leagueSpartan } from "@/app/fonts";
-const FoundPage = () => {
-  return (
-    <>
-      <Box>
-        <Box
-          sx={{
-            padding: "3vh 9vh",
-          }}
-        >
-          <Image src={Logo} alt="" />
-        </Box>
-        <Typography
-          className={leagueSpartan.className}
-          sx={{
-            fontSize: "9vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "#38B6FF",
-            height: "85vh",
-            fontWeight: "600",
-          }}
-        >
-          Page Not Found
-        </Typography>
-      </Box>
-      <Footer />
-    </>
-  );
-};
+
+const FoundPage = () => (
+  <>
+    <div>
+      <div className="px-[9vh] py-[3vh]">
+        <Image src={Logo} alt="" />
+      </div>
+      <p className="flex h-[85vh] items-center justify-center text-[9vh] font-semibold text-brand-500 font-heading">
+        Page Not Found
+      </p>
+    </div>
+    <Footer />
+  </>
+);
+
 export default FoundPage;

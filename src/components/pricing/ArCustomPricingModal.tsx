@@ -1,27 +1,15 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-import {
-  Dialog,
-  Button,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-  IconButton,
-  Divider,
-} from "@mui/material";
-import { Add, Close, Delete } from "@mui/icons-material";
-import { leagueSpartan } from "@/app/fonts";
+import { Plus, Trash2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Dialog as HouseDialog } from "@/components/ui/dialog";
+import { Select } from "@/components/ui/select";
 import { CustomPricingSelection } from "@/types/pricing";
-import {
-  SUPPORTED_COUNTRIES,
-  getCurrencySymbol,
-} from "@/utils/pricing-helpers";
+import { getCurrencySymbol } from "@/utils/pricing-helpers";
 import { DropdownOptions } from "@/services/dropdown/dropdown-api";
 import { calculateCustomPricing } from "@/services/pricing/pricing-api";
-import styles from "./CustomPricingModal.module.css";
 
 interface PackageRow {
   id: string;
@@ -48,6 +36,8 @@ interface ArCustomPricingModalProps {
   dropdownOptions: DropdownOptions;
 }
 
+const defaultLevels = ["IGCSE", "A-Levels", "IB", "SAT", "AP"];
+
 const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
   open,
   onClose,
@@ -55,207 +45,121 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
   dropdownOptions,
 }) => {
   const [rows, setRows] = useState<PackageRow[]>([]);
-  // Default levels (not in dropdown collection)
-  const defaultLevels = ["IGCSE", "A-Levels", "IB", "SAT", "AP"];
 
-  // Use same dropdown options as English modal (from props)
-  const dropdownOptionsWithLevels = {
-    grades: dropdownOptions.grades || [
-      "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5",
-      "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10",
-      "Grade 11", "Grade 12"
-    ],
-    levels: defaultLevels, // levels not in Firebase, use default
-    curricula: dropdownOptions.curriculum || [
-      "British", "American", "IB", "Canadian", "Australian",
-      "IGCSE", "A-Levels", "SAT", "AP", "CBSE", "ICSE"
-    ],
-    subjects: dropdownOptions.subjects || [
-      "Mathematics", "Physics", "Chemistry", "Biology", "English", "Arabic",
-      "Computer Science", "Economics", "Business Studies", "Accounting",
-      "History", "Geography", "Psychology", "Art & Design", "French", "Spanish"
-    ],
-    countries: dropdownOptions.countries || [
-      "United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait",
-      "Bahrain", "Oman", "United States", "United Kingdom", "Canada"
-    ],
+  const opts = {
+    grades: dropdownOptions.grades,
+    levels: defaultLevels,
+    curricula: dropdownOptions.curriculum,
+    subjects: dropdownOptions.subjects,
+    countries: dropdownOptions.countries,
   };
 
-
-  // Initialize with one row
-  useEffect(() => {
-    if (open && rows.length === 0) {
-      addNewRow();
-    }
-  }, [open, rows.length]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Handle body scroll lock
-  useEffect(() => {
-    if (open) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [open]);
-
-  const generateRowId = React.useCallback(() =>
-    `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, []);
+  const generateRowId = React.useCallback(
+    () => `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    [],
+  );
 
   const addNewRow = React.useCallback(() => {
-    // Map userCountry to dropdown format if needed
     const mappedCountry =
       userCountry === "United States"
         ? "USA"
         : userCountry === "United Kingdom"
-        ? "UK"
-        : userCountry === "United Arab Emirates"
-        ? "UAE"
-        : userCountry;
-
-    const newRow: PackageRow = {
-      id: generateRowId(),
-      country: mappedCountry,
-      grade: "",
-      level: "",
-      curriculum: "",
-      subject: "",
-      hours: 10,
-      baseRate: 85,
-      discountPercentage: 0,
-      finalRate: 85,
-      totalCost: 850,
-      originalCost: 850,
-      savings: 0,
-      isCalculating: false,
-      calculationError: undefined,
-    };
-    setRows((prev) => [...prev, newRow]);
+          ? "UK"
+          : userCountry === "United Arab Emirates"
+            ? "UAE"
+            : userCountry;
+    setRows((prev) => [
+      ...prev,
+      {
+        id: generateRowId(),
+        country: mappedCountry,
+        grade: "",
+        level: "",
+        curriculum: "",
+        subject: "",
+        hours: 10,
+        baseRate: 85,
+        discountPercentage: 0,
+        finalRate: 85,
+        totalCost: 850,
+        originalCost: 850,
+        savings: 0,
+        isCalculating: false,
+      },
+    ]);
   }, [userCountry, generateRowId]);
 
+  useEffect(() => {
+    if (open && rows.length === 0) addNewRow();
+  }, [open, rows.length, addNewRow]);
+
   const removeRow = (rowId: string) => {
-    if (rows.length > 1) {
-      setRows((prev) => prev.filter((row) => row.id !== rowId));
-    }
+    if (rows.length > 1) setRows((prev) => prev.filter((row) => row.id !== rowId));
   };
 
-  const updateRow = (rowId: string, field: keyof PackageRow, value: any) => {
-    setRows((prev) =>
-      prev.map((row) => {
-        if (row.id === rowId) {
-          const updatedRow = { ...row, [field]: value };
-
-          // If academic fields changed, recalculate pricing from database
-          if (
-            [
-              "country",
-              "grade",
-              "level",
-              "curriculum",
-              "subject",
-              "hours",
-            ].includes(field)
-          ) {
-            calculateRealPricing(updatedRow);
-            return {
-              ...updatedRow,
-              isCalculating: true,
-              calculationError: undefined,
-            };
-          }
-
-          return updatedRow;
-        }
-        return row;
-      })
-    );
-  };
-
-  // Real-time pricing calculation using database
   const calculateRealPricing = async (row: PackageRow) => {
-    // Check if all required fields are filled
-    if (
-      !row.country ||
-      !row.grade ||
-      !row.level ||
-      !row.curriculum ||
-      !row.subject ||
-      !row.hours
-    ) {
-      return;
-    }
-
+    if (!row.country || !row.grade || !row.level || !row.curriculum || !row.subject || !row.hours) return;
     try {
-      const pricingRequest: CustomPricingSelection = {
+      const pricingResult = await calculateCustomPricing({
         country: row.country,
         grade: row.grade,
         level: row.level,
         curriculum: row.curriculum,
         subject: row.subject,
         hours: row.hours,
-      };
-
-      const result:any = await calculateCustomPricing(pricingRequest);
-
+      });
       setRows((prev) =>
-        prev.map((r) =>
-          r.id === row.id
-            ? {
-                ...r,
-                baseRate: result.baseRate,
-                discountPercentage: result.discountPercentage,
-                finalRate: result.finalRate,
-                totalCost: result.totalCost,
-                originalCost: result.originalCost,
-                savings: result.savings,
-                isCalculating: false,
-                calculationError: undefined,
-              }
-            : r
-        )
+        prev.map((r) => {
+          if (r.id !== row.id) return r;
+          if (pricingResult) {
+            return {
+              ...r,
+              baseRate: pricingResult.baseRate,
+              discountPercentage: pricingResult.discountPercentage,
+              finalRate: pricingResult.finalRate,
+              totalCost: pricingResult.totalCost,
+              originalCost: pricingResult.originalCost,
+              savings: pricingResult.savings,
+              isCalculating: false,
+              calculationError: undefined,
+            };
+          }
+          return { ...r, isCalculating: false, calculationError: "لا توجد باقة متاحة لهذه التكوينات" };
+        }),
       );
     } catch (error) {
+      console.error("🔥 Custom Pricing - Calculation error:", error);
       setRows((prev) =>
-        prev.map((r) =>
-          r.id === row.id
-            ? {
-                ...r,
-                isCalculating: false,
-                calculationError: "خطأ في حساب السعر",
-              }
-            : r
-        )
+        prev.map((r) => (r.id === row.id ? { ...r, isCalculating: false, calculationError: "خطأ في حساب التسعير" } : r)),
       );
     }
   };
 
-  const getTotalCost = () => {
-    return rows.reduce((total, row) => total + row.totalCost, 0);
+  const updateRow = (rowId: string, field: keyof PackageRow, value: any) => {
+    setRows((prev) =>
+      prev.map((row) => {
+        if (row.id !== rowId) return row;
+        const updatedRow = { ...row, [field]: value };
+        if (["country", "grade", "level", "curriculum", "subject", "hours"].includes(field as string)) {
+          calculateRealPricing(updatedRow);
+          return { ...updatedRow, isCalculating: true, calculationError: undefined };
+        }
+        return updatedRow;
+      }),
+    );
   };
 
-  const getTotalSavings = () => {
-    return rows.reduce((total, row) => total + row.savings, 0);
-  };
+  const getTotalCost = () => rows.reduce((total, row) => total + row.totalCost, 0);
+  const getTotalSavings = () => rows.reduce((total, row) => total + row.savings, 0);
 
   const getCurrency = (country: string) => {
     const currency = dropdownOptions.currencies?.[country];
     if (currency) return currency;
-
-    const currencyMap: { [key: string]: string } = {
-      USA: "USD",
-      UK: "GBP",
-      UAE: "AED",
-      "Saudi Arabia": "SAR",
-      Qatar: "QAR",
-      Kuwait: "KWD",
-      Canada: "CAD",
-      Australia: "AUD",
-      Oman: "OMR",
-      Bahrain: "BHD",
+    const currencyMap: Record<string, string> = {
+      USA: "USD", UK: "GBP", UAE: "AED",
+      "Saudi Arabia": "SAR", Qatar: "QAR", Kuwait: "KWD",
+      Canada: "CAD", Australia: "AUD", Oman: "OMR", Bahrain: "BHD",
     };
-
     return currencyMap[country] || "USD";
   };
 
@@ -264,255 +168,118 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
     onClose();
   };
 
-  const handleProceed = () => {
-    handleClose();
-  };
-
   const renderRow = (row: PackageRow, index: number) => (
-    <div key={row.id} className={styles.packageRow} dir="rtl">
-      {/* Row Number */}
-      <div className={styles.rowNumber}>
-        <Typography
-          className={`${styles.rowNumberText} ${leagueSpartan.className}`}
-        >
+    <div key={row.id} className="flex flex-col gap-3 rounded-md border border-ink-200 bg-white p-4" dir="rtl">
+      <div className="flex items-center justify-between">
+        <span className="rounded-full bg-brand-500 px-3 py-1 font-heading text-small font-bold text-white">
           {index + 1}
-        </Typography>
+        </span>
+        {rows.length > 1 && (
+          <button
+            type="button"
+            onClick={() => removeRow(row.id)}
+            className="rounded-full p-2 text-ink-700 hover:bg-ink-100 hover:text-danger"
+            aria-label="إزالة"
+          >
+            <Trash2 size={18} />
+          </button>
+        )}
       </div>
 
-      {/* Row Content */}
-      <div className={styles.rowContent}>
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>المرحلة</InputLabel>
-          <Select
-            value={row.grade}
-            label="المرحلة"
-            onChange={(e) => updateRow(row.id, "grade", e.target.value)}
-          >
-            {dropdownOptionsWithLevels.grades.map((grade) => (
-              <MenuItem key={grade} value={grade}>
-                {grade}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>المستوى</InputLabel>
-          <Select
-            value={row.level}
-            label="المستوى"
-            onChange={(e) => updateRow(row.id, "level", e.target.value)}
-          >
-            {dropdownOptionsWithLevels.levels.map((level) => (
-              <MenuItem key={level} value={level}>
-                {level}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>المادة</InputLabel>
-          <Select
-            value={row.subject}
-            label="المادة"
-            onChange={(e) => updateRow(row.id, "subject", e.target.value)}
-          >
-            {dropdownOptionsWithLevels.subjects.map((subject) => (
-              <MenuItem key={subject} value={subject}>
-                {subject}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>المنهج</InputLabel>
-          <Select
-            value={row.curriculum}
-            label="المنهج"
-            onChange={(e) => updateRow(row.id, "curriculum", e.target.value)}
-          >
-            {dropdownOptionsWithLevels.curricula.map((curriculum) => (
-              <MenuItem key={curriculum} value={curriculum}>
-                {curriculum}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <TextField
-          label="عدد الساعات"
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+        <Select value={row.grade} onChange={(v) => updateRow(row.id, "grade", v)}
+          options={opts.grades.map((g) => ({ value: g, label: g }))} placeholder="الصف" ariaLabel="الصف" />
+        <Select value={row.level} onChange={(v) => updateRow(row.id, "level", v)}
+          options={opts.levels.map((l) => ({ value: l, label: l }))} placeholder="المستوى" ariaLabel="المستوى" />
+        <Select value={row.subject} onChange={(v) => updateRow(row.id, "subject", v)}
+          options={opts.subjects.map((s) => ({ value: s, label: s }))} placeholder="المادة" ariaLabel="المادة" />
+        <Select value={row.curriculum} onChange={(v) => updateRow(row.id, "curriculum", v)}
+          options={opts.curricula.map((c) => ({ value: c, label: c }))} placeholder="المنهج" ariaLabel="المنهج" />
+        <input
           type="number"
           value={row.hours}
-          onChange={(e) =>
-            updateRow(row.id, "hours", parseInt(e.target.value) || 0)
-          }
-          className={styles.hoursInput}
-          size="small"
-          inputProps={{ min: 1, max: 100 }}
+          onChange={(e) => updateRow(row.id, "hours", parseInt(e.target.value) || 0)}
+          min={1}
+          max={200}
+          aria-label="الساعات"
+          className="h-11 rounded-md bg-white px-4 font-body text-form-input text-ink-900 shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         />
-
-        {/* Pricing Display */}
-        <div className={styles.pricingDisplay}>
-          {row.isCalculating ? (
-            <Typography className={styles.calculatingText}>
-              جاري الحساب...
-            </Typography>
-          ) : row.calculationError ? (
-            <Typography className={styles.errorText}>
-              {row.calculationError}
-            </Typography>
-          ) : (
-            <>
-              {row.discountPercentage === 0 ? (
-                <Typography
-                  className={`${styles.rateText} ${leagueSpartan.className}`}
-                >
-                  {row.finalRate.toFixed(0)} {getCurrency(row.country)}/ساعة
-                </Typography>
-              ) : (
-                <>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                    <Typography
-                      className={`${styles.originalRate} ${leagueSpartan.className}`}
-                    >
-                      {row.baseRate.toFixed(0)} {getCurrency(row.country)}/ساعة
-                    </Typography>
-                    <div className={styles.discountBadge}>
-                      {row.discountPercentage.toFixed(0)}% خصم
-                    </div>
-                  </div>
-                  <Typography
-                    className={`${styles.discountedRate} ${leagueSpartan.className}`}
-                  >
-                    {row.finalRate.toFixed(0)} {getCurrency(row.country)}/ساعة
-                  </Typography>
-                </>
-              )}
-              <Typography
-                className={`${styles.totalCostText} ${leagueSpartan.className}`}
-              >
-                المجموع: {getCurrencySymbol(getCurrency(row.country))}
-                {row.totalCost.toFixed(0)}
-              </Typography>
-              {row.savings > 0 && (
-                <Typography className={`${styles.discountInfo} ${leagueSpartan.className}`}>
-                  توفر {getCurrencySymbol(getCurrency(row.country))}{row.savings.toFixed(0)}
-                </Typography>
-              )}
-            </>
-          )}
-        </div>
       </div>
 
-      {/* Actions */}
-      <div className={styles.rowActions}>
-        {rows.length > 1 && (
-          <IconButton
-            onClick={() => removeRow(row.id)}
-            className={styles.deleteButton}
-            size="small"
-          >
-            <Delete />
-          </IconButton>
+      <div className="flex flex-wrap items-center gap-3">
+        {row.isCalculating ? (
+          <span className="font-heading text-small text-ink-700">جاري الحساب...</span>
+        ) : row.calculationError ? (
+          <span className="font-heading text-small text-danger">{row.calculationError}</span>
+        ) : (
+          <>
+            <span className="font-heading text-h5 font-bold text-brand-500">
+              {getCurrencySymbol(getCurrency(row.country))}
+              {row.totalCost.toFixed(0)}
+            </span>
+            {row.savings > 0 && (
+              <>
+                <span className="font-heading text-small text-ink-500 line-through">
+                  {getCurrencySymbol(getCurrency(row.country))}
+                  {row.originalCost.toFixed(0)}
+                </span>
+                <span className="font-heading text-small font-semibold text-success">
+                  وفر {row.discountPercentage}%
+                </span>
+              </>
+            )}
+            {row.discountPercentage > 0 && (
+              <span className="font-heading text-small text-ink-700">
+                {row.finalRate.toFixed(0)} {getCurrency(row.country)}/ساعة
+              </span>
+            )}
+          </>
         )}
       </div>
     </div>
   );
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      maxWidth="lg"
-      fullWidth
-      className={styles.modal}
-      PaperProps={{
-        className: styles.modalPaper,
-      }}
-      disableScrollLock={false}
-      keepMounted={false}
-      scroll="paper"
-      disableEscapeKeyDown={false}
-    >
-      {/* Header */}
-      <div className={styles.modalHeader} dir="rtl">
-        <Typography
-          variant="h5"
-          className={`${styles.modalTitle} ${leagueSpartan.className}`}
-        >
-          منشئ الباقات المخصصة
-        </Typography>
-        <IconButton onClick={handleClose} className={styles.closeButton}>
-          <Close />
-        </IconButton>
-      </div>
-
-      {/* Content */}
-      <div className={styles.modalContent} dir="rtl">
-        {/* Scrollable Package Rows Section */}
-        <div className={styles.scrollableContent}>
-          <div className={styles.rowsContainer}>
+    <HouseDialog open={open} onClose={handleClose} title="منشئ الباقات المخصصة" size="xl">
+      <div className="flex flex-col gap-4" dir="rtl">
+        <div className="max-h-[50vh] overflow-y-auto pl-1">
+          <div className="flex flex-col gap-3">
             {rows.map((row, index) => renderRow(row, index))}
           </div>
-
-          {/* Add Row Button */}
-          <div className={styles.addRowSection}>
-            <Button
-              onClick={addNewRow}
-              startIcon={<Add />}
-              className={styles.addRowButton}
-            >
-              إضافة مادة أخرى
-            </Button>
-          </div>
         </div>
 
-        {/* Fixed Bottom Section */}
-        <div className={styles.fixedBottomSection}>
-          <Divider className={styles.divider} />
+        <div className="flex justify-start">
+          <Button onClick={addNewRow} variant="outline">
+            <Plus size={18} />
+            إضافة مادة أخرى
+          </Button>
+        </div>
 
-          {/* Total Summary */}
-          <div className={styles.totalSummary}>
-            <div className={styles.summaryContent}>
-              <Typography
-                className={`${styles.summaryLabel} ${leagueSpartan.className}`}
-              >
-                إجمالي التكلفة
-              </Typography>
-              <div className={styles.summaryPricing}>
-                <Typography
-                  className={`${styles.totalPrice} ${leagueSpartan.className}`}
-                >
-                  {getCurrencySymbol(getCurrency(userCountry))}
-                  {getTotalCost().toFixed(0)}
-                </Typography>
-                {getTotalSavings() > 0 && (
-                  <Typography className={styles.totalSavings}>
-                    توفر {getCurrencySymbol(getCurrency(userCountry))}
-                    {getTotalSavings().toFixed(0)}
-                  </Typography>
-                )}
-              </div>
+        <hr className="border-ink-200" />
+
+        <div className="rounded-md bg-brand-50 p-4">
+          <div className="flex items-center justify-between">
+            <span className="font-heading text-h5 text-ink-900">إجمالي التكلفة</span>
+            <div className="text-end">
+              <span className="font-heading text-h3 font-bold text-brand-500">
+                {getCurrencySymbol(getCurrency(userCountry))}
+                {getTotalCost().toFixed(0)}
+              </span>
+              {getTotalSavings() > 0 && (
+                <p className="font-heading text-small font-semibold text-success">
+                  وفرت {getCurrencySymbol(getCurrency(userCountry))}
+                  {getTotalSavings().toFixed(0)}
+                </p>
+              )}
             </div>
           </div>
-
-          {/* Footer */}
-          <div className={styles.modalFooter}>
-            <Button
-              variant="contained"
-              onClick={handleProceed}
-              className={`${styles.proceedButton} ${leagueSpartan.className}`}
-              fullWidth
-              size="large"
-            >
-              المتابعة للحجز
-            </Button>
-          </div>
         </div>
+
+        <Button variant="primary" size="lg" className="w-full" onClick={handleClose}>
+          المتابعة للحجز
+        </Button>
       </div>
-    </Dialog>
+    </HouseDialog>
   );
 };
 

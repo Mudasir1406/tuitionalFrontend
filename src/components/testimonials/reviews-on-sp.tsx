@@ -1,221 +1,67 @@
-import { Grade } from "@mui/icons-material";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+"use client";
+
 import React from "react";
-import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import linesmobile from "../../../public/assets/images/static/linesMobile.png";
-import girlInCircle from "../../../public/assets/images/static/Girl_in_circle.png";
 import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
+import { useI18n } from "@/context/language-context";
+import linesInvert from "../../../public/assets/images/static/lines-invert.png";
+import linesMobile from "../../../public/assets/images/static/linesMobile.png";
+import girlInCircle from "../../../public/assets/images/static/Girl_in_circle.png";
+
 const ReviewsOnSp: React.FC = () => {
+  const { t } = useI18n();
+
   return (
-    <Grid
-      container
-      spacing={4}
-      sx={{
-        background: {
-          xs: "linear-gradient(360deg, rgba(211, 239, 255, 0) 0%, #D3EFFF 6.36%, #D3EFFF 44.4%, rgba(211, 239, 255, 0) 100%)",
-          lg: "none",
-        },
-      }}
-    >
-      <Grid item xs={12} md={12} lg={7}>
-        <Box
-          sx={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            position: "relative",
-            marginTop: {
-              xs: "70px",
-              sm: "60px",
-              md: "60px",
-              lg: "0px",
-            },
-          }}
-        >
+    <div className="grid grid-cols-1 gap-8 bg-[linear-gradient(360deg,rgba(211,239,255,0)_0%,#D3EFFF_6.36%,#D3EFFF_44.4%,rgba(211,239,255,0)_100%)] lg:grid-cols-12 lg:bg-none">
+      <div className="lg:col-span-7">
+        <div className="relative mt-[70px] flex h-full w-full justify-center sm:mt-[60px] md:mt-[60px] lg:mt-0">
           <Image
             src={girlInCircle.src}
             width={girlInCircle.width}
             height={girlInCircle.height}
-            alt="girlInCircle"
-            style={{ height: "auto", width: "90%" }}
-          ></Image>
-        </Box>
-      </Grid>
-      <Grid item xs={12} md={12} lg={5}>
-        <Box
-          sx={{
-            paddingBottom: "52px",
-            // display: "flex",
-            // flexDirection: "column",
-            // justifyContent: "center",
-          }}
-        >
-          <Typography
-            sx={styles.heading}
-            className={leagueSpartan.className}
-            component={"h2"}
-            variant="h2"
-          >
-            Reviews on Social <br /> Platforms
-          </Typography>
-          <Typography
-            sx={styles.desc}
-            className={leagueSpartan.className}
-            variant="h5"
-            component={"p"}
-          >
-            The teachers at Tuitional are really great. they help a lot of
-            students and they have been helping me since past 3 years now. The
-            teachers are nice and understanding. My grades are improving.
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: "80px",
-              paddingLeft: {
-                xs: "50px",
-                sm: "50px",
-                md: "50px",
-                lg: 0,
-              },
-            }}
-          >
-            <Typography sx={styles.percent} className={leagueSpartan.className}>
-              99%
-            </Typography>
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ color: "black", marginX: 2 }}
-            ></Divider>
-            <Typography
-              sx={[styles.complete]}
-              className={leagueSpartan.className}
-            >
-              Student&apos;s complete
-              <br /> classes successfully.
-            </Typography>
-          </Box>
-        </Box>
-      </Grid>
-    </Grid>
+            alt={t("testimonials.reviews_on_sp.image_alt")}
+            className="h-auto w-[90%]"
+          />
+        </div>
+      </div>
+
+      <div className="lg:col-span-5">
+        <div className="pb-[52px]">
+          <h2 className="relative mt-[70px] px-[50px] text-center font-heading text-h2-mobile sm:mt-[80px] sm:text-h2-tablet md:mt-[95px] lg:mt-[105px] lg:px-0 lg:text-start lg:text-h2 text-black">
+            <Image
+              src={linesMobile}
+              alt=""
+              aria-hidden="true"
+              className="absolute -top-5 left-10 z-10 h-[35px] w-[43px] object-contain sm:hidden"
+            />
+            <Image
+              src={linesInvert}
+              alt=""
+              aria-hidden="true"
+              className="absolute z-10 hidden h-[35px] w-[43px] object-contain sm:left-[10px] sm:top-[10px] sm:block md:-left-[30px] md:-top-[30px] lg:-left-[30px] lg:-top-[50px]"
+            />
+            {t("testimonials.reviews_on_sp.heading_line_1")} <br />
+            {t("testimonials.reviews_on_sp.heading_line_2")}
+          </h2>
+
+          <p className="px-[50px] text-center text-[18px] font-normal leading-[25px] sm:text-[20px] sm:leading-[30px] md:text-[25px] md:leading-[40px] lg:w-[60%] lg:px-0 lg:text-start lg:text-[25px] lg:leading-[40px] text-black font-heading">
+            {t("testimonials.reviews_on_sp.description")}
+          </p>
+
+          <div className="mt-20 flex flex-row items-center justify-center ps-[50px] lg:ps-0">
+            <span className="font-heading text-[60px] font-bold leading-[55px] text-brand-500 lg:text-[85px] lg:leading-[65px] lg:text-black">
+              {t("testimonials.reviews_on_sp.percent")}
+            </span>
+            <div className="mx-2 self-stretch border-s border-black" />
+            <p className="text-[18px] font-normal leading-[25px] sm:text-[20px] sm:leading-[30px] md:text-[25px] md:leading-[40px] lg:w-[60%] lg:text-[25px] lg:leading-[40px] text-black font-heading">
+              {t("testimonials.reviews_on_sp.complete_line_1")}
+              <br />
+              {t("testimonials.reviews_on_sp.complete_line_2")}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default ReviewsOnSp;
-
-const styles = {
-  heading: {
-    color: "#000000",
-
-    marginTop: {
-      xs: "70px",
-      sm: "80px",
-      md: "95px",
-      lg: "105px",
-    },
-    position: "relative",
-    paddingX: {
-      xs: "50px",
-      sm: "50px",
-      md: "50px",
-      lg: 0,
-    },
-    textAlign: { xs: "center", lg: "left" },
-
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      left: {
-        xs: 40,
-        sm: 10,
-        md: -30,
-        lg: -30,
-      },
-      top: {
-        xs: -20,
-        sm: 10,
-        md: -30,
-        lg: -50,
-      },
-      backgroundImage: {
-        xs: `url(${linesmobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: "35px",
-      width: { lg: "43px" },
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  desc: {
-    fontSize: {
-      xs: "18px",
-      sm: "20px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "25px",
-      sm: "30px",
-      md: "40px",
-      lg: "40px",
-    },
-    width: { lg: "60%" },
-    color: "black",
-    paddingLeft: {
-      xs: "50px",
-      sm: "50px",
-      md: "50px",
-      lg: 0,
-    },
-    textAlign: { xs: "center", lg: "left" },
-  },
-  complete: {
-    fontSize: {
-      xs: "18px",
-      sm: "20px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 400,
-    lineHeight: {
-      xs: "25px",
-      sm: "30px",
-      md: "40px",
-      lg: "40px",
-    },
-    width: { lg: "60%" },
-    color: "black",
-  },
-  percent: {
-    fontSize: {
-      xs: "60px",
-      sm: "60px",
-      md: "60px",
-      lg: "85px",
-    },
-    color: {
-      xs: " #38B6FF",
-      sm: " #38B6FF",
-      md: " #38B6FF",
-      lg: "black",
-    },
-    fontWeight: 700,
-    lineHeight: {
-      xs: "55px",
-      sm: "55px",
-      md: "55px",
-      lg: "65px",
-    },
-  },
-};

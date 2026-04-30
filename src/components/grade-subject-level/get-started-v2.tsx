@@ -1,426 +1,183 @@
 "use client";
-import { Box, Grid, Typography } from "@mui/material";
+
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import { cn } from "@/utils/cn";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import girl1 from "../../../public/assets/images/static/girl1.png";
 import girl2 from "../../../public/assets/images/static/girl2.png";
 import girl3 from "../../../public/assets/images/static/girl3.png";
-import { leagueSpartan } from "@/app/fonts";
-import Image from "next/image";
-import { StaticImageData } from "next/dist/shared/lib/get-img-props";
+import type { StaticImageData } from "next/dist/shared/lib/get-img-props";
+
 const PopUpButton = dynamic(() => import("../pop-up-button"));
 
-import dynamic from "next/dynamic";
+const data = [
+  {
+    heading: "Get Started",
+    description: "Share your academic details and requirements.",
+    image: girl1,
+    ButtonText: "Start Now",
+  },
+  {
+    heading: "Meet Your Mentor",
+    description: "Our consultant connects you with the right tutor within an hour.",
+    image: girl2,
+    ButtonText: "Find Tutor",
+  },
+  {
+    heading: "Take The Leap",
+    description: "Once satisfied, enroll and start your journey.",
+    image: girl3,
+    ButtonText: "Enroll Now",
+  },
+];
 
-const GetStartedV2: React.FunctionComponent = () => {
-  // Hardcoded data
-  const data = [
-    {
-      heading: "Get Started",
-      description: "Share your academic details and requirements.",
-      image: girl1,
-      ButtonText: "Start Now"
-    },
-    {
-      heading: "Meet Your Mentor",
-      description: "Our consultant connects you with the right tutor within an hour.",
-      image: girl2,
-      ButtonText: "Find Tutor"
-    },
-    {
-      heading: "Take The Leap",
-      description: "Once satisfied, enroll and start your journey.",
-      image: girl3,
-      ButtonText: "Enroll Now"
-    }
-  ];
+const GetStartedV2: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
-  // Auto-scroll functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === data.length - 1 ? 0 : prevIndex + 1
-      );
+      setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [data.length]);
+  }, []);
 
-  const handleDotClick = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  // Touch handlers for swipe functionality
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(0); // Clear the end coordinate
+    setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
+  const handleTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe && currentIndex < data.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-    if (isRightSwipe && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    if (distance > 50 && currentIndex < data.length - 1) setCurrentIndex(currentIndex + 1);
+    if (distance < -50 && currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
   return (
-    <Box>
-      <Typography
-        sx={styles.heading}
-        variant="h1"
-        className={leagueSpartan.className}
-        component={"p"}
-      >
-        Get Started in{" "}
-        <span
-          style={{
-            color: "#38B6FF",
-            fontSize: "inherit",
-            fontWeight: "inherit",
-          }}
-        >
-          3
-        </span>{" "}
-        Easy Steps!
-      </Typography>
-      
-      {/* Desktop Grid */}
-      <Box
-        sx={{
-          display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-          flexDirection: "row",
-          width: "90%",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "auto",
-        }}
-      >
-        <Grid container spacing={3} justifyContent="center" alignItems="center">
-          {data?.map((item, index) => (
-            <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
-              <GetStartedBox {...item} />
-            </Grid>
+    <div>
+      <p className="relative mb-5 mt-[70px] text-center font-heading text-h1-mobile sm:mt-20 sm:text-h1-tablet md:mt-[95px] lg:mt-[75px] lg:text-h1 text-ink-900">
+        <Image
+          src={linesMobile}
+          alt=""
+          aria-hidden="true"
+          className="absolute -top-5 left-[10%] z-10 h-[50px] w-[50px] object-contain sm:hidden"
+        />
+        <Image
+          src={linesInvert}
+          alt=""
+          aria-hidden="true"
+          className="absolute z-10 hidden h-[35px] w-[43px] object-contain sm:-top-10 sm:left-[10%] sm:block md:left-[23%] lg:-top-[30px] lg:left-[33%]"
+        />
+        Get Started in <span className="text-brand-500">3</span> Easy Steps!
+      </p>
+
+      <div className="mx-auto hidden w-[90%] flex-row items-center justify-center lg:flex">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {data.map((item, index) => (
+            <DesktopCard key={index} {...(item as any)} />
           ))}
-        </Grid>
-      </Box>
-      
-      {/* Mobile Custom Carousel */}
-      <Box
-        sx={{
-          display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
-          flexDirection: "column",
-          position: "relative",
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
-        <Box 
-          sx={styles.carouselContainer}
+        </div>
+      </div>
+
+      <div className="relative flex w-full flex-col items-center lg:hidden">
+        <div
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          className="relative mx-auto flex min-h-[320px] w-full max-w-[320px] items-center justify-center p-4"
         >
-          {data?.map((item, index) => (
-            <Box
+          {data.map((item, index) => (
+            <div
               key={index}
-              sx={{
-                ...styles.slideItem,
-                display: index === currentIndex ? "flex" : "none",
-              }}
+              className={cn(
+                "absolute inset-0 flex items-center justify-center",
+                index === currentIndex ? "flex" : "hidden",
+              )}
             >
-              <Box sx={styles.cardContainer}>
-                <Box sx={styles.imageBox}>
+              <div className="flex min-w-[280px] max-w-[280px] flex-col items-center rounded-xl border border-ink-100 bg-[#E3F2FD] p-4 shadow-card">
+                <div className="h-[200px] w-[200px]">
                   <Image
                     src={item.image}
                     alt=""
                     width={200}
                     height={200}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                    }}
+                    className="h-full w-full object-contain"
                   />
-                </Box>
-                <Typography
-                  sx={styles.boxHeading}
-                  className={leagueSpartan.className}
-                  component={"strong"}
-                  variant="h4"
-                >
-                  {item.heading}
-                </Typography>
-                <Typography
-                  sx={styles.boxDesc}
-                  className={leagueSpartan.className}
-                  component={"p"}
-                  variant="body2"
-                >
+                </div>
+                <strong className="my-2 font-heading text-h4 text-ink-900">{item.heading}</strong>
+                <p className="my-2 text-center font-heading text-small text-ink-700">
                   {item.description}
-                </Typography>
-                <PopUpButton sx={styles.containedBtn} href="popup" text={item.ButtonText} />
-              </Box>
-            </Box>
+                </p>
+                <PopUpButton
+                  href="popup"
+                  text={item.ButtonText}
+                  style={{
+                    boxShadow: "1px 15px 34px 0px #38B6FF66",
+                    backgroundColor: "#38B6FF",
+                    color: "white",
+                    padding: "12px 18px",
+                    borderRadius: "10px",
+                    margin: "8px 0",
+                  }}
+                />
+              </div>
+            </div>
           ))}
-        </Box>
-        
-        {/* Dot indicators */}
-        <Box sx={styles.dotsContainer}>
-          {data?.map((_, index) => (
-            <Box
+        </div>
+
+        <div className="mt-6 flex justify-center gap-2 pb-4">
+          {data.map((_, index) => (
+            <button
               key={index}
-              sx={{
-                ...styles.dot,
-                backgroundColor: index === currentIndex ? "#38B6FF" : "#ddd",
-              }}
-              onClick={() => handleDotClick(index)}
+              type="button"
+              onClick={() => setCurrentIndex(index)}
+              className={cn(
+                "h-2 w-2 rounded-full transition-colors",
+                index === currentIndex ? "bg-brand-500" : "bg-ink-300",
+              )}
+              aria-label={`Slide ${index + 1}`}
             />
           ))}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default GetStartedV2;
 
-const styles = {
-  // Custom carousel styles
-  carouselContainer: {
-    width: "100%",
-    maxWidth: "320px",
-    position: "relative",
-    padding: "1rem",
-    minHeight: "320px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "0 auto",
-  },
-  slideItem: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  cardContainer: {
-    minWidth: "280px",
-    maxWidth: "280px",
-    backgroundColor: "#E3F2FD", // Light blue background
-    alignItems: "center",
-    padding: "1rem",
-    borderRadius: "12px",
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "0 2px 12px rgba(0, 0, 0, 0.08)",
-    border: "1px solid #f0f0f0",
-    transition: "all 0.3s ease",
-  },
-  dotsContainer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "0.5rem",
-    marginTop: "1.5rem",
-    paddingBottom: "1rem",
-  },
-  dot: {
-    width: "8px",
-    height: "8px",
-    borderRadius: "50%",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-  },
-  heading: {
-    textAlign: "center",
-
-    marginTop: {
-      xs: "70px",
-      sm: "80px",
-      md: "95px",
-      lg: "75px",
-    },
-    marginBottom: "20px",
-    position: "relative",
-    paddingLeft: {
-      xs: 1,
-      sm: 5,
-      md: 5,
-      lg: 0,
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-      left: {
-        xs: "10%",
-        sm: "10%",
-        md: "23%",
-        lg: "29%",
-      },
-      top: {
-        xs: -20,
-        sm: -40,
-        md: -40,
-        lg: -40,
-      },
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: {
-        xs: "50px",
-        sm: "35px",
-        md: "35px",
-        lg: "35px",
-      },
-      width: {
-        xs: "50px",
-        sm: "43px",
-        md: "43px",
-        lg: "43px",
-      },
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  containedBtn: {
-    boxShadow: "1px 15px 34px 0px #38B6FF66",
-    margin: "2vh 0",
-    backgroundColor: "#38B6FF",
-
-    lineHeight: "18.4px",
-    textAlign: "center",
-    width: "249px",
-    color: "white",
-    padding: "18px",
-    textTransform: "none",
-    letterSpacing: "-2%",
-    borderRadius: "10px",
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px #38B6FF66",
-      backgroundColor: "#38B6FF",
-      padding: "18px",
-
-      letterSpacing: "-2%",
-
-      borderRadius: "10px",
-
-      lineHeight: "18.4px",
-      textAlign: "center",
-    },
-  },
-  contanier: {
-    height: "auto",
-    minWidth: {
-      xs: "280px",
-      sm: "300px",
-      lg: "80%",
-    },
-    maxWidth: {
-      xs: "280px", 
-      sm: "300px",
-      lg: "350px",
-    },
-    backgroundColor: "#D7F0FF",
-    alignItems: "center",
-    padding: "15px 20px",
-    margin: "10px auto",
-    borderRadius: {
-      xs: "12px",
-      sm: "12px", 
-      lg: "10px",
-    },
-    display: "flex",
-    flexDirection: "column",
-  },
-  boxHeading: {
-    textAlign: "center",
-    // margin: "2vh 0",
-  },
-  boxDesc: {
-    textAlign: "center",
-    // margin: "2vh 0",
-  },
-  imageBox: {
-    width: 200,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: {
-      xs: 100,
-      sm: 150,
-      md: 150,
-    },
-  },
-};
-
-type Props = {
+interface CardProps {
   heading: string;
   description: string;
   image: StaticImageData;
   ButtonText: string;
-};
+}
 
-const GetStartedBox: React.FC<Props> = ({
-  heading,
-  description,
-  image,
-  ButtonText,
-}) => {
-  return (
-    <Box sx={styles.contanier}>
-      <Box sx={styles.imageBox}>
-        <Image
-          src={image}
-          alt=""
-          width={200}
-          height={200}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-          }}
-        />
-      </Box>
-      <Typography
-        sx={styles.boxHeading}
-        className={leagueSpartan.className}
-        component={"strong"}
-        variant="h4"
-      >
-        {heading}
-      </Typography>
-      <Typography
-        sx={styles.boxDesc}
-        className={leagueSpartan.className}
-        component={"p"}
-        variant="body2"
-      >
-        {description}
-      </Typography>
-      <PopUpButton sx={styles.containedBtn} href="popup" text={ButtonText} />
-    </Box>
-  );
-};
+const DesktopCard: React.FC<CardProps> = ({ heading, description, image, ButtonText }) => (
+  <div className="mx-auto flex h-auto w-full flex-col items-center rounded-md bg-brand-50 px-[30px] py-[10px] lg:w-4/5 xl:w-[400px]">
+    <div className="flex h-[250px] w-[300px] items-center justify-center">
+      <Image src={image} alt="" width={300} height={300} className="h-full w-full object-contain" />
+    </div>
+    <strong className="my-[2vh] text-center font-heading text-h4 text-ink-900">{heading}</strong>
+    <p className="my-[2vh] text-center font-heading text-body text-ink-700">{description}</p>
+    <PopUpButton
+      href="popup"
+      text={ButtonText}
+      style={{
+        boxShadow: "1px 15px 34px 0px #38B6FF66",
+        margin: "2vh 0",
+        backgroundColor: "#38B6FF",
+        color: "white",
+        padding: "18px",
+        borderRadius: "10px",
+        width: "249px",
+      }}
+    />
+  </div>
+);

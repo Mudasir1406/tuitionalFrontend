@@ -1,61 +1,64 @@
 "use client";
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import { GetStartedData } from "../../services/get-started/get-started";
+
+import React from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { leagueSpartan } from "@/app/fonts";
-import Image from "next/image";
-import { StaticImageData } from "next/dist/shared/lib/get-img-props";
+
+import { useI18n } from "@/context/language-context";
 import PopUpButton from "../pop-up-button";
+import linesInvert from "../../../public/assets/images/static/lines-invert.png";
+import linesMobile from "../../../public/assets/images/static/linesMobile.png";
+import type { GetStartedData } from "../../services/get-started/get-started";
+import type { StaticImageData } from "next/dist/shared/lib/get-img-props";
 
-type IProps = {
+interface IProps {
   data: GetStartedData[];
-};
-const breakPoints = {
-  320: {
-    slidesPerView: 1,
-    spaceBetween: 10,
-  },
-  520: {
-    slidesPerView: 1,
-    spaceBetween: 10,
-  },
-  700: {
-    slidesPerView: 2,
-    spaceBetween: 10,
-  },
+}
 
-  1040: {
-    slidesPerView: 3,
-    spaceBetween: 10,
-  },
+const breakPoints = {
+  320: { slidesPerView: 1, spaceBetween: 10 },
+  520: { slidesPerView: 1, spaceBetween: 10 },
+  700: { slidesPerView: 2, spaceBetween: 10 },
+  1040: { slidesPerView: 3, spaceBetween: 10 },
 };
-const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
+
+const GetStarted: React.FC<IProps> = ({ data }) => {
+  const { t } = useI18n();
+  const accent = t("home.get_started.heading_accent");
+  const tail = t("home.get_started.heading_tail");
+
   return (
-    <Box>
-      <Typography
-        sx={styles.heading}
-        className={leagueSpartan.className}
-        component={"h2"}
-        variant="h2"
-      >
-        How to Get Started
-      </Typography>
-      <Box sx={styles.getStarted}>
-        <Grid container>
+    <div>
+      <h2 className="relative mb-5 ps-1 text-center font-heading text-h2-mobile sm:ps-5 sm:text-h2-tablet md:ps-5 lg:ps-0 lg:text-h2 text-black">
+        <Image
+          src={linesMobile}
+          alt=""
+          aria-hidden="true"
+          className="absolute -top-5 left-[14%] z-10 h-[50px] w-[50px] object-contain sm:hidden"
+        />
+        <Image
+          src={linesInvert}
+          alt=""
+          aria-hidden="true"
+          className="absolute z-10 hidden h-[35px] w-[43px] object-contain sm:-top-10 sm:left-[18%] sm:block md:left-[36%]"
+        />
+        {t("home.get_started.heading_lead")}
+        {accent && <span className="text-brand-500">{accent}</span>}
+        {tail}
+      </h2>
+
+      <div className="hidden flex-row lg:flex">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {data?.map((item, index) => (
-            <Grid item xs={12} lg={4} md={6} sm={12} key={index}>
-              <GetStartedBox {...(item as any)} />
-            </Grid>
+            <GetStartedBox key={index} {...(item as any)} />
           ))}
-        </Grid>
-      </Box>
-      <Box sx={styles.swiperContanier}>
+        </div>
+      </div>
+
+      <div className="block w-full overflow-hidden pb-10 lg:hidden">
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
@@ -63,195 +66,61 @@ const GetStarted: React.FunctionComponent<IProps> = ({ data }) => {
           breakpointsBase="window"
           loop={data?.length >= 3}
           modules={[Pagination, Autoplay]}
-          autoplay={{
-            delay: 3000,
-          }}
-          pagination={{
-            dynamicBullets: true,
-          }}
+          autoplay={{ delay: 3000 }}
+          pagination={{ dynamicBullets: true }}
           style={{ width: "100%" }}
         >
           {data?.map((item, index) => (
-            <SwiperSlide key={index} style={styles.slide}>
+            <SwiperSlide
+              key={index}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+            >
               <GetStartedBox {...(item as any)} />
             </SwiperSlide>
           ))}
         </Swiper>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
 export default GetStarted;
 
-const styles = {
-  swiperContanier: {
-    display: { xs: "block", sm: "block", md: "block", lg: "none" },
-    overflow: "hidden",
-    paddingBottom: "40px",
-    width: "100%",
-  },
-  slide: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  heading: {
-    textAlign: "center",
-    marginBottom: "20px",
-    position: "relative",
-    paddingLeft: {
-      xs: 1,
-      sm: 5,
-      md: 5,
-      lg: 0,
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      zIndex: 10,
-
-      left: { xs: "14%", sm: "18%", md: "36%" },
-      top: {
-        xs: -20,
-        sm: -40,
-        md: -40,
-        lg: -40,
-      },
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: {
-        xs: "50px",
-        sm: "35px",
-        md: "35px",
-        lg: "35px",
-      },
-      width: {
-        xs: "50px",
-        sm: "43px",
-        md: "43px",
-        lg: "43px",
-      },
-      backgroundRepeat: "no-repeat",
-    },
-  },
-  scroller: {
-    flexDirection: "row",
-    display: "flex",
-  },
-  containedBtn: {
-    boxShadow: "1px 15px 34px 0px #38B6FF66",
-    color: "white",
-    backgroundColor: "#38B6FF",
-
-    textAlign: "center",
-    width: "249px",
-    padding: "18px",
-    textTransform: "none",
-    letterSpacing: "-2%",
-    borderRadius: "10px",
-    marginBottom: "36px",
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px #38B6FF66",
-      backgroundColor: "#38B6FF",
-      textAlign: "center",
-    },
-  },
-  getStarted: {
-    display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-    flexDirection: "row",
-  },
-  contanier: {
-    height: "auto",
-    width: { xs: "100%", lg: "auto" },
-    backgroundColor: "#D7F0FF",
-    alignItems: "center",
-    padding: "10px",
-    margin: { lg: "10px" },
-    borderRadius: "10px",
-    display: "flex",
-    flexDirection: "column",
-  },
-  boxHeading: {
-    textAlign: "center",
-    marginTop: "16px",
-    marginBottom: "16px",
-  },
-  boxDesc: {
-    textAlign: "center",
-    marginBottom: "24px",
-  },
-};
-
-type Props = {
+interface BoxProps {
   heading: string;
   description: string;
   image: StaticImageData;
   ButtonText: string;
-};
+}
 
-const GetStartedBox: React.FC<Props> = ({
-  heading,
-  description,
-  image,
-  ButtonText,
-}) => {
-  const theme = useTheme();
-  const [isLargeOrAbove, setIsLargeOrAbove] = React.useState(false);
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
-      setIsLargeOrAbove(mediaQuery.matches);
-
-      const handleChange = (e: MediaQueryListEvent) => {
-        setIsLargeOrAbove(e.matches);
-      };
-
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [theme]);
-
-  return (
-    <Box sx={styles.contanier}>
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: 300,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Image
-          src={image}
-          alt=""
-          width={300}
-          height={isLargeOrAbove ? 300 : 280}
-          style={{ width: "100%", height: "auto", objectFit: "cover" }}
-        ></Image>
-      </Box>
-      <Typography
-        sx={styles.boxHeading}
-        className={leagueSpartan.className}
-        component={"strong"}
-        variant="h4"
-      >
-        {heading}
-      </Typography>
-      <Typography
-        sx={styles.boxDesc}
-        className={leagueSpartan.className}
-        variant="body2"
-      >
-        {description}
-      </Typography>
-      <PopUpButton text={ButtonText} href="popup" sx={styles.containedBtn} />
-    </Box>
-  );
-};
+const GetStartedBox: React.FC<BoxProps> = ({ heading, description, image, ButtonText }) => (
+  <div className="m-1 flex h-auto w-full flex-col items-center rounded-md bg-brand-50 p-[10px] lg:m-[10px] lg:w-auto">
+    <div className="flex w-full max-w-[300px] items-center justify-center">
+      <Image
+        src={image}
+        alt=""
+        width={300}
+        height={300}
+        className="h-auto w-full object-cover"
+      />
+    </div>
+    <strong className="mt-4 mb-4 block text-center font-heading text-h4-mobile lg:text-h4">
+      {heading}
+    </strong>
+    <p className="mb-6 text-center font-heading text-small">{description}</p>
+    <PopUpButton
+      text={ButtonText}
+      href="popup"
+      style={{
+        boxShadow: "1px 15px 34px 0px #38B6FF66",
+        color: "white",
+        backgroundColor: "#38B6FF",
+        width: "249px",
+        padding: "18px",
+        letterSpacing: "-0.02em",
+        borderRadius: "10px",
+        marginBottom: "36px",
+      }}
+    />
+  </div>
+);

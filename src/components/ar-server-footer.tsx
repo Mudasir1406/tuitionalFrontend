@@ -1,12 +1,15 @@
 import React from "react";
 import { getFooterData } from "@/services/footer/footer";
-import ArFooter from "./ar-footer";
+import Footer from "./footer";
 
 const ArServerFooter: React.FC = async () => {
-  // Fetch footer data server-side for Arabic
-  const footerData = await getFooterData('ar');
-  
-  return <ArFooter footerData={footerData} />;
+  const footerData = await getFooterData("ar");
+
+  return (
+    <div dir="rtl">
+      <Footer footerData={footerData} />
+    </div>
+  );
 };
 
 export default ArServerFooter;

@@ -2,11 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import styles from "./style.module.css";
-import { Typography } from "@mui/material";
-import { redirectToExternal } from "@/utils/helper";
 import { leagueSpartan } from "@/app/fonts";
-import Link from "next/link";
 
 interface BreadcrumbItem {
   label: string;
@@ -18,7 +14,6 @@ const Breadcrumb: React.FC = () => {
 
   const pathSegments = pathname.split("/").filter(Boolean);
 
-  // Filter out "tag" or "category" if they appear right after "blog"
   const filteredSegments = pathSegments.filter((segment, index) => {
     return !(
       pathSegments[index - 1] === "blog" &&
@@ -26,53 +21,35 @@ const Breadcrumb: React.FC = () => {
     );
   });
 
-  // Generate breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = filteredSegments.map(
-    (segment, index) => {
-      const href = "/" + filteredSegments.slice(0, index + 1).join("/");
-
-      const label = segment
-        .replace(/-/g, " ") // Replace dashes with spaces
-        .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
-
-      return { label, href };
-    }
-  );
+  const breadcrumbItems: BreadcrumbItem[] = filteredSegments.map((segment, index) => {
+    const href = "/" + filteredSegments.slice(0, index + 1).join("/");
+    const label = segment
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+    return { label, href };
+  });
 
   return (
-    <nav className={styles.breadcrumb}>
-      {/* <span className={styles.breadcrumbItem}> */}
-      <a href={`/`}>
-        <Typography
-          variant="body2"
-          component={"p"}
-          className={`${leagueSpartan.className} ${styles.link}`}
-        >
+    <nav className="flex items-center justify-center gap-x-6 rounded-lg bg-[#eaf6ff] p-2.5">
+      <a href="/" className="no-underline">
+        <p className={`${leagueSpartan.className} font-heading text-body text-ink-900 hover:underline`}>
           Home
-        </Typography>
+        </p>
       </a>
-
-      {/* </span> */}
       {breadcrumbItems.map((item, index) => (
-        <div key={index} className={styles.breadcrumbItem}>
-          <Typography className={styles.separator}> &gt; </Typography>
+        <div key={index} className="flex cursor-pointer items-center justify-center gap-x-4 text-ink-900">
+          <p className="mx-1.5 text-[#999]">&gt;</p>
           {index === breadcrumbItems.length - 1 ? (
-            <Typography
-              variant="body2"
-              className={`${leagueSpartan.className} ${styles.link} ${styles.active} `}
-              component={"p"}
+            <p
+              className={`${leagueSpartan.className} font-heading text-body font-medium text-[#007bff]`}
             >
               {item.label}
-            </Typography>
+            </p>
           ) : (
-            <a href={`${item.href}`}>
-              <Typography
-                variant="body2"
-                component={"p"}
-                className={`${leagueSpartan.className} `}
-              >
+            <a href={`${item.href}`} className="no-underline">
+              <p className={`${leagueSpartan.className} font-heading text-body text-ink-900 hover:underline`}>
                 {item.label}
-              </Typography>
+              </p>
             </a>
           )}
         </div>

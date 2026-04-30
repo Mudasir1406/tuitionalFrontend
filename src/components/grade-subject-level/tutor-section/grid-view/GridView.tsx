@@ -1,12 +1,10 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import styles from "./GridView.module.css";
-import { East, West } from "@mui/icons-material";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import ImageCard from "@/components/image-card/ImageCard";
-import { CardProps } from "../TutorSection";
 
 interface props {
-  // cardsData: CardProps[];
   cardsData: any[];
   locale?: string;
 }
@@ -37,7 +35,7 @@ function GridView({ cardsData, locale = "en" }: props) {
       if (prevIndex >= maxIndex) return 0;
       return Math.min(prevIndex + visibleCards, maxIndex);
     });
-  }, [setCurrentIndex, visibleCards, maxIndex]);
+  }, [visibleCards, maxIndex]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => {
@@ -46,43 +44,33 @@ function GridView({ cardsData, locale = "en" }: props) {
     });
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     handleNext();
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, []);
   useEffect(() => {
     if (!isHovered) {
-      const interval = setInterval(() => {
-        handleNext();
-      }, 5000);
-
+      const interval = setInterval(() => handleNext(), 5000);
       return () => clearInterval(interval);
     }
   }, [isHovered, handleNext]);
 
   return (
-    <div className={styles.carouselContainer}>
-      <button onClick={handlePrev} className={styles.leftButton}>
-        <West color="info" />
+    <div className="relative flex items-center gap-2">
+      <button
+        type="button"
+        onClick={handlePrev}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
+        aria-label="Previous"
+      >
+        <ArrowLeft size={20} />
       </button>
 
-      <div className={styles.cardContainer}>
+      <div className="flex-1 overflow-hidden">
         <div
-          className={styles.cardWrapper}
-          style={{
-            // transform: `translateX(-${
-            //   currentIndex *
-            //   (100 / (cardsData?.length > 4 ? cardsData?.length + 3 : 8))
-            // }%)`,
-            transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`,
-          }}
+          className="flex gap-4 transition-transform duration-500"
+          style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
         >
           {cardsData?.map((card, i) => (
             <div
               key={i}
-              className={styles.card}
+              className="shrink-0"
               style={{ flex: `0 0 calc(${100 / visibleCards}% - 16px)` }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -93,8 +81,13 @@ function GridView({ cardsData, locale = "en" }: props) {
         </div>
       </div>
 
-      <button onClick={handleNext} className={styles.rightButton}>
-        <East color="info" />
+      <button
+        type="button"
+        onClick={handleNext}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
+        aria-label="Next"
+      >
+        <ArrowRight size={20} />
       </button>
     </div>
   );

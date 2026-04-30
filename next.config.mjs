@@ -14,7 +14,7 @@ const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
   experimental: {
-    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+    optimizePackageImports: ['lucide-react', '@headlessui/react'],
   },
 
   webpack: (config, { isServer }) => {
@@ -45,12 +45,6 @@ const nextConfig = {
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
-          mui: {
-            name: 'mui',
-            test: /[\\/]node_modules[\\/](@mui|@emotion)[\\/]/,
-            priority: 30,
-            reuseExistingChunk: true,
-          },
           vendor: {
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,

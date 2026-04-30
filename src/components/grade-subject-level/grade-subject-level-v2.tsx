@@ -1,379 +1,224 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { Header } from "@/components";
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), {
-  ssr: true,
-});
-const SectionsBox = dynamic(
-  () => import("@/components/grade-subject-level/sectionsbox"),
-  { ssr: true }
-);
-const Offer = dynamic(() => import("@/components/curiculume/offer"), {
-  ssr: true,
-});
-const GetStarted = dynamic(
-  () => import("@/components/grade-subject-level/get-started"),
-  { ssr: true }
-);
-const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), {
-  ssr: true,
-});
-const EducationalCounseling = dynamic(
-  () => import("@/components/curiculume/educational-counseling"),
-  {
-    ssr: true,
-  }
-);
+import { Header } from "@/components";
+import { PageData } from "@/types/grade-subject-level.types";
+import { getStartedData } from "@/services/get-started/get-started";
 
-const HeroInfo = dynamic(
-  () => import("@/components/grade-subject-level/hero-info"),
-  { ssr: true }
-);
+const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), { ssr: true });
+const SectionsBox = dynamic(() => import("@/components/grade-subject-level/sectionsbox"), { ssr: true });
+const Offer = dynamic(() => import("@/components/curiculume/offer"), { ssr: true });
+const GetStarted = dynamic(() => import("@/components/grade-subject-level/get-started"), { ssr: true });
+const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), { ssr: true });
+const EducationalCounseling = dynamic(() => import("@/components/curiculume/educational-counseling"), { ssr: true });
+const HeroInfo = dynamic(() => import("@/components/grade-subject-level/hero-info"), { ssr: true });
 const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
-
 const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
 const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
 const MainContent = dynamic(() => import("./main-content"), { ssr: true });
-const PopularSubjects = dynamic(
-  () => import("@/components/curiculume/popular-igcse-subjects"),
-  { ssr: true }
-);
+const PopularSubjects = dynamic(() => import("@/components/curiculume/popular-igcse-subjects"), { ssr: true });
 const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
 const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
-const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), {
-  ssr: true,
-});
-const SchoolLogosSection = dynamic(
-  () => import("./school-logos-section/SchoolLogosSection"),
-  {
-    ssr: true,
-  }
-);
-const BenifitsOfStudyingSection = dynamic(
-  () => import("./benifts-of-studying-section/BenifitsOfStudyingSection"),
-  {
-    ssr: true,
-  }
-);
-const LinkListViewSection = dynamic(
-  () => import("./link-list-view/LinkListViewSection"),
-  {
-    ssr: true,
-  }
-);
-const Form = dynamic(() => import("./form/form"), {
-  ssr: true,
-});
-const TutoringProgramSection = dynamic(
-  () => import("./tutoring-program-section/TutoringProgramSection"),
-  {
-    ssr: true,
-  }
-);
-const BenifitsSection = dynamic(
-  () => import("./benifts-section/BenifitsSection"),
-  {
-    ssr: true,
-  }
-);
+const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), { ssr: true });
+const SchoolLogosSection = dynamic(() => import("./school-logos-section/SchoolLogosSection"), { ssr: true });
+const BenifitsOfStudyingSection = dynamic(() => import("./benifts-of-studying-section/BenifitsOfStudyingSection"), { ssr: true });
+const LinkListViewSection = dynamic(() => import("./link-list-view/LinkListViewSection"), { ssr: true });
+const Form = dynamic(() => import("./form/form"), { ssr: true });
+const TutoringProgramSection = dynamic(() => import("./tutoring-program-section/TutoringProgramSection"), { ssr: true });
+const BenifitsSection = dynamic(() => import("./benifts-section/BenifitsSection"), { ssr: true });
 
-import { PageData } from "@/types/grade-subject-level.types";
-import { getStartedData } from "@/services/get-started/get-started";
-type IProps = {
-  data: PageData;
-};
+type IProps = { data: PageData };
+
+const HERO_CONTAINER_CLS =
+  "relative mx-[3vw] flex h-full items-center pt-[120px] sm:mx-[3vw] sm:pt-[120px] md:pt-[120px] lg:mx-0 lg:h-screen lg:pt-0 xl:pt-0";
+const VERTICAL_MARGIN = "my-[5vh] md:my-[10vh]";
 
 const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
   const getStarted = await getStartedData();
+
   const renderSection = (name: string) => {
     if (name.includes("hero_section")) {
       return (
-        <>
-          {data?.[name as keyof PageData] && (
-            <Box sx={styles.heroContanier}>
-              <Grid container sx={{ marginTop: { md: "2vh", lg: "18vh" } }}>
-                <Grid item lg={6} md={12} sm={12} xs={12}>
-                  <Hero data={data?.[name as keyof PageData]} />
-                </Grid>
-                <HeroInfo
-                  image={data?.[name as keyof PageData]?.image}
-                  imageAltText={data?.[name as keyof PageData]?.imageAltText}
-                />
-                {/* <Form /> */}
-              </Grid>
-            </Box>
-          )}
-          {/* <SectionsBox /> */}
-        </>
+        data?.[name as keyof PageData] && (
+          <div className={HERO_CONTAINER_CLS}>
+            <div className="grid w-full grid-cols-1 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-2">
+              <Hero data={data?.[name as keyof PageData]} />
+              <HeroInfo
+                image={data?.[name as keyof PageData]?.image}
+                imageAltText={data?.[name as keyof PageData]?.imageAltText}
+              />
+            </div>
+          </div>
+        )
       );
-    }
-    // case "hero_section_from":
-    else if (name.includes("book_demo_cta")) {
+    } else if (name.includes("book_demo_cta")) {
       return (
-        <>
-          {data?.[name as keyof PageData]?.isShow && (
-            <Box sx={styles.verticalMargin}>
-              <SectionsBox />{" "}
-            </Box>
-          )}
-        </>
+        data?.[name as keyof PageData]?.isShow && (
+          <div className={VERTICAL_MARGIN}>
+            <SectionsBox />
+          </div>
+        )
       );
     } else if (name.includes("with_form")) {
       return (
-        <>
-          {data?.[name as keyof PageData] && (
-            <Box sx={styles.heroContanier}>
-              <Box sx={{ marginTop: { md: "2vh", lg: "18vh" }, width: "100%" }}>
-                <Grid container gap={4} sx={styles.heroDiv}>
-                  <Grid item lg={6} md={12} sm={12} xs={12}>
-                    <Hero data={data?.[name as keyof PageData]} withForm />
-                  </Grid>
-
-                  <Grid
-                    item
-                    lg={5}
-                    md={12}
-                    sm={12}
-                    xs={12}
-                    sx={{ margin: "24px 0" }}
-                  >
-                    <Form />
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-          )}
-          {/* <SectionsBox /> */}
-        </>
+        data?.[name as keyof PageData] && (
+          <div className={HERO_CONTAINER_CLS}>
+            <div className="grid w-full grid-cols-1 items-center gap-4 py-24 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-12">
+              <div className="lg:col-span-6">
+                <Hero data={data?.[name as keyof PageData]} withForm />
+              </div>
+              <div className="my-6 lg:col-span-5">
+                <Form />
+              </div>
+            </div>
+          </div>
+        )
       );
     } else if (name.includes("igcse_in_dubai")) {
-      // case "igcse_in_dubai":
       return (
-        <>
-          <Box sx={styles.verticalMargin}>
-            <BenifitsOfStudyingSection data={data?.[name as keyof PageData]} />
-          </Box>{" "}
-        </>
+        <div className={VERTICAL_MARGIN}>
+          <BenifitsOfStudyingSection data={data?.[name as keyof PageData]} />
+        </div>
       );
-    }
-    // case "link_list":
-    else if (name.includes("link_list")) {
+    } else if (name.includes("link_list")) {
       return (
-        <>
-          <Box sx={styles.verticalMargin}>
-            <LinkListViewSection data={data?.[name as keyof PageData]} />
-          </Box>
-        </>
+        <div className={VERTICAL_MARGIN}>
+          <LinkListViewSection data={data?.[name as keyof PageData]} />
+        </div>
       );
-    } // case "igcse_tutoring_program":
-    else if (name.includes("igcse_tutoring_program")) {
+    } else if (name.includes("igcse_tutoring_program")) {
       return (
-        <>
-          {data?.[name as keyof PageData]?.isShow && (
-            // <Box sx={styles.verticalMargin}>
-            // <Box sx={styles.phoneContanier}>
-            <BenifitsSection data={data?.[name as keyof PageData]} />
-            // </Box>
-          )}
-        </>
+        data?.[name as keyof PageData]?.isShow && (
+          <BenifitsSection data={data?.[name as keyof PageData]} />
+        )
       );
-    }
-
-    // case "school_logos":
-    else if (name.includes("school_logos")) {
+    } else if (name.includes("school_logos")) {
       return (
-        <Box sx={styles.verticalMargin}>
+        <div className={VERTICAL_MARGIN}>
           <SchoolLogosSection />
-        </Box>
+        </div>
       );
-    }
-    // case "tutor_section":
-    else if (name.includes("tutor_section")) {
+    } else if (name.includes("tutor_section")) {
       return (
-        <>
-          <Box sx={styles.verticalMargin}>
-            <TutorSection data={data?.[name as keyof PageData]} />
-          </Box>
-        </>
+        <div className={VERTICAL_MARGIN}>
+          <TutorSection data={data?.[name as keyof PageData]} />
+        </div>
       );
-    }
-    // case "tutoring_program":
-    else if (name.includes("tutor_program")) {
+    } else if (name.includes("tutor_program")) {
       return (
-        <Box sx={styles.verticalMargin}>
+        <div className={VERTICAL_MARGIN}>
           <TutoringProgramSection data={data?.[name as keyof PageData]} />
-        </Box>
+        </div>
       );
-    }
-    // case "main_content":
-    else if (name.includes("main_content")) {
+    } else if (name.includes("main_content")) {
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <MainContent data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "phone_cta":
-    else if (name.includes("phone_cta")) {
+    } else if (name.includes("phone_cta")) {
       return (
         data?.[name as keyof PageData] && (
-          <>
-            {/* <Box sx={styles.verticalMargin}> */}
-            <Box sx={styles.phoneContanier}>
-              <Box sx={styles.phoneBackground} />
-              <PhoneCta data={data?.[name as keyof PageData]} />
-            </Box>
-            {/* </Box> */}
-            {/* <TutorSection /> */}
-          </>
+          <div className="relative pb-[5vh]">
+            <div
+              className="absolute inset-0 -z-[1] h-full w-full"
+              style={{
+                background:
+                  "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
+              }}
+            />
+            <PhoneCta data={data?.[name as keyof PageData]} />
+          </div>
         )
       );
-    }
-
-    // case "demo_pointers":
-    else if (name.includes("demo_pointers")) {
+    } else if (name.includes("demo_pointers")) {
       return (
         data?.[name as keyof PageData]?.demoPointersData.length > 0 && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <DemoPointers data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "popular_subjects":
-    else if (name.includes("popular_subjects")) {
+    } else if (name.includes("popular_subjects")) {
       return (
         data?.[name as keyof PageData]?.subjects.length > 0 && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <PopularSubjects data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
     } else if (name.includes("education_counseling")) {
-      // case "education_counseling":
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <EducationalCounseling data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
     } else if (name.includes("why_igsce")) {
-      // case "why_igsce":
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <WhyChoose data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "what_our_student_says":
-    else if (name.includes("what_our_student_says")) {
+    } else if (name.includes("what_our_student_says")) {
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <StudentSays data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "blog_CTA":
-    else if (name.includes("blog_CTA")) {
+    } else if (name.includes("blog_CTA")) {
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <BlogCta data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "Faqs":
-    else if (name.includes("Faqs")) {
+    } else if (name.includes("Faqs")) {
       return (
         data?.[name as keyof PageData] && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <FrequentlyQuestions data={data?.[name as keyof PageData]} />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "what_we_offer":
-    else if (name.includes("what_we_offer")) {
+    } else if (name.includes("what_we_offer")) {
       return (
         data?.[name as keyof PageData].isShow && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <Offer />
-          </Box>
+          </div>
         )
       );
-    }
-    // case "get_started":
-    else if (name.includes("get_started")) {
+    } else if (name.includes("get_started")) {
       return (
         data?.[name as keyof PageData].isShow && (
-          <Box sx={styles.verticalMargin}>
+          <div className={VERTICAL_MARGIN}>
             <GetStarted data={getStarted} />
-          </Box>
+          </div>
         )
       );
     }
-    // case "video section":
-    //   return <div>Video Section</div>; // Assuming there’s a video component to add here
+    return null;
   };
 
   return (
     <>
       <Header />
-
-      {Object.entries(data).map(([key, value]) => (
+      {Object.entries(data).map(([key]) => (
         <div key={key}>{renderSection(key.trim())}</div>
       ))}
-
       <ServerFooter />
     </>
   );
 };
 
 export default GradeSubjectLevelV2;
-
-const styles = {
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-  heroContanier: {
-    // width: { lg: "100%", sm: "100%" },
-    paddingTop: {
-      xs: "120px",
-      sm: "120px",
-      md: "120px",
-      lg: 0,
-      xl: 0,
-    },
-    height: { xs: "100%", lg: "100vh" },
-
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    marginX: { xs: "3vw", sm: "3vw", lg: "0" },
-    // marginTop: { lg: "60px" },
-  },
-
-  heroDiv: {
-    alignItems: "center",
-    padding: "100 0",
-  },
-  phoneContanier: { position: "relative", paddingBottom: "5vh" },
-  phoneBackground: {
-    height: "100%",
-    width: "100%",
-    position: "absolute",
-    zIndex: -1,
-    background:
-      "linear-gradient(0deg, #9EDCFF 29.51%, rgba(158, 220, 255, 0.959175) 34.02%, rgba(158, 220, 255, 0.91125) 39.76%, rgba(158, 220, 255, 0.826183) 44.67%, rgba(158, 220, 255, 0.688485) 50%, rgba(158, 220, 255, 0) 70.49%)",
-  },
-};

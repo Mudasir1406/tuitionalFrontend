@@ -1,18 +1,17 @@
 import React from "react";
-import ArHeader from "../../../components/ar-header";
-import { Box, Container, Grid } from "@mui/material";
+import ArHeader from "../../../components/header";
 import ArServerFooter from "../../../components/ar-server-footer";
 import { SITE_URL } from "@/utils/env";
-import ArContactUs from "../../../components/home/ar-contact-us";
-import ArHero from "../../../components/testimonials/ar-hero";
-import ArHeroInfo from "../../../components/testimonials/ar-hero-info";
-import ArReviewsOnWp from "../../../components/testimonials/ar-reviews-on-wp";
-import ArReviewsOnSp from "../../../components/testimonials/ar-reviews-on-sp";
-import ArVideoBasedReview from "../../../components/testimonials/ar-video-based-reviews";
+import ArContactUs from "../../../components/home/contact-us";
+import Hero from "../../../components/testimonials/hero";
+import HeroInfo from "../../../components/testimonials/hero-info";
+import ReviewsOnWp from "../../../components/testimonials/reviews-on-wp";
+import ReviewsOnSp from "../../../components/testimonials/reviews-on-sp";
+import VideoBasedReview from "../../../components/testimonials/video-based-reviews";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
-import ArOurClient from "../../../components/home/ar-our-client";
+import OurClient from "../../../components/home/our-client";
 import styles from "../../testimonials/testimonials.module.css";
 import { getFilterData } from "@/services/filter-data/filter-data";
 
@@ -28,51 +27,39 @@ const ArTestimonials: React.FC = async () => {
   const data = await getTestimonials("ar");
   const wpReviews = await getWPReviews();
   const filterData = await getFilterData();
-  
+
   return (
     <div dir="rtl">
       <ArHeader />
       <div className={`${styles.container} ${styles.containerRTL}`}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
-            <ArHero />
+            <Hero />
           </div>
           <div className={styles["hero-picture"]}>
-            <ArHeroInfo />
+            <HeroInfo />
           </div>
         </div>
       </div>
       <div id="testimonials">
-        <ArReviewsOnWp reviews={wpReviews} />
+        <ReviewsOnWp reviews={wpReviews} />
       </div>
-      <ArReviewsOnSp />
-      <Box
-        sx={{
-          background:
-            "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#DAF2FF)",
-        }}
-      >
-        <ArOurClient data={data} />
-        <Container sx={style.contanier}>
-          <ArVideoBasedReview />
-        </Container>
-      </Box>
-      <Box>
+      <ReviewsOnSp />
+      <div className="bg-gradient-to-b from-white/70 to-[#DAF2FF]">
+        <OurClient data={data} />
+        <div className="mx-auto py-[5vh] md:py-[10vh] lg:max-w-[1650px]">
+          <VideoBasedReview locale="ar" />
+        </div>
+      </div>
+      <div>
         <ArContactUs
           background={{ background: "#DAF2FF" }}
           filterData={filterData}
         />
-      </Box>
+      </div>
       <ArServerFooter />
     </div>
   );
 };
 
 export default ArTestimonials;
-
-const style = {
-  contanier: {
-    maxWidth: { lg: "1650px" },
-    paddingY: { xs: "5vh", md: "10vh" },
-  },
-};

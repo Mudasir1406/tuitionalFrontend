@@ -1,9 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
-import styles from "./Ar-All-blogs.module.css";
-import ArBlogCard, { BlogsProps } from "../ar-blog-card/Ar-BlogCard";
-import { Button } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
+import { Button } from "@/components/ui/button";
+import ArBlogCard from "../ar-blog-card/Ar-BlogCard";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 
 interface Props {
@@ -12,29 +11,20 @@ interface Props {
 
 function ArAllBlogs({ blogs }: Props) {
   const [visibleCount, setVisibleCount] = useState(6);
-  const loadMore = 3;
 
-  const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + loadMore);
-  };
   return (
-    <div className={`${styles.blogs} ${styles.blogsRTL}`}>
-      <div className={`${styles.blogContainer} ${styles.blogContainerRTL}`}>
+    <div className="relative" dir="rtl">
+      <div className="grid grid-cols-1 gap-5 p-5 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.slice(0, visibleCount).map((blog) => (
           <ArBlogCard data={blog} key={blog.id} />
         ))}
       </div>
       {blogs?.length > 3 && visibleCount < blogs.length && (
-        <div className={styles.fadeEffect} />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
       )}
-
       {visibleCount < blogs.length && (
-        <div className={styles.loadMoreButton}>
-          <Button
-            onClick={handleLoadMore}
-            variant="contained"
-            className={`${leagueSpartan.className} ${styles.containedButton}`}
-          >
+        <div className="flex justify-center py-6">
+          <Button onClick={() => setVisibleCount((c) => c + 3)} variant="primary">
             المزيد
           </Button>
         </div>

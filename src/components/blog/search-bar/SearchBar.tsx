@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import styles from "./SearchBar.module.css";
-import { Button, TextField, Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
+import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 function SearchBar({
   searchQuery,
@@ -18,83 +16,38 @@ function SearchBar({
   const pathname = usePathname();
   const isArabicRoute = pathname.startsWith("/ar");
   const blogBaseUrl = isArabicRoute ? "/ar/blog" : "/blog";
+  const placeholder = isArabicRoute ? "ابحث في مدونتنا" : "Search Our Blog";
+  const searchLabel = isArabicRoute ? "بحث" : "Search";
 
-  // const handleSearch = () => {
-  //   if (search) {
-  //     // Update the URL with the search query
-  //     const params = new URLSearchParams(window.location.search);
-  //     params.set("search", search);
-  //     router.push(`?${params.toString()}`);
-  //   }
-  // };
   const handleSearch = () => {
-    // const params = new URLSearchParams(window.location.search);
-
-    // if (search) {
-    //   params.set("search", search);
-    // }
-
-    // // Update the URL
-    // router.push(`/${params.toString()}`);
     const params = new URLSearchParams(window.location.search);
     params.set("search", search);
-    const newUrl = `${blogBaseUrl}?${params.toString()}`;
-    router.replace(newUrl);
-  };
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
+    router.replace(`${blogBaseUrl}?${params.toString()}`);
   };
 
   return (
-    <div className={styles.SearchBar}>
-      <div className={styles.mobileContanier}>
-        <TextField
-          placeholder="Search Our Blog"
-          //   sx={style.textField}
-          className={styles.textField}
+    <div>
+      <div className="flex items-center gap-2 rounded-md bg-white p-2 shadow-card">
+        <input
+          type="text"
+          placeholder={placeholder}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          sx={{
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch();
           }}
-          onKeyPress={handleKeyPress} // Trigger search on Enter
+          className="flex-1 bg-transparent px-2 py-1 font-body text-form-input text-ink-900 outline-none placeholder:text-ink-400"
         />
-        <Button
-          variant="contained"
-          //   classN={styles.button}
-          className={`${leagueSpartan.className} ${styles.button}`}
-          onClick={handleSearch}
-        >
-          Search
+        <Button onClick={handleSearch} variant="primary" size="sm">
+          {searchLabel}
         </Button>
       </div>
       {type === "all" && searchQuery && (
-        <div className={styles.searchResult}>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            variant="h4"
-            component={"h4"}
-          >
-            <Typography
-              className={`${leagueSpartan.className}`}
-              variant="h4"
-              component={"span"}
-            >
-              Search:
-              {/* {queryKey}: */}
-            </Typography>{" "}
+        <div className="mt-4">
+          <h4 className="font-heading text-h4">
+            <span className="font-heading text-h4">{isArabicRoute ? "بحث:" : "Search:"}</span>{" "}
             {searchQuery}
-          </Typography>
+          </h4>
         </div>
       )}
     </div>

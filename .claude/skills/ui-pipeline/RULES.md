@@ -7,10 +7,10 @@ type: rules
 # tuitionalFrontend — Strict Enforcement Rules (Always-On Guardrail)
 
 > **Role in the pipeline:** RULES.md is the **guardrail** that runs alongside every SDLC stage. Development.md directs you; Design.md gives you tokens; UI.md gives you templates; QA.md verifies — but this file vetoes ALL of them when any rule below is at risk.
-> **Priority:** These rules override any default behavior, prior training, or "best practice" from other React/MUI/Next.js projects.
+> **Priority:** These rules override any default behavior, prior training, or "best practice" from other React/Next.js projects.
 > **On conflict with existing code:** Follow these rules for NEW code. Do not modify existing files unless explicitly approved (Zero Modification Rule, RULE-05).
 > **On any ambiguity:** Stop and ask. Do not invent or assume.
-> **Paired repo:** The companion admin at `../TuitionalCMS` has *different* rules (e.g. bans CSS modules, forbids `t()` as a function, mandates `useFormTranslations`). Do NOT transfer those rules here.
+> **Paired repo:** The companion admin at `../TuitionalCMS` is still on Material UI and has different rules. Do NOT transfer those rules here.
 
 ---
 
@@ -40,9 +40,10 @@ You MAY ONLY use these libraries. Adding any new dependency is **FORBIDDEN** wit
 
 | Concern | Allowed |
 |---|---|
-| Framework | `next@14.2.35` (App Router) + `react@18` + `typescript@5` (`strict: true`) |
-| UI components | `@mui/material` + `@mui/icons-material` ONLY |
-| Styling engine | `@emotion/react` + `@emotion/styled` |
+| Framework | `next@14.2.35` (App Router) + `react@18` + `typescript@5` |
+| Styling | **Tailwind CSS 3.4** + `clsx` + `tailwind-merge` (via `cn()` from [src/utils/cn.ts](src/utils/cn.ts)) |
+| Interactive primitives | `@headlessui/react@2` (Dialog, Listbox, Disclosure, Tab, Transition) |
+| Icons | **`lucide-react` ONLY** |
 | Fonts | `League Spartan`, `Inter`, `Noto Sans Arabic` via `next/font/google` — ALL registered in [src/app/fonts.ts](src/app/fonts.ts) |
 | Carousels | `swiper` |
 | Dates | `moment` |
@@ -57,111 +58,131 @@ You MAY ONLY use these libraries. Adding any new dependency is **FORBIDDEN** wit
 
 ### ✅ DO
 - Verify `package.json` before adding code that requires a new import.
-- Use `@mui/icons-material` for every icon.
+- Use `lucide-react` for every icon (`Menu`, `X`, `ChevronDown`, etc.).
+- Use the house components in [src/components/ui/](src/components/ui/) (`Button`, `Input`, `Container`, `Dialog`, `Drawer`, `Select`) before reaching for raw HTML.
+- Use `cn(...)` from `@/utils/cn` for conditional class merging — never raw string concatenation.
 - Use `npm install` / `npm run`, never `yarn`.
 
 ### ❌ DON'T
-- ❌ Any new icon pack (`lucide-react`, `react-icons`, `phosphor-icons`, Heroicons, etc.)
+- ❌ **`@mui/material`, `@mui/icons-material`, `@emotion/*`, `stylis-plugin-rtl`** — REMOVED. They are not installed.
+- ❌ Any other icon pack (`react-icons`, `phosphor-icons`, Heroicons, etc.) — `lucide-react` only.
 - ❌ Any toast library other than `react-hot-toast` (no sonner, notistack, etc.)
-- ❌ Any CSS framework (no Tailwind, Bootstrap, SCSS)
-- ❌ Any animation library (no Framer Motion, GSAP, Lottie, etc.)
+- ❌ Any other CSS framework (no Bootstrap, no extra design system on top of Tailwind)
+- ❌ Any animation library (no Framer Motion, GSAP, Lottie, etc.) — use Tailwind animation utilities + Headless UI Transition.
 - ❌ Any new font loader outside [src/app/fonts.ts](src/app/fonts.ts)
 - ❌ Any state management library (no Redux, Zustand, Jotai, etc.)
 - ❌ Any new auth or data-fetching framework
 - ❌ `react-beautiful-dnd` / `@hello-pangea/dnd` (no drag-and-drop here)
 - ❌ `react-quill` / rich-text editors (the public site renders, it does not edit)
-- ❌ Any `@mui/x-*` or `@mui/lab` package (not installed)
 
 **Where to go if you think a new dep is truly required →** [Development.md §8 Escalation](./Development.md). **Do NOT add it unilaterally.**
 
 ---
 
-## RULE-02 — Styling (TWO ACCEPTED PATTERNS, PICK ONE PER FILE)
+## RULE-02 — Styling (TAILWIND-ONLY)
 
-Unlike TuitionalCMS, this repo permits **both** approaches. Pick one pattern per component and stay consistent within that file.
+Every component is styled with **Tailwind utility classes**. The `sx` prop, MUI `<Box>`, MUI `<Typography>`, `styled()`, `makeStyles`, and `@emotion/styled` are all forbidden.
 
-### Pattern A — MUI `sx` with styles object (preferred for most views/sections)
-
-```tsx
-<Box sx={styles.container} />
-
-// After the default export:
-const styles = {
-  container: { /* ... */ },
-};
-```
-
-### Pattern B — CSS Module (preferred when you need descendant selectors, pseudo-elements, or shared keyframes)
+### Default pattern
 
 ```tsx
-import styles from "./MyComponent.module.css";
+import { cn } from "@/utils/cn";
 
-<div className={styles.card} />
+<div className={cn(
+  "flex items-center gap-3 rounded-md bg-brand-50 px-4 py-2",
+  active && "ring-2 ring-brand-500",
+)}>
+  …
+</div>
 ```
 
-A component may combine them (e.g. `<Typography className={styles.title} sx={{ color: "#000" }} />`), but **do not author the same rule in both places** — pick the one that owns each property.
+### When inline `style={{}}` is acceptable
+
+- Runtime-computed values (a color hex from data, a `transform: translateX(${px})`, etc.).
+- Background images sourced from imported assets (`url(${img.src})`).
+- A handful of preserved legacy values (e.g. exact `boxShadow` strings) where porting them to a Tailwind arbitrary class would hurt readability.
+
+### CSS Modules
+
+Existing `*.module.css` files (e.g. [src/components/quill/TextEditor.module.css](src/components/quill/TextEditor.module.css), `trustpilot-carousel/TrustpilotCarousel.module.css`, route-level `*.module.css` files for layout shells) are tolerated where they ship third-party CSS or grid layouts that pre-date the migration. **Do not author new `.module.css` files** — use Tailwind classes instead.
 
 ### ✅ DO
-- Pick A or B based on the neighbouring file's convention (pricing/ → B; home/, blog/, grade-subject-level/ → mostly A).
-- Put the `.module.css` next to its `.tsx`.
-- Use CSS variables (`var(--color-accent)`) or literal values.
+- Use Tailwind utility classes for 99% of styling.
+- Use `cn()` for conditional classes — never raw string concatenation.
+- Add custom design tokens via [tailwind.config.ts](tailwind.config.ts) (`theme.extend`), not arbitrary one-off classes that should be tokens.
+- For RTL-sensitive spacing/positioning, use **logical properties** (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`).
 
 ### ❌ DON'T
-- ❌ `styled()` from `@emotion/styled` or `@mui/system` — neither approach uses it.
-- ❌ `makeStyles` / `withStyles` (MUI v4 APIs).
-- ❌ Adding anything to [src/app/globals.css](src/app/globals.css) or [src/app/style.css](src/app/style.css) — global typography + layout foundation.
-- ❌ `className="..."` with any utility system (no Tailwind, no ad-hoc global classes).
+- ❌ `@mui/material`, `<Box>`, `<Typography>`, `<Grid>`, `sx={...}` — they're not installed.
+- ❌ `@emotion/styled`, `styled()`, `makeStyles`, `withStyles`.
+- ❌ New `.module.css` files (existing ones are grandfathered).
+- ❌ Adding rules to [src/app/globals.css](src/app/globals.css) — global typography + layout foundation.
+- ❌ `theme.palette.*` / `theme.spacing(n)` — there is no MUI theme.
 - ❌ `em` units anywhere.
 - ❌ `vw` for `font-size`.
-- ❌ `theme.palette.*` / `theme.spacing(n)` inside `sx` — use literal values or CSS variables.
-- ❌ Inline `style={{}}` except for runtime-computed values, `next/image` sizing, or `next/script` overrides.
-- ❌ Creating a shared `/styles/` directory — CSS modules live in their component's folder.
+- ❌ Hand-flipping with `flex-row-reverse` driven by `isRTL` — use logical properties + Tailwind's automatic RTL flip on `html[dir="rtl"]`.
 
 **Where to find legal tokens →** [Design.md §1–4](./Design.md). **Where file placement is defined →** [UI.md §2](./UI.md).
 
 ---
 
-## RULE-03 — Design Tokens
+## RULE-03 — Design Tokens (TAILWIND CONFIG)
 
-### Brand colors — use these literals or CSS variables
+All tokens live in [tailwind.config.ts](tailwind.config.ts) under `theme.extend`. Use the named tokens (`bg-brand-500`, `text-h1`, `font-heading`) — do not hardcode hex/rem values that already have a token.
 
-| Value | CSS Var | Role |
+### Brand colors — Tailwind classes
+
+| Token | Hex | Role |
 |---|---|---|
-| `#38b6ff` | `var(--color-accent)` | Primary brand blue |
-| `#D7F0FF` | — | Section wash (hero tint, filter box) |
-| `#FF6B35` | — | Secondary orange |
-| `#2d2d2d` | `var(--color-text-main)` | Body text |
-| `#ffffff` | — | Surface / background |
+| `bg-brand-500` / `text-brand-500` | `#38B6FF` | Primary brand blue (buttons, focus, icons) |
+| `bg-brand-200` | `#9EDCFF` | Hover wash, secondary accent |
+| `bg-brand-50` | `#D7F0FF` | Section tint (hero, filter box, CMS blocks) |
+| `text-ink-900` | `#2D2D2D` | Body text |
+| `text-ink-700` | `rgba(0,0,0,0.77)` | Secondary text, input value |
+| Surface | `bg-white` / `bg-ink-50` | Cards, panels |
+| `text-success` | `#51B893` | Success accent |
+| `text-warning` | `#FFB000` | Warning |
+| `text-danger` | `#B70000` | Destructive |
 
-Additional neutrals and accent colors are allowed when they match an established usage (e.g. pricing slate: `#f1f5f9`, `#e2e8f0`, `#1e293b`). **If you need a new color family, STOP and ask.**
+Additional ramps (`ink-100..900`, `brand-100..900`) are wired in `tailwind.config.ts`. Reference them — don't reinvent.
 
-### Typography scale — use `TYPOGRAPHY_TOKENS`
+### Typography — text-* tokens
 
-Import from [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typographyTokens.ts). The MUI theme at [src/app/assets/css/theme.ts](src/app/assets/css/theme.ts) already maps `h1`…`h6`, `body1`, `body2`, `subtitle1`, `subtitle2`, `caption`, `button` to these tokens.
+Every entry from [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typographyTokens.ts) is reproduced as a `text-*` size:
+
+- Display: `text-h1`, `text-h1-tablet`, `text-h1-mobile`
+- Body: `text-body`, `text-body-mobile`
+- Specialized: `text-stat-number`, `text-caption`, `text-form-input`
+
+Always pair a heading with a font-family token:
+```tsx
+<h2 className="font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2 text-ink-900">…</h2>
+```
 
 ### Fonts — three families, one registration point
 
-- `leagueSpartan` → `var(--font-league-spartan)` → EN headings
-- `inter` → `var(--font-inter)` → EN body
-- `notoSansArabic` → `var(--font-noto-arabic)` → AR (applied globally by `html[dir="rtl"] *` in [globals.css](src/app/globals.css))
+- `font-heading` → `var(--font-league-spartan)` → headings
+- `font-body` → `var(--font-inter)` → EN body
+- `font-arabic` → `var(--font-noto-arabic)` → AR (also auto-applied via `html[dir="rtl"] *` in [globals.css](src/app/globals.css))
 
-### Border radii — established values
+### Border radii — established tokens
 
-| Value | Where |
-|---|---|
-| `8px` | MUI Button default |
-| `10px` | Legacy inputs / buttons / section boxes |
-| `12px`–`16px` | Modern cards, modals |
-| `20px` | Pricing cards |
-| `50%` | Circular icon chips |
+| Class | Value | Where |
+|---|---|---|
+| `rounded` / `rounded-md` | 4–6 px | small chips |
+| `rounded-lg` | 8 px | most cards / buttons |
+| `rounded-[10px]` | 10 px | legacy hero buttons (preserved) |
+| `rounded-xl` | 12 px | section blocks |
+| `rounded-2xl` | 16 px | modern cards / dialogs |
+| `rounded-full` | circle | avatars, icon chips |
 
 ### ✅ DO
-- Pick the nearest row from each table.
-- Reference a CSS variable if one exists (`var(--color-accent)`).
+- Pick the nearest named token.
+- Add new tokens via `theme.extend` in [tailwind.config.ts](tailwind.config.ts), not via inline arbitrary values that recur.
 
 ### ❌ DON'T
-- Don't invent a new color, radius, or font-size.
-- Don't hand-size text with improvised `px` / `rem` / `vw` values.
+- Don't invent a new color, radius, or font-size by hardcoding hex/rem values that should be tokens.
+- Don't hand-size text with improvised `px` / `rem` / `vw` values when a `text-*` token exists.
 
 **Full palette + typography reference →** [Design.md §1–2](./Design.md).
 
@@ -170,14 +191,16 @@ Import from [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typograp
 ## RULE-04 — Typography & Fonts
 
 - **Never** use `next/font/google` outside [src/app/fonts.ts](src/app/fonts.ts). If you need a new face, STOP and ask.
-- **Never** set `fontFamily: "League Spartan"` as a literal string in `sx` — use `leagueSpartan.className` on the element, `leagueSpartan.style.fontFamily`, or rely on the MUI theme variant.
-- Prefer `<Typography variant="h1|h2|…|body1|body2|button">` over custom font sizing. The theme already scales them for tablet (≤1199px) and mobile (≤599px).
-- For inline decorative text, use `TYPOGRAPHY_TOKENS` values.
-- Inputs must never drop below `16px` on mobile (iOS zoom prevention — already enforced in theme).
+- **Never** hardcode `fontFamily: "League Spartan"` — always use the `font-heading` Tailwind class (or the next/font className when forwarding to a third-party library).
+- Prefer the typography tokens (`text-h1`, `text-body`, etc.) over custom font sizing. Mobile/tablet variants exist (`text-h1-mobile`, `text-h1-tablet`) — use them with breakpoint prefixes:
+  ```tsx
+  <h1 className="font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1">…</h1>
+  ```
+- Inputs must never drop below `16px` on mobile (iOS zoom prevention — already enforced in [globals.css](src/app/globals.css)).
 
 ### ✅ DO
-- Use MUI variants.
-- Reference fonts via CSS variable names.
+- Use `text-*` tokens with responsive prefixes.
+- Reference fonts via Tailwind `font-heading` / `font-body` / `font-arabic`.
 
 ### ❌ DON'T
 - Don't hand-write `fontFamily: "League Spartan"`.
@@ -191,8 +214,9 @@ Import from [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typograp
 ### Step 1 — Existence Check (REQUIRED)
 
 Search in this order:
-1. `src/components/<scope>/` (blog/, home/, pricing/, grade-subject-level/, …)
-2. `src/components/` (top level — primitives like DropDown/, custom-input/, input/, tag/, pop-up-button.tsx)
+1. [src/components/ui/](src/components/ui/) — house primitives (`Button`, `Input`, `Container`, `Dialog`, `Drawer`, `Select`). Use these before reaching for raw HTML.
+2. `src/components/<scope>/` (blog/, home/, pricing/, grade-subject-level/, …)
+3. `src/components/` (top level — primitives like DropDown/, custom-input/, input/, tag/, pop-up-button.tsx)
 
 **If a match exists → USE IT AS-IS. Do NOT create a new one. Do NOT refactor it on the side.**
 
@@ -217,18 +241,20 @@ If you believe an existing file must be changed to support the new work:
 ☐ First line (if hooks/state): "use client";
 ☐ Imports in order:
     1. "use client"; (if applicable)
-    2. React + MUI
-    3. @mui/icons-material (use *Rounded variants)
-    4. next/*
-    5. @/hooks/useI18n (OR @/context/language-context)
-    6. @/app/fonts
-    7. @/services/** (Server Component only)
-    8. @/types/**, @/utils/**
-    9. Relative imports
-    10. Style import (CSS module) or styles object at bottom
+    2. React
+    3. lucide-react icons
+    4. @headlessui/react primitives
+    5. next/* (Image, Link, dynamic, navigation)
+    6. @/components/ui/* (house primitives)
+    7. @/context/language-context (or @/hooks/useI18n)
+    8. @/app/fonts (only when forwarding `next/font` className)
+    9. @/services/** (Server Component only)
+    10. @/types/**, @/utils/**
+    11. Relative imports
 ☐ Props: interface <Name>Props { ... } — never inline
 ☐ Component: const X: React.FC<XProps> = (...)
 ☐ Export: default export only
+☐ Styling: Tailwind classes via cn() — no sx, no inline style for static values
 ☐ No foundation file modifications (RULE-13)
 ```
 
@@ -256,61 +282,68 @@ If you believe an existing file must be changed to support the new work:
 
 ### Two valid bilingual patterns
 
-**A. Shared component, inline mirroring** (simple cases):
+**A. Shared component, logical properties** (preferred — works for most cases):
 ```tsx
-const { t, isArabic, isRTL } = useI18n();
-<Box sx={{ flexDirection: isRTL ? "row-reverse" : "row", textAlign: isArabic ? "right" : "left" }}>
+const { t, isRTL } = useI18n();
+<div className="flex items-center text-start ms-4">
   {t("nav.home")}
-</Box>
+</div>
 ```
+Logical properties (`ms-*`, `me-*`, `text-start`, `text-end`, `start-*`, `end-*`) flip automatically under `html[dir="rtl"]`.
 
-**B. Paired Arabic variant file** (preferred when layout diverges):
+**B. Paired Arabic variant file** (preferred when layout truly diverges):
 ```
 components/blog/hero/Hero.tsx          ← EN
 components/blog/ar-hero/ArHero.tsx     ← AR twin (mirrored layout)
 ```
+Use `dir="rtl"` on the AR variant's outer wrapper.
 
 ### ✅ DO
 - Call `t` as `t("key.path")`.
 - Add EN and AR keys in lockstep.
-- Use dot-path keys matching the JSON nesting.
+- Use logical properties for direction-sensitive spacing.
 
 ### ❌ DON'T
 - ❌ Call `t` as `t.nav.home` — throws (that's the CMS pattern).
 - ❌ Hardcode English-only strings on pages that ship to `/ar/**`.
 - ❌ `useTranslation()` / `useT()` / any pattern not rooted in `useI18n()`.
 - ❌ Import from `@/locales/*.json` directly inside components.
+- ❌ `flex-row-reverse` on RTL — use logical properties instead.
 
 **Where to fix English-leak defects →** [src/locales/ar.json](src/locales/ar.json) (missing key).
 
 ---
 
-## RULE-07 — RTL Mirroring (NO Stylis plugin here)
+## RULE-07 — RTL via Logical Properties (NO Stylis plugin here)
 
 Direction is controlled by three layers:
 
 1. **`<html dir>`** — [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) sets `dir="rtl"` on AR routes.
 2. **Global CSS** — [globals.css](src/app/globals.css) applies `direction: rtl` and swaps font stacks under `html[dir="rtl"]`.
-3. **Component-level conditionals** — you write them by hand.
+3. **Tailwind logical properties** — flip automatically based on `dir`.
 
-Apply these conditionals manually on any direction-sensitive style:
+### Use logical properties
 
 ```tsx
-flexDirection:    isRTL ? "row-reverse" : "row"
-textAlign:        isRTL ? "right"       : "left"
-justifyContent:   isRTL ? "flex-end"    : "flex-start"
-transformOrigin:  isRTL ? "top right"   : "top left"
-right:            isRTL ? 14            : "auto"
-left:             isRTL ? "auto"        : 14
-anchor={isRTL ? "right" : "left"}   // Drawer
+className="ms-4 me-2 ps-3 pe-3 text-start text-end start-0 end-0"
+//          margin-start, margin-end, padding-start, padding-end,
+//          text-align: start/end, inset-inline-start/end
 ```
 
+These flip automatically under `html[dir="rtl"]`. **Do not** write `isRTL ? "ml-4" : "mr-4"` — it's redundant noise.
+
+### When manual flipping is appropriate
+
+Reserve `rtl:` variant or hand-conditioned styles for cases where LTR/RTL designs **genuinely diverge** — different icon order, mirrored hero composition, etc. Add a one-line comment when you do.
+
 ### ✅ DO
-- Flip direction-sensitive styles manually with `isRTL`.
-- Create an `Ar<Name>.tsx` / `ar-<name>.tsx` twin when conditionals grow unwieldy.
+- Use `ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`.
+- Create an `Ar<Name>.tsx` / `ar-<name>.tsx` twin when LTR and AR layouts truly diverge.
 
 ### ❌ DON'T
 - Don't try to install `stylis-plugin-rtl` — it is NOT in this repo.
+- Don't write `isRTL ? "ml-4" : "mr-4"` — use `ms-4`.
+- Don't write `flex-row-reverse` driven by `isRTL` — let logical properties do the flip.
 - Don't write RTL overrides in [globals.css](src/app/globals.css) beyond what's already there.
 
 ---
@@ -341,7 +374,7 @@ anchor={isRTL ? "right" : "left"}   // Drawer
 ## RULE-09 — Routing Rules
 
 - Two language roots: `/…` (EN) and `/ar/…` (AR). When adding a new route, **add the Arabic mirror at the same time**, or document why it's EN-only.
-- Legacy misspelled routes are live URLs: `/curiculume`, `/maincuriculume`. **DO NOT rename** — they are indexed.
+- Marketing landing pages: `/a-level`, `/gcse`, `/igcse`, `/thank-you` use the minimal `HeaderV3` (logo only) instead of the full nav. Don't change which pages get which header without approval.
 - All redirect rules live in [next.config.mjs](next.config.mjs). Add new redirects there; do NOT call `redirect()` inside a route file unless the mapping is dynamic.
 - Don't introduce new `/api/*` routes casually. The two existing ones ([/api/location](src/app/api/location/route.ts), [/api/meta-conversion](src/app/api/meta-conversion/route.ts)) have narrow purposes. Adding a third needs approval.
 - [sitemap.ts](src/app/sitemap.ts) pulls slugs from Firestore — if you add a new dynamic section, update the sitemap in the same PR.
@@ -351,62 +384,73 @@ anchor={isRTL ? "right" : "left"}   // Drawer
 - Use `redirect("/404")` when data is missing — matches existing pattern.
 
 ### ❌ DON'T
-- ❌ Rename `curiculume/` / `maincuriculume/` (broken links, lost SEO).
 - ❌ Add a new `/api/*` route without escalation.
+- ❌ Introduce a new top-level public route without checking sitemap + nav implications.
 
 ---
 
-## RULE-10 — Responsive Layout
+## RULE-10 — Responsive Layout (MOBILE-FIRST)
 
-- Use MUI breakpoint object syntax: `{ xs, sm, md, lg, xl }`.
-- `@media` inside `.module.css` is also acceptable. Keep breakpoints aligned with MUI defaults (0 / 600 / 900 / 1200 / 1536).
-- Always pair `vh`-driven input heights with a `minHeight` safety clamp (e.g. `minHeight: 48px`).
+- Use Tailwind's mobile-first breakpoint cascade: default (mobile) → `sm:` → `md:` → `lg:` → `xl:` → `2xl:`.
+- Custom breakpoints are configured in [tailwind.config.ts](tailwind.config.ts):
+  - `sm: 600px`
+  - `md: 900px`
+  - `lg: 1200px`
+  - `xl: 1500px`
+  - `2xl: 2000px`
+- Always pair `vh`-driven input heights with a `min-h-*` safety clamp (e.g. `h-[5.5vh] min-h-[44px]`).
 - Never introduce horizontal overflow. [globals.css](src/app/globals.css) enforces `overflow-x: hidden; max-width: 100vw` at `html/body` — don't rely on it to mask runaway widths.
 
 ### ✅ DO
-- Collapse identical breakpoint values (`{ xs: "20px", sm: "20px" }` → `"20px"`).
-- Test at 320px, 600px, 900px, 1200px, 1920px.
+- Default styles target mobile; layer on larger breakpoints with prefixes.
+- Test at 360px, 768px, 1200px, 1500px in both EN and AR.
 
 ### ❌ DON'T
-- ❌ `theme.breakpoints.up()` / `.down()` inside `sx`.
-- ❌ Raw `@media` inside `sx`.
+- ❌ Desktop-first authoring (writing `lg:hidden md:block sm:hidden hidden` instead of `block lg:hidden`).
 - ❌ Introduce horizontal scroll.
+- ❌ Use `useMediaQuery()` for layout — prefer pure CSS responsive classes. JS breakpoints only when a render-time decision is genuinely required.
 
 ---
 
 ## RULE-11 — Provider Rules (ABSOLUTE)
 
 **NEVER mount a second instance of:**
-- `ThemeProvider` (already in [layout.tsx](src/app/layout.tsx))
-- `I18nProvider` (already in layout)
+- `I18nProvider` (already in [layout.tsx](src/app/layout.tsx))
 - `DrawerProvider` (already in layout)
 - `<Toaster />` (already in layout)
 
-All are provided at the root. Consume via hooks (`useI18n`, `useTheme`, `useDrawer`).
+All are provided at the root. Consume via hooks (`useI18n`, `useDrawer`).
+
+> **Note:** There is **no `ThemeProvider`** anymore. The MUI theme was removed when the migration to Tailwind completed. Tokens come from `tailwind.config.ts`.
 
 ### ✅ DO
 - Consume providers through hooks.
 
 ### ❌ DON'T
 - Don't wrap a section in a second provider "just in case".
+- Don't reintroduce `ThemeProvider` from MUI — MUI is uninstalled.
 
 ---
 
-## RULE-12 — MUI Component & Icon Guidance
+## RULE-12 — Interactive Primitives & Icons
 
-**Permitted MUI components:**
-`Box`, `Stack`, `Typography`, `Button`, `IconButton`, `Grid`, `Paper`, `Dialog*`, `Drawer`, `Menu*`, `List*`, `Autocomplete`, `Select`, `MenuItem`, `TextField`, `Checkbox`, `FormControlLabel`, `Tooltip`, `Accordion*`, `AppBar`, `Toolbar`, `Divider`, `CircularProgress`, `Skeleton`, `Link`.
+**Permitted house primitives** ([src/components/ui/](src/components/ui/)):
+`Button`, `Input`, `Container`, `Dialog`, `Drawer`, `Select`. Use these whenever they fit.
 
-**Icon preference:** Use `Rounded` variants where they exist (`MenuRounded`, `ExpandMoreRounded`, `CloseRounded`).
+**Underlying interactive primitives:** `@headlessui/react` (`Dialog`, `DialogPanel`, `Listbox`, `ListboxButton`, `ListboxOption`, `Disclosure`, `DisclosureButton`, `DisclosurePanel`, `Tab`, `TabGroup`, `TabList`, `TabPanel`, `Transition`, `TransitionChild`).
+
+**Icons:** `lucide-react` ONLY (`Menu`, `X`, `ChevronDown`, `ArrowRight`, `Plus`, `Minus`, `Check`, `BadgeCheck`, etc.). All ~23 icons used across the codebase have direct lucide equivalents.
 
 ### ✅ DO
-- Use `MenuRounded` over `Menu`.
-- Use `CircularProgress` / `Skeleton` for loading states.
+- Use the house `Button` for every clickable element with button styling.
+- Use Headless UI Disclosure for accordions, Listbox for selects, Dialog for modals + drawers.
+- Use lucide-react for every icon.
 
 ### ❌ DON'T
-- ❌ `@mui/lab` / `@mui/x-*` (not installed — adding them is a dependency change).
-- ❌ `styled()` / `makeStyles` / `withStyles`.
-- ❌ `theme.palette.*` / `theme.spacing(n)` inside `sx`.
+- ❌ Reach for `@mui/material` — it's uninstalled.
+- ❌ Reach for `@mui/icons-material` — uninstalled.
+- ❌ Mix lucide and other icon packs in the same file.
+- ❌ Roll a custom modal/dropdown when Headless UI ships one.
 
 ---
 
@@ -417,14 +461,16 @@ These files are load-bearing. Modifications require explicit user approval:
 | File | Purpose |
 |---|---|
 | [src/app/layout.tsx](src/app/layout.tsx) | root providers, analytics tags, head metadata |
-| [src/app/globals.css](src/app/globals.css) | base typography, RTL font stack, keyframes |
-| [src/app/style.css](src/app/style.css) | additional shared styles |
+| [src/app/globals.css](src/app/globals.css) | Tailwind directives, base typography, RTL font stack, keyframes |
 | [src/app/fonts.ts](src/app/fonts.ts) | font registration |
-| [src/app/assets/css/theme.ts](src/app/assets/css/theme.ts) | MUI theme wiring |
-| [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typographyTokens.ts) | typography scale source of truth |
+| [src/app/assets/css/typographyTokens.ts](src/app/assets/css/typographyTokens.ts) | typography scale source of truth (mirrored in tailwind config) |
+| [tailwind.config.ts](tailwind.config.ts) | colors, fonts, breakpoints, type scale, animations, plugins |
+| [postcss.config.js](postcss.config.js) | PostCSS pipeline (Tailwind + Autoprefixer) |
+| [src/utils/cn.ts](src/utils/cn.ts) | `cn()` helper (clsx + tailwind-merge) |
 | [src/context/language-context.tsx](src/context/language-context.tsx) | I18nProvider + `t(key)` implementation |
 | [src/context/drawer-context.tsx](src/context/drawer-context.tsx) | mobile drawer state |
 | [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) | `<html dir/lang>` control |
+| [src/components/ui/](src/components/ui/) | house primitives — extend, don't rewrite |
 | [src/hooks/useI18n.ts](src/hooks/useI18n.ts) | i18n hook wrapper |
 | [src/firebaseConfig/config.ts](src/firebaseConfig/config.ts) | Firestore init |
 | [next.config.mjs](next.config.mjs) | image hosts, redirects, chunk splitting |
@@ -433,7 +479,7 @@ These files are load-bearing. Modifications require explicit user approval:
 
 ### ✅ DO
 - Treat these files as read-only until the user approves a change.
-- Consume what they export (fonts, theme, hooks) — don't patch them.
+- Consume what they export (fonts, hooks, house primitives) — don't patch them.
 
 ### ❌ DON'T
 - Don't edit these during a feature task.
@@ -468,10 +514,8 @@ These files are load-bearing. Modifications require explicit user approval:
 
 - All new files: `kebab-case`, all-lowercase (`hero-info.tsx`, `blog-card.tsx`) — preferred.
 - PascalCase tolerated only when a twin already uses PascalCase (blog/, pricing/, teacher-card/).
-- **DO NOT rename these legacy files/routes** — imports and live URLs depend on them:
-  - `curiculume/` (folder + route)
-  - `maincuriculume/` (folder + route)
-  - `form-dialouge.tsx`, `ar-form-dialouge.tsx`, `form-dialouge-v1.tsx` (misspelling inherited from CMS)
+- **DO NOT rename these legacy files** — imports depend on them:
+  - `form-dialouge.tsx`, `form-dialouge-v1.tsx` (misspelling inherited from CMS)
   - `ar-contact-us.tsx` and similar `ar-*.tsx` pairs
   - `students-says.tsx`, `students-says-v2.tsx`
 - Import alias: use `@/` (`@/components/…`, `@/hooks/…`, `@/services/…`).
@@ -523,7 +567,7 @@ These files are load-bearing. Modifications require explicit user approval:
 
 Stop and request human review if ANY of the following:
 
-1. A color, typography scale, or radius you need does not have precedent in the codebase.
+1. A color, typography scale, or radius you need does not have a precedent token in `tailwind.config.ts`.
 2. A new UI pattern has no precedent in `src/components/**` (date picker, stepper, kanban, virtualized list, video chrome, etc.).
 3. A new dependency would be installed.
 4. Any foundation file from RULE-13 needs to change.
@@ -532,7 +576,7 @@ Stop and request human review if ANY of the following:
 7. A new `/api/*` route is required.
 8. A new image remote host must be allowlisted.
 9. A new font family is required.
-10. A folder/route misspelling would need to be "fixed" (imports/URLs break).
+10. Reintroducing MUI / Emotion / a second styling library is being considered (it shouldn't be).
 
 **Where to phrase the escalation →** [Development.md §8](./Development.md).
 
@@ -543,23 +587,30 @@ Stop and request human review if ANY of the following:
 Before declaring any task complete (run AFTER implementation, BEFORE shipping — this feeds [QA.md](./QA.md)):
 
 ```
-☐ Pattern A OR Pattern B used consistently within the new file (no mix of both for the same property)
-☐ No new .module.css file sharing a name with an existing one (collision risk)
+☐ Tailwind utilities used for styling — no sx, no @mui/* import, no @emotion/* import
+☐ cn() used for conditional class merging — no string concatenation of classNames
+☐ No new .module.css file (existing ones are grandfathered)
 ☐ No new dependency in package.json
 ☐ No foundation file modified (RULE-13)
-☐ No theme.palette.* or theme.spacing(n) inside sx
 ☐ No em units, no vw for font-size
-☐ Typography uses TYPOGRAPHY_TOKENS or MUI variants — no invented font sizes
+☐ Typography uses text-* tokens — no invented font sizes
+☐ Logical properties (ms-*, me-*, ps-*, pe-*, start-*, end-*, text-start, text-end) used for direction-sensitive styling
+☐ No `flex-row-reverse` driven by isRTL — let logical properties flip automatically
+☐ Mobile-first responsive cascade (default → sm: → md: → lg: → xl: → 2xl:)
+☐ Every form `<input>` has min-h-[44px] (or equivalent) on mobile
 ☐ t is called as t("key.path") — never as t.key
 ☐ Every user-facing string has BOTH en.json and ar.json entries (or uses an inline isArabic ternary)
-☐ Every direction-sensitive style flips on isRTL (or a paired Ar*.tsx twin exists)
 ☐ New /route has a /ar/route twin (or an explicit reason it is EN-only)
 ☐ Any new `next/image` has descriptive alt and comes from an allowlisted remote host
 ☐ No Firebase SDK call in a component file
 ☐ No write operation against Firestore
-☐ No duplicate of an existing reusable component
-☐ No second ThemeProvider / I18nProvider / DrawerProvider / Toaster mounted
-☐ If a legacy-misspelled file/folder was touched, spelling was preserved
+☐ No duplicate of an existing reusable component (especially of @/components/ui/*)
+☐ No second I18nProvider / DrawerProvider / Toaster mounted
+☐ No reintroduction of ThemeProvider, @mui/*, or @emotion/* — they are uninstalled
+☐ Icons come from lucide-react — no other icon pack
+☐ Interactive primitives use @headlessui/react — no custom modal/dropdown reinventions
+☐ If a legacy-misspelled file was touched, spelling was preserved
+☐ Visual identity preserved: render the affected route at 360 / 768 / 1200 / 1500 in both EN and AR before shipping
 ☐ npm run lint passes
 ☐ npm run build passes
 ```

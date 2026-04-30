@@ -1,154 +1,70 @@
 "use client";
-import { Box, Grid, Typography, Collapse } from "@mui/material";
+
 import React, { useState } from "react";
+import Image from "next/image";
+
+import { cn } from "@/utils/cn";
+import { PageData } from "@/types/grade-subject-level.types";
 import upicon from "../../../public/assets/images/svg/Upicon.svg";
 import downicon from "../../../public/assets/images/static/Downicon.png";
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
-import { PageData } from "@/types/grade-subject-level.types";
-import { leagueSpartan } from "@/app/fonts";
-import { renderWithLineBreaks } from "../line-break-text";
 
-interface Question {
-  question: string;
-  answer: string;
-  icon: StaticImageData;
-}
+type IProps = { data: PageData["Faqs"] };
 
-type IProps = {
-  data: PageData["Faqs"];
-};
 const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
   const [expanded, setExpanded] = useState<number>(0);
-  const handleToggle = (index: number) => {
-    setExpanded(expanded === index ? 0 : index);
-  };
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+
   return (
-    <Box sx={style.contanier}>
-      <Box>
-        <Typography
-          sx={style.frequently}
-          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-          className={leagueSpartan.className}
-          component={data?.headerTag ? data.headerTag : ("h3" as any)}
-          dangerouslySetInnerHTML={{
-            __html: data?.header,
-          }}
-        ></Typography>
+    <div className="mx-[1vh] lg:mx-[4vh]">
+      <HeaderTag
+        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+        dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
+      />
+      <div
+        className="mx-auto p-[2vh] text-center font-heading text-body text-ink-900 lg:w-[55%]"
+        dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
+      />
 
-        <Typography
-          sx={style.frequentlyDesc}
-          className={leagueSpartan.className}
-          component={"p"}
-          variant="body2"
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
-      </Box>
-
-      <Box sx={style.faqContanier}>
-        <Grid container spacing={1}>
+      <div className="mx-auto max-w-full md:max-w-[80vw] lg:px-[2vh]">
+        <div className="flex flex-col gap-2">
           {data?.faqs.map((item, index) => (
-            <Grid item xs={12} sm={12} md={12} lg={12} key={index}>
-              <Box
-                sx={[
-                  style.question,
-                  { background: expanded === index ? "#9EDCFF" : "#F3FBFF" },
-                ]}
-              >
-                <Box sx={style.questionBox}>
-                  <Typography
-                    sx={style.boxhed}
-                    className={leagueSpartan.className}
-                    component={"p"}
-                    variant="subtitle2"
-                    dangerouslySetInnerHTML={{
-                      __html: item?.question,
-                    }}
-                  ></Typography>
-                  <Box
-                    onClick={() => handleToggle(Number(index))}
-                    sx={{ cursor: "pointer" }}
-                  >
-                    <Image
-                      src={expanded === index ? upicon : downicon}
-                      alt="toggle icon"
-                      style={style.icon}
-                    />
-                  </Box>
-                </Box>
-                <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                  <Typography
-                    sx={style.boxdesc}
-                    className={leagueSpartan.className}
-                    component={"p"}
-                    variant="body2"
-                    dangerouslySetInnerHTML={{
-                      __html: item?.answer,
-                    }}
-                  ></Typography>
-                </Collapse>
-              </Box>
-            </Grid>
+            <div
+              key={index}
+              className={cn(
+                "min-w-[300px] rounded-[2vh] p-[3vh] backdrop-blur-sm transition-colors mt-[1vh] md:mt-[3vh]",
+                expanded === index ? "bg-brand-200" : "bg-[#F3FBFF]",
+              )}
+            >
+              <div className="flex items-center justify-between">
+                <p
+                  className="font-heading text-h6 font-semibold text-ink-900"
+                  dangerouslySetInnerHTML={{ __html: item?.question }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setExpanded(expanded === index ? 0 : index)}
+                  className="cursor-pointer"
+                  aria-label="Toggle answer"
+                >
+                  <Image
+                    src={expanded === index ? upicon : downicon}
+                    alt=""
+                    className="h-[4vh] w-[4vh]"
+                  />
+                </button>
+              </div>
+              {expanded === index && (
+                <p
+                  className="mt-[2vh] font-heading text-body text-ink-700"
+                  dangerouslySetInnerHTML={{ __html: item?.answer }}
+                />
+              )}
+            </div>
           ))}
-        </Grid>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
+
 export default FrequentlyQuestions;
-const style = {
-  contanier: {
-    //  marginY: { lg: "13vh" },
-    marginX: { lg: "4vh", xs: "1vh" },
-  },
-  frequently: {
-    // fontWeight: "600",
-    // fontSize: { lg: "6vh", sm: "4vh", md: "4vh", xs: "3vh" },
-    textAlign: "center",
-  },
-  faqContanier: {
-    marginX: "auto",
-    maxWidth: { sm: "100%", md: "80vw" },
-    paddingX: { lg: "2vh" },
-  },
-  frequentlyDesc: {
-    color: "#2D2D2D",
-    textAlign: "center",
-    // fontWeight: 400,
-    // fontSize: { lg: "2vh", sm: "2.5vh", md: "2.5vh" },
-    width: { lg: "55%" },
-    margin: "0 auto",
-    // lineHeight: "3vh",
-    padding: { xs: "2vh 0", sm: "2vh" },
-  },
-  boxhed: {
-    // fontSize: { lg: "2.5vh", sm: "2.5vh", md: "2.5vh" },
-  },
-  boxdesc: {
-    // fontSize: { lg: "2.1vh", sm: "2vh" },
-    width: { lg: "100%" },
-    marginTop: "2vh",
-  },
-  TextBox: {
-    fontSize: "2.2vh",
-  },
-  question: {
-    borderRadius: "2vh",
-    border: "0.784px #EBEBEB",
-    // Change background for active item
-    backdropFilter: "blur(5px)",
-    padding: "3vh",
-    marginTop: { xs: "1vh", md: "3vh" },
-    width: "100%", // Ensure consistent width
-    boxSizing: "border-box", // Include padding and border in width
-    minWidth: "300px", // Set a minimum width for consistency
-  },
-  questionBox: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  icon: { height: "4vh", width: "4vh" },
-};

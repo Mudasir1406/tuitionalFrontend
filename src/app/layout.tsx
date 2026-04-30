@@ -2,14 +2,12 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
-import { ThemeProvider } from "@mui/material";
 import { DrawerProvider } from "@/context/drawer-context";
 import { I18nProvider } from "@/context/language-context";
 import HtmlWrapper from "@/components/html-wrapper";
 import Metrics from "./metrics";
 import Script from "next/script";
 import UniversalSchema from "@/components/seo/UniversalSchema";
-import theme from "./assets/css/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,12 +24,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  viewportFit: 'cover',
-  themeColor: '#38b6ff',
+  viewportFit: "cover",
+  themeColor: "#38b6ff",
 };
+
 import { leagueSpartan, inter, notoSansArabic } from "./fonts";
 import FbPixelPageView from "./metrics/pixel-tracker";
 
@@ -78,14 +77,12 @@ export default function RootLayout({
           type="image/png"
         />
         <UniversalSchema />
-        {/* Mobile performance optimizations */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="dns-prefetch" href="//cdn-icons-png.flaticon.com" />
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
-        {/* CSS is handled automatically by Next.js */}
         <Script
           id="facebook-pixel-inline"
           strategy="afterInteractive"
@@ -116,8 +113,7 @@ export default function RootLayout({
         </noscript>
       </head>
 
-      <body style={{ margin: 0 }}>
-        {/* <PixelTracker /> */}
+      <body className="m-0">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NG7HWSZT"
@@ -127,19 +123,19 @@ export default function RootLayout({
           />
         </noscript>
 
-        <ThemeProvider theme={theme}>
-          <I18nProvider>
-            <HtmlWrapper className={`${leagueSpartan.variable} ${inter.variable} ${notoSansArabic.variable}`}>
-              <DrawerProvider>
-                <DynamicModel />
-                <FbPixelPageView />
-            {children}
-                <Metrics />
-                <Toaster />
-              </DrawerProvider>
-            </HtmlWrapper>
-          </I18nProvider>
-        </ThemeProvider>
+        <I18nProvider>
+          <HtmlWrapper
+            className={`${leagueSpartan.variable} ${inter.variable} ${notoSansArabic.variable}`}
+          >
+            <DrawerProvider>
+              <DynamicModel />
+              <FbPixelPageView />
+              {children}
+              <Metrics />
+              <Toaster />
+            </DrawerProvider>
+          </HtmlWrapper>
+        </I18nProvider>
       </body>
     </html>
   );

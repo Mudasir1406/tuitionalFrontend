@@ -1,15 +1,14 @@
 "use client";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+
 import plan from "../../public/assets/images/static/plan.png";
 import phone from "../../public/assets/images/static/phone-call.png";
 import logo from "../../public/assets/images/static/logo.png";
-import { FooterData, getFooterData } from "../services/footer/footer";
-import insta from "../../public/assets/images/svg/Instagram_black.svg";
-import facebook from "../../public/assets/images/svg/Facebook_black.svg";
-import linkdin from "../../public/assets/images/svg/LinkedIN_black.svg";
-import Link from "next/link";
-import Image from "next/image";
+
+import { FooterData } from "../services/footer/footer";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "./pop-up-button";
 import { useI18n } from "@/context/language-context";
@@ -22,171 +21,141 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ footerData }) => {
   const { t, locale } = useI18n();
+
   return (
     <footer>
-      <Box sx={styles.background}>
-        <Box sx={styles.rightCircle} />
-        <Box sx={styles.leftCircle} />
-        <Box sx={styles.contanier}>
-          <Box sx={styles.contactContanier}>
-            <Grid
-              container
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              spacing={2}
-            >
-              <Grid
-                item
-                lg={1}
-                sm={12}
-                display={"flex"}
-                justifyContent={"center"}
-              >
-                <Box sx={styles.imageContanier}>
+      {/* styles.background */}
+      <div className="relative flex w-full items-center justify-center bg-footer-fade py-10 md:py-[100px]">
+        {/* styles.rightCircle */}
+        <div className="absolute right-[60px] top-[70px] -z-[1] flex h-[135px] w-[135px] rounded-full bg-[#37B6FF]" />
+        {/* styles.leftCircle */}
+        <div className="absolute bottom-0 -left-[230px] -z-[1] flex h-[330px] w-[330px] rounded-full border-[100px] border-[#37B6FF] bg-transparent sm:h-[430px] sm:w-[430px]" />
+
+        {/* styles.contanier */}
+        <div className="z-0 flex w-[90%] flex-col items-center justify-center rounded-[10px] bg-white/70 shadow-footer-card">
+          {/* styles.contactContanier */}
+          <div className="flex w-4/5 items-center -mt-[70px] rounded-[5px] bg-brand-500 p-[10px] sm:p-5 md:w-[85%] md:p-[25px] lg:p-[30px]">
+            {/* <Grid container spacing={2}> with flex/items-center/justify-center sx */}
+            <div className="flex w-full flex-wrap items-center justify-center gap-4">
+              {/* <Grid item lg={1} sm={12} display="flex" justifyContent="center"> */}
+              <div className="flex w-full justify-center lg:w-[8.333%]">
+                {/* styles.imageContanier */}
+                <div className="flex h-[9vh] min-h-[75px] min-w-[75px] max-h-[90px] max-w-[90px] w-[9vh] items-center justify-center rounded-full bg-white">
                   <Image
                     src={plan.src}
                     width={plan.width}
                     height={plan.height}
                     alt="plan"
-                    style={{
-                      width: "50px",
-                      height: "60px",
-                      marginTop: "10px",
-                      objectFit: "contain",
-                    }}
                     quality={100}
-                  ></Image>
-                </Box>
-              </Grid>
-              <Grid item lg={5.5}>
-                <Typography variant="h2" sx={styles.admissionText}>
+                    style={{ width: "50px", height: "60px", marginTop: "10px", objectFit: "contain" }}
+                  />
+                </div>
+              </div>
+
+              {/* <Grid item lg={5.5}> */}
+              <div className="w-full lg:w-[45.833%]">
+                {/* <Typography variant="h2" sx={styles.admissionText}> — h2 default 3.75rem/300/lh 1.2/ls -0.00833em + ms-10 white textAlign xs/sm:center md:start */}
+                <p
+                  className={`${leagueSpartan.className} ms-[10px] text-center text-white md:text-start text-[3.75rem] font-light leading-[1.2] tracking-[-0.00833em]`}
+                >
                   {t("footer.admission_text")}
-                </Typography>
-              </Grid>
-              <Grid item lg={3.5}>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Image
-                    src={phone.src}
-                    width={phone.width}
-                    height={phone.height}
-                    alt="phone"
-                  ></Image>
-                  <Typography variant="h2" sx={styles.phoneText}>
+                </p>
+              </div>
+
+              {/* <Grid item lg={3.5}> */}
+              <div className="w-full lg:w-[29.167%]">
+                {/* inline <Box sx={{ display: flex, alignItems: center }}> */}
+                <div className="flex items-center">
+                  <Image src={phone.src} width={phone.width} height={phone.height} alt="phone" />
+                  {/* <Typography variant="h2" sx={styles.phoneText}> — h2 default + mx-10 white */}
+                  <p
+                    className={`${leagueSpartan.className} mx-[10px] text-white text-[3.75rem] font-light leading-[1.2] tracking-[-0.00833em]`}
+                  >
                     +971 56 490 0376
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item lg={2}>
+                  </p>
+                </div>
+              </div>
+
+              {/* <Grid item lg={2}> */}
+              <div className="flex w-full justify-center lg:w-[16.667%]">
+                {/* PopUpButton with sx=styles.contactButton */}
                 <PopUpButton
                   text={t("footer.enroll_now")}
                   href="popup"
-                  sx={styles.contactButton}
+                  className="w-full rounded-[10px] bg-white px-[25px] py-[1.5vh] leading-[23px] tracking-[-0.02em] text-[#009BF5] shadow-cta-white md:px-[22px] md:py-[2vh] lg:px-[25px] lg:py-[2vh] hover:bg-white"
                 />
-              </Grid>
-            </Grid>
-          </Box>
-          <Grid
-            container
-            columnSpacing={5}
-            sx={{
-              marginTop: {
-                xs: "70px",
-                sm: "80px",
-                md: "90px",
-                lg: "100px",
-              },
-              display: "flex",
-              width: { xs: "100%", sm: "100%" },
-              paddingLeft: { xs: 0, md: "5vw" },
-              paddingRight: "2vw",
-            }}
-          >
-            <Grid item lg={3} sm={12}>
-              <Box sx={styles.gridContent}>
-                <Box
-                  sx={{
-                    width: "100%",
-                    display: { xs: "flex", sm: "flex" },
-                    alignItems: "center",
-                    justifyContent: { xs: "center", lg: "flex-start" },
-                  }}
-                >
+              </div>
+            </div>
+          </div>
+
+          {/* second <Grid container columnSpacing={5}> with marginTop responsive 70/80/90/100, paddingLeft xs:0 md:5vw, paddingRight 2vw */}
+          <div className="flex w-full flex-wrap gap-x-10 mt-[70px] pe-[2vw] ps-0 sm:mt-20 md:mt-[90px] md:ps-[5vw] lg:mt-[100px]">
+            {/* <Grid item lg={3} sm={12}> — logo + description + social */}
+            <div className="w-full lg:w-1/4">
+              {/* styles.gridContent */}
+              <div className="flex flex-col">
+                {/* logo wrapper: w-100%, flex items-center, justifyContent xs/sm:center lg:flex-start */}
+                <div className="flex w-full items-center justify-center lg:justify-start">
                   <Image
                     src={logo.src}
                     width={logo.width / 1.5}
                     height={logo.height / 1.5}
-                    style={{ alignSelf: "start" }}
                     alt="logo"
-                  ></Image>
-                </Box>
-                <Typography sx={styles.desc} variant="body2">
+                    style={{ alignSelf: "start" }}
+                  />
+                </div>
+                {/* <Typography variant="body2" sx={styles.desc}> — body2 default 0.875rem/400/lh 1.43 + mt-40 black textAlign xs/sm:center md/lg:start */}
+                <p
+                  className={`${leagueSpartan.className} mt-10 text-center text-black md:text-start lg:text-start text-sm font-normal leading-[1.43] tracking-[0.01071em]`}
+                >
                   {t("footer.description")}
-                </Typography>
-                <Box sx={styles.socialBox}>
-                  <Box sx={styles.iconsOnly}>
+                </p>
+
+                {/* styles.socialBox: flex flex-col, mt xs:40 lg:20, items xs:center lg:start, justify center, mb 80 */}
+                <div className="flex flex-col mt-10 lg:mt-5 items-center lg:items-start justify-center mb-20">
+                  {/* styles.iconsOnly: flex items-center, justify xs:center lg:start, mb 15 */}
+                  <div className="flex items-center justify-center lg:justify-start mb-[15px]">
                     {footerData?.link?.facebook && (
-                      <Link
-                        target="_blank"
-                        href={footerData.link.facebook}
-                        rel="noreferrer"
-                      >
+                      <Link target="_blank" href={footerData.link.facebook} rel="noreferrer">
+                        {/* styles.social: 40×40, mr-20, cursor-pointer, z-100 */}
                         <Image
-                          src={
-                            "https://img.icons8.com/?size=40&id=uLWV5A9vXIPu&format=png&color=000000"
-                          }
-                          style={styles.social}
+                          src="https://img.icons8.com/?size=40&id=uLWV5A9vXIPu&format=png&color=000000"
                           alt="facebook"
                           width={40}
                           height={40}
-                        ></Image>
+                          className="me-5 cursor-pointer z-[100]"
+                        />
                       </Link>
                     )}
                     {footerData?.link?.insta && (
-                      <Link
-                        target="_blank"
-                        href={footerData.link.insta}
-                        rel="noreferrer"
-                      >
+                      <Link target="_blank" href={footerData.link.insta} rel="noreferrer">
                         <Image
-                          src={
-                            "https://img.icons8.com/?size=40&id=BrU2BBoRXiWq&format=png&color=000000"
-                          }
-                          style={styles.social}
+                          src="https://img.icons8.com/?size=40&id=BrU2BBoRXiWq&format=png&color=000000"
                           alt="insta"
                           width={40}
                           height={40}
-                        ></Image>
+                          className="me-5 cursor-pointer z-[100]"
+                        />
                       </Link>
                     )}
                     {footerData?.link?.linkdin && (
-                      <Link
-                        target="_blank"
-                        href={footerData.link.linkdin}
-                        rel="noreferrer"
-                      >
+                      <Link target="_blank" href={footerData.link.linkdin} rel="noreferrer">
                         <Image
-                          src={
-                            "https://img.icons8.com/?size=40&id=MR3dZdlA53te&format=png&color=000000"
-                          }
-                          style={styles.social}
+                          src="https://img.icons8.com/?size=40&id=MR3dZdlA53te&format=png&color=000000"
                           alt="linkdin"
                           width={40}
                           height={40}
-                        ></Image>
+                          className="me-5 cursor-pointer z-[100]"
+                        />
                       </Link>
                     )}
-                  </Box>
-                  <Box sx={styles.contactInfo}>
+                  </div>
+
+                  {/* styles.contactInfo: flex flex-col, items xs:center lg:start, gap-5px */}
+                  <div className="flex flex-col items-center lg:items-start gap-[5px]">
                     <Link
                       href="mailto:hello@tuitionaledu.com"
-                      style={{
-                        textDecoration: "none",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
+                      style={{ textDecoration: "none", display: "flex", alignItems: "center" }}
                     >
                       <Image
                         src="https://img.icons8.com/?size=100&id=GoQbcSSHazaK&format=png&color=000000"
@@ -195,17 +164,16 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                         height={20}
                         style={{ marginRight: "10px" }}
                       />
-                      <Typography sx={styles.contactText} variant="body2">
+                      {/* <Typography variant="body2" sx={styles.contactText}> — body2 base + 14px / 500 / black / hover:#37B6FF */}
+                      <p
+                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[1.43] tracking-[0.01071em] hover:text-[#37B6FF]`}
+                      >
                         hello@tuitionaledu.com
-                      </Typography>
+                      </p>
                     </Link>
                     <Link
                       href="tel:+971564900376"
-                      style={{
-                        textDecoration: "none",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
+                      style={{ textDecoration: "none", display: "flex", alignItems: "center" }}
                     >
                       <Image
                         src="https://img.icons8.com/?size=100&id=3kO3tw1rKmYw&format=png&color=000000"
@@ -214,354 +182,135 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                         height={20}
                         style={{ marginRight: "10px" }}
                       />
-                      <Typography sx={styles.contactText} variant="body2">
+                      <p
+                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[1.43] tracking-[0.01071em] hover:text-[#37B6FF]`}
+                      >
                         +971 56 490 0376
-                      </Typography>
+                      </p>
                     </Link>
-                  </Box>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item lg={3} sm={6} xs={6}>
-              <Box sx={styles.gridContent}>
-                <Typography sx={styles.heading} variant="subtitle2">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <Grid item lg={3} sm={6} xs={6}> — Curriculums */}
+            <div className="w-1/2 lg:w-1/4">
+              <div className="flex flex-col">
+                {/* <Typography variant="subtitle2" sx={styles.heading}> — subtitle2 base 0.875rem/lh 1.57/ls 0.00714em + fontWeight 700 mb-15 mt-12 capitalize */}
+                <p
+                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900`}
+                >
                   {t("footer.sections.curriculums")}
-                </Typography>
+                </p>
+                {Array.isArray(footerData?.curriculums) && footerData.curriculums.length > 0 && (
+                  <FooterLinks footerData={footerData.curriculums} exact />
+                )}
+              </div>
+            </div>
 
-                {Array.isArray(footerData?.curriculums) &&
-                  footerData.curriculums.length > 0 && (
-                    <FooterLinks footerData={footerData.curriculums} exact />
-                  )}
-              </Box>
-            </Grid>
-            <Grid item lg={3} sm={6} xs={6}>
-              <Box sx={[styles.gridContent]}>
-                <Typography sx={styles.heading} variant="subtitle2">
+            {/* <Grid item lg={3} sm={6} xs={6}> — Subjects */}
+            <div className="w-1/2 lg:w-1/4">
+              <div className="flex flex-col">
+                <p
+                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900`}
+                >
                   {t("footer.sections.subjects")}
-                </Typography>
+                </p>
+                {Array.isArray(footerData?.subjects) && footerData.subjects.length > 0 && (
+                  <FooterLinks footerData={footerData.subjects} exact />
+                )}
+              </div>
+            </div>
 
-                {Array.isArray(footerData?.subjects) &&
-                  footerData.subjects.length > 0 && (
-                    <FooterLinks footerData={footerData.subjects} exact />
-                  )}
-              </Box>
-            </Grid>
-            <Grid item lg={3} sm={6} xs={6}>
-              <Box sx={styles.gridContent}>
-                <Box>
-                  <Typography sx={styles.heading} variant="subtitle2">
+            {/* <Grid item lg={3} sm={6} xs={6}> — Get Help + About Us (lg only) */}
+            <div className="w-1/2 lg:w-1/4">
+              <div className="flex flex-col">
+                <div>
+                  <p
+                    className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900`}
+                  >
                     {t("footer.sections.get_help")}
-                  </Typography>
+                  </p>
+                  {Array.isArray(footerData?.getHelp) && footerData.getHelp.length > 0 && (
+                    <FooterLinks footerData={footerData.getHelp} exact={false} />
+                  )}
+                </div>
+                {/* <Box sx={{ display: { xs: "none", lg: "block" } }}> — about-us, lg only */}
+                <div className="hidden lg:block">
+                  {/* heading + textAlign:start + marginTop:20 override */}
+                  <p
+                    className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[20px] text-start text-ink-900`}
+                  >
+                    {t("footer.sections.about_us")}
+                  </p>
+                  {Array.isArray(footerData?.aboutUs) &&
+                    footerData.aboutUs.map((item, index) => {
+                      if (!item || typeof item !== "string" || item.trim() === "") {
+                        return null;
+                      }
+                      let url = findAboutUsURL(item);
+                      if (locale === "ar" && url !== "/" && !url.startsWith("/ar")) {
+                        url = `/ar${url}`;
+                      }
+                      return (
+                        <Link href={url} key={index}>
+                          {/* <Typography variant="body2" sx={styles.text}> — body2 base + lineHeight 35/40/40/45 + black */}
+                          <p
+                            className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]`}
+                          >
+                            {item}
+                          </p>
+                        </Link>
+                      );
+                    })}
+                </div>
+              </div>
+            </div>
 
-                  {Array.isArray(footerData?.getHelp) &&
-                    footerData.getHelp.length > 0 && (
-                      <FooterLinks
-                        footerData={footerData.getHelp}
-                        exact={false}
-                      />
-                    )}
-                </Box>
-                <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                  <Typography
-                    variant="subtitle2"
-                    sx={[
-                      styles.heading,
-                      {
-                        textAlign: "start",
-                        marginTop: "20px",
-                      },
-                    ]}
-                  >
-                    {t("footer.sections.about_us")}
-                  </Typography>
-                  {Array.isArray(footerData?.aboutUs) &&
-                    footerData.aboutUs.map((item, index) => {
-                      if (
-                        !item ||
-                        typeof item !== "string" ||
-                        item.trim() === ""
-                      ) {
-                        return null;
-                      }
-                      let url = findAboutUsURL(item);
-                      // Add /ar prefix for Arabic locale if not already present
-                      if (
-                        locale === "ar" &&
-                        url !== "/" &&
-                        !url.startsWith("/ar")
-                      ) {
-                        url = `/ar${url}`;
-                      }
-                      return (
-                        <Link href={url} key={index}>
-                          <Typography sx={styles.text} variant="body2">
-                            {item}
-                          </Typography>
-                        </Link>
-                      );
-                    })}
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item lg={3} sm={6} xs={6}>
-              <Box sx={styles.gridContent}>
-                <Box sx={{ display: { xs: "block", lg: "none" } }}>
-                  <Typography
-                    sx={[
-                      styles.heading,
-                      {
-                        textAlign: "start",
-                        marginTop: "20px",
-                      },
-                    ]}
-                  >
-                    {t("footer.sections.about_us")}
-                  </Typography>
-                  {Array.isArray(footerData?.aboutUs) &&
-                    footerData.aboutUs.map((item, index) => {
-                      if (
-                        !item ||
-                        typeof item !== "string" ||
-                        item.trim() === ""
-                      ) {
-                        return null;
-                      }
-                      let url = findAboutUsURL(item);
-                      // Add /ar prefix for Arabic locale if not already present
-                      if (
-                        locale === "ar" &&
-                        url !== "/" &&
-                        !url.startsWith("/ar")
-                      ) {
-                        url = `/ar${url}`;
-                      }
-                      return (
-                        <Link href={url} key={index}>
-                          <Typography sx={styles.text} variant="body2">
-                            {item}
-                          </Typography>
-                        </Link>
-                      );
-                    })}
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-          <Divider sx={{ color: "black", width: "78%" }}></Divider>
-          <Typography sx={styles.rights} variant="subtitle2">
+            {/* <Grid item lg={3} sm={6} xs={6}> — About Us (xs/sm/md only) */}
+            <div className="w-1/2 lg:hidden">
+              <div className="flex flex-col">
+                <p
+                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[20px] text-start text-ink-900`}
+                >
+                  {t("footer.sections.about_us")}
+                </p>
+                {Array.isArray(footerData?.aboutUs) &&
+                  footerData.aboutUs.map((item, index) => {
+                    if (!item || typeof item !== "string" || item.trim() === "") {
+                      return null;
+                    }
+                    let url = findAboutUsURL(item);
+                    if (locale === "ar" && url !== "/" && !url.startsWith("/ar")) {
+                      url = `/ar${url}`;
+                    }
+                    return (
+                      <Link href={url} key={index}>
+                        <p
+                          className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]`}
+                        >
+                          {item}
+                        </p>
+                      </Link>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+
+          {/* <Divider sx={{ color: "black", width: "78%" }}> */}
+          <hr className="w-[78%] border-t border-black" />
+
+          {/* <Typography variant="subtitle2" sx={styles.rights}> — subtitle2 base 0.875rem/500/lh 1.57 + my-20/30/50/70 textAlign center */}
+          <p
+            className={`${leagueSpartan.className} text-sm font-medium leading-[1.57] tracking-[0.00714em] my-5 sm:my-[30px] md:my-[50px] lg:my-[70px] text-center text-ink-900`}
+          >
             {t("footer.copyright")}
-          </Typography>
-        </Box>
-      </Box>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };
 
 export default Footer;
-
-const styles = {
-  background: {
-    background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#37B6FF)",
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingY: { xs: "40px", md: "100px" },
-    position: "relative",
-    // zIndex: -3,
-  },
-  contanier: {
-    display: "flex",
-    width: "90%",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "rgba(255,255,255,0.7)",
-    boxShadow:
-      "5px -5px 8px 0px rgba(0, 0, 0, 0.15) inset, -6px 2px 8px 0px rgba(0, 0, 0, 0.15) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-    borderRadius: "10px",
-    zIndex: 0,
-  },
-  admissionContanier: {
-    display: "flex",
-    alignItems: "center",
-  },
-
-  imageContanier: {
-    maxWidth: "90px",
-    maxHeight: "90px",
-    minWidth: "75px",
-    minHeight: "75px",
-    width: "9vh",
-    height: "9vh",
-    borderRadius: "50%",
-    backgroundColor: "white",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  admissionText: {
-    marginLeft: "10px",
-    color: "white",
-    textAlign: {
-      xs: "center",
-      sm: "center",
-      md: "start",
-    },
-  },
-  contactContanier: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "rgba(56, 182, 255, 1)",
-    padding: {
-      xs: "10px",
-      sm: "20px",
-      md: "25px",
-      lg: "30px",
-    },
-    borderRadius: "5px",
-    marginTop: "-70px",
-    width: { xs: "80%", sm: "80%", md: "85%" },
-  },
-  phoneText: {
-    color: "white",
-    marginX: "10px",
-  },
-  contactButton: {
-    boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
-    backgroundColor: "white",
-    borderRadius: "10px",
-    letterSpacing: "-2%",
-    lineHeight: "23px",
-    color: "#009BF5",
-    textTransform: "none",
-    width: "100%",
-    paddingY: {
-      xs: "1.5vh",
-      sm: "1.5vh",
-      md: "2vh",
-      lg: "2vh",
-    },
-    paddingX: {
-      xs: "25px",
-      sm: "25px",
-      md: "22px",
-      lg: "25px",
-    },
-    ":hover": {
-      backgroundColor: "white",
-      borderRadius: "10px",
-      letterSpacing: "-2%",
-      boxShadow: "1px 15px 34px 0px rgba(0, 0, 0, 0.2)",
-    },
-  },
-  desc: {
-    marginTop: "40px",
-    textAlign: {
-      xs: "center",
-      sm: "center",
-      md: "start",
-      lg: "start",
-    },
-    color: "#000000",
-  },
-  gridContent: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  heading: {
-    fontWeight: 700,
-    marginBottom: "15px",
-    marginTop: "12px",
-    textTransform: "capitalize",
-  },
-  text: {
-    lineHeight: {
-      xs: "35px",
-      sm: "40px",
-      md: "40px",
-      lg: "45px",
-    },
-    color: "black",
-  },
-  rights: {
-    marginY: {
-      xs: "20px",
-      sm: "30px",
-      md: "50px",
-      lg: "70px",
-    },
-    textAlign: "center",
-  },
-  rightCircle: {
-    display: "flex",
-    width: 135,
-    height: 135,
-    borderRadius: 70,
-    position: "absolute",
-    top: 70,
-    right: 60,
-    backgroundColor: "#37B6FF",
-    zIndex: -1,
-  },
-  leftCircle: {
-    display: "flex",
-    borderRadius: "50%",
-    position: "absolute",
-    bottom: 0,
-    left: -230,
-    border: "100px solid #37B6FF",
-    zIndex: -1,
-    width: {
-      xs: "330px",
-      sm: "430px",
-      md: "430px",
-      lg: "430px",
-    },
-    height: {
-      xs: "330px",
-      sm: "430px",
-      md: "430px",
-      lg: "430px",
-    },
-    backgroundColor: "transparent",
-  },
-  social: {
-    width: "40px",
-    height: "40px",
-    marginRight: "20px",
-    cursor: "pointer",
-    zIndex: 100,
-  },
-  socialBox: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: {
-      xs: "40px",
-      lg: "20px",
-    },
-    alignItems: { xs: "center", lg: "flex-start" },
-    justifyContent: "center",
-    marginBottom: "80px",
-  },
-  iconsOnly: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: { xs: "center", lg: "flex-start" },
-    marginBottom: "15px",
-  },
-  contactInfo: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: { xs: "center", lg: "flex-start" },
-    gap: "5px",
-  },
-  contactText: {
-    color: "black",
-    fontWeight: 500,
-    fontSize: "14px",
-    ":hover": {
-      color: "#37B6FF",
-    },
-  },
-};

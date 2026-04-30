@@ -1,7 +1,6 @@
 import React from "react";
-import styles from "./SchoolLogosSection.module.css";
-
 import Image from "next/image";
+
 import {
   getTrustedSchools,
   Trusted_Schools_Type,
@@ -10,31 +9,28 @@ import {
 async function SchoolLogosSection() {
   const trustedSchools: Trusted_Schools_Type = await getTrustedSchools();
   return (
-    <div className={styles.main}>
-      <div className={styles.logosDiv}>
-        <div className={styles.logoWrapper}>
-          {trustedSchools?.images.map((logo, i) => (
-            <Image
-              key={i}
-              src={logo}
-              alt="logo"
-              width={100}
-              height={100}
-              objectFit="contain"
-            />
-          ))}
-          {/* Duplicate logos for a seamless sliding effect */}
-          {trustedSchools?.images.map((logo, i) => (
-            <Image
-              key={`duplicate-${i}`}
-              src={logo}
-              alt="logo"
-              width={100}
-              height={100}
-              objectFit="contain"
-            />
-          ))}
-        </div>
+    <div className="overflow-hidden bg-white py-8">
+      <div className="flex animate-[slide_25s_linear_infinite] gap-8 whitespace-nowrap">
+        {trustedSchools?.images.map((logo, i) => (
+          <Image
+            key={i}
+            src={logo}
+            alt="logo"
+            width={100}
+            height={100}
+            className="h-24 w-auto object-contain"
+          />
+        ))}
+        {trustedSchools?.images.map((logo, i) => (
+          <Image
+            key={`duplicate-${i}`}
+            src={logo}
+            alt="logo"
+            width={100}
+            height={100}
+            className="h-24 w-auto object-contain"
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,320 +1,90 @@
 "use client";
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+
 import React from "react";
+import Image from "next/image";
+import { useI18n } from "@/context/language-context";
+import { cn } from "@/utils/cn";
+import en from "@/locales/en.json";
+import ar from "@/locales/ar.json";
 
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import scholarHat from "../../../public/assets/images/svg/scholarHat.svg";
 import book from "../../../public/assets/images/svg/book.svg";
 import calendar from "../../../public/assets/images/svg/calendar.svg";
-import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
 
-type IProps = {
-  heading: string;
-  dec: string;
-  icon: string;
+type IconKey = "scholarHat" | "book" | "calendar";
+
+const iconMap: Record<IconKey, { src: any; alt: string }> = {
+  scholarHat: { src: scholarHat, alt: "scholar hat" },
+  book: { src: book, alt: "book" },
+  calendar: { src: calendar, alt: "calendar" },
 };
 
-const WhyChooseTuitional: React.FunctionComponent = () => {
-  const theme = useTheme();
-  const [isGreaterThanLarge, setIsGreaterThanLarge] = React.useState(false);
+interface InfoBoxProps {
+  heading: string;
+  dec: string;
+  icon: IconKey;
+}
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const mediaQuery = window.matchMedia(theme.breakpoints.up("lg"));
-      setIsGreaterThanLarge(mediaQuery.matches);
+const InfoBox: React.FC<InfoBoxProps> = ({ heading, dec, icon }) => {
+  const { src, alt } = iconMap[icon];
+  return (
+    <div className="relative flex h-auto min-h-[250px] w-full flex-col items-center justify-center rounded-md bg-white/70 p-6 shadow-[0px_-3px_8px_0px_#00000026_inset,0px_2px_1px_0px_#0000000D] sm:mx-6 sm:h-[280px] sm:w-[320px] md:h-[320px] md:w-[360px] lg:h-[400px] lg:w-[380px] xl:h-[460px] xl:w-[420px]">
+      <div className="mb-[10px] flex h-[45px] w-[45px] items-center justify-center rounded-full bg-white shadow-[0px_-2px_4px_0px_#0000005C_inset,0px_4px_12.6px_0px_#009BF526] sm:mb-5 sm:h-[55px] sm:w-[55px] md:mb-[30px] md:h-[75px] md:w-[75px] lg:-mt-20 lg:mb-10 lg:h-[115px] lg:w-[115px]">
+        <div className="h-5 w-5 sm:h-[30px] sm:w-[30px] md:h-[45px] md:w-[45px] lg:h-[45px] lg:w-[45px]">
+          <Image src={src} alt={alt} className="h-full w-full" />
+        </div>
+      </div>
+      <div className="h-[35%]">
+        <h3 className="mb-[10px] text-center font-heading text-[16px] font-semibold leading-5 sm:mb-[15px] sm:text-[18px] sm:leading-[22px] md:mb-[18px] md:text-[20px] md:leading-6 lg:mb-[22px] lg:text-2xl lg:leading-7 xl:text-[28px] xl:leading-8">
+          {heading}
+        </h3>
+        <p className="mx-auto max-w-full text-center font-heading text-[12px] leading-4 text-ink-800 sm:max-w-[280px] sm:text-[13px] sm:leading-[17px] md:max-w-[320px] md:text-[14px] md:leading-[18px] lg:max-w-[340px] lg:text-[15px] lg:leading-5 xl:max-w-[380px] xl:text-base xl:leading-[22px]">
+          {dec}
+        </p>
+      </div>
+    </div>
+  );
+};
 
-      const handleChange = (e: MediaQueryListEvent) => {
-        setIsGreaterThanLarge(e.matches);
-      };
-
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [theme]);
+const WhyChooseTuitional: React.FC = () => {
+  const { t, isRTL } = useI18n();
+  const dict = isRTL ? ar : en;
+  const items = dict.about.why_choose.items;
 
   return (
-    <Box>
-      <Box sx={styles.headingContanier}>
-        <Typography
-          sx={styles.mainHeading}
-          component={"h2"}
-          variant="h2"
-          className={leagueSpartan.className}
-        >
-          Why Choose Tuitional?
-        </Typography>
-      </Box>
-      {/* <Grid container={isXL} spacing={2} sx={styles.gridContainer}>
-        <Grid item>
-          <InfoBox
-            heading="Experienced Tutors"
-            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
-            icon="scholarHat"
+    <div>
+      <div className="mb-auto flex w-full flex-col items-center bg-transparent lg:mb-6">
+        <h2 className="relative mb-5 mt-10 flex items-center justify-center text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black">
+          <Image
+            src={linesMobile}
+            alt=""
+            aria-hidden="true"
+            className="absolute -top-3 left-[11%] h-[19px] w-5 object-contain sm:hidden"
           />
-        </Grid>
-        <Grid item>
-          <InfoBox
-            heading="One-on-One Learning"
-            dec={`Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements.`}
-            icon="book"
+          <Image
+            src={linesInvert}
+            alt=""
+            aria-hidden="true"
+            className="absolute -left-[6%] -top-[35px] hidden h-[35px] w-[43px] object-contain sm:block"
           />
-        </Grid>
-        <Grid item>
-          <InfoBox
-            heading="Flexible Schedules"
-            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
-            icon="calendar"
-          />
-        </Grid>
-        
-        
-      </Grid> */}
+          {t("about.why_choose.heading")}
+        </h2>
+      </div>
 
-      <Grid
-        container={!isGreaterThanLarge}
-        spacing={!isGreaterThanLarge ? 2 : 0}
-        sx={styles.gridContainer}
-      >
-        <Grid item md={12} lg={3} sx={styles.gridItem}>
-          <InfoBox
-            heading="Experienced Tutors"
-            dec="We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings."
-            icon="scholarHat"
-          />
-        </Grid>
-        <Grid item md={12} lg={3} sx={styles.gridItem}>
-          <InfoBox
-            heading="One-on-One Learning"
-            dec="Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements."
-            icon="book"
-          />
-        </Grid>
-        <Grid item md={12} lg={3} sx={styles.gridItem}>
-          <InfoBox
-            heading="Flexible Schedules"
-            dec="From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways."
-            icon="calendar"
-          />
-        </Grid>
-      </Grid>
-    </Box>
+      <div className="flex w-full flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0">
+        {items.map((item, i) => (
+          <div
+            key={i}
+            className="mb-4 flex w-full justify-center sm:w-full md:w-[90%] lg:mb-0 lg:w-auto"
+          >
+            <InfoBox heading={item.heading} dec={item.dec} icon={item.icon as IconKey} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default WhyChooseTuitional;
-
-const InfoBox: React.FunctionComponent<IProps> = ({ heading, dec, icon }) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "rgba(255,255,255,0.7)",
-        width: {
-          xs: "100%",
-          sm: "320px",
-          md: "360px",
-          lg: "380px",
-          xl: "420px",
-        },
-        height: {
-          xs: "auto",
-          sm: "280px",
-          md: "320px",
-          lg: "400px",
-          xl: "460px",
-        },
-        minHeight: { xs: "250px", sm: "280px", md: "320px", lg: "400px" },
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        borderRadius: "10px",
-        padding: "24px",
-        boxShadow:
-          "0px -3px 8px 0px #00000026 inset, 0px 2px 1px 0px #0000000D",
-        position: "relative",
-        marginX: { sm: "24px" },
-      }}
-    >
-      <Box sx={styles.icon}>
-        <Box
-          sx={{
-            height: {
-              xs: "20px",
-              sm: "30px",
-              md: "45px",
-              lg: "45px",
-            },
-            width: {
-              xs: "20px",
-              sm: "30px",
-              md: "45px",
-              lg: "45px",
-            },
-          }}
-        >
-          {icon === "scholarHat" && (
-            <Image
-              src={scholarHat.src}
-              width={scholarHat.width}
-              height={scholarHat.height}
-              alt="sucess"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-          {icon === "book" && (
-            <Image
-              src={book.src}
-              width={book.width}
-              height={book.height}
-              alt="book"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-
-          {icon === "calendar" && (
-            <Image
-              src={calendar.src}
-              width={calendar.width}
-              height={calendar.height}
-              alt="calendar"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )}
-        </Box>
-      </Box>
-      <Box sx={{ height: "35%" }}>
-        <Typography
-          sx={styles.heading}
-          className={leagueSpartan.className}
-          variant="h3"
-        >
-          {heading}
-        </Typography>
-        <Typography
-          sx={styles.dec}
-          className={leagueSpartan.className}
-          variant="body2"
-        >
-          {dec}
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
-
-const styles = {
-  infoBoxContanier: {},
-  heading: {
-    marginBottom: { xs: "10px", sm: "15px", md: "18px", lg: "22px" },
-    textAlign: "center",
-    fontSize: { xs: "16px", sm: "18px", md: "20px", lg: "24px", xl: "28px" },
-    fontWeight: 600,
-    lineHeight: { xs: "20px", sm: "22px", md: "24px", lg: "28px", xl: "32px" },
-  },
-  dec: {
-    textAlign: "center",
-    maxWidth: {
-      xs: "100%",
-      sm: "280px",
-      md: "320px",
-      lg: "340px",
-      xl: "380px",
-    },
-    color: "rgba(0,0,0,0.77)",
-    fontSize: { xs: "12px", sm: "13px", md: "14px", lg: "15px", xl: "16px" },
-    lineHeight: { xs: "16px", sm: "17px", md: "18px", lg: "20px", xl: "22px" },
-    margin: "auto",
-  },
-  icon: {
-    width: { xs: "45px", sm: "55px", md: "75px", lg: "115px" },
-    height: { xs: "45px", sm: "55px", md: "75px", lg: "115px" },
-    backgroundColor: "white",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "60px",
-
-    boxShadow:
-      " 0px -2px 4px 0px #0000005C inset, 0px 4px 12.6px 0px #009BF526",
-    marginBottom: { xs: "10px", sm: "20px", md: "30px", lg: "40px" },
-    marginTop: { lg: "-80px" },
-  },
-  mainHeading: {
-    display: "flex",
-    marginTop: {
-      xs: "40px",
-      sm: "50px",
-      md: "70px",
-      lg: "105px",
-    },
-    marginBottom: "20px",
-    position: "relative",
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#000000",
-    "::before": {
-      content: "''",
-      position: "absolute",
-      // zIndex: 10,
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: {
-        xs: "19px",
-        sm: "35px",
-        md: "35px",
-        lg: "35px",
-      },
-      width: {
-        xs: "20px",
-        sm: "43px",
-        md: "43px",
-        lg: "43px",
-      },
-
-      backgroundRepeat: "no-repeat",
-      top: {
-        xs: -12,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      left: {
-        xs: "11%",
-        sm: "-6%",
-        md: "-6%",
-        lg: "-6%",
-      },
-    },
-  },
-  headingContanier: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100%",
-    background: "transparent",
-    marginBottom: { xs: "auto", lg: "24px" },
-  },
-  gridContainer: {
-    display: "flex",
-    alignItems: "stretch",
-    justifyContent: "center",
-    width: "100%",
-    columnGap: { lg: "24px", xs: 0 },
-    rowGap: { xs: "16px", lg: 0 },
-    flexDirection: { lg: "row", md: "column", sm: "column", xs: "column" },
-    flexWrap: "wrap",
-  },
-  gridItem: {
-    marginBottom: { xs: "16px", lg: "0" },
-    width: { xs: "100%", sm: "100%", md: "90%", lg: "auto" },
-    display: "flex",
-    justifyContent: "center",
-  },
-};

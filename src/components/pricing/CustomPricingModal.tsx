@@ -1,26 +1,15 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  Button,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-  IconButton,
-  Box,
-  Divider
-} from '@mui/material';
-import { Add, Close, Delete } from '@mui/icons-material';
-import { leagueSpartan } from '@/app/fonts';
-import { CustomPricingSelection } from '@/types/pricing';
-import { SUPPORTED_COUNTRIES, getCurrencySymbol } from '@/utils/pricing-helpers';
-import { DropdownOptions } from '@/services/dropdown/dropdown-api';
-import { calculateCustomPricing } from '@/services/pricing/pricing-api';
-import styles from './CustomPricingModal.module.css';
+
+import React, { useState, useEffect } from "react";
+import { Plus, Trash2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Dialog as HouseDialog } from "@/components/ui/dialog";
+import { Select } from "@/components/ui/select";
+import { CustomPricingSelection } from "@/types/pricing";
+import { getCurrencySymbol } from "@/utils/pricing-helpers";
+import { DropdownOptions } from "@/services/dropdown/dropdown-api";
+import { calculateCustomPricing } from "@/services/pricing/pricing-api";
 
 interface PackageRow {
   id: string;
@@ -47,108 +36,71 @@ interface CustomPricingModalProps {
   dropdownOptions: DropdownOptions;
 }
 
+const defaultLevels = ["IGCSE", "A-Levels", "IB", "SAT", "AP"];
+
 const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
   open,
   onClose,
   userCountry,
-  dropdownOptions
+  dropdownOptions,
 }) => {
   const [rows, setRows] = useState<PackageRow[]>([]);
 
-  // Default levels (not in dropdown collection)
-  const defaultLevels = ['IGCSE', 'A-Levels', 'IB', 'SAT', 'AP'];
-
-  // Use dropdown options from props (server-side fetched)
-  const dropdownOptionsWithLevels = {
+  const opts = {
     grades: dropdownOptions.grades,
-    levels: defaultLevels, // levels not in Firebase, use default
+    levels: defaultLevels,
     curricula: dropdownOptions.curriculum,
     subjects: dropdownOptions.subjects,
-    countries: dropdownOptions.countries
+    countries: dropdownOptions.countries,
   };
 
-
-  // Initialize with one row
-  useEffect(() => {
-    if (open && rows.length === 0) {
-      addNewRow();
-    }
-  }, [open, rows.length]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Handle body scroll lock
-  useEffect(() => {
-    if (open) {
-      // Disable body scroll
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = 'hidden';
-
-      return () => {
-        // Re-enable body scroll when modal closes
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [open]);
-
-  const generateRowId = React.useCallback(() => `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, []);
+  const generateRowId = React.useCallback(
+    () => `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    [],
+  );
 
   const addNewRow = React.useCallback(() => {
-
-    // Map userCountry to dropdown format if needed
-    const mappedCountry = userCountry === 'United States' ? 'USA' :
-                         userCountry === 'United Kingdom' ? 'UK' :
-                         userCountry === 'United Arab Emirates' ? 'UAE' :
-                         userCountry;
-
-    const newRow: PackageRow = {
-      id: generateRowId(),
-      country: mappedCountry,
-      grade: '',
-      level: '',
-      curriculum: '',
-      subject: '',
-      hours: 10,
-      baseRate: 85, // Will be updated from database
-      discountPercentage: 0,
-      finalRate: 85,
-      totalCost: 850,
-      originalCost: 850,
-      savings: 0,
-      isCalculating: false,
-      calculationError: undefined
-    };
-    setRows(prev => [...prev, newRow]);
+    const mappedCountry =
+      userCountry === "United States"
+        ? "USA"
+        : userCountry === "United Kingdom"
+          ? "UK"
+          : userCountry === "United Arab Emirates"
+            ? "UAE"
+            : userCountry;
+    setRows((prev) => [
+      ...prev,
+      {
+        id: generateRowId(),
+        country: mappedCountry,
+        grade: "",
+        level: "",
+        curriculum: "",
+        subject: "",
+        hours: 10,
+        baseRate: 85,
+        discountPercentage: 0,
+        finalRate: 85,
+        totalCost: 850,
+        originalCost: 850,
+        savings: 0,
+        isCalculating: false,
+      },
+    ]);
   }, [userCountry, generateRowId]);
 
+  useEffect(() => {
+    if (open && rows.length === 0) addNewRow();
+  }, [open, rows.length, addNewRow]);
+
   const removeRow = (rowId: string) => {
-    if (rows.length > 1) {
-      setRows(prev => prev.filter(row => row.id !== rowId));
-    }
+    if (rows.length > 1) setRows((prev) => prev.filter((row) => row.id !== rowId));
   };
 
-  const updateRow = (rowId: string, field: keyof PackageRow, value: any) => {
-    setRows(prev => prev.map(row => {
-      if (row.id === rowId) {
-        const updatedRow = { ...row, [field]: value };
-
-        // If academic fields changed, recalculate pricing from database
-        if (['country', 'grade', 'level', 'curriculum', 'subject', 'hours'].includes(field)) {
-          calculateRealPricing(updatedRow);
-          return { ...updatedRow, isCalculating: true, calculationError: undefined };
-        }
-
-        return updatedRow;
-      }
-      return row;
-    }));
-  };
-
-  // Real-time pricing calculation using database
   const calculateRealPricing = async (row: PackageRow) => {
-    // Check if all required fields are filled
     if (!row.country || !row.grade || !row.level || !row.curriculum || !row.subject || !row.hours) {
       return;
     }
-
     try {
       const pricingResult = await calculateCustomPricing({
         country: row.country,
@@ -156,12 +108,11 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
         level: row.level,
         curriculum: row.curriculum,
         subject: row.subject,
-        hours: row.hours
+        hours: row.hours,
       });
-
-      // Update the row with real pricing data
-      setRows(prev => prev.map(r => {
-        if (r.id === row.id) {
+      setRows((prev) =>
+        prev.map((r) => {
+          if (r.id !== row.id) return r;
           if (pricingResult) {
             return {
               ...r,
@@ -172,90 +123,53 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
               originalCost: pricingResult.originalCost,
               savings: pricingResult.savings,
               isCalculating: false,
-              calculationError: undefined
-            };
-          } else {
-            // No package found for this configuration
-            return {
-              ...r,
-              isCalculating: false,
-              calculationError: 'No package available for this configuration'
+              calculationError: undefined,
             };
           }
-        }
-        return r;
-      }));
-
+          return { ...r, isCalculating: false, calculationError: "No package available for this configuration" };
+        }),
+      );
     } catch (error) {
-      console.error('🔥 Custom Pricing - Calculation error:', error);
-
-      // Update row with error state
-      setRows(prev => prev.map(r => {
-        if (r.id === row.id) {
-          return {
-            ...r,
-            isCalculating: false,
-            calculationError: 'Error calculating pricing'
-          };
-        }
-        return r;
-      }));
+      console.error("🔥 Custom Pricing - Calculation error:", error);
+      setRows((prev) =>
+        prev.map((r) => (r.id === row.id ? { ...r, isCalculating: false, calculationError: "Error calculating pricing" } : r)),
+      );
     }
   };
 
-  // Fallback calculation (keeping for when database fails)
-  const calculateRowPricing = (row: PackageRow): PackageRow => {
-    // Simple discount calculation based on hours (fallback)
-    let discountPercentage = 0;
-    if (row.hours >= 51) discountPercentage = 15;
-    else if (row.hours >= 21) discountPercentage = 10;
-    else if (row.hours >= 9) discountPercentage = 5;
-
-    const finalRate = row.baseRate * (1 - discountPercentage / 100);
-    const totalCost = finalRate * row.hours;
-    const originalCost = row.baseRate * row.hours;
-    const savings = originalCost - totalCost;
-
-    return {
-      ...row,
-      discountPercentage,
-      finalRate,
-      totalCost,
-      originalCost,
-      savings,
-      isCalculating: false,
-      calculationError: undefined
-    };
+  const updateRow = (rowId: string, field: keyof PackageRow, value: any) => {
+    setRows((prev) =>
+      prev.map((row) => {
+        if (row.id !== rowId) return row;
+        const updatedRow = { ...row, [field]: value };
+        if (["country", "grade", "level", "curriculum", "subject", "hours"].includes(field as string)) {
+          calculateRealPricing(updatedRow);
+          return { ...updatedRow, isCalculating: true, calculationError: undefined };
+        }
+        return updatedRow;
+      }),
+    );
   };
 
-  const getTotalCost = () => {
-    return rows.reduce((total, row) => total + row.totalCost, 0);
-  };
-
-  const getTotalSavings = () => {
-    return rows.reduce((total, row) => total + row.savings, 0);
-  };
+  const getTotalCost = () => rows.reduce((total, row) => total + row.totalCost, 0);
+  const getTotalSavings = () => rows.reduce((total, row) => total + row.savings, 0);
 
   const getCurrency = (country: string) => {
-    // Use the dropdown options currencies mapping
     const currency = dropdownOptions.currencies?.[country];
     if (currency) return currency;
-
-    // Fallback mapping for common country codes
-    const currencyMap: { [key: string]: string } = {
-      'USA': 'USD',
-      'UK': 'GBP',
-      'UAE': 'AED',
-      'Saudi Arabia': 'SAR',
-      'Qatar': 'QAR',
-      'Kuwait': 'KWD',
-      'Canada': 'CAD',
-      'Australia': 'AUD',
-      'Oman': 'OMR',
-      'Bahrain': 'BHD'
+    const currencyMap: Record<string, string> = {
+      USA: "USD",
+      UK: "GBP",
+      UAE: "AED",
+      "Saudi Arabia": "SAR",
+      Qatar: "QAR",
+      Kuwait: "KWD",
+      Canada: "CAD",
+      Australia: "AUD",
+      Oman: "OMR",
+      Bahrain: "BHD",
     };
-
-    return currencyMap[country] || 'USD';
+    return currencyMap[country] || "USD";
   };
 
   const handleClose = () => {
@@ -263,223 +177,138 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
     onClose();
   };
 
-  const handleProceed = () => {
-    // Handle booking logic here
-    handleClose();
-  };
-
   const renderRow = (row: PackageRow, index: number) => (
-    <div key={row.id} className={styles.packageRow}>
-      {/* Row Number */}
-      <div className={styles.rowNumber}>
-        <Typography className={`${styles.rowNumberText} ${leagueSpartan.className}`}>
+    <div key={row.id} className="flex flex-col gap-3 rounded-md border border-ink-200 bg-white p-4">
+      <div className="flex items-center justify-between">
+        <span className="rounded-full bg-brand-500 px-3 py-1 font-heading text-small font-bold text-white">
           {index + 1}
-        </Typography>
-      </div>
-
-      {/* Row Content - All in one horizontal line */}
-      <div className={styles.rowContent}>
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>Grade</InputLabel>
-          <Select
-            value={row.grade}
-            label="Grade"
-            onChange={(e) => updateRow(row.id, 'grade', e.target.value)}
-          >
-            {dropdownOptionsWithLevels.grades.map((grade) => (
-              <MenuItem key={grade} value={grade}>{grade}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>Level</InputLabel>
-          <Select
-            value={row.level}
-            label="Level"
-            onChange={(e) => updateRow(row.id, 'level', e.target.value)}
-          >
-            {dropdownOptionsWithLevels.levels.map((level) => (
-              <MenuItem key={level} value={level}>{level}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>Subject</InputLabel>
-          <Select
-            value={row.subject}
-            label="Subject"
-            onChange={(e) => updateRow(row.id, 'subject', e.target.value)}
-          >
-            {dropdownOptionsWithLevels.subjects.map((subject) => (
-              <MenuItem key={subject} value={subject}>{subject}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={styles.dropdown} size="small">
-          <InputLabel>Curriculum</InputLabel>
-          <Select
-            value={row.curriculum}
-            label="Curriculum"
-            onChange={(e) => updateRow(row.id, 'curriculum', e.target.value)}
-          >
-            {dropdownOptionsWithLevels.curricula.map((curriculum) => (
-              <MenuItem key={curriculum} value={curriculum}>{curriculum}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <div className={styles.hoursInput}>
-          <TextField
-            label="Hours"
-            type="number"
-            size="small"
-            value={row.hours}
-            onChange={(e) => updateRow(row.id, 'hours', parseInt(e.target.value) || 0)}
-            inputProps={{ min: 1, max: 200 }}
-            className={styles.hoursField}
-          />
-        </div>
-
-        <div className={styles.priceDetails}>
-          {row.isCalculating ? (
-            <div className={styles.loadingPrice}>
-              <Typography className={styles.loadingText}>
-                Calculating...
-              </Typography>
-            </div>
-          ) : row.calculationError ? (
-            <div className={styles.errorPrice}>
-              <Typography className={styles.errorText}>
-                {row.calculationError}
-              </Typography>
-            </div>
-          ) : (
-            <>
-              <Typography className={styles.currentPrice}>
-                {getCurrencySymbol(getCurrency(row.country))}{row.totalCost.toFixed(0)}
-              </Typography>
-              {row.savings > 0 && (
-                <>
-                  <Typography className={styles.originalPrice}>
-                    {getCurrencySymbol(getCurrency(row.country))}{row.originalCost.toFixed(0)}
-                  </Typography>
-                  <Typography className={styles.savingsText}>
-                    Save {row.discountPercentage}%
-                  </Typography>
-                </>
-              )}
-              {row.discountPercentage > 0 && (
-                <Typography className={styles.discountInfo}>
-                  {row.finalRate.toFixed(0)} {getCurrency(row.country)}/hour
-                </Typography>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className={styles.rowActions}>
+        </span>
         {rows.length > 1 && (
-          <IconButton
+          <button
+            type="button"
             onClick={() => removeRow(row.id)}
-            className={styles.deleteButton}
-            size="small"
+            className="rounded-full p-2 text-ink-700 hover:bg-ink-100 hover:text-danger"
+            aria-label="Remove row"
           >
-            <Delete />
-          </IconButton>
+            <Trash2 size={18} />
+          </button>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+        <Select
+          value={row.grade}
+          onChange={(v) => updateRow(row.id, "grade", v)}
+          options={opts.grades.map((g) => ({ value: g, label: g }))}
+          placeholder="Grade"
+          ariaLabel="Grade"
+        />
+        <Select
+          value={row.level}
+          onChange={(v) => updateRow(row.id, "level", v)}
+          options={opts.levels.map((l) => ({ value: l, label: l }))}
+          placeholder="Level"
+          ariaLabel="Level"
+        />
+        <Select
+          value={row.subject}
+          onChange={(v) => updateRow(row.id, "subject", v)}
+          options={opts.subjects.map((s) => ({ value: s, label: s }))}
+          placeholder="Subject"
+          ariaLabel="Subject"
+        />
+        <Select
+          value={row.curriculum}
+          onChange={(v) => updateRow(row.id, "curriculum", v)}
+          options={opts.curricula.map((c) => ({ value: c, label: c }))}
+          placeholder="Curriculum"
+          ariaLabel="Curriculum"
+        />
+        <input
+          type="number"
+          value={row.hours}
+          onChange={(e) => updateRow(row.id, "hours", parseInt(e.target.value) || 0)}
+          min={1}
+          max={200}
+          aria-label="Hours"
+          className="h-11 rounded-md bg-white px-4 font-body text-form-input text-ink-900 shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+        />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3">
+        {row.isCalculating ? (
+          <span className="font-heading text-small text-ink-700">Calculating...</span>
+        ) : row.calculationError ? (
+          <span className="font-heading text-small text-danger">{row.calculationError}</span>
+        ) : (
+          <>
+            <span className="font-heading text-h5 font-bold text-brand-500">
+              {getCurrencySymbol(getCurrency(row.country))}
+              {row.totalCost.toFixed(0)}
+            </span>
+            {row.savings > 0 && (
+              <>
+                <span className="font-heading text-small text-ink-500 line-through">
+                  {getCurrencySymbol(getCurrency(row.country))}
+                  {row.originalCost.toFixed(0)}
+                </span>
+                <span className="font-heading text-small font-semibold text-success">
+                  Save {row.discountPercentage}%
+                </span>
+              </>
+            )}
+            {row.discountPercentage > 0 && (
+              <span className="font-heading text-small text-ink-700">
+                {row.finalRate.toFixed(0)} {getCurrency(row.country)}/hour
+              </span>
+            )}
+          </>
         )}
       </div>
     </div>
   );
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      maxWidth="lg"
-      fullWidth
-      className={styles.modal}
-      PaperProps={{
-        className: styles.modalPaper
-      }}
-      disableScrollLock={false}
-      keepMounted={false}
-      scroll="paper"
-      disableEscapeKeyDown={false}
-    >
-      {/* Header */}
-      <div className={styles.modalHeader}>
-        <Typography variant="h5" className={`${styles.modalTitle} ${leagueSpartan.className}`}>
-          Custom Package Builder
-        </Typography>
-        <IconButton onClick={handleClose} className={styles.closeButton}>
-          <Close />
-        </IconButton>
-      </div>
-
-      {/* Content */}
-      <div className={styles.modalContent}>
-
-        {/* Scrollable Package Rows Section */}
-        <div className={styles.scrollableContent}>
-          <div className={styles.rowsContainer}>
+    <HouseDialog open={open} onClose={handleClose} title="Custom Package Builder" size="xl">
+      <div className="flex flex-col gap-4">
+        <div className="max-h-[50vh] overflow-y-auto pr-1">
+          <div className="flex flex-col gap-3">
             {rows.map((row, index) => renderRow(row, index))}
           </div>
-
-          {/* Add Row Button */}
-          <div className={styles.addRowSection}>
-            <Button
-              onClick={addNewRow}
-              startIcon={<Add />}
-              className={styles.addRowButton}
-            >
-              Add Another Subject
-            </Button>
-          </div>
         </div>
 
-        {/* Fixed Bottom Section */}
-        <div className={styles.fixedBottomSection}>
-          <Divider className={styles.divider} />
+        <div className="flex justify-start">
+          <Button onClick={addNewRow} variant="outline">
+            <Plus size={18} />
+            Add Another Subject
+          </Button>
+        </div>
 
-          {/* Total Summary */}
-          <div className={styles.totalSummary}>
-            <div className={styles.summaryContent}>
-              <Typography className={`${styles.summaryLabel} ${leagueSpartan.className}`}>
-                Total Cost
-              </Typography>
-              <div className={styles.summaryPricing}>
-                <Typography className={`${styles.totalPrice} ${leagueSpartan.className}`}>
-                  {getCurrencySymbol(getCurrency(userCountry))}{getTotalCost().toFixed(0)}
-                </Typography>
-                {getTotalSavings() > 0 && (
-                  <Typography className={styles.totalSavings}>
-                    You save {getCurrencySymbol(getCurrency(userCountry))}{getTotalSavings().toFixed(0)}
-                  </Typography>
-                )}
-              </div>
+        <hr className="border-ink-200" />
+
+        <div className="rounded-md bg-brand-50 p-4">
+          <div className="flex items-center justify-between">
+            <span className="font-heading text-h5 text-ink-900">Total Cost</span>
+            <div className="text-right">
+              <span className="font-heading text-h3 font-bold text-brand-500">
+                {getCurrencySymbol(getCurrency(userCountry))}
+                {getTotalCost().toFixed(0)}
+              </span>
+              {getTotalSavings() > 0 && (
+                <p className="font-heading text-small font-semibold text-success">
+                  You save {getCurrencySymbol(getCurrency(userCountry))}
+                  {getTotalSavings().toFixed(0)}
+                </p>
+              )}
             </div>
           </div>
-
-          {/* Footer */}
-          <div className={styles.modalFooter}>
-            <Button
-              variant="contained"
-              onClick={handleProceed}
-              className={`${styles.proceedButton} ${leagueSpartan.className}`}
-              fullWidth
-              size="large"
-            >
-              Proceed to Book
-            </Button>
-          </div>
         </div>
+
+        <Button variant="primary" size="lg" className="w-full" onClick={handleClose}>
+          Proceed to Book
+        </Button>
       </div>
-    </Dialog>
+    </HouseDialog>
   );
 };
 

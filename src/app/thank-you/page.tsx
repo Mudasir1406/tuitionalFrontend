@@ -1,10 +1,8 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../public/assets/images/static/logo.png";
 import { leagueSpartan } from "@/app/fonts";
-// import HeaderV3 from "@/components/header-v3";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,169 +14,49 @@ export const metadata: Metadata = {
 
 const ThankYouPage = () => {
   return (
-    <Box sx={styles.pageContainer}>
-      {/* <HeaderV3 /> */}
-      
-      <Box sx={styles.contentContainer}>
-        {/* Logo */}
-        <Box sx={styles.logoContainer}>
+    <div className="flex min-h-screen flex-col bg-[#f8f9fa]">
+      <div className="mx-auto flex max-w-[800px] flex-1 flex-col items-center justify-center px-4 pt-[120px] text-center sm:px-8">
+        <div className="mb-12">
           <Image
             src={logo.src}
             alt="Tuitional Logo"
             width={300}
             height={73}
-            style={styles.logoImage}
             priority
+            className="h-[60px] w-auto object-contain"
           />
-        </Box>
+        </div>
 
-        {/* Main Headline */}
-        <Typography
-          variant="h1"
-          sx={styles.headline}
-          className={leagueSpartan.className}
+        <h1
+          className={`${leagueSpartan.className} mb-6 text-[2rem] font-bold leading-tight text-[#2c3e50] sm:text-[2.5rem] md:text-[3rem]`}
         >
           ✅ You&apos;re All Set! Thanks for Registering.
-        </Typography>
+        </h1>
 
-        {/* Sub-Headline */}
-        <Typography
-          variant="h2"
-          sx={styles.subHeadline}
-          className={leagueSpartan.className}
+        <h2
+          className={`${leagueSpartan.className} mb-8 text-[1.2rem] font-medium leading-snug text-[#34495e] sm:text-[1.4rem] md:text-[1.6rem]`}
         >
           Our team will contact you shortly. 🎉
-        </Typography>
+        </h2>
 
-        {/* Optional Add-On */}
-        <Typography
-          variant="body1"
-          sx={styles.addOnText}
-          className={leagueSpartan.className}
+        <p
+          className={`${leagueSpartan.className} mb-12 text-[1rem] leading-relaxed text-[#7f8c8d] sm:text-[1.1rem] md:text-[1.2rem]`}
         >
           While you wait, check our Testimonials page for past experiences. ☺️
-        </Typography>
+        </p>
 
-        {/* Call-to-Action Buttons */}
-        <Box sx={styles.buttonContainer}>
-          <Link href="/testimonials" style={styles.linkStyle}>
-            <Button
-              variant="contained"
-              sx={styles.primaryButton}
-              className={leagueSpartan.className}
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
+          <Link href="/testimonials" className="no-underline">
+            <button
+              className={`${leagueSpartan.className} min-w-[200px] rounded-lg bg-brand-500 px-8 py-3 text-base font-semibold normal-case text-white shadow-[0_4px_15px_rgba(56,182,255,0.3)] transition hover:bg-[#2196F3] hover:shadow-[0_6px_20px_rgba(56,182,255,0.4)]`}
             >
               View Testimonials
-            </Button>
+            </button>
           </Link>
-          
-         
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default ThankYouPage;
-
-const styles = {
-  pageContainer: {
-    minHeight: "100vh",
-    backgroundColor: "#f8f9fa",
-    display: "flex",
-    flexDirection: "column",
-  },
-  contentContainer: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "2rem",
-    paddingTop: "120px", // Account for fixed header
-    textAlign: "center",
-    maxWidth: "800px",
-    margin: "0 auto",
-  },
-  logoContainer: {
-    marginBottom: "3rem",
-  },
-  logoImage: {
-    width: "auto",
-    height: "60px",
-    objectFit: "contain" as const,
-  },
-  headline: {
-    fontSize: {
-      xs: "2rem",
-      sm: "2.5rem",
-      md: "3rem",
-    },
-    fontWeight: 700,
-    color: "#2c3e50",
-    marginBottom: "1.5rem",
-    lineHeight: 1.2,
-  },
-  subHeadline: {
-    fontSize: {
-      xs: "1.2rem",
-      sm: "1.4rem",
-      md: "1.6rem",
-    },
-    fontWeight: 500,
-    color: "#34495e",
-    marginBottom: "2rem",
-    lineHeight: 1.4,
-  },
-  addOnText: {
-    fontSize: {
-      xs: "1rem",
-      sm: "1.1rem",
-      md: "1.2rem",
-    },
-    fontWeight: 400,
-    color: "#7f8c8d",
-    marginBottom: "3rem",
-    lineHeight: 1.5,
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: {
-      xs: "column",
-      sm: "row",
-    },
-    gap: "1rem",
-    alignItems: "center",
-  },
-  primaryButton: {
-    backgroundColor: "#38B6FF",
-    color: "white",
-    fontWeight: 600,
-    fontSize: "1rem",
-    textTransform: "none",
-    borderRadius: "8px",
-    padding: "12px 32px",
-    minWidth: "200px",
-    boxShadow: "0 4px 15px rgba(56, 182, 255, 0.3)",
-    "&:hover": {
-      backgroundColor: "#2196F3",
-      boxShadow: "0 6px 20px rgba(56, 182, 255, 0.4)",
-    },
-  },
-  secondaryButton: {
-    color: "#38B6FF",
-    borderColor: "#38B6FF",
-    fontWeight: 600,
-    fontSize: "1rem",
-    textTransform: "none",
-    borderRadius: "8px",
-    padding: "12px 32px",
-    minWidth: "200px",
-    "&:hover": {
-      backgroundColor: "rgba(56, 182, 255, 0.1)",
-      borderColor: "#38B6FF",
-    },
-  },
-  linkStyle: {
-    textDecoration: "none",
-  },
-};

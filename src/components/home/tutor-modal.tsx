@@ -1,13 +1,11 @@
+"use client";
+
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import { Box, Divider, Typography } from "@mui/material";
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
-import { leagueSpartan } from "@/app/fonts";
-import "../DropDown/DropDown.css";
-import PopUpButton from "../pop-up-button";
 import Image from "next/image";
+import { X } from "lucide-react";
+
+import { Dialog as HouseDialog } from "@/components/ui/dialog";
+import PopUpButton from "../pop-up-button";
 import Tag from "../tag/Tag";
 import dummyImg from "../../../public/assets/images/static/blogimg3.png";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
@@ -30,243 +28,88 @@ export type tutorData = {
   profileImageUrl: string;
 };
 
-const TutorModal: React.FunctionComponent<IProps> = ({
-  open,
-  handleClose,
-  data,
-  locale = "en",
-}) => {
-  // Translation objects
+const TutorModal: React.FC<IProps> = ({ open, handleClose, data, locale = "en" }) => {
   const translations = {
-    en: {
-      bookADemo: "Book A Demo"
-    },
-    ar: {
-      bookADemo: "احجز حصة تجريبية"
-    }
+    en: { bookADemo: "Book A Demo" },
+    ar: { bookADemo: "احجز حصة تجريبية" },
   };
-
   const t = translations[locale as keyof typeof translations];
+
   return (
-    <Dialog
-      open={open}
-      keepMounted
-      onClose={handleClose}
-      className="pricing-dialog"
-      maxWidth={false}
-      sx={styles.dialog}
-    >
-      <DialogContent sx={styles.contanier}>
-        <Box sx={styles.header}>
-          <Typography
-            className={leagueSpartan.className}
-            sx={styles.dialogHeading}
-          >
+    <HouseDialog open={open} onClose={handleClose} hideCloseButton size="lg">
+      <div className="-m-4 sm:-m-6 rounded-[30px] bg-white shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)] overflow-hidden w-[83vw] md:w-[50vw]">
+        <div className="mt-[3vh] mb-[2vh] mx-[3vh] flex items-center justify-between">
+          <h2 className="font-heading text-[3vh] font-medium leading-[2.2vh] tracking-tight text-black">
             {`${data?.["First Name"]} ${data?.["Last Name"]} `}
-          </Typography>
-          <ClearRoundedIcon sx={styles.clear} onClick={handleClose} />
-        </Box>
-        <Divider />
-        <Box sx={styles.mainDiv}>
-          <Box sx={styles.imageWrapper}>
+          </h2>
+          <button
+            type="button"
+            onClick={handleClose}
+            className="cursor-pointer"
+            aria-label="Close"
+          >
+            <X size={30} />
+          </button>
+        </div>
+        <hr className="border-ink-200" />
+
+        <div className="max-h-[70vh] overflow-y-auto px-[2%] py-[2%]">
+          <div className="relative h-[250px] w-full overflow-hidden rounded-xl">
             <Image
               src={data?.profileImageUrl ? data?.profileImageUrl : dummyImg}
               alt={`${data?.["First Name"]}'s profile`}
-              layout="fill"
-              objectFit="contain"
+              fill
+              className="object-contain"
             />
-          </Box>
-          <Box sx={styles.cardTextDiv}>
-            <Typography
-              className={`${leagueSpartan.className} `}
-              component={"p"}
-              variant="subtitle1"
-            >
-              {`${data?.["First Name"]} ${data?.["Last Name"]} `}{" "}
-            </Typography>
-            <Box sx={styles.subjects}>
+          </div>
+          <div className="p-4">
+            <p className="font-heading text-stat-number-mobile">
+              {`${data?.["First Name"]} ${data?.["Last Name"]} `}
+            </p>
+            <div className="mb-2 flex flex-wrap justify-start gap-x-1 gap-y-1">
               {data?.Subjects?.map((tag, index) => (
                 <Tag key={index} label={tag} index={index} isClickable={false} />
               ))}
-            </Box>
-            <Box sx={styles.subjects}>
+            </div>
+            <div className="mb-2 flex flex-wrap justify-start gap-x-1 gap-y-1">
               {data?.Curiculum?.map((tag, index) => (
                 <Tag key={index} label={tag} index={index} isClickable={false} />
               ))}
-            </Box>
-            <Typography
-              className={`${leagueSpartan.className} `}
-              component={"p"}
-              variant="body2"
-            >
-              {data.university}{" "}
-            </Typography>
-
-            <Typography
-              variant={"body2"}
-              className={leagueSpartan.className}
-              dangerouslySetInnerHTML={{
-                __html: data?.Description,
-              }}
-            ></Typography>
-
-            <Box sx={styles.rating}>
-              <Image src={greenstars} alt="img" style={styles.stars} />
-              <Typography
-                className={`${leagueSpartan.className} `}
-                component={"p"}
-                variant="subtitle2"
-              >
+            </div>
+            <p className="font-heading text-small">{data.university}</p>
+            <p
+              className="font-heading text-small"
+              dangerouslySetInnerHTML={{ __html: data?.Description }}
+            />
+            <div className="mt-3 flex items-center text-center gap-x-3">
+              <Image
+                src={greenstars}
+                alt="rating stars"
+                style={{ height: "3vh", width: "14vh" }}
+              />
+              <p className="font-heading text-small font-medium">
                 {data?.["Success rate"]}
-              </Typography>
-            </Box>
-
+              </p>
+            </div>
             <PopUpButton
               text={t.bookADemo}
               href="popup"
-              sx={styles.contactButton}
+              className="w-full self-center transition-all duration-500 ease-in-out hover:scale-[1.02]"
+              style={{
+                boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
+                backgroundColor: "#38b6ff",
+                lineHeight: "18.4px",
+                borderRadius: "10px",
+                padding: "18px",
+                margin: "20px 0",
+                color: "white",
+              }}
             />
-          </Box>
-          {/* </div> */}
-        </Box>
-        {/* </Grid> */}
-      </DialogContent>
-    </Dialog>
+          </div>
+        </div>
+      </div>
+    </HouseDialog>
   );
 };
 
 export default TutorModal;
-
-const styles = {
-  clear: { width: "30px", height: "30px", cursor: "pointer" },
-  dialog: {
-    "& .MuiPaper-root": {
-      backgroundColor: "transparent",
-      boxShadow: "none",
-    },
-    "& .MuiPaper-elevation": {
-      backgroundColor: "transparent",
-      boxShadow: "none",
-    },
-    "& .MuiPaper-rounded": {
-      backgroundColor: "transparent",
-      boxShadow: "none",
-    },
-  },
-  contanier: {
-    boxShadow:
-      "0px -3px 8px 0px rgba(0, 0, 0, 0.15) inset,0px 2px 1px 0px rgba(0, 0, 0, 0.05)",
-    backgroundColor: "white",
-    width: {
-      xs: "83vw",
-      md: "50vw",
-    },
-    // height: "60vh",
-    borderRadius: "30px",
-    p: 0,
-    overflow: "auto",
-  },
-  mainDiv: {
-    maxHeight: "70vh",
-    overflowY: "auto",
-    paddingX: "2%",
-    paddingY: "2%",
-  },
-  cardTextDiv: {
-    padding: "16px",
-  },
-
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginX: "3vh",
-    marginTop: "3vh",
-    marginBottom: "2vh",
-  },
-  dialogHeading: {
-    fontSize: "3vh",
-    lineHeight: "2.2vh",
-    fontWeight: 500,
-    color: "rgba(0, 0, 0, 1)",
-    letterSpacing: "-2%",
-  },
-  contactButton: {
-    display: "flex",
-    alignSelf: "center",
-    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    backgroundColor: "#38b6ff",
-    textTransform: "none",
-    lineHeight: "18.4px",
-    textAlign: "center",
-    borderRadius: "10px",
-    width: "100%",
-    padding: "18px",
-    margin: "20px 0",
-    transition: "all 0.5s ease-in-out",
-    color: "white",
-    ":hover": {
-      backgroundColor: "#38b6ff",
-      transform: "scale(1.02)",
-      boxShadow: "1px 4px 24px 0px #38b6ffb2",
-    },
-  },
-
-  rating: {
-    display: "flex",
-    alignItems: "center",
-    textAlign: "center",
-    columnGap: "12px",
-    marginTop: "12px",
-  },
-  stars: {
-    height: "3vh",
-    width: "14vh",
-  },
-
-  imageWrapper: {
-    position: "relative",
-    width: "100%",
-    height: "250px",
-    overflow: "hidden",
-    borderRadius: "12px",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "contain",
-  },
-
-  name: {
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-    margin: 0,
-  },
-  university: {
-    color: "#777777",
-    fontSize: "0.9rem",
-    margin: "8px 0",
-  },
-
-  subjects: {
-    display: "flex",
-    justifyContent: "left",
-    flexWrap: "wrap",
-    rowGap: "4px",
-    marginBottom: "8px",
-    columnGap: "4px",
-  },
-  subject: {
-    backgroundColor: "#d1f0f0",
-    color: "#0073e6",
-    borderRadius: "4px",
-    fontSize: "0.8rem",
-    padding: "4px 8px",
-    fontWeight: "bold",
-  },
-  description: {
-    fontSize: "0.9rem",
-    color: "#555555",
-    margin: "8px 0",
-  },
-};

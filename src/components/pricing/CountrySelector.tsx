@@ -1,9 +1,16 @@
 "use client";
-import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Typography } from '@mui/material';
-import { SUPPORTED_COUNTRIES, getCountryInfo, mapApiCountryToPricing, mapPricingToDisplayCountry } from '@/utils/pricing-helpers';
-import styles from './CountrySelector.module.css';
+
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
+import { Check, ChevronDown } from "lucide-react";
+
+import {
+  SUPPORTED_COUNTRIES,
+  getCountryInfo,
+  mapApiCountryToPricing,
+  mapPricingToDisplayCountry,
+} from "@/utils/pricing-helpers";
+import { cn } from "@/utils/cn";
 
 interface CountrySelectorProps {
   currentCountry: string;
@@ -11,134 +18,117 @@ interface CountrySelectorProps {
   className?: string;
 }
 
-const CountrySelector: React.FC<CountrySelectorProps> = ({ 
-  currentCountry, 
+const CountrySelector: React.FC<CountrySelectorProps> = ({
+  currentCountry,
   onCountryChange,
-  className = '' 
+  className = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownPosition, setDropdownPosition] = useState<'down' | 'up'>('down');
+  const [dropdownPosition, setDropdownPosition] = useState<"down" | "up">("down");
   const [dropdownRect, setDropdownRect] = useState<DOMRect | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  
-  // Convert Firebase format to display format for the selector
+
   const displayCountry = mapPricingToDisplayCountry(currentCountry);
   const [selectedCountry, setSelectedCountry] = useState(displayCountry);
 
   const handleCountryChange = (countryCode: string) => {
     setSelectedCountry(countryCode);
     setIsOpen(false);
-    // Map the full country name to Firebase format before passing it up
-    const mappedCountry = mapApiCountryToPricing(countryCode);
-    onCountryChange?.(mappedCountry);
+    onCountryChange?.(mapApiCountryToPricing(countryCode));
   };
 
   const handleToggleOpen = () => {
     if (!isOpen && containerRef.current) {
-      // Calculate dropdown position and store container rect
       const rect = containerRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
-      const dropdownHeight = Math.min(350, SUPPORTED_COUNTRIES.length * 60); // Estimate dropdown height
-      
-      if (spaceBelow < dropdownHeight && spaceAbove > dropdownHeight) {
-        setDropdownPosition('up');
-      } else {
-        setDropdownPosition('down');
-      }
-      
+      const dropdownHeight = Math.min(350, SUPPORTED_COUNTRIES.length * 60);
+      setDropdownPosition(spaceBelow < dropdownHeight && spaceAbove > dropdownHeight ? "up" : "down");
       setDropdownRect(rect);
     }
     setIsOpen(!isOpen);
   };
 
-  // Update local state when currentCountry prop changes
   React.useEffect(() => {
-    const newDisplayCountry = mapPricingToDisplayCountry(currentCountry);
-    setSelectedCountry(newDisplayCountry);
+    setSelectedCountry(mapPricingToDisplayCountry(currentCountry));
   }, [currentCountry]);
 
-  // Handle scroll/resize to reposition dropdown
   React.useEffect(() => {
-    if (isOpen) {
-      const handleScrollResize = () => {
-        if (containerRef.current) {
-          const rect = containerRef.current.getBoundingClientRect();
-          setDropdownRect(rect);
-        }
-      };
-
-      window.addEventListener('scroll', handleScrollResize, true);
-      window.addEventListener('resize', handleScrollResize);
-      
-      return () => {
-        window.removeEventListener('scroll', handleScrollResize, true);
-        window.removeEventListener('resize', handleScrollResize);
-      };
-    }
+    if (!isOpen) return;
+    const handleScrollResize = () => {
+      if (containerRef.current) setDropdownRect(containerRef.current.getBoundingClientRect());
+    };
+    window.addEventListener("scroll", handleScrollResize, true);
+    window.addEventListener("resize", handleScrollResize);
+    return () => {
+      window.removeEventListener("scroll", handleScrollResize, true);
+      window.removeEventListener("resize", handleScrollResize);
+    };
   }, [isOpen]);
 
   const currentCountryInfo = getCountryInfo(selectedCountry);
 
   return (
-    <div ref={containerRef} className={`${styles.container} ${className}`}>
+    <div ref={containerRef} className={cn("relative inline-block", className)}>
       <button
+        type="button"
         onClick={handleToggleOpen}
-        className={styles.trigger}
+        className="flex items-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2 font-body text-form-input text-ink-900 shadow-card hover:bg-ink-50"
       >
-        <span className={styles.flag}>{currentCountryInfo.flag}</span>
-        <span className={styles.countryName}>{currentCountryInfo.code}</span>
-        <span className={styles.currency}>({currentCountryInfo.currency})</span>
-        <svg className={styles.chevron} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <span className="text-xl">{currentCountryInfo.flag}</span>
+        <span className="font-semibold">{currentCountryInfo.code}</span>
+        <span className="text-ink-700">({currentCountryInfo.currency})</span>
+        <ChevronDown size={16} aria-hidden="true" />
       </button>
 
       {isOpen && dropdownRect && createPortal(
         <>
-          <div className={styles.backdrop} onClick={() => setIsOpen(false)} />
-          <div 
-            className={`${styles.dropdown} ${dropdownPosition === 'up' ? styles.dropdownUp : ''}`}
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            className={cn(
+              "fixed z-50 min-w-[280px] rounded-md bg-white shadow-xl ring-1 ring-ink-200",
+              dropdownPosition === "up" && "-translate-y-full",
+            )}
             style={{
-              position: 'fixed',
               left: dropdownRect.left,
-              top: dropdownPosition === 'up' 
-                ? dropdownRect.top - 8 
-                : dropdownRect.bottom + 8,
+              top: dropdownPosition === "up" ? dropdownRect.top - 8 : dropdownRect.bottom + 8,
               width: dropdownRect.width,
-              minWidth: '280px',
-              transform: dropdownPosition === 'up' ? 'translateY(-100%)' : 'none'
             }}
           >
-            <div className={styles.dropdownContent}>
-              {SUPPORTED_COUNTRIES.map((country) => (
-                <button
-                  key={country.code}
-                  onClick={() => handleCountryChange(country.code)}
-                  className={`${styles.option} ${
-                    selectedCountry === country.code ? styles.optionSelected : ''
-                  }`}
-                >
-                  <span className={styles.optionFlag}>{country.flag}</span>
-                  <div className={styles.optionInfo}>
-                    <Typography className={styles.optionName}>
-                      {country.name}
-                    </Typography>
-                    <Typography className={styles.optionCurrency}>
-                      Prices in {country.currency}
-                    </Typography>
-                  </div>
-                  {selectedCountry === country.code && (
-                    <svg className={styles.checkIcon} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </button>
-              ))}
+            <div className="max-h-[350px] overflow-auto py-1">
+              {SUPPORTED_COUNTRIES.map((country) => {
+                const isSelected = selectedCountry === country.code;
+                return (
+                  <button
+                    key={country.code}
+                    type="button"
+                    onClick={() => handleCountryChange(country.code)}
+                    className={cn(
+                      "flex w-full items-center gap-3 px-4 py-3 text-start hover:bg-ink-50",
+                      isSelected && "bg-brand-50",
+                    )}
+                  >
+                    <span className="text-2xl">{country.flag}</span>
+                    <div className="flex-1">
+                      <p className="font-body text-form-input font-semibold text-ink-900">
+                        {country.name}
+                      </p>
+                      <p className="font-body text-small text-ink-700">
+                        Prices in {country.currency}
+                      </p>
+                    </div>
+                    {isSelected && <Check size={18} className="text-brand-500" />}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </>,
-        document.body
+        document.body,
       )}
     </div>
   );

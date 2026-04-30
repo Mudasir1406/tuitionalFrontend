@@ -1,196 +1,78 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
 
-import { leagueSpartan } from "@/app/fonts";
-import styles from "./BenifitsSection.module.css";
-
+import React from "react";
 import Image from "next/image";
-import TutorIcon from "../../../../public/assets/icons/11036302 1.svg";
 import {
-  AccountCircle,
-  BarChart,
-  Book,
-  BookSharp,
-  CalendarMonth,
-  Insights,
+  BarChart3,
+  BookOpen,
+  Calendar,
+  Clock,
+  LineChart,
   Mic,
-  ScheduleOutlined,
-  SupervisorAccount,
-} from "@mui/icons-material";
-import { PageData } from "@/types/grade-subject-level.types";
+  Users,
+} from "lucide-react";
+
 import PopUpButton from "@/components/pop-up-button";
+import { PageData } from "@/types/grade-subject-level.types";
+import TutorIcon from "../../../../public/assets/icons/11036302 1.svg";
 
 type IProps = {
   data: PageData["igcse_tutoring_program"];
 };
 
-const BenifitsSection: React.FunctionComponent<IProps> = ({ data }) => {
-  return (
-    <div className={styles.main}>
-      {/* <Typography
-        className={`${leagueSpartan.className} ${styles.title}`}
-        component={"h3"}
-        variant="h3"
-      >
-        Benefits of Our Dubai IGCSE Tutoring Program{" "}
-      </Typography> */}
-      <Typography
-        // sx={style.popularText}
-        className={`${leagueSpartan.className} ${styles.title}`}
-        variant={data?.sectionTag ? data.sectionTag : ("h3" as any)}
-        component={data?.sectionTag ? data.sectionTag : ("h3" as any)}
-        dangerouslySetInnerHTML={{
-          __html: data?.section,
-        }}
-      ></Typography>
+const items: { icon: React.ReactNode; label: string }[] = [
+  {
+    icon: <Image src={TutorIcon} alt="Tutor Icon" width={35} height={30} />,
+    label: "Pool of 100s of Tutors to choose from",
+  },
+  { icon: <Mic className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Recorded classes for review" },
+  { icon: <Calendar className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Access to resources & practice material" },
+  { icon: <BookOpen className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Customized Study Plans" },
+  { icon: <BarChart3 className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Progress Tracking" },
+  { icon: <Clock className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Flexible Scheduling" },
+  { icon: <LineChart className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Post-Test Analysis" },
+  { icon: <Users className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Parental Updates" },
+];
 
-      <div className={styles.cards}>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Image
-              src={TutorIcon}
-              alt="Tutor Icon"
-              width={35} // Set width
-              height={30}
-            />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
+const BenifitsSection: React.FC<IProps> = ({ data }) => {
+  const HeaderTag = (data?.sectionTag ?? "h3") as "h2" | "h3" | "h4";
+
+  return (
+    <div className="bg-brand-500 px-6 py-12 text-white sm:px-12 lg:py-16">
+      <HeaderTag
+        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-white"
+        dangerouslySetInnerHTML={{ __html: data?.section ?? "" }}
+      />
+
+      <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col items-center gap-3 rounded-md bg-white p-4 text-center shadow-card"
           >
-            Pool of 100s of Tutors to choose from{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Mic sx={style.icon} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
+              {item.icon}
+            </div>
+            <p className="font-heading text-small text-ink-900">{item.label}</p>
           </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Recorded classes for review{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <CalendarMonth sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Access to resources & practice material{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <BookSharp sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Customized Study Plans{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <BarChart sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Progress Tracking{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <ScheduleOutlined sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Flexible Scheduling{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <Insights sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Post-Test Analysis{" "}
-          </Typography>
-        </div>
-        <div className={styles.smallCard}>
-          <div className={styles.iconDiv}>
-            <SupervisorAccount sx={style.icon} />
-          </div>
-          <Typography
-            className={`${leagueSpartan.className}`}
-            component={"p"}
-            variant="caption"
-          >
-            Parental Updates{" "}
-          </Typography>
-        </div>
+        ))}
       </div>
-      <Box sx={style.buttonContainer}>
+
+      <div className="mt-9 flex justify-center">
         <PopUpButton
-          sx={style.containedBtn}
           text="Book a Demo"
           href="popup"
-          userFormV1={true}
+          userFormV1
+          className="w-1/2 rounded-[10px] py-[1vh] transition-all duration-500 ease-in-out hover:scale-105 sm:w-2/5 md:w-[30%] lg:w-[30%] lg:py-[10px]"
+          style={{
+            boxShadow: "1px 4px 24px 0px #38B6FFB2",
+            backgroundColor: "white",
+            color: "#38B6FF",
+          }}
         />
-      </Box>
+      </div>
     </div>
   );
 };
 
-const style = {
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "36px",
-  },
-  containedBtn: {
-    boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    backgroundColor: "white",
-    color: "#38B6FF",
-
-    paddingY: {
-      xs: "1vh",
-      lg: "10px",
-    },
-    textTransform: "none",
-    borderRadius: "10px",
-    width: {
-      xs: "50%",
-      sm: "40%",
-      md: "30%",
-      lg: "30%",
-    },
-    transition: "all .5s ease-in-out",
-    ":hover": {
-      backgroundColor: "white",
-      transform: "scale(1.05)",
-
-      boxShadow: "1px 4px 24px 0px #38B6FFB2",
-    },
-  },
-  icon: { color: "#009BF5", width: "35px", height: "30px" },
-};
 export default BenifitsSection;

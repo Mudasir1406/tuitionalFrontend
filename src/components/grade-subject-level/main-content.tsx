@@ -1,117 +1,39 @@
-import { leagueSpartan } from "@/app/fonts";
-import { PageData } from "@/types/grade-subject-level.types";
-import { Box, Button, Grid, Theme, Typography } from "@mui/material";
 import React from "react";
+import { PageData } from "@/types/grade-subject-level.types";
+
 interface IProps {
   data: PageData["main_content"];
 }
-const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
-  console.log("MainContent data:", data);
-  return (
-    <>
-      <Box sx={style.contanier}>
-        <Typography
-          sx={style.title}
-          variant={data?.headerTag ? data.headerTag : ("h3" as any)}
-          className={leagueSpartan.className}
-          component={data?.headerTag ? data.headerTag : ("h3" as any)}
-          dangerouslySetInnerHTML={{
-            __html: data?.header,
-          }}
-        ></Typography>
-        <Typography
-          sx={style.description}
-          // component={'div'}
-          variant="body2"
-          dangerouslySetInnerHTML={{
-            __html: data?.paragraph,
-          }}
-        ></Typography>
 
-        {data?.subjects?.length > 0 && (
-          <Box sx={style.box}>
-            <Grid container spacing={2} sx={style.grid}>
-              {data?.subjects.map((subject, index) => (
-                <Grid item xs={6} sm={6} md={6} lg={6} key={index}>
-                  <Button
-                    sx={style.button}
-                    className={leagueSpartan.className}
-                    href={subject.link || "#"}
-                  >
-                    {subject.name}
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        )}
-      </Box>
-    </>
+const MainContent: React.FC<IProps> = ({ data }) => {
+  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+
+  return (
+    <div className="px-[5vw]">
+      <HeaderTag
+        className="mb-[2vh] w-full text-center font-heading text-h3-mobile sm:text-h3-tablet md:mb-[3vh] md:text-start lg:w-[50vw] lg:text-h3 text-ink-900"
+        dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
+      />
+      <div
+        className="mb-[2vh] w-full text-center font-heading text-body-mobile text-ink-900 sm:text-body md:mb-[4vh] md:text-start lg:text-start"
+        dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
+      />
+
+      {data?.subjects?.length > 0 && (
+        <div className="grid grid-cols-2 gap-4">
+          {data.subjects.map((subject, index) => (
+            <a
+              key={index}
+              href={subject.link || "#"}
+              className="block w-full rounded-[5vh] bg-white p-4 text-center font-heading text-small font-medium text-ink-900 shadow-[0px_-1px_10px_0px_rgba(0,0,0,0.15)_inset] transition-transform duration-200 hover:scale-[1.02] hover:bg-brand-200/35 lg:text-[2vh]"
+            >
+              {subject.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
 export default MainContent;
-
-const style = {
-  contanier: { paddingX: "5vw" },
-  grid: {
-    margin: { lg: "0vh auto" },
-  },
-  title: {
-    width: {
-      xs: "100%",
-      sm: "100%",
-      md: "100%",
-      lg: "50vw", // Desktop view
-    },
-    // fontSize: {
-    //   xs: "3vh",
-    //   sm: "5vh",
-    //   md: "5.5vh",
-    //   lg: "6vh",
-    // },
-    // fontWeight: 600,
-    textAlign: { xs: "center", md: "left" },
-    marginBottom: { xs: "2vh", md: "3vh" },
-  },
-  box: {
-    margin: "0px 0",
-  },
-  description: {
-    color: "#2D2D2D",
-    width: {
-      xs: "100%",
-      sm: "100%",
-      md: "100%",
-      lg: "100%",
-    },
-    // fontSize: {
-    //   xs: "1.8vh",
-    //   sm: "2vh",
-    //   md: "2vh",
-    // },
-    // fontWeight: 400,
-    textAlign: { xs: "center", md: "left", lg: "left" },
-    marginBottom: { xs: "2vh", md: "4vh" },
-  },
-  button: {
-    backgroundColor: "#FFFFFF",
-    color: "#2D2D2D",
-    width: "100%",
-    borderRadius: "5vh",
-    padding: "16px",
-    boxShadow: "0px -1px 10px 0px rgba(0, 0, 0, 0.15) inset",
-
-    // fontSize: {
-    //   xs: "1.5vh",
-    //   lg: "2vh",
-    // },
-    transition: "all .2s ease-in-out",
-
-    // fontWeight: 500,
-    ":hover": {
-      backgroundColor: "#38B6FF59",
-      transform: "scale(1.02)",
-    },
-  },
-};

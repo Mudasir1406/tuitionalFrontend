@@ -1,72 +1,38 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
-import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
 import Image from "next/image";
+import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
 
 type IProps = {
   image: string;
   imageAltText: string;
 };
 
-const ArHeroInfo: React.FunctionComponent<IProps> = ({ image, imageAltText }) => {
+const ArHeroInfo: React.FC<IProps> = ({ image, imageAltText }) => {
+  const src = image || subjectLevelImage.src;
   return (
-    <>
-      <Grid
-        item
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
-        sx={{
-          position: "relative",
-          direction: "ltr", // Keep images in LTR for proper display
-          "::before": {
-            content: "''",
-            backgroundImage: `url(${image || subjectLevelImage.src})`,
-            backgroundPosition: "bottom",
-            backgroundSize: {
-              xs: "contain",
-              lg: "contain",
-            },
-            height: {
-              xs: "100%",
-              sm: "100%",
-              md: "70vh",
-              lg: "80vh",
-            },
-            width: "100%",
-            backgroundRepeat: "no-repeat",
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            zIndex: "0",
-            loading: "lazy",
-          },
+    <div
+      className="relative h-full w-full md:h-[70vh] lg:h-[80vh]"
+      style={{ direction: "ltr" }}
+    >
+      <div
+        className="absolute bottom-0 left-0 z-0 h-full w-full bg-no-repeat"
+        style={{
+          backgroundImage: `url(${src})`,
+          backgroundPosition: "bottom",
+          backgroundSize: "contain",
         }}
-      >
-        <Box sx={styles.container}></Box>
-        <Image
-          className="sr-only"
-          alt={imageAltText}
-          src={image}
-          width={1}
-          height={1}
-          loading="lazy"
-        />
-      </Grid>
-    </>
+        aria-hidden="true"
+      />
+      <Image
+        className="sr-only"
+        alt={imageAltText}
+        src={image}
+        width={1}
+        height={1}
+        loading="lazy"
+      />
+    </div>
   );
 };
 
 export default ArHeroInfo;
-
-const styles = {
-  container: {
-    display: {
-      xs: "none",
-      sm: "none",
-      md: "flex",
-      lg: "flex",
-    },
-  },
-};

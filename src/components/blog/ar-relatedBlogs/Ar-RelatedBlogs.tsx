@@ -1,8 +1,6 @@
 "use client";
+
 import React from "react";
-import styles from "./Ar-RelatedBlogs.module.css";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 import ArBlogCard from "../ar-blog-card/Ar-BlogCard";
 
@@ -13,25 +11,19 @@ interface Props {
 
 const ArRelatedBlogs: React.FC<Props> = ({ allBlogs, currentBlogId }) => {
   if (!allBlogs || allBlogs.length === 0) return null;
-
-  // Filter out the current blog and get random related blogs
-  const filteredBlogs = allBlogs.filter(blog => blog.id !== currentBlogId);
-  const relatedBlogs = filteredBlogs.slice(0, 3); // Show 3 related blogs
-
+  const relatedBlogs = allBlogs
+    .filter((blog) => blog.id !== currentBlogId)
+    .slice(0, 3);
   if (relatedBlogs.length === 0) return null;
 
   return (
-    <div className={`${styles.container} ${styles.containerRTL}`} dir="rtl">
-      <Typography
-        variant="h2"
-        className={`${styles.title} ${styles.titleRTL} ${leagueSpartan.className}`}
-      >
+    <div className="px-4 py-8" dir="rtl">
+      <h2 className="mb-6 text-center font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2 text-black">
         مقالات ذات صلة
-      </Typography>
-      
-      <div className={`${styles.blogsGrid} ${styles.blogsGridRTL}`}>
+      </h2>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5 md:grid-cols-2 lg:grid-cols-3">
         {relatedBlogs.map((blog) => (
-          <div key={blog.id} className={styles.blogCard}>
+          <div key={blog.id}>
             <ArBlogCard data={blog} />
           </div>
         ))}

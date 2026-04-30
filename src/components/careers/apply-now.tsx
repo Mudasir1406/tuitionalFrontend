@@ -1,37 +1,36 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import toast from "react-hot-toast";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/input";
+import { useI18n } from "@/context/language-context";
+import { cn } from "@/utils/cn";
+import { isNotEmpty, isValidEmail } from "@/utils/helper";
+import { sendEmail } from "@/services/email-service/email-service";
+import { createCareerTemplate } from "@/services/email-service/template";
+import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
+import { addFormData } from "@/utils/globalFunction";
+import useGeoLocation from "@/utils/slugHelper";
+import type { CareersFormType } from "../home/form-dialouge";
+
+import Input from "../input/Input";
+import CustomInput from "../custom-input/custom-input";
 import applynow from "../../../public/assets/images/static/applynow.png";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
-import Image from "next/image";
-import { leagueSpartan } from "@/app/fonts";
-import { CareersFormType } from "../home/form-dialouge";
-import toast from "react-hot-toast";
-import { sendEmail } from "@/services/email-service/email-service";
-import { createCareerTemplate } from "@/services/email-service/template";
-import { isValidPhoneNumber } from "react-phone-number-input";
+
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
-import "react-phone-number-input/style.css";
-import CustomInput from "../custom-input/custom-input";
-import { CAREERSTUITIONALEDU, HRTUITIONALEDU } from "@/utils/env";
-import Input from "../input/Input";
-import { isNotEmpty, isValidEmail } from "@/utils/helper";
-import { addFormData } from "@/utils/globalFunction";
-import { useSearchParams } from "next/navigation";
-import dynamic from "next/dynamic";
-import useGeoLocation from "@/utils/slugHelper";
 
-const ApplyNow: React.FunctionComponent = () => {
+const ApplyNow: React.FC = () => {
+  const { t } = useI18n();
   const [formData, setFormData] = useState<CareersFormType>({
     FirstName: "",
     LastName: "",
@@ -42,58 +41,49 @@ const ApplyNow: React.FunctionComponent = () => {
     Message: "",
     sheetName: "Careers",
   });
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [errors, setErrors] = React.useState<Partial<CareersFormType>>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<Partial<CareersFormType>>({});
 
   const handleChange = (key: string, value: string | string[]) => {
-    let newErrors = { ...errors };
+    const newErrors = { ...errors };
 
     if (key === "Message" && typeof value === "string") {
       value = value.slice(0, 500);
-      newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
+      newErrors.Message = isNotEmpty(value) ? "" : t("careers.apply_now.errors.message_empty");
     }
-    // Perform validation if the key is "phone"
     if (key === "PhoneNumber" && typeof value === "string") {
       newErrors.PhoneNumber = isValidPhoneNumber(value)
         ? ""
-        : "Invalid PhoneNumber number";
+        : t("careers.apply_now.errors.invalid_phone");
     }
     if (key === "EmailAddress" && typeof value === "string") {
       newErrors.EmailAddress = isValidEmail(value)
         ? ""
-        : "Invalid email address";
+        : t("careers.apply_now.errors.invalid_email");
     }
     if (key === "FirstName" && typeof value === "string") {
       newErrors.FirstName = isNotEmpty(value)
         ? ""
-        : "First Name cannot be empty";
+        : t("careers.apply_now.errors.first_name_empty");
     }
-
     if (key === "LastName" && typeof value === "string") {
-      newErrors.LastName = isNotEmpty(value) ? "" : "Last Name cannot be empty";
+      newErrors.LastName = isNotEmpty(value)
+        ? ""
+        : t("careers.apply_now.errors.last_name_empty");
     }
-
     if (key === "Country" && typeof value === "string") {
-      newErrors.Country = isNotEmpty(value) ? "" : "Country cannot be empty";
+      newErrors.Country = isNotEmpty(value)
+        ? ""
+        : t("careers.apply_now.errors.country_empty");
     }
-
     if (key === "Position" && typeof value === "string") {
-      newErrors.Position = isNotEmpty(value) ? "" : "Position cannot be empty";
+      newErrors.Position = isNotEmpty(value)
+        ? ""
+        : t("careers.apply_now.errors.position_empty");
     }
 
-    // if (key === "Message" && typeof value === "string") {
-    //   newErrors.Message = isNotEmpty(value) ? "" : "Message cannot be empty";
-    // }
-
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
+    setFormData({ ...formData, [key]: value });
     setErrors(newErrors);
-    // setFormData({
-    //   ...formData,
-    //   [key]: value,
-    // });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -101,100 +91,69 @@ const ApplyNow: React.FunctionComponent = () => {
     setLoading(true);
 
     const newErrors: Partial<CareersFormType> = {};
+    if (!isNotEmpty(formData.FirstName)) newErrors.FirstName = t("careers.apply_now.errors.first_name_empty");
+    if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = t("careers.apply_now.errors.invalid_email");
+    if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = t("careers.apply_now.errors.invalid_phone");
+    if (!isNotEmpty(formData.LastName)) newErrors.LastName = t("careers.apply_now.errors.last_name_empty");
+    if (!isNotEmpty(formData.Country)) newErrors.Country = t("careers.apply_now.errors.country_empty");
+    if (!isNotEmpty(formData.Position)) newErrors.Position = t("careers.apply_now.errors.position_empty");
+    if (!isNotEmpty(formData.Message)) newErrors.Message = t("careers.apply_now.errors.message_empty");
 
-    if (!isNotEmpty(formData.FirstName)) {
-      newErrors.FirstName = "First Name cannot be empty";
-    }
-
-    if (!isValidEmail(formData.EmailAddress)) {
-      newErrors.EmailAddress = "Invalid email address";
-    }
-
-    if (!isValidPhoneNumber(formData.PhoneNumber)) {
-      newErrors.PhoneNumber = "Invalid PhoneNumber number";
-    }
-
-    if (!isNotEmpty(formData.LastName)) {
-      newErrors.LastName = "Last Name is required";
-    }
-
-    if (!isNotEmpty(formData.Country)) {
-      newErrors.Country = "Country is required";
-    }
-
-    if (!isNotEmpty(formData.Position)) {
-      newErrors.Position = "Position cannot be empty";
-    }
-
-    if (!isNotEmpty(formData.Message)) {
-      newErrors.Message = "Message cannot be empty";
-    }
-
-    // Update errors state
     setErrors(newErrors);
 
-    // Step 2: Check if there are any errors
     if (Object.values(newErrors).some((error) => error)) {
-      setLoading(false); // Stop loading if validation fails
-      toast.error("Please fix the errors in the form before submitting.");
-
+      setLoading(false);
+      toast.error(t("careers.apply_now.errors.fix_form"));
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: "careers_form_error",
-        formData: newErrors, // Send errors if needed
+        formData: newErrors,
         formType: "careers Form",
       });
       return;
     }
+
     await addFormData("careers", formData);
 
     const formDataObject = new FormData();
-
     Object.entries(formData).map((value) =>
       formDataObject.append(value[0], value[1]),
     );
-
     const keyValuePairs: string[] = [];
     for (const [key, value] of Array.from(formDataObject.entries())) {
       keyValuePairs.push(
         `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`,
       );
     }
-
     const formDataString = keyValuePairs.join("&");
 
     try {
-      const response = await fetch(
+      await fetch(
         "https://script.google.com/macros/s/AKfycbyk90z7rMyxOY4kvD6oytsxr4Q-L9k1YX1o_c7yZ44Krga3uYtoTXcjdwORVHmYiulhvw/exec",
         {
           redirect: "follow",
           method: "POST",
-          mode: "no-cors", // Bypass CORS
-
+          mode: "no-cors",
           body: formDataString,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
         },
       );
       await sendEmail({
-        // recipientEmail: "careers@tuitionaledu.com",
         recipientEmail: CAREERSTUITIONALEDU,
         cc: HRTUITIONALEDU,
         subject: "Get Started",
         text: "",
         html: createCareerTemplate(formData),
       });
-      toast.success("Form submitted successfully!");
-      // ✅ Send Success Event to GTM
+      toast.success(t("careers.apply_now.toasts.success"));
       (window as any).dataLayer.push({
         event: "careers_form_success",
-        formData: formData, // You can include submitted data for analytics
+        formData: formData,
         formType: "careers Form",
       });
     } catch (error: any) {
       console.error("Error saving data:", error);
-      toast.error("Form submitted Failed!");
+      toast.error(t("careers.apply_now.toasts.failed"));
       (window as any).dataLayer.push({
         event: "careers_form_failed",
         error: error.Message,
@@ -216,12 +175,12 @@ const ApplyNow: React.FunctionComponent = () => {
 
   const geoData = useGeoLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!geoData.isLoading && !geoData.error) {
       const browser = navigator.userAgent;
       const pageURL = window.location.href;
-      const currentDate = new Date().toLocaleDateString(); // Format: MM/DD/YYYY
-      const currentTime = new Date().toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+      const currentDate = new Date().toLocaleDateString();
+      const currentTime = new Date().toLocaleTimeString();
       const params = new URLSearchParams(window.location.search);
       setFormData((prev) => ({
         ...prev,
@@ -239,522 +198,155 @@ const ApplyNow: React.FunctionComponent = () => {
       }));
     }
   }, [geoData]);
+
+  const inputCls = "my-1 rounded-[5px] bg-white text-ink-800 shadow-card";
+  const errorCls = "ms-1 mt-1 font-body text-small text-danger";
+
   return (
-    <Box sx={styles.container}>
-      <Box sx={styles.background} />
-      <Grid container>
-        <Grid item lg={5} md={12} sm={12} xs={12}>
-          <Box
-            sx={{
-              position: "relative",
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "none",
-                lg: "flex",
-              },
-              height: {
-                lg: "915px",
-                xs: "auto",
-              },
-              margin: "auto",
-            }}
-          >
+    <div className="relative">
+      <div className="absolute inset-0 -z-[2] h-full w-full" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <div className="relative m-auto hidden h-[915px] lg:flex">
             <Image
               src={applynow.src}
               width={applynow.width}
               height={applynow.height}
-              alt="applynow"
-              className="girlGrid"
-              style={{
-                position: "absolute",
-                top: 90,
-              }}
-            ></Image>
-          </Box>
-        </Grid>
-        <Grid item lg={7} md={12} sm={12} xs={12}>
-          <Box
-            sx={{
-              display: {
-                xs: "flex",
-                sm: "flex",
-                md: "flex",
-                lg: "block",
-              },
-              alignItems: "center",
-              flexDirection: "column",
-              zIndex: 4,
-              marginTop: { xs: 5, md: 10 },
-            }}
-          >
-            <Typography
-              sx={styles.heading}
-              variant="h2"
-              className={leagueSpartan.className}
-            >
-              Apply Now
-            </Typography>
-            <Box
-              sx={styles.contactForm}
-              component="form"
-              onSubmit={handleSubmit}
-            >
-              <Box sx={styles.formBox} />
-              <Box sx={styles.formInner} />
-              <Grid
-                container
-                columnSpacing={2}
-                rowSpacing={2}
-                sx={{ zIndex: 1 }}
-              >
-                <Grid item xs={12} md={12} lg={6}>
-                  <Input
-                    name="FirstName"
-                    value={formData.FirstName}
-                    onChange={handleChange}
-                    placeholder={"Enter First name here ..."}
-                    className={`${styles.input} ${leagueSpartan.className}`}
-                  />
-                  {errors.FirstName && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} `}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.FirstName}
-                    </Typography>
-                  )}
+              alt={t("careers.apply_now.image_alt")}
+              className="girlGrid absolute top-[90px]"
+            />
+          </div>
+        </div>
 
-                  <Box sx={styles.my}>
+        <div className="lg:col-span-7">
+          <div className="z-[4] mt-5 flex flex-col items-center md:mt-10 lg:mt-0 lg:block">
+            <h2 className="relative ms-0 mb-10 mt-0 flex font-heading text-h2-mobile sm:mb-5 sm:text-h2-tablet md:ms-[60px] md:mb-5 md:mt-0 lg:ms-[65px] lg:mb-5 lg:mt-[5px] lg:text-h2 text-black">
+              <Image
+                src={linesMobile}
+                alt=""
+                aria-hidden="true"
+                className="absolute -left-[10%] -top-3 h-[19px] w-5 object-contain sm:hidden"
+              />
+              <Image
+                src={linesInvert}
+                alt=""
+                aria-hidden="true"
+                className="absolute hidden h-[35px] w-[43px] object-contain sm:-left-[8%] sm:-top-[35px] sm:block md:-left-[6%] lg:-left-[4%]"
+              />
+              {t("careers.apply_now.heading")}
+            </h2>
+
+            <form onSubmit={handleSubmit} className="relative w-full">
+              <div className="z-[1] grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <Input
+                      name="FirstName"
+                      value={formData.FirstName}
+                      onChange={handleChange}
+                      placeholder={t("careers.apply_now.placeholder_first_name")}
+                      className={inputCls}
+                    />
+                    {errors.FirstName && <p className={errorCls}>{errors.FirstName}</p>}
+                  </div>
+                  <div>
                     <Input
                       name="EmailAddress"
                       value={formData.EmailAddress}
                       onChange={handleChange}
-                      placeholder={"Enter Email here ..."}
-                      className={`${styles.input} ${leagueSpartan.className}`}
+                      placeholder={t("careers.apply_now.placeholder_email")}
+                      className={inputCls}
                     />
-                    {errors.EmailAddress && (
-                      <Typography
-                        sx={styles.error}
-                        className={`${leagueSpartan.className} `}
-                        component={"p"}
-                        variant="caption"
-                      >
-                        {errors.EmailAddress}
-                      </Typography>
-                    )}
-                  </Box>
-                  <Input
-                    name="Country"
-                    value={formData.Country}
-                    onChange={handleChange}
-                    placeholder={"Enter Country here ..."}
-                    className={`${styles.input} ${leagueSpartan.className}`}
-                  />
-                  {errors.Country && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} `}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.Country}
-                    </Typography>
-                  )}
-                </Grid>
-                <Grid item xs={12} lg={6}>
-                  <Input
-                    name="LastName"
-                    value={formData.LastName}
-                    onChange={handleChange}
-                    placeholder={"Enter Last name here ..."}
-                    className={`${styles.input} ${leagueSpartan.className}`}
-                  />
-                  {errors.LastName && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} `}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.LastName}
-                    </Typography>
-                  )}
-                  <PhoneInput
-                    style={styles.phoneInput}
-                    defaultCountry="SA"
-                    value={formData?.PhoneNumber || ""}
-                    onChange={(e) => handleChange("PhoneNumber", String(e))}
-                    inputComponent={CustomInput}
-                  />
-                  {errors.PhoneNumber && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} ${styles.error}`}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.PhoneNumber}
-                    </Typography>
-                  )}
-                  <Input
-                    // style={{ width: "93%" }}
-                    name="Position"
-                    value={formData.Position}
-                    onChange={handleChange}
-                    placeholder={"Enter Position here ..."}
-                    className={`${styles.input} ${leagueSpartan.className}`}
-                  />
-                  {errors.Position && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} `}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.Position}
-                    </Typography>
-                  )}
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    sx={[styles.input]}
-                    fullWidth
-                    multiline
-                    rows={5}
+                    {errors.EmailAddress && <p className={errorCls}>{errors.EmailAddress}</p>}
+                  </div>
+                  <div>
+                    <Input
+                      name="Country"
+                      value={formData.Country}
+                      onChange={handleChange}
+                      placeholder={t("careers.apply_now.placeholder_country")}
+                      className={inputCls}
+                    />
+                    {errors.Country && <p className={errorCls}>{errors.Country}</p>}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <Input
+                      name="LastName"
+                      value={formData.LastName}
+                      onChange={handleChange}
+                      placeholder={t("careers.apply_now.placeholder_last_name")}
+                      className={inputCls}
+                    />
+                    {errors.LastName && <p className={errorCls}>{errors.LastName}</p>}
+                  </div>
+                  <div>
+                    <PhoneInput
+                      defaultCountry="SA"
+                      value={formData?.PhoneNumber || ""}
+                      onChange={(e) => handleChange("PhoneNumber", String(e))}
+                      inputComponent={CustomInput}
+                      placeholder={t("careers.apply_now.placeholder_phone")}
+                      className="relative z-[2] my-1 h-[5.5vh] min-h-[44px] rounded-[10px] bg-white ps-[10px] text-ink-800 shadow-card outline-none"
+                    />
+                    {errors.PhoneNumber && <p className={errorCls}>{errors.PhoneNumber}</p>}
+                  </div>
+                  <div>
+                    <Input
+                      name="Position"
+                      value={formData.Position}
+                      onChange={handleChange}
+                      placeholder={t("careers.apply_now.placeholder_position")}
+                      className={inputCls}
+                    />
+                    {errors.Position && <p className={errorCls}>{errors.Position}</p>}
+                  </div>
+                </div>
+
+                <div className="lg:col-span-2">
+                  <Textarea
                     name="Message"
+                    rows={5}
                     value={formData.Message}
                     onChange={(e) => handleChange("Message", e.target.value)}
-                    // label="Message*"
-                    placeholder="Enter your Message here..."
-                    variant="outlined"
-                    className={leagueSpartan.className}
+                    placeholder={t("careers.apply_now.placeholder_message")}
+                    className={inputCls}
                   />
-                  {errors.Message && (
-                    <Typography
-                      sx={styles.error}
-                      className={`${leagueSpartan.className} ${styles.error}`}
-                      component={"p"}
-                      variant="caption"
-                    >
-                      {errors.Message}
-                    </Typography>
-                  )}
-                </Grid>
-              </Grid>
+                  {errors.Message && <p className={errorCls}>{errors.Message}</p>}
+                </div>
+              </div>
 
               <Button
-                variant="contained"
-                sx={styles.containedButton}
                 type="submit"
-                className={leagueSpartan.className}
+                disabled={loading}
+                className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
               >
-                {/* Submit Now */}
                 {loading ? (
-                  <CircularProgress
-                    sx={{ width: "12px", height: "12px", color: "white" }}
-                    size={20}
+                  <span
+                    className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+                    aria-label="loading"
                   />
                 ) : (
-                  "Apply Now"
+                  t("careers.apply_now.submit")
                 )}
               </Button>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <Image
         src={applynow.src}
         width={applynow.width}
         height={applynow.height}
-        alt="applynow"
+        alt={t("careers.apply_now.image_alt")}
         className="girlContact"
-      ></Image>
-    </Box>
+      />
+    </div>
   );
 };
 
 export default ApplyNow;
-
-const styles = {
-  heading: {
-    display: "flex",
-
-    marginTop: {
-      xs: "0px",
-      sm: "0px",
-      md: "0px",
-      lg: "5px",
-    },
-    marginBottom: {
-      xs: "40px",
-      sm: "20px",
-      md: "20px",
-      lg: "20px",
-    },
-    position: "relative",
-    marginLeft: {
-      xs: "0px",
-      md: "60px",
-      lg: "65px",
-    },
-    "::before": {
-      content: "''",
-      position: "absolute",
-      backgroundImage: {
-        xs: `url(${linesMobile.src})`,
-        sm: `url(${linesInvert.src})`,
-        md: `url(${linesInvert.src})`,
-        lg: `url(${linesInvert.src})`,
-      },
-      height: {
-        xs: "19px",
-        sm: "35px",
-        md: "35px",
-        lg: "35px",
-      },
-      width: {
-        xs: "20px",
-        sm: "43px",
-        md: "43px",
-        lg: "43px",
-      },
-      backgroundRepeat: "no-repeat",
-      top: {
-        xs: -12,
-        sm: -35,
-        md: -35,
-        lg: -35,
-      },
-      left: {
-        xs: "-10%",
-        sm: "-8%",
-        md: "-6%",
-        lg: "-4%",
-      },
-    },
-  },
-  my: {
-    marginTop: "2vh",
-    marginBottom: "2vh",
-  },
-  inputDiv: {
-    display: "flex",
-    flexDirection: { xs: "column", lg: "row" },
-    columnGap: "24px",
-    width: "100%",
-    flex: 1,
-  },
-  title: {
-    textAlign: "center",
-    marginBottom: "1.5vh",
-  },
-  error: {
-    color: "red",
-    marginTop: "6px",
-    marginLeft: "6px",
-  },
-  inputDivTop: {
-    display: "flex",
-    flexDirection: { xs: "column", lg: "row" },
-
-    columnGap: "24px",
-    rowGap: "12px",
-
-    flex: 1,
-  },
-  div: {
-    flex: 1,
-  },
-  inputInner: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    flex: 1,
-  },
-
-  rowGap: {
-    rowGap: "12px",
-  },
-  contactForm: {
-    boxShadow:
-      "0px -3px 8px 0px rgba(0, 0, 0, 0.06) inset,0px 3px 8px 0px rgba(0, 0, 0, 0.06) inset",
-    backgroundColor: "rgba(255,255,255,0.7)",
-    width: {
-      xs: "75%",
-      sm: "75%",
-      md: "75%",
-      lg: "65%",
-    },
-    paddingX: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "50px",
-    },
-    paddingY: {
-      xs: "35px",
-      sm: "40px",
-      md: "45px",
-      lg: "50px",
-    },
-    borderRadius: "20px",
-    marginBottom: {
-      xs: "60px",
-      sm: "60px",
-      md: "100px",
-      lg: "100px",
-    },
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    position: "relative",
-  },
-  container: {
-    // background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#D7F0FF)",
-    position: "relative",
-    // zIndex: -2,
-  },
-  background: {
-    background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.7),#D7F0FF)",
-    position: "absolute",
-    zIndex: -2,
-    height: "100%",
-    width: "100%",
-  },
-  phoneInput: {
-    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-    paddingLeft: "10px",
-    backgroundColor: "white",
-    marginTop: "2vh",
-    marginBottom: "2vh",
-    outline: "none",
-    ":focusVisible": {
-      outline: "none",
-    },
-    position: "relative",
-    zIndex: 2,
-    color: "rgba(0,0,0,0.77)",
-    borderRadius: "10px",
-    height: "5.5vh",
-  },
-  input: {
-    backgroundColor: "white",
-    width: "100%",
-    position: "relative",
-    zIndex: 2,
-    color: "rgba(0,0,0,0.77)",
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
-    },
-    boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
-    borderRadius: "5px",
-  },
-  containedButton: {
-    display: "flex",
-    alignSelf: "center",
-    boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-    backgroundColor: "#38B6FF",
-
-    textTransform: "none",
-    letterSpacing: "-2%",
-    fontSize: {
-      xs: "25px",
-      sm: "25px",
-      md: "25px",
-      lg: "25px",
-    },
-    fontWeight: 700,
-    lineHeight: "18.4px",
-    textAlign: "center",
-    borderRadius: "10px",
-    width: "100%",
-    padding: "18px",
-    marginY: "20px",
-    ":hover": {
-      boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-      backgroundColor: "#38B6FF",
-
-      letterSpacing: "-2%",
-      fontSize: {
-        xs: "25px",
-        sm: "25px",
-        md: "25px",
-        lg: "25px",
-      },
-      borderRadius: "10px",
-      fontWeight: 700,
-      lineHeight: "18.4px",
-      textAlign: "center",
-      padding: "18px",
-      marginY: "20px",
-    },
-  },
-  formBox: {
-    width: {
-      xs: "100px",
-      sm: "180px",
-      md: "200px",
-      lg: "200px",
-    },
-    height: {
-      xs: "100px",
-      sm: "180px",
-      md: "200px",
-      lg: "200px",
-    },
-    borderRadius: "100px",
-    backgroundColor: "rgba(56, 182, 255, 1)",
-    position: "absolute",
-    top: {
-      xs: -30,
-      sm: -80,
-      md: -80,
-      lg: -80,
-    },
-    right: {
-      xs: -10,
-      sm: -40,
-      md: -60,
-      lg: -80,
-    },
-    zIndex: -1,
-  },
-  formInner: {
-    width: {
-      xs: "60px",
-      sm: "80px",
-      md: "100px",
-      lg: "100px",
-    },
-    height: {
-      xs: "60px",
-      sm: "80px",
-      md: "100px",
-      lg: "100px",
-    },
-    borderRadius: "100px",
-    backgroundColor: "rgba(56, 182, 255, 1)",
-    position: "absolute",
-    bottom: {
-      xs: -80,
-      sm: -80,
-      md: -80,
-      lg: -30,
-    },
-    left: {
-      xs: -20,
-      sm: -20,
-      md: -30,
-      lg: -30,
-    },
-    zIndex: -1,
-    display: {
-      xs: "block",
-      md: "block",
-    },
-  },
-};

@@ -1,31 +1,20 @@
 import React from "react";
-import BlogCard, { BlogsProps } from "../blog-card/BlogCard";
-import styles from "./RelatedBlogs.module.css";
+import BlogCard from "../blog-card/BlogCard";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
-import { Typography } from "@mui/material";
-import { leagueSpartan } from "@/app/fonts";
 
 interface Props {
   blogs: AllBlogsData[] | null | undefined;
 }
 
-const RelatedBlogs = ({ blogs }: Props) => {
-  return (
-    <>
-      {" "}
-      <Typography
-        className={`${styles.heading} ${leagueSpartan.className}`}
-        variant="h4"
-        component={"p"}
-      >
-        Related Blogs
-      </Typography>
-      <div className={styles.blogContainer}>
-        {blogs?.slice(0, 3)?.map((blog) => (
-          <BlogCard data={blog} key={blog.id} />
-        ))}
-      </div>
-    </>
-  );
-};
+const RelatedBlogs = ({ blogs }: Props) => (
+  <>
+    <p className="text-center font-heading text-h4">Related Blogs</p>
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5 p-5 md:grid-cols-2 lg:grid-cols-3">
+      {blogs?.slice(0, 3)?.map((blog) => (
+        <BlogCard data={blog} key={blog.id} />
+      ))}
+    </div>
+  </>
+);
+
 export default RelatedBlogs;

@@ -1,5 +1,4 @@
-'use client';
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+"use client";
 import React from "react";
 import { leagueSpartan } from "@/app/fonts";
 
@@ -13,7 +12,6 @@ interface IProps {
   headerTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
-// Hardcoded IGCSE subjects data 
 const hardcodedSubjects: Subject[] = [
   { name: "Mathematics", color: "" },
   { name: "English Language", color: "" },
@@ -26,109 +24,43 @@ const hardcodedSubjects: Subject[] = [
   { name: "Geography", color: "" },
   { name: "History", color: "" },
   { name: "Art & Design", color: "" },
-  { name: "French", color: "" }
+  { name: "French", color: "" },
 ];
 
-// Color logic for mobile: left cards (#e7f1f7), right cards (#c9ebff)
-const getCardColor = (index: number, isMobile: boolean) => {
-  if (!isMobile) {
-    // Desktop: alternating colors
-    return index % 2 === 0 ? "#e7f1f7" : "#c9ebff";
-  }
-  // Mobile: left column (#e7f1f7), right column (#c9ebff)
-  return index % 2 === 0 ? "#e7f1f7" : "#c9ebff";
-};
-
-const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({ 
+const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({
   title = "Popular IGCSE Subjects",
-  headerTag = "h2"
+  headerTag = "h2",
 }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const HeaderTag = headerTag;
 
   return (
-    <Box sx={{ paddingX: "5vw" }}>
-      <Box>
-        <Typography
-          sx={style.popularText}
-          className={leagueSpartan.className}
-          variant={headerTag}
-          component={headerTag}
-        >
-          {title}
-        </Typography>
-      </Box>
+    <div className="px-[5vw]">
+      <HeaderTag
+        className={`${leagueSpartan.className} mx-auto mb-[2.5vh] text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900`}
+      >
+        {title}
+      </HeaderTag>
 
-      <Box>
-        <Grid container spacing={2} justifyContent="center">
-          {hardcodedSubjects.map((item, index) => {
-            const cardColor = getCardColor(index, isMobile);
-            return (
-              <Grid item xs={6} sm={6} md={3} lg={3} xl={2} key={index}>
-                <Box sx={{
-                  ...style.cardsBoxes,
-                  background: cardColor,
-                  ":hover": {
-                    ...style.cardsBoxes[":hover"],
-                    background: cardColor,
-                    opacity: 0.8,
-                  }
-                }}>
-                  <Typography
-                    sx={style.subjects}
-                    className={leagueSpartan.className}
-                    variant="caption"
-                    component={"p"}
-                  >
-                    {item.name}
-                  </Typography>
-                </Box>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
-    </Box>
+      <div className="grid grid-cols-2 justify-center gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6">
+        {hardcodedSubjects.map((item, index) => {
+          const cardColor = index % 2 === 0 ? "#e7f1f7" : "#c9ebff";
+          return (
+            <div
+              key={index}
+              className="flex h-[5vh] cursor-pointer items-center justify-center rounded-[2vh] p-[2vh] text-center backdrop-blur-[5px] shadow-[0px_-2.171px_6.514px_0px_rgba(0,0,0,0.20)_inset] transition-all duration-500 hover:scale-105 hover:opacity-80 lg:h-[5vh] lg:p-[3vh]"
+              style={{ background: cardColor }}
+            >
+              <p
+                className={`${leagueSpartan.className} font-heading text-[0.9rem] font-semibold text-[#2D2D2D] lg:text-[1rem]`}
+              >
+                {item.name}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 
 export default PopularIgcseSubjectsV2;
-
-const style = {
-  popularText: {
-    textAlign: "center",
-    margin: "0 auto 2.5vh auto",
-  },
-  subjects: {
-    color: "#2D2D2D",
-    fontWeight: "600",
-    fontSize: {
-      xs: "0.9rem",
-      lg: "1rem",
-    },
-  },
-  cardsBoxes: {
-    background: "#FFF",
-    backdropFilter: "blur(5px)",
-    borderRadius: "2vh",
-    boxShadow: "0px -2.171px 6.514px 0px rgba(0, 0, 0, 0.20) inset",
-    textAlign: "center",
-    padding: {
-      xs: "2vh",
-      lg: "3vh",
-    },
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    height: {
-      xs: "5vh",
-      lg: "5vh",
-    },
-    transition: "all .5s ease-in-out",
-
-    ":hover": {
-      transform: "scale(1.05)",
-    },
-  },
-};

@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
 import lineSmall from "../../public/assets/images/static/linesmall.png";
 import faqLine from "../../public/assets/images/static/faq-line.webp";
 import dynamic from "next/dynamic";
@@ -16,73 +15,41 @@ import { Header } from "../components";
 import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
-// Critical above-the-fold - Load with SSR
-const Info = dynamic(() => import("../components/home/info"), {
-  ssr: true,
-});
-const Filter = dynamic(() => import("../components/home/filter"), {
-  ssr: true,
-});
 
-// Below-the-fold - Lazy load with optimized placeholders and viewport detection
+const Info = dynamic(() => import("../components/home/info"), { ssr: true });
+const Filter = dynamic(() => import("../components/home/filter"), { ssr: true });
+
 const Trusted = dynamic(() => import("../components/home/trusted"), {
   ssr: false,
   loading: () => (
-    <div
-      style={{
-        height: "200px",
-        backgroundColor: "transparent",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "30px",
-          height: "30px",
-          borderRadius: "50%",
-          backgroundColor: "#e2e8f0",
-          opacity: 0.5,
-        }}
-      />
+    <div className="flex h-[200px] items-center justify-center bg-transparent">
+      <div className="h-[30px] w-[30px] rounded-full bg-[#e2e8f0] opacity-50" />
     </div>
   ),
 });
 const OurClient = dynamic(() => import("../components/home/our-client"), {
   ssr: false,
-  loading: () => (
-    <div style={{ height: "400px", backgroundColor: "transparent" }} />
-  ),
+  loading: () => <div className="h-[400px] bg-transparent" />,
 });
 const Faqs = dynamic(() => import("../components/home/faqs"), {
   ssr: false,
-  loading: () => (
-    <div style={{ height: "300px", backgroundColor: "transparent" }} />
-  ),
+  loading: () => <div className="h-[300px] bg-transparent" />,
 });
 const ContactUs = dynamic(() => import("../components/home/contact-us"), {
   ssr: false,
-  loading: () => (
-    <div style={{ height: "400px", backgroundColor: "transparent" }} />
-  ),
+  loading: () => <div className="h-[400px] bg-transparent" />,
 });
 
-// Footer and non-critical
 const GetStarted = dynamic(
   () => import("@/components/grade-subject-level/get-started"),
   {
     ssr: false,
-    loading: () => (
-      <div style={{ height: "300px", backgroundColor: "#f5f5f5" }} />
-    ),
+    loading: () => <div className="h-[300px] bg-[#f5f5f5]" />,
   },
 );
 const ServerFooter = dynamic(() => import("../components/server-footer"), {
   ssr: false,
-  loading: () => (
-    <div style={{ height: "500px", backgroundColor: "#f5f5f5" }} />
-  ),
+  loading: () => <div className="h-[500px] bg-[#f5f5f5]" />,
 });
 
 export const metadata: Metadata = {
@@ -164,6 +131,7 @@ const homeSchema = {
     },
   ],
 };
+
 const Home: React.FC = async () => {
   const data = await getTestimonials();
   const filterData = await getFilterData();
@@ -177,7 +145,7 @@ const Home: React.FC = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
       <Header />
-      <Container sx={styles.contanier}>
+      <div className="mx-auto flex min-h-full items-end pt-[120px] sm:pt-[120px] md:pt-[120px] lg:min-h-screen lg:max-w-[1650px] lg:pt-[70px] xl:pt-[70px]">
         <div className={style["grid-container"]}>
           <div className={style["hero"]}>
             <Filter data={filterData} />
@@ -200,88 +168,31 @@ const Home: React.FC = async () => {
             <Info />
           </div>
         </div>
-      </Container>
+      </div>
       <Trusted />
-      <Box sx={styles.verticalMargin}>
+      <div className="my-[5vh] md:my-[10vh]">
         <GetStarted data={getStarted} />
-      </Box>
+      </div>
       <OurClient data={data} />
-      <Box sx={styles.backgroundImage}>
-        <Container
-          sx={{
-            maxWidth: { lg: "1450px" },
-          }}
-        >
+      <div className="relative h-full w-full">
+        <div
+          className="absolute bottom-[90%] h-[25vw] w-screen bg-cover bg-top bg-no-repeat sm:bottom-[83%] md:bottom-[80%] lg:hidden"
+          style={{ backgroundImage: `url(${lineSmall.src})` }}
+        />
+        <div
+          className="absolute bottom-[-90px] hidden h-[281px] w-screen bg-cover bg-top bg-no-repeat lg:block"
+          style={{ backgroundImage: `url(${faqLine.src})` }}
+        />
+        <div className="mx-auto lg:max-w-[1450px]">
           <Faqs />
-        </Container>
-      </Box>
-      <Box sx={styles.verticalMargin}>
+        </div>
+      </div>
+      <div className="my-[5vh] md:my-[10vh]">
         <ContactUs filterData={filterData} />
-      </Box>
+      </div>
       <ServerFooter />
     </>
   );
 };
 
 export default Home;
-
-const styles = {
-  verticalMargin: { marginY: { xs: "5vh", md: "10vh" } },
-
-  contanier: {
-    maxWidth: { lg: "1650px" },
-    paddingTop: {
-      xs: "120px",
-      sm: "120px",
-      md: "120px",
-      lg: "70px",
-      xl: "70px",
-    },
-    minHeight: { xs: "100%", lg: "100vh" },
-    display: "flex",
-    alignItems: "end",
-  },
-  infoGrid: {
-    position: "relative",
-    "::before": {
-      content: "''",
-      backgroundImage: `url(${homeImage.src})`,
-      backgroundPosition: "bottom",
-      backgroundSize: "contain",
-      height: { xs: "400px", sm: "400px", md: "80vh", lg: "80vh" },
-      width: "100%",
-      backgroundRepeat: "no-repeat",
-      position: "absolute",
-      bottom: 0,
-    },
-  },
-  backgroundImage: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-
-    "::before": {
-      content: "''",
-      backgroundImage: {
-        xs: `url(${lineSmall.src})`,
-        lg: `url(${faqLine.src})`,
-      },
-      backgroundSize: "cover",
-      backgroundPosition: "top",
-      position: "absolute",
-      bottom: {
-        xs: "90%",
-        sm: "83%",
-        md: "80%",
-        lg: -90,
-      },
-      backgroundRepeat: "no-repeat",
-      width: "100vw",
-      height: {
-        xs: "25vw",
-        lg: "281px",
-      },
-      objectFit: "contain",
-    },
-  },
-};

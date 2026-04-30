@@ -1,114 +1,69 @@
 "use client";
+
 import React, { useState, useEffect, memo } from "react";
-import { Container, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
+
+import { Container } from "@/components/ui/container";
 import useGeoLocation from "@/utils/slugHelper";
 import { mapApiCountryToPricing, SUPPORTED_COUNTRIES } from "@/utils/pricing-helpers";
-import { leagueSpartan } from "@/app/fonts";
-import dynamic from "next/dynamic";
 import { DropdownOptions } from "@/services/dropdown/dropdown-api";
-import styles from "../../app/pricing/pricing.module.css";
 
-// Lazy load below-the-fold components
-const PricingSection = dynamic(
-  () => import("./PricingSection"),
-  {
-    ssr: true,
-    loading: () => (
-      <Container maxWidth="lg">
-        <div style={{ minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Typography>Loading packages...</Typography>
-        </div>
-      </Container>
-    )
-  }
-);
+const PricingSection = dynamic(() => import("./PricingSection"), {
+  ssr: true,
+  loading: () => (
+    <Container size="lg">
+      <div className="flex min-h-[300px] items-center justify-center">
+        <p className="font-heading text-body text-ink-700">Loading packages...</p>
+      </div>
+    </Container>
+  ),
+});
 
-// Lazy load trust section for better performance
 const TrustSection = React.lazy(() =>
   Promise.resolve({
     default: () => (
-      <section className={styles.trustSection}>
-        <Container maxWidth="lg">
-          <div className={styles.trustContent}>
-            <div className={styles.trustHeader}>
-              <Typography variant="h3" className={`${styles.trustTitle} ${leagueSpartan.className}`}>
-                Trusted by Students Worldwide
-              </Typography>
-              <Typography className={`${styles.trustSubtitle} ${leagueSpartan.className}`}>
-                Join thousands of successful students who have achieved their academic goals with our expert tutoring
-              </Typography>
-            </div>
-
-            <div className={styles.statsGrid}>
-              <div className={styles.statCard}>
-                <div className={styles.statIcon}>🎓</div>
-                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>10,000+</Typography>
-                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Students Tutored
-                </Typography>
-                <div className={styles.statProgress}>
-                  <div className={styles.progressBar} style={{width: '90%'}}></div>
+      <section className="bg-brand-50 py-16">
+        <Container size="lg">
+          <div className="text-center">
+            <h3 className="font-heading text-h3 text-ink-900">Trusted by Students Worldwide</h3>
+            <p className="mt-2 font-heading text-body text-ink-700">
+              Join thousands of successful students who have achieved their academic goals with our expert tutoring
+            </p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
+            {[
+              { icon: "🎓", number: "10,000+", label: "Students Tutored", progress: 90 },
+              { icon: "👨‍🏫", number: "500+", label: "Expert Tutors", progress: 85 },
+              { icon: "📚", number: "15+", label: "Curricula Supported", progress: 75 },
+              { icon: "⭐", number: "98%", label: "Student Satisfaction", progress: 98 },
+            ].map((stat, i) => (
+              <div key={i} className="rounded-lg bg-white p-6 text-center shadow-card">
+                <div className="text-4xl">{stat.icon}</div>
+                <p className="mt-2 font-heading text-h3 font-bold text-brand-500">{stat.number}</p>
+                <p className="font-heading text-small text-ink-700">{stat.label}</p>
+                <div className="mt-3 h-1 rounded-full bg-ink-200">
+                  <div className="h-1 rounded-full bg-brand-500" style={{ width: `${stat.progress}%` }} />
                 </div>
               </div>
-
-              <div className={styles.statCard}>
-                <div className={styles.statIcon}>👨‍🏫</div>
-                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>500+</Typography>
-                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Expert Tutors
-                </Typography>
-                <div className={styles.statProgress}>
-                  <div className={styles.progressBar} style={{width: '85%'}}></div>
-                </div>
+            ))}
+          </div>
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            {[
+              { icon: "🏆", text: "Top Rated Platform" },
+              { icon: "🌟", text: "Award Winning" },
+              { icon: "🔒", text: "Secure & Trusted" },
+              { icon: "💯", text: "Results Guaranteed" },
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-card">
+                <span>{badge.icon}</span>
+                <span className="font-heading text-small font-semibold text-ink-900">{badge.text}</span>
               </div>
-
-              <div className={styles.statCard}>
-                <div className={styles.statIcon}>📚</div>
-                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>15+</Typography>
-                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Curricula Supported
-                </Typography>
-                <div className={styles.statProgress}>
-                  <div className={styles.progressBar} style={{width: '75%'}}></div>
-                </div>
-              </div>
-
-              <div className={styles.statCard}>
-                <div className={styles.statIcon}>⭐</div>
-                <Typography className={`${styles.statNumber} ${leagueSpartan.className}`}>98%</Typography>
-                <Typography className={`${styles.statLabel} ${leagueSpartan.className}`}>
-                  Student Satisfaction
-                </Typography>
-                <div className={styles.statProgress}>
-                  <div className={styles.progressBar} style={{width: '98%'}}></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Achievement badges */}
-               <div className={styles.achievementBadges}>
-              <div className={styles.badge}>
-                <span className={styles.badgeIcon}>🏆</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Top Rated Platform</span>
-              </div>
-                <div className={styles.badge}>
-                <span className={styles.badgeIcon}>🌟</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Award Winning</span>
-              </div>
-              <div className={styles.badge}>
-                <span className={styles.badgeIcon}>🔒</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Secure & Trusted</span>
-              </div>
-              <div className={styles.badge}>
-                <span className={styles.badgeIcon}>💯</span>
-                <span className={`${styles.badgeText} ${leagueSpartan.className}`}>Results Guaranteed</span>
-              </div>
-            </div>
+            ))}
           </div>
         </Container>
       </section>
-    )
-  })
+    ),
+  }),
 );
 
 interface PricingPageClientProps {
@@ -122,73 +77,55 @@ interface PricingPageClientProps {
   locale?: string;
 }
 
-const PricingPageClient: React.FC<PricingPageClientProps> = memo(({
-  initialFilters,
-  dropdownOptions,
-  locale = "en",
-}) => {
-  const [filters, setFilters] = useState(initialFilters);
-  const geoData = useGeoLocation();
+const PricingPageClient: React.FC<PricingPageClientProps> = memo(
+  ({ initialFilters, dropdownOptions, locale = "en" }) => {
+    const [filters, setFilters] = useState(initialFilters);
+    const geoData = useGeoLocation();
 
-  // Update country when geolocation data is available
-  useEffect(() => {
-    if (!geoData.isLoading && !geoData.error && geoData.country) {
-      const mappedCountry = mapApiCountryToPricing(geoData.country);
-
-      // Check if the mapped country is in the supported countries list
-      const isSupported = SUPPORTED_COUNTRIES.some(
-        (c) => c.code === mappedCountry || c.name === mappedCountry || c.dbKey === mappedCountry
-      );
-
-      // Use detected country if supported, otherwise default to USA (database key)
-      const finalCountry = isSupported ? mappedCountry : "USA";
-
-      if (finalCountry !== filters.country) {
-        setFilters((prev) => ({
-          ...prev,
-          country: finalCountry,
-        }));
+    useEffect(() => {
+      if (!geoData.isLoading && !geoData.error && geoData.country) {
+        const mappedCountry = mapApiCountryToPricing(geoData.country);
+        const isSupported = SUPPORTED_COUNTRIES.some(
+          (c) => c.code === mappedCountry || c.name === mappedCountry || c.dbKey === mappedCountry,
+        );
+        const finalCountry = isSupported ? mappedCountry : "USA";
+        if (finalCountry !== filters.country) {
+          setFilters((prev) => ({ ...prev, country: finalCountry }));
+        }
       }
-    }
-  }, [geoData, filters.country]);
+    }, [geoData, filters.country]);
 
-  return (
-    <>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <Container maxWidth="lg">
-          <div className={styles.heroContent}>
-            <Typography variant="h1" className={`${styles.heroTitle} ${leagueSpartan.className}`}>
-              Find Your Perfect Tutoring Package
-            </Typography>
-            <Typography className={`${styles.heroSubtitle} ${leagueSpartan.className}`}>
-              Expert tutoring tailored to your curriculum, grade level, and
-              learning goals. Join thousands of students achieving academic
-              excellence with our personalized approach.
-            </Typography>
-          </div>
-        </Container>
-      </section>
+    return (
+      <>
+        <section className="bg-gradient-to-br from-brand-50 to-white py-20">
+          <Container size="lg">
+            <div className="text-center">
+              <h1 className="font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1 text-ink-900">
+                Find Your Perfect Tutoring Package
+              </h1>
+              <p className="mx-auto mt-4 max-w-2xl font-heading text-body text-ink-700">
+                Expert tutoring tailored to your curriculum, grade level, and learning goals. Join thousands of students achieving academic excellence with our personalized approach.
+              </p>
+            </div>
+          </Container>
+        </section>
 
-      {/* Pricing Section with Dynamic Filters */}
-      <PricingSection
-        filters={filters}
-        dropdownOptions={dropdownOptions}
-        locale={locale}
-      />
+        <PricingSection filters={filters} dropdownOptions={dropdownOptions} locale={locale} />
 
-      {/* Lazy load trust section */}
-      <React.Suspense fallback={
-        <div style={{ minHeight: '400px', backgroundColor: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Typography>Loading testimonials...</Typography>
-        </div>
-      }>
-        <TrustSection />
-      </React.Suspense>
-    </>
-  );
-});
+        <React.Suspense
+          fallback={
+            <div className="flex min-h-[400px] items-center justify-center bg-ink-50">
+              <p className="font-heading text-body text-ink-700">Loading testimonials...</p>
+            </div>
+          }
+        >
+          <TrustSection />
+        </React.Suspense>
+      </>
+    );
+  },
+);
 
-PricingPageClient.displayName = 'PricingPageClient';
+PricingPageClient.displayName = "PricingPageClient";
 
 export default PricingPageClient;

@@ -1,15 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import styles from "./style.module.css";
-import dynamic from "next/dynamic";
-import Input from "@/components/input/Input";
-import { leagueSpartan } from "@/app/fonts";
-import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
 
-const BlogSidebarForm = dynamic(() => import("./BlogSidebarForm"), {
-  ssr: false,
-});
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Input from "@/components/input/Input";
+
+const BlogSidebarForm = dynamic(() => import("./BlogSidebarForm"), { ssr: false });
 
 interface Props {
   categories?: { name: { en: string; ar: string }; id: string }[];
@@ -19,10 +16,6 @@ interface Props {
 function LeftSection({ categories, tags }: Props) {
   const router = useRouter();
   const [search, setSearch] = useState("");
-
-  const handleChange = (key: string, value: string | string[]) => {
-    setSearch(value as string);
-  };
 
   const handleSearch = () => {
     if (search) {
@@ -34,24 +27,19 @@ function LeftSection({ categories, tags }: Props) {
 
   return (
     <div>
-      <div>
+      <div className="flex items-center gap-2 rounded-md bg-white p-2 shadow-card">
         <Input
           name="search"
           value={search}
-          onChange={handleChange}
-          placeholder={"Search Our Blog"}
-          className={`${styles.input} ${leagueSpartan.className}`}
+          onChange={(_, value) => setSearch(value as string)}
+          placeholder="Search Our Blog"
+          className="flex-1 border-0 bg-transparent"
         />
-        <Button
-          variant="contained"
-          type="submit"
-          className={`${leagueSpartan.className} ${styles.containedButton}`}
-          onClick={handleSearch}
-        >
+        <Button onClick={handleSearch} variant="primary" size="sm">
           Search
         </Button>
       </div>
-      <div style={{ marginTop: "20px" }}>
+      <div className="mt-5">
         <BlogSidebarForm />
       </div>
     </div>

@@ -1,16 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import styles from "./ar-left-section.module.css";
-import dynamic from "next/dynamic";
-import Input from "@/components/input/Input";
-import { AccordionProps } from "../accordion/Accordion";
-import { leagueSpartan } from "@/app/fonts";
-import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
 
-const ArAccordion = dynamic(() => import("../ar-accordion/Ar-Accordion"), {
-  ssr: true,
-});
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Input from "@/components/input/Input";
+
+const ArAccordion = dynamic(() => import("../ar-accordion/Ar-Accordion"), { ssr: true });
 
 interface Props {
   categories?: { name: { en: string; ar: string }; id: string }[];
@@ -19,68 +15,45 @@ interface Props {
 
 function ArLeftSection({ categories, tags }: Props) {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    search: "",
-  });
-  // Convert bilingual data to Arabic display format
-  const arabicCategories = categories?.map(cat => ({
-    name: cat.name.ar || cat.name.en,
-    id: cat.id
-  }));
+  const [search, setSearch] = useState("");
 
-  const arabicTags = tags?.map(tag => ({
-    name: tag.name.ar || tag.name.en, 
-    id: tag.id
+  const arabicCategories = categories?.map((cat) => ({
+    name: cat.name.ar || cat.name.en,
+    id: cat.id,
+  }));
+  const arabicTags = tags?.map((tag) => ({
+    name: tag.name.ar || tag.name.en,
+    id: tag.id,
   }));
 
   const accordionData = [
-    {
-      title: "التصنيف",
-      items: arabicCategories,
-    },
-    {
-      title: "الوسم",
-      items: arabicTags,
-    },
+    { title: "التصنيف", items: arabicCategories },
+    { title: "الوسم", items: arabicTags },
   ];
 
-  const handleChange = (key: string, value: string | string[]) => {
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
-  };
-
   const handleSearch = () => {
-    if (formData.search) {
-      // Update the query parameter in the URL
+    if (search) {
       const params = new URLSearchParams(window.location.search);
-      params.set("search", formData.search);
-      const newUrl = `/ar/blog?${params.toString()}`;
-      router.replace(newUrl);
+      params.set("search", search);
+      router.replace(`/ar/blog?${params.toString()}`);
     }
   };
+
   return (
-    <div>
-      <div>
+    <div dir="rtl">
+      <div className="flex items-center gap-2 rounded-md bg-white p-2 shadow-card">
         <Input
           name="search"
-          value={formData.search}
-          onChange={handleChange}
-          placeholder={"ابحث في مدونتنا"}
-          className={`${styles.input} ${leagueSpartan.className}`}
+          value={search}
+          onChange={(_, value) => setSearch(value as string)}
+          placeholder="ابحث في مدونتنا"
+          className="flex-1 border-0 bg-transparent"
         />
-
-        <Button
-          variant="contained"
-          type="submit"
-          className={`${leagueSpartan.className} ${styles.containedButton}`}
-          onClick={handleSearch}
-        >
+        <Button onClick={handleSearch} variant="primary" size="sm">
           بحث
         </Button>
       </div>
-      <div>
+      <div className="mt-5 flex flex-col gap-3">
         {accordionData.map((data, index) => (
           <ArAccordion key={index} title={data.title} items={data.items} />
         ))}

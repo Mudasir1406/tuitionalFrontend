@@ -18,11 +18,12 @@ Public-facing marketing / lead-generation site for **Tuitional** (online tutorin
 
 | Concern | Choice |
 |---|---|
-| Framework | Next.js **14.2.35** (App Router) + React 18 + TypeScript 5 (`strict: true`) |
-| UI library | `@mui/material` + `@mui/icons-material` |
-| Style engine | `@emotion/react` + `@emotion/styled` |
-| Authoring style | **Mixed**: MUI `sx` props AND per-component `*.module.css` files. Both are accepted here (unlike TuitionalCMS, which bans CSS modules). |
-| Fonts | `League Spartan` (EN), `Inter`, `Noto Sans Arabic` — all via `next/font/google` in [src/app/fonts.ts](src/app/fonts.ts) |
+| Framework | Next.js **14.2.35** (App Router) + React 18 + TypeScript 5 |
+| Styling | **Tailwind CSS 3.4** + `clsx` + `tailwind-merge` (via `cn()` helper at [src/utils/cn.ts](src/utils/cn.ts)) |
+| Interactive primitives | `@headlessui/react@2` (Dialog, Listbox, Disclosure, Tab, Transition) |
+| Icons | `lucide-react` |
+| Authoring style | Tailwind utility classes throughout. A few legacy `*.module.css` files survive (TextEditor, TrustpilotCarousel, route-shell layouts) but new ones are not authored. |
+| Fonts | `League Spartan` (EN), `Inter`, `Noto Sans Arabic` — all via `next/font/google` in [src/app/fonts.ts](src/app/fonts.ts), exposed as Tailwind `font-heading`, `font-body`, `font-arabic` |
 | Backend | Firebase Web SDK 10 — Firestore (content reads only, no writes) |
 | i18n | Home-grown: [src/context/language-context.tsx](src/context/language-context.tsx) + JSON dictionaries in [src/locales/](src/locales/) |
 | HTTP | `axios` |
@@ -141,7 +142,7 @@ tuitionalFrontend/
 
 - **Two top-level language roots**: English pages live at `/…`, Arabic pages at `/ar/…`. Route detection in [src/context/language-context.tsx](src/context/language-context.tsx) sets `locale` to `'ar'` when `window.location.pathname.startsWith('/ar')`, else `'en'`.
 - **Translation function**: `const { t, locale, isRTL, setLocale } = useI18n()`. Call as `t("some.nested.key")` against [src/locales/en.json](src/locales/en.json) / [src/locales/ar.json](src/locales/ar.json). Missing keys fall back to EN, then to the key string itself. **Unlike TuitionalCMS, `t` IS a function here — do not refactor to an object pattern.**
-- **RTL mirroring**: [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) sets `<html dir>` and `lang`. There is no `stylis-plugin-rtl` — direction is mirrored by explicit styles and by using Arabic-specific component variants (`ArHeader`, `ArHero`, `ArForm`, etc.).
+- **RTL mirroring**: [src/components/html-wrapper.tsx](src/components/html-wrapper.tsx) sets `<html dir>` and `lang`. There is no `stylis-plugin-rtl` — direction is handled by Tailwind's logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`) which auto-flip under `dir="rtl"`, plus a small set of Arabic-specific component variants (`ar-grade-subject-level`, `ar-form`, `ar-offer`) where layouts genuinely diverge.
 - **Component duplication pattern**: most visual surfaces have a paired Arabic version (`components/blog/hero/Hero.tsx` ↔ `components/blog/ar-hero/ArHero.tsx`). The `/ar/**` page files import the `Ar*` variants. When editing a surface, check whether the Arabic twin needs the same change.
 
 ---
@@ -193,7 +194,7 @@ Both variants still exist in the wild; don't remove either.
 
 ## 7. Performance Posture
 
-- `experimental.optimizePackageImports`: MUI + Emotion tree-shaking.
+- `experimental.optimizePackageImports`: `lucide-react` + `@headlessui/react` tree-shaking.
 - Custom webpack `splitChunks`: separate `mui` and `vendor` chunks.
 - `next/image` everywhere — image `remotePatterns` allow `firebasestorage.googleapis.com`, `img.icons8.com`, `cdn-icons-png.flaticon.com`, `www.facebook.com/tr*`. **Don't add new hostnames without updating [next.config.mjs](next.config.mjs).**
 - Dynamic imports for non-critical components (mobile drawer, heavy below-the-fold surfaces).

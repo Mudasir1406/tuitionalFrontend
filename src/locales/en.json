@@ -121,37 +121,252 @@
     "title": "We Are Always on the Lookout for Talented People",
     "description": "Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact.",
     "hero": {
-      "heading": "We Are Always on the Lookout for Talented People",
-      "subheading": "Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact."
+      "heading_line_1": "Let’s build something",
+      "heading_line_2_lead": "awesome",
+      "heading_line_2_accent": "together",
+      "description": "Passionate Educators And Change Lives",
+      "cta": "Get in touch"
+    },
+    "hero_info": {
+      "vacancy_count": "800+",
+      "vacancy_label": "Vacancy Available",
+      "apply_cta": "Apply Now ",
+      "tutor_alt": "tutor",
+      "employee_count": "50k",
+      "employee_label": "Active Employee"
     },
     "team_values": {
       "heading": "Our Team Values",
-      "description": "At Tuitional, we believe in creating an environment where everyone can thrive and contribute to our mission of transforming education."
+      "description": "At Tuitional, we believe in creating an environment where everyone can thrive and contribute to our mission of transforming education.",
+      "values": {
+        "succeed_heading": "Succeed together",
+        "succeed_dec": "Whether it's for our customers or for each other, we always make time to help",
+        "helpful_heading": "Be helpful",
+        "helpful_dec": "Whether it's for our customers\nor for each other, we always make\ntime to help",
+        "ethics_heading": "Choose ethics",
+        "ethics_dec": "We choose to do what's right, always.",
+        "equality_heading": "Strive for equality",
+        "equality_dec": "Nothing works unless we're treating each other with r-e-s-p-e-c-t.",
+        "debate_heading": "Passionately debate",
+        "debate_dec": "We dialogue it out, and share our\nopinions and experiences so we can all\ngain perspective",
+        "grow_heading": "Learn and grow",
+        "grow_dec": "We're always seeking to develop ourselves personally and professionally."
+      }
     },
     "top_talent": {
       "heading": "Join Our Top Talent Team",
-      "description": "We're looking for exceptional individuals who share our passion for education and innovation."
+      "description_old": "We're looking for exceptional individuals who share our passion for education and innovation.",
+      "heading_line_1": "Why Top Talent",
+      "heading_line_2_lead": "chooses",
+      "heading_line_2_accent": "Tuitional",
+      "description": "Tuitional helps individuals transform their experiences and knowledge into incredible products enabling them to thrive businesses. We believe shared knowledge has the power to change lives, and by enabling people to share what they know we can definitely create a better world together that is more creative and knowledgeable.\nWe’re on a mission to empower creators to transform their\nknowledge and learning into income. We’re looking for talented individuals having diverse interests to help strengthen what we already do.",
+      "cta": "Get in touch",
+      "image_alt": "careerTalent"
     },
     "apply_now": {
-      "heading": "Ready to Make an Impact?",
-      "description": "Join our team and help shape the future of online education.",
-      "button": "Apply Now"
+      "heading": "Apply Now",
+      "submit": "Apply Now",
+      "image_alt": "applynow",
+      "placeholder_first_name": "Enter First name here ...",
+      "placeholder_last_name": "Enter Last name here ...",
+      "placeholder_email": "Enter Email here ...",
+      "placeholder_country": "Enter Country here ...",
+      "placeholder_position": "Enter Position here ...",
+      "placeholder_phone": "Enter phone number",
+      "placeholder_message": "Enter your Message here...",
+      "errors": {
+        "first_name_empty": "First Name cannot be empty",
+        "last_name_empty": "Last Name is required",
+        "invalid_email": "Invalid email address",
+        "invalid_phone": "Invalid PhoneNumber number",
+        "country_empty": "Country is required",
+        "position_empty": "Position cannot be empty",
+        "message_empty": "Message cannot be empty",
+        "fix_form": "Please fix the errors in the form before submitting."
+      },
+      "toasts": {
+        "success": "Form submitted successfully!",
+        "failed": "Form submission failed!"
+      }
     }
   },
   "testimonials": {
     "title": "Testimonials - Hear What Our Students Have to Say",
     "description": "Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience.",
     "hero": {
-      "heading": "What Our Students Say",
-      "subheading": "Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience."
+      "heading_line_1": "Our Verified",
+      "heading_line_2_lead": "Reviews from ",
+      "heading_line_2_accent": "Students ",
+      "heading_line_2_tail": "and Parents",
+      "description": "Trusted by parents, students, and schools",
+      "cta_view_more": "View More",
+      "cta_write_review": "Write A Review"
+    },
+    "hero_info": {
+      "review_quote": "Tuitional is a great place for classes. I see my grades are improving.",
+      "client_count": "15k",
+      "client_label": "Clients Reviews",
+      "tutors_alt": "teacher"
     },
     "reviews": {
       "heading": "Student Reviews",
       "description": "Real feedback from our students and parents about their learning journey with us."
     },
+    "reviews_on_wp": {
+      "heading": "Reviews on WhatsApp",
+      "trust_line": "10000+ student trusting our Tuitional classes.",
+      "load_more": "Load More"
+    },
+    "reviews_on_sp": {
+      "heading_line_1": "Reviews on Social",
+      "heading_line_2": "Platforms",
+      "description": "The teachers at Tuitional are really great. they help a lot of students and they have been helping me since past 3 years now. The teachers are nice and understanding. My grades are improving.",
+      "percent": "99%",
+      "complete_line_1": "Student's complete",
+      "complete_line_2": "classes successfully.",
+      "image_alt": "girlInCircle"
+    },
     "video_reviews": {
       "heading": "Video Testimonials",
       "description": "Hear directly from our students about their experience with Tuitional."
+    },
+    "video_based_reviews": {
+      "heading": "Video-Based Reviews",
+      "watch_video": "Watch Video"
+    }
+  },
+  "home": {
+    "trusted": {
+      "heading": "Trusted By Students At Top Schools"
+    },
+    "faqs": {
+      "heading": "Frequently Asked Questions"
+    },
+    "info": {
+      "image_alt": "1-on-1 Online tutoring platform",
+      "registered_students": "Registered Students",
+      "live_sessions": "Live Sessions",
+      "tutor_screened": "Tutor Screened",
+      "tutors_alt": "tutors"
+    },
+    "get_started": {
+      "heading_lead": "How to Get Started",
+      "heading_accent": "",
+      "heading_tail": ""
+    },
+    "filter": {
+      "heading_lead": "Online Tutoring ",
+      "heading_accent": "Platform",
+      "heading_tail": " Customized for 1:1 Online Tutoring Sessions",
+      "description": "Tuitional Is An Online Tutoring Platform Providing Quality Education Through Live Sessions For Grades 6-8, IGCSE GCSE, And A-Levels. Start your learning journey.",
+      "select_curriculum": "Select Curriculum",
+      "select_grade": "Select Grade",
+      "select_subjects": "Select Subjects",
+      "cta": "Get Started"
+    },
+    "our_client": {
+      "heading": "What our Students Says!",
+      "description": "Listen to the incredible experiences shared by our students! Register now to unlock an enriching world of enjoyable learning",
+      "read_more": "Read More",
+      "classes": "Classes",
+      "members": "Members",
+      "teachers": "TEACHERS",
+      "rating": "Rating"
+    },
+    "contact_us": {
+      "heading": "Schedule a Call",
+      "description": "Request a call from our academic specialist to get started with your successful educational journey with Tuitional.",
+      "submit": "Submit Now"
+    }
+  },
+  "about": {
+    "hero": {
+      "heading_lead": "Elevating ",
+      "heading_accent": "Personalized Online Tutoring",
+      "heading_tail": " Across the Gulf",
+      "description": "Providing high-quality innovative and improved teaching solutions to help students attain academic growth and excellence through individual online tutoring."
+    },
+    "about_us": {
+      "heading": "About Us",
+      "description_p1": "Tuitional is a premier online tutoring platform that elevates students' learning and provides an exceptional educational experience across the Gulf region. Licensed and registered by the Sharjah Research and Technology Park in 2022, Tuitional was founded with a visionary goal led by Ahmed Shaheer, Mirza Sinan Baig, Abdul Wahid Sheikh, Sheikh Zeeshan Ahmed, and Juliana Nogueria. Together, they aspired to create a state-of-the-art online tutoring service focused on delivering personalized, high-quality education tailored to individual students' needs.",
+      "description_p2": "With a qualified team of expert tutors excelling in a wide range of subjects, Tuitional provides customized learning experiences through high-quality, personalized online tutoring sessions that cater to each student's unique learning needs and academic goals. Tuitional is known for its commitment to innovation, excellence, and quality education, empowering students to reach their highest potential. Through unwavering academic support, interactive and engaging lessons, and a solid educational foundation, we help students achieve both academic and future professional success.",
+      "tab_mission": "Our Mission",
+      "tab_value": "Our Value",
+      "image_alt": "students",
+      "mission": {
+        "title": "Inspiring Learning Journeys",
+        "paragraph": "Tuitional aims to provide students across the Gulf with high quality education empowering their futures through innovative teaching techniques, quality and easily accessible customized online education that elevates a student's confidence and academic growth. Our mission is to provide an inclusive and interactive academic environment that enables students to explore, thrive and excel in their studies.",
+        "points": [
+          { "title": "Academic Guidance", "description": "Creating a solid platform for students to avail expert academic guidance." },
+          { "title": "Academic Excellence", "description": "Ensuring high standards and success for every student." },
+          { "title": "Accessible Quality Education", "description": "Providing easy accessible quality education for students in the Gulf." },
+          { "title": "Engaging Learning", "description": "Making challenging subjects enjoyable and interesting to learn." },
+          { "title": "Professional Growth", "description": "Enhancing professional growth and learning capabilities of students" },
+          { "title": "Flexible and Customized Tutoring", "description": "Setting new standards in flexible and customized online tutoring." }
+        ]
+      },
+      "value": {
+        "title": "Empowering Personalized Learning",
+        "paragraph": "Tuitional deeply understands the importance of personalized, one-on-one learning in fostering academic excellence, confidence, and a lifelong passion for knowledge. Our highly skilled team of expert online tutors, representing diverse backgrounds from around the world, is dedicated to inspiring each student's love for learning through collaborative, inclusive, engaging, and individualized tutoring sessions. While academic empowerment remains Tuitional's top priority, we are equally committed to helping students grow into confident, compassionate, and well-rounded individuals.",
+        "points": [
+          { "title": "Data-Privacy", "description": "Maintaining strict data privacy of each student and staff member." },
+          { "title": "Tutor Matching", "description": "Connecting the ideal online tutors with students based on their academic requirements." },
+          { "title": "Comprehensive Curriculum Support", "description": "Ensuring complete syllabus coverage in addition to easier subject comprehension." },
+          { "title": "Academic Growth", "description": "Supporting students in achieving their desired examination results and academic growth." },
+          { "title": "Expanding Educational Horizons", "description": "Improving and increasing a student's educational horizon for future successes." },
+          { "title": "Unwavering Academic Support", "description": "Providing unwavering academic support through customized individual online tutoring sessions." }
+        ]
+      }
+    },
+    "why_choose": {
+      "heading": "Why Choose Tuitional?",
+      "items": [
+        { "icon": "scholarHat", "heading": "Experienced Tutors", "dec": "We have an experienced, qualified and expert team of online tutors that excel in a wide range of subjects. Tutors from all around the world help students in learning their required subjects in their preferred languages while excelling in their required subject learnings." },
+        { "icon": "book", "heading": "One-on-One Learning", "dec": "Personalized one-on-one online tutoring sessions assist students in coping with their subject difficulties according to their individual learning needs, requirements and preferences. Our tutors aim to provide customized learning sessions to cater to each student's academic requirements." },
+        { "icon": "calendar", "heading": "Flexible Schedules", "dec": "From a wide range of flexible schedules students can select their preferred timings and days to suit their busy schedules. Flexible schedules are a great way to help students learn and educate themselves in the best possible ways." }
+      ]
+    }
+  },
+  "contact": {
+    "learn_together": {
+      "heading_1": "Let’s Learn Together",
+      "heading_2": "Anywhere & Everywhere"
+    },
+    "info": {
+      "address_heading": "Address",
+      "address_value": "Registered in the UAE",
+      "contact_heading": "Contact",
+      "email_heading": "Email"
+    },
+    "get_in_touch": {
+      "heading_lead": "Get In ",
+      "heading_accent": "Touch",
+      "subtitle_line_1": "Can't Assess What You're Looking For?",
+      "subtitle_line_2": "Don't Worry! We Can Help!",
+      "label_first_name": "First Name",
+      "label_last_name": "Last Name",
+      "label_email": "Email Address",
+      "label_phone": "Phone Number",
+      "label_message": "Message",
+      "placeholder_first_name": "Enter First Name here ...",
+      "placeholder_last_name": "Enter Last Name here ...",
+      "placeholder_email": "Enter Email here ...",
+      "placeholder_phone": "Enter phone number",
+      "placeholder_message": "Enter your Message here...",
+      "alt_image": "Contact Tuitional Support",
+      "submit": "Get In Touch",
+      "errors": {
+        "first_name_empty": "First Name cannot be empty",
+        "last_name_empty": "Last Name cannot be empty",
+        "invalid_email": "Invalid email address",
+        "invalid_phone": "Invalid phone number",
+        "message_empty": "Message cannot be empty",
+        "fix_form": "Please fix the errors in the form before submitting."
+      },
+      "toasts": {
+        "success": "Form submitted successfully!",
+        "failed": "Form submission failed!"
+      }
     }
   }
 }
