@@ -259,6 +259,17 @@ export const scrollToApplyForm = () => {
   }
 };
 
+export function resolvePageJsonLd(data: any): string {
+  if (
+    data?.jsonLdSchema &&
+    typeof data.jsonLdSchema === "string" &&
+    data.jsonLdSchema.trim().length > 0
+  ) {
+    return data.jsonLdSchema;
+  }
+  return generateMergedSchema(data);
+}
+
 export function generateMergedSchema(data: any) {
   const schema = {
     "@context": "https://schema.org",
