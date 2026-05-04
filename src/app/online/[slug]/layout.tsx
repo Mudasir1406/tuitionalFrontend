@@ -1,7 +1,7 @@
 import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
 import { PageData } from "@/types/grade-subject-level.types";
 import { SITE_URL } from "@/utils/env";
-import { generateFaqSchema, generateMergedSchema } from "@/utils/helper";
+import { resolvePageJsonLd } from "@/utils/helper";
 import { Metadata } from "next";
 import Script from "next/script";
 import React, { ReactNode } from "react";
@@ -75,7 +75,7 @@ const Layout = async ({
   // };
 
   // const faqSchema = generateFaqSchema(data.Faqs);
-  const pageSchema = generateMergedSchema(data);
+  const pageSchema = resolvePageJsonLd(data);
 
   return (
     <div>
