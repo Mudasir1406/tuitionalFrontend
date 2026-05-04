@@ -23,9 +23,13 @@
       "Bash(pkill:*)",
       "Bash(netstat:*)",
       "Bash(taskkill:*)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Edit(/.claude/skills/seo-audit/**)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "c:\\Work Repo\\Tuitional\\tuitionalFrontend\\.claude\\skills"
+    ]
   }
 }
