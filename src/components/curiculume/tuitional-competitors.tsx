@@ -36,7 +36,7 @@ const TuitionalCompetitors = () => {
           <Grid item xs={12} sm={4} md={4} lg={4} sx={{ borderBottom: '1px solid #ccc' }}></Grid> {/* Empty column */}
           <Grid item xs={12} sm={4} md={4} lg={4} sx={{ textAlign: "center", borderBottom: '1px solid #ccc' }}>
             <Typography>
-              <Image src={logo} alt="logo" style={{ width: "auto", height: "5vh" }} />
+              <Image src={logo} alt="Tuitional logo" style={{ width: "auto", height: "5vh" }} />
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4} md={4} lg={4} sx={{ textAlign: "center", borderBottom: '1px solid #ccc' }}>

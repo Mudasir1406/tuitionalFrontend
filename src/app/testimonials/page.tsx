@@ -18,11 +18,17 @@ import { getWPReviews } from "@/services/reviews-on-wp/reviews-on-wp";
 import OurClient from "@/components/home/our-client";
 import styles from "./testimonials.module.css";
 import { getFilterData } from "@/services/filter-data/filter-data";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 export const metadata: Metadata = {
   title: "Testimonials - Hear What Our Students Have to Say",
   description: `Students at Tuitional have always spoken highly of their experience. Here is what they have to share about their experience.`,
   alternates: {
     canonical: `${SITE_URL}/testimonials`,
+    languages: {
+      en: `${SITE_URL}/testimonials`,
+      ar: `${SITE_URL}/ar/testimonials`,
+      "x-default": `${SITE_URL}/testimonials`,
+    },
   },
 };
 
@@ -32,6 +38,10 @@ const Testimonials: React.FC = async () => {
   const filterData = await getFilterData();
   return (
     <>
+      <BreadcrumbSchema
+        id="testimonials-breadcrumb"
+        items={[{ name: "Testimonials", url: "https://tuitionaledu.com/testimonials" }]}
+      />
       <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>

@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   description: "طلاب تيوشنال تحدثوا دائماً بإيجابية عن تجربتهم. إليكم ما يشاركونه حول تجربتهم.",
   alternates: {
     canonical: `${SITE_URL}/ar/testimonials`,
+    languages: {
+      en: `${SITE_URL}/testimonials`,
+      ar: `${SITE_URL}/ar/testimonials`,
+      "x-default": `${SITE_URL}/testimonials`,
+    },
   },
 };
 

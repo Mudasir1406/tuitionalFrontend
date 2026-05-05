@@ -126,7 +126,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
               >
                 <Image
                   src={greenstar}
-                  alt="img"
+                  alt="Trustpilot star rating"
                   style={{ height: "3vh", width: "3vh" }}
                 />
                 <Typography
@@ -164,7 +164,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
                 </Typography>
                 <Image
                   src={greenstars}
-                  alt="img"
+                  alt="Trustpilot 4.7 out of 5 stars"
                   style={{
                     height: "3vh",
                     width: "14vh",

@@ -13,7 +13,7 @@ const FoundPage = () => {
             padding: "3vh 9vh",
           }}
         >
-          <Image src={Logo} alt="" />
+          <Image src={Logo} alt="Tuitional logo" />
         </Box>
         <Typography
           className={leagueSpartan.className}

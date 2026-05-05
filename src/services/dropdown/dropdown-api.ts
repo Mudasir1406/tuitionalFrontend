@@ -95,27 +95,11 @@ const getFallbackDropdownOptions = (locale: 'en' | 'ar' = 'en'): DropdownOptions
 export const getDropdownOptions = async (locale: 'en' | 'ar' = 'en'): Promise<DropdownOptions> => {
   try {
     const collectionName = locale === 'ar' ? 'dropdown-items-ar' : 'dropdown-items';
-    const documentPath = `${collectionName}/educational-options`;
-
-    console.log('🔥 Dropdown Debug - Fetching from:', documentPath);
-    console.log('🔥 Dropdown Debug - Database instance:', db);
-    console.log('🔥 Dropdown Debug - Project ID:', db.app.options.projectId);
-
     const docRef = doc(db, collectionName, 'educational-options');
     const docSnapshot = await getDoc(docRef);
 
     if (docSnapshot.exists()) {
       const data = docSnapshot.data() as DropdownOptions;
-      console.log('🔥 Dropdown Debug - Firebase data found:', {
-        grades: data.grades?.length || 0,
-        subjects: data.subjects?.length || 0,
-        curriculum: data.curriculum?.length || 0,
-        countries: data.countries?.length || 0,
-        currencies: Object.keys(data.currencies || {}).length,
-        lastUpdated: data.lastUpdated
-      });
-
-      // Validate required fields
       if (data.grades && data.subjects && data.curriculum && data.countries && data.currencies) {
         return {
           grades: data.grades,
@@ -125,19 +109,13 @@ export const getDropdownOptions = async (locale: 'en' | 'ar' = 'en'): Promise<Dr
           currencies: data.currencies,
           lastUpdated: data.lastUpdated
         };
-      } else {
-        console.log('🔥 Dropdown Debug - Invalid data structure, using fallback');
-        return getFallbackDropdownOptions(locale);
       }
-    } else {
-      console.log('🔥 Dropdown Debug - Document does not exist, using fallback data');
-      return getFallbackDropdownOptions(locale);
     }
 
+    return getFallbackDropdownOptions(locale);
+
   } catch (error) {
-    console.error('🔥 Dropdown Debug - Error fetching dropdown options:', error);
     handleFirestoreError(error as FirestoreError);
-    // Always return fallback data on error for SSR reliability
     return getFallbackDropdownOptions(locale);
   }
 };
@@ -180,22 +158,6 @@ export const getCachedDropdownOptions = async (
 
 // Centralized error handling for Firestore errors
 const handleFirestoreError = (error: FirestoreError) => {
-  console.error("🔥 Dropdown Firestore Error Code:", error.code);
-  console.error("🔥 Dropdown Firestore Error Message:", error.message);
-
-  // Log specific error types for debugging
-  switch (error.code) {
-    case 'permission-denied':
-      console.error("🔥 Permission denied - check Firestore rules");
-      break;
-    case 'unavailable':
-      console.error("🔥 Firestore service unavailable");
-      break;
-    case 'not-found':
-      console.error("🔥 Document or collection not found");
-      break;
-    default:
-      console.error("🔥 Unknown Firestore error");
-  }
+  console.error("Dropdown Firestore error:", error.code, error.message);
 };
 

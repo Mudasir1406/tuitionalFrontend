@@ -82,7 +82,7 @@ const ImageCard = ({ data, locale = "en" }: props) => {
           />
         </Typography>
         <div className={styles.rating}>
-          <Image src={greenstars} alt="img" className={styles.stars} />
+          <Image src={greenstars} alt="Trustpilot 4.7 out of 5 stars" className={styles.stars} />
           <Typography
             className={`${leagueSpartan.className} `}
             component={"p"}

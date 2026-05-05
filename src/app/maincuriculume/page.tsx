@@ -18,6 +18,26 @@ import StudentsSay from "@/components/maincuriculume/students-say";
 import JoinUs from "@/components/maincuriculume/joinus";
 import Footer from "@/components/footer-wrapper";
 import DetailedCurriculum from "@/components/maincuriculume/detailed-curriculum";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export const metadata: Metadata = {
+  title: "British Curriculum Overview - IGCSE, A-Level & More | Tuitional",
+  description: "Explore the British curriculum with Tuitional — covering IGCSE, A-Level, and international exam boards including Cambridge CAIE, Pearson Edexcel, and AQA. Personalised online tutoring across the Gulf region.",
+  alternates: {
+    canonical: `${SITE_URL}/maincuriculume`,
+    languages: {
+      en: `${SITE_URL}/maincuriculume`,
+      "x-default": `${SITE_URL}/maincuriculume`,
+    },
+  },
+  openGraph: {
+    title: "British Curriculum Overview - IGCSE, A-Level & More | Tuitional",
+    description: "Explore IGCSE, A-Level, and international exam boards with Tuitional's expert online tutors across the Gulf region.",
+    url: `${SITE_URL}/maincuriculume`,
+    locale: "en",
+  },
+};
 
 const Grade: React.FC = () => {
   return (

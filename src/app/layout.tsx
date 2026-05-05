@@ -19,6 +19,23 @@ export const metadata: Metadata = {
   verification: {
     google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   },
+  openGraph: {
+    siteName: "Tuitional",
+    type: "website",
+    images: [
+      {
+        url: "https://tuitionaledu.com/assets/images/static/logo.png",
+        width: 640,
+        height: 160,
+        alt: "Tuitional - Online Tutoring Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    site: "@tuitionaledu",
+    images: ["https://tuitionaledu.com/assets/images/static/logo.png"],
+  },
   other: {
     "font-display": "swap",
     "color-scheme": "light",

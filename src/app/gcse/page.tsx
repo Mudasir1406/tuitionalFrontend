@@ -2,6 +2,27 @@ import React from "react";
 import { Box, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+import Script from "next/script";
+
+export const metadata: Metadata = {
+  title: "GCSE Tutoring Online - Top-Rated GCSE Tutors | Tuitional",
+  description: "Get expert GCSE tutoring with qualified subject specialists. 1-on-1 personalised sessions for all GCSE subjects, with 94% of students improving by at least 2 grades. Book a free trial today.",
+  alternates: {
+    canonical: `${SITE_URL}/gcse`,
+    languages: {
+      en: `${SITE_URL}/gcse`,
+      "x-default": `${SITE_URL}/gcse`,
+    },
+  },
+  openGraph: {
+    title: "GCSE Tutoring Online - Top-Rated GCSE Tutors | Tuitional",
+    description: "Expert 1-on-1 GCSE tutoring with qualified specialists. 94% of students improve by at least 2 grades. Book your free trial session today.",
+    url: `${SITE_URL}/gcse`,
+    locale: "en",
+  },
+};
 
 // Critical above-the-fold components - load immediately
 import HeaderV3 from "@/components/header-v3";
@@ -160,7 +181,26 @@ const GcsePage = () => {
       },
     ],
   };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqsData.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
+    <>
+      <Script
+        id="faq-schema-gcse"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     <Box
       className={leagueSpartan.className}
       sx={{
@@ -255,6 +295,7 @@ const GcsePage = () => {
       {/* Footer */}
       <FooterV2 />
     </Box>
+    </>
   );
 };
 

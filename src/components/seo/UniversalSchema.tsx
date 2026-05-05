@@ -18,15 +18,15 @@ const UniversalSchema = () => {
               "brand": {
                 "@type": "Brand",
                 "name": "Tuitional",
-                "logo": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png"
+                "logo": "https://tuitionaledu.com/assets/images/static/logo.png"
               },
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png",
+                "url": "https://tuitionaledu.com/assets/images/static/logo.png",
                 "width": 640,
                 "height": 120
               },
-              "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png",
+              "image": "https://tuitionaledu.com/assets/images/static/logo.png",
               "slogan": "Live 1-on-1 IGCSE & A-Level Online Tutoring in the Gulf",
               "description": "Tuitional is a UAE-licensed online tutoring platform providing live 1-on-1 sessions for Grades 1–12 across IGCSE, GCSE, A-Levels, IB, and standardised test prep. Serving students across the Gulf region and beyond with personalised study plans and vetted tutors.",
               "foundingDate": "2020",
@@ -106,16 +106,6 @@ const UniversalSchema = () => {
                 "Online Education",
                 "Student Mentoring",
                 "Academic Consulting"
-              ],
-              "expertise": [
-                "Online Education",
-                "IGCSE Curriculum",
-                "A-Level Curriculum",
-                "IB Curriculum",
-                "GCSE Curriculum",
-                "Academic Tutoring",
-                "Student Support",
-                "Personalized Learning"
               ],
               "areaServed": [
                 {
@@ -248,7 +238,7 @@ const UniversalSchema = () => {
               "@type": "LocalBusiness",
               "@id": "https://tuitionaledu.com/#localbusiness",
               "name": "Tuitional Education",
-              "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png",
+              "image": "https://tuitionaledu.com/assets/images/static/logo.png",
               "url": "https://tuitionaledu.com",
               "telephone": "+971-56-490-0376",
               "email": "hello@tuitionaledu.com",
@@ -272,7 +262,7 @@ const UniversalSchema = () => {
                 "opens": "09:00",
                 "closes": "18:00",
                 "validFrom": "2024-01-01",
-                "validThrough": "2025-12-31"
+                "validThrough": "2027-12-31"
               },
               "aggregateRating": {
                 "@type": "AggregateRating",
@@ -442,42 +432,6 @@ const UniversalSchema = () => {
               ]
             },
             {
-              "@type": "BreadcrumbList",
-              "@id": "https://tuitionaledu.com/#breadcrumb",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://tuitionaledu.com"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "About",
-                  "item": "https://tuitionaledu.com/about"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "name": "Blog",
-                  "item": "https://tuitionaledu.com/blog"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "name": "Testimonials",
-                  "item": "https://tuitionaledu.com/testimonials"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 5,
-                  "name": "Contact",
-                  "item": "https://tuitionaledu.com/contact"
-                }
-              ]
-            },
-            {
               "@type": "Article",
               "@id": "https://tuitionaledu.com/about#article",
               "headline": "About Tuitional Education — Elevating Personalised Online Tutoring Across the Gulf",
@@ -511,7 +465,7 @@ const UniversalSchema = () => {
               "itemReviewed": {
                 "@type": "LocalBusiness",
                 "name": "Tuitional Education",
-                "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png"
+                "image": "https://tuitionaledu.com/assets/images/static/logo.png"
               }
             },
             {
@@ -531,7 +485,7 @@ const UniversalSchema = () => {
               "itemReviewed": {
                 "@type": "LocalBusiness",
                 "name": "Tuitional Education",
-                "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png"
+                "image": "https://tuitionaledu.com/assets/images/static/logo.png"
               }
             },
             {
@@ -551,7 +505,7 @@ const UniversalSchema = () => {
               "itemReviewed": {
                 "@type": "LocalBusiness",
                 "name": "Tuitional Education",
-                "image": "https://tuitionaledu.com/_next/static/media/logo.16d39b17.png"
+                "image": "https://tuitionaledu.com/assets/images/static/logo.png"
               }
             },
             {

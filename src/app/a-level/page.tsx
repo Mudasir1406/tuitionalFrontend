@@ -2,6 +2,27 @@ import React from "react";
 import { Box, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
 import { leagueSpartan } from "@/app/fonts";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+import Script from "next/script";
+
+export const metadata: Metadata = {
+  title: "A-Level Tutoring Online - Expert Tutors for A-Level Success | Tuitional",
+  description: "Get 1-on-1 A-Level tutoring from qualified subject specialists. Achieve your target grades with personalised lessons, exam technique coaching, and university application support across all major A-Level subjects.",
+  alternates: {
+    canonical: `${SITE_URL}/a-level`,
+    languages: {
+      en: `${SITE_URL}/a-level`,
+      "x-default": `${SITE_URL}/a-level`,
+    },
+  },
+  openGraph: {
+    title: "A-Level Tutoring Online - Expert Tutors for A-Level Success | Tuitional",
+    description: "1-on-1 A-Level tutoring from qualified subject specialists. Personalised lessons and exam technique coaching to achieve your target grades.",
+    url: `${SITE_URL}/a-level`,
+    locale: "en",
+  },
+};
 
 // Critical above-the-fold components - load immediately
 import HeaderV3 from "@/components/header-v3";
@@ -156,7 +177,26 @@ const ALevelPage = () => {
       },
     ],
   };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqsData.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
+    <>
+      <Script
+        id="faq-schema-a-level"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     <Box
       className={leagueSpartan.className}
       sx={{
@@ -251,6 +291,7 @@ const ALevelPage = () => {
       {/* Footer */}
       <FooterV2 />
     </Box>
+    </>
   );
 };
 

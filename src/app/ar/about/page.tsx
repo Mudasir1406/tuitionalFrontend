@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   description: "تعرف على تيوشنال، منصة التدريس الرائدة عبر الإنترنت في منطقة الخليج. نقدم تدريساً شخصياً عالي الجودة للطلاب في جميع المراحل التعليمية.",
   alternates: {
     canonical: `${SITE_URL}/ar/about`,
+    languages: {
+      en: `${SITE_URL}/about`,
+      ar: `${SITE_URL}/ar/about`,
+      "x-default": `${SITE_URL}/about`,
+    },
   },
 };
 

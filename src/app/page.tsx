@@ -8,8 +8,6 @@ import homeImage from "../../public/assets/images/static/girl-with-book.webp";
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
-import Script from "next/script";
-
 import "./globals.css";
 import style from "./page.module.css";
 import { Header } from "../components";
@@ -91,78 +89,12 @@ export const metadata: Metadata = {
     "Struggling to find quality tutors in the Gulf? Tuitional offers live 1-on-1 sessions with 500+ experts for IGCSE, A-Levels & IB. Start today!",
   alternates: {
     canonical: `${SITE_URL}`,
+    languages: {
+      en: `${SITE_URL}`,
+      ar: `${SITE_URL}/ar`,
+      "x-default": `${SITE_URL}`,
+    },
   },
-};
-const homeSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://tuitionaledu.com/#organization",
-      name: "Tuitional",
-      url: "https://tuitionaledu.com/",
-      logo: "https://tuitionaledu.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.e75c8b12.png&w=640&q=75",
-      description:
-        "Tuitional is a leading online tutoring platform in the Gulf region, providing personalized tutoring services across various curricula including CAIE, Pearson Edexcel, AQA, and more.",
-      sameAs: [
-        "https://www.facebook.com/tuitionaledu",
-        "https://www.instagram.com/tuitionaledu/",
-        "https://www.linkedin.com/company/tuitionaledu/",
-        "https://www.trustpilot.com/review/tuitionaledu.com",
-      ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "Customer Support",
-        telephone: "+971 56 490 0376",
-        email: "hello@tuitionaledu.com",
-        availableLanguage: ["English"],
-        areaServed: [
-          "United Arab Emirates",
-          "Saudi Arabia",
-          "Qatar",
-          "Kuwait",
-          "Bahrain",
-          "Oman",
-        ],
-      },
-      foundingDate: "2022",
-      foundingLocation: "Sharjah, UAE",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.4",
-        reviewCount: "100",
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://tuitionaledu.com/#website",
-      url: "https://tuitionaledu.com/",
-      name: "Tuitional - Expert Online Tutoring",
-      description:
-        "Tuitional provides high-quality online tutoring services for students following the British curriculum in the Gulf region.",
-      inLanguage: "en",
-      publisher: {
-        "@id": "https://tuitionaledu.com/#organization",
-      },
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://tuitionaledu.com/#home",
-      url: "https://tuitionaledu.com/",
-      name: "Tuitional - Expert Online Tutoring",
-      description:
-        "Tuitional offers personalised online tutoring for all international curriculums to students in the Gulf regions. Book your free demo class today!",
-      isPartOf: {
-        "@id": "https://tuitionaledu.com/#website",
-      },
-      inLanguage: "en",
-      about: {
-        "@id": "https://tuitionaledu.com/#organization",
-      },
-    },
-  ],
 };
 const Home: React.FC = async () => {
   const data = await getTestimonials();
@@ -170,12 +102,6 @@ const Home: React.FC = async () => {
   const getStarted = await getStartedData();
   return (
     <>
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        defer
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
-      />
       <Header />
       <Container sx={styles.contanier}>
         <div className={style["grid-container"]}>

@@ -128,7 +128,7 @@ const FooterV2: React.FC = async () => {
                     width={logo.width / 1.5}
                     height={logo.height / 1.5}
                     style={{ alignSelf: "start" }}
-                    alt="logo"
+                    alt="Tuitional logo"
                   ></Image>
                 </Box>
                 <Typography

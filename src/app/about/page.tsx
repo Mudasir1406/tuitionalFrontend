@@ -3,6 +3,28 @@ import { Header } from "../../components";
 import { Grid } from "@mui/material";
 import Footer from "../../components/footer-wrapper";
 import aboutHero from "../../../public/assets/images/static/hero-about.webp";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+
+export const metadata: Metadata = {
+  title: "About Tuitional - Leading Online Tutoring Platform in the Gulf",
+  description: "Learn about Tuitional, the Gulf region's leading online tutoring platform. We provide personalised 1-on-1 tutoring for British curriculum students across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain and Oman.",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+    languages: {
+      en: `${SITE_URL}/about`,
+      ar: `${SITE_URL}/ar/about`,
+      "x-default": `${SITE_URL}/about`,
+    },
+  },
+  openGraph: {
+    title: "About Tuitional - Leading Online Tutoring Platform in the Gulf",
+    description: "Learn about Tuitional, the Gulf region's leading online tutoring platform providing personalised 1-on-1 tutoring for British curriculum students.",
+    url: `${SITE_URL}/about`,
+    locale: "en",
+  },
+};
 import GetStarted from "@/components/home/get-started";
 import HeroInfo from "@/components/about/hero-info";
 import WhyChooseTuitional from "@/components/about/why-choose-tuitional";
@@ -22,6 +44,10 @@ const About: React.FC = async () => {
   const getStarted = await getStartedData();
   return (
     <>
+      <BreadcrumbSchema
+        id="about-breadcrumb"
+        items={[{ name: "About", url: "https://tuitionaledu.com/about" }]}
+      />
       <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>

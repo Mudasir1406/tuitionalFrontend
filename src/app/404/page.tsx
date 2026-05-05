@@ -58,7 +58,7 @@ export default function Custom404() {
       </div>
       <div className={styles.logoDiv}>
         <a href="/">
-          <Image src={logo} alt="logo" className={styles.logo} />
+          <Image src={logo} alt="Tuitional logo" className={styles.logo} />
         </a>
       </div>
     </div>

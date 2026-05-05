@@ -237,7 +237,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
             >
               <Image
                 src={greenstar}
-                alt="img"
+                alt="Trustpilot star rating"
                 style={{ height: "3vh", width: "3vh" }}
               />
               <Typography
@@ -275,7 +275,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
               </Typography>
               <Image
                 src={greenstars}
-                alt="img"
+                alt="Trustpilot 4.7 out of 5 stars"
                 style={{
                   height: "3vh",
                   width: "14vh",

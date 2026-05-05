@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description: "Get personalized online tutoring from qualified teachers for British curriculum subjects across the Gulf region",
   alternates: {
     canonical: `${SITE_URL}/online`,
+    languages: {
+      en: `${SITE_URL}/online`,
+      ar: `${SITE_URL}/ar/online`,
+      "x-default": `${SITE_URL}/online`,
+    },
   },
   openGraph: {
     title: "Online Tutoring Services - Tuitional",

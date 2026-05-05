@@ -98,7 +98,7 @@ const Hero = ({ slug }: Props) => {
         >
           <Image
             src={greenstar}
-            alt="img"
+            alt="Trustpilot star rating"
             style={{ height: "3vh", width: "3vh" }}
           />
           <Typography
@@ -131,7 +131,7 @@ const Hero = ({ slug }: Props) => {
           </Typography>
           <Image
             src={greenstars}
-            alt="img"
+            alt="Trustpilot 4.7 out of 5 stars"
             style={{
               height: "3vh",
               width: "14vh",

@@ -55,10 +55,8 @@ type IProps = {
 };
 
 const GradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
- console.log("Received data in GradeSubjectLevel component:", data);
   const getStarted = await getStartedData();
   const renderSection = (name: string) => {
-    console.log("Rendering section:", name); // Debug log to check which section is being rendered
     switch (name) {
       case "Hero Section":
         return (

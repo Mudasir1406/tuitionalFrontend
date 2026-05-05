@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { getDropdownOptions } from '@/services/dropdown/dropdown-api';
 import { Header } from '@/components';
 import dynamic from 'next/dynamic';
+import { SITE_URL } from '@/utils/env';
 import styles from './pricing.module.css';
 
 // Lazy load heavy components
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
   title: 'Tutoring Packages & Pricing | Tuitional',
   description: 'Choose from our flexible tutoring packages designed for different curricula and grade levels. Personalized learning with certified tutors at competitive prices.',
   keywords: 'tutoring packages, online tutoring prices, IGCSE tutoring, A-levels tutoring, curriculum-based learning',
+  alternates: {
+    canonical: `${SITE_URL}/pricing`,
+    languages: {
+      en: `${SITE_URL}/pricing`,
+      ar: `${SITE_URL}/ar/pricing`,
+      "x-default": `${SITE_URL}/pricing`,
+    },
+  },
   openGraph: {
     title: 'Tutoring Packages & Pricing | Tuitional',
     description: 'Find the perfect tutoring package for your academic goals. Expert tutors, flexible scheduling, and competitive pricing.',

@@ -93,44 +93,19 @@ const getFallbackPackages = (): TutoringPackage[] => [
 // Get all active pricing packages
 export const getActivePricingPackages = async (locale: string = 'en'): Promise<TutoringPackage[]> => {
   try {
-    const collectionName = 'tutoring-packages'; // Simple collection name
-    console.log('🔥 Firebase Debug - Fetching from collection:', collectionName);
-    console.log('🔥 Firebase Debug - Database instance:', db);
-    console.log('🔥 Firebase Debug - Project ID:', db.app.options.projectId);
-    
-    // Try to get all documents first (without where clause to test connection)
+    const collectionName = 'tutoring-packages';
     const allDocsSnapshot = await getDocs(collection(db, collectionName));
-    console.log('🔥 Firebase Debug - Total documents in collection:', allDocsSnapshot.size);
-    
-    // Log all document IDs and data for debugging
-    allDocsSnapshot.docs.forEach((doc, index) => {
-      console.log(`🔥 Firebase Debug - Document ${index + 1}:`, {
-        id: doc.id,
-        data: doc.data()
-      });
-    });
-    
+
     if (allDocsSnapshot.empty) {
-      console.log('🔥 Firebase Debug - Collection is empty, using fallback data');
       return getFallbackPackages();
     }
 
-    // First, let's try to get ALL documents without any filters
-    console.log('🔥 Firebase Debug - Getting all documents without filters...');
-    const allPackages = allDocsSnapshot.docs.map(doc => {
-      const data = doc.data();
-      console.log('🔥 Firebase Debug - Processing document:', doc.id, data);
-      return { 
-        id: doc.id, 
-        ...data 
-      };
-    }) as TutoringPackage[];
-    
+    const allPackages = allDocsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as TutoringPackage[];
+
     if (allPackages.length > 0) {
-      console.log('🔥 Firebase Debug - Found real packages:', allPackages.length);
-      console.log('🔥 Firebase Debug - Sample package structure:', allPackages[0]);
-      console.log('🔥 Firebase Debug - All package names:', allPackages.map(p => p.name));
-      console.log('🔥 Firebase Debug - Returning real data instead of fallback');
       return allPackages;
     }
 
@@ -141,84 +116,41 @@ export const getActivePricingPackages = async (locale: string = 'en'): Promise<T
         where('isActive', '==', true),
         orderBy('order', 'asc')
       );
-      
       const snapshot = await getDocs(q);
-      console.log('🔥 Firebase Debug - Active packages found:', snapshot.size);
-      
-      const packages = snapshot.docs.map(doc => {
-        const data = doc.data();
-        console.log('🔥 Firebase Debug - Active package data:', data);
-        return { 
-          id: doc.id, 
-          ...data 
-        };
-      }) as TutoringPackage[];
-      
+      const packages = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as TutoringPackage[];
+
       if (packages.length > 0) {
         return packages;
       }
-    } catch (queryError) {
-      console.log('🔥 Firebase Debug - Query with where/orderBy failed:', queryError);
-      console.log('🔥 Firebase Debug - This might be because fields dont exist or no index');
+    } catch {
+      // Query may fail if index doesn't exist; fall through to fallback
     }
-    
-    console.log('🔥 Firebase Debug - No packages found at all, using fallback data');
+
     return getFallbackPackages();
-    
+
   } catch (error) {
-    console.error('🔥 Firebase Debug - Error fetching packages:', error);
     handleFirestoreError(error as FirestoreError);
-    // Always return fallback data on error
     return getFallbackPackages();
   }
 };
 
 // Get packages filtered by criteria
 export const getPackagesByFilter = async (
-  filters: PricingFilters, 
+  filters: PricingFilters,
   locale: string = 'en'
 ): Promise<TutoringPackage[]> => {
   const packages = await getActivePricingPackages(locale);
-  console.log('🔥 Filter Debug - Got packages from Firebase:', packages.length);
-  console.log('🔥 Filter Debug - Current filters:', filters);
-  
-  const filteredPackages = packages.filter(pkg => {
-    console.log('🔥 Filter Debug - Checking package:', pkg.name);
-    console.log('🔥 Filter Debug - Package pricing countries:', Object.keys(pkg.pricing || {}));
-    
-    // Filter by grade
-    if (filters.grade && !pkg.grades?.includes(filters.grade)) {
-      console.log('🔥 Filter Debug - Package rejected: grade mismatch');
-      return false;
-    }
-    
-    // Filter by subject
-    if (filters.subject && !pkg.subjects?.includes(filters.subject)) {
-      console.log('🔥 Filter Debug - Package rejected: subject mismatch');
-      return false;
-    }
-    
-    // Filter by curriculum
-    if (filters.curriculum && !pkg.curriculum?.includes(filters.curriculum)) {
-      console.log('🔥 Filter Debug - Package rejected: curriculum mismatch');
-      return false;
-    }
-    
-    // Must have pricing for user's country
-    if (!pkg.pricing || !pkg.pricing[filters.country]) {
-      console.log('🔥 Filter Debug - Package rejected: no pricing for country', filters.country);
-      console.log('🔥 Filter Debug - Available countries:', Object.keys(pkg.pricing || {}));
-      return false;
-    }
-    
-    console.log('🔥 Filter Debug - Package accepted:', pkg.name);
+
+  return packages.filter(pkg => {
+    if (filters.grade && !pkg.grades?.includes(filters.grade)) return false;
+    if (filters.subject && !pkg.subjects?.includes(filters.subject)) return false;
+    if (filters.curriculum && !pkg.curriculum?.includes(filters.curriculum)) return false;
+    if (!pkg.pricing || !pkg.pricing[filters.country]) return false;
     return true;
   });
-  
-  console.log('🔥 Filter Debug - Final filtered packages:', filteredPackages.length);
-  console.log('🔥 Filter Debug - Filtered package names:', filteredPackages.map(p => p.name));
-  
-  return filteredPackages;
 };
 
 // Get unique filter options from all packages
@@ -497,38 +429,24 @@ const getFallbackCustomPackages = (): CustomPackage[] => [
 // Get all active custom packages
 export const getActiveCustomPackages = async (): Promise<CustomPackage[]> => {
   try {
-    console.log('🔥 Custom Packages Debug - Fetching from custom-pricing collection...');
-
     const q = query(
       collection(db, 'custom-pricing'),
       where('isActive', '==', true)
     );
-
     const snapshot = await getDocs(q);
-    console.log('🔥 Custom Packages Debug - Found documents:', snapshot.size);
 
     if (snapshot.empty) {
-      console.log('🔥 Custom Packages Debug - No custom packages found, using fallback data');
       return getFallbackCustomPackages();
     }
 
-    const packages = snapshot.docs.map(doc => {
-      const data = doc.data();
-      console.log('🔥 Custom Packages Debug - Processing package:', doc.id, data);
-      return {
-        id: doc.id,
-        ...data
-      };
-    }) as CustomPackage[];
+    const packages = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as CustomPackage[];
 
-    // Sort by order field in JavaScript (since Firebase orderBy requires an index)
-    const sortedPackages = packages.sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    console.log('🔥 Custom Packages Debug - Returning packages:', sortedPackages.length);
-    return sortedPackages;
+    return packages.sort((a, b) => (a.order || 0) - (b.order || 0));
 
   } catch (error) {
-    console.error('🔥 Custom Packages Debug - Error fetching custom packages:', error);
     handleFirestoreError(error as FirestoreError);
     return getFallbackCustomPackages();
   }
@@ -574,59 +492,17 @@ const mapGradeToGradeGroup = (grade: string): string => {
 // Find custom package by academic configuration (Updated for new grade group structure)
 export const findCustomPackage = async (selection: Omit<CustomPricingSelection, 'hours'>): Promise<CustomPackage | null> => {
   try {
-    console.log('🔥 Custom Package Search - Original selection:', selection);
-
-    // Map the user's grade to grade group for database search
     const gradeGroup = mapGradeToGradeGroup(selection.grade);
-    console.log(`🔥 Custom Package Search - Mapped grade "${selection.grade}" to grade group "${gradeGroup}"`);
-
     const packages = await getActiveCustomPackages();
-    console.log('🔥 Custom Package Search - Available packages count:', packages.length);
 
-    // Log all available packages for debugging
-    packages.forEach((pkg, index) => {
-      console.log(`🔥 Custom Package Search - Package ${index + 1}:`, {
-        id: pkg.id,
-        country: pkg.country,
-        grade: pkg.grade, // This should now be grade group like "Elementary (1-4)"
-        packageName: pkg.packageName
-      });
-    });
-
-    // NEW LOGIC: Search only by country and grade group (subjects and curricula are universal)
-    const matchingPackage = packages.find(pkg => {
-      const countryMatch = pkg.country === selection.country;
-      const gradeGroupMatch = pkg.grade === gradeGroup; // Match against grade group, not individual grade
-
-      console.log(`🔥 Custom Package Search - Checking package ${pkg.id}:`, {
-        countryMatch: `"${pkg.country}" === "${selection.country}" = ${countryMatch}`,
-        gradeGroupMatch: `"${pkg.grade}" === "${gradeGroup}" = ${gradeGroupMatch}`,
-        overallMatch: countryMatch && gradeGroupMatch
-      });
-
-      return countryMatch && gradeGroupMatch;
-    });
-
-    if (matchingPackage) {
-      console.log('🔥 Custom Package Search - Found match:', {
-        id: matchingPackage.id,
-        packageName: matchingPackage.packageName,
-        country: matchingPackage.country,
-        gradeGroup: matchingPackage.grade,
-        note: 'This package covers all subjects & curricula for this country/grade group'
-      });
-    } else {
-      console.log('🔥 Custom Package Search - No match found for:', {
-        country: selection.country,
-        gradeGroup: gradeGroup,
-        originalGrade: selection.grade
-      });
-    }
+    // Search only by country and grade group (subjects and curricula are universal)
+    const matchingPackage = packages.find(pkg =>
+      pkg.country === selection.country && pkg.grade === gradeGroup
+    );
 
     return matchingPackage || null;
 
   } catch (error) {
-    console.error('🔥 Custom Package Search - Error:', error);
     return null;
   }
 };
@@ -635,62 +511,29 @@ export const findCustomPackage = async (selection: Omit<CustomPricingSelection, 
 export const getCustomPackageOptions = async () => {
   try {
     const packages = await getActiveCustomPackages();
-
-    const options = {
+    return {
       countries: Array.from(new Set(packages.map(pkg => pkg.country))).sort(),
       grades: Array.from(new Set(packages.map(pkg => pkg.grade))).sort(),
       levels: Array.from(new Set(packages.map(pkg => pkg.level))).sort(),
       curricula: Array.from(new Set(packages.map(pkg => pkg.curriculum))).sort(),
       subjects: Array.from(new Set(packages.map(pkg => pkg.subject))).sort()
     };
-
-    console.log('🔥 Custom Package Options - Available options:', options);
-    return options;
-
   } catch (error) {
-    console.error('🔥 Custom Package Options - Error:', error);
-    return {
-      countries: [],
-      grades: [],
-      levels: [],
-      curricula: [],
-      subjects: []
-    };
+    return { countries: [], grades: [], levels: [], curricula: [], subjects: [] };
   }
 };
 
 // Calculate pricing for a custom selection
 export const calculateCustomPricing = async (selection: CustomPricingSelection) => {
   try {
-    console.log('🔥 Custom Pricing Calculation - Input:', selection);
-
     const customPackage = await findCustomPackage(selection);
-
-    if (!customPackage) {
-      console.log('🔥 Custom Pricing Calculation - No matching package found');
-      return null;
-    }
-
-    // Find applicable discount tier
-    console.log('🔥 Custom Pricing Calculation - Available discount tiers:', customPackage.discountTiers);
-    console.log('🔥 Custom Pricing Calculation - Looking for hours:', selection.hours);
+    if (!customPackage) return null;
 
     const activeTiers = customPackage.discountTiers.filter(tier => tier.isActive);
-    console.log('🔥 Custom Pricing Calculation - Active discount tiers:', activeTiers);
-
-    const applicableTier = activeTiers.find(tier => {
-      const minCheck = selection.hours >= tier.minHours;
-      const maxCheck = tier.maxHours === null || selection.hours <= tier.maxHours;
-      console.log(`🔥 Custom Pricing Calculation - Checking tier ${tier.id}:`, {
-        minHours: tier.minHours,
-        maxHours: tier.maxHours,
-        selectionHours: selection.hours,
-        minCheck: `${selection.hours} >= ${tier.minHours} = ${minCheck}`,
-        maxCheck: `${tier.maxHours === null ? 'null (no limit)' : selection.hours + ' <= ' + tier.maxHours} = ${maxCheck}`,
-        matches: minCheck && maxCheck
-      });
-      return minCheck && maxCheck;
-    });
+    const applicableTier = activeTiers.find(tier =>
+      selection.hours >= tier.minHours &&
+      (tier.maxHours === null || selection.hours <= tier.maxHours)
+    );
 
     let finalRate: number;
     let discountPercentage: number;
@@ -699,19 +542,12 @@ export const calculateCustomPricing = async (selection: CustomPricingSelection) 
     let savings: number;
 
     if (!applicableTier) {
-      console.log('🔥 Custom Pricing Calculation - No applicable discount tier found for', selection.hours, 'hours');
-      console.log('🔥 Custom Pricing Calculation - Using base rate without discount');
-
-      // Use base rate without any discount
       finalRate = customPackage.baseRatePerHour;
       discountPercentage = 0;
       totalCost = finalRate * selection.hours;
-      originalCost = totalCost; // Same as total since no discount
+      originalCost = totalCost;
       savings = 0;
     } else {
-      console.log('🔥 Custom Pricing Calculation - Selected discount tier:', applicableTier);
-
-      // Use discount tier pricing
       finalRate = applicableTier.finalRatePerHour;
       discountPercentage = applicableTier.discountPercentage;
       totalCost = finalRate * selection.hours;
@@ -719,7 +555,7 @@ export const calculateCustomPricing = async (selection: CustomPricingSelection) 
       savings = originalCost - totalCost;
     }
 
-    const result = {
+    return {
       customPackage,
       baseRate: customPackage.baseRatePerHour,
       currency: customPackage.currency,
@@ -731,11 +567,7 @@ export const calculateCustomPricing = async (selection: CustomPricingSelection) 
       discountPercentage
     };
 
-    console.log('🔥 Custom Pricing Calculation - Result:', result);
-    return result;
-
   } catch (error) {
-    console.error('🔥 Custom Pricing Calculation - Error:', error);
     return null;
   }
 };

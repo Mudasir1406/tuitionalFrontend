@@ -24,6 +24,27 @@ import FrequentlyQuestions from "@/components/curiculume/frequently-questions";
 import JoinUs from "@/components/curiculume/join-us";
 import Footer from "@/components/footer-wrapper";
 import { getStartedData } from "@/services/get-started/get-started";
+import { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export const metadata: Metadata = {
+  title: "IGCSE Curriculum Guide - Subjects, Grading & Assessment | Tuitional",
+  description: "Complete guide to the IGCSE curriculum including subjects, grading scale, assessment objectives, and how Tuitional's expert tutors help students excel in Cambridge IGCSE exams.",
+  alternates: {
+    canonical: `${SITE_URL}/curiculume`,
+    languages: {
+      en: `${SITE_URL}/curiculume`,
+      "x-default": `${SITE_URL}/curiculume`,
+    },
+  },
+  openGraph: {
+    title: "IGCSE Curriculum Guide - Subjects, Grading & Assessment | Tuitional",
+    description: "Complete guide to the IGCSE curriculum including subjects, grading scale, and assessment objectives.",
+    url: `${SITE_URL}/curiculume`,
+    locale: "en",
+  },
+};
+
 const Home: React.FC = async () => {
   const getStarted = await getStartedData();
   return (

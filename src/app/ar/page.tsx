@@ -8,8 +8,6 @@ import homeImage from "../../../public/assets/images/static/girl-with-book.webp"
 import { getTestimonials } from "@/services/testimonials/testimonials";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
-import Script from "next/script";
-
 import "../globals.css";
 import style from "../page.module.css";
 import ArHeader from "../../components/ar-header";
@@ -66,79 +64,12 @@ export const metadata: Metadata = {
     "تبحث عن تدريس شخصي عبر الإنترنت ولا تعرف إلى أين تتجه؟ اتصل بتيوشنال لتحقيق نتائج امتحانات متميزة من خلال جلسات التدريس الفردي عبر الإنترنت.",
   alternates: {
     canonical: `${SITE_URL}/ar`,
+    languages: {
+      en: `${SITE_URL}`,
+      ar: `${SITE_URL}/ar`,
+      "x-default": `${SITE_URL}`,
+    },
   },
-};
-
-const arabicHomeSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://tuitionaledu.com/#organization",
-      name: "Tuitional",
-      url: "https://tuitionaledu.com/",
-      logo: "https://tuitionaledu.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.e75c8b12.png&w=640&q=75",
-      description:
-        "تيوشنال هي منصة تدريس رائدة عبر الإنترنت في منطقة الخليج، تقدم خدمات تدريس شخصية عبر مناهج مختلفة مثل CAIE وبيرسون إدكسل وAQA وغيرها.",
-      sameAs: [
-        "https://www.facebook.com/tuitionaledu",
-        "https://www.instagram.com/tuitionaledu/",
-        "https://www.linkedin.com/company/tuitionaledu/",
-        "https://www.trustpilot.com/review/tuitionaledu.com",
-      ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "Customer Support",
-        telephone: "+971 56 490 0376",
-        email: "hello@tuitionaledu.com",
-        availableLanguage: ["Arabic", "English"],
-        areaServed: [
-          "United Arab Emirates",
-          "Saudi Arabia",
-          "Qatar",
-          "Kuwait",
-          "Bahrain",
-          "Oman",
-        ],
-      },
-      foundingDate: "2022",
-      foundingLocation: "Sharjah, UAE",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.4",
-        reviewCount: "100",
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://tuitionaledu.com/#website",
-      url: "https://tuitionaledu.com/",
-      name: "تيوشنال - تدريس عبر الإنترنت",
-      description:
-        "تيوشنال تقدم خدمات تدريس عالية الجودة عبر الإنترنت للطلاب الذين يتبعون المنهج البريطاني في منطقة الخليج.",
-      inLanguage: "ar",
-      publisher: {
-        "@id": "https://tuitionaledu.com/#organization",
-      },
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://tuitionaledu.com/ar/#home",
-      url: "https://tuitionaledu.com/ar/",
-      name: "تيوشنال - تدريس عبر الإنترنت",
-      description:
-        "تيوشنال تقدم تدريساً شخصياً عبر الإنترنت لجميع المناهج الدولية للطلاب في منطقة الخليج. احجز صفك التجريبي المجاني اليوم!",
-      isPartOf: {
-        "@id": "https://tuitionaledu.com/#website",
-      },
-      inLanguage: "ar",
-      about: {
-        "@id": "https://tuitionaledu.com/#organization",
-      },
-    },
-  ],
 };
 
 const ArHome: React.FC = async () => {
@@ -148,12 +79,6 @@ const ArHome: React.FC = async () => {
 
   return (
     <>
-      <Script
-        id="faq-schema-ar"
-        type="application/ld+json"
-        defer
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(arabicHomeSchema) }}
-      />
       <ArHeader />
       <Container sx={[styles.contanier, styles.containerRTL]}>
         <div className={`${style.container} ${style.containerRTL}`}>

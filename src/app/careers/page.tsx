@@ -11,12 +11,18 @@ import ApplyNow from "../../components/careers/apply-now";
 import HeroInfo from "../../components/careers/hero-info";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "We Are Always on the Lookout for Talented People",
   description: ` Want to be part of our dynamic team? We are always on the lookout for passionate individuals who are always eager to make an impact.`,
   alternates: {
     canonical: `${SITE_URL}/careers`,
+    languages: {
+      en: `${SITE_URL}/careers`,
+      ar: `${SITE_URL}/ar/careers`,
+      "x-default": `${SITE_URL}/careers`,
+    },
   },
 };
 import styles from "./careers.module.css";
@@ -24,6 +30,10 @@ import styles from "./careers.module.css";
 const Careers: React.FC = () => {
   return (
     <>
+      <BreadcrumbSchema
+        id="careers-breadcrumb"
+        items={[{ name: "Careers", url: "https://tuitionaledu.com/careers" }]}
+      />
       <Header />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>

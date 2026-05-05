@@ -8,18 +8,28 @@ import GetInTouch from "../../components/contact/get-in-touch/GetInTouch";
 import Info from "../../components/contact/info";
 import { Metadata } from "next";
 import { SITE_URL } from "@/utils/env";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Contact Tuitional Support for your enquiries",
   description: `Contact Tuitional to gain academic support and get answers to all your queries. Don't hesitate, we're just a click away.`,
   alternates: {
     canonical: `${SITE_URL}/contact`,
+    languages: {
+      en: `${SITE_URL}/contact`,
+      ar: `${SITE_URL}/ar/contact`,
+      "x-default": `${SITE_URL}/contact`,
+    },
   },
 };
 
 const Contact: React.FC = () => {
   return (
     <>
+      <BreadcrumbSchema
+        id="contact-breadcrumb"
+        items={[{ name: "Contact", url: "https://tuitionaledu.com/contact" }]}
+      />
       <Header
         background={{
           height: {

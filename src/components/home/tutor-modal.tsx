@@ -111,7 +111,7 @@ const TutorModal: React.FunctionComponent<IProps> = ({
             ></Typography>
 
             <Box sx={styles.rating}>
-              <Image src={greenstars} alt="img" style={styles.stars} />
+              <Image src={greenstars} alt="Trustpilot 4.7 out of 5 stars" style={styles.stars} />
               <Typography
                 className={`${leagueSpartan.className} `}
                 component={"p"}

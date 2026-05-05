@@ -24,7 +24,13 @@
       "Bash(netstat:*)",
       "Bash(taskkill:*)",
       "Bash(npx tsc *)",
-      "Edit(/.claude/skills/seo-audit/**)"
+      "Edit(/.claude/skills/seo-audit/**)",
+      "Bash(find \"c:/Work Repo/Tuitional/tuitionalFrontend/public\" -type f \\\\\\( -name \"*.png\" -o -name \"*.jpg\" -o -name \"*.jpeg\" \\\\\\) -exec du -k {} \\\\;)",
+      "Bash(grep -rn \"src={.*\\\\\\\\.png\\\\|src={.*\\\\\\\\.jpg\\\\|src={.*\\\\\\\\.jpeg\" \"c:/Work Repo/Tuitional/tuitionalFrontend/src\" --include=\"*.tsx\")",
+      "Bash(grep \"Image\\\\|priority={true}\\\\|priority$\")",
+      "Bash(grep -v \"node_modules\\\\|//.*console\")",
+      "Bash(grep -v \"node_modules\\\\|//.*console\\\\|console\\\\.error\\\\|console\\\\.warn\")",
+      "Bash(sort -k5 -rh)"
     ],
     "deny": [],
     "ask": [],

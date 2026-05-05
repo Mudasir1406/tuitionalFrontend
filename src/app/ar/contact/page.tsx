@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   description: `تواصل مع تيوشنال للحصول على الدعم الأكاديمي والحصول على إجابات لجميع استفساراتك. لا تتردد، نحن على بعد نقرة واحدة فقط.`,
   alternates: {
     canonical: `${SITE_URL}/ar/contact`,
+    languages: {
+      en: `${SITE_URL}/contact`,
+      ar: `${SITE_URL}/ar/contact`,
+      "x-default": `${SITE_URL}/contact`,
+    },
   },
 };
 

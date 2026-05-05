@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   description: "احصل على دروس خصوصية عبر الإنترنت من أفضل المعلمين المؤهلين للمناهج البريطانية في منطقة الخليج",
   alternates: {
     canonical: `${SITE_URL}/ar/online`,
+    languages: {
+      en: `${SITE_URL}/online`,
+      ar: `${SITE_URL}/ar/online`,
+      "x-default": `${SITE_URL}/online`,
+    },
   },
   openGraph: {
     title: "دروس خصوصية عبر الإنترنت - تيوشنال",

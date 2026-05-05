@@ -6,7 +6,6 @@ interface IProps {
   data: PageData["main_content"];
 }
 const MainContent: React.FunctionComponent<IProps> = ({ data }) => {
-  console.log("MainContent data:", data);
   return (
     <>
       <Box sx={style.contanier}>

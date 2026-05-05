@@ -36,6 +36,11 @@ export const metadata: Metadata = {
   keywords: 'باقات التدريس, أسعار التدريس عبر الإنترنت, تدريس IGCSE, تدريس A-levels, التعلم القائم على المنهج',
   alternates: {
     canonical: `${SITE_URL}/ar/pricing`,
+    languages: {
+      en: `${SITE_URL}/pricing`,
+      ar: `${SITE_URL}/ar/pricing`,
+      "x-default": `${SITE_URL}/pricing`,
+    },
   },
   openGraph: {
     title: 'باقات وأسعار التدريس | تيوشنال',

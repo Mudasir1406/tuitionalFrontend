@@ -64,7 +64,7 @@ const DemoPointers: React.FunctionComponent<IProps> = ({ data }) => {
               <Box sx={style.imageContanier}>
                 <Image
                   src={tutors.src}
-                  alt="image"
+                  alt="Expert tutors at Tuitional"
                   style={style.image}
                   width={tutors.width}
                   height={tutors.height}

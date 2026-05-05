@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   description: "هل تريد أن تكون جزءاً من فريقنا الديناميكي؟ نحن نبحث دائماً عن الأفراد المتحمسين الذين يسعون دائماً لإحداث تأثير.",
   alternates: {
     canonical: `${SITE_URL}/ar/careers`,
+    languages: {
+      en: `${SITE_URL}/careers`,
+      ar: `${SITE_URL}/ar/careers`,
+      "x-default": `${SITE_URL}/careers`,
+    },
   },
 };
 

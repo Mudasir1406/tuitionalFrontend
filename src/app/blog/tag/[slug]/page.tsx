@@ -10,6 +10,37 @@ import dynamic from "next/dynamic";
 import { getDocumentsByName } from "@/services/grade-subject-level/grade-subject-level";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
 import Breadcrumb from "@/components/bread-crumb/bread-crumb";
+import type { Metadata } from "next";
+import { SITE_URL } from "@/utils/env";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const tags = await getDocumentsByName("tags");
+  const tag = tags?.[0]?.data?.find((t: any) => t.id === params.slug);
+  const name = tag?.name?.en || "Tag";
+
+  return {
+    title: `${name} Articles - Tutoring Blog | Tuitional`,
+    description: `Browse all Tuitional blog articles tagged with ${name}. Expert study tips, exam guides, and education resources for students across the Gulf region.`,
+    alternates: {
+      canonical: `${SITE_URL}/blog/tag/${params.slug}`,
+      languages: {
+        en: `${SITE_URL}/blog/tag/${params.slug}`,
+        "x-default": `${SITE_URL}/blog/tag/${params.slug}`,
+      },
+    },
+    openGraph: {
+      title: `${name} Articles - Tutoring Blog | Tuitional`,
+      description: `Browse all Tuitional blog articles tagged with ${name}.`,
+      url: `${SITE_URL}/blog/tag/${params.slug}`,
+      locale: "en",
+      type: "website",
+    },
+  };
+}
 
 const SearchBar = dynamic(
   () => import("@/components/blog/search-bar/SearchBar"),

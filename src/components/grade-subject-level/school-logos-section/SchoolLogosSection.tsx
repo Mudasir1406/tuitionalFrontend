@@ -17,7 +17,7 @@ async function SchoolLogosSection() {
             <Image
               key={i}
               src={logo}
-              alt="logo"
+              alt="Partner school logo"
               width={100}
               height={100}
               objectFit="contain"
@@ -28,7 +28,7 @@ async function SchoolLogosSection() {
             <Image
               key={`duplicate-${i}`}
               src={logo}
-              alt="logo"
+              alt="Partner school logo"
               width={100}
               height={100}
               objectFit="contain"
