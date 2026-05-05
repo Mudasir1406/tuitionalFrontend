@@ -53,7 +53,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
       {/* Decorative brand circles behind the AppBar (preserved from MUI baseline 4969d2b) */}
       <span
         aria-hidden
-        className="pointer-events-none absolute top-[1.7vh] start-[1.2vw] z-0 h-[3vh] w-[3vh] rounded-full bg-brand-500 sm:start-[2.5vw] sm:h-[4.5vh] sm:w-[4.5vh] md:start-[5vw] md:h-[5vh] md:w-[5vh] lg:start-[4.5vw] lg:h-[7.5vh] lg:w-[7.5vh]"
+        className="pointer-events-none absolute top-[1.7vh] start-[1.2vw] z-0 h-[3vh] w-[3vh] rounded-full bg-brand-500 sm:start-[2.5vw] sm:h-[4.5vh] sm:w-[4.5vh] md:start-[5vw] md:h-[5vh] md:w-[5vh] lg:start-[4.5vw] lg:h-[7.5vh] lg:w-[7.5vh] lg:animate-[bounceAndForword_4s_linear_infinite_alternate]"
       />
       <span
         aria-hidden
@@ -71,7 +71,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
                 height={logo.height}
                 priority
                 quality={90}
-                className="hidden h-[49px] w-[200px] cursor-pointer object-contain lg:block"
+                className="hidden h-[49px] w-[203px] cursor-pointer object-contain lg:block"
               />
               <Image
                 src={logoMobile.src}
@@ -137,7 +137,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
       <div className="fixed bottom-0 right-0 z-[1000] p-[5px] animate-[rotateAnimation_2s_ease-in-out_infinite]">
         <Link href="https://wa.me/97144396296" target="_blank" rel="noopener noreferrer">
           <Image
-            src="https://img.icons8.com/?size=100&id=DUEq8l5qTqBE&format=png&color=000000"
+            src="https://img.icons8.com/fluency/100/whatsapp.png"
             width={60}
             height={60}
             alt={isRTL ? "واتساب" : "WhatsApp"}

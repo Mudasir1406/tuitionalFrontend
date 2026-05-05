@@ -60,7 +60,7 @@ function ListView({ data, locale = "en" }: props) {
           <TeacherCard key={teacher.id} teacher={teacher} locale={locale} />
         ))}
         {!showFull && data?.length > 10 && (
-          <Button onClick={() => setShowFull(true)} variant="primary" className="self-center">
+          <Button onClick={() => setShowFull(true)} variant="primary" className="self-center font-heading">
             {t.showMore}
           </Button>
         )}

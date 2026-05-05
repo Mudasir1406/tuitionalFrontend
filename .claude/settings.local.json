@@ -22,7 +22,20 @@
       "Bash(rm:*)",
       "Bash(pkill:*)",
       "Bash(netstat:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(grep -r \"from ['\\\\\"]@mui\" --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.jsx\" --include=\"*.js\" ! -path \"./node_modules/*\" ! -path \"./.next/*\")",
+      "Bash(grep -v '^$')",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && grep \"^export\" {} | head -3')",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b -- 'src/components/header.tsx')",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/components/grade-subject-level/hero.tsx)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/components/footer.tsx)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/theme/index.ts)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/theme.ts)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend ls-tree -r 4969d2b --name-only)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/app/assets/css/theme.ts)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/app/assets/css/typographyTokens.ts)",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend grep -n \"leagueSpartan.className\" 4969d2b -- 'src/components/**/*.tsx')",
+      "Bash(git -C /Users/ammarabid/Desktop/Desktop/Tuitional/tuitionalFrontend show 4969d2b:src/components/ui/input.tsx)"
     ],
     "deny": [],
     "ask": []

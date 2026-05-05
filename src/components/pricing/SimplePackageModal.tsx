@@ -144,10 +144,10 @@ const SimplePackageModal: React.FC<SimplePackageModalProps> = ({
       </div>
 
       <div className="mt-6 flex justify-end gap-2">
-        <Button onClick={handleClose} variant="ghost">
+        <Button onClick={handleClose} variant="ghost" className="font-heading">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} disabled={!canSubmit()} variant="primary">
+        <Button onClick={handleSubmit} disabled={!canSubmit()} variant="primary" className="font-heading">
           Get Quote
         </Button>
       </div>

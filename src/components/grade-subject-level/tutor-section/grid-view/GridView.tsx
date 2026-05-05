@@ -12,7 +12,8 @@ interface props {
 const getVisibleCards = () => {
   if (typeof window === "undefined") return 4;
   if (window.innerWidth >= 1200) return 4;
-  if (window.innerWidth >= 768) return 2;
+  if (window.innerWidth >= 900) return 3;
+  if (window.innerWidth >= 600) return 2;
   return 1;
 };
 
@@ -51,27 +52,22 @@ function GridView({ cardsData, locale = "en" }: props) {
     }
   }, [isHovered, handleNext]);
 
-  return (
-    <div className="relative flex items-center gap-2">
-      <button
-        type="button"
-        onClick={handlePrev}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
-        aria-label="Previous"
-      >
-        <ArrowLeft size={20} />
-      </button>
+  const gapPx = 16;
+  const cardBasis = `calc(${100 / visibleCards}% - ${(gapPx * (visibleCards - 1)) / visibleCards}px)`;
+  const translateOffset = `calc(${-currentIndex * (100 / visibleCards)}% - ${(currentIndex * gapPx) / visibleCards}px)`;
 
-      <div className="flex-1 overflow-hidden">
+  return (
+    <div className="relative mx-10 sm:mx-14">
+      <div className="overflow-hidden">
         <div
-          className="flex gap-4 transition-transform duration-500"
-          style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
+          className="flex items-stretch gap-4 transition-transform duration-500"
+          style={{ transform: `translateX(${translateOffset})` }}
         >
           {cardsData?.map((card, i) => (
             <div
               key={i}
-              className="shrink-0"
-              style={{ flex: `0 0 calc(${100 / visibleCards}% - 16px)` }}
+              className="flex shrink-0"
+              style={{ flex: `0 0 ${cardBasis}` }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -83,8 +79,17 @@ function GridView({ cardsData, locale = "en" }: props) {
 
       <button
         type="button"
+        onClick={handlePrev}
+        className="absolute -left-10 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50 sm:-left-14"
+        aria-label="Previous"
+      >
+        <ArrowLeft size={20} />
+      </button>
+
+      <button
+        type="button"
         onClick={handleNext}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50"
+        className="absolute -right-10 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-brand-500 shadow-card hover:bg-brand-50 sm:-right-14"
         aria-label="Next"
       >
         <ArrowRight size={20} />

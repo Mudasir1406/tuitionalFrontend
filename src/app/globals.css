@@ -4,6 +4,29 @@
 
 /* Arabic font moved to layout.tsx as non-blocking preload */
 
+/*
+ * Suppress default focus ring on form fields to match MUI baseline.
+ * @tailwindcss/forms (base strategy) injects a blue (#2563eb) ring + border-color
+ * on every <input>/<textarea>/<select>:focus. MUI baseline form CSS used
+ * `outline: none` + `:focus { border-color: transparent }` — no visible focus
+ * indicator. Restore that behavior here.
+ *
+ * The :not([aria-invalid="true"]) guard lets the house Input/Textarea
+ * primitives' error state (which sets aria-invalid + ring-2 ring-danger)
+ * remain visible even on focus.
+ */
+@layer base {
+  input:focus:not([aria-invalid="true"]),
+  textarea:focus:not([aria-invalid="true"]),
+  select:focus:not([aria-invalid="true"]) {
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    box-shadow: var(--tw-shadow, 0 0 #0000);
+    border-color: transparent;
+    outline: none;
+  }
+}
+
 .App {
   overflow-x: hidden;
 }

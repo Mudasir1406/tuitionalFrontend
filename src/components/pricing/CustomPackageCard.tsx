@@ -57,7 +57,7 @@ const CustomPackageCard: React.FC<CustomPackageCardProps> = ({
       </div>
 
       <div className="mt-6">
-        <Button onClick={onBuildPackage} variant="primary" className="w-full">
+        <Button onClick={onBuildPackage} variant="primary" className="w-full font-heading">
           Build Your Package
         </Button>
         <p className="mt-3 text-center font-heading text-small text-ink-700">

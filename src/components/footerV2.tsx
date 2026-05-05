@@ -107,7 +107,7 @@ const FooterV2: React.FC = async () => {
               <div className="mt-5 flex items-center gap-3 md:mt-4">
                 <Link target="_blank" href="https://www.facebook.com/tuitionaledu" rel="noreferrer">
                   <Image
-                    src="https://img.icons8.com/?size=40&id=uLWV5A9vXIPu&format=png&color=000000"
+                    src="https://img.icons8.com/fluency/48/facebook-new.png"
                     alt="facebook"
                     width={36}
                     height={36}
@@ -116,7 +116,7 @@ const FooterV2: React.FC = async () => {
                 </Link>
                 <Link target="_blank" href="https://www.instagram.com/tuitionaledu" rel="noreferrer">
                   <Image
-                    src="https://img.icons8.com/?size=40&id=BrU2BBoRXiWq&format=png&color=000000"
+                    src="https://img.icons8.com/fluency/48/instagram-new.png"
                     alt="instagram"
                     width={36}
                     height={36}
@@ -125,7 +125,7 @@ const FooterV2: React.FC = async () => {
                 </Link>
                 <Link target="_blank" href="https://www.linkedin.com/company/tuitionaledu" rel="noreferrer">
                   <Image
-                    src="https://img.icons8.com/?size=40&id=MR3dZdlA53te&format=png&color=000000"
+                    src="https://img.icons8.com/fluency/48/linkedin.png"
                     alt="linkedin"
                     width={36}
                     height={36}
@@ -204,9 +204,9 @@ const FooterV2: React.FC = async () => {
           {/* Divider */}
           <hr className="w-[78%] border-t border-black" />
 
-          {/* Copyright */}
+          {/* Copyright — subtitle2 theme (statLabel): uppercase, lh 1.4, ls 0.05em */}
           <p
-            className={`${leagueSpartan.className} my-4 text-center text-sm font-medium leading-[1.57] tracking-[0.00714em] text-ink-900 sm:my-5 md:my-[30px] lg:my-10`}
+            className={`${leagueSpartan.className} my-4 text-center text-sm font-medium uppercase leading-[1.4] tracking-[0.05em] text-ink-900 sm:my-5 md:my-[30px] lg:my-10`}
           >
             © 2024 Tuitional
           </p>

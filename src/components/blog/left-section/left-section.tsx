@@ -35,7 +35,7 @@ function LeftSection({ categories, tags }: Props) {
           placeholder="Search Our Blog"
           className="flex-1 border-0 bg-transparent"
         />
-        <Button onClick={handleSearch} variant="primary" size="sm">
+        <Button onClick={handleSearch} variant="primary" size="sm" className="font-heading">
           Search
         </Button>
       </div>

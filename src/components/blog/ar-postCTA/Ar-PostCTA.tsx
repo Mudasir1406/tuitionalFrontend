@@ -15,7 +15,7 @@ const ArPostCTA: React.FC = () => {
         <p className="font-heading text-body-mobile sm:text-body text-white">
           ابدأ رحلتك التعليمية معنا واحصل على درس تجريبي مجاني مع أفضل المدرسين
         </p>
-        <Button onClick={() => setOpen(true)} variant="primary" size="lg" className="bg-white text-brand-500 hover:bg-brand-50">
+        <Button onClick={() => setOpen(true)} variant="primary" size="lg" className="bg-white font-heading text-brand-500 hover:bg-brand-50">
           احجز درساً تجريبياً مجانياً
         </Button>
         <p className="font-heading text-small text-white/80">

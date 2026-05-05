@@ -273,7 +273,7 @@ const GetInTouch: React.FunctionComponent = () => {
                     value={formData.FirstName}
                     onChange={handleChange}
                     placeholder={t("contact.get_in_touch.placeholder_first_name")}
-                    className="my-1 rounded-[5px] bg-white text-ink-800 shadow-card"
+                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
                   />
                   {errors.FirstName && (
                     <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
@@ -293,7 +293,7 @@ const GetInTouch: React.FunctionComponent = () => {
                     value={formData.LastName}
                     onChange={handleChange}
                     placeholder={t("contact.get_in_touch.placeholder_last_name")}
-                    className="my-1 rounded-[5px] bg-white text-ink-800 shadow-card"
+                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
                   />
                   {errors.LastName && (
                     <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
@@ -313,7 +313,7 @@ const GetInTouch: React.FunctionComponent = () => {
                     value={formData.EmailAddress}
                     onChange={handleChange}
                     placeholder={t("contact.get_in_touch.placeholder_email")}
-                    className="my-1 rounded-[5px] bg-white text-ink-800 shadow-card"
+                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
                   />
                   {errors.EmailAddress && (
                     <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
@@ -354,7 +354,7 @@ const GetInTouch: React.FunctionComponent = () => {
               value={formData.Message}
               onChange={(e) => handleChange("Message", e.target.value)}
               placeholder={t("contact.get_in_touch.placeholder_message")}
-              className="my-1 rounded-[5px] bg-white text-ink-800 shadow-card"
+              className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
             />
             {errors.Message && (
               <p className="ms-[6px] mt-[6px] w-full font-body text-small text-danger">
@@ -366,7 +366,7 @@ const GetInTouch: React.FunctionComponent = () => {
               type="submit"
               disabled={loading}
               className={cn(
-                "my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] sm:py-[15px]",
+                "my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] sm:py-[15px]",
               )}
             >
               {loading ? (

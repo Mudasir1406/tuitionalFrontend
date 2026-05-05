@@ -37,13 +37,13 @@ const ResponsiveDrawer = () => {
         className="bg-gradient-to-b from-[#D3EFFE] to-white"
       >
         <div className="flex h-full flex-col">
-          <div className="flex w-full items-center justify-between bg-gradient-to-b from-[#D3EFFE] to-white px-[7.1%] pt-[50px] pb-6">
+          <div className="flex w-full items-center justify-between bg-gradient-to-b from-[#D3EFFE] to-white px-[7.1%] py-[50px]">
             <Image
               src={logo.src}
               alt="Logo"
               width={logo.width}
               height={logo.height}
-              className="h-auto w-32 cursor-pointer"
+              className="h-[34px] w-[144px] cursor-pointer"
             />
             <button
               type="button"
@@ -61,7 +61,7 @@ const ResponsiveDrawer = () => {
                 key={item.href}
                 href={item.href}
                 onClick={toggleDrawer}
-                className="my-[10px] block w-full font-heading text-[1.5rem] font-medium leading-[2] text-black hover:text-brand-500"
+                className="my-[10px] block w-full font-heading text-[1.5rem] font-medium leading-[2] text-start text-black hover:text-brand-500"
               >
                 {item.label}
               </a>
@@ -69,12 +69,18 @@ const ResponsiveDrawer = () => {
 
             <div className="mt-[30px] flex w-full flex-col gap-[15px]">
               <Button
+                variant="outline"
+                className="border-success py-[1.2vh] font-heading text-[1.1rem] font-bold whitespace-nowrap text-success transition-none hover:bg-transparent hover:text-success focus-visible:ring-success"
+              >
+                {t("buttons.ai_digital_sat")}
+              </Button>
+              <Button
                 variant="primary"
                 onClick={() => {
                   toggleDrawer();
                   setOpenDialog(true);
                 }}
-                className="rounded-md py-[1.5vh] text-[1.1rem] font-bold shadow-[0.1vh_1.5vh_3.4vh_0px_#38B6FF66]"
+                className="rounded-[10px] py-[1.5vh] font-heading text-[1.1rem] font-bold tracking-[-0.02em] shadow-brand-glow"
               >
                 {t("buttons.book_demo")}
               </Button>

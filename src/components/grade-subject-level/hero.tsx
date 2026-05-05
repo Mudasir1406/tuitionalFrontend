@@ -30,7 +30,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
       />
 
       <div
-        className="mt-[2vh] w-full text-center font-heading text-body-mobile sm:text-body lg:w-[90%] lg:text-start text-black"
+        className="mt-[2vh] w-full text-center font-heading text-small lg:w-[90%] lg:text-start text-black"
         dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
       />
 

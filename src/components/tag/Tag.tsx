@@ -20,7 +20,7 @@ const Tag: React.FC<TagProps> = ({ label, index, link, isClickable }) => {
   const colorClass = COLORS[index % COLORS.length];
   const shouldRenderLink = isClickable !== false && Boolean(link);
 
-  const className = `${leagueSpartan.className} ${colorClass} flex h-6 cursor-pointer select-none items-center whitespace-nowrap rounded-lg px-2.5 font-heading text-caption font-medium leading-none transition-transform duration-200 hover:scale-105`;
+  const className = `${leagueSpartan.className} ${colorClass} flex h-6 select-none items-center whitespace-nowrap rounded-lg px-2.5 font-heading text-caption font-medium leading-none`;
 
   if (shouldRenderLink) {
     return (

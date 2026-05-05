@@ -67,7 +67,7 @@ const CustomPricingCard: React.FC<CustomPricingCardProps> = ({ userCountry, onCo
       </div>
 
       <div className="mt-6">
-        <Button onClick={onConfigureClick} variant="primary" className="w-full">
+        <Button onClick={onConfigureClick} variant="primary" className="w-full font-heading">
           Configure Package
         </Button>
         <p className="mt-3 text-center font-heading text-small text-ink-700">

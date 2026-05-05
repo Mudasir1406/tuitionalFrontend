@@ -24,7 +24,7 @@ function ArAllBlogs({ blogs }: Props) {
       )}
       {visibleCount < blogs.length && (
         <div className="flex justify-center py-6">
-          <Button onClick={() => setVisibleCount((c) => c + 3)} variant="primary">
+          <Button onClick={() => setVisibleCount((c) => c + 3)} variant="primary" className="font-heading">
             المزيد
           </Button>
         </div>

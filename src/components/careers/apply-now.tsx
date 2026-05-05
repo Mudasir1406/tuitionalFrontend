@@ -199,7 +199,7 @@ const ApplyNow: React.FC = () => {
     }
   }, [geoData]);
 
-  const inputCls = "my-1 rounded-[5px] bg-white text-ink-800 shadow-card";
+  const inputCls = "my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card";
   const errorCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (

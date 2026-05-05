@@ -18,60 +18,54 @@ interface props {
 const ImageCard = ({ data, locale = "en" }: props) => {
   const [tutorModal, setTutorModal] = useState(false);
 
-  const maxLength = 90;
-
   return (
-    <div className="w-full rounded-xl bg-white shadow-[0_4px_8px_rgba(0,0,0,0.1)]">
-      <div className="relative h-[250px] w-full overflow-hidden rounded-xl">
+    <div className="flex h-full w-full flex-col rounded-2xl bg-white shadow-[0_8px_24px_-8px_rgba(56,182,255,0.25),0_2px_8px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_12px_32px_-8px_rgba(56,182,255,0.35),0_4px_12px_rgba(0,0,0,0.08)]">
+      <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl bg-[#eaf6ff]">
         <Image
           src={data?.profileImageUrl ? data?.profileImageUrl : dummyImg}
           alt={`${data?.["First Name"]}'s profile`}
           fill
-          className="h-full w-full object-contain"
+          sizes="(min-width:1200px) 25vw, (min-width:600px) 50vw, 100vw"
+          className="object-contain"
         />
       </div>
-      <div className="p-4">
-        <p
-          className={`${leagueSpartan.className} mb-1.5 cursor-pointer font-heading text-h3 transition-transform duration-300 hover:scale-y-110`}
+
+      <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
+        <h3
           onClick={() => setTutorModal(true)}
+          className={`${leagueSpartan.className} cursor-pointer font-heading text-xl font-bold leading-tight text-ink-900 sm:text-[1.375rem]`}
         >
-          {`${data?.["First Name"]} ${data?.["Last Name"]} `}
-        </p>
-        <div className="mb-2 flex flex-wrap justify-start gap-x-1 gap-y-1">
+          {`${data?.["First Name"]} ${data?.["Last Name"] ?? ""}`.trim()}
+        </h3>
+
+        <div className="flex flex-wrap gap-1.5">
           {data?.Subjects?.map((tag, index) => (
-            <Tag key={index} label={tag} index={index} isClickable={false} />
+            <Tag key={`s-${index}`} label={tag} index={index} isClickable={false} />
           ))}
         </div>
-        <div className="mb-2 flex flex-wrap justify-start gap-x-1 gap-y-1">
+
+        <div className="flex flex-wrap gap-1.5">
           {data?.Curiculum?.map((tag, index) => (
-            <Tag key={index} label={tag} index={index} isClickable={false} />
+            <Tag key={`c-${index}`} label={tag} index={index} isClickable={false} />
           ))}
         </div>
-        <p className={`${leagueSpartan.className} font-heading text-small`}>{data.university}</p>
+
         <div
-          className={`${leagueSpartan.className} font-heading text-small`}
-          dangerouslySetInnerHTML={{
-            __html: data?.Description?.substring(0, maxLength) ?? "",
-          }}
+          className={`${leagueSpartan.className} line-clamp-2 font-heading text-sm leading-snug text-gray-600`}
+          dangerouslySetInnerHTML={{ __html: data?.Description ?? "" }}
         />
-        <div className="mt-3 flex items-center text-center gap-x-3">
-          <Image src={greenstars} alt="rating stars" className="h-[3vh] w-[14vh]" />
-          <p className={`${leagueSpartan.className} font-heading text-small font-medium`}>
-            {data?.["Success rate"]}
-          </p>
+
+        <div className="mt-1 flex items-center gap-2">
+          <Image src={greenstars} alt="rating stars" width={120} height={24} className="h-6 w-auto" />
+          <span className={`${leagueSpartan.className} font-heading text-sm font-medium text-ink-900`}>
+            {data?.["Success rate"]}%
+          </span>
         </div>
+
         <PopUpButton
           text={locale === "ar" ? "احجز حصة تجريبية" : "Book A Demo"}
           href="popup"
-          className="my-5 w-full self-center transition-all duration-500 ease-in-out hover:scale-[1.02]"
-          style={{
-            boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-            backgroundColor: "#38b6ff",
-            lineHeight: "18.4px",
-            borderRadius: "10px",
-            padding: "18px",
-            color: "white",
-          }}
+          className="mt-auto w-full rounded-[10px] bg-brand-500 px-4 py-3 text-center font-heading text-sm font-semibold text-white shadow-[0_15px_34px_-8px_rgba(56,182,255,0.5)] transition-transform duration-300 ease-out hover:scale-[1.02] hover:bg-brand-500 sm:py-3.5 sm:text-base"
         />
 
         {tutorModal && (

@@ -134,7 +134,7 @@ const BlogSidebarForm: React.FC = () => {
     }
   };
 
-  const inputCls = "h-9 w-full rounded-md bg-white px-3 text-form-input text-ink-900 shadow-card";
+  const inputCls = "h-9 w-full rounded-md bg-white px-3 font-heading text-form-input text-ink-900 shadow-card";
   const errCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (

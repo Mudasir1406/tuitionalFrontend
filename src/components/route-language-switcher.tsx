@@ -24,13 +24,16 @@ const RouteLanguageSwitcher: React.FC<RouteLanguageSwitcherProps> = ({ fullWidth
   };
 
   return (
-    <div className={cn("flex items-center", !fullWidth && "lg:mx-3")}>
+    <div className={cn("flex items-center", !fullWidth && "mx-2 lg:mx-3")}>
       <Button
         onClick={handleLanguageSwitch}
         variant="outline"
         className={cn(
-          "rounded-md whitespace-nowrap",
-          fullWidth && "w-full",
+          "rounded font-heading font-bold whitespace-nowrap min-w-fit transition-none",
+          // Baseline metrics: 1.5vh fontSize, 1.84vh lh, 1.2vh py, 1.5vw px
+          !fullWidth && "px-[1.5vw] py-[1.2vh] text-[1.5vh] leading-[1.84vh] h-auto",
+          // Drawer (fullWidth) override: 1.1rem text, 1.2vh py, full width
+          fullWidth && "w-full h-auto py-[1.2vh] text-[1.1rem] leading-[1.84vh]",
           isArabic && "font-arabic",
         )}
       >

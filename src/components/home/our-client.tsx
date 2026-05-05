@@ -49,7 +49,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           </p>
           <Link
             href={testimonialsHref}
-            className="mt-5 inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] text-[25px] font-bold tracking-tight text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
+            className="mt-5 inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] font-heading text-[25px] font-bold leading-[18.4px] tracking-[-0.02em] text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
           >
             {t("home.our_client.read_more")}
           </Link>
@@ -114,7 +114,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           </p>
           <Link
             href={testimonialsHref}
-            className="mt-[100px] inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] text-[20px] font-bold tracking-tight text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
+            className="mt-[100px] inline-flex w-[249px] items-center justify-center rounded-md bg-white px-0 py-[18px] font-heading text-[20px] font-bold leading-[18.4px] tracking-[-0.02em] text-[#009BF5] shadow-[1px_15px_34px_0px_#38B6FF66]"
           >
             {t("home.our_client.read_more")}
           </Link>

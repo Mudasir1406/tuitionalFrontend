@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 /**
  * House Input + Textarea — replace MUI <TextField>.
- * See .claude/skills/mui-to-tailwind/Cookbook.md §11.
+ * See .claude/skills/ui-pipeline/components/input.md for full audit.
  *
  * @example
  * <Input label="Email" type="email" name="email" value={v} onChange={e => setV(e.target.value)} />
@@ -38,7 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           className={cn(
             "h-11 w-full rounded-md bg-white px-4 font-body text-form-input text-ink-900 shadow-card",
-            "placeholder:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
+            "placeholder:text-ink-400 outline-none focus:outline-none focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:bg-ink-100",
             error && "ring-2 ring-danger",
             className,
@@ -83,7 +83,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           rows={rows}
           className={cn(
             "w-full rounded-md bg-white px-4 py-3 font-body text-form-input text-ink-900 shadow-card",
-            "placeholder:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
+            "placeholder:text-ink-400 outline-none focus:outline-none focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:bg-ink-100",
             "resize-y",
             error && "ring-2 ring-danger",

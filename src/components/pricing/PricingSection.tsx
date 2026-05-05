@@ -136,7 +136,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ filters, dropdownOption
               Configure your perfect tutoring package with flexible hours, subjects, and pricing tiers. The builder will open automatically.
             </p>
             {!isModalOpen && (
-              <Button onClick={() => setIsModalOpen(true)} variant="primary" className="mt-6">
+              <Button onClick={() => setIsModalOpen(true)} variant="primary" className="mt-6 font-heading">
                 Open Package Builder
               </Button>
             )}

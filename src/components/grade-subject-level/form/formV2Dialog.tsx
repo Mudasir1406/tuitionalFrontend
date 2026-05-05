@@ -136,7 +136,7 @@ const FormV2Dialog: React.FC<IProps> = ({ open, handleClose, values }) => {
     }
   }, [geoData]);
 
-  const inputCls = "my-1 rounded-md bg-white text-ink-800 shadow-card";
+  const inputCls = "my-1 rounded-md bg-white font-heading text-ink-800 shadow-card";
   const errCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (
@@ -186,7 +186,7 @@ const FormV2Dialog: React.FC<IProps> = ({ open, handleClose, values }) => {
           {errors.Message && <p className={errCls}>{errors.Message}</p>}
         </div>
         <Button type="submit" disabled={loading}
-          className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]">
+          className="my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]">
           {loading ? (
             <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : "Submit Now"}

@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 /**
  * House Container — replaces MUI <Container maxWidth="...">.
- * See .claude/skills/mui-to-tailwind/Cookbook.md §3.
+ * See .claude/skills/ui-pipeline/components/container.md for full audit.
  *
  * @example
  * <Container size="lg">{children}</Container>

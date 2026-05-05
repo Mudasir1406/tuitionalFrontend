@@ -49,7 +49,7 @@ function ArLeftSection({ categories, tags }: Props) {
           placeholder="ابحث في مدونتنا"
           className="flex-1 border-0 bg-transparent"
         />
-        <Button onClick={handleSearch} variant="primary" size="sm">
+        <Button onClick={handleSearch} variant="primary" size="sm" className="font-heading">
           بحث
         </Button>
       </div>

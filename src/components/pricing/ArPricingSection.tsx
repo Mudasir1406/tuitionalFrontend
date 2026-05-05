@@ -140,7 +140,7 @@ const ArPricingSection: React.FC<ArPricingSectionProps> = ({
               قم بتكوين باقة التدريس المثالية لك مع ساعات مرنة ومواد دراسية وفئات أسعار. سيتم فتح المنشئ تلقائياً.
             </p>
             {!isModalOpen && (
-              <Button onClick={() => setIsModalOpen(true)} variant="primary" className="mt-6">
+              <Button onClick={() => setIsModalOpen(true)} variant="primary" className="mt-6 font-heading">
                 فتح منشئ الباقات
               </Button>
             )}

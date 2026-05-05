@@ -13,7 +13,7 @@ import { cn } from "@/utils/cn";
  * House Drawer — replaces MUI <Drawer>. A side-anchored Headless UI dialog
  * that slides in from the inline-start (LTR: left, RTL: right) by default.
  *
- * See .claude/skills/mui-to-tailwind/Cookbook.md §8.
+ * See .claude/skills/ui-pipeline/components/drawer.md for full audit.
  *
  * `side="start"` flips automatically with `dir="rtl"`. The `translate-x` classes
  * use the `rtl:` variant because Tailwind's translate utilities are physical,

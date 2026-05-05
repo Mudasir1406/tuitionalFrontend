@@ -249,7 +249,7 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
         </div>
 
         <div className="flex justify-start">
-          <Button onClick={addNewRow} variant="outline">
+          <Button onClick={addNewRow} variant="outline" className="font-heading">
             <Plus size={18} />
             إضافة مادة أخرى
           </Button>
@@ -275,7 +275,7 @@ const ArCustomPricingModal: React.FC<ArCustomPricingModalProps> = ({
           </div>
         </div>
 
-        <Button variant="primary" size="lg" className="w-full" onClick={handleClose}>
+        <Button variant="primary" size="lg" className="w-full font-heading" onClick={handleClose}>
           المتابعة للحجز
         </Button>
       </div>

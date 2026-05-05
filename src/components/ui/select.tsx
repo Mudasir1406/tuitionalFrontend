@@ -15,7 +15,7 @@ import { cn } from "@/utils/cn";
  * House Select — replaces MUI <Select> + <MenuItem>.
  * Built on Headless UI Listbox; gives keyboard nav, type-ahead, and ARIA.
  *
- * See .claude/skills/mui-to-tailwind/Cookbook.md §10.
+ * See .claude/skills/ui-pipeline/components/select.md for full audit.
  *
  * @example
  * <Select
@@ -66,8 +66,8 @@ export function Select<T extends string | number>({
         <ListboxButton
           aria-label={ariaLabel}
           className={cn(
-            "relative h-11 cursor-default rounded-md bg-white pe-10 ps-4 text-start font-body text-form-input shadow-card",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
+            "relative h-11 cursor-default rounded-md bg-white pe-10 ps-4 text-start font-heading text-form-input shadow-card",
+            "outline-none focus:outline-none focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:bg-ink-100",
             buttonClassName ?? "w-full",
           )}

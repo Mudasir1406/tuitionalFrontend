@@ -261,7 +261,7 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
     getFilterData().then((data) => setFilterData(data));
   }, []);
 
-  const inputCls = "my-1 rounded-md bg-white text-ink-800 shadow-card";
+  const inputCls = "my-1 rounded-md bg-white font-heading text-ink-800 shadow-card";
   const errCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (

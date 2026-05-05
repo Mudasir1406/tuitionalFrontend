@@ -16,7 +16,7 @@ import { cn } from "@/utils/cn";
  * Built on Headless UI 2.x; gives focus trap, Escape, outside click, scroll lock,
  * and ARIA for free.
  *
- * See .claude/skills/mui-to-tailwind/Cookbook.md §9.
+ * See .claude/skills/ui-pipeline/components/dialog.md for full audit.
  *
  * @example
  * <Dialog open={open} onClose={close} title={t("pricing.title")} size="md">
