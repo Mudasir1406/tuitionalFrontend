@@ -17,7 +17,7 @@ import { Autoplay, Pagination, EffectCards } from "swiper/modules";
 import WestIcon from "@mui/icons-material/West";
 import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import EastIcon from "@mui/icons-material/East";
-import user from "../../../public/assets/images/static/clientReview.png";
+import user from "../../../public/assets/images/static/clientReview.webp";
 import linesInvertPrimarySmall from "../../../public/assets/images/static/lines-invert-primary-small.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import mainImage from "../../../public/assets/images/static/maincuriculum.png";
+import mainImage from "../../../public/assets/images/static/maincuriculum.webp";
 import { Header } from "@/components";
 import Hero from "@/components/maincuriculume/hero";
 import HeroInfo from "@/components/maincuriculume/hero-info";

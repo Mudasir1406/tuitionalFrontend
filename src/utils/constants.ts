@@ -1,7 +1,7 @@
-import dummyImg1 from "../../public/assets/images/static/blogimg1.png";
-import dummyImg2 from "../../public/assets/images/static/blogimg2.png";
-import dummyImg3 from "../../public/assets/images/static/blogimg3.png";
-import dummyImg4 from "../../public/assets/images/static/blogimg4.png";
+import dummyImg1 from "../../public/assets/images/static/blogimg1.webp";
+import dummyImg2 from "../../public/assets/images/static/blogimg2.webp";
+import dummyImg3 from "../../public/assets/images/static/blogimg3.webp";
+import dummyImg4 from "../../public/assets/images/static/blogimg4.webp";
 
 export const dummyBlog = [
   {

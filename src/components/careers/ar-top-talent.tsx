@@ -3,7 +3,7 @@ import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesmobile from "../../../public/assets/images/static/linesMobile.png";
-import careerTalent from "../../../public/assets/images/static/careerTalent.png";
+import careerTalent from "../../../public/assets/images/static/careerTalent.webp";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 

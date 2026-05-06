@@ -2,7 +2,7 @@
 
 import { Box, Grid } from "@mui/material";
 import React, { useState } from "react";
-import subjectLevelImage from "../../../public/assets/images/static/subject-level.png";
+import subjectLevelImage from "../../../public/assets/images/static/subject-level.webp";
 import Image from "next/image";
 type IProps = {
   image: string;

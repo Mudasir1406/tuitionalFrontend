@@ -3,7 +3,7 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesmobile from "../../../public/assets/images/static/linesMobile.png";
-import girlInCircle from "../../../public/assets/images/static/Girl_in_circle.png";
+import girlInCircle from "../../../public/assets/images/static/Girl_in_circle.webp";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 const ReviewsOnSp: React.FC = () => {

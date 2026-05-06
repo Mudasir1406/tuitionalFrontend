@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
 import linesInvertWhite from "../../../public/assets/images/static/lines-invert-white.png";
 import { SwiperSlide, Swiper, SwiperRef } from "swiper/react";
@@ -7,7 +7,7 @@ import { Autoplay, Pagination, EffectCards } from "swiper/modules";
 import WestIcon from "@mui/icons-material/West";
 import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
 import EastIcon from "@mui/icons-material/East";
-import user from "../../../public/assets/images/static/clientReview.png";
+import user from "../../../public/assets/images/static/clientReview.webp";
 import linesMobileWhite from "../../../public/assets/images/static/linesMobileWhite.png";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
@@ -17,17 +17,20 @@ type IProps = {
 };
 
 const OurClient: React.FC<IProps> = ({ data }) => {
-  const swiper = useRef<SwiperRef | null>(null);
+  const mobileSwiper = useRef<SwiperRef | null>(null);
+  const desktopSwiper = useRef<SwiperRef | null>(null);
+  const isDesktop = useMediaQuery("(min-width: 1200px)", { noSsr: true });
   const swiperPrev = () => {
-    swiper.current?.swiper.slidePrev();
+    mobileSwiper.current?.swiper.slidePrev();
   };
   const swiperNext = () => {
-    swiper.current?.swiper.slideNext();
+    mobileSwiper.current?.swiper.slideNext();
   };
   const duplicatedData = data?.length < 3 ? [...data, ...data, ...data] : data;
 
   return (
     <Box sx={styles.constanier}>
+      {!isDesktop && (
       <Box sx={styles.inner}>
         <Box sx={styles.headingContanier}>
           <Typography
@@ -57,7 +60,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
         </Box>
         <Box sx={styles.swiperContanier}>
           <Swiper
-            ref={swiper}
+            ref={mobileSwiper}
             centeredSlides={true}
             grabCursor
             style={styles.swiper}
@@ -90,6 +93,8 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           </Box>
         </Box>
       </Box>
+      )}
+      {isDesktop && (
       <Box sx={styles.ourStudent}>
         <Box sx={styles.ourStudentInner}>
           <Typography
@@ -118,7 +123,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
         </Box>
 
         <Swiper
-          ref={swiper}
+          ref={desktopSwiper}
           centeredSlides={true}
           grabCursor
           style={styles.swiperMobile}
@@ -145,6 +150,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           ))}
         </Swiper>
       </Box>
+      )}
       <Box sx={styles.info}>
         <Box>
           <Typography sx={styles.numbers} className={leagueSpartan.className}>

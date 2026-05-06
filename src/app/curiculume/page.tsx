@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
-import curiculumeImage from "../../../public/assets/images/static/curiclume.png";
-import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.png";
+import curiculumeImage from "../../../public/assets/images/static/curiclume.webp";
+import subjectIGC from "../../../public/assets/images/static/subjects-bg-img.webp";
 import circleIGC from "../../../public/assets/images/svg/circle-subjects.svg";
 import { Header } from "@/components";
 import Hero from "@/components/curiculume/hero";

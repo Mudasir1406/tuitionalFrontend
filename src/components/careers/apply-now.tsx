@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import applynow from "../../../public/assets/images/static/applynow.png";
+import applynow from "../../../public/assets/images/static/applynow.webp";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";

@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesmobile from "../../../public/assets/images/static/linesMobile.png";
-import "swiper/css";
 import {
   Trusted_Schools_Type,
   getTrustedSchools,

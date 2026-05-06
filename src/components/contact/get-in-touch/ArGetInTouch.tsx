@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import dynamic from "next/dynamic";
 
-import girlLaptop from "../../../../public/assets/images/static/girl-using-laptop.png";
+import girlLaptop from "../../../../public/assets/images/static/girl-using-laptop.webp";
 import Image from "next/image";
 import { leagueSpartan } from "@/app/fonts";
 import { isValidPhoneNumber } from "react-phone-number-input";

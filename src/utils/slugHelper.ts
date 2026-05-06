@@ -12,10 +12,27 @@ type GeoLocationData = {
   error: string | null;
 };
 
-const getLocation = async () => {
-  const res = await fetch("/api/location");
-  const data = await res.json();
-  return data;
+type CoreGeoResult = { ip: string | null; country: string | null };
+
+// Module-level Promise cache — shared across all component instances.
+// Only 2 network requests (ipify + /api/location) fire per page load
+// regardless of how many components call useGeoLocation().
+let _geoPromise: Promise<CoreGeoResult> | null = null;
+
+const fetchGeoOnce = (): Promise<CoreGeoResult> => {
+  if (!_geoPromise) {
+    _geoPromise = (async () => {
+      const ipRes = await fetch("https://api.ipify.org?format=json");
+      const { ip } = await ipRes.json();
+      const locRes = await fetch(`/api/location?ip=${ip}`);
+      const data = await locRes.json();
+      return { ip: ip ?? null, country: data.country ?? null };
+    })().catch(() => {
+      _geoPromise = null; // reset on error so next mount can retry
+      return { ip: null, country: null };
+    });
+  }
+  return _geoPromise;
 };
 
 const useGeoLocation = (): GeoLocationData => {
@@ -32,54 +49,43 @@ const useGeoLocation = (): GeoLocationData => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Client-side only check
-        if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
-        // Get basic browser info
-        const browser = navigator.userAgent;
-        const pageURL = window.location.href;
-        const currentDate = new Date().toLocaleDateString();
-        const currentTime = new Date().toLocaleTimeString();
-        const params = new URLSearchParams(window.location.search);
+    const browser = navigator.userAgent;
+    const pageURL = window.location.href;
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
+    const params = new URLSearchParams(window.location.search);
+    const medium = params.get("gad_source")
+      ? "google Ads"
+      : params.get("fbclid")
+      ? "facebook"
+      : "SEO";
 
-        // Get IP address
-        const ipResponse = await fetch("https://api.ipify.org?format=json");
-        const { ip } = await ipResponse.json();
-
-        // Get geo data by passing the IP to the API
-        const res = await fetch(`/api/location?ip=${ip}`);
-        const geoData = await res.json();
-
+    fetchGeoOnce()
+      .then(({ ip, country }) => {
         setGeoData({
           ip,
-          country: geoData.country || null,
+          country,
           browser,
           pageURL,
           date: currentDate,
           time: currentTime,
-          Medium: params.get("gad_source")
-            ? "google Ads"
-            : params.get("fbclid")
-            ? "facebook"
-            : "SEO",
+          Medium: medium,
           isLoading: false,
           error: null,
         });
-      } catch (error) {
-        setGeoData((prev: any) => ({
+      })
+      .catch((error) => {
+        setGeoData((prev) => ({
           ...prev,
           isLoading: false,
-          error:
-            error instanceof Error ? error.message : "Unknown error occurred",
+          error: error instanceof Error ? error.message : "Unknown error",
         }));
-      }
-    };
-
-    fetchData();
+      });
   }, []);
 
   return geoData;
 };
+
 export default useGeoLocation;

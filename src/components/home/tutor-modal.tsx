@@ -9,7 +9,7 @@ import "../DropDown/DropDown.css";
 import PopUpButton from "../pop-up-button";
 import Image from "next/image";
 import Tag from "../tag/Tag";
-import dummyImg from "../../../public/assets/images/static/blogimg3.png";
+import dummyImg from "../../../public/assets/images/static/blogimg3.webp";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 
 type IProps = {

@@ -8,8 +8,7 @@ import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { redirectToExternal } from "@/utils/helper";
 import { usePathname } from "next/navigation";
 import { AllBlogsData } from "@/types/grade-subject-level.types";
-import moment from "moment";
-import dummyImg1 from "../../../../public/assets/images/static/blogimg1.png";
+import dummyImg1 from "../../../../public/assets/images/static/blogimg1.webp";
 import Link from "next/link";
 
 export interface BlogsProps {
@@ -52,7 +51,7 @@ function ArBlogCard({ data }: Props) {
             variant="body1"
             component={"p"}
           >
-            {moment(data?.timestamp?.seconds * 1000).format("DD/MM/YYYY")}
+            {new Date(data?.timestamp?.seconds * 1000).toLocaleDateString("en-GB")}
           </Typography>
           <a href={`${blogBaseUrl}/${data?.slugData}`}>
             <Typography

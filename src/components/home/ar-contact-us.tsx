@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import dynamic from "next/dynamic";
-import girl from "../../../public/assets/images/static/contact-us-girl.png";
+import girl from "../../../public/assets/images/static/contact-us-girl.webp";
 import linesInvert from "../../../public/assets/images/static/lines-invert.png";
 import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import Image from "next/image";

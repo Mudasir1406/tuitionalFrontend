@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./TeacherCard.module.css";
 import { Button, Typography } from "@mui/material";
 import { leagueSpartan } from "@/app/fonts";
-import dummyImg from "../../../public/assets/images/static/blogimg3.png";
+import dummyImg from "../../../public/assets/images/static/blogimg3.webp";
 import Image from "next/image";
 
 import PopUpButton from "../pop-up-button";

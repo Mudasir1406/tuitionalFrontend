@@ -5,13 +5,11 @@ import styles from "./Ar-Hero.module.css";
 import { leagueSpartan } from "@/app/fonts";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Image from "next/image";
-import arrow from "../../../../public/assets/images/static/Arrow 8.png";
-import facebook from "../../../../public/assets/images/static/facebook-png-icon-follow-us-facebook-1.png";
-import twitter from "../../../../public/assets/images/static/1707226109new-twitter-logo-png.png";
-import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.png";
+import facebook from "../../../../public/assets/images/static/facebook-png-icon-follow-us-facebook-1.webp";
+import twitter from "../../../../public/assets/images/static/1707226109new-twitter-logo-png.webp";
+import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.webp";
 import whatsapp from "../../../../public/assets/images/static/pngimg.com - whatsapp_PNG21.png";
 import { usePathname } from "next/navigation";
-import moment from "moment";
 
 interface Props {
   data: {
@@ -59,10 +57,7 @@ const ArHero = ({ data, timestamp, showSocial }: Props) => {
             variant="body2"
             component={"p"}
           >
-            {`${data?.category?.data?.[0]?.name?.ar || data?.category?.data?.[0]?.name?.en} | ${moment(timestamp * 1000).format(
-              "MMMM DD,YYYY"
-            )}
-              `}
+            {`${data?.category?.data?.[0]?.name?.ar || data?.category?.data?.[0]?.name?.en} | ${new Date(timestamp * 1000).toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" })}`}
           </Typography>
         </div>
         {showSocial === true && (

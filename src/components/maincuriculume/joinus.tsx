@@ -1,9 +1,9 @@
 import { Box, Button, Grid, Typography } from '@mui/material'
 import React from 'react'
-import girl1 from '../../../public/assets/images/static/joinimg1.png'
-import girl2 from '../../../public/assets/images/static/joinimg2.png'
-import boy1 from '../../../public/assets/images/static/joinimg3.png'
-import boy2 from '../../../public/assets/images/static/joinimg4.png'
+import girl1 from '../../../public/assets/images/static/joinimg1.webp'
+import girl2 from '../../../public/assets/images/static/joinimg2.webp'
+import boy1 from '../../../public/assets/images/static/joinimg3.webp'
+import boy2 from '../../../public/assets/images/static/joinimg4.webp'
 import Image from 'next/image'
 const JoinUs = () => {
   return (

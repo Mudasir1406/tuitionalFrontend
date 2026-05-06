@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import counsling from "../../../public/assets/images/static/Guidence.png";
+import counsling from "../../../public/assets/images/static/Guidence.webp";
 import { PageData } from "@/types/grade-subject-level.types";
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButton from "../pop-up-button";

@@ -1,9 +1,9 @@
 import { Box, Grid, Typography } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
-import img1 from '../../../public/assets/images/static/benifit1.png'
-import img2 from '../../../public/assets/images/static/benifit2.png'
-import img3 from '../../../public/assets/images/static/benifit3.png'
+import img1 from '../../../public/assets/images/static/benifit1.webp'
+import img2 from '../../../public/assets/images/static/benifit2.webp'
+import img3 from '../../../public/assets/images/static/benifit3.webp'
 
 const Benifit = () => {
   let Benifit = [

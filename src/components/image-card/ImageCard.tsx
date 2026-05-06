@@ -6,7 +6,7 @@ import { leagueSpartan } from "@/app/fonts";
 import greenstars from "../../../public/assets/images/svg/greenstars.svg";
 import { useState } from "react";
 import Tag from "../tag/Tag";
-import dummyImg from "../../../public/assets/images/static/blogimg3.png";
+import dummyImg from "../../../public/assets/images/static/blogimg3.webp";
 import PopUpButton from "../pop-up-button";
 import dynamic from "next/dynamic";
 const TutorModal = dynamic(() => import("../home/tutor-modal"), { ssr: false });

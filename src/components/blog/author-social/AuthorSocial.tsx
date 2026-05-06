@@ -5,9 +5,9 @@ import { leagueSpartan } from "@/app/fonts";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./AuthorSocial.module.css";
-import facebook from "../../../../public/assets/images/static/facebook-png-icon-follow-us-facebook-1.png";
-import twitter from "../../../../public/assets/images/static/1707226109new-twitter-logo-png.png";
-import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.png";
+import facebook from "../../../../public/assets/images/static/facebook-png-icon-follow-us-facebook-1.webp";
+import twitter from "../../../../public/assets/images/static/1707226109new-twitter-logo-png.webp";
+import linkedin from "../../../../public/assets/images/static/linkedIn_PNG27.webp";
 import whatsapp from "../../../../public/assets/images/static/pngimg.com - whatsapp_PNG21.png";
 
 interface Props {
