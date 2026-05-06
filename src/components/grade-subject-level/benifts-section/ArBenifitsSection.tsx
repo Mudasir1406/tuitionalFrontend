@@ -34,25 +34,25 @@ const items: { icon: React.ReactNode; label: string }[] = [
 ];
 
 const ArBenifitsSection: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = (data?.sectionTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.sectionTag ?? "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
-    <div className="bg-brand-500 px-6 py-12 text-white sm:px-12 lg:py-16" dir="rtl">
+    <div className="bg-gradient-to-b from-white to-[#58b9f6] px-6 pb-[5vh] pt-0 sm:pb-[6vh]" dir="rtl">
       <HeaderTag
-        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-white"
+        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3"
         dangerouslySetInnerHTML={{ __html: data?.section ?? "" }}
       />
 
-      <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <div className="mx-auto mt-6 grid w-full grid-cols-2 gap-4 min-[992px]:w-4/5 min-[992px]:grid-cols-4">
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center gap-3 rounded-md bg-white p-4 text-center shadow-card"
+            className="flex h-[100px] flex-col items-center justify-center rounded-lg bg-white p-4 text-center transition-[box-shadow,transform] duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[inset_0px_6px_10px_rgba(0,0,0,0.15),0px_4px_10px_rgba(0,0,0,0.1)] sm:h-[140px]"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f7ff]">
               {item.icon}
             </div>
-            <p className="font-heading text-small text-ink-900">{item.label}</p>
+            <p className="font-heading text-caption">{item.label}</p>
           </div>
         ))}
       </div>

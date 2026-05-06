@@ -9,8 +9,8 @@ import {
 async function SchoolLogosSection() {
   const trustedSchools: Trusted_Schools_Type = await getTrustedSchools();
   return (
-    <div className="overflow-hidden bg-white py-8">
-      <div className="flex animate-[slide_25s_linear_infinite] gap-8 whitespace-nowrap">
+    <div className="flex overflow-hidden bg-gradient-to-r from-white to-[#58b9f6] p-[1vh]">
+      <div className="flex animate-[slide_50s_linear_infinite] flex-row items-center justify-start gap-12 whitespace-nowrap">
         {trustedSchools?.images.map((logo, i) => (
           <Image
             key={i}
@@ -18,7 +18,7 @@ async function SchoolLogosSection() {
             alt="logo"
             width={100}
             height={100}
-            className="h-24 w-auto object-contain"
+            className="w-auto object-contain"
           />
         ))}
         {trustedSchools?.images.map((logo, i) => (
@@ -28,7 +28,7 @@ async function SchoolLogosSection() {
             alt="logo"
             width={100}
             height={100}
-            className="h-24 w-auto object-contain"
+            className="w-auto object-contain"
           />
         ))}
       </div>

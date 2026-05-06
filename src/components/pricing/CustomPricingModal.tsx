@@ -231,7 +231,7 @@ const CustomPricingModal: React.FC<CustomPricingModalProps> = ({
           min={1}
           max={200}
           aria-label="Hours"
-          className="h-11 rounded-md bg-white px-4 font-body text-form-input text-ink-900 shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          className="h-11 rounded-md bg-white px-4 font-heading text-form-input text-ink-900 shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         />
       </div>
 

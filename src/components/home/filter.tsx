@@ -135,18 +135,7 @@ const Filter: React.FC<FilterProps> = ({ data }) => {
               text={t("home.filter.cta")}
               href="popup"
               values={formData}
-              className="w-full"
-              style={{
-                boxShadow: "1px 4px 24px 0px #38B6FFB2",
-                backgroundColor: "#38B6FF",
-                fontSize: "2vh",
-                fontWeight: 700,
-                lineHeight: "1.6vh",
-                padding: "2vh",
-                letterSpacing: "-0.02em",
-                color: "white",
-                borderRadius: "10px",
-              }}
+              className="w-full rounded-[10px] bg-brand-500 p-[2vh] font-heading text-[2vh] font-bold leading-[1.6vh] tracking-[-0.02em] text-white shadow-[1px_4px_24px_0px_#38B6FFB2] hover:bg-brand-500"
             />
           </div>
         </div>

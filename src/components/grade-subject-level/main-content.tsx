@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const MainContent: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="px-[5vw]">

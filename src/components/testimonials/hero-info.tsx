@@ -12,7 +12,7 @@ const HeroInfo: React.FC = () => {
   return (
     <div className="relative mt-[15px] flex h-full w-full items-center justify-between md:mt-0 lg:mt-auto lg:h-[70%]">
       <div className="relative -mt-[100px] flex w-[150px] flex-col rounded-md border border-white/[0.18] bg-white/60 p-[1.2vh] shadow-[0px_0px_30px_0px_rgba(56,182,255,0.2)] backdrop-blur-[7.5px] sm:w-[170px] sm:p-[2.5vh] md:w-[190px] md:p-[2.9vh] lg:w-[280px] lg:p-[3.3vh]">
-        <p className="font-body text-[1.3vh] font-normal leading-[1.4vh] text-black md:text-[1.4vh] md:leading-[1.5vh] lg:text-[1.6vh] lg:leading-[2vh]">
+        <p className="font-heading text-[1.3vh] font-normal leading-[1.4vh] text-black md:text-[1.4vh] md:leading-[1.5vh] lg:text-[1.6vh] lg:leading-[2vh]">
           {t("testimonials.hero_info.review_quote")}
         </p>
         <div className="my-[2px] flex sm:my-[5px] lg:my-[10px]">
@@ -30,7 +30,7 @@ const HeroInfo: React.FC = () => {
           <span className="me-[0.2vw] flex h-[4.5vh] w-[4.5vh] items-center justify-center rounded-[5px] bg-brand-500 text-center text-[1.5vh] font-semibold leading-[1.4vh] text-white sm:h-[5.2vh] sm:w-[4.7vh] sm:rounded-[7.5px] md:h-[5.2vh] md:w-[4.7vh] md:rounded-[10px] md:text-[1.7vh] md:leading-[1.7vh] lg:h-[5.5vh] lg:w-[9vh] lg:rounded-[15px] lg:text-[2.5vh] lg:leading-[2vh]">
             {t("testimonials.hero_info.client_count")}
           </span>
-          <span className="font-body text-[1.3vh] font-semibold leading-[1.3vh] text-black sm:text-[1.6vh] sm:leading-[1.6vh]">
+          <span className="font-heading text-[1.3vh] font-semibold leading-[1.3vh] text-black sm:text-[1.6vh] sm:leading-[1.6vh]">
             {t("testimonials.hero_info.client_label")}
           </span>
         </div>

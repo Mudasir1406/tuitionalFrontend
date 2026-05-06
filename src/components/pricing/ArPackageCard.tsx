@@ -87,7 +87,7 @@ const ArPackageCard: React.FC<ArPackageCardProps> = memo(
         </div>
 
         <div className="mt-6">
-          <Button variant={isPopular ? "primary" : "outline"} className="w-full">
+          <Button variant={isPopular ? "primary" : "outline"} className="w-full font-heading">
             ابدأ الآن
           </Button>
         </div>

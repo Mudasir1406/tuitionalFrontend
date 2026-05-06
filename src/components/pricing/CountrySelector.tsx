@@ -73,7 +73,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
       <button
         type="button"
         onClick={handleToggleOpen}
-        className="flex items-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2 font-body text-form-input text-ink-900 shadow-card hover:bg-ink-50"
+        className="flex items-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2 font-heading text-form-input text-ink-900 shadow-card hover:bg-ink-50"
       >
         <span className="text-xl">{currentCountryInfo.flag}</span>
         <span className="font-semibold">{currentCountryInfo.code}</span>
@@ -114,10 +114,10 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
                   >
                     <span className="text-2xl">{country.flag}</span>
                     <div className="flex-1">
-                      <p className="font-body text-form-input font-semibold text-ink-900">
+                      <p className="font-heading text-form-input font-semibold text-ink-900">
                         {country.name}
                       </p>
-                      <p className="font-body text-small text-ink-700">
+                      <p className="font-heading text-small text-ink-700">
                         Prices in {country.currency}
                       </p>
                     </div>

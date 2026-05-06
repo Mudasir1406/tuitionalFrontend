@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const DemoPointers: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] lg:mx-[5vw]">
@@ -36,14 +36,7 @@ const DemoPointers: React.FC<IProps> = ({ data }) => {
           <PopUpButton
             href={data.buttonLink}
             text={data?.buttonText}
-            className="mx-auto mb-[3vh] mt-[2vh] flex h-auto w-4/5 items-center justify-center p-[10px_16px] sm:w-1/2 sm:p-[12px_20px] md:w-1/2 lg:mb-0 lg:w-3/5 lg:p-[14px_24px]"
-            style={{
-              backgroundColor: "#38B6FF",
-              color: "#FFF",
-              borderRadius: "2vh",
-              lineHeight: 1.4,
-              boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-            }}
+            className="mx-auto mb-[3vh] mt-[2vh] flex h-auto w-4/5 items-center justify-center rounded-[2vh] bg-brand-500 p-[10px_16px] leading-[1.4] text-white shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] hover:bg-brand-500 sm:w-1/2 sm:p-[12px_20px] md:w-1/2 lg:mb-0 lg:w-3/5 lg:p-[14px_24px]"
           />
         </div>
 

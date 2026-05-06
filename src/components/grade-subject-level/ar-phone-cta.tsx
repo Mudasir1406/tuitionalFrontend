@@ -18,7 +18,7 @@ const ArPhoneCta: React.FC<IProps> = ({ data }) => {
     Message: "",
     sheetName: "Lead Forms",
   });
-  const HeaderTag = (data.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] my-[2vh] flex items-center justify-center sm:mx-[3vw] sm:my-[2vh] lg:m-0" dir="rtl">
@@ -45,12 +45,7 @@ const ArPhoneCta: React.FC<IProps> = ({ data }) => {
             href={data.link}
             text={data?.buttonText}
             values={formData}
-            className="h-[8vh] w-2/5 rounded-bl-[14px] rounded-tl-[14px] sm:h-[6vh] lg:h-[8.5vh]"
-            style={{
-              backgroundColor: "#38B6FF",
-              boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
-              color: "#FFFFFF",
-            }}
+            className="h-[8vh] w-2/5 rounded-bl-[14px] rounded-tl-[14px] bg-brand-500 text-white shadow-[0px_-5px_15px_0px_rgba(0,0,0,0.20)_inset] hover:bg-brand-500 sm:h-[6vh] lg:h-[8.5vh]"
           />
         </div>
       </div>

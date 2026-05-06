@@ -88,7 +88,7 @@ const PackageCard: React.FC<PackageCardProps> = memo(
         </div>
 
         <div className="mt-6">
-          <Button variant={isPopular ? "primary" : "outline"} className="w-full">
+          <Button variant={isPopular ? "primary" : "outline"} className="w-full font-heading">
             Get Started
           </Button>
         </div>

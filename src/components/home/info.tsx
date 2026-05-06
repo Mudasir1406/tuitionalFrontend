@@ -18,7 +18,7 @@ const Info = () => {
         <div className="absolute -top-[5vh] z-10 flex h-[7vh] w-[7vh] min-h-[30px] min-w-[30px] items-center justify-center rounded-full bg-success">
           <GraduationCap className="text-white" aria-hidden="true" />
         </div>
-        <p className="text-center font-heading text-black">50000+</p>
+        <p className="text-center font-heading text-stat-number-mobile sm:text-stat-number-tablet lg:text-stat-number text-black">50000+</p>
         <p className="text-center font-heading text-stat-label uppercase text-black">
           {t("home.info.registered_students")}
         </p>
@@ -41,7 +41,7 @@ const Info = () => {
             alt={t("home.info.tutors_alt")}
             className="w-full object-contain"
           />
-          <p className="text-center font-heading text-black">500+</p>
+          <p className="text-center font-heading text-stat-number-mobile sm:text-stat-number-tablet lg:text-stat-number text-black">500+</p>
           <p className="text-center font-heading text-stat-label uppercase text-black">
             {t("home.info.tutor_screened")}
           </p>

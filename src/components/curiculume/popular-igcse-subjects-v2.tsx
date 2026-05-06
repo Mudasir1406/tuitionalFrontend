@@ -31,7 +31,7 @@ const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({
   title = "Popular IGCSE Subjects",
   headerTag = "h2",
 }) => {
-  const HeaderTag = headerTag;
+  const HeaderTag = headerTag.toLowerCase() as typeof headerTag;
 
   return (
     <div className="px-[5vw]">

@@ -17,7 +17,7 @@ const StudentSaysV2: React.FC<StudentSaysV2Props> = ({ data, title }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const HeaderTag = (data?.headerTag ?? "h2") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h2").toLowerCase()) as "h2" | "h3" | "h4";
 
   useEffect(() => {
     getVideoReviews()

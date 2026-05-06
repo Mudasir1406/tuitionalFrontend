@@ -119,17 +119,7 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image, ButtonTex
     <PopUpButton
       href="popup"
       text={ButtonText}
-      style={{
-        boxShadow: "1px 15px 34px 0px #38B6FF66",
-        margin: "2vh 0",
-        backgroundColor: "#38B6FF",
-        lineHeight: "18.4px",
-        width: "249px",
-        color: "white",
-        padding: "18px",
-        letterSpacing: "-0.02em",
-        borderRadius: "10px",
-      }}
+      className="my-[2vh] w-[249px] rounded-[10px] bg-brand-500 p-[18px] font-bold leading-[18.4px] tracking-[-0.02em] text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
     />
   </div>
 );

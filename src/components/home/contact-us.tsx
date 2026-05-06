@@ -226,7 +226,7 @@ const ContactUs: React.FC<IProps> = ({ background, padding, filterData }) => {
               />
               {t("home.contact_us.heading")}
             </h2>
-            <p className="px-5 text-center font-heading text-body-mobile sm:text-body lg:px-0 lg:text-start text-black">
+            <p className="px-5 text-center font-heading text-small lg:px-0 lg:text-start text-black">
               {t("home.contact_us.description")}
             </p>
 
@@ -322,7 +322,7 @@ const ContactUs: React.FC<IProps> = ({ background, padding, filterData }) => {
               <Button
                 type="submit"
                 disabled={loading}
-                className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
+                className="my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
               >
                 {loading ? (
                   <span

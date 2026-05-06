@@ -49,14 +49,14 @@ const ReviewsOnWp = ({ reviews }: Props) => {
         ))}
       </div>
 
-      <p className="font-body text-small">
+      <p className="font-heading text-small">
         {t("testimonials.reviews_on_wp.trust_line")}
       </p>
 
       {!showAll && (
         <Button
           onClick={handleLoadMore}
-          className="mt-5 w-[220px] rounded-md bg-white px-0 py-[18px] text-[#009BF5] shadow-[1px_15px_34px_0px_rgba(0,0,0,0.15)] transition-all duration-200 ease-out hover:scale-[1.06] hover:bg-white"
+          className="mt-5 w-[220px] rounded-md bg-white px-0 py-[18px] font-heading text-button leading-[18.4px] tracking-[-0.02em] text-[#009BF5] shadow-[1px_15px_34px_0px_rgba(0,0,0,0.15)] transition-all duration-200 ease-out hover:scale-[1.06] hover:bg-white"
         >
           {t("testimonials.reviews_on_wp.load_more")}
         </Button>

@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
         </span>
       </h1>
 
-      <p className="mt-[22px] px-5 text-center font-body text-body-mobile sm:text-body lg:mt-[10px] lg:px-0 lg:text-start text-black">
+      <p className="mt-[22px] px-5 text-center font-heading text-small lg:mt-[10px] lg:px-0 lg:text-start text-black">
         {t("careers.hero.description")}
       </p>
 

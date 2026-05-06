@@ -7,7 +7,7 @@ import elpse1 from "../../../public/assets/images/svg/elpse-white1.svg";
 import elpse2 from "../../../public/assets/images/svg/elpse-white2.svg";
 
 const BlogCta: React.FC<{ data: PageData["blog_CTA"] }> = ({ data }) => {
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="relative my-[10vh] px-[5vw]">
@@ -24,19 +24,7 @@ const BlogCta: React.FC<{ data: PageData["blog_CTA"] }> = ({ data }) => {
           <PopUpButton
             href={data.link}
             text={data.buttonText}
-            className="my-[3vh] w-full sm:my-[2vh] lg:mb-0 lg:me-[20vh] lg:ms-0 lg:mt-[5vh] lg:w-auto"
-            style={{
-              boxShadow: "1px 4px 24px 0px #38B6FFB2",
-              backgroundColor: "#38B6FF",
-              fontSize: "2vh",
-              fontWeight: 700,
-              paddingTop: "1.5vh",
-              paddingBottom: "1.5vh",
-              paddingLeft: "4vh",
-              paddingRight: "4vh",
-              borderRadius: "10px",
-              color: "white",
-            }}
+            className="my-[3vh] w-full rounded-[10px] bg-brand-500 px-[4vh] py-[1.5vh] text-[2vh] font-bold text-white shadow-[1px_4px_24px_0px_#38B6FFB2] hover:bg-brand-500 sm:my-[2vh] lg:mb-0 lg:me-[20vh] lg:ms-0 lg:mt-[5vh] lg:w-auto"
           />
         </div>
       </div>

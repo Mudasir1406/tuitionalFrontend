@@ -18,7 +18,7 @@ const BenifitsOfStudyingSection: React.FC<IProps> = ({ data }) => {
   const toggleRequirement = (index: number) =>
     setExpandedRequirement((prev) => ({ ...prev, [index]: !prev[index] }));
 
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
   const LeftTag = (data?.subTextLeftTag ?? "h4") as "h3" | "h4" | "h5";
   const RightTag = (data?.subTextRightTag ?? "h4") as "h3" | "h4" | "h5";
 
@@ -31,20 +31,20 @@ const BenifitsOfStudyingSection: React.FC<IProps> = ({ data }) => {
     <div
       key={index}
       className={cn(
-        "flex items-start justify-between gap-4 rounded-md p-4 shadow-card transition-colors",
-        expanded ? "bg-brand-50" : "bg-white",
+        "mb-4 flex w-[90%] flex-row items-start justify-between rounded-[2vh] p-6 shadow-benefit-box transition-colors duration-300",
+        expanded ? "bg-[#D3EFFF]" : "bg-white",
       )}
     >
       <div className="flex-1">
-        <p className="font-heading text-h5 font-semibold text-ink-900">{box.name}</p>
+        <p className="font-heading text-small font-medium text-ink-900">{box.name}</p>
         {expanded && (
-          <p className="mt-2 font-heading text-small text-ink-700">{box.paragraph}</p>
+          <p className="mt-[1vh] font-heading text-caption text-ink-700">{box.paragraph}</p>
         )}
       </div>
       <button
         type="button"
         onClick={() => toggle(index)}
-        className="shrink-0"
+        className="ml-3 shrink-0"
         aria-label={expanded ? "Collapse" : "Expand"}
       >
         <Image src={minusIcon} alt="" className="h-[5vh] w-[5vh]" />
@@ -53,24 +53,24 @@ const BenifitsOfStudyingSection: React.FC<IProps> = ({ data }) => {
   );
 
   return (
-    <div className="px-6 py-12 lg:py-16">
+    <div className="self-center bg-benefit-fade px-3 sm:px-4 md:px-6">
       <HeaderTag
-        className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+        className="mb-[1vh] text-center font-heading text-h3-mobile text-ink-900 sm:text-h3-tablet lg:text-h3"
         dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
       />
-      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="flex flex-col gap-3">
+      <div className="flex w-full flex-col justify-center min-[992px]:flex-row min-[992px]:gap-x-6">
+        <div className="my-3 flex flex-col items-center min-[992px]:my-9 min-[992px]:flex-[0.4]">
           <LeftTag
-            className="font-heading text-h4-mobile sm:text-h4-tablet lg:text-h4 text-ink-900"
+            className="mb-[1vh] text-center font-heading text-h4-mobile text-ink-900 sm:text-h4-tablet lg:text-h4"
             dangerouslySetInnerHTML={{ __html: data?.subTextLeft ?? "" }}
           />
           {data?.listArray.slice(0, 3)?.map((box, index) =>
             renderBox(box, index, !!expandedBoxes[index], toggleBox),
           )}
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="my-3 flex flex-col items-center min-[992px]:my-9 min-[992px]:flex-[0.4]">
           <RightTag
-            className="font-heading text-h4-mobile sm:text-h4-tablet lg:text-h4 text-ink-900"
+            className="mb-[1vh] text-center font-heading text-h4-mobile text-ink-900 sm:text-h4-tablet lg:text-h4"
             dangerouslySetInnerHTML={{ __html: data?.subTextRight ?? "" }}
           />
           {data?.listArray.slice(-3)?.map((box, index) =>

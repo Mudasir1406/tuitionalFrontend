@@ -20,13 +20,15 @@ const stats = [
 ];
 
 const Hero: React.FC<IProps> = ({ data, withForm }) => {
-  const HeaderTag = (data?.headerTag ?? "h1") as "h1" | "h2";
+  const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2";
 
   return (
-    <div className="flex h-auto flex-col justify-center lg:h-[65vh] lg:ps-[5vw]">
+    <div className="flex h-auto flex-col justify-center">
       <HeaderTag
         className="mt-[3vh] w-full text-center font-heading text-h1-mobile sm:text-h1-tablet lg:mt-0 lg:w-full lg:text-start lg:text-h1 text-black"
-        dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.header ?? "") }}
+        dangerouslySetInnerHTML={{
+          __html: decodeHtmlEntities(data?.header ?? ""),
+        }}
       />
 
       <div
@@ -38,7 +40,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
         <div className="mx-auto mt-[3vh] flex w-full flex-wrap justify-center gap-4 sm:w-3/5 lg:w-full lg:justify-between">
           {withForm ? (
             <p
-              className="font-heading text-h6 text-ink-900"
+              className="text-center font-heading text-h3-mobile font-bold text-ink-900 sm:text-h3-tablet lg:text-start lg:text-h3"
               dangerouslySetInnerHTML={{
                 __html: data?.imageAltText || "IGCSE A Level | IGCSE AS Level",
               }}
@@ -48,15 +50,16 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
               {stats.map((label, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center lg:justify-start"
-                  style={{ maxWidth: "calc(50% - 24px)" }}
+                  className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center max-w-[calc(50%-24px)] lg:justify-start"
                 >
                   <Circle
                     size={16}
                     className="me-2 fill-brand-500 text-brand-500"
                     aria-hidden="true"
                   />
-                  <p className="font-heading text-small text-ink-900">{label}</p>
+                  <p className="font-heading text-small text-ink-900">
+                    {label}
+                  </p>
                 </div>
               ))}
             </>
@@ -73,8 +76,14 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
             </p>
           </div>
           <div className="flex items-center">
-            <p className="pt-[1vh] font-heading text-small">Excellent (4.7/5)</p>
-            <Image src={greenstars} alt="" className="h-[3vh] w-[14vh] ps-[2vh] pt-[0.7vh]" />
+            <p className="pt-[1vh] font-heading text-small">
+              Excellent (4.7/5)
+            </p>
+            <Image
+              src={greenstars}
+              alt=""
+              className="h-[3vh] w-[14vh] ps-[2vh] pt-[0.7vh]"
+            />
           </div>
         </div>
       </div>

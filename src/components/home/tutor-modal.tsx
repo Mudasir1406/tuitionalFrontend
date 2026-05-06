@@ -85,25 +85,16 @@ const TutorModal: React.FC<IProps> = ({ open, handleClose, data, locale = "en" }
               <Image
                 src={greenstars}
                 alt="rating stars"
-                style={{ height: "3vh", width: "14vh" }}
+                className="h-[3vh] w-[14vh]"
               />
-              <p className="font-heading text-small font-medium">
+              <p className="font-heading text-small font-medium uppercase leading-[1.4] tracking-[0.05em]">
                 {data?.["Success rate"]}
               </p>
             </div>
             <PopUpButton
               text={t.bookADemo}
               href="popup"
-              className="w-full self-center transition-all duration-500 ease-in-out hover:scale-[1.02]"
-              style={{
-                boxShadow: "1px 15px 34px 0px rgba(56, 182, 255, 0.4)",
-                backgroundColor: "#38b6ff",
-                lineHeight: "18.4px",
-                borderRadius: "10px",
-                padding: "18px",
-                margin: "20px 0",
-                color: "white",
-              }}
+              className="my-5 w-full self-center rounded-[10px] bg-brand-500 p-[18px] font-heading font-bold leading-[18.4px] text-white shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] transition-all duration-500 ease-in-out hover:scale-[1.02] hover:bg-brand-500"
             />
           </div>
         </div>

@@ -14,7 +14,7 @@ type IProps = {
 };
 
 const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
-  const HeaderTag = (data?.headerTag ?? "h1") as "h1" | "h2";
+  const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2";
 
   return (
     <div className="flex h-auto flex-col justify-center lg:h-[65vh] lg:ps-[5vw]">
@@ -24,7 +24,7 @@ const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
       />
 
       <div
-        className="mt-[2vh] w-full text-center font-heading text-body-mobile sm:text-body lg:w-[90%] lg:text-start text-black"
+        className="mt-[2vh] w-full text-center font-heading text-small lg:w-[90%] lg:text-start text-black"
         dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
       />
 

@@ -110,13 +110,10 @@ const FlagIcon: React.FC<FlagIconProps> = ({ countryCode, size = 20 }) => {
   };
 
   return (
-    <div style={{ 
-      display: 'inline-block', 
-      borderRadius: '50%', 
-      overflow: 'hidden',
-      width: size,
-      height: size
-    }}>
+    <div
+      className="inline-block overflow-hidden rounded-full"
+      style={{ width: size, height: size }}
+    >
       {getFlagSvg(countryCode)}
     </div>
   );

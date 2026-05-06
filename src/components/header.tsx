@@ -24,8 +24,8 @@ type IProps = {
   heroClassName?: string;
 };
 
-const DEFAULT_HERO =
-  "h-[10vh] w-full sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-hero-fade";
+const DEFAULT_HERO_BG =
+  "h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-hero-fade";
 
 const Header: React.FC<IProps> = ({ heroClassName }) => {
   const { toggleDrawer } = useDrawer();
@@ -49,15 +49,14 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
       ];
 
   return (
-    <div className={cn("relative", heroClassName ?? DEFAULT_HERO)}>
-      {/* Decorative brand circles behind the AppBar (preserved from MUI baseline 4969d2b) */}
-      <span
+    <>
+      {/* Purely decorative blue bg strip — absolute, zero flow impact */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute top-[1.7vh] start-[1.2vw] z-0 h-[3vh] w-[3vh] rounded-full bg-brand-500 sm:start-[2.5vw] sm:h-[4.5vh] sm:w-[4.5vh] md:start-[5vw] md:h-[5vh] md:w-[5vh] lg:start-[4.5vw] lg:h-[7.5vh] lg:w-[7.5vh] lg:animate-[bounceAndForword_4s_linear_infinite_alternate]"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute top-[3.2vh] end-[3.5vw] z-0 h-[6vh] w-[6vh] rounded-full bg-brand-500 sm:h-[7vh] sm:w-[7vh] md:h-[8vh] md:w-[8vh] lg:h-[10.9vh] lg:w-[10.9vh]"
+        className={cn(
+          "pointer-events-none absolute start-0 top-0 z-0 w-full",
+          heroClassName ?? DEFAULT_HERO_BG,
+        )}
       />
 
       <header className="sticky top-0 z-[1000] mx-[5vw] mt-[2vh] flex min-h-[72px] w-[90%] items-center justify-between rounded-md bg-white/70 px-4 py-[1vh] shadow-header sm:min-h-20 sm:px-6 lg:justify-evenly">
@@ -144,7 +143,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
           />
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 

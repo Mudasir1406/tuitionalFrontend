@@ -22,7 +22,7 @@ const HeroInfo: React.FC<IProps> = ({ image, imageAltText }) => {
         fill
         priority
         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 50vw"
-        style={{ objectFit: "contain", objectPosition: "bottom" }}
+        className="object-contain object-bottom"
         onError={() => setSrc(subjectLevelImage.src)}
       />
     </div>

@@ -30,7 +30,7 @@ const ArCountrySelector: React.FC<ArCountrySelectorProps> = ({
   return (
     <Listbox value={currentCountry} onChange={onCountryChange}>
       <div className={cn("relative inline-block", className)} dir="rtl">
-        <ListboxButton className="flex items-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2 font-body text-form-input text-ink-900 shadow-card hover:bg-ink-50">
+        <ListboxButton className="flex items-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2 font-heading text-form-input text-ink-900 shadow-card hover:bg-ink-50">
           <span className="text-xl">{countryInfo.flag}</span>
           <span className="font-semibold">{countryInfo.nameAr}</span>
           <ChevronDown size={16} aria-hidden="true" />
@@ -62,7 +62,7 @@ const ArCountrySelector: React.FC<ArCountrySelectorProps> = ({
                   {({ selected }) => (
                     <>
                       <span className="text-2xl">{country.flag}</span>
-                      <span className="flex-1 text-start font-body text-form-input text-ink-900">
+                      <span className="flex-1 text-start font-heading text-form-input text-ink-900">
                         {country.nameAr}
                       </span>
                       {selected && <Check size={18} className="text-brand-500" />}

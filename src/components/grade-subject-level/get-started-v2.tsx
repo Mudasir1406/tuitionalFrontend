@@ -117,14 +117,7 @@ const GetStartedV2: React.FC = () => {
                 <PopUpButton
                   href="popup"
                   text={item.ButtonText}
-                  style={{
-                    boxShadow: "1px 15px 34px 0px #38B6FF66",
-                    backgroundColor: "#38B6FF",
-                    color: "white",
-                    padding: "12px 18px",
-                    borderRadius: "10px",
-                    margin: "8px 0",
-                  }}
+                  className="my-2 rounded-[10px] bg-brand-500 px-[18px] py-3 font-bold text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
                 />
               </div>
             </div>
@@ -169,15 +162,7 @@ const DesktopCard: React.FC<CardProps> = ({ heading, description, image, ButtonT
     <PopUpButton
       href="popup"
       text={ButtonText}
-      style={{
-        boxShadow: "1px 15px 34px 0px #38B6FF66",
-        margin: "2vh 0",
-        backgroundColor: "#38B6FF",
-        color: "white",
-        padding: "18px",
-        borderRadius: "10px",
-        width: "249px",
-      }}
+      className="my-[2vh] w-[249px] rounded-[10px] bg-brand-500 p-[18px] font-bold text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
     />
   </div>
 );

@@ -76,6 +76,7 @@ const config: Config = {
         "stat-number-mobile": ["1.75rem", { lineHeight: "1", letterSpacing: "0", fontWeight: "700" }],
         "stat-label": ["0.875rem", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
         "category-tag": ["0.875rem", { lineHeight: "1", letterSpacing: "0.08em", fontWeight: "600" }],
+        caption: ["0.75rem", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
       },
       borderRadius: {
         none: "0",
@@ -89,6 +90,7 @@ const config: Config = {
       boxShadow: {
         card: "0px 1px 4px 0px rgba(0, 0, 0, 0.08)",
         "brand-glow": "0.1vh 1.5vh 3.4vh 0px rgba(56, 182, 255, 0.4)",
+        "benefit-box": "inset 0px -5px 15px 0px rgba(56, 182, 255, 0.2)",
         header:
           "0px -0.3vh 0.8vh 0px #00000026 inset, 0px 0.2vh 0.1vh 0px #0000000D",
         "footer-card":
@@ -98,6 +100,7 @@ const config: Config = {
       backgroundImage: {
         "hero-fade": "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
         "footer-fade": "linear-gradient(to bottom, rgba(255,255,255,0.7), #37B6FF)",
+        "benefit-fade": "linear-gradient(to bottom, #FFFFFF, #58B9F6)",
       },
       keyframes: {
         pulse: {

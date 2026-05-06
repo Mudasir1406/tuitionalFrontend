@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import PopUpButton from "@/components/pop-up-button";
 
 interface props {
@@ -14,18 +13,29 @@ interface props {
   };
 }
 
+const HEADER_SIZE: Record<"h2" | "h3" | "h4", string> = {
+  h2: "text-[2.25rem] sm:text-[3rem] lg:text-[3.75rem]",
+  h3: "text-[1.875rem] sm:text-[2.25rem] lg:text-[3rem]",
+  h4: "text-[1.5rem] sm:text-[1.75rem] lg:text-[2.125rem]",
+};
+
+const BUTTON_CLASSES =
+  "inline-flex cursor-pointer items-center justify-center rounded-[10px] bg-[#009bf5] px-[25px] py-[1.5vh] font-heading text-sm font-normal normal-case leading-[23px] tracking-[-0.02em] text-white shadow-[1px_15px_34px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-[#009bf5] md:px-[22px] md:py-[2vh] lg:px-[25px]";
+
 function TutoringProgramSection({ data }: props) {
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
-  const handleRedirect = (url: string) => window.open(url, "_blank", "noopener,noreferrer");
+  const tag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = tag;
+  const handleRedirect = (url: string) =>
+    window.open(url, "_blank", "noopener,noreferrer");
 
   return (
-    <div className="px-6 py-12 text-center lg:py-16">
+    <div className="bg-[linear-gradient(to_top,#d7f0ff,rgba(255,255,255,0.7))] px-[5vw] pb-[5vh] text-center sm:pb-[7vh]">
       <HeaderTag
-        className="font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
+        className={`font-heading font-normal leading-[1.167] text-[rgba(0,0,0,0.87)] ${HEADER_SIZE[tag]}`}
         dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}
       />
       <div
-        className="mx-auto mt-6 max-w-3xl font-heading text-body text-ink-700"
+        className="mt-[2.5vh] font-heading text-[0.875rem] leading-[1.43] text-[rgba(0,0,0,0.87)]"
         dangerouslySetInnerHTML={{ __html: data?.paragraph ?? "" }}
       />
 
@@ -35,18 +45,16 @@ function TutoringProgramSection({ data }: props) {
             <PopUpButton
               text={data.buttonTitle}
               href="popup"
-              className="px-[25px] py-[1.5vh] md:px-[22px] md:py-[2vh] lg:px-[25px]"
-              style={{
-                boxShadow: "1px 15px 34px 0px rgba(0,0,0,0.2)",
-                backgroundColor: "rgba(56,182,255,1)",
-                borderRadius: "10px",
-                color: "white",
-              }}
+              className={BUTTON_CLASSES}
             />
           ) : (
-            <Button onClick={() => handleRedirect(data.buttonLink)} variant="primary" size="lg">
+            <button
+              type="button"
+              onClick={() => handleRedirect(data.buttonLink)}
+              className={BUTTON_CLASSES}
+            >
               {data.buttonTitle}
-            </Button>
+            </button>
           )}
         </div>
       )}

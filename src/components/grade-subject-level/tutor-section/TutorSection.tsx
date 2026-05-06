@@ -21,7 +21,7 @@ export type CardProps = {
 
 const TutorSection: React.FC<IProps> = async ({ data }) => {
   const val = await getTutorsByFilter(data.curriculum, data.subject, "en");
-  const HeaderTag = (data?.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="px-6 py-12 lg:py-16">

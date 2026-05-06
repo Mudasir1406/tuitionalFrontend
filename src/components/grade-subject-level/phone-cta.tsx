@@ -18,7 +18,7 @@ const PhoneCta: React.FC<IProps> = ({ data }) => {
     Message: "",
     sheetName: "Lead Forms",
   });
-  const HeaderTag = (data.headerTag ?? "h3") as "h2" | "h3" | "h4";
+  const HeaderTag = ((data.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] my-[2vh] flex items-center justify-center sm:mx-[3vw] sm:my-[2vh] lg:m-0">
@@ -35,13 +35,7 @@ const PhoneCta: React.FC<IProps> = ({ data }) => {
           href={data.link}
           text={data?.buttonText}
           values={formData}
-          className="h-auto w-4/5 rounded-[14px] p-[12px_16px] text-[0.875rem] sm:w-3/5 sm:p-[14px_20px] sm:text-[1rem] md:w-1/2 lg:w-2/5 lg:p-[16px_24px] lg:text-[1.1rem]"
-          style={{
-            backgroundColor: "#38B6FF",
-            boxShadow: "0px -5px 15px 0px rgba(0, 0, 0, 0.20) inset",
-            color: "#FFFFFF",
-            lineHeight: 1.4,
-          }}
+          className="h-auto w-4/5 rounded-[14px] bg-brand-500 p-[12px_16px] text-[0.875rem] leading-[1.4] text-white shadow-[0px_-5px_15px_0px_rgba(0,0,0,0.20)_inset] hover:bg-brand-500 sm:w-3/5 sm:p-[14px_20px] sm:text-[1rem] md:w-1/2 lg:w-2/5 lg:p-[16px_24px] lg:text-[1.1rem]"
         />
       </div>
     </div>

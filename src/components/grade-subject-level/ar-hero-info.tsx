@@ -11,16 +11,12 @@ const ArHeroInfo: React.FC<IProps> = ({ image, imageAltText }) => {
   const src = image || subjectLevelImage.src;
   return (
     <div
+      dir="ltr"
       className="relative h-full w-full md:h-[70vh] lg:h-[80vh]"
-      style={{ direction: "ltr" }}
     >
       <div
-        className="absolute bottom-0 left-0 z-0 h-full w-full bg-no-repeat"
-        style={{
-          backgroundImage: `url(${src})`,
-          backgroundPosition: "bottom",
-          backgroundSize: "contain",
-        }}
+        className="absolute bottom-0 left-0 z-0 h-full w-full bg-bottom bg-contain bg-no-repeat"
+        style={{ backgroundImage: `url(${src})` }}
         aria-hidden="true"
       />
       <Image

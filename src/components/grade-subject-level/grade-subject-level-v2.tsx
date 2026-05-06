@@ -31,7 +31,9 @@ const BenifitsSection = dynamic(() => import("./benifts-section/BenifitsSection"
 type IProps = { data: PageData };
 
 const HERO_CONTAINER_CLS =
-  "relative mx-[3vw] flex h-full items-center pt-[120px] sm:mx-[3vw] sm:pt-[120px] md:pt-[120px] lg:mx-0 lg:h-screen lg:pt-0 xl:pt-0";
+  "relative mx-[3vw] flex h-full items-center pt-[120px] sm:mx-[3vw] sm:pt-[120px] md:pt-[120px] lg:mx-0 lg:h-screen lg:pt-0";
+const WITH_FORM_CONTAINER_CLS =
+  "relative flex w-full items-center bg-[#D7F0FF] pt-[5vh] pb-[8vh] lg:min-h-[calc(100vh-90px)] lg:pt-[10vh]";
 const VERTICAL_MARGIN = "my-[5vh] md:my-[10vh]";
 
 const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
@@ -63,8 +65,8 @@ const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
     } else if (name.includes("with_form")) {
       return (
         data?.[name as keyof PageData] && (
-          <div className={HERO_CONTAINER_CLS}>
-            <div className="grid w-full grid-cols-1 items-center gap-4 py-24 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-12">
+          <div className={WITH_FORM_CONTAINER_CLS}>
+            <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 items-center gap-4 px-[5vw] py-[4vh] lg:grid-cols-12">
               <div className="lg:col-span-6">
                 <Hero data={data?.[name as keyof PageData]} withForm />
               </div>

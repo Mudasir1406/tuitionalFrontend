@@ -103,3 +103,39 @@ These tokens stay; their values match MUI baseline exactly. New components reuse
 - **Skill file updates:** <list or "none">
 - **Approved:** YYYY-MM-DD
 -->
+
+---
+
+## P3 directory walk (post-pilot)
+
+### home/ ✓ 2026-05-05
+- contact-us.tsx — description text-small, Submit button font-heading + lh
+- info.tsx — stats numbers added stat-number tokens (subtitle1 theme)
+- filter.tsx — PopUpButton inline style → Tailwind className
+- tutor-modal.tsx — Image inline style → className, success rate uppercase, PopUpButton inline style → className
+- form-dialouge.tsx — Submit button font-heading + lh
+- faqs / questions / trusted — conformant, no fix
+
+### testimonials/ ✓ 2026-05-05
+- hero.tsx — description font-heading + text-small
+- hero-info.tsx — font-body → font-heading (3 sites)
+- reviews-on-wp.tsx — trust line font-heading; Load More button font-heading + lh + tracking
+- reviews-on-sp / video-based-reviews / wave-form — conformant
+
+### pricing/ ✓ 2026-05-05
+- PackageCard / ArPackageCard — CTA Get Started font-heading
+- PricingFilter — Clear Filters button font-heading
+- CountrySelector / ArCountrySelector — font-body → font-heading (full sweep)
+- PricingSection / ArPricingSection — tab buttons font-heading
+- CustomPricingModal / ArCustomPricingModal — hours input font-heading
+- PricingPageClient / ArPricingPageClient / CustomPackageCard / CustomPricingCard / SimplePackageModal — conformant or pilot-touched
+
+### about/ ✓ 2026-05-05 — scanned, no `font-body` or inline-style drifts. Conformant.
+
+### Pending P3 directories
+- ☐ grade-subject-level/ (24, V1 + V2 renderers)
+- ☐ blog/ (30+, including AR twins)
+- ☐ careers/ (5)
+- ☐ curiculume/ (7)
+- ☐ contact/, privacy, terms
+- ☐ src/app/ — 50 page.tsx routes

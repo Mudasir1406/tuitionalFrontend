@@ -36,7 +36,7 @@ function SearchBar({
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSearch();
           }}
-          className="flex-1 bg-transparent px-2 py-1 font-body text-form-input text-ink-900 outline-none placeholder:text-ink-400"
+          className="flex-1 bg-transparent px-2 py-1 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
         />
         <Button onClick={handleSearch} variant="primary" size="sm">
           {searchLabel}

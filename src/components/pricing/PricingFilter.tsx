@@ -77,7 +77,7 @@ const PricingFilter: React.FC<PricingFilterProps> = ({
             <button
               type="button"
               onClick={clearFilters}
-              className="rounded-md border border-ink-200 bg-white px-4 py-2 font-body text-form-input text-ink-700 hover:bg-ink-50"
+              className="rounded-md border border-ink-200 bg-white px-4 py-2 font-heading text-form-input text-ink-700 hover:bg-ink-50"
             >
               Clear Filters
             </button>

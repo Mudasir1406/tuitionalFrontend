@@ -9,11 +9,7 @@ const SectionsBoxV2 = () => (
     <PopUpButtonV2
       text="Book a Demo"
       href="popup"
-      className="w-1/2 rounded-[10px] py-[1vh] text-white sm:w-1/5 lg:py-[10px]"
-      style={{
-        boxShadow: "1px 4px 24px 0px #38B6FFB2",
-        backgroundColor: "#38B6FF",
-      }}
+      className="w-1/2 rounded-[10px] bg-brand-500 py-[1vh] text-white shadow-[1px_4px_24px_0px_#38B6FFB2] hover:bg-brand-500 sm:w-1/5 lg:py-[10px]"
     />
   </div>
 );

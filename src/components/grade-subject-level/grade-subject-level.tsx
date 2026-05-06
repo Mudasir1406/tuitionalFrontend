@@ -154,7 +154,7 @@ const GradeSubjectLevel: React.FC<IProps> = async ({ data, sequence }) => {
       {sequence.sections
         .sort((a, b) => a.placment - b.placment)
         .map((section) => (
-          <section key={section.placment} style={{ all: "unset" }}>
+          <section key={section.placment} className="[all:unset]">
             {renderSection(section.name)}
           </section>
         ))}

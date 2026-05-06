@@ -371,7 +371,7 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
             <Button
               type="submit"
               disabled={loading}
-              className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
+              className="my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
             >
               {loading ? (
                 <span

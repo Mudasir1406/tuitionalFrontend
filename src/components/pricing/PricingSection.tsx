@@ -94,7 +94,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ filters, dropdownOption
               type="button"
               onClick={() => handleTabChange("online")}
               className={cn(
-                "rounded-full px-4 py-2 font-body text-form-input font-semibold transition-colors",
+                "rounded-full px-4 py-2 font-heading text-form-input font-semibold transition-colors",
                 sessionType === "online" ? "bg-white text-brand-500 shadow-sm" : "text-ink-700",
               )}
             >
@@ -104,7 +104,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ filters, dropdownOption
               type="button"
               onClick={() => handleTabChange("custom")}
               className={cn(
-                "rounded-full px-4 py-2 font-body text-form-input font-semibold transition-colors",
+                "rounded-full px-4 py-2 font-heading text-form-input font-semibold transition-colors",
                 sessionType === "custom" ? "bg-white text-brand-500 shadow-sm" : "text-ink-700",
               )}
             >

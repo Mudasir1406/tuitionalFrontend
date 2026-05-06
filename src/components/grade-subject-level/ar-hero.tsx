@@ -20,7 +20,7 @@ const stats = [
 ];
 
 const ArHero: React.FC<IProps> = ({ data, withForm }) => {
-  const HeaderTag = (data?.headerTag ?? "h1") as "h1" | "h2";
+  const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2";
 
   return (
     <div
@@ -33,7 +33,7 @@ const ArHero: React.FC<IProps> = ({ data, withForm }) => {
       />
 
       <div
-        className="mt-[2vh] w-full text-center font-heading text-body-mobile sm:text-body lg:w-[90%] lg:text-start text-black"
+        className="mt-[2vh] w-full text-center font-heading text-small lg:w-[90%] lg:text-start text-black"
         dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(data?.paragraph ?? "") }}
       />
 
@@ -48,8 +48,7 @@ const ArHero: React.FC<IProps> = ({ data, withForm }) => {
               {stats.map((label, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center lg:justify-start"
-                  style={{ maxWidth: "calc(50% - 24px)" }}
+                  className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center max-w-[calc(50%-24px)] lg:justify-start"
                 >
                   <Circle
                     size={16}

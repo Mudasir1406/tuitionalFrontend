@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
         {tail}
       </h1>
 
-      <p className="mt-[3vh] px-[2vh] text-center font-body text-body-mobile sm:text-body lg:mt-[1vh] lg:px-0 lg:text-start text-black">
+      <p className="mt-[3vh] px-[2vh] text-center font-heading text-small lg:mt-[1vh] lg:px-0 lg:text-start text-black">
         {t("testimonials.hero.description")}
       </p>
 

@@ -27,7 +27,7 @@ const ArHero = ({ slug }: Props) => {
           placeholder="بريدك الإلكتروني*"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="flex-1 bg-transparent px-2 py-1 font-body text-form-input text-ink-900 outline-none placeholder:text-ink-400"
+          className="flex-1 bg-transparent px-2 py-1 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
         />
         <Button onClick={() => {}} variant="primary" size="sm">
           اشترك!
