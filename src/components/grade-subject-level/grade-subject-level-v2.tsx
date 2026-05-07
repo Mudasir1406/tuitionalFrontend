@@ -5,35 +5,75 @@ import { Header } from "@/components";
 import { PageData } from "@/types/grade-subject-level.types";
 import { getStartedData } from "@/services/get-started/get-started";
 
-const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), { ssr: true });
-const SectionsBox = dynamic(() => import("@/components/grade-subject-level/sectionsbox"), { ssr: true });
-const Offer = dynamic(() => import("@/components/curiculume/offer"), { ssr: true });
-const GetStarted = dynamic(() => import("@/components/grade-subject-level/get-started"), { ssr: true });
-const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), { ssr: true });
-const EducationalCounseling = dynamic(() => import("@/components/curiculume/educational-counseling"), { ssr: true });
-const HeroInfo = dynamic(() => import("@/components/grade-subject-level/hero-info"), { ssr: true });
-const ServerFooter = dynamic(() => import("@/components/server-footer"), { ssr: true });
+const Hero = dynamic(() => import("@/components/grade-subject-level/hero"), {
+  ssr: true,
+});
+const SectionsBox = dynamic(
+  () => import("@/components/grade-subject-level/sectionsbox"),
+  { ssr: true },
+);
+const Offer = dynamic(() => import("@/components/curiculume/offer"), {
+  ssr: true,
+});
+const GetStarted = dynamic(
+  () => import("@/components/grade-subject-level/get-started"),
+  { ssr: true },
+);
+const WhyChoose = dynamic(() => import("@/components/curiculume/why-choose"), {
+  ssr: true,
+});
+const EducationalCounseling = dynamic(
+  () => import("@/components/curiculume/educational-counseling"),
+  { ssr: true },
+);
+const HeroInfo = dynamic(
+  () => import("@/components/grade-subject-level/hero-info"),
+  { ssr: true },
+);
+const ServerFooter = dynamic(() => import("@/components/server-footer"), {
+  ssr: true,
+});
 const PhoneCta = dynamic(() => import("./phone-cta"), { ssr: true });
 const DemoPointers = dynamic(() => import("./demo-pointers"), { ssr: true });
 const MainContent = dynamic(() => import("./main-content"), { ssr: true });
-const PopularSubjects = dynamic(() => import("@/components/curiculume/popular-igcse-subjects"), { ssr: true });
+const PopularSubjects = dynamic(
+  () => import("@/components/curiculume/popular-igcse-subjects"),
+  { ssr: true },
+);
 const FrequentlyQuestions = dynamic(() => import("./faqs"), { ssr: true });
 const BlogCta = dynamic(() => import("./blog-cta"), { ssr: true });
 const StudentSays = dynamic(() => import("./students-says"), { ssr: true });
-const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), { ssr: true });
-const SchoolLogosSection = dynamic(() => import("./school-logos-section/SchoolLogosSection"), { ssr: true });
-const BenifitsOfStudyingSection = dynamic(() => import("./benifts-of-studying-section/BenifitsOfStudyingSection"), { ssr: true });
-const LinkListViewSection = dynamic(() => import("./link-list-view/LinkListViewSection"), { ssr: true });
+const TutorSection = dynamic(() => import("./tutor-section/TutorSection"), {
+  ssr: true,
+});
+const SchoolLogosSection = dynamic(
+  () => import("./school-logos-section/SchoolLogosSection"),
+  { ssr: true },
+);
+const BenifitsOfStudyingSection = dynamic(
+  () => import("./benifts-of-studying-section/BenifitsOfStudyingSection"),
+  { ssr: true },
+);
+const LinkListViewSection = dynamic(
+  () => import("./link-list-view/LinkListViewSection"),
+  { ssr: true },
+);
 const Form = dynamic(() => import("./form/form"), { ssr: true });
-const TutoringProgramSection = dynamic(() => import("./tutoring-program-section/TutoringProgramSection"), { ssr: true });
-const BenifitsSection = dynamic(() => import("./benifts-section/BenifitsSection"), { ssr: true });
+const TutoringProgramSection = dynamic(
+  () => import("./tutoring-program-section/TutoringProgramSection"),
+  { ssr: true },
+);
+const BenifitsSection = dynamic(
+  () => import("./benifts-section/BenifitsSection"),
+  { ssr: true },
+);
 
 type IProps = { data: PageData };
 
 const HERO_CONTAINER_CLS =
   "relative mx-[3vw] flex h-full items-center pt-[120px] sm:mx-[3vw] sm:pt-[120px] md:pt-[120px] lg:mx-0 lg:h-screen lg:pt-0";
 const WITH_FORM_CONTAINER_CLS =
-  "relative flex w-full items-center bg-[#D7F0FF] pt-[5vh] pb-[8vh] lg:min-h-[calc(100vh-90px)] lg:pt-[10vh]";
+  "relative flex w-full items-center bg-[#F5FBFF] pt-[5vh] pb-[8vh] lg:min-h-[calc(100vh-90px)] lg:pt-[10vh]";
 const VERTICAL_MARGIN = "my-[5vh] md:my-[10vh]";
 
 const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
@@ -43,13 +83,15 @@ const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
     if (name.includes("hero_section")) {
       return (
         data?.[name as keyof PageData] && (
-          <div className={HERO_CONTAINER_CLS}>
-            <div className="grid w-full grid-cols-1 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-2">
-              <Hero data={data?.[name as keyof PageData]} />
-              <HeroInfo
-                image={data?.[name as keyof PageData]?.image}
-                imageAltText={data?.[name as keyof PageData]?.imageAltText}
-              />
+          <div className="bg-gradient-to-b from-[#DBF1FF] via-[#EDF8FF] to-white">
+            <div className={HERO_CONTAINER_CLS}>
+              <div className="grid w-full grid-cols-1 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-2">
+                <Hero data={data?.[name as keyof PageData]} />
+                <HeroInfo
+                  image={data?.[name as keyof PageData]?.image}
+                  imageAltText={data?.[name as keyof PageData]?.imageAltText}
+                />
+              </div>
             </div>
           </div>
         )

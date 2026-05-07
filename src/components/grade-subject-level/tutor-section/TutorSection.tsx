@@ -24,7 +24,7 @@ const TutorSection: React.FC<IProps> = async ({ data }) => {
   const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
-    <div className="px-6 py-12 lg:py-16">
+    <div className="mx-auto max-w-[1440px] px-6 py-12 lg:py-16">
       <HeaderTag
         className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-h3 text-ink-900"
         dangerouslySetInnerHTML={{ __html: data?.header ?? "" }}

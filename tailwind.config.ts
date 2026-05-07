@@ -98,7 +98,7 @@ const config: Config = {
         "cta-white": "1px 15px 34px 0px rgba(0,0,0,0.2)",
       },
       backgroundImage: {
-        "hero-fade": "linear-gradient(to bottom, #D7F0FF, rgba(255, 255, 255, 0.7))",
+        "hero-fade": "linear-gradient(to bottom, #DBF1FF, #EDF8FF)",
         "footer-fade": "linear-gradient(to bottom, rgba(255,255,255,0.7), #37B6FF)",
         "benefit-fade": "linear-gradient(to bottom, #FFFFFF, #58B9F6)",
       },

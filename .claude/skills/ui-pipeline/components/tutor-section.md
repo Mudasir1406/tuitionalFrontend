@@ -42,6 +42,16 @@ Mobile (<600px, 1-card):
 - Button bottom-anchored, full-width
 - Arrows still visible at outer edges; smaller offset (`-mx-10` instead of `-mx-14`)
 
+### Defects fixed (subsequent compaction pass)
+
+11. **Cards too wide on ≥1500 viewports.** Current cards ~440px each — far chunkier than MUI ref ~310px. Fixed: `mx-auto max-w-[1440px]` on TutorSection wrapper.
+12. **Card body too tall.** `p-4 sm:p-5 + gap-2 + text-xl/sm:text-[1.375rem] name + text-sm description` produced ~750px cards. Fixed: tightened to `p-3.5`, `gap-1.5`, `text-lg` name, `text-[13px]` desc.
+13. **Tag chips stacked with extra vertical air.** Tag rendered `<p>` — default browser `<p>` margin (1em top/bottom) bled through; appeared as ~16px vertical space between subject row and curriculum row. Fixed: switched to `<span>` with `inline-flex`, added explicit `my-1`.
+14. **Tag chips oversized for compact card.** Was `h-6 px-2.5 rounded-lg text-caption`. Fixed: `h-5 px-2 rounded-md text-[11px]`.
+15. **Chip-row vertical gap too generous when chips wrap.** Was `gap-1` (4px). Fixed: `gap-x-1 gap-y-0.5` (4px / 2px).
+16. **Star rating block oversized.** Was `width={120} height={24} h-6`. Fixed: `width={100} height={20} h-5` to match smaller card scale.
+17. **Button overpadded.** Was `py-3 sm:py-3.5 text-sm sm:text-base`. Fixed: `py-2.5 text-sm` for compact card height.
+
 ### Defects fixed (commit on this branch)
 
 1. **Name oversized.** Was `text-h3` (~32–48px) → wraps to 2–3 lines. Fixed: `text-xl sm:text-[1.375rem] font-bold leading-tight`.
@@ -65,7 +75,8 @@ These values are the source of truth for this component. If `git log` says someo
 
 | Property | Value | Why |
 |---|---|---|
-| Outer wrapper | `relative mx-10 sm:mx-14` | Reserves negative-margin band for arrows so cards span full width |
+| Section wrapper (TutorSection.tsx) | `mx-auto max-w-[1440px] px-6 py-12 lg:py-16` | Caps card width at wide viewports — without it cards stretch to ~440px on 1920px screens, far bigger than MUI ref |
+| Outer wrapper (GridView) | `relative mx-10 sm:mx-14` | Reserves negative-margin band for arrows so cards span full width |
 | Inner overflow box | `overflow-hidden` (no padding) | Cards reach edges, arrows overlay outside via negative offset |
 | Track | `flex items-stretch gap-4 transition-transform duration-500` | Equal-height cards, smooth slide |
 | Card flex basis | `calc(100/n% - (16(n-1)/n)px)` | Distributes 16px gaps across `n` cards exactly |
@@ -92,33 +103,36 @@ These values are the source of truth for this component. If `git log` says someo
 | Width | `w-full` |
 | Background | `bg-[#eaf6ff]` (matches MUI light-blue circle backdrop) |
 | Radius | `rounded-t-2xl overflow-hidden` |
-| `next/image` mode | `fill`, `object-contain`, `sizes="(min-width:1200px) 25vw, (min-width:600px) 50vw, 100vw"` |
+| `next/image` mode | `fill`, `object-contain`, `sizes="(min-width:1200px) 280px, (min-width:600px) 50vw, 100vw"` |
 | Fallback | `dummyImg` from `public/assets/images/static/blogimg3.png` |
 
 ### B.4 Card body
 
 | Property | Value |
 |---|---|
-| Layout | `flex flex-1 flex-col gap-2` (mobile) / `flex-1 flex-col gap-2` (sm+) |
-| Padding | `p-4 sm:p-5` (16px → 20px) |
+| Layout | `flex flex-1 flex-col gap-1.5` |
+| Padding | `p-3.5` (14px) |
+| Chip-row gap | `gap-x-1 gap-y-0.5` (chips wrap onto multiple rows; vertical gap minimized to match MUI compact stack) |
 
 ### B.5 Typography
 
 | Element | Class |
 |---|---|
-| Name (`<h3>`) | `text-xl sm:text-[1.375rem] font-bold leading-tight text-ink-900` (font-family: `leagueSpartan.className`) |
-| Description | `text-sm leading-snug text-gray-600 line-clamp-2` |
-| Success rate `%` | `text-sm font-medium text-ink-900` |
-| Button text | `text-sm sm:text-base font-semibold text-white` |
+| Name (`<h3>`) | `text-lg font-bold leading-tight text-ink-900` (font-family: `leagueSpartan.className`) |
+| Description | `text-[13px] leading-snug text-gray-600 line-clamp-2` |
+| Success rate `%` | `text-xs font-medium text-ink-900` |
+| Button text | `text-sm font-semibold text-white` |
 
 ### B.6 Tag chip ([Tag.tsx](../../../../src/components/tag/Tag.tsx))
 
 | Property | Value |
 |---|---|
-| Height | `h-6` (24px) |
-| Padding | `px-2.5` (10px) |
-| Radius | `rounded-lg` (8px) |
-| Font | `text-caption font-medium leading-none` |
+| Element | `<span>` with `inline-flex` (NOT `<p>` — `<p>` injects default browser top/bottom margin so chips stack with extra vertical air) |
+| Height | `h-5` (20px) |
+| Vertical margin | `my-1` (4px) — explicit so reset/preflight overrides parent typography styles |
+| Padding | `px-2` (8px) |
+| Radius | `rounded-md` (6px) |
+| Font | `text-[11px] font-medium leading-none` |
 | Hover | none (MUI Chip doesn't animate at rest — removed `hover:scale-105`) |
 | Color palette | `COLORS[index % 5]` — pink/green/teal/yellow/gray |
 
@@ -126,8 +140,8 @@ These values are the source of truth for this component. If `git log` says someo
 
 | Property | Value |
 |---|---|
-| Container | `mt-1 flex items-center gap-2` |
-| Stars `<Image>` | `width={120} height={24}` fixed px (NEVER `vh`) |
+| Container | `mt-0.5 flex items-center gap-2` |
+| Stars `<Image>` | `width={100} height={20}` fixed px, `h-5 w-auto` (NEVER `vh`) |
 
 ### B.8 Button (`PopUpButton`)
 
@@ -136,8 +150,8 @@ mt-auto                                      // anchors bottom of card
 w-full
 rounded-[10px]
 bg-brand-500                                 // #38b6ff
-px-4 py-3 sm:py-3.5
-text-center text-sm sm:text-base font-semibold text-white
+px-4 py-2.5
+text-center text-sm font-semibold text-white
 shadow-[0_15px_34px_-8px_rgba(56,182,255,0.5)]
 transition-transform duration-300 ease-out
 hover:scale-[1.02] hover:bg-brand-500
@@ -167,10 +181,9 @@ hover:scale-[1.02] hover:bg-brand-500
 | 600px | 2 | ~280px each |
 | 900px | 3 | ~280px each |
 | 1200px | 4 | ~280px each |
-| 1500px | 4 | ~340px each |
-| 1920px | 4 | ~440px each (consider max-width on TutorSection at follow-up) |
+| 1440px+ | 4 | ~330px each (capped by `max-w-[1440px]` on TutorSection) |
 
-Hit-targets: arrows 40×40 (≥44 fails iOS guideline by 4px — acceptable since they're auxiliary). Button `py-3` = 48px tall ✓.
+Hit-targets: arrows 40×40 (≥44 fails iOS guideline by 4px — acceptable since they're auxiliary). Button `py-2.5` = 40px tall (acceptable; below 44px iOS target — promoted as known follow-up).
 
 ---
 

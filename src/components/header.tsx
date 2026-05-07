@@ -19,13 +19,13 @@ const FormDialog = dynamic(() => import("./home/form-dialouge"), { ssr: false })
 type IProps = {
   /**
    * Tailwind classes that override the hero strip's height + background.
-   * Defaults to the brand hero-fade gradient at 10/10/20/30vh.
+   * Defaults to brand hero-fade gradient sized to header band (~90-110px).
    */
   heroClassName?: string;
 };
 
 const DEFAULT_HERO_BG =
-  "h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-hero-fade";
+  "h-[90px] sm:h-[100px] lg:h-[110px] bg-hero-fade";
 
 const Header: React.FC<IProps> = ({ heroClassName }) => {
   const { toggleDrawer } = useDrawer();
@@ -104,12 +104,6 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
           </nav>
 
           <div className="ms-[1.5vw] hidden items-center gap-[0.8vw] lg:flex">
-            <Button
-              variant="outline"
-              className="min-w-fit whitespace-nowrap border-success px-[1.5vw] py-[1.2vh] text-[1.5vh] font-bold leading-[1.84vh] text-success transition-none hover:bg-transparent hover:text-success focus-visible:ring-success"
-            >
-              {t("buttons.ai_digital_sat")}
-            </Button>
             <Button
               variant="primary"
               onClick={() => setOpen(true)}

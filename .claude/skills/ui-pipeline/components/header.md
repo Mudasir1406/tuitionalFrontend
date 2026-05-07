@@ -32,16 +32,21 @@ Header was previously approved in earlier session with `shadow-header` token add
 - **After:** `https://img.icons8.com/fluency/100/whatsapp.png` (WhatsApp green per brand identity).
 - **Why:** baseline rendered colored WhatsApp icon (per user-supplied screenshot showing green floater).
 
+### 4. AI Digital SAT button removed ([header.tsx:106-121](../../../../src/components/header.tsx#L106))
+
+- **Before:** outlined `AI Digital SAT` button visible alongside `Book Demo Classes`.
+- **After:** removed; only `Book Demo Classes` + `RouteLanguageSwitcher` in actions cluster.
+- **Why:** MUI baseline had the outlined button **commented out** (`{/* <Button variant="outlined" sx={styles.outlinedBtn}> */}`). Tailwind migration uncommented it incorrectly. Production tuitionaledu.com renders without it — per user-supplied screenshot 2026-05-07.
+
 ## Preserved as-is (already correct)
 
 - AppBar chrome: `sticky top-0 z-[1000] mx-[5vw] mt-[2vh] w-[90%] rounded-md bg-white/70 shadow-header` matches baseline.
 - Min-height `min-h-[72px] sm:min-h-20` (matches baseline Toolbar 56/64 + AppBar paddingY 2vh ≈ 72/80px verified in earlier session).
 - Nav typography: `text-[2.1vh] font-normal leading-[1.84vh]` matches baseline `styles.typography`.
-- AI Digital SAT outlined button: `border-success text-success px-[1.5vw] py-[1.2vh] text-[1.5vh] font-bold leading-[1.84vh] transition-none` matches baseline `styles.outlinedBtn`.
 - Book Demo contained button: `rounded-[10px] py-[1.5vh] text-[1.5vh] font-bold leading-[1.84vh] tracking-[-0.02em] shadow-brand-glow` matches baseline `styles.containedBtn`.
 - WhatsApp position `right-0 bottom-0 fixed` (locked LTR per baseline; doesn't flip in RTL).
 - WhatsApp animation: `animate-[rotateAnimation_2s_ease-in-out_infinite]` matches baseline `styles.whatsapp.animation`.
-- Hero gradient strip: `bg-hero-fade` named token covers baseline `circleBox.background: linear-gradient(to bottom, #D7F0FF, rgba(255,255,255,0.7))`.
+- Hero gradient strip: `bg-hero-fade` named token. Final spec (2026-05-07): `linear-gradient(to bottom, #DBF1FF, #EDF8FF)` — top-of-header blue to bottom-of-header whitish. Strip height shrunk from `10/10/20/30vh` to `90px / sm:100px / lg:110px` so gradient is confined to header band. Section directly below header (`with_form` in [grade-subject-level-v2.tsx:36](../../../../src/components/grade-subject-level/grade-subject-level-v2.tsx#L36)) updated to solid `bg-[#F5FBFF]` so the strip→section transition is imperceptible (`#EDF8FF` → `#F5FBFF` Δ ≈ 8/3/0 RGB). Earlier iterations: `#D7F0FF → rgba(255,255,255,0.7)` (whitish bottom) caused visible seam against `#D7F0FF` with_form; an interim alpha-only fade was rejected because user-spec required exact stop colors.
 
 ## Compliance
 
@@ -55,3 +60,5 @@ Header was previously approved in earlier session with `shadow-header` token add
 ## Approval
 
 - **Approved 2026-05-05** — left circle animation restored, desktop logo width corrected, WhatsApp icon switched to colored fluency variant.
+- **Updated 2026-05-07** — AI Digital SAT button removed to match MUI baseline (commented out in pre-migration source) and current production render.
+- **Updated 2026-05-07** — `hero-fade` token finalized to `linear-gradient(to bottom, #DBF1FF, #EDF8FF)` with strip height shrunk to header band (`90/100/110px`). `with_form` section bg switched to `#F5FBFF` per user color spec. Resolves visible seam below header strip.

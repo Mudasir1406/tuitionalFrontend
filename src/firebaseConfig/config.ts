@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,4 +19,14 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 // export const analytics = getAnalytics(app);
-export const db = getFirestore(app);
+
+// Pick Firestore database by NEXT_PUBLIC_APP_ENV (must be set explicitly).
+// - "development" → named DB `tuitional-website-staging-db`
+// - "production"  → default DB
+// Anything else (including unset) falls back to the default DB.
+const appEnv = process.env.NEXT_PUBLIC_APP_ENV;
+
+export const db =
+  appEnv === "development"
+    ? getFirestore(app, "tuitional-website-staging-db")
+    : getFirestore(app);

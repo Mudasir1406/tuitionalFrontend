@@ -25,39 +25,57 @@ const ImageCard = ({ data, locale = "en" }: props) => {
           src={data?.profileImageUrl ? data?.profileImageUrl : dummyImg}
           alt={`${data?.["First Name"]}'s profile`}
           fill
-          sizes="(min-width:1200px) 25vw, (min-width:600px) 50vw, 100vw"
+          sizes="(min-width:1200px) 280px, (min-width:600px) 50vw, 100vw"
           className="object-contain"
         />
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
+      <div className="flex flex-1 flex-col gap-1.5 p-3.5">
         <h3
           onClick={() => setTutorModal(true)}
-          className={`${leagueSpartan.className} cursor-pointer font-heading text-xl font-bold leading-tight text-ink-900 sm:text-[1.375rem]`}
+          className={`${leagueSpartan.className} cursor-pointer font-heading text-lg font-bold leading-tight text-ink-900`}
         >
           {`${data?.["First Name"]} ${data?.["Last Name"] ?? ""}`.trim()}
         </h3>
 
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-x-1 gap-y-0.5">
           {data?.Subjects?.map((tag, index) => (
-            <Tag key={`s-${index}`} label={tag} index={index} isClickable={false} />
+            <Tag
+              key={`s-${index}`}
+              label={tag}
+              index={index}
+              isClickable={false}
+            />
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-x-1 gap-y-0.5">
           {data?.Curiculum?.map((tag, index) => (
-            <Tag key={`c-${index}`} label={tag} index={index} isClickable={false} />
+            <Tag
+              key={`c-${index}`}
+              label={tag}
+              index={index}
+              isClickable={false}
+            />
           ))}
         </div>
 
         <div
-          className={`${leagueSpartan.className} line-clamp-2 font-heading text-sm leading-snug text-gray-600`}
+          className={`${leagueSpartan.className} line-clamp-2 font-heading text-[13px] leading-snug text-gray-600`}
           dangerouslySetInnerHTML={{ __html: data?.Description ?? "" }}
         />
 
-        <div className="mt-1 flex items-center gap-2">
-          <Image src={greenstars} alt="rating stars" width={120} height={24} className="h-6 w-auto" />
-          <span className={`${leagueSpartan.className} font-heading text-sm font-medium text-ink-900`}>
+        <div className="mt-0.5 flex items-center gap-2">
+          <Image
+            src={greenstars}
+            alt="rating stars"
+            width={100}
+            height={20}
+            className="h-5 w-auto"
+          />
+          <span
+            className={`${leagueSpartan.className} font-heading text-xs font-medium text-ink-900`}
+          >
             {data?.["Success rate"]}%
           </span>
         </div>
@@ -65,7 +83,7 @@ const ImageCard = ({ data, locale = "en" }: props) => {
         <PopUpButton
           text={locale === "ar" ? "احجز حصة تجريبية" : "Book A Demo"}
           href="popup"
-          className="mt-auto w-full rounded-[10px] bg-brand-500 px-4 py-3 text-center font-heading text-sm font-semibold text-white shadow-[0_15px_34px_-8px_rgba(56,182,255,0.5)] transition-transform duration-300 ease-out hover:scale-[1.02] hover:bg-brand-500 sm:py-3.5 sm:text-base"
+          className="mt-auto w-full rounded-[10px] bg-brand-500 px-4 py-2.5 text-center font-heading text-sm font-semibold text-white shadow-[0_15px_34px_-8px_rgba(56,182,255,0.5)] transition-transform duration-300 ease-out hover:scale-[1.02] hover:bg-brand-500"
         />
 
         {tutorModal && (

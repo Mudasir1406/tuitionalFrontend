@@ -23,7 +23,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
   const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2";
 
   return (
-    <div className="flex h-auto flex-col justify-center">
+    <div className="flex h-auto flex-col justify-center lg:h-[65vh] lg:ps-[5vw]">
       <HeaderTag
         className="mt-[3vh] w-full text-center font-heading text-h1-mobile sm:text-h1-tablet lg:mt-0 lg:w-full lg:text-start lg:text-h1 text-black"
         dangerouslySetInnerHTML={{
@@ -53,11 +53,11 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                   className="flex flex-1 basis-1/2 cursor-pointer items-center justify-center max-w-[calc(50%-24px)] lg:justify-start"
                 >
                   <Circle
-                    size={16}
-                    className="me-2 fill-brand-500 text-brand-500"
+                    size={12}
+                    className="me-2 shrink-0 fill-brand-500 text-brand-500"
                     aria-hidden="true"
                   />
-                  <p className="font-heading text-small text-ink-900">
+                  <p className="font-heading text-small leading-none text-ink-900">
                     {label}
                   </p>
                 </div>
@@ -68,21 +68,21 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
       </div>
 
       <div className="w-full lg:w-[75vh]">
-        <div className="mt-[4vh] flex flex-row items-center justify-center gap-4 lg:items-start lg:justify-start">
-          <div className="flex items-center">
-            <Image src={greenstar} alt="" className="h-[3vh] w-[3vh]" />
-            <p className="ps-[1vh] pt-[0.7vh] font-heading text-stat-label uppercase">
+        <div className="mt-[4vh] flex flex-row items-center justify-center gap-4 lg:justify-start">
+          <div className="flex items-center gap-[1vh]">
+            <Image src={greenstar} alt="" className="h-[3vh] w-[3vh] shrink-0" />
+            <p className="font-heading text-stat-label uppercase leading-none">
               Trustpilot
             </p>
           </div>
-          <div className="flex items-center">
-            <p className="pt-[1vh] font-heading text-small">
+          <div className="flex items-center gap-[2vh]">
+            <p className="font-heading text-small leading-none">
               Excellent (4.7/5)
             </p>
             <Image
               src={greenstars}
               alt=""
-              className="h-[3vh] w-[14vh] ps-[2vh] pt-[0.7vh]"
+              className="h-[3vh] w-[14vh] shrink-0"
             />
           </div>
         </div>
