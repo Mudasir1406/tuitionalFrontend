@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 import { DrawerProvider } from "@/context/drawer-context";
@@ -72,14 +71,10 @@ export default function RootLayout({
           name="facebook-domain-verification"
           content="nsi12pa24pgn3gdkbjbbw85ktpjzux"
         />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://api.ipify.org" />
+        <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
         <link rel="dns-prefetch" href="//img.icons8.com" />
         <link rel="dns-prefetch" href="//www.facebook.com" />
         <link
@@ -103,34 +98,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//cdn-icons-png.flaticon.com" />
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         {/* CSS is handled automatically by Next.js */}
-        <Script
-          id="facebook-pixel-inline"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push
-              (arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!
-              0;n.version='2.0';n.queue=[];t=b.createElement(e);
-              t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,
-              'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1950457082424995');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript>
-          <Image
-            height={1}
-            width={1}
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1950457082424995&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
       </head>
 
       <body style={{ margin: 0 }}>

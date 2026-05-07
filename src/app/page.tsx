@@ -14,6 +14,7 @@ import { Header } from "../components";
 import Image from "next/image";
 import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
+import LazyLoadWrapper from "@/components/lazy-load-wrapper";
 // Critical above-the-fold - Load with SSR
 const Info = dynamic(() => import("../components/home/info"), {
   ssr: true,
@@ -127,24 +128,36 @@ const Home: React.FC = async () => {
           </div>
         </div>
       </Container>
-      <Trusted />
+      <LazyLoadWrapper minHeight="200px">
+        <Trusted />
+      </LazyLoadWrapper>
       <Box sx={styles.verticalMargin}>
-        <GetStarted data={getStarted} />
+        <LazyLoadWrapper minHeight="300px">
+          <GetStarted data={getStarted} />
+        </LazyLoadWrapper>
       </Box>
-      <OurClient data={data} />
+      <LazyLoadWrapper minHeight="400px">
+        <OurClient data={data} />
+      </LazyLoadWrapper>
       <Box sx={styles.backgroundImage}>
         <Container
           sx={{
             maxWidth: { lg: "1450px" },
           }}
         >
-          <Faqs />
+          <LazyLoadWrapper minHeight="300px">
+            <Faqs />
+          </LazyLoadWrapper>
         </Container>
       </Box>
       <Box sx={styles.verticalMargin}>
-        <ContactUs filterData={filterData} />
+        <LazyLoadWrapper minHeight="400px">
+          <ContactUs filterData={filterData} />
+        </LazyLoadWrapper>
       </Box>
-      <ServerFooter />
+      <LazyLoadWrapper minHeight="500px">
+        <ServerFooter />
+      </LazyLoadWrapper>
     </>
   );
 };
