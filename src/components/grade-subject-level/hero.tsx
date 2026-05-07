@@ -76,7 +76,7 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
                 sx={styles.desc}
                 className={leagueSpartan.className}
                 component={"p"}
-                variant="subtitle1"
+                variant="body2"
                 dangerouslySetInnerHTML={{
                   __html: data?.imageAltText
                     ? data?.imageAltText
