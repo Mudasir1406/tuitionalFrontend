@@ -75,6 +75,7 @@ const ALevelPage = () => {
     paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
+    subjectOrCurriculum: "",
   };
 
   // Data for tutor section - will fetch from tutors_data collection

@@ -101,6 +101,7 @@ const IgcsePage = () => {
     paragraph: " ",
     image: "/assets/images/hero/igcse-hero.jpg",
     imageAltText: " ",
+    subjectOrCurriculum: "",
   };
 
   const heroBulletPoints = [
