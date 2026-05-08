@@ -4,7 +4,7 @@ import { getVideoReviews } from "@/services/video-reviews/video-reviews";
 
 const StudentSays: React.FC<{ data: PageData["what_our_student_says"] }> = async ({ data }) => {
   const videoData = await getVideoReviews();
-  const HeaderTag = ((data?.headerTag || "h2").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag?.trim() || "h2").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] flex flex-col items-center justify-center px-0 lg:mx-[2vh] lg:px-[5vw]">

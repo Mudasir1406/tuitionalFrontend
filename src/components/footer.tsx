@@ -48,7 +48,12 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     height={plan.height}
                     alt="plan"
                     quality={100}
-                    style={{ width: "50px", height: "60px", marginTop: "10px", objectFit: "contain" }}
+                    style={{
+                      width: "50px",
+                      height: "60px",
+                      marginTop: "10px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               </div>
@@ -66,14 +71,20 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               {/* <Grid item lg={3.5}> */}
               <div className="w-full lg:w-[29.167%]">
                 {/* inline <Box sx={{ display: flex, alignItems: center }}> */}
-                <div className="flex items-center">
-                  <Image src={phone.src} width={phone.width} height={phone.height} alt="phone" />
+                <div className="flex items-center justify-center lg:justify-start leading-none">
+                  <Image
+                    src={phone.src}
+                    width={phone.width}
+                    height={phone.height}
+                    alt="phone"
+                    className="block"
+                  />
                   {/* <Typography variant="h2" sx={styles.phoneText}> — theme h2 = 1.375rem mobile / 1.75rem tablet / 2.25rem desktop, weight 700, lh 1.25, ls -0.01em + mx-10 white */}
-                  <p
-                    className={`${leagueSpartan.className} mx-[10px] text-white text-[1.375rem] sm:text-[1.75rem] lg:text-[2.25rem] font-bold leading-[1.25] tracking-[-0.01em]`}
+                  <span
+                    className={`${leagueSpartan.className} mx-[10px] text-white text-[1.375rem] sm:text-[1.75rem] lg:text-[2.25rem] font-bold leading-none tracking-[-0.01em] m-0`}
                   >
                     +971 56 490 0376
-                  </p>
+                  </span>
                 </div>
               </div>
 
@@ -90,7 +101,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
           </div>
 
           {/* second <Grid container columnSpacing={5}> — switched to CSS grid so 4-col lg layout fits with gap-x-10 (flex-wrap+w-1/4 overflowed and wrapped Get Help to row 2) */}
-          <div className="grid w-full grid-cols-2 gap-x-10 mt-[70px] pe-[2vw] ps-0 sm:mt-20 md:mt-[90px] md:ps-[5vw] lg:mt-[100px] lg:grid-cols-4">
+          <div className="grid w-full grid-cols-2 gap-x-10 mt-[70px] px-[5vw] sm:mt-20 md:mt-[90px] md:ps-[5vw] md:pe-[2vw] lg:mt-[100px] lg:grid-cols-4">
             {/* <Grid item lg={3} sm={12}> — logo + description + social */}
             <div className="col-span-2 lg:col-span-1">
               {/* styles.gridContent */}
@@ -117,7 +128,11 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   {/* styles.iconsOnly: flex items-center, justify xs:center lg:start, mb 15 */}
                   <div className="flex items-center justify-center lg:justify-start mb-[15px]">
                     {footerData?.link?.facebook && (
-                      <Link target="_blank" href={footerData.link.facebook} rel="noreferrer">
+                      <Link
+                        target="_blank"
+                        href={footerData.link.facebook}
+                        rel="noreferrer"
+                      >
                         {/* styles.social: 48×48, mr-20, cursor-pointer, z-100 — fluency colored brand icons */}
                         <Image
                           src="https://img.icons8.com/fluency/48/facebook-new.png"
@@ -129,7 +144,11 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       </Link>
                     )}
                     {footerData?.link?.insta && (
-                      <Link target="_blank" href={footerData.link.insta} rel="noreferrer">
+                      <Link
+                        target="_blank"
+                        href={footerData.link.insta}
+                        rel="noreferrer"
+                      >
                         <Image
                           src="https://img.icons8.com/fluency/48/instagram-new.png"
                           alt="insta"
@@ -140,7 +159,11 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       </Link>
                     )}
                     {footerData?.link?.linkdin && (
-                      <Link target="_blank" href={footerData.link.linkdin} rel="noreferrer">
+                      <Link
+                        target="_blank"
+                        href={footerData.link.linkdin}
+                        rel="noreferrer"
+                      >
                         <Image
                           src="https://img.icons8.com/fluency/48/linkedin.png"
                           alt="linkdin"
@@ -161,14 +184,14 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       <AtSign
                         size={18}
                         strokeWidth={2}
-                        className="me-[10px] shrink-0 text-brand-500"
+                        className="me-[10px] shrink-0 text-brand-500 block"
                         aria-hidden="true"
                       />
-                      <p
-                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[1.43] tracking-[0.01071em] group-hover:text-[#37B6FF]`}
+                      <span
+                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[18px] tracking-[0.01071em] group-hover:text-[#37B6FF] m-0`}
                       >
                         hello@tuitionaledu.com
-                      </p>
+                      </span>
                     </Link>
                     <Link
                       href="tel:+971564900376"
@@ -177,14 +200,14 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                       <PhoneIcon
                         size={18}
                         strokeWidth={2}
-                        className="me-[10px] shrink-0 text-brand-500"
+                        className="me-[10px] shrink-0 text-brand-500 block"
                         aria-hidden="true"
                       />
-                      <p
-                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[1.43] tracking-[0.01071em] group-hover:text-[#37B6FF]`}
+                      <span
+                        className={`${leagueSpartan.className} text-[14px] font-medium text-black leading-[18px] tracking-[0.01071em] group-hover:text-[#37B6FF] m-0`}
                       >
                         +971 56 490 0376
-                      </p>
+                      </span>
                     </Link>
                   </div>
                 </div>
@@ -200,9 +223,10 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 >
                   {t("footer.sections.curriculums")}
                 </p>
-                {Array.isArray(footerData?.curriculums) && footerData.curriculums.length > 0 && (
-                  <FooterLinks footerData={footerData.curriculums} exact />
-                )}
+                {Array.isArray(footerData?.curriculums) &&
+                  footerData.curriculums.length > 0 && (
+                    <FooterLinks footerData={footerData.curriculums} exact />
+                  )}
               </div>
             </div>
 
@@ -214,9 +238,10 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 >
                   {t("footer.sections.subjects")}
                 </p>
-                {Array.isArray(footerData?.subjects) && footerData.subjects.length > 0 && (
-                  <FooterLinks footerData={footerData.subjects} exact />
-                )}
+                {Array.isArray(footerData?.subjects) &&
+                  footerData.subjects.length > 0 && (
+                    <FooterLinks footerData={footerData.subjects} exact />
+                  )}
               </div>
             </div>
 
@@ -229,9 +254,13 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   >
                     {t("footer.sections.get_help")}
                   </p>
-                  {Array.isArray(footerData?.getHelp) && footerData.getHelp.length > 0 && (
-                    <FooterLinks footerData={footerData.getHelp} exact={false} />
-                  )}
+                  {Array.isArray(footerData?.getHelp) &&
+                    footerData.getHelp.length > 0 && (
+                      <FooterLinks
+                        footerData={footerData.getHelp}
+                        exact={false}
+                      />
+                    )}
                 </div>
                 {/* <Box sx={{ display: { xs: "none", lg: "block" } }}> — about-us, lg only */}
                 <div className="hidden lg:block">
@@ -243,11 +272,19 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                   </p>
                   {Array.isArray(footerData?.aboutUs) &&
                     footerData.aboutUs.map((item, index) => {
-                      if (!item || typeof item !== "string" || item.trim() === "") {
+                      if (
+                        !item ||
+                        typeof item !== "string" ||
+                        item.trim() === ""
+                      ) {
                         return null;
                       }
                       let url = findAboutUsURL(item);
-                      if (locale === "ar" && url !== "/" && !url.startsWith("/ar")) {
+                      if (
+                        locale === "ar" &&
+                        url !== "/" &&
+                        !url.startsWith("/ar")
+                      ) {
                         url = `/ar${url}`;
                       }
                       return (
@@ -275,11 +312,19 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 </p>
                 {Array.isArray(footerData?.aboutUs) &&
                   footerData.aboutUs.map((item, index) => {
-                    if (!item || typeof item !== "string" || item.trim() === "") {
+                    if (
+                      !item ||
+                      typeof item !== "string" ||
+                      item.trim() === ""
+                    ) {
                       return null;
                     }
                     let url = findAboutUsURL(item);
-                    if (locale === "ar" && url !== "/" && !url.startsWith("/ar")) {
+                    if (
+                      locale === "ar" &&
+                      url !== "/" &&
+                      !url.startsWith("/ar")
+                    ) {
                       url = `/ar${url}`;
                     }
                     return (

@@ -14,7 +14,9 @@ import { cn } from "@/utils/cn";
 import logo from "../../public/assets/images/static/logo.png";
 import logoMobile from "../../public/assets/images/static/logoMobile.png";
 
-const FormDialog = dynamic(() => import("./home/form-dialouge"), { ssr: false });
+const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
 
 type IProps = {
   /**
@@ -24,8 +26,7 @@ type IProps = {
   heroClassName?: string;
 };
 
-const DEFAULT_HERO_BG =
-  "h-[90px] sm:h-[100px] lg:h-[110px] bg-hero-fade";
+const DEFAULT_HERO_BG = "h-[90px] sm:h-[100px] lg:h-[110px] bg-[#EDF8FF]";
 
 const Header: React.FC<IProps> = ({ heroClassName }) => {
   const { toggleDrawer } = useDrawer();
@@ -128,7 +129,11 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
       {open && <FormDialog open={open} handleClose={() => setOpen(false)} />}
 
       <div className="fixed bottom-0 right-0 z-[1000] p-[5px] animate-[rotateAnimation_2s_ease-in-out_infinite]">
-        <Link href="https://wa.me/97144396296" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://wa.me/97144396296"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Image
             src="https://img.icons8.com/fluency/100/whatsapp.png"
             width={60}

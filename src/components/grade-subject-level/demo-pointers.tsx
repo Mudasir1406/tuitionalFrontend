@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const DemoPointers: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] lg:mx-[5vw]">

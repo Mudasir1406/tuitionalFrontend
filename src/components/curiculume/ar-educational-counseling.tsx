@@ -8,7 +8,7 @@ import PopUpButton from "../pop-up-button";
 const ArEducationalCounseling: React.FunctionComponent<{
   data: PageData["education_counseling"];
 }> = ({ data }) => {
-  const HeaderTag = ((data.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div dir="rtl">

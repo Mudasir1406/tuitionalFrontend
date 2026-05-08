@@ -23,7 +23,7 @@ const BUTTON_CLASSES =
   "inline-flex cursor-pointer items-center justify-center rounded-[10px] bg-[#009bf5] px-[25px] py-[1.5vh] font-heading text-sm font-normal normal-case leading-[23px] tracking-[-0.02em] text-white shadow-[1px_15px_34px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-[#009bf5] md:px-[22px] md:py-[2vh] lg:px-[25px]";
 
 function TutoringProgramSection({ data }: props) {
-  const tag = (data?.headerTag || "h3").toLowerCase() as "h2" | "h3" | "h4";
+  const tag = (data?.headerTag?.trim() || "h3").toLowerCase() as "h2" | "h3" | "h4";
   const HeaderTag = tag;
   const handleRedirect = (url: string) =>
     window.open(url, "_blank", "noopener,noreferrer");

@@ -73,7 +73,7 @@ type IProps = { data: PageData };
 const HERO_CONTAINER_CLS =
   "relative mx-[3vw] flex h-full items-center pt-[120px] sm:mx-[3vw] sm:pt-[120px] md:pt-[120px] lg:mx-0 lg:h-screen lg:pt-0";
 const WITH_FORM_CONTAINER_CLS =
-  "relative flex w-full items-center bg-[#F5FBFF] pt-[5vh] pb-[8vh] lg:min-h-[calc(100vh-90px)] lg:pt-[10vh]";
+  "relative flex w-full items-center bg-[#EDF8FF] pt-[5vh] pb-[8vh] lg:min-h-[calc(100vh-90px)] lg:pt-[10vh]";
 const VERTICAL_MARGIN = "my-[5vh] md:my-[10vh]";
 
 const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
@@ -83,9 +83,9 @@ const GradeSubjectLevelV2: React.FC<IProps> = async ({ data }) => {
     if (name.includes("hero_section")) {
       return (
         data?.[name as keyof PageData] && (
-          <div className="bg-gradient-to-b from-[#DBF1FF] via-[#EDF8FF] to-white">
+          <div className="bg-gradient-to-b from-[#EDF8FF] to-white">
             <div className={HERO_CONTAINER_CLS}>
-              <div className="grid w-full grid-cols-1 md:mt-[2vh] lg:mt-[18vh] lg:grid-cols-2">
+              <div className="grid w-full grid-cols-1 md:mt-[2vh] lg:mt-[10vh] lg:grid-cols-2">
                 <Hero data={data?.[name as keyof PageData]} />
                 <HeroInfo
                   image={data?.[name as keyof PageData]?.image}

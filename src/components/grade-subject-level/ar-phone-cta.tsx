@@ -18,7 +18,7 @@ const ArPhoneCta: React.FC<IProps> = ({ data }) => {
     Message: "",
     sheetName: "Lead Forms",
   });
-  const HeaderTag = ((data.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="mx-[3vw] my-[2vh] flex items-center justify-center sm:mx-[3vw] sm:my-[2vh] lg:m-0" dir="rtl">

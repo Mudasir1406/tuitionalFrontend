@@ -30,7 +30,7 @@ function LinkListViewSection({ data }: IProps) {
     ?.replace(/<\/b>/g, "</strong>");
 
   const hasParagraph = !!semanticParagraph?.trim();
-  const HeaderTag = (data?.headerTag || "h3").toLowerCase() as
+  const HeaderTag = (data?.headerTag?.trim() || "h3").toLowerCase() as
     | "h2"
     | "h3"
     | "h4";

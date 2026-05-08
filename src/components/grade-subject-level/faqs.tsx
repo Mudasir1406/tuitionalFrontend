@@ -12,7 +12,7 @@ type IProps = { data: PageData["Faqs"] };
 
 const FrequentlyQuestions: React.FC<IProps> = ({ data }) => {
   const [expanded, setExpanded] = useState<number>(0);
-  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as
+  const HeaderTag = ((data?.headerTag?.trim() || "h3").toLowerCase()) as
     | "h2"
     | "h3"
     | "h4";

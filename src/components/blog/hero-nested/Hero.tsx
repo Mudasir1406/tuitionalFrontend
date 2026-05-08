@@ -39,7 +39,7 @@ const Hero = ({ data, timestamp, showSocial, authorProfile }: Props) => {
     twitter: `https://twitter.com/intent/tweet?url=${currentUrl}`,
   };
 
-  const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2" | "h3";
+  const HeaderTag = ((data?.headerTag?.trim() || "h1").toLowerCase()) as "h1" | "h2" | "h3";
 
   return (
     <div className="relative bg-brand-50 px-4 pt-32 pb-12 lg:pt-40">

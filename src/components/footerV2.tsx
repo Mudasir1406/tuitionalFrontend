@@ -19,11 +19,9 @@ const FooterV2: React.FC = async () => {
 
         {/* White card */}
         <div className="z-0 flex w-[90%] flex-col items-center justify-center rounded-[10px] bg-white/70 shadow-footer-card">
-
           {/* ── Contact CTA banner ── */}
           <div className="flex w-4/5 -mt-[70px] rounded-[5px] bg-brand-500 p-4 sm:p-5 md:w-[85%] md:p-[25px] lg:p-[30px]">
             <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-center md:gap-5">
-
               {/* Plan icon */}
               <div className="flex h-[75px] w-[75px] shrink-0 items-center justify-center rounded-full bg-white lg:h-[85px] lg:w-[85px]">
                 <Image
@@ -32,7 +30,12 @@ const FooterV2: React.FC = async () => {
                   height={plan.height}
                   alt="plan"
                   quality={100}
-                  style={{ width: "50px", height: "60px", marginTop: "10px", objectFit: "contain" }}
+                  style={{
+                    width: "50px",
+                    height: "60px",
+                    marginTop: "10px",
+                    objectFit: "contain",
+                  }}
                 />
               </div>
 
@@ -40,12 +43,18 @@ const FooterV2: React.FC = async () => {
               <p
                 className={`${leagueSpartan.className} text-center text-sm font-normal leading-[1.6] text-white md:flex-1 md:text-start md:text-base`}
               >
-                Registered in UAE • Established Since 2020 • Headquarters: Sharjah
+                Registered in UAE • Established Since 2020 • Headquarters:
+                Sharjah
               </p>
 
               {/* Phone number */}
               <div className="flex shrink-0 items-center gap-2">
-                <Image src={phone.src} width={phone.width} height={phone.height} alt="phone" />
+                <Image
+                  src={phone.src}
+                  width={phone.width}
+                  height={phone.height}
+                  alt="phone"
+                />
                 <p
                   className={`${leagueSpartan.className} text-sm font-normal leading-[1.75] text-white md:text-base`}
                 >
@@ -66,7 +75,6 @@ const FooterV2: React.FC = async () => {
 
           {/* ── Main content grid ── */}
           <div className="grid w-full grid-cols-1 gap-8 px-5 py-8 sm:px-8 md:grid-cols-2 md:gap-10 md:px-[5vw] md:pe-[2vw] md:py-[50px] lg:py-[60px]">
-
             {/* Left column: Logo + Description + Credibility + Social */}
             <div className="flex flex-col items-center md:items-start">
               {/* Logo */}
@@ -82,9 +90,9 @@ const FooterV2: React.FC = async () => {
               <p
                 className={`${leagueSpartan.className} mt-4 text-center text-sm font-normal leading-[1.6] tracking-[0.01071em] text-black md:text-start`}
               >
-                Tuitional is a UAE-based Online Ed-Tech Platform established in 2020. We provide live
-                tutoring classes for Grades 4–8, IGCSE, GCSE, & A-Levels for Cambridge, Pearson Edexcel
-                boards.
+                Tuitional is a UAE-based Online Ed-Tech Platform established in
+                2020. We provide live tutoring classes for Grades 4–8, IGCSE,
+                GCSE, & A-Levels for Cambridge, Pearson Edexcel boards.
               </p>
 
               {/* Credibility badges */}
@@ -105,7 +113,11 @@ const FooterV2: React.FC = async () => {
 
               {/* Social icons */}
               <div className="mt-5 flex items-center gap-3 md:mt-4">
-                <Link target="_blank" href="https://www.facebook.com/tuitionaledu" rel="noreferrer">
+                <Link
+                  target="_blank"
+                  href="https://www.facebook.com/tuitionaledu"
+                  rel="noreferrer"
+                >
                   <Image
                     src="https://img.icons8.com/fluency/48/facebook-new.png"
                     alt="facebook"
@@ -114,7 +126,11 @@ const FooterV2: React.FC = async () => {
                     className="cursor-pointer opacity-80 transition-opacity hover:opacity-100"
                   />
                 </Link>
-                <Link target="_blank" href="https://www.instagram.com/tuitionaledu" rel="noreferrer">
+                <Link
+                  target="_blank"
+                  href="https://www.instagram.com/tuitionaledu"
+                  rel="noreferrer"
+                >
                   <Image
                     src="https://img.icons8.com/fluency/48/instagram-new.png"
                     alt="instagram"
@@ -123,7 +139,11 @@ const FooterV2: React.FC = async () => {
                     className="cursor-pointer opacity-80 transition-opacity hover:opacity-100"
                   />
                 </Link>
-                <Link target="_blank" href="https://www.linkedin.com/company/tuitionaledu" rel="noreferrer">
+                <Link
+                  target="_blank"
+                  href="https://www.linkedin.com/company/tuitionaledu"
+                  rel="noreferrer"
+                >
                   <Image
                     src="https://img.icons8.com/fluency/48/linkedin.png"
                     alt="linkedin"
@@ -163,7 +183,12 @@ const FooterV2: React.FC = async () => {
                 {/* Phone */}
                 <Link
                   href="tel:+971564900376"
-                  style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px" }}
+                  style={{
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
                 >
                   <Image
                     src="https://img.icons8.com/?size=100&id=3kO3tw1rKmYw&format=png&color=000000"
@@ -182,7 +207,12 @@ const FooterV2: React.FC = async () => {
                 {/* Email */}
                 <Link
                   href="mailto:info@tuitional.com"
-                  style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px" }}
+                  style={{
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
                 >
                   <Image
                     src="https://img.icons8.com/?size=100&id=GoQbcSSHazaK&format=png&color=000000"

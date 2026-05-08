@@ -7,7 +7,7 @@ import elpse1 from "../../../public/assets/images/svg/elpse-white1.svg";
 import elpse2 from "../../../public/assets/images/svg/elpse-white2.svg";
 
 const BlogCta: React.FC<{ data: PageData["blog_CTA"] }> = ({ data }) => {
-  const HeaderTag = ((data?.headerTag || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="relative my-[10vh] px-[5vw]">

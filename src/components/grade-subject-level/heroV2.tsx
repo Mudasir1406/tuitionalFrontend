@@ -14,7 +14,7 @@ type IProps = {
 };
 
 const HeroV2: React.FC<IProps> = ({ data, withForm, bulletPoints }) => {
-  const HeaderTag = ((data?.headerTag || "h1").toLowerCase()) as "h1" | "h2";
+  const HeaderTag = ((data?.headerTag?.trim() || "h1").toLowerCase()) as "h1" | "h2";
 
   return (
     <div className="flex h-auto flex-col justify-center lg:h-[65vh] lg:ps-[5vw]">

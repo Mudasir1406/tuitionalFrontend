@@ -34,7 +34,7 @@ const items: { icon: React.ReactNode; label: string }[] = [
 ];
 
 const ArBenifitsSection: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = ((data?.sectionTag ?? "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = ((data?.sectionTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
 
   return (
     <div className="bg-gradient-to-b from-white to-[#58b9f6] px-6 pb-[5vh] pt-0 sm:pb-[6vh]" dir="rtl">
