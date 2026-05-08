@@ -73,14 +73,19 @@ const Hero: React.FC<IProps> = ({ data, withForm }) => {
           >
             {withForm ? (
               <Typography
-                sx={styles.desc}
+                variant="subtitle2"
+                sx={{
+                  ...styles.desc,
+                  fontSize: "clamp(1rem, 0.9462rem + 0.2532vw, 1.25rem)",
+                  fontWeight: 700,
+                }}
                 className={leagueSpartan.className}
                 component={"p"}
-                variant="body2"
                 dangerouslySetInnerHTML={{
-                  __html: data?.imageAltText
-                    ? data?.imageAltText
-                    : "IGCSE A Level | IGCSE AS Level",
+                  __html:
+                    data?.imageAltText ||
+                    data?.subjectOrCurriculum ||
+                    "IGCSE A Level | IGCSE AS Level",
                 }}
               ></Typography>
             ) : (

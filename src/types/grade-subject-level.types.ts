@@ -96,13 +96,14 @@ export type PageData = {
     paragraph: string;
     image: string;
     imageAltText: string;
+    subjectOrCurriculum: string;
   };
   with_form: {
     header: string;
     headerTag: string;
     paragraph: string;
     image: string;
-    imageAltText: string;
+    subjectOrCurriculum: string;
   };
   tutor_section: tutor_section;
   igcse_tutoring_program: {
