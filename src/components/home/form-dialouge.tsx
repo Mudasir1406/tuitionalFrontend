@@ -21,7 +21,9 @@ import { addFormData } from "@/utils/globalFunction";
 import useGeoLocation from "@/utils/slugHelper";
 import "../DropDown/DropDown.css";
 
-const PhoneInput = dynamic(() => import("react-phone-number-input"), { ssr: false });
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 
 type IProps = {
   open: boolean;
@@ -199,10 +201,13 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
     setLoading(true);
     const newErrors: Partial<FormType> = {};
     if (!isNotEmpty(formData.FirstName)) newErrors.FirstName = s.err_name;
-    if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = s.err_email;
-    if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = s.err_phone;
+    if (!isValidEmail(formData.EmailAddress))
+      newErrors.EmailAddress = s.err_email;
+    if (!isValidPhoneNumber(formData.PhoneNumber))
+      newErrors.PhoneNumber = s.err_phone;
     if (!isNotEmpty(formData.Grade)) newErrors.Grade = s.err_grade;
-    if (!isNotEmpty(formData.Curriculum)) newErrors.Curriculum = s.err_curriculum;
+    if (!isNotEmpty(formData.Curriculum))
+      newErrors.Curriculum = s.err_curriculum;
     if (!isNotEmpty(formData.Message)) newErrors.Message = s.err_message;
 
     setErrors(newErrors);
@@ -261,14 +266,15 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
     getFilterData().then((data) => setFilterData(data));
   }, []);
 
-  const inputCls = "my-1 rounded-md bg-white font-heading text-ink-800 shadow-card";
+  const inputCls =
+    "my-1 rounded-md bg-white font-heading text-ink-800 shadow-card";
   const errCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (
-    <HouseDialog open={open} onClose={handleClose} hideCloseButton size="xl">
-      <div className="-m-4 sm:-m-6 w-full overflow-auto rounded-[30px] bg-white shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)] sm:w-auto md:w-[50vw]">
-        <div className="mt-[3vh] mb-[2vh] mx-[3vh] flex items-center justify-between">
-          <h2 className="font-heading text-[3vh] font-medium leading-[2.2vh] tracking-tight text-black">
+    <HouseDialog open={open} onClose={handleClose} hideCloseButton size="lg">
+      <div className="-m-4 sm:-m-6 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-[30px] bg-white shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)]">
+        <div className="mx-4 mb-3 mt-4 flex items-center justify-between sm:mx-6">
+          <h2 className="font-heading text-h5 font-medium tracking-tight text-black sm:text-h4">
             {s.heading}
           </h2>
           <button
@@ -282,9 +288,14 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
         </div>
         <hr className="border-ink-200" />
 
-        <div className="px-[2%] py-[2%]">
-          <form onSubmit={(e) => { e.preventDefault(); onClickUpload(); }}>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2">
+        <div className="px-4 py-4 sm:px-6 sm:py-5">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onClickUpload();
+            }}
+          >
+            <div className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
               <div>
                 <Input
                   name="FirstName"
@@ -293,7 +304,9 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
                   placeholder={s.placeholder_name}
                   className={inputCls}
                 />
-                {errors.FirstName && <p className={errCls}>{errors.FirstName}</p>}
+                {errors.FirstName && (
+                  <p className={errCls}>{errors.FirstName}</p>
+                )}
               </div>
               <div>
                 <Input
@@ -303,7 +316,9 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
                   placeholder={s.placeholder_email}
                   className={inputCls}
                 />
-                {errors.EmailAddress && <p className={errCls}>{errors.EmailAddress}</p>}
+                {errors.EmailAddress && (
+                  <p className={errCls}>{errors.EmailAddress}</p>
+                )}
               </div>
               <div>
                 <PhoneInput
@@ -311,11 +326,12 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
                   value={formData?.PhoneNumber || ""}
                   onChange={(e) => handleChange("PhoneNumber", String(e))}
                   inputComponent={CustomInput}
-                  disabled={!formData.EmailAddress}
                   placeholder={s.placeholder_phone}
-                  className="relative z-[2] my-1 h-[5.5vh] min-h-[44px] rounded-md bg-white ps-[10px] text-ink-800 shadow-card outline-none"
+                  className="relative z-[2] my-1 h-11 min-h-[44px] rounded-md bg-white ps-[10px] text-ink-800 shadow-card outline-none"
                 />
-                {errors.PhoneNumber && <p className={errCls}>{errors.PhoneNumber}</p>}
+                {errors.PhoneNumber && (
+                  <p className={errCls}>{errors.PhoneNumber}</p>
+                )}
               </div>
               <div>
                 <TranslatableDropDown
@@ -339,7 +355,9 @@ const FormDialog: React.FC<IProps> = ({ open, handleClose, values }) => {
                   locale={locale}
                   isSubjectField={false}
                 />
-                {errors.Curriculum && <p className={errCls}>{errors.Curriculum}</p>}
+                {errors.Curriculum && (
+                  <p className={errCls}>{errors.Curriculum}</p>
+                )}
               </div>
               <div>
                 <TranslatableDropDown
