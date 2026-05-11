@@ -48,18 +48,19 @@ const FooterV2: React.FC = async () => {
               </p>
 
               {/* Phone number */}
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 items-center gap-2 leading-none">
                 <Image
                   src={phone.src}
                   width={phone.width}
                   height={phone.height}
                   alt="phone"
+                  className="block"
                 />
-                <p
-                  className={`${leagueSpartan.className} text-sm font-normal leading-[1.75] text-white md:text-base`}
+                <span
+                  className={`${leagueSpartan.className} text-sm font-normal leading-none text-white md:text-base m-0`}
                 >
                   +971 56 490 0376
-                </p>
+                </span>
               </div>
 
               {/* CTA button */}
@@ -165,67 +166,57 @@ const FooterV2: React.FC = async () => {
 
               <div className="flex flex-col items-center gap-3 md:items-start">
                 {/* Location */}
-                <div className="flex items-center gap-[10px]">
+                <div className="flex items-center gap-[10px] leading-none">
                   <Image
                     src="https://img.icons8.com/?size=100&id=7880&format=png&color=000000"
                     alt="location"
                     width={20}
                     height={20}
-                    className="shrink-0"
+                    className="block shrink-0"
                   />
-                  <p
-                    className={`${leagueSpartan.className} text-sm font-medium leading-[1.43] tracking-[0.01071em] text-black`}
+                  <span
+                    className={`${leagueSpartan.className} text-sm font-medium leading-none tracking-[0.01071em] text-black m-0`}
                   >
                     Sharjah, UAE
-                  </p>
+                  </span>
                 </div>
 
                 {/* Phone */}
                 <Link
                   href="tel:+971564900376"
-                  style={{
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
+                  className="inline-flex items-center gap-[10px] leading-none no-underline"
                 >
                   <Image
                     src="https://img.icons8.com/?size=100&id=3kO3tw1rKmYw&format=png&color=000000"
                     alt="phone"
                     width={20}
                     height={20}
-                    className="shrink-0"
+                    className="block shrink-0"
                   />
-                  <p
-                    className={`${leagueSpartan.className} text-sm font-medium leading-[1.43] tracking-[0.01071em] text-black hover:text-[#37B6FF]`}
+                  <span
+                    className={`${leagueSpartan.className} text-sm font-medium leading-none tracking-[0.01071em] text-black hover:text-[#37B6FF] m-0`}
                   >
                     +971 56 490 0376
-                  </p>
+                  </span>
                 </Link>
 
                 {/* Email */}
                 <Link
                   href="mailto:info@tuitional.com"
-                  style={{
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
+                  className="inline-flex items-center gap-[10px] leading-none no-underline"
                 >
                   <Image
                     src="https://img.icons8.com/?size=100&id=GoQbcSSHazaK&format=png&color=000000"
                     alt="email"
                     width={20}
                     height={20}
-                    className="shrink-0"
+                    className="block shrink-0"
                   />
-                  <p
-                    className={`${leagueSpartan.className} text-sm font-medium leading-[1.43] tracking-[0.01071em] text-black hover:text-[#37B6FF]`}
+                  <span
+                    className={`${leagueSpartan.className} text-sm font-medium leading-none tracking-[0.01071em] text-black hover:text-[#37B6FF] m-0`}
                   >
                     info@tuitional.com
-                  </p>
+                  </span>
                 </Link>
               </div>
             </div>

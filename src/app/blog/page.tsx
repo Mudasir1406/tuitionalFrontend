@@ -24,28 +24,34 @@ const Page = async ({ searchParams }: { searchParams: { search: string } }) => {
             .includes(searchParams.search.toLowerCase()) ||
           blog?.blogContent?.header
             ?.toLowerCase()
-            .includes(searchParams.search.toLowerCase())
+            .includes(searchParams.search.toLowerCase()),
       )
     : data;
 
   return (
     <>
-      <Header />
-      <div className={styles.container}>
-        <div className={styles["grid-container"]}>
-          <div className={styles["hero"]}>
-            <Hero />
+      <div className="bg-gradient-to-b from-[#EDF8FF] via-[#EDF8FF] to-white">
+        <Header />
+        <div className={styles.container}>
+          <div className={styles["grid-container"]}>
+            <div className={styles["hero"]}>
+              <Hero />
+            </div>
+            <div className={styles["hero-picture"]}></div>
           </div>
-          <div className={styles["hero-picture"]}></div>
+        </div>
+
+        <div className={styles.verticalMargin}>
+          <SchoolLogosSection />
+        </div>
+
+        <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <SearchBar searchQuery={searchParams?.search || ""} />
+          <div className="mt-10">
+            <AllBlogs blogs={filteredData} />
+          </div>
         </div>
       </div>
-
-      <div className={styles.verticalMargin}>
-        <SchoolLogosSection />
-      </div>
-
-      <SearchBar searchQuery={searchParams?.search || ""} />
-      <AllBlogs blogs={filteredData} />
 
       <Footer />
     </>

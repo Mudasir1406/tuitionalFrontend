@@ -26,7 +26,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-brand-500 text-white hover:bg-brand-600 focus-visible:ring-brand-500 shadow-card",
+    "bg-brand-500 text-white font-bold hover:bg-brand-600 hover:text-white focus-visible:ring-brand-500 shadow-card",
   outline:
     "border border-brand-500 text-brand-500 bg-transparent hover:bg-brand-50 focus-visible:ring-brand-500",
   ghost:
@@ -42,7 +42,10 @@ const sizeClasses: Record<Size, string> = {
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", type = "button", ...props }, ref) => (
+  (
+    { className, variant = "primary", size = "md", type = "button", ...props },
+    ref,
+  ) => (
     <button
       ref={ref}
       type={type}

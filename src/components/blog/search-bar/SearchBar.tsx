@@ -27,7 +27,10 @@ function SearchBar({
 
   return (
     <div>
-      <div className="flex items-center gap-2 rounded-md bg-white p-2 shadow-card">
+      <div
+        className="flex items-center justify-center w-full h-[5.5vh] lg:h-[8.5vh] bg-white rounded-[2vh]
+          shadow-[0px_-5px_5px_0px_rgba(0,0,0,0.2)_inset,0px_4px_5px_0px_rgba(0,0,0,0.25)_inset]"
+      >
         <input
           type="text"
           placeholder={placeholder}
@@ -36,9 +39,13 @@ function SearchBar({
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSearch();
           }}
-          className="flex-1 bg-transparent px-2 py-1 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
+          className="w-[60%] h-full bg-transparent border-0 px-4 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
         />
-        <Button onClick={handleSearch} variant="primary" size="sm">
+        <Button
+          onClick={handleSearch}
+          variant="primary"
+          className="w-[40%] h-full rounded-l-none rounded-r-[14px] shadow-[0px_-5px_15px_0px_rgba(0,0,0,0.2)_inset] hover:scale-[1.02] hover:shadow-[1px_4px_14px_0px_rgba(56,182,255,0.54)] transition-all duration-500"
+        >
           {searchLabel}
         </Button>
       </div>

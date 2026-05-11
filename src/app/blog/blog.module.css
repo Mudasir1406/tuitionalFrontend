@@ -9,7 +9,8 @@
 
 .grid-container {
   height: 100%;
-  align-items: center;
+  align-items: start;
+  padding-top: 22vh;
   margin: 0 28px;
   display: grid;
   grid-template-columns: 1fr;
@@ -44,12 +45,16 @@
 }
 
 @media (max-width: 575px) {
+  .grid-container {
+    padding-top: 10vh;
+  }
   .hero {
     padding-top: 0vh;
   }
 
   .hero-picture::before {
     height: 350px;
+    bottom: 10vh;
   }
 }
 
@@ -103,11 +108,12 @@
 
   .hero-picture::before {
     height: 80vh;
+    bottom: 10vh;
   }
 }
 
 .verticalMargin {
-  margin: 7vh 0;
+  margin: 0vh 0;
 }
 
 @media (max-width: 991px) {

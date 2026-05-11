@@ -14,36 +14,60 @@ const Hero = ({ slug }: Props) => {
   const [phone, setPhone] = useState("");
 
   return (
-    <div className="flex flex-col items-center bg-brand-50 px-4 pt-32 pb-12 lg:pt-48">
-      <h1 className="text-center font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1 text-black">
+    <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+      <h1
+        className="relative inline-block mt-[1vh] mb-[0vh] pr-[2vw] font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1 text-brand-500
+          before:content-[''] before:absolute before:z-10 before:bg-no-repeat before:bg-contain
+          before:left-0 before:-top-[2.5vh] before:h-[1.9vh] before:w-[2vh] before:bg-[url('/assets/images/static/linesMobile.png')]
+          md:before:left-auto md:before:right-0
+          lg:before:-top-[3vh] lg:before:h-[4.3vh] lg:before:w-[4.3vh] lg:before:bg-[url('/assets/images/static/lines.png')]"
+      >
         {slug ?? "Our Blogs"}
       </h1>
-      <p className="mt-4 text-center font-heading text-body-mobile sm:text-body text-ink-800 max-w-2xl">
+
+      <p className="mt-[1vh] px-[2vh] font-heading text-body-mobile sm:text-body text-black lg:px-0 lg:w-[90%]">
         Your source for expert tips, academic strategies, and learning resources
         for Cambridge, AP, and more
       </p>
-      <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-md bg-white p-2 shadow-card">
+
+      <div
+        className="mt-[1vh] flex items-center justify-center w-[95%] h-[5.5vh] md:max-w-[50vw] lg:mt-[1.5vh] lg:h-[8.5vh] bg-white rounded-[2vh]
+          shadow-[0px_-5px_5px_0px_rgba(0,0,0,0.2)_inset,0px_4px_5px_0px_rgba(0,0,0,0.25)_inset]"
+      >
         <input
           type="email"
           placeholder="Your Email*"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="flex-1 bg-transparent px-2 py-1 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
+          className="w-[60%] h-full bg-transparent border-0 px-4 font-heading text-form-input text-ink-900 outline-none placeholder:text-ink-400"
         />
-        <Button onClick={() => {}} variant="primary" size="sm">
+        <Button
+          onClick={() => {}}
+          variant="primary"
+          className="w-[40%] h-full rounded-l-none rounded-r-[14px] shadow-[0px_-5px_15px_0px_rgba(0,0,0,0.2)_inset] hover:scale-[1.02] hover:shadow-[1px_4px_14px_0px_rgba(56,182,255,0.54)] transition-all duration-500"
+        >
           Subscribe!
         </Button>
       </div>
-      <div className="mt-[1vh] flex flex-row items-center justify-start gap-4 sm:mt-[2vh] lg:mt-[6vh]">
-        <div className="flex items-center">
-          <Image src={greenstar} alt="" className="h-[3vh] w-[3vh]" />
-          <p className="ps-[1vh] pt-[0.7vh] font-heading text-stat-label uppercase">
+
+      <div className="mt-[1vh] flex flex-row items-center justify-center gap-3 sm:mt-[1.5vh] lg:mt-[2vh] lg:justify-start">
+        <div className="inline-flex items-center gap-2 leading-none">
+          <Image
+            src={greenstar}
+            alt=""
+            className="block h-[3vh] w-[3vh] shrink-0 object-contain"
+          />
+          <span className="font-heading text-stat-label uppercase">
             Trustpilot
-          </p>
+          </span>
         </div>
-        <div className="flex items-center">
-          <p className="pt-[1vh] font-heading text-small">Excellent (4.7/5)</p>
-          <Image src={greenstars} alt="" className="h-[3vh] w-[14vh] ps-[2vh] pt-[0.7vh]" />
+        <div className="inline-flex items-center gap-2 leading-none">
+          <span className="font-heading text-small">Excellent (4.7/5)</span>
+          <Image
+            src={greenstars}
+            alt=""
+            className="block h-[3vh] w-[14vh] shrink-0 object-contain"
+          />
         </div>
       </div>
     </div>
