@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import { X } from "lucide-react";
+import { useState } from "react";
 
-import { Drawer as HouseDrawer } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { useDrawer } from "../context/drawer-context";
+import { Drawer as HouseDrawer } from "@/components/ui/drawer";
 import { useI18n } from "@/context/language-context";
+import { useDrawer } from "../context/drawer-context";
 import RouteLanguageSwitcher from "./route-language-switcher";
-import logo from "../../public/assets/images/static/logo.png";
 
-const FormDialog = dynamic(() => import("./home/form-dialouge"), { ssr: false });
+const FormDialog = dynamic(() => import("./home/form-dialouge"), {
+  ssr: false,
+});
 
 const ResponsiveDrawer = () => {
   const { open, toggleDrawer } = useDrawer();
@@ -37,40 +36,35 @@ const ResponsiveDrawer = () => {
         className="bg-gradient-to-b from-[#D3EFFE] to-white"
       >
         <div className="flex h-full flex-col">
-          <div className="flex w-full items-center justify-between bg-gradient-to-b from-[#D3EFFE] to-white px-[7.1%] py-[50px]">
-            <Image
-              src={logo.src}
-              alt="Logo"
-              width={logo.width}
-              height={logo.height}
-              className="h-[34px] w-[144px] cursor-pointer"
-            />
+          <div className="flex w-full items-center justify-end px-6 py-6 sm:px-8 sm:py-8">
             <button
               type="button"
               onClick={toggleDrawer}
               aria-label="Close menu"
-              className="rounded-full p-2 hover:bg-ink-100"
+              className="rounded-full p-2 hover:bg-black/10"
             >
-              <X size={25} className="text-[#545454]" />
+              {/* <X size={25} className="text-[#545454]" /> */}
             </button>
           </div>
 
-          <nav className="flex flex-col items-start px-[7.1%]">
+          <div className="mx-6 border-b border-black/10 sm:mx-8" />
+
+          <nav className="flex flex-1 flex-col items-start px-6 pt-6 sm:px-8">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={toggleDrawer}
-                className="my-[10px] block w-full font-heading text-[1.5rem] font-medium leading-[2] text-start text-black hover:text-brand-500"
+                className="flex w-full items-center border-b border-black/5 py-4 font-heading text-[1.25rem] font-medium text-black hover:text-brand-500"
               >
                 {item.label}
               </a>
             ))}
 
-            <div className="mt-[30px] flex w-full flex-col gap-[15px]">
+            <div className="mt-8 flex w-full flex-col gap-4 pb-8">
               <Button
                 variant="outline"
-                className="border-success py-[1.2vh] font-heading text-[1.1rem] font-bold whitespace-nowrap text-success transition-none hover:bg-transparent hover:text-success focus-visible:ring-success"
+                className="h-[52px] w-full border-success font-heading text-[1rem] font-bold whitespace-nowrap text-success transition-none hover:bg-transparent hover:text-success focus-visible:ring-success"
               >
                 {t("buttons.ai_digital_sat")}
               </Button>
@@ -80,11 +74,11 @@ const ResponsiveDrawer = () => {
                   toggleDrawer();
                   setOpenDialog(true);
                 }}
-                className="rounded-[10px] py-[1.5vh] font-heading text-[1.1rem] font-bold tracking-[-0.02em] shadow-brand-glow"
+                className="h-[52px] w-full rounded-[10px] font-heading text-[1rem] font-bold tracking-[-0.02em] shadow-brand-glow"
               >
                 {t("buttons.book_demo")}
               </Button>
-              <div className="mt-[10px] w-full">
+              <div className="mt-2 w-full">
                 <RouteLanguageSwitcher fullWidth />
               </div>
             </div>
@@ -93,7 +87,10 @@ const ResponsiveDrawer = () => {
       </HouseDrawer>
 
       {openDialog && (
-        <FormDialog open={openDialog} handleClose={() => setOpenDialog(false)} />
+        <FormDialog
+          open={openDialog}
+          handleClose={() => setOpenDialog(false)}
+        />
       )}
     </>
   );

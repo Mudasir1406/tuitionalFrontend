@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useDrawer } from "../context/drawer-context";
@@ -29,7 +29,7 @@ type IProps = {
 const DEFAULT_HERO_BG = "h-[90px] sm:h-[100px] lg:h-[110px] bg-[#EDF8FF]";
 
 const Header: React.FC<IProps> = ({ heroClassName }) => {
-  const { toggleDrawer } = useDrawer();
+  const { open: drawerOpen, toggleDrawer } = useDrawer();
   const { t, isRTL } = useI18n();
   const [open, setOpen] = useState(false);
 
@@ -121,7 +121,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
             aria-label="Open menu"
             className="me-[1vw] flex h-[4vh] w-[4vh] items-center justify-center text-brand-500 lg:hidden"
           >
-            <Menu className="h-full w-full" />
+            {drawerOpen ? <X className="h-full w-full" /> : <Menu className="h-full w-full" />}
           </button>
         </div>
       </header>

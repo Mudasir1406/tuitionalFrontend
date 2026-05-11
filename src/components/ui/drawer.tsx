@@ -72,7 +72,7 @@ export const Drawer = ({
           <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
         </TransitionChild>
 
-        <div className="fixed inset-y-0 flex" style={positionStyle}>
+        <div className={cn("fixed inset-y-0 flex", widthClassName)} style={positionStyle}>
           <TransitionChild
             as={Fragment}
             enter="transform transition ease-in-out duration-300"
@@ -84,8 +84,7 @@ export const Drawer = ({
           >
             <DialogPanel
               className={cn(
-                "relative h-full bg-white shadow-xl",
-                widthClassName,
+                "relative h-full w-full overflow-y-auto bg-white shadow-xl",
                 className,
               )}
             >
