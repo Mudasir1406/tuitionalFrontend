@@ -133,7 +133,7 @@ const FormV2: React.FC<IProps> = ({ background }) => {
   const errCls = "ms-1 mt-1 font-body text-small text-danger";
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow-card">
+    <div className="rounded-[10px] bg-[#D7F0FF] p-5">
       <form onSubmit={handleSubmit}>
         <h5 className="mb-4 text-center font-heading text-h5 text-ink-900">
           Avail A 10% Discount If You Sign Up Today!

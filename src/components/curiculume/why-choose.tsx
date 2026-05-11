@@ -12,7 +12,7 @@ import { redirectToExternal } from "@/utils/helper";
 const WhyChoose: React.FunctionComponent<{
   data: PageData["why_igsce"];
 }> = ({ data }) => {
-  const SectionTag = (data.sectionTag ?? "h3") as "h2" | "h3" | "h4";
+  const SectionTag = (data.sectionTag || "h3") as "h2" | "h3" | "h4";
   const HeaderTag = ((data.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
   const reverse = !!data?.right_to_left;
 

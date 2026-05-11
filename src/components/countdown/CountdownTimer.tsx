@@ -32,7 +32,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     seconds: 0,
   });
   const [countdownData, setCountdownData] = useState<CountdownData | null>({
-    targetDate: new Date(Date.now() + targetDays * 24 * 60 * 60 * 1000).toISOString(),
+    targetDate: new Date(
+      Date.now() + targetDays * 24 * 60 * 60 * 1000,
+    ).toISOString(),
     title,
     isActive: true,
     createdAt: new Date().toISOString(),
@@ -69,7 +71,11 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
   useEffect(() => {
     const checkAndRestart = async () => {
-      if (!hasTriggeredRestart && countdownData && isCountdownExpired(countdownData)) {
+      if (
+        !hasTriggeredRestart &&
+        countdownData &&
+        isCountdownExpired(countdownData)
+      ) {
         setHasTriggeredRestart(true);
         try {
           const newCountdownData = await restartCountdown(pageType, 20);
@@ -101,7 +107,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       if (difference > 0) {
         return {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          hours: Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          ),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
         };
@@ -141,13 +149,13 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     <div
       className={`${isFixed ? "fixed" : "sticky"} inset-x-0 top-0 z-[1000] w-full`}
     >
-      <div className="flex w-full flex-col items-center justify-around gap-2 bg-[#006dac] py-4 text-center shadow-[0_4px_20px_rgba(0,0,0,0.15)] md:flex-row">
-        <p
+      <div className="flex w-full flex-col items-center justify-around gap-1 bg-[#006dac] text-center shadow-[0_4px_20px_rgba(0,0,0,0.15)] md:flex-row md:items-center md:gap-2 md:py-[2px]">
+        <span
           className={`${leagueSpartan.className} text-center font-heading text-[0.9rem] font-semibold text-white`}
         >
           {countdownData.title}
-        </p>
-        <div className="flex items-center gap-3">
+        </span>
+        <div className="flex items-start gap-2 pt-4 ">
           {units.map((u, i) => (
             <React.Fragment key={u.label}>
               <div className="flex min-w-[40px] flex-col items-center">
@@ -157,13 +165,15 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                   {formatNumber(u.value)}
                 </p>
                 <p
-                  className={`${leagueSpartan.className} font-heading text-[0.7rem] font-medium leading-none text-white/90`}
+                  className={`${leagueSpartan.className} mt-[2px] font-heading text-[0.7rem] font-medium leading-none text-white/90`}
                 >
                   {u.label}
                 </p>
               </div>
               {i < units.length - 1 && (
-                <p className="text-[1.2rem] font-bold leading-none text-white">:</p>
+                <p className="text-[1.2rem] font-bold leading-none text-white">
+                  :
+                </p>
               )}
             </React.Fragment>
           ))}

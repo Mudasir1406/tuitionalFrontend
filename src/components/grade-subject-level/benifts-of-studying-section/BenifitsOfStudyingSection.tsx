@@ -19,8 +19,8 @@ const BenifitsOfStudyingSection: React.FC<IProps> = ({ data }) => {
     setExpandedRequirement((prev) => ({ ...prev, [index]: !prev[index] }));
 
   const HeaderTag = ((data?.headerTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
-  const LeftTag = (data?.subTextLeftTag ?? "h4") as "h3" | "h4" | "h5";
-  const RightTag = (data?.subTextRightTag ?? "h4") as "h3" | "h4" | "h5";
+  const LeftTag = (data?.subTextLeftTag || "h4") as "h3" | "h4" | "h5";
+  const RightTag = (data?.subTextRightTag || "h4") as "h3" | "h4" | "h5";
 
   const renderBox = (
     box: { name: string; paragraph: string },
