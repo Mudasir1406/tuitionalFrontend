@@ -20,9 +20,7 @@ const TutorSectionV2 = dynamic(
 
 const BenifitsSectionV2 = dynamic(
   () =>
-    import(
-      "@/components/grade-subject-level/benifts-section/BenifitsSectionV2"
-    ),
+    import("@/components/grade-subject-level/benifts-section/BenifitsSectionV2"),
   { ssr: true, loading: () => <div className="h-[300px]" /> },
 );
 

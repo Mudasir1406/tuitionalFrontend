@@ -155,20 +155,20 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         >
           {countdownData.title}
         </span>
-        <div className="flex items-start gap-2 pt-4 ">
+        <div className="flex items-start gap-3 py-3">
           {units.map((u, i) => (
             <React.Fragment key={u.label}>
               <div className="flex min-w-[40px] flex-col items-center">
-                <p
+                <span
                   className={`${leagueSpartan.className} font-heading text-[1.2rem] font-bold leading-none text-white`}
                 >
                   {formatNumber(u.value)}
-                </p>
-                <p
+                </span>
+                <span
                   className={`${leagueSpartan.className} mt-[2px] font-heading text-[0.7rem] font-medium leading-none text-white/90`}
                 >
                   {u.label}
-                </p>
+                </span>
               </div>
               {i < units.length - 1 && (
                 <p className="text-[1.2rem] font-bold leading-none text-white">

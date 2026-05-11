@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import {
   BarChart3,
   BookOpen,
@@ -11,6 +9,8 @@ import {
   Mic,
   Users,
 } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
 import PopUpButtonV2 from "@/components/pop-up-buttonV2";
 import { PageData } from "@/types/grade-subject-level.types";
@@ -25,17 +25,41 @@ const items: { icon: React.ReactNode; label: string }[] = [
     icon: <Image src={TutorIcon} alt="Tutor Icon" width={35} height={30} />,
     label: "Pool of 500 + Tutors",
   },
-  { icon: <Mic className="h-[30px] w-[35px] text-[#009BF5]" />, label: "24/7 On-Demand Academic Support." },
-  { icon: <Calendar className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Access to resources & practice material" },
-  { icon: <BookOpen className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Customized Study Plans" },
-  { icon: <BarChart3 className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Progress Tracking" },
-  { icon: <Clock className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Flexible Scheduling" },
-  { icon: <LineChart className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Post-Test Analysis" },
-  { icon: <Users className="h-[30px] w-[35px] text-[#009BF5]" />, label: "Real-Time Parent Dashboard" },
+  {
+    icon: <Mic className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "24/7 On-Demand Academic Support.",
+  },
+  {
+    icon: <Calendar className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Access to resources & practice material",
+  },
+  {
+    icon: <BookOpen className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Customized Study Plans",
+  },
+  {
+    icon: <BarChart3 className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Progress Tracking",
+  },
+  {
+    icon: <Clock className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Flexible Scheduling",
+  },
+  {
+    icon: <LineChart className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Post-Test Analysis",
+  },
+  {
+    icon: <Users className="h-[30px] w-[35px] text-[#009BF5]" />,
+    label: "Real-Time Parent Dashboard",
+  },
 ];
 
 const BenifitsSectionV2: React.FC<IProps> = ({ data }) => {
-  const HeaderTag = ((data?.sectionTag?.trim() || "h3").toLowerCase()) as "h2" | "h3" | "h4";
+  const HeaderTag = (data?.sectionTag?.trim() || "h3").toLowerCase() as
+    | "h2"
+    | "h3"
+    | "h4";
 
   return (
     <div className="bg-gradient-to-b from-white to-[#58b9f6] px-6 pb-[5vh] pt-0 sm:pb-[6vh]">
@@ -62,7 +86,7 @@ const BenifitsSectionV2: React.FC<IProps> = ({ data }) => {
         <PopUpButtonV2
           text="Book a Demo"
           href="popup"
-          className="w-1/2 rounded-[10px] bg-white py-[1vh] text-brand-500 shadow-[1px_4px_24px_0px_#38B6FFB2] transition-all duration-500 ease-in-out hover:scale-105 hover:bg-white sm:w-2/5 md:w-[30%] lg:w-[30%] lg:py-[10px]"
+          className="w-1/2 rounded-[10px] bg-brand-500 py-[1vh] text-white shadow-[1px_4px_24px_0px_#38B6FFB2] transition-all duration-200 hover:scale-[1.03] hover:bg-brand-500 hover:shadow-[1px_8px_32px_0px_#38B6FFD9] sm:w-1/5 lg:py-[10px]"
         />
       </div>
     </div>

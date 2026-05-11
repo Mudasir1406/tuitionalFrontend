@@ -23,7 +23,8 @@ const data = [
   },
   {
     heading: "Meet Your Mentor",
-    description: "Our consultant connects you with the right tutor within an hour.",
+    description:
+      "Our consultant connects you with the right tutor within an hour.",
     image: girl2,
     ButtonText: "Find Tutor",
   },
@@ -51,11 +52,13 @@ const GetStartedV2: React.FC = () => {
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
-  const handleTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
+  const handleTouchMove = (e: React.TouchEvent) =>
+    setTouchEnd(e.targetTouches[0].clientX);
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
-    if (distance > 50 && currentIndex < data.length - 1) setCurrentIndex(currentIndex + 1);
+    if (distance > 50 && currentIndex < data.length - 1)
+      setCurrentIndex(currentIndex + 1);
     if (distance < -50 && currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
@@ -85,54 +88,57 @@ const GetStartedV2: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative flex w-full flex-col items-center lg:hidden">
+      <div className="mt-8 flex w-full flex-col items-center lg:hidden">
         <div
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="relative mx-auto flex min-h-[320px] w-full max-w-[320px] items-center justify-center p-4"
+          className="w-full overflow-hidden"
         >
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className={cn(
-                "absolute inset-0 flex items-center justify-center",
-                index === currentIndex ? "flex" : "hidden",
-              )}
-            >
-              <div className="flex min-w-[280px] max-w-[280px] flex-col items-center rounded-xl border border-ink-100 bg-[#E3F2FD] p-4 shadow-card">
-                <div className="h-[200px] w-[200px]">
-                  <Image
-                    src={item.image}
-                    alt=""
-                    width={200}
-                    height={200}
-                    className="h-full w-full object-contain"
+          <div
+            className="flex transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {data.map((item, index) => (
+              <div key={index} className="w-full shrink-0 px-6">
+                <div className="flex w-full flex-col items-center rounded-xl border border-ink-100 bg-[#E3F2FD] p-4 shadow-card">
+                  <div className="h-[200px] w-[200px]">
+                    <Image
+                      src={item.image}
+                      alt=""
+                      width={200}
+                      height={200}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  <strong className="my-2 font-heading text-h4 text-ink-900">
+                    {item.heading}
+                  </strong>
+                  <p className="my-2 text-center font-heading text-small text-ink-700">
+                    {item.description}
+                  </p>
+                  <PopUpButton
+                    href="popup"
+                    text={item.ButtonText}
+                    className="my-2 rounded-[10px] bg-brand-500 px-[18px] py-3 font-bold text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
                   />
                 </div>
-                <strong className="my-2 font-heading text-h4 text-ink-900">{item.heading}</strong>
-                <p className="my-2 text-center font-heading text-small text-ink-700">
-                  {item.description}
-                </p>
-                <PopUpButton
-                  href="popup"
-                  text={item.ButtonText}
-                  className="my-2 rounded-[10px] bg-brand-500 px-[18px] py-3 font-bold text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
-                />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        <div className="mt-6 flex justify-center gap-2 pb-4">
+        <div className="mt-6 flex items-center justify-center gap-3 pb-6">
           {data.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => setCurrentIndex(index)}
               className={cn(
-                "h-2 w-2 rounded-full transition-colors",
-                index === currentIndex ? "bg-brand-500" : "bg-ink-300",
+                "block rounded-full transition-all duration-300",
+                index === currentIndex
+                  ? "h-3 w-8 bg-brand-500"
+                  : "h-3 w-3 bg-brand-200",
               )}
               aria-label={`Slide ${index + 1}`}
             />
@@ -152,13 +158,28 @@ interface CardProps {
   ButtonText: string;
 }
 
-const DesktopCard: React.FC<CardProps> = ({ heading, description, image, ButtonText }) => (
+const DesktopCard: React.FC<CardProps> = ({
+  heading,
+  description,
+  image,
+  ButtonText,
+}) => (
   <div className="mx-auto flex h-auto w-full flex-col items-center rounded-md bg-brand-50 px-[30px] py-[10px] lg:w-4/5 xl:w-[400px]">
     <div className="flex h-[250px] w-[300px] items-center justify-center">
-      <Image src={image} alt="" width={300} height={300} className="h-full w-full object-contain" />
+      <Image
+        src={image}
+        alt=""
+        width={300}
+        height={300}
+        className="h-full w-full object-contain"
+      />
     </div>
-    <strong className="my-[2vh] text-center font-heading text-h4 text-ink-900">{heading}</strong>
-    <p className="my-[2vh] text-center font-heading text-body text-ink-700">{description}</p>
+    <strong className="my-[2vh] text-center font-heading text-h4 text-ink-900">
+      {heading}
+    </strong>
+    <p className="my-[2vh] text-center font-heading text-body text-ink-700">
+      {description}
+    </p>
     <PopUpButton
       href="popup"
       text={ButtonText}

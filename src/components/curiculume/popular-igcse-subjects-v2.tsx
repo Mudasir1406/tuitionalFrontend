@@ -50,11 +50,11 @@ const PopularIgcseSubjectsV2: React.FunctionComponent<IProps> = ({
               className="flex h-[5vh] cursor-pointer items-center justify-center rounded-[2vh] p-[2vh] text-center backdrop-blur-[5px] shadow-[0px_-2.171px_6.514px_0px_rgba(0,0,0,0.20)_inset] transition-all duration-500 hover:scale-105 hover:opacity-80 lg:h-[5vh] lg:p-[3vh]"
               style={{ background: cardColor }}
             >
-              <p
+              <span
                 className={`${leagueSpartan.className} font-heading text-[0.9rem] font-semibold text-[#2D2D2D] lg:text-[1rem]`}
               >
                 {item.name}
-              </p>
+              </span>
             </div>
           );
         })}
