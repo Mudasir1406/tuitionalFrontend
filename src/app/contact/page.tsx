@@ -19,14 +19,14 @@ export const metadata: Metadata = {
 const Contact: React.FC = () => {
   return (
     <>
-      <Header heroClassName="h-[100px] sm:h-[100px] md:h-[200px] lg:h-[200px] bg-[#D7F0FF]" />
+      <Header heroClassName="h-[80px] sm:h-[90px] md:h-[100px] lg:h-[110px] bg-[#D7F0FF]" />
       <div className="bg-[#D7F0FF]">
-        <div className="mx-auto pt-[120px] sm:pt-[150px] md:pt-[200px] lg:max-w-[1450px] lg:pt-[210px]">
+        <div className="mx-auto px-4 pt-[100px] sm:px-6 sm:pt-[110px] md:pt-[120px] lg:max-w-[1450px] lg:px-12 lg:pt-[130px]">
           <LearnTogeather />
         </div>
       </div>
       <GetInTouch />
-      <div className="mx-auto mb-[3vh] mt-[5vh] lg:max-w-[1450px]">
+      <div className="mx-auto mb-[3vh] mt-[5vh] px-4 sm:px-6 lg:max-w-[1450px] lg:px-12">
         <Info />
       </div>
       <Footer />

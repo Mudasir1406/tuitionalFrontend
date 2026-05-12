@@ -8,7 +8,6 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/input";
 import { useI18n } from "@/context/language-context";
 import { cn } from "@/utils/cn";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
@@ -17,15 +16,18 @@ import { createContactTemplate } from "@/services/email-service/template";
 import { HELLOTUITIONALEDU } from "@/utils/env";
 import { addFormData } from "@/utils/globalFunction";
 import useGeoLocation from "@/utils/slugHelper";
+import { leagueSpartan } from "@/app/fonts";
 import type { ContactFormType } from "@/components/home/form-dialouge";
 
-import Input from "@/components/input/Input";
 import CustomInput from "@/components/custom-input/custom-input";
 import girlLaptop from "../../../../public/assets/images/static/girl-using-laptop.png";
 import lines from "../../../../public/assets/images/static/lines.png";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
+  loading: () => (
+    <div className="relative z-[2] h-11 min-h-[44px] rounded-md bg-white shadow-card" />
+  ),
 });
 
 const GetInTouch: React.FunctionComponent = () => {
@@ -206,12 +208,18 @@ const GetInTouch: React.FunctionComponent = () => {
   const headingAccent = t("contact.get_in_touch.heading_accent");
   const subtitleLine2 = t("contact.get_in_touch.subtitle_line_2");
 
+  const fieldClass = cn(
+    leagueSpartan.className,
+    "h-11 min-h-[44px] w-full rounded-md bg-white px-4 font-body text-form-input text-ink-800 shadow-card",
+    "placeholder:text-ink-400 outline-none focus:outline-none focus-visible:outline-none",
+  );
+
   return (
-    <div className="relative flex flex-col items-center justify-center gap-6 bg-gradient-to-t from-white/70 to-brand-50 pt-20">
+    <div className="relative flex flex-col items-center justify-center gap-6 bg-gradient-to-t from-white/70 to-brand-50 pt-10 sm:pt-14 lg:pt-16">
       <div className="absolute inset-0 -z-[2] h-full w-full" />
 
-      <div className="mx-12 mb-[100px] flex max-w-[1400px] flex-wrap justify-center gap-6 lg:flex-nowrap">
-        <div className="flex flex-1 items-center justify-center lg:flex-[0.45]">
+      <div className="mx-4 mb-16 flex w-full max-w-[1400px] flex-col items-stretch justify-center gap-6 sm:mx-6 sm:mb-20 lg:mx-12 lg:flex-row lg:gap-8">
+        <div className="flex items-stretch justify-center lg:flex-[0.45]">
           <Image
             src={girlLaptop.src}
             width={girlLaptop.width}
@@ -221,37 +229,37 @@ const GetInTouch: React.FunctionComponent = () => {
             quality={80}
             placeholder="blur"
             blurDataURL="data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
-            className="h-full w-full rounded-[20px] object-cover"
+            className="h-full max-h-[520px] w-full rounded-[20px] object-cover sm:max-h-[640px] lg:max-h-none"
           />
         </div>
 
-        <div className="flex h-full flex-1 items-center justify-center lg:flex-[0.55]">
+        <div className="flex items-stretch justify-center lg:flex-[0.55]">
           <form
             onSubmit={handleSubmit}
             className={cn(
-              "relative flex w-full flex-col items-center justify-center rounded-[20px] bg-white/70 p-5 sm:p-10 lg:px-12 lg:py-[18px] lg:pb-3",
+              "relative flex w-full flex-col gap-5 rounded-[20px] bg-white/70 p-6 sm:p-8 sm:gap-6 lg:p-10",
               "shadow-[0px_-3px_8px_0px_rgba(0,155,245,0.15)_inset,0px_2px_1px_0px_rgba(0,0,0,0.05)]",
             )}
           >
-            <div className="relative mb-[46px] flex flex-col justify-center">
+            <div className="relative mb-1 flex flex-col items-center justify-center gap-2 text-center sm:mb-2">
               <h2
                 className={cn(
-                  "relative flex justify-center font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2",
+                  "relative inline-flex items-center justify-center gap-1 font-heading text-h2-mobile sm:text-h2-tablet lg:text-h2",
                 )}
               >
                 {t("contact.get_in_touch.heading_lead")}
                 {headingAccent && (
-                  <span className="ms-1 font-bold text-success">
+                  <span className="font-bold text-success">
                     {headingAccent}
                   </span>
                 )}
                 <Image
                   src={lines}
                   alt=""
-                  className="absolute -top-6 right-[-6%] h-6 w-6 object-contain"
+                  className="absolute -top-4 -right-6 h-5 w-5 object-contain sm:-top-5 sm:-right-7 sm:h-6 sm:w-6"
                 />
               </h2>
-              <p className="flex text-center font-body text-small">
+              <p className="text-center font-body text-small leading-relaxed">
                 {t("contact.get_in_touch.subtitle_line_1")}
                 {subtitleLine2 && (
                   <>
@@ -262,111 +270,126 @@ const GetInTouch: React.FunctionComponent = () => {
               </p>
             </div>
 
-            <div className="z-[1] grid w-full grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2">
-              <div className="flex flex-col">
-                <p className="font-body text-small">
+            <div className="z-[1] grid w-full grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2">
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="FirstName"
+                  className="font-body text-form-label text-ink-700"
+                >
                   {t("contact.get_in_touch.label_first_name")}
-                </p>
-                <div className="flex flex-1 flex-col">
-                  <Input
-                    name="FirstName"
-                    value={formData.FirstName}
-                    onChange={handleChange}
-                    placeholder={t("contact.get_in_touch.placeholder_first_name")}
-                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
-                  />
-                  {errors.FirstName && (
-                    <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
-                      {errors.FirstName}
-                    </p>
-                  )}
-                </div>
+                </label>
+                <input
+                  id="FirstName"
+                  name="FirstName"
+                  value={formData.FirstName}
+                  onChange={(e) => handleChange("FirstName", e.target.value)}
+                  placeholder={t("contact.get_in_touch.placeholder_first_name")}
+                  className={fieldClass}
+                />
+                {errors.FirstName && (
+                  <p className="font-body text-small text-danger">
+                    {errors.FirstName}
+                  </p>
+                )}
               </div>
 
-              <div className="flex flex-col">
-                <p className="font-body text-small">
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="LastName"
+                  className="font-body text-form-label text-ink-700"
+                >
                   {t("contact.get_in_touch.label_last_name")}
-                </p>
-                <div className="flex flex-1 flex-col">
-                  <Input
-                    name="LastName"
-                    value={formData.LastName}
-                    onChange={handleChange}
-                    placeholder={t("contact.get_in_touch.placeholder_last_name")}
-                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
-                  />
-                  {errors.LastName && (
-                    <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
-                      {errors.LastName}
-                    </p>
-                  )}
-                </div>
+                </label>
+                <input
+                  id="LastName"
+                  name="LastName"
+                  value={formData.LastName}
+                  onChange={(e) => handleChange("LastName", e.target.value)}
+                  placeholder={t("contact.get_in_touch.placeholder_last_name")}
+                  className={fieldClass}
+                />
+                {errors.LastName && (
+                  <p className="font-body text-small text-danger">
+                    {errors.LastName}
+                  </p>
+                )}
               </div>
 
-              <div className="flex flex-col">
-                <p className="font-body text-small">
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="EmailAddress"
+                  className="font-body text-form-label text-ink-700"
+                >
                   {t("contact.get_in_touch.label_email")}
-                </p>
-                <div className="flex flex-1 flex-col">
-                  <Input
-                    name="EmailAddress"
-                    value={formData.EmailAddress}
-                    onChange={handleChange}
-                    placeholder={t("contact.get_in_touch.placeholder_email")}
-                    className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
-                  />
-                  {errors.EmailAddress && (
-                    <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
-                      {errors.EmailAddress}
-                    </p>
-                  )}
-                </div>
+                </label>
+                <input
+                  id="EmailAddress"
+                  name="EmailAddress"
+                  type="email"
+                  value={formData.EmailAddress}
+                  onChange={(e) => handleChange("EmailAddress", e.target.value)}
+                  placeholder={t("contact.get_in_touch.placeholder_email")}
+                  className={fieldClass}
+                />
+                {errors.EmailAddress && (
+                  <p className="font-body text-small text-danger">
+                    {errors.EmailAddress}
+                  </p>
+                )}
               </div>
 
-              <div className="flex flex-col">
-                <p className="font-body text-small">
+              <div>
+                <label className="mb-1.5 block font-body text-form-label text-ink-700">
                   {t("contact.get_in_touch.label_phone")}
-                </p>
-                <div className="my-1 flex flex-1 flex-col">
-                  <PhoneInput
-                    defaultCountry={isRTL ? "AE" : "SA"}
-                    value={formData?.PhoneNumber || ""}
-                    onChange={(e) => handleChange("PhoneNumber", String(e))}
-                    inputComponent={CustomInput}
-                    placeholder={t("contact.get_in_touch.placeholder_phone")}
-                    className="relative z-[2] h-[5.5vh] min-h-[44px] rounded-[10px] bg-white ps-[10px] text-ink-800 shadow-card outline-none"
-                  />
-                  {errors.PhoneNumber && (
-                    <p className="ms-[6px] mt-[6px] font-body text-small text-danger">
-                      {errors.PhoneNumber}
-                    </p>
-                  )}
-                </div>
+                </label>
+                <PhoneInput
+                  defaultCountry={isRTL ? "AE" : "SA"}
+                  value={formData?.PhoneNumber || ""}
+                  onChange={(e) => handleChange("PhoneNumber", String(e))}
+                  inputComponent={CustomInput}
+                  placeholder={t("contact.get_in_touch.placeholder_phone")}
+                  className="relative z-[2] h-11 min-h-[44px] rounded-md bg-white ps-[10px] text-ink-800 shadow-card outline-none"
+                />
+                {errors.PhoneNumber && (
+                  <p className="mt-1.5 font-body text-small text-danger">
+                    {errors.PhoneNumber}
+                  </p>
+                )}
               </div>
             </div>
 
-            <p className="mt-[6px] w-full font-body text-small">
-              {t("contact.get_in_touch.label_message")}
-            </p>
-            <Textarea
-              name="Message"
-              rows={4}
-              value={formData.Message}
-              onChange={(e) => handleChange("Message", e.target.value)}
-              placeholder={t("contact.get_in_touch.placeholder_message")}
-              className="my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card"
-            />
-            {errors.Message && (
-              <p className="ms-[6px] mt-[6px] w-full font-body text-small text-danger">
-                {errors.Message}
-              </p>
-            )}
+            <div className="flex w-full flex-col gap-1.5">
+              <label
+                htmlFor="Message"
+                className="font-body text-form-label text-ink-700"
+              >
+                {t("contact.get_in_touch.label_message")}
+              </label>
+              <textarea
+                id="Message"
+                name="Message"
+                rows={5}
+                value={formData.Message}
+                onChange={(e) => handleChange("Message", e.target.value)}
+                placeholder={t("contact.get_in_touch.placeholder_message")}
+                className={cn(
+                  leagueSpartan.className,
+                  "min-h-[120px] w-full resize-y rounded-md bg-white px-4 py-3 font-body text-form-input text-ink-800 shadow-card",
+                  "placeholder:text-ink-400 outline-none focus:outline-none focus-visible:outline-none",
+                )}
+              />
+              {errors.Message && (
+                <p className="font-body text-small text-danger">
+                  {errors.Message}
+                </p>
+              )}
+            </div>
 
             <Button
               type="submit"
               disabled={loading}
               className={cn(
-                "my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] sm:py-[15px]",
+                "mt-1 h-12 w-full rounded-md font-heading text-button !text-white shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] sm:h-[52px]",
               )}
             >
               {loading ? (
