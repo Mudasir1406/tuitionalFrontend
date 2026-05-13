@@ -8,8 +8,12 @@ import logo from "../../public/assets/images/static/logo.png";
 
 import { leagueSpartan } from "@/app/fonts";
 import PopUpButtonV2 from "./pop-up-buttonV2";
+import { useI18n } from "@/context/language-context";
+
 
 const FooterV2: React.FC = async () => {
+    const { t, locale } = useI18n();
+  
   return (
     <footer>
       <div className="relative flex w-full items-center justify-center bg-footer-fade py-[30px] md:py-[60px]">
@@ -227,10 +231,10 @@ const FooterV2: React.FC = async () => {
 
           {/* Copyright — subtitle2 theme (statLabel): uppercase, lh 1.4, ls 0.05em */}
           <p
-            className={`${leagueSpartan.className} my-4 text-center text-sm font-medium uppercase leading-[1.4] tracking-[0.05em] text-ink-900 sm:my-5 md:my-[30px] lg:my-10`}
-          >
-            © 2024 Tuitional
-          </p>
+                      className={`${leagueSpartan.className} text-sm font-medium uppercase leading-[1.4] tracking-[0.05em] my-5 sm:my-[30px] md:my-[50px] lg:my-[70px] text-center text-ink-900`}
+                    >
+                      {t("footer.copyright")}
+                    </p>
         </div>
       </div>
     </footer>
