@@ -21,12 +21,12 @@ export const app = initializeApp(firebaseConfig);
 // export const analytics = getAnalytics(app);
 
 // Pick Firestore database by NEXT_PUBLIC_APP_ENV (must be set explicitly).
-// - "development" → named DB `tuitional-website-staging-db`
+// - "development" → named DB `tuitional-website-staging`
 // - "production"  → default DB
 // Anything else (including unset) falls back to the default DB.
 const appEnv = process.env.NEXT_PUBLIC_APP_ENV;
 
 export const db =
   appEnv === "development"
-    ? getFirestore(app, "tuitional-website-staging-db")
+    ? getFirestore(app, "tuitional-website-staging")
     : getFirestore(app);
