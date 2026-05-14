@@ -1,11 +1,14 @@
 import path from "path";
-import bundleAnalyzer from '@next/bundle-analyzer';
+import bundleAnalyzer from "@next/bundle-analyzer";
+import { createRequire } from "module";
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
+const require = createRequire(import.meta.url);
+
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
@@ -17,7 +20,12 @@ const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
   experimental: {
-    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+    optimizePackageImports: [
+      "@mui/material",
+      "@mui/icons-material",
+      "@emotion/react",
+      "@emotion/styled",
+    ],
   },
 
   webpack: (config, { isServer }) => {
@@ -46,16 +54,16 @@ const nextConfig = {
 
       // Optimize chunk splitting
       config.optimization.splitChunks = {
-        chunks: 'all',
+        chunks: "all",
         cacheGroups: {
           mui: {
-            name: 'mui',
+            name: "mui",
             test: /[\\/]node_modules[\\/](@mui|@emotion)[\\/]/,
             priority: 30,
             reuseExistingChunk: true,
           },
           vendor: {
-            name: 'vendor',
+            name: "vendor",
             test: /[\\/]node_modules[\\/]/,
             priority: 20,
             reuseExistingChunk: true,
@@ -67,11 +75,11 @@ const nextConfig = {
     return config;
   },
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     dangerouslyAllowSVG: false,
-    contentDispositionType: 'attachment',
+    contentDispositionType: "attachment",
     remotePatterns: [
       {
         protocol: "https",
