@@ -56,12 +56,24 @@ Box container (flex col centered, paddingX lg:5vw, margin xs:0 3vw / lg:0 2vh, w
 | B3 | 16 | desc `text-body-mobile sm:text-body` | MUI `body2` → `text-small` (14px) — port uses 15/16px | **Med** |
 | B4 | 16 | textAlign cascade `text-center md:text-start lg:text-center` | matches MUI | OK |
 | B5 | 20 | `grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4` | matches `xs=12 sm=6 md=4 lg=3` | OK |
-| B6 | 22-29 | card `rounded-[20px]`, video `h-[165px] w-full lg:h-[48vh]` | matches | OK |
+| B6 | 22-29 | Heights on the WRAPPER (`h-[165px] lg:h-[48vh] overflow-hidden rounded-[20px]`); video is `block h-full w-full object-cover rounded-[20px]` | MUI sets `borderRadius:"20px"` on BOTH `Card` AND `CardMedia` | **High** |
+
+**B6 detail** — two stacked bugs:
+1. A `<video controls>` renders its native **media-controls enclosure** in a layer that ignores the element's own `border-radius` at the BOTTOM corners (Chrome). So `rounded-[20px]` on the video alone fixes the top but leaves the bottom (controls bar) square.
+2. The wrapper's `overflow-hidden` only clips that if the wrapper actually bounds the video. Putting `h-[165px]/lg:h-[48vh]` on the **video** and leaving the wrapper auto-height (plus the video defaulting to `display:inline`) let the video render past the wrapper box — nothing got clipped.
+
+Fix: put the explicit heights + `overflow-hidden rounded-[20px]` on the **wrapper**, and make the video `block h-full w-full object-cover` (so it exactly fills the bounded wrapper and `overflow-hidden` clips all four corners — controls enclosure included). Keep `rounded-[20px]` on the video too as belt-and-braces.
 
 ## §3 Corrected Tailwind classNames
 
 ```tsx
 <div className="w-full px-0 py-[2vh] pb-[4vh] text-center font-heading text-small text-ink-900 md:text-start lg:w-[139vh] lg:py-[1vh] lg:pb-[3vh] lg:text-center">
+
+{/* heights + clip on the WRAPPER; video is block + fills it. Wrapper auto-height + heights-on-video does NOT clip. */}
+<div className="h-[165px] w-full overflow-hidden rounded-[20px] lg:h-[48vh]">
+  <video src={poster.video} controls poster={poster.thumbnil}
+    className="block h-full w-full rounded-[20px] object-cover" />
+</div>
 ```
 
 ## §4 Verification

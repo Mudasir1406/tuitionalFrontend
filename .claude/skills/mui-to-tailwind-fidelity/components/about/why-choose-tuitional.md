@@ -144,9 +144,25 @@ Box  (root)
 
 None directly. Cards are static. The `Grid container={!isGreaterThanLarge}` JS-driven layout toggle is a code smell — in Tailwind, replace with CSS-only responsive layout (flex-col below 1200, flex-row at lg+).
 
-### Grid → Tailwind cols translation
+### Grid → Tailwind cols translation (CORRECTED — flex-wrap was wrong)
 
-Per source: `<Grid item md={12} lg={3}>` — 3 cards each consume a full row below lg, and 4 cards-of-the-12-column-grid at lg+. **But there are only 3 cards, not 4** — MUI Grid will simply align 3 items of size 3/12 = 9/12 total, leaving a 3/12 gap. Combined with `gridContainer.justifyContent: center`, the 3 cards end up centered. So the Tailwind equivalent is **NOT** `grid grid-cols-3` (which would force equal widths and span 12/12) — it's `flex flex-col lg:flex-row lg:flex-wrap justify-center` matching MUI's own `flexDirection` + `flexWrap` rules. The current Tailwind port does this correctly via `flex-wrap`.
+Per source: `<Grid item md={12} lg={3}>` — 3 cards stack vertically below lg, sit in one row at lg+.
+
+**Earlier guidance said use `flex flex-col lg:flex-row lg:flex-wrap` — that was WRONG and caused a real bug.** The `InfoBox` has fixed widths (`lg:w-[380px] xl:w-[420px]`). Three 380px cards + 2×24px gap = 1188px. At a 1200–1280px viewport, after the page's `lg:px-[6vw]` padding the available width is ~1056–1126px — **less than 1188px** — so `flex-wrap` wraps the third card onto a second row. The cards only fit on one row above ~1340px.
+
+**Correct translation**: use a CSS grid that is genuinely 1-col below lg and 3-col at lg+, and make the card width fluid at lg so it fills the grid cell instead of overflowing it:
+
+```tsx
+// container:
+<div className="grid w-full grid-cols-1 items-stretch gap-4 lg:grid-cols-3 lg:gap-6">
+  {items.map(... => <div className="flex justify-center">...</div>)}
+</div>
+
+// InfoBox root at lg — drop the fixed lg:w-[380px] xl:w-[420px], use fluid + cap:
+//   ...lg:w-full lg:max-w-[420px] xl:h-[460px]
+```
+
+`grid-cols-3` is the right call here — it guarantees "3 in a row on large, 1 on small" (the actual design intent). The old worry that grid "forces 12/12 span" is irrelevant: MUI's `justifyContent: center` + fixed card widths just meant the row was centered; a 3-col grid with `lg:max-w-[420px]` cards centered in their cells reproduces that look without the wrap fragility.
 
 ---
 
@@ -166,8 +182,9 @@ Current port: `tuitionalFrontend\src\components\about\why-choose-tuitional.tsx` 
 | WC8 | 58 | Outer heading container: `<div className="mb-auto flex w-full flex-col items-center bg-transparent lg:mb-6">` | MUI `.headingContanier.marginBottom: { xs: "auto", lg: "24px" }`. `mb-auto` (xs) + `lg:mb-6` (24px). ✓ Match. Items, flex-col, w-full, bg-transparent ✓. Keep. | — |
 | WC9 | 59 | h2: `relative mb-5 mt-10 flex items-center justify-center text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black` | MUI:<br>• marginTop xs/sm/md/lg: 40/50/70/105 ✓ (`mt-10`=40)<br>• marginBottom: 20 ✓ (`mb-5`=20)<br>• `display: flex` ✓<br>• `position: relative` ✓<br>• `textAlign: center` ✓<br>• `alignItems: center, justifyContent: center` ✓<br>• `color: #000` ✓<br>**Typography**: `text-h2-mobile sm:text-h2-tablet lg:text-h2` ✓ — but note the MUI table also implies `md` keeps `h2-tablet` (28px), which the current port handles correctly since there's no `md:` override (sm: stays in effect until `lg:`).<br>**No bugs**. ✓ Keep. | — |
 | WC10 | 60–71 | Decorative `<Image>` elements inside the `<h2>` | MUI `.mainHeading::before` is positioned `top: { xs:-12, sm:-35, md:-35, lg:-35 }`, `left: { xs: "11%", sm:"-6%", md:"-6%", lg:"-6%" }`, width 20/43/43/43, height 19/35/35/35, with `linesMobile.png` (xs) and `linesInvert.png` (sm/md/lg).<br>Current port:<br>• Mobile `<Image>`: `absolute -top-3 left-[11%] h-[19px] w-5 object-contain sm:hidden`. `-top-3` = -12px ✓. `left-[11%]` ✓. `h-[19px] w-5` ✓. `sm:hidden` ✓.<br>• Desktop `<Image>`: `absolute -left-[6%] -top-[35px] hidden h-[35px] w-[43px] object-contain sm:block`. ✓ all match.<br>**No bugs**. | — |
-| WC11 | 76 | Grid container wrapper `<div className="flex w-full flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0">` | MUI:<br>• `display: flex` ✓<br>• `flexDirection: lg:row, else column` → currently lacks `flex-col` for xs/sm/md. Tailwind default for `flex` is `flex-row`. **Add `flex-col lg:flex-row`** (current `lg:flex-row` is fine for lg but missing the column-stack for sub-lg).<br>• `alignItems: stretch` ✓<br>• `justifyContent: center` ✓<br>• `width: 100%` ✓<br>• `columnGap: { lg: 24, xs: 0 }` → `lg:gap-x-6` ✓<br>• `rowGap: { xs: 16, lg: 0 }` → `gap-y-4 lg:gap-y-0` ✓<br>• `flexWrap: wrap` ✓<br>**Bug**: add `flex-col` to force column stack below lg. The fact `flex-wrap` lets it work today is incidental — `flex` defaults to `flex-row`, then `flex-wrap` wraps each card to its own row because `w-full` makes each card too wide. But this depends on card width — safer to explicitly `flex-col`. | medium |
-| WC12 | 78–82 | Card wrapper `<div className="mb-4 flex w-full justify-center sm:w-full md:w-[90%] lg:mb-0 lg:w-auto">` | MUI `.gridItem`:<br>• `marginBottom: { xs: 16, lg: 0 }` → `mb-4 lg:mb-0` ✓<br>• `width: { xs: 100%, sm: 100%, md: 90%, lg: auto }` → `w-full sm:w-full md:w-[90%] lg:w-auto` ✓<br>• `display: flex` ✓<br>• `justifyContent: center` ✓<br>**No bugs**. | — |
+| WC11 | 76 | Grid container — was `flex flex-col flex-wrap ... lg:flex-row`, now `grid w-full grid-cols-1 items-stretch gap-4 lg:grid-cols-3 lg:gap-6` | **The `flex-wrap` approach is broken** — fixed-width cards (380/420px) overflow the lg container and wrap to a 2nd row at 1200–1280px. Replace with a real `grid grid-cols-1 lg:grid-cols-3`. See §1 "Grid → Tailwind cols translation (CORRECTED)". | **High** |
+| WC12 | 78–82 | Card wrapper — was `mb-4 flex w-full justify-center sm:w-full md:w-[90%] lg:mb-0 lg:w-auto`, now `flex justify-center` | With a real grid, the cell IS the column — width juggling (`md:w-[90%] lg:w-auto`) and `mb-4` (gap handles spacing) are no longer needed. Just `flex justify-center` to center the card in its cell. | **High** |
+| WC16 | 33 | InfoBox root fixed lg width `lg:w-[380px] xl:w-[420px]` | Fixed widths are what caused the wrap. With `lg:grid-cols-3`, change to fluid `lg:w-full lg:max-w-[420px]` so each card fills its grid cell (centered, capped at 420px). Keep `xl:h-[460px]`. | **High** |
 | WC13 | (missing) | No JS toggling Grid `container={!isGreaterThanLarge}` | MUI's runtime media-query toggle is replaced by CSS-only responsive flex. The Tailwind port has correctly elided the JS toggle. ✓ Keep. | — |
 | WC14 | 40 | Card heading uses `text-2xl` for lg | Verify in `tailwind.config.ts`: if `text-2xl` resolves to 24px, this is correct. The MUI heading at lg is `fontSize: "24px"`. If `text-2xl` in this Tailwind config is anything other than 24px, replace with `lg:text-[24px]`. | low |
 | WC15 | 33 | `rounded-md` on card root | MUI `borderRadius: "10px"`. Per `01-token-mapping.md §7`, `rounded-md` = 10px in this repo. ✓ Keep — but **verify against `tailwind.config.ts`** to be certain. If `rounded-md` is anything else (e.g. 6px in default Tailwind), replace with `rounded-[10px]`. | low |
@@ -179,14 +196,20 @@ Current port: `tuitionalFrontend\src\components\about\why-choose-tuitional.tsx` 
 The current port is largely correct. Key fixes:
 
 ```tsx
-// InfoBox root — add responsive minHeights:
-<div className="relative flex h-auto min-h-[250px] w-full flex-col items-center justify-center rounded-[10px] bg-white/70 p-6 shadow-[0px_-3px_8px_0px_#00000026_inset,0px_2px_1px_0px_#0000000D] sm:mx-6 sm:h-[280px] sm:min-h-[280px] sm:w-[320px] md:h-[320px] md:min-h-[320px] md:w-[360px] lg:h-[400px] lg:min-h-[400px] lg:w-[380px] xl:h-[460px] xl:w-[420px]">
+// InfoBox root — responsive minHeights + FLUID lg width (no fixed lg:w-[380px]/xl:w-[420px]):
+<div className="relative flex h-auto min-h-[250px] w-full flex-col items-center justify-center rounded-[10px] bg-white/70 p-6 shadow-[0px_-3px_8px_0px_#00000026_inset,0px_2px_1px_0px_#0000000D] sm:mx-6 sm:h-[280px] sm:min-h-[280px] sm:w-[320px] md:h-[320px] md:min-h-[320px] md:w-[360px] lg:h-[400px] lg:min-h-[400px] lg:w-full lg:max-w-[420px] xl:h-[460px]">
 
 // Card description — change mx-auto → m-auto:
 <p className="m-auto max-w-full text-center font-heading text-[12px] leading-4 text-ink-800 sm:max-w-[280px] sm:text-[13px] sm:leading-[17px] md:max-w-[320px] md:text-[14px] md:leading-[18px] lg:max-w-[340px] lg:text-[15px] lg:leading-5 xl:max-w-[380px] xl:text-base xl:leading-[22px]">
 
-// Grid container — add flex-col (explicit):
-<div className="flex w-full flex-col flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0">
+// Container — real grid (1-col small, 3-col large), NOT flex-wrap:
+<div className="grid w-full grid-cols-1 items-stretch gap-4 lg:grid-cols-3 lg:gap-6">
+  {items.map(... => (
+    <div key={i} className="flex justify-center">
+      <InfoBox ... />
+    </div>
+  ))}
+</div>
 ```
 
 Per-element from → to summary:
@@ -196,10 +219,11 @@ Per-element from → to summary:
 | Card root | `rounded-md` | `rounded-[10px]` (explicit, avoids token ambiguity) |
 | Card root | `sm:h-[280px] sm:w-[320px]` | `sm:h-[280px] sm:min-h-[280px] sm:w-[320px]` |
 | Card root | `md:h-[320px] md:w-[360px]` | `md:h-[320px] md:min-h-[320px] md:w-[360px]` |
-| Card root | `lg:h-[400px] lg:w-[380px]` | `lg:h-[400px] lg:min-h-[400px] lg:w-[380px]` |
+| Card root | `lg:h-[400px] lg:w-[380px] xl:h-[460px] xl:w-[420px]` | `lg:h-[400px] lg:min-h-[400px] lg:w-full lg:max-w-[420px] xl:h-[460px]` (fluid lg width — fixed width caused the wrap bug) |
 | Card p (description) | `mx-auto` | `m-auto` |
 | Card h3 | `lg:text-2xl` | `lg:text-[24px]` (only if `text-2xl` doesn't resolve to 24px in this config — verify) |
-| Grid container | `flex w-full flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0` | `flex w-full flex-col flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0` |
+| Container | `flex w-full flex-wrap items-stretch justify-center gap-y-4 lg:flex-row lg:gap-x-6 lg:gap-y-0` | `grid w-full grid-cols-1 items-stretch gap-4 lg:grid-cols-3 lg:gap-6` |
+| Card wrapper | `mb-4 flex w-full justify-center sm:w-full md:w-[90%] lg:mb-0 lg:w-auto` | `flex justify-center` |
 
 ---
 
@@ -207,8 +231,8 @@ Per-element from → to summary:
 
 - **375 (iPhone SE)**: Section h2 centered ("Why Choose Tuitional?"), 22px, mt=40px, mb=20px. Decorative `linesMobile` line ~12px above-left of heading, sized 19×20px. Below heading: `mb-auto` (stretches `.headingContanier` to fill any remaining flex space, but no parent flex so behaves as `mb-auto` ≈ no extra space). Three cards stacked vertically, each `w-full min-h-[250px] p-6` with white/70 bg, 10px radius, 16px vertical gap between them. Each card: 45×45px icon circle (white bg, inset shadow), 20×20px inner image, mb=10px below icon. Card h3 16px, leading 20px, mb=10px. Card p 12px, leading 16px, m-auto center.
 - **768 (iPad Mini)**: Section h2 28px. Decorative `linesInvert` at top=-35px, left=-6%, 35×43px. Cards: each becomes 320×280px (w×h), still stacked column-style (md=12 means 1 col below lg), with 24px horizontal mx auto-centering them. Icon circle 55×55px, inner image 30×30px, mb=20 (sm uses 20px from MUI `marginBottom: { sm: "20px" }`). Card h3 18px leading 22px mb=15. Card p 13px leading 17px max-w-[280px].
-- **1280 (Laptop S)**: Section h2 36px, mt=105px. `.headingContanier.mb-6` (24px below heading). Three cards now in a flex-row, 24px column gap, each 380×400px. Icon 115×115px, mt=-80px (pulled up out of card), inner image 45×45px, mb=40px. Card h3 24px leading 28px mb=22. Card p 15px leading 20px max-w-[340px].
-- **1920 (Desktop)**: Section h2 still 36px (MUI has no `xl` step for h2). Cards 420×460px each, icon still 115×115px (MUI doesn't grow it at xl), card h3 28px leading 32, card p 16px leading 22 max-w-[380px].
+- **1280 (Laptop S)**: Section h2 36px, mt=105px. `.headingContanier.mb-6` (24px below heading). Three cards in a `lg:grid-cols-3` row, 24px gap, **all three on one row** (no wrap — the old flex-wrap version wrapped the 3rd card here). Each card height 400px, width fills its grid cell capped at 420px. Icon 115×115px, mt=-80px (pulled up out of card), inner image 45×45px, mb=40px. Card h3 24px leading 28px mb=22. Card p 15px leading 20px max-w-[340px].
+- **1920 (Desktop)**: Section h2 still 36px (MUI has no `xl` step for h2). Three cards on one row, each 460px tall, width = cell capped at 420px. Icon still 115×115px (MUI doesn't grow it at xl), card h3 28px leading 32, card p 16px leading 22 max-w-[380px].
 
 ---
 

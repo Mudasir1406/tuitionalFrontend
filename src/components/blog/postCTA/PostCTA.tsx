@@ -5,8 +5,9 @@ import plan from "../../../../public/assets/images/static/plan.png";
 
 function PostCTA() {
   return (
-    <div className="-mt-[70px] flex w-auto items-center rounded bg-brand-500 p-[10px] sm:p-5 md:p-[25px] lg:p-[30px]">
-      <div className="grid w-full grid-cols-1 items-center gap-4 sm:grid-cols-12 sm:justify-between">
+    <div className="flex w-full items-center rounded bg-brand-500 p-[10px] sm:p-5 md:p-[25px] lg:p-[30px]">
+      <div className="grid w-full grid-cols-1 items-center gap-4 sm:grid-cols-12">
+        {/* Plan icon */}
         <div className="flex justify-center sm:col-span-3 md:col-span-2">
           <div className="flex h-[9vh] min-h-[75px] min-w-[75px] max-h-[90px] max-w-[90px] w-[9vh] items-center justify-center rounded-full bg-white">
             <Image
@@ -19,11 +20,15 @@ function PostCTA() {
             />
           </div>
         </div>
+
+        {/* Admission text */}
         <div className="flex justify-center sm:col-span-6 md:col-span-7">
-          <p className="ms-[10px] text-center font-heading text-stat-number-mobile sm:text-stat-number-tablet md:text-start lg:text-stat-number text-white">
+          <p className="ms-[10px] font-heading text-body-mobile sm:text-body text-center md:text-start text-white">
             Admissions are Open for the Next Year Batch
           </p>
         </div>
+
+        {/* CTA button */}
         <div className="flex justify-center sm:col-span-3 md:col-span-3">
           <PopUpButton
             text="Enroll Now!"

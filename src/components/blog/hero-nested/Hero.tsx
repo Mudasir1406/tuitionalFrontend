@@ -39,30 +39,89 @@ const Hero = ({ data, timestamp, showSocial, authorProfile }: Props) => {
     twitter: `https://twitter.com/intent/tweet?url=${currentUrl}`,
   };
 
-  const HeaderTag = ((data?.headerTag?.trim() || "h1").toLowerCase()) as "h1" | "h2" | "h3";
+  const HeaderTag = (data?.headerTag?.trim() || "h1").toLowerCase() as
+    | "h1"
+    | "h2"
+    | "h3";
 
   return (
-    <div className="relative bg-brand-50 px-4 pt-32 pb-12 lg:pt-40">
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-4">
-        <HeaderTag className="text-center font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1 text-black">
+    <div
+      className="relative flex h-[70vh] items-center justify-center overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(to bottom, #d6f0ff, rgba(255, 255, 255, 0.9))",
+      }}
+    >
+      {/* Left decorative bg */}
+      <div
+        className="absolute left-0 top-[10%] z-[1] h-[250px] w-[250px] bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/assets/images/static/blogBg1.png')" }}
+      />
+      {/* Right decorative bg */}
+      <div
+        className="absolute bottom-0 right-0 z-[1] h-[250px] w-[250px] bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/assets/images/static/blogBg2.png')" }}
+      />
+
+      {/* Main content */}
+      <div className="relative z-[2] flex w-full max-w-[75vw] flex-col items-center px-4 text-center sm:max-w-[70vw] lg:max-w-[60vw]">
+        <HeaderTag className="font-heading text-h1-mobile sm:text-h1-tablet lg:text-h1 text-black">
           {data?.header}
         </HeaderTag>
-        <p className="font-heading text-body-mobile text-ink-700">
-          {`${authorProfile?.authorName} | ${authorProfile?.blogDate}`}
-        </p>
+
+        {/* Author / date pill */}
+        <div className="mt-[2vh] flex max-w-[290px] flex-col items-center rounded-md bg-[#08b463] px-3 py-2">
+          <span className="font-heading text-body-mobile text-white">
+            {`${authorProfile?.authorName} | ${authorProfile?.blogDate}`}
+          </span>
+        </div>
+
+        {/* Social share icons */}
         {showSocial && (
-          <div className="flex gap-3">
-            <a href={shareUrls.facebook} target="_blank" rel="noopener noreferrer">
-              <Image className="h-8 w-8 object-contain" src={facebook} alt="facebook" />
+          <div className="mt-[5vh] flex flex-row items-center justify-center gap-2">
+            <a
+              href={shareUrls.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="h-[47px] w-[47px] cursor-pointer object-cover"
+                src={facebook}
+                alt="facebook"
+              />
             </a>
-            <a href={shareUrls.twitter} target="_blank" rel="noopener noreferrer">
-              <Image className="h-8 w-8 object-contain" src={twitter} alt="twitter" />
+            <a
+              href={shareUrls.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="h-[47px] w-[47px] cursor-pointer object-cover"
+                src={twitter}
+                alt="twitter"
+              />
             </a>
-            <a href={shareUrls.whatsapp} target="_blank" rel="noopener noreferrer">
-              <Image className="h-8 w-8 object-contain" src={whatsapp} alt="whatsapp" />
+            <a
+              href={shareUrls.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="h-[47px] w-[47px] cursor-pointer object-cover"
+                src={whatsapp}
+                alt="whatsapp"
+              />
             </a>
-            <a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer">
-              <Image className="h-8 w-8 object-contain" src={linkedin} alt="linkedin" />
+            <a
+              href={shareUrls.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="h-[47px] w-[47px] cursor-pointer object-cover"
+                src={linkedin}
+                alt="linkedin"
+              />
             </a>
           </div>
         )}

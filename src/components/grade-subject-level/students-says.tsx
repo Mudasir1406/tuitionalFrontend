@@ -19,12 +19,15 @@ const StudentSays: React.FC<{ data: PageData["what_our_student_says"] }> = async
 
       <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {videoData.map((poster, index) => (
-          <div key={index} className="overflow-hidden rounded-[20px]">
+          <div
+            key={index}
+            className="h-[165px] w-full overflow-hidden rounded-[20px] lg:h-[48vh]"
+          >
             <video
               src={poster.video}
               controls
               poster={poster.thumbnil}
-              className="h-[165px] w-full lg:h-[48vh]"
+              className="block h-full w-full rounded-[20px] object-cover"
             />
           </div>
         ))}

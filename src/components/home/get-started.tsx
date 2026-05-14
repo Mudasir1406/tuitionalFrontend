@@ -37,7 +37,7 @@ const GetStarted: React.FC<IProps> = ({ data }) => {
           src={linesMobile}
           alt=""
           aria-hidden="true"
-          className="absolute -top-5 left-[14%] z-10 h-[50px] w-[50px] object-contain sm:hidden"
+          className="absolute -top-5 left-[14%] z-10 h-[19px] w-5 object-contain sm:hidden"
         />
         <Image
           src={linesInvert}

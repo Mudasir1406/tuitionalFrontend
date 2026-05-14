@@ -7,11 +7,10 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/input";
+import { Input, Textarea } from "@/components/ui/input";
 import CustomInput from "@/components/custom-input/custom-input";
 import TranslatableDropDown from "@/components/DropDown/TranslatableDropDown";
 import "@/components/DropDown/DropDown.css";
-import Input from "@/components/input/Input";
 import { Filter_Data, getFilterData } from "@/services/filter-data/filter-data";
 import { sendForm } from "@/services/contact-form/contact-form";
 import { isNotEmpty, isValidEmail } from "@/utils/helper";
@@ -134,30 +133,31 @@ const BlogSidebarForm: React.FC = () => {
     }
   };
 
-  const inputCls = "h-9 w-full rounded-md bg-white px-3 font-heading text-form-input text-ink-900 shadow-card";
-  const errCls = "ms-1 mt-1 font-body text-small text-danger";
+  const ddCls = "!text-form-input [&_.dropdown-header]:h-11 [&_.dropdown-header]:px-4";
+  const errCls = "ms-1 -mt-1 font-body text-small text-danger";
 
   return (
-    <div className="flex flex-col gap-2 rounded-md bg-brand-50 p-4 shadow-card">
+    <div className="flex flex-col gap-3 rounded-md bg-brand-50 p-4 shadow-card">
       <h3 className="font-heading text-h6 text-ink-900">Get Started</h3>
 
       <Input
         name="FirstName"
         value={formData.FirstName}
-        onChange={handleChange}
+        onChange={(e) => handleChange("FirstName", e.target.value)}
         placeholder="Enter name here ..."
-        className={inputCls}
+        error={errors.FirstName}
+        className="border-0"
       />
-      {errors.FirstName && <p className={errCls}>{errors.FirstName}</p>}
 
       <Input
         name="EmailAddress"
+        type="email"
         value={formData.EmailAddress}
-        onChange={handleChange}
+        onChange={(e) => handleChange("EmailAddress", e.target.value)}
         placeholder="Enter email here ..."
-        className={inputCls}
+        error={errors.EmailAddress}
+        className="border-0"
       />
-      {errors.EmailAddress && <p className={errCls}>{errors.EmailAddress}</p>}
 
       <PhoneInput
         defaultCountry="SA"
@@ -166,7 +166,7 @@ const BlogSidebarForm: React.FC = () => {
         inputComponent={CustomInput}
         disabled={!formData.EmailAddress}
         placeholder="Enter phone number ..."
-        className="h-9 w-full rounded-md bg-white ps-2 shadow-card"
+        className="h-11 w-full rounded-md bg-white px-3 font-body text-form-input shadow-card"
       />
       {errors.PhoneNumber && <p className={errCls}>{errors.PhoneNumber}</p>}
 
@@ -178,6 +178,7 @@ const BlogSidebarForm: React.FC = () => {
         onChange={handleChange}
         locale={locale}
         isSubjectField={false}
+        className={ddCls}
       />
       {errors.Grade && <p className={errCls}>{errors.Grade}</p>}
 
@@ -189,6 +190,7 @@ const BlogSidebarForm: React.FC = () => {
         onChange={handleChange}
         locale={locale}
         isSubjectField={false}
+        className={ddCls}
       />
       {errors.Curriculum && <p className={errCls}>{errors.Curriculum}</p>}
 
@@ -201,6 +203,7 @@ const BlogSidebarForm: React.FC = () => {
         onChange={handleChange}
         locale={locale}
         isSubjectField={true}
+        className={ddCls}
       />
       {errors.Subject && <p className={errCls}>{errors.Subject}</p>}
 
@@ -210,8 +213,9 @@ const BlogSidebarForm: React.FC = () => {
         value={formData.Message}
         onChange={(e) => handleChange("Message", e.target.value)}
         placeholder="Enter your message here..."
+        error={errors.Message}
+        className="border-0"
       />
-      {errors.Message && <p className={errCls}>{errors.Message}</p>}
 
       <Button onClick={onSubmit} variant="primary" className="w-full">
         {loading ? (

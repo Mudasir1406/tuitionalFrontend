@@ -94,7 +94,7 @@ const ArBlogSequences: React.FC<IProps> = ({ data, allBlogs, allTags, allCategor
             onlyChildren={!shouldShowLeftSection}
           >
             <div
-              className="prose font-heading text-ink-900 max-w-none"
+              className="blog-content"
               dangerouslySetInnerHTML={{ __html: processHtmlContent(rawContent) }}
             />
           </ArBlogInnerLayout>

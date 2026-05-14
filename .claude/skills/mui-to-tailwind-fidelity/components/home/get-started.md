@@ -46,8 +46,10 @@ Home-page "How to Get Started" section: a centered heading with `linesInvert` de
 | `.heading` | `paddingLeft` | 1 (=8px) | 5 (=40px) (sm/md) | 0 |
 | `.heading::before` | `left` | 14% | 18% (sm), 36% (md) | 36% (carries lg unset → md) |
 | `.heading::before` | `top` | -20 | -40 (sm/md) | -40 |
-| `.heading::before` | `height` × `width` | 50px × 50px | 35px × 43px | 35px × 43px |
+| `.heading::before` | `height` × `width` | 50px × 50px (BOX size) | 35px × 43px | 35px × 43px |
 | `.heading::before` | `backgroundImage` | linesMobile | linesInvert | linesInvert |
+
+> **xs trap**: the `::before` BOX is 50×50, but MUI uses `background-repeat: no-repeat` with **no `background-size`** → the image renders at its **natural size** (linesMobile.png ≈ 20×19px), top-left-anchored inside the 50px box. The 50px is just positioning slack. A Tailwind `<Image>` port must NOT use `h-[50px] w-[50px] object-contain` — that scales the ~20×19 squiggle up 2.5× and it overlaps the heading text. Use `h-[19px] w-5` (same natural size the `why-choose-tuitional` port uses for the same asset).
 | `.swiperContanier` | `display` | block | block (md block) | none (lg) |
 | `.swiperContanier` | `overflow` | hidden | hidden | (n/a) |
 | `.swiperContanier` | `paddingBottom` / `width` | 40px / 100% | same | (n/a) |
@@ -102,7 +104,7 @@ Home-page "How to Get Started" section: a centered heading with `linesInvert` de
 |---|---|---|---|---|
 | B1 | 35 | h2: `relative mb-5 ps-1 text-center font-heading text-h2-mobile sm:ps-5 sm:text-h2-tablet md:ps-5 lg:ps-0 lg:text-h2 text-black` | MUI: paddingLeft `xs=1 (8px), sm=5 (40px), md=5 (40px), lg=0`. The `ps-1` = 4px, **not 8px** — Tailwind's `ps-1` is 4px. Should be `ps-2` (8px). `sm:ps-5` = 20px in Tailwind, **not 40px**. Should be `sm:ps-10` (40px) and `md:ps-10`. | high |
 | B2 | 35 | `mb-5` (20px) | matches MUI `marginBottom: 20px` ✓ | — |
-| B3 | 36-41 | linesMobile: `absolute -top-5 left-[14%] z-10 h-[50px] w-[50px] object-contain sm:hidden` | MUI xs: `top: -20`, `left: 14%`, 50×50, linesMobile. ✓ matches | — |
+| B3 | 36-41 | linesMobile: `absolute -top-5 left-[14%] z-10 h-[19px] w-5 object-contain sm:hidden` | MUI xs `::before` box is 50×50 but `background-size` is unset → image at NATURAL size (~20×19). `h-[50px] w-[50px] object-contain` scales it up 2.5× → **overlaps the heading**. Correct: `h-[19px] w-5`. `-top-5` (-20px) & `left-[14%]` match MUI. | **High** (was wrongly marked OK) |
 | B4 | 42-47 | linesInvert: `absolute z-10 hidden h-[35px] w-[43px] object-contain sm:-top-10 sm:left-[18%] sm:block md:left-[36%]` | MUI sm+: `top: -40`, `left: 18%` (sm), `36%` (md). 35×43. ✓ matches | — |
 | B5 | 49 | accent span: `text-brand-500` | MUI has no accent span — the heading is one `<Typography>` with no inner span. The Tailwind port introduces a `{accent && <span>}` for an i18n accent that doesn't exist in MUI. Acceptable if `home.get_started.heading_accent` is empty in EN. | low |
 | B6 | 53 | desktop grid wrapper: `hidden flex-row lg:flex` | MUI `.getStarted` is `display: { xs: "none", lg: "flex" }, flexDirection: "row"`. ✓ matches | — |
@@ -123,13 +125,14 @@ Home-page "How to Get Started" section: a centered heading with `linesInvert` de
 | From | To |
 |---|---|
 | Line 35: `ps-1 … sm:ps-5 … md:ps-5 … lg:ps-0` | `ps-2 … sm:ps-10 … md:ps-10 … lg:ps-0` |
+| Line 40: linesMobile `h-[50px] w-[50px] object-contain` | `h-[19px] w-5 object-contain` (natural asset size — 50px scales it up and overlaps title) |
 | Line 54: `grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3` | `grid w-full grid-cols-3` (parent hidden until lg) |
 | Line 97: `m-1 … lg:m-[10px]` | `m-0 … lg:m-[10px]` |
 | Line 107: `text-h4-mobile lg:text-h4` | `text-h4-mobile sm:text-h4-tablet lg:text-h4` |
 
 ## §4 Verification at 4 widths
 
-- **375**: heading 22px center, ps-8px, mb-20px. linesMobile icon 50×50 at left 14%/top -20. Swiper visible (1 slide per view), 3-second autoplay. Each slide is a card with bg #D7F0FF, p 10px, image 300x280, h4 16px, body 14px, button 249×54px with blue shadow.
+- **375**: heading 22px center, ps-8px, mb-20px. linesMobile icon at NATURAL size (~20×19, NOT 50×50) at left 14%/top -20 — sits above the heading, no text overlap. Swiper visible (1 slide per view), 3-second autoplay. Each slide is a card with bg #D7F0FF, p 10px, image 300x280, h4 16px, body 14px, button 249×54px with blue shadow.
 - **768**: heading 28px center, ps-40px (sm), linesInvert at left 18%/top -40. Still swiper (md branch hidden until lg). 2 slides per view (700px breakpoint in Swiper config = 2 slides). h4 18px.
 - **1280**: heading 36px center, ps-0. linesInvert at left 36%. Desktop grid visible (3 columns). 3 cards side-by-side, m-10px gap, image 300×300. h4 20px.
 - **1920**: same as 1280 (cards wider via grid).
