@@ -61,10 +61,10 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
       for (const k of keys) {
         fallbackValue = fallbackValue?.[k];
       }
-      return fallbackValue || key;
+      return fallbackValue ?? key;
     }
-    
-    return value || key;
+
+    return value ?? key;
   };
 
   const isRTL = locale === 'ar';

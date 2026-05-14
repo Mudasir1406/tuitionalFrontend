@@ -21,7 +21,7 @@ const About: React.FC = async () => {
   const getStarted = await getStartedData();
   return (
     <>
-      <Header />
+      <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>

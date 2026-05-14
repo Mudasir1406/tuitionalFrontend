@@ -112,18 +112,21 @@ Both absolute, blue (`#38B6FF`), full radius, behind content.
 | `right` | `3.5vw` (constant) |
 | animation | commented out — no animation applied |
 
-### Background gradient strip
+### Background gradient strip (`circleBox`)
 
-A purely decorative `<Box>` behind the AppBar:
+A purely decorative `<Box>` behind the AppBar. **This is the root cause of the color-seam and z-index bugs on hero pages.**
 
-| Property | Value |
-|---|---|
-| `position` | `absolute` |
-| `width` | `100%` |
-| `height` | `{ xs/sm: "10vh", md: "20vh", lg: "30vh" }` |
-| Background | None (just transparent positioning) |
+| Property | MUI value | Tailwind |
+|---|---|---|
+| `position` | `absolute` | `absolute` |
+| `width` | `100%` | `w-full` |
+| `height` | `{ xs: "10vh", sm: "10vh", md: "20vh", lg: "30vh" }` | `h-[10vh] md:h-[20vh] lg:h-[30vh]` |
+| `background` | `linear-gradient(to bottom, #D7F0FF, rgba(255,255,255,0.7))` | `bg-gradient-to-b from-[#D7F0FF] to-white/70` |
+| `zIndex` | `-2` | `z-[-1]` (never `z-0` — see §5) |
+| `top` | `0` | `top-0` |
+| `left` | `0` | `start-0` (RTL-aware) |
 
-→ `absolute w-full h-[10vh] md:h-[20vh] lg:h-[30vh]`. The shape provides visual breathing room behind the sticky AppBar; not strictly required but contributes to the "floating glass" feel.
+The Tailwind `<Header>` surfaces this via the `heroClassName` prop. The default `DEFAULT_HERO_BG` is a fallback for simple pages without a gradient hero strip — it uses fixed-px height and solid `#EDF8FF`. Hero pages must override it (see §5).
 
 ### Fixed WhatsApp button (bottom-right)
 
@@ -139,11 +142,17 @@ Width/height of the actual icon: 60×60.
 
 ---
 
-## §2 The two most common header port bugs
+## §2 The most common header port bugs
 
 1. **Wrong cutover breakpoint.** Many ports use `md:` (900) instead of `lg:` (1200) for the desktop-nav vs hamburger toggle. The result: iPad Mini, iPad Air, iPad Pro 11" all try to show the full nav, which doesn't fit. **Always use `lg:`** unless MUI explicitly uses `md`.
 
 2. **Missing `font-heading` on nav links.** The MUI source applies `className={leagueSpartan.className}` to every nav `<Typography>`. The Tailwind port must include `font-heading` on each nav link `<span>` / `<a>` / `<p>`. Without it, links render in Inter (body font), looking out of place.
+
+3. **`z-0` on the decorative strip.** The Tailwind decorative strip previously used `z-0`, which creates a stacking context that paints OVER hero content (images/text disappear). **Always `z-[-1]`** — matching MUI's `zIndex: -2` intent.
+
+4. **Default `heroClassName` used on hero pages.** `DEFAULT_HERO_BG` uses `px` heights and solid `#EDF8FF` — does not match MUI's `vh`-based gradient strip. Hero pages must pass the `heroClassName` override (see §5).
+
+5. **Hero page content appears too far down / viewport overflow.** MUI's outer `<Box>` is `position: absolute` (no flow space). Tailwind `<Header>` is sticky in flow, consuming `calc(2vh + 72px)` / `calc(2vh + 80px)`. Hero containers with `height: 100vh` must compensate with a negative margin-top (see §5 and [04-foundation-fixes.md §6](../../04-foundation-fixes.md)).
 
 ---
 
@@ -159,8 +168,60 @@ When reviewing `tuitionalFrontend\src\components\header.tsx`:
 - [ ] Outlined button: `text-success border-success py-[1.2vh] px-[1.5vw] text-[1.5vh] font-bold leading-[1.84vh] min-w-fit whitespace-nowrap transition-none hidden lg:flex`
 - [ ] Hamburger icon: `text-brand-500 h-[4vh] w-[4vh] me-[1vw] flex lg:hidden`
 - [ ] Decorative circles: animation applied at `lg:` only (left), responsive sizes
-- [ ] WhatsApp: `fixed bottom-0 right-0 p-10 z-[1000] animate-[rotateAnimation_2s_ease-in-out_infinite]`
+- [ ] WhatsApp: `fixed bottom-0 right-0 p-[5px] z-[1000] animate-[rotateAnimation_2s_ease-in-out_infinite]`
 - [ ] RTL: every flex container has `rtl:flex-row-reverse`; every `ms-*`/`me-*` is RTL-aware automatically; logos and menu offsets have `isRTL` conditional logic preserved.
+- [ ] **Decorative strip: `z-[-1]` NOT `z-0`** — `z-0` paints strip above hero content (critical bug)
+- [ ] **Hero pages: `heroClassName` prop passed** — default `DEFAULT_HERO_BG` is wrong height/color for pages with gradient hero strips
+- [ ] **Hero page containers: negative `margin-top` applied** — or `padding-top` compensation (see §5)
+
+---
+
+## §5 heroClassName prop — pattern for hero pages
+
+### Why it exists
+
+MUI `<Header>` outer Box is `position: absolute` — no flow space, allows hero content to start at viewport top. Tailwind `<Header>` is `sticky top-0` in normal flow — takes up space. Hero pages must deal with this in two places:
+
+**Part 1 — The decorative strip** (inside `<Header>`):
+
+```tsx
+// Correct for all pages with gradient hero strip:
+<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
+
+// Default (omit heroClassName) only for simple text pages, no big hero:
+<Header />
+```
+
+**Part 2 — The hero container** (in the page itself):
+
+For pages with `height: 100vh` hero containers (about, careers, testimonials, any full-viewport hero):
+
+```css
+/* page.module.css */
+.container {
+  height: 100vh;
+  margin-top: calc(-2vh - 72px);   /* cancel sticky header at xs */
+}
+@media (min-width: 600px) {
+  .container { margin-top: calc(-2vh - 80px); } /* sm+ header = 80px */
+}
+```
+
+For pages using `padding-top` pattern (home, grade pages):
+
+```tsx
+<div className="pt-[calc(2vh+72px)] sm:pt-[calc(2vh+80px)]">
+  {/* hero content */}
+</div>
+```
+
+### Quick decision table
+
+| Page type | heroClassName | Hero container fix |
+|---|---|---|
+| Full-viewport hero (100vh module CSS container) | `h-[10vh]...h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70` | Negative `margin-top: calc(-2vh - 72/80px)` in module CSS |
+| Standard hero with padding-top | Same heroClassName | `pt-[calc(2vh+72px)] sm:pt-[calc(2vh+80px)]` on wrapper div |
+| Simple text page (no big hero) | Omit — use default | No compensation needed |
 
 ---
 

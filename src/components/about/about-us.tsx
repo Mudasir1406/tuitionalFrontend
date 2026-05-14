@@ -4,14 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Circle } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { useI18n } from "@/context/language-context";
 import { cn } from "@/utils/cn";
 import en from "@/locales/en.json";
 import ar from "@/locales/ar.json";
 
-import linesInvert from "../../../public/assets/images/static/lines-invert.png";
-import linesMobile from "../../../public/assets/images/static/linesMobile.png";
 import studentsImg from "../../../public/assets/images/static/about-students.webp";
 
 type ContentKey = "mission" | "value";
@@ -25,24 +22,12 @@ const AboutUs: React.FC = () => {
 
   return (
     <div>
-      <div className="flex w-full flex-col items-center bg-transparent">
-        <h2 className="relative mb-5 mt-10 flex items-center justify-center text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black">
-          <Image
-            src={linesMobile}
-            alt=""
-            aria-hidden="true"
-            className="absolute -left-[10%] -top-3 h-[19px] w-5 object-contain sm:hidden"
-          />
-          <Image
-            src={linesInvert}
-            alt=""
-            aria-hidden="true"
-            className="absolute -left-[8%] -top-[35px] hidden h-[35px] w-[43px] object-contain sm:block"
-          />
+      <div className="flex w-full flex-col items-start bg-transparent">
+        <h2 className="relative mb-5 mt-10 flex items-center justify-start text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black">
           {t("about.about_us.heading")}
         </h2>
 
-        <p className="mt-5 px-5 text-center font-heading text-body-mobile sm:text-body lg:px-0 text-black">
+        <p className="text-justify font-heading text-small text-ink-800">
           {t("about.about_us.description_p1")}
           <br />
           <br />
@@ -50,36 +35,46 @@ const AboutUs: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-y-4">
-        <div className="flex justify-center gap-3">
-          <Button
-            variant={activeType === "mission" ? "primary" : "outline"}
+      <div className="mt-9 flex flex-col">
+        <div className="my-6 flex flex-row gap-4">
+          <button
+            type="button"
             onClick={() => setActiveType("mission")}
-            className="rounded-full px-6"
+            className={cn(
+              "rounded-[1vh] px-[30px] font-heading text-button-mobile md:px-20 sm:text-button",
+              activeType === "mission"
+                ? "bg-brand-500 py-[1.5vh] text-white shadow-[0.1vh_1.5vh_3.4vh_0px_#38B6FF66] hover:bg-brand-500"
+                : "bg-white py-[2vh] text-black hover:bg-brand-500 hover:text-white",
+            )}
           >
             {t("about.about_us.tab_mission")}
-          </Button>
-          <Button
-            variant={activeType === "value" ? "primary" : "outline"}
+          </button>
+          <button
+            type="button"
             onClick={() => setActiveType("value")}
-            className="rounded-full px-6"
+            className={cn(
+              "rounded-[1vh] px-[30px] font-heading text-button-mobile md:px-20 sm:text-button",
+              activeType === "value"
+                ? "bg-brand-500 py-[1.5vh] text-white shadow-[0.1vh_1.5vh_3.4vh_0px_#38B6FF66] hover:bg-brand-500"
+                : "bg-white py-[2vh] text-black hover:bg-brand-500 hover:text-white",
+            )}
           >
             {t("about.about_us.tab_value")}
-          </Button>
+          </button>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+          <div className="flex flex-col justify-evenly lg:col-span-8">
             <div>
-              <h3 className="text-center font-heading text-h3-mobile sm:text-h3-tablet lg:text-start lg:text-h3 text-black">
+              <h2 className="mb-[10px] text-start font-heading text-h2-mobile sm:mb-[15px] sm:text-h2-tablet md:mb-[18px] lg:mb-[22px] lg:text-h2 text-black">
                 {content.title}
-              </h3>
-              <p className="mt-3 text-center font-heading text-body-mobile sm:text-body lg:text-start text-black">
+              </h2>
+              <p className="max-w-[1000px] break-words text-start font-heading text-small text-ink-900">
                 {content.paragraph}
               </p>
             </div>
 
-            <div className="mt-5 flex flex-col gap-3">
+            <div className="mt-8 flex flex-col gap-3 rounded-[16px] border border-[#B9E5FF] p-6">
               {content.points.map((point, index) => (
                 <div
                   key={index}
@@ -87,12 +82,12 @@ const AboutUs: React.FC = () => {
                 >
                   <Circle
                     size={16}
-                    className="me-2 mt-1 shrink-0 fill-brand-500 text-brand-500"
+                    className="me-2 shrink-0 fill-brand-500 text-brand-500"
                     aria-hidden="true"
                   />
-                  <p className="font-heading text-body-mobile font-bold sm:text-body text-black">
+                  <p className="font-heading text-small font-semibold text-ink-900">
                     {point.title}:{" "}
-                    <span className="font-heading text-small font-normal text-black">
+                    <span className="font-heading text-small font-normal text-ink-900">
                       {point.description}
                     </span>
                   </p>
@@ -102,13 +97,13 @@ const AboutUs: React.FC = () => {
           </div>
 
           <div className="lg:col-span-4">
-            <div className="flex h-full items-center justify-center">
+            <div className="flex h-full flex-row justify-start gap-x-6 lg:max-h-[535px]">
               <Image
                 src={studentsImg.src}
                 width={studentsImg.width}
                 height={studentsImg.height}
                 alt={t("about.about_us.image_alt")}
-                className="h-auto w-full max-h-[553px] object-contain"
+                className="h-full w-full max-h-[553px] object-cover"
               />
             </div>
           </div>

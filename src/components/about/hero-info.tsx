@@ -9,14 +9,14 @@ const HeroInfo: React.FC = () => {
   const { isRTL } = useI18n();
 
   return (
-    <div className="relative mt-[15px] flex h-full w-full items-center justify-end sm:mt-[15px] md:mt-[15px] lg:mt-0">
-      <div className="-mt-[100px] me-20 flex animate-pulse flex-col gap-[2vh] rounded-md">
+    <div className="relative flex h-full w-full items-center justify-end sm:mt-[15px] md:mt-[15px] lg:mt-0">
+      <div className="-mt-[100px] me-20 flex animate-[bounce_6s_ease-in-out_infinite] flex-col gap-[2vh] rounded-[10px]">
         <Image
           src={tutors.src}
           alt={isRTL ? "معلم" : "teacher"}
           width={tutors.width}
           height={tutors.height}
-          className="object-contain"
+          className="object-cover"
         />
       </div>
     </div>

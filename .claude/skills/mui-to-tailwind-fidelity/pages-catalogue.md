@@ -73,18 +73,47 @@ When fixing a page, start by verifying the **section sequence** matches MUI. The
 
 ## The universal page rhythm template
 
-Most pages in this codebase follow this skeleton (see [pages/home.md](./pages/home.md) for the full example):
+Most pages in this codebase follow this skeleton (see [pages/home.md](./pages/home.md) for the full example).
+
+### CRITICAL: header compensation
+
+MUI's `<Header>` outer Box is `position: absolute` (no flow space). Tailwind's is `position: sticky` (consumes `calc(2vh + 72px)` at xs / `calc(2vh + 80px)` at sm+). Every page must compensate for this difference. Two patterns:
+
+**Pattern A — full-viewport hero (100vh module CSS container):**
+```tsx
+// In page.tsx — pass heroClassName for correct gradient strip
+<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
+
+// In page.module.css — negative margin-top to cancel header flow height
+// .container { height: 100vh; margin-top: calc(-2vh - 72px); }
+// @media (min-width: 600px) { .container { margin-top: calc(-2vh - 80px); } }
+<div className={styles.container}>
+  <HeroSection />
+</div>
+```
+
+**Pattern B — standard padding-top hero:**
+```tsx
+<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
+
+{/* padding-top equals sticky header height + MUI original pt */}
+<div className="pt-[calc(2vh+72px)] sm:pt-[calc(2vh+80px)] lg:pt-[70px]">
+  <HeroSection />
+</div>
+```
+
+**Sections after the hero** — separated by `my-[5vh] md:my-[10vh]` wrappers (matches MUI `marginY: { xs: "5vh", md: "10vh" }`):
 
 ```tsx
 <>
-  <Header />
+  <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
 
-  {/* Hero — padding-top compensates for sticky header */}
-  <div className="mx-auto flex items-end pt-[120px] lg:max-w-[1650px] lg:pt-[70px]">
+  {/* Hero — compensate for sticky header (Pattern A or B per page) */}
+  <div className={styles.container}>
     <HeroSection />
   </div>
 
-  {/* Sections — separated by my-[5vh] md:my-[10vh] wrappers */}
+  {/* Sections — my-[5vh] md:my-[10vh] is the standard inter-section rhythm */}
   <DirectFollowupSection />
 
   <div className="my-[5vh] md:my-[10vh]">
@@ -101,4 +130,4 @@ Most pages in this codebase follow this skeleton (see [pages/home.md](./pages/ho
 </>
 ```
 
-Bookmark this — most pages reuse it. Page-specific specs only document deviations.
+Bookmark this — most pages reuse it. Page-specific specs only document deviations. Always check [components/shared/header.md §5](./components/shared/header.md) for the full heroClassName + compensation pattern before editing any page.

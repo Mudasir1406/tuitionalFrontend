@@ -132,6 +132,71 @@ Re-confirming what `tuitionalFrontend\tailwind.config.ts` already has and doesn'
 
 ---
 
+## §6 Header position compensation (CRITICAL — affects every hero page)
+
+### Root cause
+
+MUI `<Header>` outer `<Box>` has `position: "absolute"` — it floats over the page, consuming **zero** flow space. The hero container starts at `top: 0` of the viewport.
+
+Tailwind `<Header>` is `position: sticky` — it sits in normal flow. After it renders, the next sibling starts BELOW the header, not at the top of the viewport.
+
+**Effect on `height: 100vh` hero containers**: they overflow the viewport bottom by the header's height. Content inside appears too far down.
+
+### The header's consumed height
+
+| Viewport | Header height (sticky, in flow) |
+|---|---|
+| xs (< 600px) | `calc(2vh + 72px)` — `mt-[2vh]` + `min-h-[72px]` |
+| sm+ (≥ 600px) | `calc(2vh + 80px)` — `mt-[2vh]` + `min-h-20 (80px)` |
+
+### Fix A — for `height: 100vh` containers (e.g. about, careers, testimonials hero)
+
+Add negative margin-top to the hero container to pull it back up by exactly the header height:
+
+```css
+/* in the page's .module.css */
+.container {
+  height: 100vh;
+  margin-top: calc(-2vh - 72px);   /* cancel sticky header flow height at xs */
+}
+
+@media (min-width: 600px) {
+  .container {
+    margin-top: calc(-2vh - 80px); /* sm+ header is 80px tall */
+  }
+}
+```
+
+### Fix B — for pages using padding-top compensation (e.g. home, grade pages)
+
+Add `pt-[calc(2vh+72px)]` (xs) / `sm:pt-[calc(2vh+80px)]` to the hero section wrapper instead of a fixed pixel value:
+
+```tsx
+<div className="pt-[calc(2vh+72px)] sm:pt-[calc(2vh+80px)] lg:pt-[...MUI-value...]">
+```
+
+The about page used Fix A. Check the MUI baseline to determine which approach each page originally used.
+
+### heroClassName prop (decorative strip)
+
+MUI's `circleBox` (the gradient strip behind the AppBar) has `height: { xs/sm: "10vh", md: "20vh", lg: "30vh" }` and `background: linear-gradient(to bottom, #D7F0FF, rgba(255,255,255,0.7))`.
+
+Tailwind `<Header>` defaults to `DEFAULT_HERO_BG = "h-[90px] sm:h-[100px] lg:h-[110px] bg-[#EDF8FF]"` — wrong height unit (px not vh) and wrong color (solid not gradient).
+
+Pages that need the correct strip must pass `heroClassName`:
+
+```tsx
+<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
+```
+
+Pages that don't have a visual hero strip can omit `heroClassName` (the solid fallback is acceptable for simple text pages).
+
+### z-index rule
+
+MUI `circleBox`: `zIndex: -2`. Tailwind strip: **must be `z-[-1]`**, not `z-0`. `z-0` creates a stacking context that paints on top of hero content — images and text disappear behind it.
+
+---
+
 ## §4 Hard rules for editing foundation files
 
 1. **Never** add a token that isn't already in MUI. The Tailwind config is a 1:1 mirror, not an expansion.

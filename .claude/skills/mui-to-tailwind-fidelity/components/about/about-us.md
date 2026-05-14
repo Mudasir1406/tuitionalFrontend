@@ -181,6 +181,7 @@ Current port: `tuitionalFrontend\src\components\about\about-us.tsx` (lines 27–
 | AU19 | (missing) | No `mt-[24px] lg:mt-0` on the image wrapper | MUI `.imageDiv.marginTop: { xs: "24px", lg: 0 }`. Note: `gap-6` on the parent grid already provides 24px between stacked children at mobile, so this duplication may be redundant. **Verify which: keep the parent `gap-6` OR add `mt-6 lg:mt-0` on the image wrapper, not both.** | medium |
 | AU20 | 110 | `alt={t("about.about_us.image_alt")}` | MUI uses static `alt="students"`. Tailwind port uses i18n key. ✓ Keep (improvement). | — |
 | AU21 | (missing) | No outer section margin matching the page rhythm | MUI source doesn't wrap `AboutUs` in a `marginY` — the parent page is responsible. But `.mainHeading.marginTop: 40/50/70/105px` provides initial top breathing room. ✓ Already present in Tailwind via `mt-10 sm:mt-[50px] md:mt-[70px] lg:mt-[105px]` on the h2. ✓ Keep. | — |
+| AU22 | 38 | `<div className="flex flex-col gap-y-4">` (outer Box above tab section) | MUI outer `<Box sx={{ flexDirection: "column", rowGap: "16px" }}>` is the only child of `infoBoxContanier`. Its child Grid container has `marginTop: "36px"`. `rowGap: 16px` on the outer Box is irrelevant (only one child). The critical value is the Grid's `marginTop: 36px` — this creates 36px space between the description `<p>` and the tab section start. Current Tailwind uses `gap-y-4` (16px, wrong — adds gap between children, not top margin) with no `mt-9`. **Should be `mt-9 flex flex-col`** (`mt-9` = 36px = `.aboutContent marginTop`; remove `gap-y-4` since it adds incorrect 16px extra between buttons and content). | high |
 
 ---
 
@@ -224,7 +225,7 @@ const AboutUs: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-y-4">
+      <div className="mt-9 flex flex-col">
         <div className="my-6 flex flex-row gap-4">
           <button
             type="button"
@@ -314,6 +315,7 @@ Per-element from → to summary:
 | `.headingContanier` wrapper | `flex w-full flex-col items-center bg-transparent` | `flex w-full flex-col items-start bg-transparent` |
 | `.mainHeading` h2 | `relative mb-5 mt-10 flex items-center justify-center text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black` (with two `<Image>` children) | `relative mb-5 mt-10 flex items-center justify-start text-center font-heading text-h2-mobile sm:mt-[50px] sm:text-h2-tablet md:mt-[70px] lg:mt-[105px] lg:text-h2 text-black` (no decorative images) |
 | `.dec` p | `mt-5 px-5 text-center font-heading text-body-mobile sm:text-body lg:px-0 text-black` | `text-justify font-heading text-small text-ink-800` |
+| Outer Box (tab section wrapper) | `flex flex-col gap-y-4` | `mt-9 flex flex-col` |
 | `.btnDiv` div | `flex justify-center gap-3` | `my-6 flex flex-row gap-4` |
 | Active button | `rounded-full px-6` (via `variant="primary"`) | `rounded-[1vh] py-[1.5vh] px-[30px] md:px-20 bg-brand-500 text-white shadow-[0.1vh_1.5vh_3.4vh_0px_#38B6FF66] hover:bg-brand-500` |
 | Inactive button | `rounded-full px-6` (via `variant="outline"`) | `rounded-[1vh] py-[2vh] px-[30px] md:px-20 bg-white text-black hover:bg-brand-500 hover:text-white` |
@@ -331,7 +333,7 @@ Per-element from → to summary:
 
 ## §4 Verification at 4 reference widths
 
-- **375 (iPhone SE)**: section h2 left-aligned at 22px, mt=40px, mb=20px. Intro paragraph `text-justify` 14px, `#000C` (ink-800), no extra padding/margin around it. Tab buttons row: 16px gap, my=24px, paddingY 1.5vh/2vh, paddingX 30px each. Stacked content: pane title (22px h2, left, mb=10px), pane paragraph (14px, justify-start, max-w 1000px, color #2D2D2D). Point box: 32px top margin, 1px border #B9E5FF, 24px padding, 16px radius, 12px row gap. Each point row centered (`justify-center`), Circle icon 16px brand-500, point title 14px weight-600, description 14px weight-400, both `#2D2D2D`. Image below with 24px top gap (from grid gap-6), full-width.
+- **375 (iPhone SE)**: section h2 left-aligned at 22px, mt=40px, mb=20px. Intro paragraph `text-justify` 14px, `#000C` (ink-800), no extra padding/margin around it. Then 36px gap (`mt-9`) before the tab section starts. Tab buttons row: 16px gap, my=24px, paddingY 1.5vh/2vh, paddingX 30px each. Stacked content: pane title (22px h2, left, mb=10px), pane paragraph (14px, justify-start, max-w 1000px, color #2D2D2D). Point box: 32px top margin, 1px border #B9E5FF, 24px padding, 16px radius, 12px row gap. Each point row centered (`justify-center`), Circle icon 16px brand-500, point title 14px weight-600, description 14px weight-400, both `#2D2D2D`. Image below with 24px top gap (from grid gap-6), full-width.
 - **768 (iPad Mini)**: same as 375 but h2 sizes lift to tablet (28px), point row still `justify-center` (lg:justify-start only kicks at 1200), tab paddingX still 30px (lg:px-20 kicks at lg=1200; md ≥900 also activates 80px per MUI — adjust `md:px-20` for consistency with MUI's `md: "80px"`).
 - **1280 (Laptop S)**: h2 sizes lift to desktop (36px). Tab paddingX now 80px. Content row is 2-column (`grid-cols-12`, value pane col-span-8 left, image col-span-4 right). Image wrapper capped at `max-h-[535px]`. Pane title mb=22px. Point rows now `justify-start`. Section mt=105px on the section h2.
 - **1920 (Desktop)**: same as 1280 — no further breakpoint changes after lg in MUI source.

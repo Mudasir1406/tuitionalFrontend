@@ -55,7 +55,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute start-0 top-0 z-0 w-full",
+          "pointer-events-none absolute start-0 top-0 z-[-1] w-full",
           heroClassName ?? DEFAULT_HERO_BG,
         )}
       />

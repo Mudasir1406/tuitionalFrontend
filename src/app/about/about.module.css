@@ -7,7 +7,14 @@
   justify-content: flex-end; /* Align content to the right */
   /* align-items: flex-end; */
   align-items: center;
-  margin: auto;
+  margin: calc(-2vh - 72px) auto 0;
+}
+
+/* Header at sm breakpoint is min-h-20 (80px) instead of 72px */
+@media (min-width: 600px) {
+  .container {
+    margin-top: calc(-2vh - 80px);
+  }
 }
 
 /* Grid Container */

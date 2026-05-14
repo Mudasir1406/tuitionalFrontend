@@ -67,7 +67,13 @@ A change that passes type-check and lint but visually diverges from MUI at any o
 
 ## Table of contents
 
-### Reference docs (read these first)
+### Quick fix (start here for any UI issue)
+
+| File | Purpose |
+|---|---|
+| [QUICKFIX.md](./QUICKFIX.md) | **Single-file reference** — typography, spacing, grid, colors, header compensation, RTL, i18n, verification. Start here. Only go to the files below for deep-dives. |
+
+### Reference docs (deep-dive)
 
 | File | Purpose |
 |---|---|
@@ -109,3 +115,7 @@ Before changing any page (route-level layout):
 8. Foundation file edits (`globals.css`, `tailwind.config.ts`, `fonts.ts`) require reading [04-foundation-fixes.md](./04-foundation-fixes.md) first to confirm the edit is sanctioned.
 9. Every visual fix must be verified at 375 / 768 / 1280 / 1920 widths against the MUI baseline before being declared done.
 10. When extracting a new component spec on-demand (one not in `examples/`), follow the same MUI-read → token-lookup → Tailwind-write flow. Add the result to `examples/` if it's likely to be reused.
+11. **Header is sticky in flow (Tailwind) but absolute in MUI.** MUI outer `<Box>` is `position: absolute` — zero flow space. Tailwind `<Header>` is `position: sticky` — consumes `calc(2vh + 72px)` at xs, `calc(2vh + 80px)` at sm+. Any hero container with `height: 100vh` must add `margin-top: calc(-2vh - 72px)` (xs) / `calc(-2vh - 80px)` (sm+) to cancel this. Pages using `pt-*` compensation must add the same amount as padding-top. See [04-foundation-fixes.md §6](./04-foundation-fixes.md) and [components/shared/header.md §5](./components/shared/header.md) for the full pattern.
+12. **Decorative strip z-index must be `z-[-1]`.** The MUI `circleBox` is `z-index: -2`. Tailwind's strip must be `z-[-1]` — `z-0` places it in the stacking context above hero content, visually covering it.
+13. **`t()` uses `??` not `||`.** Locale values that are intentionally empty strings `""` must render as `""`, not fall back to the key. The `language-context.tsx` uses `??` — never change it back to `||`.
+14. **Pages with full-viewport hero strips must pass `heroClassName` to `<Header>`.** Default `DEFAULT_HERO_BG` is a fixed-pixel solid color (for non-hero pages). Pages that replicate MUI's gradient strip must override: `heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70"`.
