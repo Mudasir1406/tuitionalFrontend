@@ -1,6 +1,6 @@
 import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
 import { PageData } from "@/types/grade-subject-level.types";
-import { SITE_URL } from "@/utils/env";
+import { SITE_URL, resolveRobots } from "@/utils/env";
 import { generateFaqSchema, generateMergedSchema } from "@/utils/helper";
 import { Metadata } from "next";
 import Script from "next/script";
@@ -36,10 +36,10 @@ export const generateMetadata = async ({
       url: `${SITE_URL}/online/${params.slug}`,
       description: ogDescription,
     },
-    robots: {
+    robots: resolveRobots({
       index: !metaName.includes("noindex"),
       follow: !metaName.includes("nofollow"),
-    },
+    }),
   };
 };
 

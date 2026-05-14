@@ -1,4 +1,26 @@
-export const SITE_URL = "https://tuitionaledu.com";
+import type { Metadata } from "next";
+
+export const IS_DEV_ENV = process.env.NEXT_PUBLIC_APP_ENV === "development";
+
+export const SITE_URL = IS_DEV_ENV
+  ? "https://web-staging.tuitionaledu.com/"
+  : "https://tuitionaledu.com";
+
+export const NOINDEX_ROBOTS: Metadata["robots"] = {
+  index: false,
+  follow: false,
+  nocache: true,
+  googleBot: {
+    index: false,
+    follow: false,
+    noimageindex: true,
+  },
+};
+
+// In development mode force noindex/nofollow on every page; otherwise pass through.
+export const resolveRobots = (
+  prodRobots: Metadata["robots"],
+): Metadata["robots"] => (IS_DEV_ENV ? NOINDEX_ROBOTS : prodRobots);
 export const SITE_URL_TRUSTPILOT =
   "https://www.trustpilot.com/evaluate/tuitionaledu.com";
 export const HELLOTUITIONALEDU = "hello@tuitionaledu.com";

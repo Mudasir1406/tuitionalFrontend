@@ -1,6 +1,6 @@
 import { getPageData } from "@/services/grade-subject-level/grade-subject-level";
 import { PageData } from "@/types/grade-subject-level.types";
-import { SITE_URL } from "@/utils/env";
+import { SITE_URL, resolveRobots } from "@/utils/env";
 import { generateMergedSchema } from "@/utils/helper";
 import { Metadata } from "next";
 import Script from "next/script";
@@ -37,10 +37,10 @@ export const generateMetadata = async ({
       description: ogDescription,
       locale: "ar",
     },
-    robots: {
+    robots: resolveRobots({
       index: !metaName.includes("noindex"),
       follow: !metaName.includes("nofollow"),
-    },
+    }),
     other: {
       "content-language": "ar",
     },

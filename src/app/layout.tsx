@@ -8,12 +8,14 @@ import HtmlWrapper from "@/components/html-wrapper";
 import Metrics from "./metrics";
 import Script from "next/script";
 import UniversalSchema from "@/components/seo/UniversalSchema";
+import { resolveRobots } from "@/utils/env";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tuitional",
   description: "",
   applicationName: "Tuitional Website",
+  robots: resolveRobots(undefined),
   verification: {
     google: "d87T061Ai7m3rs3u-Ejd22h51-skUWdCj5CFg2cuYVs",
   },
