@@ -62,7 +62,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
 
       <header className="sticky top-0 z-[1000] mx-[5vw] mt-[2vh] flex min-h-[72px] w-[90%] items-center justify-between rounded-md bg-white/70 px-4 py-[1vh] shadow-header sm:min-h-20 sm:px-6 lg:justify-evenly">
         <div className="flex w-full items-center justify-between lg:w-[95%]">
-          <div className="me-[1.5vw] flex items-center">
+          <div className="-ms-[10px] me-[1.5vw] flex items-center">
             <a href="https://tuitionaledu.com/" rel="noopener noreferrer">
               <Image
                 src={logo.src}
@@ -71,7 +71,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
                 height={logo.height}
                 priority
                 quality={90}
-                className="hidden h-[49px] w-[203px] cursor-pointer object-contain lg:block"
+                className="hidden h-[49px] w-[200px] cursor-pointer object-contain lg:block"
               />
               <Image
                 src={logoMobile.src}
@@ -80,7 +80,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
                 height={logoMobile.height}
                 priority
                 quality={90}
-                className="block h-[49px] w-[203px] object-contain lg:hidden"
+                className="-ms-[5px] block h-[49px] w-[203px] object-contain lg:hidden"
               />
             </a>
           </div>
@@ -108,7 +108,7 @@ const Header: React.FC<IProps> = ({ heroClassName }) => {
             <Button
               variant="primary"
               onClick={() => setOpen(true)}
-              className="rounded-[10px] py-[1.5vh] text-[1.5vh] font-bold leading-[1.84vh] tracking-[-0.02em] shadow-brand-glow"
+              className="h-auto rounded-[12px] px-6 py-[1.3vh] font-heading text-[1.05rem] font-black leading-tight tracking-[-0.02em] shadow-brand-glow"
             >
               {t("buttons.book_demo")}
             </Button>

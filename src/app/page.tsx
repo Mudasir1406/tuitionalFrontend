@@ -17,7 +17,9 @@ import { getFilterData } from "@/services/filter-data/filter-data";
 import { getStartedData } from "@/services/get-started/get-started";
 
 const Info = dynamic(() => import("../components/home/info"), { ssr: true });
-const Filter = dynamic(() => import("../components/home/filter"), { ssr: true });
+const Filter = dynamic(() => import("../components/home/filter"), {
+  ssr: true,
+});
 
 const Trusted = dynamic(() => import("../components/home/trusted"), {
   ssr: false,
@@ -145,7 +147,7 @@ const Home: React.FC = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
       <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
-      <div className="mx-auto flex min-h-full items-end pt-[120px] sm:pt-[120px] md:pt-[120px] lg:min-h-screen lg:max-w-[1650px] lg:pt-[70px] xl:pt-[70px]">
+      <div className="mx-auto flex items-end pt-[20px] sm:pt-[20px] md:pt-[20px] lg:max-w-[1650px] lg:pt-[20px] xl:pt-[20px]">
         <div className={style["grid-container"]}>
           <div className={style["hero"]}>
             <Filter data={filterData} />

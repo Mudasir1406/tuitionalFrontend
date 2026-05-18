@@ -287,7 +287,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                         <Link href={url} key={index}>
                           {/* <Typography variant="body2" sx={styles.text}> — body2 base + lineHeight 35/40/40/45 + black */}
                           <p
-                            className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]`}
+                            className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[24px] sm:leading-[26px] md:leading-[28px] lg:leading-[30px]`}
                           >
                             {item}
                           </p>
