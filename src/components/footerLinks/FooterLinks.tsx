@@ -35,7 +35,7 @@ const FooterLinks = ({
         return (
           <Link href={finalHref} key={index}>
             <p
-              className={`${leagueSpartan.className} cursor-pointer font-heading text-body text-black leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]`}
+              className={`${leagueSpartan.className} cursor-pointer font-heading text-small text-black leading-[24px] sm:leading-[26px] md:leading-[28px] lg:text-base lg:leading-[30px]`}
             >
               {item}
             </p>

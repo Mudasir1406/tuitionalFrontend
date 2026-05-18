@@ -144,7 +144,7 @@ const Home: React.FC = async () => {
         defer
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
-      <Header />
+      <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
       <div className="mx-auto flex min-h-full items-end pt-[120px] sm:pt-[120px] md:pt-[120px] lg:min-h-screen lg:max-w-[1650px] lg:pt-[70px] xl:pt-[70px]">
         <div className={style["grid-container"]}>
           <div className={style["hero"]}>
@@ -170,7 +170,7 @@ const Home: React.FC = async () => {
         </div>
       </div>
       <Trusted />
-      <div className="my-[5vh] md:my-[10vh]">
+      <div className="my-[5vh] px-4 sm:px-6 md:my-[10vh]">
         <GetStarted data={getStarted} />
       </div>
       <OurClient data={data} />
@@ -183,11 +183,11 @@ const Home: React.FC = async () => {
           className="absolute bottom-[-90px] hidden h-[281px] w-screen bg-cover bg-top bg-no-repeat lg:block"
           style={{ backgroundImage: `url(${faqLine.src})` }}
         />
-        <div className="mx-auto lg:max-w-[1450px]">
+        <div className="mx-auto px-4 sm:px-6 lg:max-w-[1450px] lg:px-0">
           <Faqs />
         </div>
       </div>
-      <div className="my-[5vh] md:my-[10vh]">
+      <div className="my-[5vh] md:my-[10vh] mb-[10vh] md:mb-[10vh]">
         <ContactUs filterData={filterData} />
       </div>
       <ServerFooter />

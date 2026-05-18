@@ -77,6 +77,29 @@ The home page port at `tuitionalFrontend\src\app\page.tsx` is **mostly correct**
 
 **Verdict**: the home page layout itself doesn't need fixes. The spacing complaints likely live INSIDE each section component (`<Filter>`, `<Info>`, `<Trusted>`, `<GetStarted>`, `<OurClient>`, `<Faqs>`, `<ContactUs>`, `<ServerFooter>`), not in `page.tsx`. Audit each component using the methodology in [SKILL.md](../SKILL.md) Phase 1-3.
 
+### §4b Hero grid-container — mobile horizontal margin
+
+MUI/Tailwind `page.module.css` `.grid-container` defaults to `margin: 0 28px` (≥576). At `max-width: 575px` the MUI source resets to `margin: 0` — no horizontal padding on phones. Result: `<Filter>` content touches viewport edges on xs.
+
+Fix in [page.module.css](src/app/page.module.css) xs media query:
+```css
+@media (max-width: 575px) {
+  .grid-container { margin: 0 16px; }  /* was: 0 */
+}
+```
+
+This is an intentional divergence from MUI (which has `0`). Keep the 28px at sm+ to match.
+
+### §4a Header heroClassName (REQUIRED)
+
+The home `/` is a **Fix B padding-top hero page** (uses `pt-[120px] lg:pt-[70px]` on hero container). Per QUICKFIX §6 and [[header]] §5, it must pass `heroClassName` to `<Header>` so the decorative gradient strip matches MUI:
+
+```tsx
+<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
+```
+
+Default `DEFAULT_HERO_BG` (`h-[90px] sm:h-[100px] lg:h-[110px] bg-[#EDF8FF]`) is a solid-color fallback for non-hero pages and produces a visible color seam under the hero gradient.
+
 ## §5 Rhythm template to copy onto any page
 
 When porting any new page (e.g. `/igcse`, `/about`, `/careers`), use this skeleton:

@@ -80,6 +80,30 @@ Home-page "Frequently Asked Questions" section: a centered heading with a decora
 
 **Net assessment**: this port is largely correct. No high-severity fixes needed.
 
+### B8 — Accordion animation (MUI parity)
+
+MUI `<Accordion>` smoothly slides the panel open/closed. Conditional `{open && <DisclosurePanel>}` rendering snaps without transition. Render `DisclosurePanel` always (use `static`) and animate with the CSS grid-rows trick + Headless UI `data-[open]`:
+
+```tsx
+<DisclosurePanel
+  static
+  className="grid grid-rows-[0fr] transition-[grid-template-rows,opacity] duration-300 ease-in-out data-[open]:grid-rows-[1fr] data-[open]:opacity-100 opacity-0"
+>
+  <div className="overflow-hidden">
+    <hr className="mx-auto mt-2 w-[95%] border-ink-200" />
+    <div className="my-5 ms-[1.5%] me-[1.5%] font-heading text-small text-black">
+      {answer}
+    </div>
+  </div>
+</DisclosurePanel>
+```
+
+Pattern reusable for any Headless UI `Disclosure`/`Transition` panel where MUI used `<Accordion>`.
+
+### B9 — Mobile horizontal padding (page-level)
+
+`<Faqs>` page wrapper in `app/page.tsx` was `mx-auto lg:max-w-[1450px]` — no horizontal padding below `lg`. MUI `<Container>` default = 16px (xs) / 24px (sm+). Add `px-4 sm:px-6 lg:px-0`. Same fix applies to any inline `<Container>` substitute in the Tailwind port.
+
 ---
 
 ## §3 Corrected Tailwind classNames

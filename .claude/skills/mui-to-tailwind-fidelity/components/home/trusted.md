@@ -91,7 +91,7 @@ Home-page "Trusted By Students At Top Schools" section: a gradient blue→white 
 | B8 | 60 | `.imageBox`: `schoolsBox flex h-[107px] w-[177px] max-h-[190px] items-center justify-center rounded-md bg-white lg:h-[40vh] lg:w-[349px]` | MUI: `h: { xs: 107, lg: 40vh }, w: { xs: 177, lg: 349 }, maxH: 190px, bg white, rounded 10`. `rounded-md` = 10px ✓. **Missing tablet/md states** — MUI uses only xs/lg, with sm and md inheriting xs values. ✓ matches (sm/md fall through to xs values, lg overrides). ✓ | — |
 | B9 | 61 | Image: `<Image src={imageSource} width={80} height={80} alt="" />` | matches MUI `<Image width={80} height={80}>`. ✓ matches | — |
 
-**Net assessment**: this port is virtually pixel-perfect. No fixes required.
+**Net assessment**: this port is virtually pixel-perfect. **Caveat (B10 — gotcha)**: MUI `::before` uses `height: 100, width: 100` with NO `background-size` → image renders at NATURAL size (~19×20 for `linesMobile`, ~35×43 for `linesInvert`) anchored top-left inside a 100×100 positioning box. If you naively port to `<Image className="h-[100px] w-[100px] object-contain">` you scale the squiggle 4–5× and it overlays the heading. Use natural sizes: `h-[19px] w-5` for linesMobile, `h-[35px] w-[43px]` for linesInvert. Same anti-pattern as `<GetStarted>` B3 and `<Faqs>` B4.
 
 ---
 

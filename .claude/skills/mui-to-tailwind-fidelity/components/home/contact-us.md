@@ -146,6 +146,66 @@ Home-page "Schedule a Call" section: a left-column illustration of a girl + a ri
 
 ---
 
+### B23 — Submit button stuck at h-10 (40px)
+
+House `<Button>` `size="md"` injects `h-10` (40px). MUI Button has no explicit height — `padding: 18px` all sides + ~24px line-height = ~60px tall. `p-[18px]` on className does NOT override `h-10`. **Always add `h-auto`** when porting MUI Buttons that use padding-based sizing.
+
+### B24 — Default `<Input>`/`<Textarea>` browser border bleeds through
+
+House `<Textarea>` (and `<Input>`) carries no explicit `border` class. Browser default user-agent stylesheet draws a 1px border on `<textarea>`. MUI `TextField` with custom `notchedOutline: border: none` removes it. **Add `border-0`** when passing custom `className` to neutralize the UA border. Same applies to `<Input>` if visible UA borders appear.
+
+### B27 — Decorative blobs too saturated at full opacity
+
+MUI `.formBox` / `.formInner` use `backgroundColor: "rgba(56, 182, 255, 1)"` (full opacity `#38B6FF`). Literal port `bg-brand-500` reads as harsh solid disks on the soft `bg-white/70` glass form. Drop to **`bg-brand-500/30`** for a soft tint that still reads as the brand-blue accent without overpowering the form.
+
+### B28 — Mobile gap to Footer too small
+
+Page-level wrapper `<div className="my-[5vh] md:my-[10vh]"><ContactUs/></div>` gives only `~33px` bottom margin at 667px viewport before `<ServerFooter>` starts. Form's internal `mb-[60px]` is inside the gradient bg of ContactUs, so the visible gap between the gradient edge and footer is just the wrapper's `5vh`.
+
+Fix: bump mobile bottom margin specifically:
+```tsx
+<div className="my-[5vh] md:my-[10vh] mb-[10vh] md:mb-[10vh]">
+  <ContactUs filterData={filterData} />
+</div>
+```
+
+Keeps MUI parity at md+ (10vh) while doubling the mobile gap to 10vh.
+
+### B26 — Two-column MUI Grid breaks mobile field order
+
+Porting MUI's `<Grid item lg={6}>` left+right columns as two `<div className="flex flex-col">` siblings inside `<div className="grid grid-cols-1 lg:grid-cols-2">` produces a **broken mobile order**: on `grid-cols-1` the left column dumps fully, then right column dumps fully → `Name, Phone, Curriculum, Email, Grade, Subject`. Email lands after Curriculum on phones — bad UX.
+
+MUI has the same flaw in source; preserving fidelity here makes the port unusable on mobile.
+
+Fix: flatten to a single grid with 6 children in the desired mobile order. Desktop `grid-cols-2` with default row-fill rebuilds the original pairings:
+
+```tsx
+<div className="z-[1] grid w-full grid-cols-1 gap-x-4 gap-y-[2vh] lg:grid-cols-2">
+  <div>Name</div>      {/* row 1 col 1 on lg */}
+  <div>Email</div>     {/* row 1 col 2 on lg */}
+  <div>Phone</div>     {/* row 2 col 1 on lg */}
+  <div>Grade</div>     {/* row 2 col 2 on lg */}
+  <div>Curriculum</div>{/* row 3 col 1 on lg */}
+  <div>Subject</div>   {/* row 3 col 2 on lg */}
+</div>
+```
+
+Mobile order: `Name → Email → Phone → Grade → Curriculum → Subject`. Logical.
+
+Pattern reusable for **any** MUI 2-column Grid form. Default to flat grid + row-fill instead of nested column flexboxes.
+
+### B25 — Per-field `my-[2vh]` wrappers double the gap when adjacent errors break collapse
+
+Stacking `<div className="my-[2vh]">` per field looks fine until errors render between siblings (margin collapse breaks). Result: 2vh + error + 2vh ≈ 4vh effective gap. Fix: put `gap-[2vh]` on the column flex container and drop per-field margins. Cleaner and collapse-safe:
+
+```tsx
+<div className="flex flex-col gap-[2vh]">
+  <div><Input /> {error}</div>
+  <div><PhoneInput /> {error}</div>
+  <div><DropDown /> {error}</div>
+</div>
+```
+
 ## §3 Corrected Tailwind classNames
 
 ```tsx

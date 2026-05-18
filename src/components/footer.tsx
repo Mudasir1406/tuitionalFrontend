@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
   return (
     <footer>
       {/* styles.background */}
-      <div className="relative flex w-full items-center justify-center bg-footer-fade py-10 md:py-[100px]">
+      <div className="relative flex w-full items-center justify-center bg-footer-fade py-6 md:py-[40px]">
         {/* styles.rightCircle */}
         <div className="absolute right-[60px] top-[70px] -z-[1] flex h-[135px] w-[135px] rounded-full bg-[#37B6FF]" />
         {/* styles.leftCircle */}
@@ -34,14 +34,14 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
 
         {/* styles.contanier */}
         <div className="z-0 flex w-[90%] flex-col items-center justify-center rounded-[10px] bg-white/70 shadow-footer-card">
-          {/* styles.contactContanier */}
-          <div className="flex w-4/5 items-center -mt-[70px] rounded-[5px] bg-brand-500 p-[10px] sm:p-5 md:w-[85%] md:p-[25px] lg:p-[30px]">
-            {/* <Grid container spacing={2}> with flex/items-center/justify-center sx */}
-            <div className="flex w-full flex-wrap items-center justify-center gap-4">
-              {/* <Grid item lg={1} sm={12} display="flex" justifyContent="center"> */}
-              <div className="flex w-full justify-center lg:w-[8.333%]">
-                {/* styles.imageContanier */}
-                <div className="flex h-[9vh] min-h-[75px] min-w-[75px] max-h-[90px] max-w-[90px] w-[9vh] items-center justify-center rounded-full bg-white">
+          {/* styles.contactContanier — tuned to reference */}
+          <div className="flex w-4/5 items-center -mt-[50px] rounded-[5px] bg-brand-500 p-[12px] sm:p-4 md:w-[85%] md:p-[20px] lg:p-[24px]">
+            {/* Row layout: single line on lg, wraps on smaller */}
+            <div className="flex w-full flex-wrap items-center justify-center gap-4 lg:flex-nowrap lg:justify-between lg:gap-4">
+              {/* plane circle */}
+              <div className="flex w-full justify-center lg:w-auto lg:shrink-0">
+                {/* styles.imageContanier — sized to reference */}
+                <div className="flex h-[70px] min-h-[70px] min-w-[70px] max-h-[85px] max-w-[85px] w-[70px] items-center justify-center rounded-full bg-white lg:h-[80px] lg:w-[80px]">
                   <Image
                     src={plan.src}
                     width={plan.width}
@@ -49,59 +49,55 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     alt="plan"
                     quality={100}
                     style={{
-                      width: "50px",
-                      height: "60px",
-                      marginTop: "10px",
+                      width: "44px",
+                      height: "52px",
+                      marginTop: "8px",
                       objectFit: "contain",
                     }}
                   />
                 </div>
               </div>
 
-              {/* <Grid item lg={5.5}> */}
-              <div className="w-full lg:w-[45.833%]">
-                {/* <Typography variant="subtitle1" sx={styles.admissionText}> — theme subtitle1 = statNumber: 1.75rem mobile / 2.25rem tablet / 3rem desktop, weight 700, lh 1, ls 0.00833em (MUI default) + ms-10 white textAlign xs/sm:center md:start */}
-                <p
-                  className={`${leagueSpartan.className} ms-[10px] text-center text-white md:text-start text-[1.75rem] sm:text-[2.25rem] lg:text-[3rem] font-bold leading-[1] tracking-[0.00833em]`}
+              {/* admission text — flex-1 at lg, centered on mobile */}
+              <div className="w-full text-center md:text-start lg:flex-1 lg:min-w-0">
+                <span
+                  className={`${leagueSpartan.className} text-white text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] lg:text-[1.875rem] font-bold leading-[1.15] tracking-[0.00833em] md:ms-[10px]`}
                 >
                   {t("footer.admission_text")}
-                </p>
+                </span>
               </div>
 
-              {/* <Grid item lg={3.5}> */}
-              <div className="w-full lg:w-[29.167%]">
-                {/* inline <Box sx={{ display: flex, alignItems: center }}> */}
+              {/* phone */}
+              <div className="w-full lg:w-auto lg:shrink-0">
                 <div className="flex items-center justify-center lg:justify-start leading-none">
                   <Image
                     src={phone.src}
                     width={phone.width}
                     height={phone.height}
                     alt="phone"
-                    className="block"
+                    className="block h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 shrink-0"
                   />
-                  {/* <Typography variant="h2" sx={styles.phoneText}> — theme h2 = 1.375rem mobile / 1.75rem tablet / 2.25rem desktop, weight 700, lh 1.25, ls -0.01em + mx-10 white */}
                   <span
-                    className={`${leagueSpartan.className} mx-[10px] text-white text-[1.375rem] sm:text-[1.75rem] lg:text-[2.25rem] font-bold leading-none tracking-[-0.01em] m-0`}
+                    className={`${leagueSpartan.className} mx-[10px] whitespace-nowrap text-white text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[1.625rem] font-bold leading-none tracking-[-0.01em] m-0`}
                   >
                     +971 56 490 0376
                   </span>
                 </div>
               </div>
 
-              {/* <Grid item lg={2}> */}
-              <div className="flex w-full justify-center lg:w-[16.667%]">
-                {/* PopUpButton with sx=styles.contactButton */}
+              {/* enroll CTA */}
+              <div className="flex w-full justify-center lg:w-auto lg:shrink-0">
                 <PopUpButton
                   text={t("footer.enroll_now")}
                   href="popup"
-                  className="w-full rounded-[10px] bg-white px-[25px] py-[1.5vh] leading-[23px] tracking-[-0.02em] text-[#009BF5] shadow-cta-white md:px-[22px] md:py-[2vh] lg:px-[25px] lg:py-[2vh] hover:bg-white"
+                  className="w-full rounded-[10px] bg-white px-[18px] py-[12px] text-[0.875rem] font-bold leading-[20px] tracking-[-0.02em] text-[#009BF5] shadow-cta-white md:px-[22px] md:py-[14px] md:text-[1rem] lg:w-auto lg:px-[24px] lg:py-[14px] lg:text-[1rem] hover:bg-white"
                 />
               </div>
             </div>
           </div>
 
           {/* second <Grid container columnSpacing={5}> — switched to CSS grid so 4-col lg layout fits with gap-x-10 (flex-wrap+w-1/4 overflowed and wrapped Get Help to row 2) */}
-          <div className="grid w-full grid-cols-2 gap-x-10 mt-[70px] px-[5vw] sm:mt-20 md:mt-[90px] md:ps-[5vw] md:pe-[2vw] lg:mt-[100px] lg:grid-cols-4">
+          <div className="grid w-full grid-cols-2 gap-x-10 mt-10 px-[5vw] sm:mt-12 md:mt-12 md:ps-[5vw] md:pe-[2vw] lg:mt-12 lg:grid-cols-4">
             {/* <Grid item lg={3} sm={12}> — logo + description + social */}
             <div className="col-span-2 lg:col-span-1">
               {/* styles.gridContent */}
@@ -118,13 +114,13 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 </div>
                 {/* <Typography variant="body2" sx={styles.desc}> — body2 default 0.875rem/400/lh 1.43 + mt-40 black textAlign xs/sm:center md/lg:start */}
                 <p
-                  className={`${leagueSpartan.className} mt-10 text-center text-black md:text-start lg:text-start text-sm font-normal leading-[1.43] tracking-[0.01071em]`}
+                  className={`${leagueSpartan.className} mt-6 text-center text-black md:text-start lg:text-start text-sm font-normal leading-[1.43] tracking-[0.01071em] lg:text-base`}
                 >
                   {t("footer.description")}
                 </p>
 
-                {/* styles.socialBox: mt xs:40 lg:70, items xs:center lg:start, justify center, mb 80 */}
-                <div className="flex flex-col mt-10 lg:mt-[70px] items-center lg:items-start justify-center mb-20">
+                {/* styles.socialBox */}
+                <div className="flex flex-col mt-6 lg:mt-8 items-center lg:items-start justify-center mb-6 lg:mb-8">
                   {/* styles.iconsOnly: flex items-center, justify xs:center lg:start, mb 15 */}
                   <div className="flex items-center justify-center lg:justify-start mb-[15px]">
                     {footerData?.link?.facebook && (
@@ -219,7 +215,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               <div className="flex flex-col">
                 {/* <Typography variant="subtitle2" sx={styles.heading}> — subtitle2 base 0.875rem/lh 1.57/ls 0.00714em + fontWeight 700 mb-15 mt-12 capitalize */}
                 <p
-                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900`}
+                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900 lg:text-base`}
                 >
                   {t("footer.sections.curriculums")}
                 </p>
@@ -234,7 +230,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
             <div>
               <div className="flex flex-col">
                 <p
-                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900`}
+                  className={`${leagueSpartan.className} text-sm leading-[1.57] tracking-[0.00714em] font-bold capitalize mb-[15px] mt-[12px] text-ink-900 lg:text-base`}
                 >
                   {t("footer.sections.subjects")}
                 </p>
@@ -330,7 +326,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                     return (
                       <Link href={url} key={index}>
                         <p
-                          className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]`}
+                          className={`${leagueSpartan.className} text-sm font-normal tracking-[0.01071em] text-black leading-[24px] sm:leading-[26px] md:leading-[28px] lg:text-base lg:leading-[30px]`}
                         >
                           {item}
                         </p>
@@ -346,7 +342,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
 
           {/* <Typography variant="subtitle2" sx={styles.rights}> — theme subtitle2 = statLabel: 0.875rem/500/lh 1.4/ls 0.05em/uppercase + sx my-{20/30/50/70} textAlign center */}
           <p
-            className={`${leagueSpartan.className} text-sm font-medium uppercase leading-[1.4] tracking-[0.05em] my-5 sm:my-[30px] md:my-[50px] lg:my-[70px] text-center text-ink-900`}
+            className={`${leagueSpartan.className} text-sm font-medium uppercase leading-[1.4] tracking-[0.05em] my-4 sm:my-5 md:my-5 lg:my-6 text-center text-ink-900`}
           >
             {t("footer.copyright")}
           </p>

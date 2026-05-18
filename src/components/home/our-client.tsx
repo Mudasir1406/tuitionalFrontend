@@ -26,7 +26,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
   const testimonialsHref = isRTL ? "/ar/testimonials" : "/testimonials";
 
   return (
-    <div className="relative my-[60px] flex flex-row items-center justify-center bg-gradient-to-b from-[#00A1FE] to-[#0D84C9] py-[90px] sm:my-[70px] sm:py-[100px] md:my-20 md:py-[110px] lg:my-10 lg:flex-col lg:py-[140px]">
+    <div className="relative my-[60px] flex flex-row items-center justify-center bg-gradient-to-b from-[#00A1FE] to-[#0D84C9] py-[90px] sm:my-[70px] sm:py-[100px] md:my-20 md:py-[110px] lg:my-20 lg:flex-col lg:py-[140px]">
       <div className="relative flex w-full flex-col items-center justify-center lg:hidden">
         <div className="flex flex-col items-center">
           <h2 className="relative mb-[17px] text-center font-heading text-h2-mobile sm:text-h2-tablet md:text-start md:text-h2-tablet md:mb-[10px] lg:text-h2 text-white">
@@ -34,7 +34,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
               src={linesMobileWhite}
               alt=""
               aria-hidden="true"
-              className="absolute -left-[15px] -top-[15px] z-10 h-[35px] w-[43px] object-contain sm:hidden"
+              className="absolute -left-[15px] -top-[15px] z-10 h-[12px] w-[14px] object-contain sm:hidden"
             />
             <Image
               src={linesInvertWhite}
@@ -44,7 +44,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             />
             {t("home.our_client.heading")}
           </h2>
-          <p className="px-5 text-center font-heading text-body-mobile sm:px-[22px] sm:text-body md:px-0 lg:px-0 lg:text-start text-white">
+          <p className="px-5 text-center font-heading text-small sm:px-[22px] md:px-0 lg:px-0 lg:text-start text-white">
             {t("home.our_client.description")}
           </p>
           <Link
@@ -55,7 +55,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           </Link>
         </div>
 
-        <div className="mt-8 flex w-full items-center justify-center sm:mt-[15px] md:mt-[15px] lg:mt-[15px]">
+        <div className="mt-16 flex w-full items-center justify-center sm:mt-[120px] md:mt-[120px] lg:mt-[120px]">
           <Swiper
             ref={swiper}
             centeredSlides
@@ -78,7 +78,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
           </Swiper>
         </div>
 
-        <div className="mt-5 flex">
+        <div className="mt-10 flex">
           <button
             type="button"
             onClick={swiperPrev}
@@ -98,8 +98,8 @@ const OurClient: React.FC<IProps> = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative hidden w-full lg:flex">
-        <div className="mx-20 w-1/5">
+      <div className="relative hidden w-full items-center lg:flex">
+        <div className="mx-40 w-1/5">
           <h2 className="relative mb-[10px] text-start font-heading text-h2 text-white">
             <Image
               src={linesInvertWhite}
@@ -109,7 +109,7 @@ const OurClient: React.FC<IProps> = ({ data }) => {
             />
             {t("home.our_client.heading")}
           </h2>
-          <p className="text-start font-heading text-body text-white">
+          <p className="text-start font-heading text-small text-white">
             {t("home.our_client.description")}
           </p>
           <Link
@@ -210,7 +210,7 @@ const Review: React.FC<RProps> = ({ item }) => (
       </p>
       <div className="mt-[4vh] flex items-center">
         <div>
-          <p className="font-heading text-h5">{item.userName}</p>
+          <p className="font-heading text-h5-tablet lg:text-h5">{item.userName}</p>
           <p className="font-heading text-small text-ink-800">{item.country}</p>
         </div>
       </div>

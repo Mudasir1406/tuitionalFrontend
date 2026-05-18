@@ -129,6 +129,7 @@ Home-page "How to Get Started" section: a centered heading with `linesInvert` de
 | Line 54: `grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3` | `grid w-full grid-cols-3` (parent hidden until lg) |
 | Line 97: `m-1 … lg:m-[10px]` | `m-0 … lg:m-[10px]` |
 | Line 107: `text-h4-mobile lg:text-h4` | `text-h4-mobile sm:text-h4-tablet lg:text-h4` |
+| Card root `h-auto` | `h-full min-h-[400px] sm:min-h-[520px] lg:min-h-[560px]` (responsive floor, matches image-height triplet) + image wrapper `shrink-0` + description `flex-1` + button `mt-auto shrink-0` — locks card height regardless of description length, button always anchored to bottom |
 
 ## §4 Verification at 4 widths
 

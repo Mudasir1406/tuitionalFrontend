@@ -26,13 +26,13 @@ const Trusted: React.FC<Props> = async ({ locale = "en" }) => {
           src={linesMobile}
           alt=""
           aria-hidden="true"
-          className="absolute -top-[2vh] left-[2vw] z-10 h-[100px] w-[100px] object-contain sm:hidden"
+          className="absolute -top-[2vh] left-[2vw] z-10 h-[19px] w-5 object-contain sm:hidden"
         />
         <Image
           src={linesInvert}
           alt=""
           aria-hidden="true"
-          className="absolute z-10 hidden h-[100px] w-[100px] object-contain sm:-left-[3.5vw] sm:-top-[3vh] sm:block md:-left-[3vw] md:-top-[3vh] lg:-left-[35px] lg:-top-10"
+          className="absolute z-10 hidden h-[35px] w-[43px] object-contain sm:-left-[3.5vw] sm:-top-[3vh] sm:block md:-left-[3vw] md:-top-[3vh] lg:-left-[35px] lg:-top-10"
         />
         {t.heading}
       </h2>

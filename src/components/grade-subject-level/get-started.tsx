@@ -30,12 +30,12 @@ const GetStarted: React.FC<IProps> = ({ data }) => {
 
   return (
     <div>
-      <p className="relative mb-5 mt-[70px] text-center font-heading text-h1-mobile sm:mt-20 sm:ps-5 sm:text-h1-tablet md:mt-[95px] md:ps-5 lg:mt-[75px] lg:ps-0 lg:text-h1 text-ink-900">
+      <p className="relative mb-5 mt-[70px] ps-2 text-center font-heading text-h1-mobile sm:mt-20 sm:ps-10 sm:text-h1-tablet md:mt-[95px] md:ps-10 lg:mt-[75px] lg:ps-0 lg:text-h1 text-ink-900">
         <Image
           src={linesMobile}
           alt=""
           aria-hidden="true"
-          className="absolute -top-5 left-[10%] z-10 h-[50px] w-[50px] object-contain sm:hidden"
+          className="absolute -top-5 left-[10%] z-10 h-[19px] w-5 object-contain sm:hidden"
         />
         <Image
           src={linesInvert}
@@ -81,7 +81,7 @@ const GetStarted: React.FC<IProps> = ({ data }) => {
           modules={[Pagination, Autoplay]}
           onSwiper={(s) => (swiperRef.current = s)}
           breakpoints={breakpoints}
-          style={{ width: "100%" }}
+          style={{ width: "100%", paddingBottom: "50px" }}
         >
           {data?.map((item, index) => (
             <SwiperSlide key={index}>
@@ -104,8 +104,8 @@ type Props = {
 };
 
 const GetStartedBox: React.FC<Props> = ({ heading, description, image, ButtonText }) => (
-  <div className="mx-auto my-[10px] flex h-auto w-full flex-col items-center rounded-md bg-brand-50 px-[30px] py-[10px] lg:w-4/5 xl:w-[400px]">
-    <div className="flex h-[150px] w-[300px] items-center justify-center sm:h-[250px] md:h-[250px]">
+  <div className="mx-auto my-[10px] flex h-full min-h-[400px] w-full flex-col items-center rounded-md bg-brand-50 px-[30px] py-[10px] sm:min-h-[520px] lg:min-h-[560px] lg:w-4/5 xl:w-[400px]">
+    <div className="flex h-[150px] w-[300px] shrink-0 items-center justify-center sm:h-[250px] md:h-[250px]">
       <Image
         src={image}
         alt=""
@@ -114,12 +114,12 @@ const GetStartedBox: React.FC<Props> = ({ heading, description, image, ButtonTex
         className="h-full w-full object-contain"
       />
     </div>
-    <strong className="my-[2vh] text-center font-heading text-h4 text-ink-900">{heading}</strong>
-    <p className="my-[2vh] text-center font-heading text-body text-ink-700">{description}</p>
+    <strong className="my-[2vh] text-center font-heading text-h4-mobile sm:text-h4-tablet lg:text-h4 text-ink-900">{heading}</strong>
+    <p className="my-[2vh] flex-1 text-center font-heading text-small text-ink-700">{description}</p>
     <PopUpButton
       href="popup"
       text={ButtonText}
-      className="my-[2vh] w-[249px] rounded-[10px] bg-brand-500 p-[18px] font-bold leading-[18.4px] tracking-[-0.02em] text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
+      className="my-[2vh] mt-auto w-[249px] shrink-0 rounded-[10px] bg-brand-500 p-[18px] font-bold leading-[18.4px] tracking-[-0.02em] text-white shadow-[1px_15px_34px_0px_#38B6FF66] hover:bg-brand-500"
     />
   </div>
 );

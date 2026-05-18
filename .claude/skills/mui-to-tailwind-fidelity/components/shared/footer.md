@@ -115,3 +115,112 @@ After applying footer fixes, walk through the 20-device matrix in [03-responsive
 - **Surface Duo (540px)**: same as mobile (brand full-width, links 2-up).
 - **Nest Hub (1024 × 600)**: short viewport — footer may need scroll. Verify the inter-column `gap-10` (40px) doesn't push content under the fold awkwardly.
 - **RTL at every width**: column order reverses; brand should appear on the right at lg+.
+
+---
+
+## §5 Known issues + fixes
+
+### Phone number row wraps on small mobile (≤375px)
+
+MUI applies `<Typography variant="h2">` (22/28/36px) to the inline phone number. At xs that's 22px bold; combined with `width: 80%` on `.contactContanier` and the phone icon, the string `+971 56 490 0376` ends up just over the available width on a 320–375px viewport and wraps to two lines.
+
+Fix in the Tailwind port: downsize the mobile font and force `whitespace-nowrap`. Also shrink the phone icon at mobile so it doesn't steal width:
+
+```tsx
+<Image
+  src={phone.src}
+  alt="phone"
+  className="block h-6 w-6 sm:h-8 sm:w-8 lg:h-auto lg:w-auto shrink-0"
+/>
+<span className="mx-[10px] whitespace-nowrap text-white font-bold leading-none tracking-[-0.01em]
+                 text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[2.25rem]">
+  +971 56 490 0376
+</span>
+```
+
+This is intentionally a divergence from the strict MUI triplet — MUI's stock h2 mobile size produces a layout bug at xs. Keep the desktop value (`lg:text-[2.25rem]`) identical to MUI.
+
+### Footer overall too tall + fonts too small on desktop
+
+Two independent forces pile up: MUI's outer `paddingY: { xs: 40, md: 100 }` + inner grid `marginTop: { xs: 70, sm: 80, md: 90, lg: 100 }` + socialBox `marginBottom: 80` + copyright `marginY: { xs: 20, sm: 30, md: 50, lg: 70 }` adds up to a footer that occupies ~1.5 viewports tall on a 1080 desktop. Plus tightening fonts to `text-small` (14px) per MUI body2 made desktop look anemic.
+
+Compress aggressively at every breakpoint. Visual goal: fits in a single laptop viewport (1280×800) without scrolling within the footer itself.
+
+| Element | MUI source | Compressed Tailwind |
+|---|---|---|
+| Outer wrapper py | `paddingY: { xs: 40px, md: 100px }` | `py-6 md:py-[40px]` |
+| Inner grid mt | `mt-[70px] sm:mt-20 md:mt-[90px] lg:mt-[100px]` | `mt-8 sm:mt-10 md:mt-10 lg:mt-10` |
+| socialBox mt / mb | `mt-10 lg:mt-[70px]` / `mb-20` | `mt-4 lg:mt-6` / `mb-4 lg:mb-6` |
+| desc mt | `mt-10` | `mt-6` |
+| Copyright my | `my-5 sm:my-[30px] md:my-[50px] lg:my-[70px]` | `my-3 sm:my-4 md:my-4 lg:my-5` |
+| Section heading font | `text-sm` | `text-sm lg:text-base` |
+| About-us item font + leading | `text-sm leading-[35–45px]` | `text-sm lg:text-base leading-[24–30px]` |
+| `<FooterLinks>` `<p>` | `text-body` + `leading-[35–45px]` | `text-small lg:text-base leading-[24–30px]` |
+
+### Single-row banner layout (lg) + mobile center alignment
+
+Original port used fixed-percentage Grid widths (`lg:w-[8.333%]/45.833%/29.167%/16.667%`) on 4 children = 100%. Combined with `gap-4` (3 gaps × 16px = 48px) → overflowed and **wrapped on lg**. Reference design has all four items inline on lg.
+
+Fix:
+```tsx
+<div className="flex w-full flex-wrap items-center justify-center gap-4 lg:flex-nowrap lg:justify-between lg:gap-4">
+  <div className="flex w-full justify-center lg:w-auto lg:shrink-0">{/* plane */}</div>
+  <div className="w-full text-center md:text-start lg:flex-1 lg:min-w-0">{/* admission text */}</div>
+  <div className="w-full lg:w-auto lg:shrink-0">{/* phone */}</div>
+  <div className="flex w-full justify-center lg:w-auto lg:shrink-0">{/* enroll */}</div>
+</div>
+```
+
+Key: drop fixed percentages → `lg:w-auto lg:shrink-0` on rigid items + `lg:flex-1 lg:min-w-0` on the text. `lg:flex-nowrap` forces single row.
+
+**Mobile center alignment bug**: `<span text-center ms-[10px]>` is an *inline* element — `text-center` only centers text inside the span itself, not within its parent. The `ms-[10px]` then shifts everything off-center. Fix: hoist `text-center md:text-start` to the wrapper `<div>`; drop `ms-[10px]` at xs, keep `md:ms-[10px]` for desktop start spacing.
+
+### Banner — tuned values (matches design reference)
+
+After three iterations (full MUI → over-compressed → tuned → single-row), these values match the deployed `tuitionaledu.com/` reference and fit one row on lg:
+
+| Element | Value |
+|---|---|
+| `.contactContanier` padding | `p-[12px] sm:p-4 md:p-[20px] lg:p-[24px]` |
+| `.contactContanier` `-mt` | `-mt-[50px]` |
+| Plane circle | `h-[70px] min-h-[70px] max-h-[85px] lg:h-[80px]` |
+| Plane image (inner) | `width: 44px, height: 52px, marginTop: 8px` |
+| Admission text | `text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] lg:text-[1.875rem]` (20/24/28/30px) — fits single row with phone + CTA |
+| Phone icon | `h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11` |
+| Phone number | `text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[1.625rem]` (16/20/24/26px) |
+| Enroll CTA | `px-[18px] py-[12px] text-[0.875rem] md:px-[22px] md:py-[14px] md:text-[1rem] lg:w-auto lg:px-[24px] lg:py-[14px] lg:text-[1rem]` |
+| Inner grid mt | `mt-10 sm:mt-12 md:mt-12 lg:mt-12` |
+| socialBox mt / mb | `mt-6 lg:mt-8` / `mb-6 lg:mb-8` |
+| Copyright my | `my-4 sm:my-5 md:my-5 lg:my-6` |
+
+Net effect: banner reads big and confident at desktop without dwarfing the link grid; mobile stays compact.
+
+### Banner ("Admissions Are Open …") compression
+
+The blue banner with plane icon + admission text + phone + Enroll button is the biggest single height-consumer. MUI uses `variant="subtitle1"` (3rem at lg = 48px) for the admission text + `variant="h2"` (36px at lg) for the phone — combined with `h-[9vh]` (~80px) plane circle and `py-2vh` button padding, the banner alone takes 200+px at lg.
+
+Compressed banner:
+
+| Element | Original | Compressed |
+|---|---|---|
+| `.contactContanier` padding | `p-[10px] sm:p-5 md:p-[25px] lg:p-[30px]` | `p-[10px] sm:p-4 md:p-[16px] lg:p-[18px]` |
+| `.contactContanier` `-mt` | `-mt-[70px]` (banner overlaps -70 above parent) | `-mt-[40px]` |
+| Plane circle | `h-[9vh] min-h-[75px] max-h-[90px]` (~80–90px) | `h-[60px] lg:h-[70px]` with smaller inner plane image (36×44 not 50×60) |
+| Admission text | `text-[1.75rem] sm:text-[2.25rem] lg:text-[3rem]` (28/36/48px) | `text-[1.125rem] sm:text-[1.375rem] md:text-[1.5rem] lg:text-[1.75rem]` (18/22/24/28px) |
+| Phone number | `text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[2.25rem]` | `text-[0.875rem] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.375rem]` |
+| Enroll CTA | `px-[25px] py-[1.5vh] leading-[23px]` | `px-[16px] py-[10px] text-[0.875rem] leading-[18px]` |
+
+This is an intentional, heavy divergence from strict MUI fidelity. The MUI desktop footer renders ~1000px tall on a 1080 monitor; compressed version is ~500–600px. Mobile spacing is unchanged from prior compression pass.
+
+### Link-list vertical spacing too tall
+
+MUI `.text` lineHeight is `35/40/40/45px` on a `variant="body2"` (14px) font → rows render ~21–31px taller than the glyphs. Cumulative effect on a 10-item list is a footer that scrolls a lot. Tighten without breaking MUI fidelity on the heading hierarchy:
+
+| Token | MUI source | Tighter Tailwind |
+|---|---|---|
+| `<FooterLinks>` `<p>` | `text-body` + `leading-[35px] sm:leading-[40px] md:leading-[40px] lg:leading-[45px]` | `text-small leading-[26px] sm:leading-[30px] md:leading-[32px] lg:leading-[35px]` |
+| `<aboutUs>` items in `footer.tsx` | same | same |
+
+Notes:
+- `body2` = 14px → use `text-small`, not `text-body` (16px).
+- Verify side-by-side with MUI; if MUI's tall lineHeight is intentional, revert. The current port trades strict parity for usable density.

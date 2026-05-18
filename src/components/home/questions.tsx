@@ -17,19 +17,22 @@ const Questions: React.FC<IProps> = ({ question, answer }) => {
           <DisclosureButton className="flex w-full items-center justify-between px-[10px] text-start font-heading text-[2.3vh] font-medium leading-[2.7vh] text-black sm:text-[2.6vh] sm:leading-[2.8vh] md:text-[2.8vh] md:leading-[3.2vh] lg:text-[2.8vh] lg:leading-[3.4vh]">
             <span>{question}</span>
             {open ? (
-              <Minus className="text-black" aria-hidden="true" />
+              <Minus className="text-black shrink-0" aria-hidden="true" />
             ) : (
-              <Plus className="text-black" aria-hidden="true" />
+              <Plus className="text-black shrink-0" aria-hidden="true" />
             )}
           </DisclosureButton>
-          {open && (
-            <>
-              <hr className="mx-auto my-2 w-[95%] border-ink-200" />
-              <DisclosurePanel className="my-5 ms-[1.5%] font-heading text-small text-black">
+          <DisclosurePanel
+            static
+            className="grid grid-rows-[0fr] transition-[grid-template-rows,opacity] duration-300 ease-in-out data-[open]:grid-rows-[1fr] data-[open]:opacity-100 opacity-0"
+          >
+            <div className="overflow-hidden">
+              <hr className="mx-auto mt-2 w-[95%] border-ink-200" />
+              <div className="my-5 ms-[1.5%] me-[1.5%] font-heading text-small text-black">
                 {answer}
-              </DisclosurePanel>
-            </>
-          )}
+              </div>
+            </div>
+          </DisclosurePanel>
         </div>
       )}
     </Disclosure>
