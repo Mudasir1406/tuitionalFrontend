@@ -284,3 +284,8 @@ Tailwind port action (single source supporting both):
   - linesMobile: `-left-[10%] -top-3 h-[19px] w-5` (small mobile asset)
   - linesInvert: `sm:-left-[8%] sm:-top-[35px] md:-left-[6%] md:-top-[30px] lg:-left-[4%] lg:-top-[50px]`
 - Use the smaller `h-[19px] w-5` for the mobile linesMobile variant, not 35×43 — the asset is designed for mobile size.
+
+### §6.5 Button shadow needs `!` to win over `shadow-card`
+- `<Button variant="primary">` base classes include `shadow-card` (small neutral drop). Custom `shadow-[1px_4px_24px_0px_#38B6FFB2]` does NOT win — both are utility classes with equal specificity; CSS source order picks `shadow-card`.
+- **Fix:** add `!` to both base and hover shadow: `!shadow-[1px_4px_24px_0px_#38B6FFB2] hover:!shadow-[1px_4px_24px_0px_#38B6FFB2]`. Applies to all 3 careers buttons (hero, top-talent, apply-now).
+- Also: button `borderRadius: 10px` from MUI → `rounded-[10px]`, NOT `rounded-md` (6px).

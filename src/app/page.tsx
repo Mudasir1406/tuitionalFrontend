@@ -147,7 +147,7 @@ const Home: React.FC = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
       <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
-      <div className="mx-auto flex items-end pt-[20px] sm:pt-[20px] md:pt-[20px] lg:max-w-[1650px] lg:pt-[20px] xl:pt-[20px]">
+      <div className="mx-auto min-h-screen flex items-end pt-[20px] sm:pt-[20px] md:pt-[20px] lg:max-w-[1650px] lg:pt-[20px] xl:pt-[20px]">
         <div className={style["grid-container"]}>
           <div className={style["hero"]}>
             <Filter data={filterData} />
