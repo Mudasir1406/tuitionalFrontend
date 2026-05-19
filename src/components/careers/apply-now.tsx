@@ -49,7 +49,9 @@ const ApplyNow: React.FC = () => {
 
     if (key === "Message" && typeof value === "string") {
       value = value.slice(0, 500);
-      newErrors.Message = isNotEmpty(value) ? "" : t("careers.apply_now.errors.message_empty");
+      newErrors.Message = isNotEmpty(value)
+        ? ""
+        : t("careers.apply_now.errors.message_empty");
     }
     if (key === "PhoneNumber" && typeof value === "string") {
       newErrors.PhoneNumber = isValidPhoneNumber(value)
@@ -91,13 +93,20 @@ const ApplyNow: React.FC = () => {
     setLoading(true);
 
     const newErrors: Partial<CareersFormType> = {};
-    if (!isNotEmpty(formData.FirstName)) newErrors.FirstName = t("careers.apply_now.errors.first_name_empty");
-    if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = t("careers.apply_now.errors.invalid_email");
-    if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = t("careers.apply_now.errors.invalid_phone");
-    if (!isNotEmpty(formData.LastName)) newErrors.LastName = t("careers.apply_now.errors.last_name_empty");
-    if (!isNotEmpty(formData.Country)) newErrors.Country = t("careers.apply_now.errors.country_empty");
-    if (!isNotEmpty(formData.Position)) newErrors.Position = t("careers.apply_now.errors.position_empty");
-    if (!isNotEmpty(formData.Message)) newErrors.Message = t("careers.apply_now.errors.message_empty");
+    if (!isNotEmpty(formData.FirstName))
+      newErrors.FirstName = t("careers.apply_now.errors.first_name_empty");
+    if (!isValidEmail(formData.EmailAddress))
+      newErrors.EmailAddress = t("careers.apply_now.errors.invalid_email");
+    if (!isValidPhoneNumber(formData.PhoneNumber))
+      newErrors.PhoneNumber = t("careers.apply_now.errors.invalid_phone");
+    if (!isNotEmpty(formData.LastName))
+      newErrors.LastName = t("careers.apply_now.errors.last_name_empty");
+    if (!isNotEmpty(formData.Country))
+      newErrors.Country = t("careers.apply_now.errors.country_empty");
+    if (!isNotEmpty(formData.Position))
+      newErrors.Position = t("careers.apply_now.errors.position_empty");
+    if (!isNotEmpty(formData.Message))
+      newErrors.Message = t("careers.apply_now.errors.message_empty");
 
     setErrors(newErrors);
 
@@ -135,7 +144,9 @@ const ApplyNow: React.FC = () => {
           method: "POST",
           mode: "no-cors",
           body: formDataString,
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
         },
       );
       await sendEmail({
@@ -199,12 +210,13 @@ const ApplyNow: React.FC = () => {
     }
   }, [geoData]);
 
-  const inputCls = "my-1 rounded-[5px] bg-white font-heading text-ink-800 shadow-card";
-  const errorCls = "ms-1 mt-1 font-body text-small text-danger";
+  const inputCls =
+    "rounded-[5px] border-none bg-white font-heading text-ink-800 shadow-card focus:ring-0 focus:outline-none";
+  const errorCls = "ms-[6px] mt-[6px] font-body text-small text-danger";
 
   return (
     <div className="relative">
-      <div className="absolute inset-0 -z-[2] h-full w-full" />
+      <div className="absolute inset-0 -z-[2] h-full w-full bg-gradient-to-b from-white/70 to-brand-50" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12">
         <div className="lg:col-span-5">
@@ -220,7 +232,7 @@ const ApplyNow: React.FC = () => {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="z-[4] mt-5 flex flex-col items-center md:mt-10 lg:mt-0 lg:block">
+          <div className="z-[4] mt-5 flex flex-col items-center md:mt-10 lg:block">
             <h2 className="relative ms-0 mb-10 mt-0 flex font-heading text-h2-mobile sm:mb-5 sm:text-h2-tablet md:ms-[60px] md:mb-5 md:mt-0 lg:ms-[65px] lg:mb-5 lg:mt-[5px] lg:text-h2 text-black">
               <Image
                 src={linesMobile}
@@ -237,20 +249,35 @@ const ApplyNow: React.FC = () => {
               {t("careers.apply_now.heading")}
             </h2>
 
-            <form onSubmit={handleSubmit} className="relative w-full">
-              <div className="z-[1] grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
-                <div className="flex flex-col gap-2">
+            <form
+              onSubmit={handleSubmit}
+              className={cn(
+                "relative flex w-[75%] flex-col items-center justify-center rounded-[20px] bg-white/70",
+                "px-[35px] py-[35px] sm:px-10 sm:py-10 md:px-[45px] md:py-[45px] lg:w-[65%] lg:px-[50px] lg:py-[50px]",
+                "mb-[60px] md:mb-[100px]",
+                "shadow-[0px_-3px_8px_0px_rgba(0,0,0,0.06)_inset,0px_3px_8px_0px_rgba(0,0,0,0.06)_inset]",
+              )}
+            >
+              <div className="absolute -z-[1] h-[100px] w-[100px] rounded-full bg-brand-500 -top-[30px] -right-[10px] sm:h-[180px] sm:w-[180px] sm:-top-[80px] sm:-right-[40px] md:h-[200px] md:w-[200px] md:-right-[60px] lg:-right-[80px]" />
+              <div className="absolute -z-[1] h-[60px] w-[60px] rounded-full bg-brand-500 -bottom-[80px] -left-[20px] sm:h-[80px] sm:w-[80px] md:h-[100px] md:w-[100px] md:-left-[30px] lg:-bottom-[30px] lg:-left-[30px]" />
+
+              <div className="z-[1] grid w-full grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
+                <div className="flex flex-col">
                   <div>
                     <Input
                       name="FirstName"
                       value={formData.FirstName}
                       onChange={handleChange}
-                      placeholder={t("careers.apply_now.placeholder_first_name")}
+                      placeholder={t(
+                        "careers.apply_now.placeholder_first_name",
+                      )}
                       className={inputCls}
                     />
-                    {errors.FirstName && <p className={errorCls}>{errors.FirstName}</p>}
+                    {errors.FirstName && (
+                      <p className={errorCls}>{errors.FirstName}</p>
+                    )}
                   </div>
-                  <div>
+                  <div className="my-[2vh]">
                     <Input
                       name="EmailAddress"
                       value={formData.EmailAddress}
@@ -258,7 +285,9 @@ const ApplyNow: React.FC = () => {
                       placeholder={t("careers.apply_now.placeholder_email")}
                       className={inputCls}
                     />
-                    {errors.EmailAddress && <p className={errorCls}>{errors.EmailAddress}</p>}
+                    {errors.EmailAddress && (
+                      <p className={errorCls}>{errors.EmailAddress}</p>
+                    )}
                   </div>
                   <div>
                     <Input
@@ -268,11 +297,13 @@ const ApplyNow: React.FC = () => {
                       placeholder={t("careers.apply_now.placeholder_country")}
                       className={inputCls}
                     />
-                    {errors.Country && <p className={errorCls}>{errors.Country}</p>}
+                    {errors.Country && (
+                      <p className={errorCls}>{errors.Country}</p>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col">
                   <div>
                     <Input
                       name="LastName"
@@ -281,18 +312,22 @@ const ApplyNow: React.FC = () => {
                       placeholder={t("careers.apply_now.placeholder_last_name")}
                       className={inputCls}
                     />
-                    {errors.LastName && <p className={errorCls}>{errors.LastName}</p>}
+                    {errors.LastName && (
+                      <p className={errorCls}>{errors.LastName}</p>
+                    )}
                   </div>
-                  <div>
+                  <div className="my-[2vh]">
                     <PhoneInput
                       defaultCountry="SA"
                       value={formData?.PhoneNumber || ""}
                       onChange={(e) => handleChange("PhoneNumber", String(e))}
                       inputComponent={CustomInput}
                       placeholder={t("careers.apply_now.placeholder_phone")}
-                      className="relative z-[2] my-1 h-[5.5vh] min-h-[44px] rounded-[10px] bg-white ps-[10px] text-ink-800 shadow-card outline-none"
+                      className="relative z-[2] h-[5.5vh] min-h-[44px] rounded-[10px] bg-white ps-[10px] text-ink-800 shadow-card outline-none"
                     />
-                    {errors.PhoneNumber && <p className={errorCls}>{errors.PhoneNumber}</p>}
+                    {errors.PhoneNumber && (
+                      <p className={errorCls}>{errors.PhoneNumber}</p>
+                    )}
                   </div>
                   <div>
                     <Input
@@ -302,11 +337,13 @@ const ApplyNow: React.FC = () => {
                       placeholder={t("careers.apply_now.placeholder_position")}
                       className={inputCls}
                     />
-                    {errors.Position && <p className={errorCls}>{errors.Position}</p>}
+                    {errors.Position && (
+                      <p className={errorCls}>{errors.Position}</p>
+                    )}
                   </div>
                 </div>
 
-                <div className="lg:col-span-2">
+                <div className="col-span-1 lg:col-span-2">
                   <Textarea
                     name="Message"
                     rows={5}
@@ -315,14 +352,20 @@ const ApplyNow: React.FC = () => {
                     placeholder={t("careers.apply_now.placeholder_message")}
                     className={inputCls}
                   />
-                  {errors.Message && <p className={errorCls}>{errors.Message}</p>}
+                  {errors.Message && (
+                    <p className={errorCls}>{errors.Message}</p>
+                  )}
                 </div>
               </div>
 
               <Button
                 type="submit"
                 disabled={loading}
-                className="my-4 w-full rounded-md py-[18px] text-button shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]"
+                className={cn(
+                  "!h-auto my-5 w-full self-center rounded-[10px] bg-brand-500 hover:bg-brand-500",
+                  "p-[18px] font-heading text-[25px] !font-bold leading-[18.4px] tracking-[-0.02em] normal-case !text-white",
+                  "!shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)] hover:!shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]",
+                )}
               >
                 {loading ? (
                   <span

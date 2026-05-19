@@ -29,30 +29,30 @@ const TopTalent: React.FC = () => {
         </div>
         <div className="md:col-span-5">
           <div>
-            <h3 className="relative mt-0 px-5 text-center font-heading text-h2-mobile sm:text-h2-tablet md:mt-[95px] md:text-start lg:mt-[105px] lg:text-h2 text-black">
+            <h3 className="relative mx-auto mt-0 w-fit px-5 text-center font-heading text-h2-mobile sm:text-h2-tablet md:mx-0 md:mt-[95px] md:text-start md:w-auto lg:mt-[105px] lg:text-h2 text-black">
               <Image
                 src={linesMobile}
                 alt=""
                 aria-hidden="true"
-                className="absolute -top-5 z-10 mb-5 h-[35px] w-[43px] object-contain sm:hidden"
+                className="absolute -left-[-2%] -top-3 z-10 h-[19px] w-5 object-contain sm:hidden"
               />
               <Image
                 src={linesInvert}
                 alt=""
                 aria-hidden="true"
-                className="absolute -left-[30px] -top-[30px] z-10 mb-5 hidden h-[35px] w-[43px] object-contain sm:-top-10 sm:block md:-top-[30px] lg:-top-[50px]"
+                className="absolute z-10 hidden h-[35px] w-[43px] object-contain sm:-left-[8%] sm:-top-[35px] sm:block md:-left-[6%] md:-top-[30px] lg:-left-[4%] lg:-top-[50px]"
               />
               {t("careers.top_talent.heading_line_1")} <br />
               {lead && <>{lead}</>}{" "}
               <span className="relative inline text-[#009FFC]">{accent}</span>
             </h3>
-            <p className="mt-5 px-5 text-center font-heading text-body-mobile sm:text-body lg:w-[68%] lg:text-start text-ink-800 whitespace-pre-line">
+            <p className="mt-5 px-5 text-center font-heading text-small md:text-start lg:w-[68%] text-ink-800 whitespace-pre-line">
               {t("careers.top_talent.description")}
             </p>
             <div className="mt-10 flex flex-row items-center justify-center md:justify-start">
               <Button
                 variant="primary"
-                className="w-[180px] rounded-md px-0 py-[18px] shadow-[1px_4px_24px_0px_#38B6FFB2] sm:w-[200px] md:w-[200px] lg:w-[200px]"
+                className="!h-auto w-[180px] rounded-[10px] p-[18px] font-heading !font-bold text-button-mobile tracking-[-0.02em] normal-case !shadow-[1px_4px_24px_0px_#38B6FFB2] hover:bg-brand-500 hover:!shadow-[1px_4px_24px_0px_#38B6FFB2] sm:w-[200px] sm:text-button"
               >
                 {t("careers.top_talent.cta")}
               </Button>

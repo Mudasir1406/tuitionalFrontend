@@ -356,3 +356,20 @@ Tailwind port action under RTL (using `isRTL` from `useI18n()` or `dir="rtl"` on
   ```
 - Heading `ms-[60px]` / `ms-[65px]` is already logical — auto-flips.
 - Note: do NOT port the AR-only background gradient `#D3EFFE → rgba(255,255,255,0.7)` and the `100vh/130vh` minHeight unless verifying that the design system wants AR to look different from LTR. Default to the LTR background (`from-white/70 to-brand-50`) for consistency.
+
+## §6 Late-discovered drift (2026-05-19)
+
+### Form `mx-auto` shifts form right at lg+
+- At lg the col-7 parent uses `lg:block`. `mx-auto` on the 65%-width form centers it inside col-7 → form ends up biased right of true page center.
+- MUI form has NO auto margin: form sits at LEFT edge of col-7. Drop `mx-auto`. At <lg the parent `flex items-center` already centers cross-axis, so removal does not affect mobile.
+
+### Textarea browser border bleeds through `<Textarea>`
+- House `<Textarea>` ([input.tsx](../../../../src/components/ui/input.tsx)) does not set `border-none`. UA-default textarea border (1px solid) shows through with `bg-white` + `shadow-card`.
+- **Fix on per-instance className** (`inputCls`): add `border-none focus:ring-0 focus:outline-none`. Skip if doing this globally — only this form requires borderless inputs per MUI baseline.
+
+### Submit button overrides
+- Same `<Button>` `h-10` cap as top-talent. Add `!h-auto`. Add `!font-bold` to overwrite text-button token's embedded 600 weight.
+
+### Inter-section gap to TopTalent + Footer
+- ApplyNow heading must sit lower than TopTalent's "Get in touch" button. Add `mt-[5vh] md:mt-[10vh]` to the page-level `#careersForm` wrapper.
+- Form `mb-[60px] md:mb-[100px]` alone is not enough to guarantee gap to Footer. Add `pb-[5vh] md:pb-[10vh]` on the same `#careersForm` wrapper.

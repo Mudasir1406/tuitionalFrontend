@@ -45,12 +45,13 @@ const FooterV2: React.FC = () => {
               </div>
 
               {/* Tagline text */}
-              <p
-                className={`${leagueSpartan.className} text-center text-sm font-normal leading-[1.6] text-white md:flex-1 md:text-start md:text-base`}
+              <h2
+                className={`${leagueSpartan.className} flex flex-col items-center text-center text-white text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] lg:text-[1.875rem] font-bold leading-[1.15] tracking-[0.00833em] md:flex-1 md:items-start md:text-start md:ms-[10px] mt-1`}
               >
-                Registered in UAE • Established Since 2020 • Headquarters:
-                Sharjah
-              </p>
+                <span>Registered in UAE</span>
+                <span>Established Since 2020</span>
+                <span>Headquarters: Sharjah</span>
+              </h2>
 
               {/* Phone number */}
               <div className="flex shrink-0 items-center gap-2 leading-none">
@@ -62,7 +63,7 @@ const FooterV2: React.FC = () => {
                   className="block"
                 />
                 <span
-                  className={`${leagueSpartan.className} text-sm font-normal leading-none text-white md:text-base m-0`}
+                  className={`${leagueSpartan.className} mx-[10px] whitespace-nowrap text-white text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[1.625rem] font-bold leading-none tracking-[-0.01em] m-0`}
                 >
                   +971 56 490 0376
                 </span>

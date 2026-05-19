@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
         <Button
           variant="primary"
           onClick={scrollToApplyForm}
-          className="w-1/2 rounded-md px-0 py-[2vh] shadow-[1px_4px_24px_0px_#38B6FFB2]"
+          className="!h-auto w-1/2 rounded-[10px] p-[2vh] font-heading !font-bold text-button-mobile tracking-[-0.02em] normal-case !shadow-[1px_4px_24px_0px_#38B6FFB2] hover:bg-brand-500 hover:!shadow-[1px_4px_24px_0px_#38B6FFB2] sm:text-button"
         >
           {t("careers.hero.cta")}
         </Button>

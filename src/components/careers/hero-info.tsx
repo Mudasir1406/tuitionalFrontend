@@ -10,7 +10,7 @@ const HeroInfo: React.FC = () => {
 
   return (
     <div className="relative flex h-[100px] w-full items-end justify-between sm:h-[200px] md:h-full lg:h-full">
-      <div className="relative -mt-[100px] flex flex-col rounded-md border border-white/[0.18] bg-white p-[2vw] shadow-[0px_0px_30px_0px_rgba(56,182,255,0.2)]">
+      <div className="relative -mt-[100px] flex flex-col rounded-md border border-white/[0.18] bg-white p-[2vw] shadow-[0px_0px_30px_0px_rgba(56,182,255,0.2)] animate-[bounce_5s_ease-in-out_infinite]">
         <p className="text-[1vh] font-bold leading-[1vh] text-black sm:text-[2.1vh] sm:leading-[2.1vh] md:text-[2.3vh] md:leading-[2.3vh] lg:text-[2.5vh] lg:leading-[3vh] font-heading">
           {t("careers.hero_info.vacancy_count")}
         </p>
@@ -22,7 +22,7 @@ const HeroInfo: React.FC = () => {
         </p>
       </div>
 
-      <div className="-mt-[100px] flex w-[72px] flex-col items-center justify-center gap-[10px] rounded-md sm:w-[170px] md:w-[190px] lg:w-[235px]">
+      <div className="-mt-[100px] flex w-[72px] flex-col items-center justify-center gap-[10px] rounded-md animate-[bounce_6s_ease-in-out_infinite] sm:w-[170px] md:w-[190px] lg:w-[235px]">
         <div className="relative flex flex-col items-center justify-center rounded-md border border-white/[0.18] bg-white p-[10px] shadow-[0px_0px_30px_0px_#38B6FF33]">
           <Image
             src={tutors.src}

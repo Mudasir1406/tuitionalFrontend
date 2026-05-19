@@ -255,3 +255,32 @@ Tailwind port action (single source supporting both):
   className="absolute z-10 ... sm:-top-10 sm:block md:-top-[30px] lg:-top-[50px] ltr:md:-left-[30px] ltr:lg:-left-[30px] rtl:md:-right-[30px] rtl:lg:-right-[30px]"
   ```
 - The mobile `linesMobile` image at base width has no `left` override in MUI (LTR) nor `right` override in AR — keep default positioning.
+
+## §6 Late-discovered drift (2026-05-19)
+
+### Button base utilities fight component overrides
+- `<Button>` component ([button.tsx](../../../../src/components/ui/button.tsx)) base `size="md"` sets `h-10 px-6` (40px hard-cap). MUI `padding: 18px` symmetric → ~58px height. Direct `p-[18px]` does NOT win over `h-10`.
+- **Fix:** add `!h-auto` to override `h-10` so padding controls height.
+- Also: `text-button-mobile`/`text-button` tokens have `fontWeight: "600"` baked in. MUI button looks bolder. Add `!font-bold` to force 700 — wins over the token's embedded 600.
+- Also: MUI `borderRadius: 10px`. Use `rounded-[10px]`, not `rounded-md` (6px).
+
+### Lines decoration — explicit left:0 / left:20px anchor
+- MUI `::before` pseudo-element with `left: auto` is positioned at h3 content-area top-left (after `padding-left: 20px`).
+- A real `<Image>` first-child with `absolute` + no `left` class also goes to static position, BUT can drift inside text-aligned containers.
+- **Safer port:** set explicit `left-5` (20px) at base/sm to anchor it at `padding-left` edge of h3. Then `md:-left-[30px] lg:-left-[30px]` per MUI breakpoints.
+
+### §6.2 Lines icon at text-center breakpoints — static-position mismatch
+- MUI `::before` is an inline pseudo with `content: ''`. With `text-align: center` on h3, the pseudo's STATIC position is at the centered inline-start (i.e. where the heading text begins horizontally). Browser uses that as the `left: auto` value.
+- A real `<Image>` first-child in the port is block-level. With `position: absolute, left: auto`, its static position is at h3 content-area top-left (after `padding-left`) — NOT near the centered text. Result: icon sits at h3 left edge instead of near "W" of "Why".
+- **Fix (mobile/sm text-center):** anchor explicitly via `left-1/2 -translate-x-[90px]` (linesMobile) / `-translate-x-[110px]` (linesInvert at sm). Reset at md+ with `md:left-0 md:translate-x-0 md:-left-[30px]` since md+ is text-start (no centering offset needed).
+
+### §6.3 Section needs outer container padding on mobile
+- Careers page wraps each section in `<div className="mx-auto lg:max-w-[1650px]">` — no `px-*`. At <lg, sections (TeamValues cards, TopTalent grid) touch viewport edges.
+- **Fix:** add `px-4 sm:px-6 md:px-8 lg:px-8` to the wrapper. Mirrors MUI Container's default xs:16px / sm+:24px+ inset.
+
+### §6.4 Lines icon — match ApplyNow's flex/percent approach
+- Block h3 with `text-center` + absolute Image first-child = static position lands at h3 left edge, not text-start. `-left-[N%]` based on full h3 width is unreliable.
+- **Fix:** convert h3 to `w-fit mx-auto` at mobile/sm (shrinks h3 to text width, centered as block). At md+ revert with `md:mx-0 md:w-auto`. Then mirror ApplyNow's icon positioning:
+  - linesMobile: `-left-[10%] -top-3 h-[19px] w-5` (small mobile asset)
+  - linesInvert: `sm:-left-[8%] sm:-top-[35px] md:-left-[6%] md:-top-[30px] lg:-left-[4%] lg:-top-[50px]`
+- Use the smaller `h-[19px] w-5` for the mobile linesMobile variant, not 35×43 — the asset is designed for mobile size.

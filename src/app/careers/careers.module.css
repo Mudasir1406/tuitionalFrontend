@@ -5,6 +5,13 @@
   justify-content: flex-end;
   align-items: center;
   margin: auto;
+  margin-top: calc(-2vh - 72px);
+}
+
+@media (min-width: 600px) {
+  .container {
+    margin-top: calc(-2vh - 80px);
+  }
 }
 
 .grid-container {

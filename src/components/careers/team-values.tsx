@@ -34,14 +34,14 @@ interface InfoBoxProps {
 const InfoBox: React.FC<InfoBoxProps> = ({ heading, dec, icon }) => {
   const { src, alt } = iconMap[icon];
   return (
-    <div className="relative flex h-[200px] w-full flex-col items-center justify-center rounded-md bg-white/70 shadow-[0px_-3px_8px_0px_#00000026_inset,0px_2px_1px_0px_#0000000D] sm:h-[285px] sm:w-[322px] md:h-[313px] md:w-[360px] lg:h-[413px] lg:w-[460px]">
-      <div className="mb-[10px] flex h-[45px] w-[45px] items-center justify-center rounded-full bg-white shadow-[0px_-2px_4px_0px_#0000005C_inset,0px_4px_12.6px_0px_#009BF526] sm:mb-5 sm:h-[55px] sm:w-[55px] md:mb-[30px] md:h-[75px] md:w-[75px] lg:mb-10 lg:h-[115px] lg:w-[115px]">
-        <div className="h-5 w-5 sm:h-[30px] sm:w-[30px] md:h-[45px] md:w-[45px] lg:h-[45px] lg:w-[45px]">
+    <div className="relative flex h-[200px] w-full flex-col items-center justify-center rounded-md bg-white/70 px-4 py-6 shadow-[0px_-3px_8px_0px_#00000026_inset,0px_2px_1px_0px_#0000000D] sm:h-[285px] sm:w-[322px] sm:py-8 md:h-[313px] md:w-[360px] md:py-10 lg:h-[413px] lg:w-[460px] lg:py-12">
+      <div className="mb-[10px] flex h-[45px] w-[45px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0px_-2px_4px_0px_#0000005C_inset,0px_4px_12.6px_0px_#009BF526] sm:mb-5 sm:h-[55px] sm:w-[55px] md:mb-[30px] md:h-[75px] md:w-[75px] lg:mb-10 lg:h-[115px] lg:w-[115px]">
+        <div className="h-5 w-5 shrink-0 sm:h-[30px] sm:w-[30px] md:h-[45px] md:w-[45px] lg:h-[45px] lg:w-[45px]">
           <Image src={src} alt={alt} className="h-full w-full" />
         </div>
       </div>
-      <div className="h-[35%]">
-        <h3 className="mb-[10px] text-center font-heading text-h5-tablet sm:mb-[15px] sm:text-h5 md:mb-[18px] lg:mb-[22px] lg:text-h5">
+      <div>
+        <h3 className="mb-[10px] text-center font-heading text-h5-tablet sm:mb-[15px] md:mb-[18px] lg:mb-[22px] lg:text-h5">
           {heading}
         </h3>
         <p className="mx-auto max-w-[90%] whitespace-pre-line text-center font-heading text-small text-ink-800 md:max-w-[280px] lg:max-w-[300px]">

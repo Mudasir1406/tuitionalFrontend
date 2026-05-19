@@ -316,3 +316,5 @@ Then run: `npm run lint && npm run build` — both must pass.
 | Text renders in Inter instead of League Spartan | Missing `font-heading` | Add `font-heading` to className |
 | Box shadow / glow missing | Shadow class missing or raw value not matching token | Use `shadow-brand-glow`, `shadow-header`, `shadow-card` |
 | Animation not working | keyframe name mismatch | Use exact name from `globals.css` keyframes in `animate-[name_...]` |
+| Double vertical spacing between form rows | Grid `gap-y-*` stacks on top of each field's own `mt-[1.5vh]` (Input/DropDown/PhoneInput already carry top margin) | Drop `gap-y-*`, keep `gap-x-*` only. Let per-field margins drive row rhythm. |
+| Visible 1px border around `<Textarea>` (`components/ui/input.tsx`) | House Textarea renders raw `<textarea>` with no `border:0`; browser UA stylesheet paints default | Add `border-0 focus:ring-0` to className. Matches MUI `.textArea { border: none !important }`. |

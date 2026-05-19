@@ -22,7 +22,7 @@ import styles from "./careers.module.css";
 const Careers: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />
       <div className={styles.container}>
         <div className={styles["grid-container"]}>
           <div className={styles["hero"]}>
@@ -34,14 +34,14 @@ const Careers: React.FC = () => {
         </div>
       </div>
       <div className="bg-gradient-to-b from-[#D7F0FF] to-white/70">
-        <div className="mx-auto lg:max-w-[1650px]">
+        <div className="mx-auto px-4 sm:px-6 md:px-8 lg:max-w-[1650px] lg:px-8">
           <TeamValues />
         </div>
       </div>
-      <div className="mx-auto lg:max-w-[1650px]">
+      <div className="mx-auto px-4 sm:px-6 md:px-8 lg:max-w-[1650px] lg:px-8">
         <TopTalent />
       </div>
-      <div id="careersForm">
+      <div id="careersForm" className="mt-[5vh] pb-[5vh] md:mt-[10vh] md:pb-[10vh]">
         <ApplyNow />
       </div>
       <Footer />

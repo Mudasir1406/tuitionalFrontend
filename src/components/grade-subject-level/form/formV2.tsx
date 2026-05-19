@@ -57,9 +57,6 @@ const FormV2: React.FC<IProps> = ({ background }) => {
     if (key === "Grade" && typeof value === "string") {
       newErrors.Grade = isNotEmpty(value) ? "" : "Grade cannot be empty";
     }
-    if (key === "Curriculum" && typeof value === "string") {
-      newErrors.Curriculum = isNotEmpty(value) ? "" : "Curriculum cannot be empty";
-    }
     if (key === "Subject" && typeof value === "string") {
       newErrors.Subject = isNotEmpty(value) ? "" : "Subjects cannot be empty";
     }
@@ -78,7 +75,6 @@ const FormV2: React.FC<IProps> = ({ background }) => {
     if (!isValidEmail(formData.EmailAddress)) newErrors.EmailAddress = "Invalid email address";
     if (!isValidPhoneNumber(formData.PhoneNumber)) newErrors.PhoneNumber = "Invalid phone number";
     if (!isNotEmpty(formData.Grade)) newErrors.Grade = "Grade cannot be empty";
-    if (!isNotEmpty(formData.Curriculum)) newErrors.Curriculum = "Curriculum cannot be empty";
     if (!isNotEmpty(formData.Message)) newErrors.Message = "Message cannot be empty";
 
     setErrors(newErrors);
@@ -129,24 +125,24 @@ const FormV2: React.FC<IProps> = ({ background }) => {
     }
   }, [geoData]);
 
-  const inputCls = "my-1 rounded-md bg-white font-heading text-ink-800 shadow-card";
-  const errCls = "ms-1 mt-1 font-body text-small text-danger";
+  const inputCls = "mt-[1.5vh] rounded bg-white font-heading text-[2.3vh] text-ink-800 shadow-card";
+  const errCls = "ms-[6px] mt-[6px] font-body text-small text-danger";
 
   return (
-    <div className="rounded-[10px] bg-[#D7F0FF] p-5">
+    <div className="rounded-2xl bg-brand-50 p-6 shadow-[0_2px_8px_0_rgba(99,99,99,0.2)]">
       <form onSubmit={handleSubmit}>
-        <h5 className="mb-4 text-center font-heading text-h5 text-ink-900">
+        <h5 className="mb-[1.5vh] text-center font-heading text-stat-number-mobile font-bold text-ink-900 sm:text-stat-number-tablet lg:text-stat-number">
           Avail A 10% Discount If You Sign Up Today!
         </h5>
-        <div className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2">
+        <div className="grid grid-cols-2 gap-x-6">
           <div>
             <Input name="FirstName" value={formData.FirstName} onChange={handleChange}
-              placeholder="Enter name here ..." className={inputCls} />
+              placeholder="Name" className={inputCls} />
             {errors.FirstName && <p className={errCls}>{errors.FirstName}</p>}
           </div>
           <div>
             <Input name="EmailAddress" value={formData.EmailAddress} onChange={handleChange}
-              placeholder="Enter email here ..." className={inputCls} />
+              placeholder="Email" className={inputCls} />
             {errors.EmailAddress && <p className={errCls}>{errors.EmailAddress}</p>}
           </div>
           <div>
@@ -155,39 +151,32 @@ const FormV2: React.FC<IProps> = ({ background }) => {
               value={formData?.PhoneNumber || ""}
               onChange={(e) => handleChange("PhoneNumber", String(e))}
               inputComponent={CustomInput}
-              disabled={!formData.EmailAddress}
-              placeholder="Enter phone number here ..."
-              className="relative z-[2] my-1 h-[5.5vh] min-h-[44px] rounded-md bg-white ps-[10px] text-ink-800 shadow-card outline-none"
+              className="relative z-[2] mt-[1.5vh] h-[5.5vh] min-h-[50px] rounded-md bg-white ps-[10px] text-[2.3vh] font-normal leading-[3.5vh] text-ink-800 shadow-card outline-none"
             />
             {errors.PhoneNumber && <p className={errCls}>{errors.PhoneNumber}</p>}
           </div>
           <div>
-            <TranslatableDropDown name="Grade" placeholder="Select Grade"
+            <TranslatableDropDown name="Grade" placeholder="Grade" marginTop="1.5vh"
               data={filterData?.grade || []} value={formData.Grade} onChange={handleChange}
               locale={locale} isSubjectField={false} />
             {errors.Grade && <p className={errCls}>{errors.Grade}</p>}
           </div>
-          <div>
-            <TranslatableDropDown name="Curriculum" placeholder="Select Curriculum"
-              data={filterData?.curriculum || []} value={formData.Curriculum} onChange={handleChange}
-              locale={locale} isSubjectField={false} />
-            {errors.Curriculum && <p className={errCls}>{errors.Curriculum}</p>}
-          </div>
-          <div>
-            <TranslatableDropDown name="Subject" placeholder="Select Subjects"
+          <div className="col-span-2">
+            <TranslatableDropDown name="Subject" placeholder="Subject" marginTop="1.5vh"
               data={filterData?.subject || []} multiple value={formData.Subject} onChange={handleChange}
               locale={locale} isSubjectField={true} />
             {errors.Subject && <p className={errCls}>{errors.Subject}</p>}
           </div>
         </div>
-        <div className="mt-2">
+        <div className="mt-3">
           <Textarea name="Message" rows={4} value={formData.Message}
             onChange={(e) => handleChange("Message", e.target.value)}
-            placeholder="Enter your message here..." className={inputCls} />
+            placeholder="Message"
+            className="rounded-[5px] border-0 bg-white font-heading text-[2.3vh] text-ink-800 shadow-card focus:ring-0" />
           {errors.Message && <p className={errCls}>{errors.Message}</p>}
         </div>
         <Button type="submit" disabled={loading}
-          className="my-4 w-full rounded-md py-[18px] font-heading text-button leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]">
+          className="mt-4 w-full rounded-md p-3 font-heading leading-[18.4px] shadow-[1px_15px_34px_0px_rgba(56,182,255,0.4)]">
           {loading ? (
             <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : "Submit Now"}

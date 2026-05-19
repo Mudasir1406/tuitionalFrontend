@@ -193,3 +193,15 @@ Tailwind port action:
   ```
 - The card text (`text-center`) needs no flipping. The card root flex column has no directional children — no `flex-row-reverse` needed.
 - The font fallback to `Noto Sans Arabic` is handled globally via `html[dir="rtl"] *` per project foundation; no per-card change.
+
+## §6 Late-discovered drift (2026-05-19)
+
+### `h-[35%]` text wrapper clips content
+- MUI `<Box sx={{ height: "35%" }}>` wrapping h5+body2 inside card → tightly constrained when description wraps to many lines. Description visually touches card bottom border because `justify-center` centers content but the `h-[35%]` box is too small for the wrapped text + heading.
+- **Fix:** drop the `h-[35%]` wrapper. Let inner div have natural height. Add `px-4 py-6 sm:py-8 md:py-10 lg:py-12` padding to the card so content has internal breathing room. `justify-center` still centers vertically.
+- Trade-off vs MUI: visually identical when description is short; better when long. Card fixed height preserved.
+
+### §6.2 Circle icon containers squish to oval
+- Card root has `flex flex-col items-center justify-center`. Outer icon circle (`h-[45px] w-[45px]` etc.) is a flex item with default `flex-shrink: 1`. In a `flex-col` container, the MAIN axis is vertical → height can shrink while width does not. Circle collapses to oval.
+- Inner SVG wrapper (`h-5 w-5`) has same issue.
+- **Fix:** add `shrink-0` to both the outer circle div and the inner SVG wrapper. Forces aspect ratio preserved.

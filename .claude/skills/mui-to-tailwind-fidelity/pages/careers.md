@@ -66,10 +66,25 @@ Inter-section vertical gaps are NOT specified at page level. Each component (`<T
 
 The port (`tuitionalFrontend\src\app\careers\page.tsx`) is a faithful translation:
 
+- Line 25: `<Header heroClassName="h-[10vh] sm:h-[10vh] md:h-[20vh] lg:h-[30vh] bg-gradient-to-b from-[#D7F0FF] to-white/70" />` — gradient hero strip override (page replicates MUI's full-bleed hero).
 - Line 36: `bg-gradient-to-b from-[#D7F0FF] to-white/70` — matches `style.contanier`.
 - Line 37: `mx-auto lg:max-w-[1650px]` — matches `<Container maxWidth={{ lg: 1650 }}>`.
 - Line 41: `mx-auto lg:max-w-[1650px]` — second container, also matched.
 - Line 44: `<div id="careersForm">` preserved — important for anchor links.
+
+### §5a Header compensation (Fix A pattern)
+
+`careers.module.css .container` has `height: 100vh`. Sticky Tailwind header consumes flow space — add negative margin compensation:
+
+```css
+.container {
+  ...
+  margin-top: calc(-2vh - 72px);   /* xs (header = 72px) */
+}
+@media (min-width: 600px) {
+  .container { margin-top: calc(-2vh - 80px); }  /* sm+ header = 80px */
+}
+```
 
 No discrepancies at page level.
 
